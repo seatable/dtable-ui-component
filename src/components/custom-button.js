@@ -4,7 +4,7 @@ class CustomButton  extends React.Component {
 
   render() {
     return (
-      <div>{'seatable component doc intruductio'}</div>
+      <div>{'seatable component doc intruduction'}</div>
     );
   }
 }
