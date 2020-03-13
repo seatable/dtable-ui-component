@@ -1,14 +1,11 @@
 .cell-formatter-container {
-  display: block;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  line-height: 1;
 }
 
 /* collaborator */
-.cell-formatter-container.collaborator-formatter {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .collaborator-formatter .collaborator-item {
   display: inline-flex;
   align-items: center;
@@ -20,9 +17,17 @@
   background: #eaeaea;
 }
 
+.collaborator-item .collaborator-avatar,
+.collaborator-item .collaborator-name,
+.collaborator-item .collaborator-remove {
+  height: 20px;
+  line-height: 20px;
+}
+
 .collaborator-item .collaborator-avatar {
   display: flex;
   align-items: center;
+  justify-content: center;
   margin: 0 4px 0 2px;
 }
 

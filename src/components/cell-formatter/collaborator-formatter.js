@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'astro-classname';
 import ColloboratorItem from '../common/collaborator-item';
 import DefaultAvatar from '../../assets/images/default_avatar.png';
 
@@ -21,7 +22,7 @@ const propTypes = {
 // 2 value is exist, but can't find in collaborators
 // 3 value is exist, typeof value is a string
 // 4 vlaue is exist, typeof value is array
-class CollaboratorFormatter extends React.Component {
+class CollaboratorFormatter extends React.PureComponent {
 
   getCollaborators = () => {
     let { value, collaborators, enableDeleteCollaborator, onDeleteCollaborator } = this.props;
@@ -50,13 +51,14 @@ class CollaboratorFormatter extends React.Component {
 
   render() {
     const { containerClassName, value } = this.props;
+    const classname = cn('cell-formatter-container collaborator-formatter', containerClassName)
     if (!value || (Array.isArray(value) && value.length === 0)) {
-      return (<div className={containerClassName}></div>)
+      return (<div className={classname}></div>)
     }
 
     const collaborators = this.getCollaborators();
     return (
-      <div className={`cell-formatter-container collaborator-formatter ${containerClassName ? containerClassName : ''}`}>
+      <div className={classname}>
         {collaborators}
       </div>
     );

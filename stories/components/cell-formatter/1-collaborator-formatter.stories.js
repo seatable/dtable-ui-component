@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
+import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
 import { CollaboratorFormatter } from '../../../src/components/cell-formatter';
 
@@ -10,11 +11,7 @@ const collaborators = [
   {name: '小红', email: 'xiaohong@seafile.com', contact_email: 'xiaohong@seafile.com', avatar_url: 'http://i2.w.yun.hjfile.cn/doc/201303/54c809bf-1eb2-400b-827f-6f024d7d599b_01.jpg'},
 ];
 
-const onDeleteCollaborator = function(collaborator) {
-  alert('click delete button');
-};
-
-storiesOf('forms|collaborator-formatter', module)
+storiesOf('cells|collaborator-formatter', module)
   .addDecorator(withInfo)
   .add('collaborator-collaborator使用文档', () => (
     <div>
@@ -32,8 +29,8 @@ storiesOf('forms|collaborator-formatter', module)
           containerClassName={''} 
           collaborators={collaborators}
           enableDeleteCollaborator={true}
-          onDeleteCollaborator={(collaborator) => {onDeleteCollaborator(collaborator)}}
-        />
+          onDeleteCollaborator={action('delete a collaborator')}
+          />
       </ShowCode>
       <ShowCode sub={"协作人中包含删除按钮-多个协作人"}>
         <CollaboratorFormatter 
@@ -41,15 +38,16 @@ storiesOf('forms|collaborator-formatter', module)
           containerClassName={''} 
           collaborators={collaborators}
           enableDeleteCollaborator={true}
-          onDeleteCollaborator={(collaborator) => {onDeleteCollaborator(collaborator)}}
+          onDeleteCollaborator={action('delete a collaborator')}
         />
       </ShowCode>
     </div>
   ), {
     info: {
-      text: 'API',
+      text: '<h1>API</h1>',
       inline: true,
-      source: false
+      source: false,
+      propTablesExclude: [ShowCode]
     }
   })
 

@@ -19,7 +19,7 @@ class CollaboratorItem extends React.Component {
 
   onDeleteCollaborator = () => {
     let  { collaborator } = this.props;
-    this.props.onDeleteCollaborator(collaborator.email);
+    this.props.onDeleteCollaborator(collaborator);
   }
 
   render() {
