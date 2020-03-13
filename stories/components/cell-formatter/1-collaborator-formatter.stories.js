@@ -21,9 +21,9 @@ const info = {
 };
 
 const collaborators = [
-  {name: 'Alex', email: 'shanshuirenjia@seafile.com', contact_email: 'shanshuirenjia@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3574700877,553982185&fm=26&gp=0.jpg'},
-  {name: 'LiLei', email: 'xiaoqiang@seafile.com', contact_email: 'xiaoqiang@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3468940910,2793580922&fm=26&gp=0.jpg'},
-  {name: 'Kitty', email: 'xiaohong@seafile.com', contact_email: 'xiaohong@seafile.com', avatar_url: 'https://www.foodiesfeed.com/free-food-photo/lady-with-a-glass-of-red-wine-in-a-wine-shop/'},
+  {name: 'Alex', email: 'alex@seafile.com', contact_email: 'alex@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3574700877,553982185&fm=26&gp=0.jpg'},
+  {name: 'LiLei', email: 'lilei@seafile.com', contact_email: 'lilei@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3468940910,2793580922&fm=26&gp=0.jpg'},
+  {name: 'Kitty', email: 'kitty@seafile.com', contact_email: 'kitty@seafile.com', avatar_url: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=139910319,1330512143&fm=26&gp=0.jpg'},
 ];
 
 storiesOf('CELLS|collaborator-formatter', module)
@@ -44,7 +44,7 @@ storiesOf('CELLS|collaborator-formatter', module)
       <ShowCode sub={"A collaborator"}>
         <Description>If the collaborator is in the collaborator list, the collaborator's name and avatar will be displayed.</Description>
         <CollaboratorFormatter 
-          value={'Alex'} 
+          value={'alex@seafile.com'} 
           containerClassName={''} 
           collaborators={collaborators}
           enableDeleteCollaborator={true}
@@ -53,7 +53,7 @@ storiesOf('CELLS|collaborator-formatter', module)
       </ShowCode>
       <ShowCode sub={"Multiple collaborators"}>
         <CollaboratorFormatter 
-          value={['shanshuirenjia@seafile.com', 'xiaoqiang@seafile.com']} 
+          value={['alex@seafile.com', 'lilei@seafile.com']} 
           containerClassName={''} 
           collaborators={collaborators}
           enableDeleteCollaborator={true}
@@ -65,7 +65,7 @@ storiesOf('CELLS|collaborator-formatter', module)
         <CollaboratorFormatter value={'Alex'} containerClassName={''} collaborators={collaborators} />
       </ShowCode>
       <ShowCode sub={"Multiple collaborators"}>
-        <CollaboratorFormatter value={['shanshuirenjia@seafile.com', 'xiaoqiang@seafile.com']} containerClassName={''} collaborators={collaborators} />
+        <CollaboratorFormatter value={['alex@seafile.com', 'kitty@seafile.com']} containerClassName={''} collaborators={collaborators} />
       </ShowCode>
     </div>
   ), {info})
