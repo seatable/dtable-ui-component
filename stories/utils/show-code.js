@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import cn from 'astro-classname';
+import Description from './description';
 
 const options = {
   showDefaultProps: false,
@@ -21,6 +22,9 @@ export default class ShowCode extends Component {
 
     if(Array.isArray(children)) {
       children.forEach(el => {
+        if (el.type.displayName === 'Description') {
+          return;
+        }
         code += reactElementToJSXString(el, {
           showDefaultProps: false
         });

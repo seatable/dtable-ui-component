@@ -4,6 +4,21 @@ import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
 import { SingleSelectFormatter } from '../../../src/components/cell-formatter';
 
+
+const info = {
+  text: '<h1>API</h1>',
+  inline: true,
+  source: false,
+  propTablesExclude: [ShowCode],
+  styles: {
+    header: {
+      h1: {
+        'marginBottom': '8px'
+      }
+    }
+  }
+};
+
 let options = [
   {
     id: '1111',
@@ -32,27 +47,28 @@ let options = [
   },
 ]
 
-storiesOf('cells|single-select-formatter', module)
+storiesOf('CELLS|single-select-formatter', module)
   .addDecorator(withInfo)
-  .add('single-select使用文档', () => (
+  .add('single-select component', () => (
     <div>
-      <h1>类型一</h1>
-      <ShowCode sub={"单选标签按钮"}>
+      <h1>Sample display</h1>
+      <ShowCode>
         <SingleSelectFormatter value={'1111'} options={options} />
+      </ShowCode>
+      <ShowCode>
         <SingleSelectFormatter value={'2222'} options={options} />
+      </ShowCode>
+      <ShowCode>
         <SingleSelectFormatter value={'3333'} options={options} />
+      </ShowCode>
+      <ShowCode>
         <SingleSelectFormatter value={'4444'} options={options} />
+      </ShowCode>
+      <ShowCode>
         <SingleSelectFormatter value={'5555'} options={options} />
       </ShowCode>
     </div>
-  ), {
-    info: {
-      text: '<h1>API</h1>',
-      inline: true,
-      source: false,
-      propTablesExclude: [ShowCode]
-    }
-  })
+  ), {info})
 
 
 
