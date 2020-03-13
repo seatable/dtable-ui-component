@@ -3,53 +3,72 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
+import Description from '../../utils/description';
 import { CollaboratorFormatter } from '../../../src/components/cell-formatter';
 
+const info = {
+  text: '<h1>API</h1>',
+  inline: true,
+  source: false,
+  propTablesExclude: [ShowCode, Description],
+  styles: {
+    header: {
+      h1: {
+        'marginBottom': '8px'
+      }
+    }
+  }
+};
+
 const collaborators = [
-  {name: '山水人家', email: 'shanshuirenjia@seafile.com', contact_email: 'shanshuirenjia@seafile.com', avatar_url: 'http://c.hiphotos.baidu.com/zhidao/pic/item/d009b3de9c82d1587e249850820a19d8bd3e42a9.jpg'},
-  {name: '小强', email: 'xiaoqiang@seafile.com', contact_email: 'xiaoqiang@seafile.com', avatar_url: 'http://a.hiphotos.baidu.com/zhidao/pic/item/5366d0160924ab1857f1cbae35fae6cd7a890b47.jpg'},
-  {name: '小红', email: 'xiaohong@seafile.com', contact_email: 'xiaohong@seafile.com', avatar_url: 'http://i2.w.yun.hjfile.cn/doc/201303/54c809bf-1eb2-400b-827f-6f024d7d599b_01.jpg'},
+  {name: 'Alex', email: 'alex@seafile.com', contact_email: 'alex@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3574700877,553982185&fm=26&gp=0.jpg'},
+  {name: 'LiLei', email: 'lilei@seafile.com', contact_email: 'lilei@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=3468940910,2793580922&fm=26&gp=0.jpg'},
+  {name: 'Kitty', email: 'kitty@seafile.com', contact_email: 'kitty@seafile.com', avatar_url: 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=139910319,1330512143&fm=26&gp=0.jpg'},
 ];
 
-storiesOf('cells|collaborator-formatter', module)
+storiesOf('CELLS|collaborator-formatter', module)
   .addDecorator(withInfo)
-  .add('collaborator-collaborator使用文档', () => (
+  .add('Collaborators show component', () => (
     <div>
-      <h1>类型一</h1>
-      <ShowCode sub={"协作人中不包含删除按钮-单个用户"}>
-        <CollaboratorFormatter value={'山水人家'} containerClassName={''} collaborators={collaborators} />
-      </ShowCode>
-      <ShowCode sub={"协作人中不包含删除按钮-多个用户"}>
-        <CollaboratorFormatter value={['shanshuirenjia@seafile.com', 'xiaoqiang@seafile.com']} containerClassName={''} collaborators={collaborators} />
-      </ShowCode>
-      <h1>类型二</h1>
-      <ShowCode sub={"协作人中包含删除按钮-单个协作人"}>
+      <h1>Scene One: The component contains a delete button</h1>
+      <ShowCode sub={"A collaborator"}>
+        <Description>If the collaborator is not in the collaborator list, a default avatar and current value will be displayed.</Description>
         <CollaboratorFormatter 
-          value={'山水人家'} 
+          value={'Alex'} 
           containerClassName={''} 
           collaborators={collaborators}
           enableDeleteCollaborator={true}
           onDeleteCollaborator={action('delete a collaborator')}
           />
       </ShowCode>
-      <ShowCode sub={"协作人中包含删除按钮-多个协作人"}>
+      <ShowCode sub={"A collaborator"}>
+        <Description>If the collaborator is in the collaborator list, the collaborator's name and avatar will be displayed.</Description>
         <CollaboratorFormatter 
-          value={['shanshuirenjia@seafile.com', 'xiaoqiang@seafile.com']} 
+          value={'alex@seafile.com'} 
+          containerClassName={''} 
+          collaborators={collaborators}
+          enableDeleteCollaborator={true}
+          onDeleteCollaborator={action('delete a collaborator')}
+          />
+      </ShowCode>
+      <ShowCode sub={"Multiple collaborators"}>
+        <CollaboratorFormatter 
+          value={['alex@seafile.com', 'lilei@seafile.com']} 
           containerClassName={''} 
           collaborators={collaborators}
           enableDeleteCollaborator={true}
           onDeleteCollaborator={action('delete a collaborator')}
         />
       </ShowCode>
+      <h1>Scene Two: The component does not contain a delete button</h1>
+      <ShowCode sub={"A collaborators"}>
+        <CollaboratorFormatter value={'Alex'} containerClassName={''} collaborators={collaborators} />
+      </ShowCode>
+      <ShowCode sub={"Multiple collaborators"}>
+        <CollaboratorFormatter value={['alex@seafile.com', 'kitty@seafile.com']} containerClassName={''} collaborators={collaborators} />
+      </ShowCode>
     </div>
-  ), {
-    info: {
-      text: '<h1>API</h1>',
-      inline: true,
-      source: false,
-      propTablesExclude: [ShowCode]
-    }
-  })
+  ), {info})
 
 
 
