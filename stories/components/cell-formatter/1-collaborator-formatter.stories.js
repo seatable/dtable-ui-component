@@ -14,8 +14,6 @@ const onDeleteCollaborator = function(collaborator) {
   alert('click delete button');
 };
 
-
-
 storiesOf('forms|collaborator-formatter', module)
   .addDecorator(withInfo)
   .add('collaborator-collaborator使用文档', () => (
