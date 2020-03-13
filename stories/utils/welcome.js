@@ -7,7 +7,7 @@ class Welcome extends React.Component {
       <div className="intro-wrapper">
         <h1 className="text-center">欢迎使用dtable-ui-component</h1>
         <div>
-          <p>组件库使用规范</p>
+          <p>组件库使用简介</p>
         </div>
       </div>
     );
