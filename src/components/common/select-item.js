@@ -15,6 +15,7 @@ class SelectItem extends React.PureComponent {
     return {
       display: 'inline-block',
       padding: '0px 10px',
+      marginRight: '8px',
       height: '20px',
       lineHeight: '20px',
       textAlign: 'center',
