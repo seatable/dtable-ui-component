@@ -10,6 +10,7 @@ export const formatNumberToString = (value, currentType) => {
   switch(currentType) {
     case NUMBER_TYPES.NUMBER:
       formatedValue = value;
+      break;
     case NUMBER_TYPES.PERCENT:
       let percentValue = Number.parseFloat((value * 100).toFixed(8));
       formatedValue = `${percentValue}%`;
