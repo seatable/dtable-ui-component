@@ -1,6 +1,4 @@
 .cell-formatter-container {
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   line-height: 1;
 }
