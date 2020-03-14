@@ -4,9 +4,6 @@ import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
 import { NumberFormatter } from '../../../src/components/cell-formatter';
 
-import '../../css/cell-formatter.css';
-
-
 const info = {
   text: '<h1>API</h1>',
   inline: true,
@@ -26,10 +23,10 @@ storiesOf('CELLS|number-formatter', module)
   .add('number component', () => (
     <div>
       <h1>Sample display</h1>
-      <ShowCode tilte={'Default Number'}>
+      <ShowCode title={'Default Number'}>
         <NumberFormatter value={1234444}  />
       </ShowCode>
-      <ShowCode tilte={'Number with commas'}>
+      <ShowCode title={'Number with commas'}>
         <NumberFormatter value={1234445.123}  format={'number-with-commas'}/>
       </ShowCode>
       <ShowCode title={'Number with suffix "%"'}>
@@ -46,9 +43,3 @@ storiesOf('CELLS|number-formatter', module)
       </ShowCode>
     </div>
   ), {info})
-
-
-
-
-
-

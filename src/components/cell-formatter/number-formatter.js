@@ -24,11 +24,10 @@ class NumberFormatter extends React.Component {
 
   render() {
     let { value: number, format, containerClassName } = this.props;
-    let classname = cn('cell-formatter-container single-select-formatter', containerClassName);
+    let classname = cn('cell-formatter-container number-formatter', containerClassName);
     if (number !== '') {
       number = this.formatNumber(number, format);
     }
-
 
     return (
       <div className={classname}>{number}</div>

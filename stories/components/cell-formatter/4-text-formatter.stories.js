@@ -6,7 +6,6 @@ import { TextFormatter } from '../../../src/components/cell-formatter';
 
 import '../../css/cell-formatter.css';
 
-
 const info = {
   text: '<h1>API</h1>',
   inline: true,
@@ -45,9 +44,3 @@ storiesOf('CELLS|text-formatter', module)
       </ShowCode>
     </div>
   ), {info})
-
-
-
-
-
-

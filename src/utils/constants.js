@@ -6,3 +6,12 @@ export const NUMBER_TYPES = {
   ['EURO']: 'euro',
   ['DOLLAR']: 'dollar'
 };
+
+export const DATE_TYPES = {
+  ['D/M/YYYY']: 'D/M/YYYY',
+  ['D/M/YYYY HH:mm']: 'D/M/YYYY HH:mm',
+  ['M/D/YYYY']: 'M/D/YY',
+  ['M/D/YYYY HH:mm']: 'M/D/YYYY HH:mm',
+  ['YYYY-MM-DD']: 'YYYY-MM-DD',
+  ['YYYY-MM-DD HH:mm']: 'YYYY-MM-DD HH:mm',
+}
