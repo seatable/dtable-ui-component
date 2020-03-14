@@ -1,5 +1,5 @@
 import { format } from 'number-currency-format';
-import { NUMBER_TYPES } from './constants';
+import { NUMBER_TYPES, DATE_TYPES } from './constants';
 
 
 export const formatNumberToString = (value, currentType) => {
@@ -32,6 +32,42 @@ export const formatNumberToString = (value, currentType) => {
   return formatedValue;
 };
 
-export const formatDate = (value, format) => {
+export const formatDateToString = (value, format) => {
+  let formatedValue = ''
+  if (!value) { // value === '', value === undefine, value === null
+    return formatedValue;
+  }
 
+  let newValue = value.split(' ');
+  let cellDate = newValue[0].split('-');
+  switch(format) {
+    case DATE_TYPES['D/M/YYYY']:
+      formatedValue = `${Number(cellDate[2])}/${Number(cellDate[1])}/${cellDate[0]}`;
+      break;
+    case DATE_TYPES['D/M/YYYY HH:mm']:
+      formatedValue = `${Number(cellDate[2])}/${Number(cellDate[1])}/${cellDate[0]}`;
+      if (newValue[1]) {
+        formatedValue = `${formatedValue} ${newValue[1]}` 
+      }
+      break;
+    case DATE_TYPES['M/D/YYYY']:
+      formatedValue = `${Number(cellDate[1])}/${Number(cellDate[2])}/${cellDate[0]}`;
+      break;
+    case DATE_TYPES['M/D/YYYY HH:mm']:
+      formatedValue = `${Number(cellDate[1])}/${Number(cellDate[2])}/${cellDate[0]}`;
+      if (newValue[1]) {
+        formatedValue = `${formatedValue} ${newValue[1]}`;
+      }
+      break;
+    case DATE_TYPES['YYYY-MM-DD']:
+      formatedValue = `${cellDate[0]}-${cellDate[1]}-${cellDate[2]}`;
+      break;
+    case DATE_TYPES['YYYY-MM-DD HH:mm']:
+      formatedValue = value;
+      break;
+    default:
+      formatedValue = value;
+  }
+
+  return formatedValue;
 };
