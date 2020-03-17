@@ -2,7 +2,6 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { DATE_TYPES } from '../../../src/utils/constants';
 import { CheckboxFormatter } from '../../../src/components/cell-formatter';
 
 const info = {
