@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
 import ColloboratorItem from '../common/collaborator-item';
-import DefaultAvatar from '../../assets/images/default_avatar.png';
+import DefaultAvatar from '../../assets/images/avatar/default_avatar.png';
 
 const propTypes = {
   containerClassName: PropTypes.string,

@@ -99,4 +99,32 @@
   transform: translate(-50%, 9px) scale(0.8);
 }
 
+.file-formatter {
+  display: flex;
+  align-items: center;
+}
+
+.file-formatter .file-item-icon {
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+  border: 1px solid #f0f0f0;
+}
+
+.file-formatter .file-item-count {
+  display: inline-block;
+  padding: 0 3px;
+  min-width: 14px;
+  line-height: 14px;
+  font-size: 12px;
+  border-radius: 6px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  background-color: #999;
+  -webkit-transform: translate(-50%, 8px) scale(.8);
+  transform: translate(-50%, 8px) scale(.8);
+}
+
 
