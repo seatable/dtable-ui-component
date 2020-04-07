@@ -9,3 +9,4 @@ export { default as SingleSelectFormatter } from './single-select-formatter';
 export { default as MultipleSelectFormatter } from './multiple-select-formatter';
 export { default as LongTextFormatter } from './long-text-formatter';
 export { default as FileFormatter } from './file-formatter';
+export { default as ImageFormatter } from './image-formatter';
