@@ -33,6 +33,41 @@ export const formatNumberToString = (value, currentType) => {
   return formatedValue;
 };
 
+export const fromatStringToNumber = (value) => {
+  let isIncludePercent = value.indexOf('%') > -1;
+  let newData = parseFloat(value.replace(/[^.-\d]/g, ''));
+  if (isIncludePercent && !isNaN(newData)) {
+    return newData / 100;
+  }
+  return isNaN(newData) ? '' : newData;
+};
+
+export const formatNumberString = (value, format) => {
+  let formatedValue = '';
+  switch(format) {
+    case 'number':
+    case 'number-with-commas':
+      formatedValue = value.replace(/[^.-\d,]/g,'');
+      break;
+    case 'percent':
+      formatedValue = value.replace(/[^.-\d,%]/g, '');
+      break;
+    case 'yuan':
+      formatedValue = value.replace(/[^.-\d￥,]/g, '');
+      break;
+    case 'dollar':
+      formatedValue = value.replace(/[^.-\d$,]/g, '');
+      break;
+    case 'euro':
+      formatedValue = value.replace(/[^.-\d€,]/g, '');
+      break;
+    default:
+      formatedValue = value.replace(/[^.-\d,]/g,'');
+  }
+
+  return formatedValue;
+}
+
 export const formatDateToString = (value, format) => {
   let formatedValue = ''
   if (!value) { // value === '', value === undefine, value === null
