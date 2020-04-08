@@ -49,16 +49,16 @@ export const formatNumberString = (value, format) => {
     case NUMBER_TYPES.NUMBER_WITH_COMMAS:
       formatedValue = value.replace(/[^.-\d,]/g,'');
       break;
-    case 'percent':
+    case NUMBER_TYPES.PERCENT:
       formatedValue = value.replace(/[^.-\d,%]/g, '');
       break;
-    case 'yuan':
+    case NUMBER_TYPES.YUAN:
       formatedValue = value.replace(/[^.-\d￥,]/g, '');
       break;
-    case 'dollar':
+    case NUMBER_TYPES.DOLLAR:
       formatedValue = value.replace(/[^.-\d$,]/g, '');
       break;
-    case 'euro':
+    case NUMBER_TYPES.EURO:
       formatedValue = value.replace(/[^.-\d€,]/g, '');
       break;
     default:
