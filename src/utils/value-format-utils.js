@@ -9,7 +9,7 @@ export const formatNumberToString = (value, currentType) => {
   }
   switch(currentType) {
     case NUMBER_TYPES.NUMBER:
-      formatedValue = value;
+      formatedValue = value.toString();
       break;
     case NUMBER_TYPES.PERCENT:
       let percentValue = Number.parseFloat((value * 100).toFixed(8));
@@ -32,6 +32,41 @@ export const formatNumberToString = (value, currentType) => {
   }
   return formatedValue;
 };
+
+export const fromatStringToNumber = (value) => {
+  let isIncludePercent = value.indexOf('%') > -1;
+  let newData = parseFloat(value.replace(/[^.-\d]/g, ''));
+  if (isIncludePercent && !isNaN(newData)) {
+    return newData / 100;
+  }
+  return isNaN(newData) ? '' : newData;
+};
+
+export const formatNumberString = (value, format) => {
+  let formatedValue = '';
+  switch(format) {
+    case NUMBER_TYPES.NUMBER:
+    case NUMBER_TYPES.NUMBER_WITH_COMMAS:
+      formatedValue = value.replace(/[^.-\d,]/g,'');
+      break;
+    case NUMBER_TYPES.PERCENT:
+      formatedValue = value.replace(/[^.-\d,%]/g, '');
+      break;
+    case NUMBER_TYPES.YUAN:
+      formatedValue = value.replace(/[^.-\d￥,]/g, '');
+      break;
+    case NUMBER_TYPES.DOLLAR:
+      formatedValue = value.replace(/[^.-\d$,]/g, '');
+      break;
+    case NUMBER_TYPES.EURO:
+      formatedValue = value.replace(/[^.-\d€,]/g, '');
+      break;
+    default:
+      formatedValue = value.replace(/[^.-\d,]/g,'');
+  }
+
+  return formatedValue;
+}
 
 export const formatDateToString = (value, format) => {
   let formatedValue = ''
