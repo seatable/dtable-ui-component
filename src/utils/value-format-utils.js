@@ -9,7 +9,7 @@ export const formatNumberToString = (value, currentType) => {
   }
   switch(currentType) {
     case NUMBER_TYPES.NUMBER:
-      formatedValue = value;
+      formatedValue = value.toString();
       break;
     case NUMBER_TYPES.PERCENT:
       let percentValue = Number.parseFloat((value * 100).toFixed(8));
@@ -45,8 +45,8 @@ export const fromatStringToNumber = (value) => {
 export const formatNumberString = (value, format) => {
   let formatedValue = '';
   switch(format) {
-    case 'number':
-    case 'number-with-commas':
+    case NUMBER_TYPES.NUMBER:
+    case NUMBER_TYPES.NUMBER_WITH_COMMAS:
       formatedValue = value.replace(/[^.-\d,]/g,'');
       break;
     case 'percent':
