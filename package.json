@@ -10,6 +10,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "is-hotkey": "^0.1.6",
     "number-currency-format": "^1.0.10",
+    "pre-commit": "^1.2.2",
     "react": "^16.13.0",
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.0"
@@ -18,8 +19,12 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
+    "eslint": "eslint --ext .jsx,.js src --max-warnings=0",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o docs"
+  },
+  "pre-commit" : {
+    "run": ["eslint"]
   },
   "browserslist": {
     "production": [

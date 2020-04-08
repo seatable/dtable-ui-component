@@ -100,6 +100,7 @@ class ImagesLazyLoad extends React.Component {
               src={image.src} 
               onMouseDown={this.onMouseDown} 
               onClick={(event) => this.onImageClick(event, index)} 
+              alt=""
             />
           );
         })

@@ -38,7 +38,7 @@ class ImageFormatter extends React.Component {
       let url = getImageThumbnailUrl(item, server);
       return (
         <div className={classname}>
-          <img className="image-item" src={url} />
+          <img className="image-item" src={url} alt=""/>
           {value.length !== 1 && <span className="image-item-count">{`+${value.length}`}</span>}
         </div>
       );
