@@ -107,7 +107,7 @@ class NumebrEditor extends React.Component {
   render() {
     let style = this.getStyle();
     return (
-      <div className="cell-editor grid-cell-type-number">
+      <div className="cell-editor number-editor">
         <div className="number-editor-container">
           {!this.state.isEditorShow &&
             <div className="form-control" style={style} onClick={this.onEditorHandle}>{this.state.textValue}</div>
