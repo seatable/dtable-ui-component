@@ -13,7 +13,8 @@
     "pre-commit": "^1.2.2",
     "react": "^16.13.0",
     "react-app-polyfill": "^1.0.6",
-    "react-dom": "^16.13.0"
+    "react-dom": "^16.13.0",
+    "react-responsive": "^8.0.3"
   },
   "scripts": {
     "start": "node scripts/start.js",
@@ -23,8 +24,10 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o docs"
   },
-  "pre-commit" : {
-    "run": ["eslint"]
+  "pre-commit": {
+    "run": [
+      "eslint"
+    ]
   },
   "browserslist": {
     "production": [
