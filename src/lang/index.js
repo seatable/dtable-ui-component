@@ -1,4 +1,3 @@
-import { LANGUAGE } from '../config/config';
 import de from '../locals/de';
 import en from '../locals/en';
 import fr from '../locals/fr';
@@ -10,6 +9,8 @@ let langData = {
   'fr': fr,
   'zh-cn': zh_CN,
 };
+
+const LANGUAGE = 'en';
 
 export function setLocale(args) {
   let lang = typeof args === 'string' ? args : LANGUAGE;
