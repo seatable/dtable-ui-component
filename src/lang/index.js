@@ -1,4 +1,3 @@
-import { LANGUAGE } from '../config/config';
 import de from '../locals/de';
 import en from '../locals/en';
 import fr from '../locals/fr';
@@ -11,17 +10,21 @@ let langData = {
   'zh-cn': zh_CN,
 };
 
+const LANGUAGE = 'en';
+
+let LANGUAGE_MAP = {};
+
 export function setLocale(args) {
   let lang = typeof args === 'string' ? args : LANGUAGE;
-  langData = langData[lang] || langData[LANGUAGE];
+  LANGUAGE_MAP = langData[lang] || langData[LANGUAGE];
 }
 
 export function getLocale(key, def) {
   if (!key) return def
-  if (!langData[key]) {
+  if (!LANGUAGE_MAP[key]) {
     return def || key
   }
-  return langData[key]
+  return LANGUAGE_MAP[key]
 }
 
 export function substitute(str, obj) {
