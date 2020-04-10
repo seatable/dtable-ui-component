@@ -2,6 +2,7 @@
   "name": "dtable-ui-component",
   "version": "0.1.0",
   "private": true,
+  "main": "./es/index.js",
   "dependencies": {
     "@storybook/addon-info": "^5.3.14",
     "@storybook/addon-knobs": "^5.3.14",
@@ -16,14 +17,30 @@
     "react-dom": "^16.13.0",
     "react-responsive": "^8.0.3"
   },
-  "scripts": {
+  "scripts": { 
+    "clean:esm": "rm -rf es && mkdir es",
+    "clean:lib": "rm -rf lib && mkdir lib",
+    "clean:dist": "rm -rf dist && mkdir dist",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
     "eslint": "eslint --ext .jsx,.js src --max-warnings=0",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -c .storybook -o docs"
+    "build-storybook": "build-storybook -c .storybook -o docs",
+    "pub:esm": "npm run clean:esm && export BABEL_ENV=production && ./node_modules/.bin/babel src --out-dir es --copy-files",
+    "pub:lib": "npm run clean:lib && export BABEL_ENV=node && ./node_modules/.bin/babel src --out-dir lib --copy-files",
+    "pub:umd": "npm run build",
+    "pub:optimized": "rm es/index.local.js && rm lib/index.local.js",
+    "prepublishOnly": "npm run pub:lib && npm run pub:esm && npm run pub:umd && npm run pub:optimized"
+
   },
+  "files": [
+    "dist",
+    "lib",
+    "es",
+    "index.js",
+    "packagge.json"
+  ],
   "pre-commit": {
     "run": [
       "eslint"
