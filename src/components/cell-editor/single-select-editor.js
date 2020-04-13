@@ -2,9 +2,10 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { getLocale } from '../../lang';
+import EditEdtiorButton from '../cell-editor-widgets/edit-editor-button';
 import SelectEditorOption from '../cell-editor-widgets/select-editor-option';
 import PCSelectEditorPopover from '../cell-editor-widgets/pc-select-editor-popover';
-import EditEdtiorButton from '../cell-editor-widgets/edit-editor-button';
+import MBSingleSelectPopover from '../cell-editor-widgets/mb-select-editor-popover'
 
 import '../../assets/css/cell-editor.css';
 
@@ -45,9 +46,9 @@ class SingleSelectEditor extends React.Component {
   }
 
   onDocumentToggle = (e) => {
-    if (this.MobileMask && this.MobileMask.contains(e.target)) {
-      return;
-    }
+    // if (this.propover && this.propover.contains(e.target)) {
+    //   return;
+    // }
     this.setState({isPopoverShow: false});
   }
 
@@ -108,6 +109,10 @@ class SingleSelectEditor extends React.Component {
     this.props.onAddNewOption(optionName);
   }
 
+  onClosePopover = () => {
+    this.setState({isPopoverShow: false});
+  }
+
   setEditorRef = (editor) => {
     this.editor = editor;
   }
@@ -131,6 +136,18 @@ class SingleSelectEditor extends React.Component {
                   onOptionItemToggle={this.onOptionItemToggle}
                   isSupportNewOption={this.props.isSupportNewOption}
                   onAddNewOption={this.onAddNewOption}
+                />
+              </MediaQuery>
+              <MediaQuery query="(max-width: 767.8px)">
+                <MBSingleSelectPopover 
+                  isReadOnly={this.props.isReadOnly}
+                  value={[this.state.newValue]}
+                  column={this.props.column}
+                  options={options}
+                  onOptionItemToggle={this.onOptionItemToggle}
+                  isSupportNewOption={this.props.isSupportNewOption}
+                  onAddNewOption={this.onAddNewOption}
+                  onClosePopover={this.onClosePopover}
                 />
               </MediaQuery>
             </Fragment>
