@@ -78,7 +78,7 @@ class PCSelectEditorPopover extends React.Component {
     return (
       <div className="select-editor-popover" style={popoverStyle}>
         <div className="select-options-search">
-          <input className="form-control" onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_a_collaborator')}></input>
+          <input className="form-control" onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_an_option')}></input>
         </div>
         <div className="select-options-container">
           {options.length > 0 && options.map((option, index) => {
@@ -101,7 +101,7 @@ class PCSelectEditorPopover extends React.Component {
         </div>
         {(isSupportNewOption && !!searchValue) && (
           <div className="select-options-add" onClick={this.onAddNewOption}>
-            <i class="dtable-font dtable-icon-add-table"></i>
+            <i className="dtable-font dtable-icon-add-table"></i>
             <span>{getLocale('Add_an_option')}{' '}{searchValue}</span>
           </div>
         )}
