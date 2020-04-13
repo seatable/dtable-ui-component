@@ -101,7 +101,7 @@ class PCSelectEditorPopover extends React.Component {
         </div>
         {(isSupportNewOption && !!searchValue) && (
           <div className="select-options-add" onClick={this.onAddNewOption}>
-            <i class="dtable-font dtable-icon-add-table"></i>
+            <i className="dtable-font dtable-icon-add-table"></i>
             <span>{getLocale('Add_an_option')}{' '}{searchValue}</span>
           </div>
         )}

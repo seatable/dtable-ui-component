@@ -92,6 +92,7 @@ class MBSingleSelectPopover extends React.Component {
     let newOption = this.state.searchVal.trim();
     if (newOption) {
       this.props.onAddNewOption(newOption);
+      this.props.onClosePopover();
     }
   }
 
@@ -182,7 +183,7 @@ class MBSingleSelectPopover extends React.Component {
             <div className="content">
               <Fragment>
                 {filteredOptions.length === 0 && (
-                  <div className="search-result-none">{'No_options_available'}</div>
+                  <div className="search-result-none">{getLocale('No_options_available')}</div>
                 )}
                 {filteredOptions.length > 0 && this.renderSelectOptions(filteredOptions)}
               </Fragment>
