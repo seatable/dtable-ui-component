@@ -46,9 +46,6 @@ class SingleSelectEditor extends React.Component {
   }
 
   onDocumentToggle = (e) => {
-    // if (this.propover && this.propover.contains(e.target)) {
-    //   return;
-    // }
     this.setState({isPopoverShow: false});
   }
 

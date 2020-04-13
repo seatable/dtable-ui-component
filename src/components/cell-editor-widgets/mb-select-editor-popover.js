@@ -35,7 +35,7 @@ class MBSingleSelectPopover extends React.Component {
   }
 
   componentDidMount() {
-    history.pushState(null, null, '#');
+    history.pushState(null, null, '#'); // eslint-disable-line
     window.addEventListener('popstate', this.handleHistaryBack, false);
   }
 
