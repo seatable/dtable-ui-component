@@ -41,14 +41,16 @@ const value1_2 = '1111';
 
 const value2_1 = '';
 const column2_1 = {
-  key: '0000',
+  key: '256713',
   type: 'single-select',
   name: 'state',
   data: {
     options: [
-      {id: '1111', name: '未开始', color: 'red'},
-      {id: '2222', name: '开始', color: 'blue'},
-      {id: '3333', name: '结束', color: 'green'}
+      {id: "256713", name: "待开始", color: "#EED5FF"},
+      {name: "进行中", color: "#D7E8FF", textColor: "#202428", id: "839569"},
+      {name: "评审", color: "#FFFDCF", id: "954270"},
+      {name: "已完成", color: "#DDFFE6", textColor: "#202428", id: "686249"},
+      {id: "669117", name: "需要设计稿", color: "#FFFDCF"},
     ]
   },
 };
