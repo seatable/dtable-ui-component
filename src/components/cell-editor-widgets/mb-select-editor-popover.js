@@ -146,10 +146,10 @@ class MBSingleSelectPopover extends React.Component {
         />
         <div className="mb-editor-body mb-select-editor-body">
           <div className="mb-selected-item">
-            <div className="title">{'Current option'}</div>
+            <div className="title">{getLocale('Current_option')}</div>
             <div className="content">
               {selectedOptions.length === 0 && (
-                <span className="empty-placeholder">{'No option'}</span>
+                <span className="empty-placeholder">{getLocale('No_option')}</span>
               )}
               {selectedOptions.length > 0 && (
                 selectedOptions.map(selectedOption => {
@@ -169,7 +169,7 @@ class MBSingleSelectPopover extends React.Component {
             <input
               className="form-control"
               type="text"
-              placeholder={'Find an option'}
+              placeholder={getLocale('Find_an_option')}
               value={searchVal}
               onChange={this.onChangeSearch}
               onClick={this.onInputClick}
@@ -177,12 +177,12 @@ class MBSingleSelectPopover extends React.Component {
           </div>
           <div className="mb-select-options-container">
             <div className="title">
-              <span>{'Choose an option'}</span>
+              <span>{getLocale('Choose_an_option')}</span>
             </div>
             <div className="content">
               <Fragment>
                 {filteredOptions.length === 0 && (
-                  <div className="search-result-none">{'No options available.'}</div>
+                  <div className="search-result-none">{'No_options_available'}</div>
                 )}
                 {filteredOptions.length > 0 && this.renderSelectOptions(filteredOptions)}
               </Fragment>

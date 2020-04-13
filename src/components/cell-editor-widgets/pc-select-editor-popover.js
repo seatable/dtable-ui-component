@@ -78,7 +78,7 @@ class PCSelectEditorPopover extends React.Component {
     return (
       <div className="select-editor-popover" style={popoverStyle}>
         <div className="select-options-search">
-          <input className="form-control" onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_a_collaborator')}></input>
+          <input className="form-control" onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_an_option')}></input>
         </div>
         <div className="select-options-container">
           {options.length > 0 && options.map((option, index) => {
