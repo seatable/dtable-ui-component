@@ -163,12 +163,17 @@
 
   .mb-select-editor-body .mb-selected-item .content {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    height: 50px;
+    min-height: 50px;
     padding: 8px 16px;
     border-bottom: 1px solid #e9e9e9;
     overflow: auto;
     background-color: #fff;
+  }
+
+  .mb-select-editor-body .mb-selected-item .content .select-option-item {
+    margin: 3px 10px 3px 0;
   }
 
   .mb-select-editor-body .mb-search-select-items {
