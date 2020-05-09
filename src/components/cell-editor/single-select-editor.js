@@ -80,14 +80,11 @@ class SingleSelectEditor extends React.Component {
   }
 
   onOptionItemToggle = (option) => {
-    let { newValue } = this.state;
 
-    if (newValue === option.id) {
-      return;
-    }
+    let newValue = this.state.newValue === option.id ? '' : option.id;
 
-    this.setState({newValue: option.id}, () => {
-      this.onCommit(option.id);
+    this.setState({newValue}, () => {
+      this.onCommit(newValue);
     });
     this.onClosePopover();
   }
@@ -151,6 +148,7 @@ class SingleSelectEditor extends React.Component {
                 column={this.props.column}
                 options={options}
                 onOptionItemToggle={this.onOptionItemToggle}
+                isShowRemoveIcon={true}
                 isSupportNewOption={this.props.isSupportNewOption}
                 onAddNewOption={this.onAddNewOption}
                 onClosePopover={this.onClosePopover}
