@@ -5,7 +5,7 @@ const propTypes = {
   text: PropTypes.string.isRequired,
 };
 
-class EditEdtiorButton extends React.Component {
+class EditEditorButton extends React.Component {
 
   getStyle = () => {
     return {
@@ -31,6 +31,6 @@ class EditEdtiorButton extends React.Component {
   }
 }
 
-EditEdtiorButton.propTypes = propTypes;
+EditEditorButton.propTypes = propTypes;
 
-export default EditEdtiorButton;
+export default EditEditorButton;

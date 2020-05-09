@@ -44,10 +44,16 @@
 /* option item */
 .select-editor-popover .select-option-item {
   display: flex;
-  font-size: 14px;
   height: 30px;
+  padding-left: 12px;
+  font-size: 14px;
   line-height: 30px;
   margin-left: 10px;
+  cursor: pointer;
+}
+
+.select-editor-popover .select-option-item:hover {
+  background-color: #f5f5f5;
 }
 
 .select-editor-popover .option-info {
