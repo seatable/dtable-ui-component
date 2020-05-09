@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { getLocale } from '../../lang';
-import EditEdtiorButton from '../cell-editor-widgets/edit-editor-button';
+import EditEditorButton from '../cell-editor-widgets/edit-editor-button';
 import SelectEditorOption from '../cell-editor-widgets/select-editor-option';
 import PCSelectEditorPopover from '../cell-editor-widgets/pc-select-editor-popover';
 import MBSingleSelectPopover from '../cell-editor-widgets/mb-select-editor-popover'
@@ -46,7 +46,9 @@ class SingleSelectEditor extends React.Component {
   }
 
   onDocumentToggle = (e) => {
-    this.setState({isPopoverShow: false});
+    if (this.editorContainer !== e.target && !this.editorContainer.contains(e.target)) {
+      this.onClosePopover();
+    }
   }
 
   formatOption = () => {
@@ -87,6 +89,7 @@ class SingleSelectEditor extends React.Component {
     this.setState({newValue: option.id}, () => {
       this.onCommit(option.id);
     });
+    this.onClosePopover();
   }
 
   caculatePopoverPosition = () => {
@@ -104,10 +107,15 @@ class SingleSelectEditor extends React.Component {
 
   onAddNewOption = (optionName) => {
     this.props.onAddNewOption(optionName);
+    this.onClosePopover();
   }
 
   onClosePopover = () => {
     this.setState({isPopoverShow: false});
+  }
+
+  setEditorContainerRef = (editorContainer) => {
+    this.editorContainer = editorContainer;
   }
 
   setEditorRef = (editor) => {
@@ -120,36 +128,36 @@ class SingleSelectEditor extends React.Component {
     let options = this.options;
     let selectedOptions = option ? [option] : [];
     return (
-      <div className="cell-editor single-select-editor">
+      <div ref={this.setEditorContainerRef} className="cell-editor single-select-editor">
         <div ref={this.setEditorRef} className="select-editor-container" onClick={this.onAddOptionToggle}>
-          {option ? <SelectEditorOption option={option} /> : <EditEdtiorButton text={getLocale('Add_an_option')} />}
-          {isPopoverShow && (
-            <Fragment>
-              <MediaQuery query="(min-width: 768px)">
-                <PCSelectEditorPopover 
-                  popoverPosition={popoverPosition}
-                  options={options}
-                  selectedOptions={selectedOptions}
-                  onOptionItemToggle={this.onOptionItemToggle}
-                  isSupportNewOption={this.props.isSupportNewOption}
-                  onAddNewOption={this.onAddNewOption}
-                />
-              </MediaQuery>
-              <MediaQuery query="(max-width: 767.8px)">
-                <MBSingleSelectPopover 
-                  isReadOnly={this.props.isReadOnly}
-                  value={[this.state.newValue]}
-                  column={this.props.column}
-                  options={options}
-                  onOptionItemToggle={this.onOptionItemToggle}
-                  isSupportNewOption={this.props.isSupportNewOption}
-                  onAddNewOption={this.onAddNewOption}
-                  onClosePopover={this.onClosePopover}
-                />
-              </MediaQuery>
-            </Fragment>
-          )}
+          {option ? <SelectEditorOption option={option} /> : <EditEditorButton text={getLocale('Add_an_option')} />}
         </div>
+        {isPopoverShow && (
+          <Fragment>
+            <MediaQuery query="(min-width: 768px)">
+              <PCSelectEditorPopover 
+                popoverPosition={popoverPosition}
+                options={options}
+                selectedOptions={selectedOptions}
+                onOptionItemToggle={this.onOptionItemToggle}
+                isSupportNewOption={this.props.isSupportNewOption}
+                onAddNewOption={this.onAddNewOption}
+              />
+            </MediaQuery>
+            <MediaQuery query="(max-width: 767.8px)">
+              <MBSingleSelectPopover 
+                isReadOnly={this.props.isReadOnly}
+                value={[this.state.newValue]}
+                column={this.props.column}
+                options={options}
+                onOptionItemToggle={this.onOptionItemToggle}
+                isSupportNewOption={this.props.isSupportNewOption}
+                onAddNewOption={this.onAddNewOption}
+                onClosePopover={this.onClosePopover}
+              />
+            </MediaQuery>
+          </Fragment>
+          )}
       </div>
     );
   }
