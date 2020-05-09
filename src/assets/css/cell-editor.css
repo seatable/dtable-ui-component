@@ -64,6 +64,7 @@
 
 .select-editor-popover .option-checked {
   width: 20px;
+  margin-right: 4px;
   text-align: center;
   color: #798d99;
 }
