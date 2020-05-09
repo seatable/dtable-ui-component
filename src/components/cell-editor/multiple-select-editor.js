@@ -5,6 +5,7 @@ import { getLocale } from '../../lang';
 import EditEditorButton from '../cell-editor-widgets/edit-editor-button';
 import SelectEditorOption from '../cell-editor-widgets/select-editor-option';
 import PCSelectEditorPopover from '../cell-editor-widgets/pc-select-editor-popover';
+import MBSingleSelectPopover from '../cell-editor-widgets/mb-select-editor-popover'
 
 const propTypes = {
   isReadOnly: PropTypes.bool,
@@ -104,7 +105,7 @@ class MultipleSelectEditor extends React.Component {
 
   onAddNewOption = (optionName) => {
     this.props.onAddNewOption(optionName);
-    this.onHidePopover();
+    this.onClosePopover();
   }
 
   caculatePopoverPosition = () => {
@@ -158,6 +159,19 @@ class MultipleSelectEditor extends React.Component {
                 onOptionItemToggle={this.onOptionItemToggle}
                 isSupportNewOption={this.props.isSupportNewOption}
                 onAddNewOption={this.onAddNewOption}
+              />
+            </MediaQuery>
+            <MediaQuery query="(max-width: 767.8px)">
+              <MBSingleSelectPopover 
+                isReadOnly={this.props.isReadOnly}
+                value={this.state.newValue}
+                column={this.props.column}
+                options={options}
+                onOptionItemToggle={this.onOptionItemToggle}
+                isShowRemoveIcon={true}
+                isSupportNewOption={this.props.isSupportNewOption}
+                onAddNewOption={this.onAddNewOption}
+                onClosePopover={this.onClosePopover}
               />
             </MediaQuery>
           </Fragment>
