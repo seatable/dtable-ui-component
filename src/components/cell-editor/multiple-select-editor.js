@@ -7,28 +7,25 @@ import SelectEditorOption from '../cell-editor-widgets/select-editor-option';
 import PCSelectEditorPopover from '../cell-editor-widgets/pc-select-editor-popover';
 import MBSingleSelectPopover from '../cell-editor-widgets/mb-select-editor-popover'
 
-import '../../assets/css/cell-editor.css';
-
 const propTypes = {
   isReadOnly: PropTypes.bool,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   column: PropTypes.object,
-  onCommit: PropTypes.func,
   isSupportNewOption: PropTypes.bool,
   onAddNewOption: PropTypes.func,
 };
 
-class SingleSelectEditor extends React.Component {
+class MultipleSelectEditor extends React.Component {
 
   static defaultProps = {
     isReadOnly: false,
-    value: ''
+    value: [],
   }
 
   constructor(props) {
     super(props);
     this.state = {
-      newValue: props.value,
+      newValue: Array.isArray(props.value) ? props.value : [],
       isPopoverShow: false,
       popoverPosition: {},
     };
@@ -51,10 +48,14 @@ class SingleSelectEditor extends React.Component {
     }
   }
 
-  formatOption = () => {
+  getFormattedOptions = () => {
     let { newValue } = this.state;
-    let option = this.options.find(option => option.id === newValue);
-    return option;
+    if (Array.isArray(newValue) && newValue.length > 0) {
+      return newValue.map(option_id => {
+        return this.options.find(option => option.id === option_id);
+      }).filter(option => !!option);
+    }
+    return [];
   }
 
   onAddOptionToggle = (event) => {
@@ -80,12 +81,30 @@ class SingleSelectEditor extends React.Component {
   }
 
   onOptionItemToggle = (option) => {
-
-    let newValue = this.state.newValue === option.id ? '' : option.id;
+    let newValue = this.state.newValue.slice();
+    let optionIndex = newValue.findIndex(option_id => option_id === option.id);
+    if (optionIndex !== -1) {
+      newValue.splice(optionIndex, 1);
+    } else {
+      newValue.push(option.id);
+    }
 
     this.setState({newValue}, () => {
       this.onCommit(newValue);
     });
+  }
+
+  onDeleteOption = (option) => {
+    let newValue = this.state.newValue.slice();
+    let optionIndex = newValue.findIndex(option_id => option_id === option.id);
+    newValue.splice(optionIndex, 1);
+    this.setState({newValue}, () => {
+      this.onCommit(newValue);
+    });
+  }
+
+  onAddNewOption = (optionName) => {
+    this.props.onAddNewOption(optionName);
     this.onClosePopover();
   }
 
@@ -102,11 +121,6 @@ class SingleSelectEditor extends React.Component {
     return position;
   }
 
-  onAddNewOption = (optionName) => {
-    this.props.onAddNewOption(optionName);
-    this.onClosePopover();
-  }
-
   onClosePopover = () => {
     this.setState({isPopoverShow: false});
   }
@@ -121,13 +135,19 @@ class SingleSelectEditor extends React.Component {
 
   render() {
     let { isPopoverShow, popoverPosition } = this.state;
-    let option = this.formatOption();
     let options = this.options;
-    let selectedOptions = option ? [option] : [];
+    let selectedOptions = this.getFormattedOptions();
+    console.log(selectedOptions);
+
     return (
-      <div ref={this.setEditorContainerRef} className="cell-editor single-select-editor">
+      <div ref={this.setEditorContainerRef} className="cell-editor multiple-select-editor">
         <div ref={this.setEditorRef} className="select-editor-container" onClick={this.onAddOptionToggle}>
-          {option ? <SelectEditorOption option={option} /> : <EditEditorButton text={getLocale('Add_an_option')} />}
+          {selectedOptions.length === 0 && <EditEditorButton text={getLocale('Add_an_option')} />}
+          {selectedOptions.length !== 0 && (
+            selectedOptions.map(option => {
+              return <SelectEditorOption key={option.id} option={option} isShowRemoveIcon={true} onDeleteSelectOption={this.onDeleteOption}/>
+            })
+          )}
         </div>
         {isPopoverShow && (
           <Fragment>
@@ -144,7 +164,7 @@ class SingleSelectEditor extends React.Component {
             <MediaQuery query="(max-width: 767.8px)">
               <MBSingleSelectPopover 
                 isReadOnly={this.props.isReadOnly}
-                value={[this.state.newValue]}
+                value={this.state.newValue}
                 column={this.props.column}
                 options={options}
                 onOptionItemToggle={this.onOptionItemToggle}
@@ -161,6 +181,6 @@ class SingleSelectEditor extends React.Component {
   }
 }
 
-SingleSelectEditor.propTypes = propTypes;
+MultipleSelectEditor.propTypes = propTypes;
 
-export default SingleSelectEditor;
+export default MultipleSelectEditor;

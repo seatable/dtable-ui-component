@@ -83,7 +83,6 @@ class MBSingleSelectPopover extends React.Component {
 
   onSelectOption = (option) => {
     this.props.onOptionItemToggle(option);
-    this.props.onClosePopover();
   }
 
   onAddNewOption = (event) => {
@@ -97,8 +96,7 @@ class MBSingleSelectPopover extends React.Component {
   }
 
   onRemoveOption = (option) => {
-    this.props.onRemoveOption(option);
-    this.props.onClosePopover();
+    this.props.onOptionItemToggle(option);
   }
 
   renderSelectOptions = (options) => {
