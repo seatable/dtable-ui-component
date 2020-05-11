@@ -5,6 +5,7 @@ import SelectItem from '../common/select-item';
 
 const propTypes = {
   value: PropTypes.array,
+  fontSize: PropTypes.number,
   containerClassName: PropTypes.string,
   options: PropTypes.array.isRequired,
 };
