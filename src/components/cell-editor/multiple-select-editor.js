@@ -11,6 +11,7 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   column: PropTypes.object,
+  onCommit: PropTypes.func,
   isSupportNewOption: PropTypes.bool,
   onAddNewOption: PropTypes.func,
 };
@@ -137,7 +138,6 @@ class MultipleSelectEditor extends React.Component {
     let { isPopoverShow, popoverPosition } = this.state;
     let options = this.options;
     let selectedOptions = this.getFormattedOptions();
-    console.log(selectedOptions);
 
     return (
       <div ref={this.setEditorContainerRef} className="cell-editor multiple-select-editor">
