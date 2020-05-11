@@ -23,7 +23,7 @@ const info = {
 const value1_1 = [];
 const column1_1 = {
   key: '0000',
-  type: 'single-select',
+  type: 'multiple-select',
   name: 'state',
   data: {
     options: [
@@ -39,7 +39,7 @@ const value1_2 = ['1111'];
 const value2_1 = [];
 const column2_1 = {
   key: '256713',
-  type: 'single-select',
+  type: 'multiple-select',
   name: 'state',
   data: {
     options: [
@@ -60,7 +60,7 @@ storiesOf('Editors|multiple-select-editor', module)
     return (
       <div>
         <h1>Scene One: editor permission is readonly</h1>
-        <ShowCode sub={"single-select editor: null value in the editor"}>
+        <ShowCode sub={"multiple-select editor: null value in the editor"}>
           <MultipleSelectEditor 
             isReadOnly={true}
             value={value1_1} 
@@ -68,7 +68,7 @@ storiesOf('Editors|multiple-select-editor', module)
             onCommit={(updated) => action('onCommit')(updated)}
           />
         </ShowCode>
-        <ShowCode sub={"single-select editor: a default value in the editor"}>
+        <ShowCode sub={"multiple-select editor: a default value in the editor"}>
           <MultipleSelectEditor 
             isReadOnly={true}
             value={value1_2} 
@@ -77,7 +77,7 @@ storiesOf('Editors|multiple-select-editor', module)
           />
         </ShowCode>
         <h1>Scene One: editor permission is read and write</h1>
-        <ShowCode sub={"single-select editor: null value in the editor"}>
+        <ShowCode sub={"multiple-select editor: null value in the editor"}>
           <MultipleSelectEditor 
             isReadOnly={false}
             value={value2_1} 
@@ -85,7 +85,7 @@ storiesOf('Editors|multiple-select-editor', module)
             onCommit={(updated) => action('onCommit')(updated)}
           />
         </ShowCode>
-        <ShowCode sub={"single-select editor: a default value in the editor"}>
+        <ShowCode sub={"multiple-select editor: a default value in the editor"}>
           <MultipleSelectEditor 
             isReadOnly={false}
             value={value2_2} 
@@ -93,7 +93,7 @@ storiesOf('Editors|multiple-select-editor', module)
             onCommit={(updated) => action('onCommit')(updated)}
           />
         </ShowCode>
-        <ShowCode sub={"single-select editor: can create a new option by the search value"}>
+        <ShowCode sub={"multiple-select editor: can create a new option by the search value"}>
           <MultipleSelectEditor 
             isReadOnly={false}
             value={value2_2} 

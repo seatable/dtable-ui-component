@@ -4,7 +4,7 @@
 }
 
 /* collaborator */
-.collaborator-formatter .collaborator-item {
+.collaborator-item {
   display: inline-flex;
   align-items: center;
   margin-right: 10px;
