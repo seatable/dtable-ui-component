@@ -14,7 +14,6 @@ const propTypes = {
   onClosePopover: PropTypes.func,
   isSupportNewOption: PropTypes.bool,
   onAddNewOption: PropTypes.func,
-  onRemoveOption: PropTypes.func,
 };
 
 class MBSingleSelectPopover extends React.Component {

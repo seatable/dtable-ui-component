@@ -4,6 +4,7 @@ import MediaQuery from 'react-responsive';
 import EditEditorButton from '../cell-editor-widgets/edit-editor-button';
 import CollaboratorItem from '../common/collaborator-item';
 import PCCollaboratorEditorPopover from '../cell-editor-widgets/pc-collaborator-editor-popover';
+import MBCollaboratorEditorPopover from '../cell-editor-widgets/mb-collaborator-editor-popover';
 
 const propTypes = {
   isReadOnly: PropTypes.bool,
@@ -131,8 +132,6 @@ class CollaboratorEditor extends React.Component {
     let { collaborators } = this.props;
     let { isPopoverShow, popoverPosition } = this.state;
     let selectedCollaborators = this.getFormattedCollaborators();
-    console.log(this.props.value);
-    console.log(selectedCollaborators);
 
     return (
       <div ref={this.setEditorContainerRef} className="cell-editor collaborator-editor">
@@ -162,6 +161,16 @@ class CollaboratorEditor extends React.Component {
                 selectedCollaborators={selectedCollaborators}
                 collaborators={collaborators}
                 onCollaboratorItemToggle={this.onCollaboratorItemToggle}
+              />
+            </MediaQuery>
+            <MediaQuery query={'(max-width: 767.8px)'}>
+              <MBCollaboratorEditorPopover 
+                isReadOnly={this.props.isReadOnly}
+                value={this.state.newValue}
+                column={this.props.column}
+                collaborators={this.props.collaborators}
+                onCollaboratorItemToggle={this.onCollaboratorItemToggle}
+                onClosePopover={this.onClosePopover}
               />
             </MediaQuery>
           </Fragment>
