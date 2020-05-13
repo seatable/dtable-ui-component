@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getLocale } from '../../lang';
 import CollaboratorItem from '../common/collaborator-item';
 
 const propTypes = {
@@ -52,7 +53,7 @@ class PCCollaboratorEditorPopover extends React.Component {
     return (
       <div className="editor-popover collaborator-editor-popover" style={popoverStyle}>
         <div className="collaborator-search-container">
-          <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={'Find_a_collaborator'}></input>
+          <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_a_collaborator')}></input>
         </div>
         <div className="collaborator-list-container">
           {collaborators.length > 0 && (
@@ -70,6 +71,7 @@ class PCCollaboratorEditorPopover extends React.Component {
               );
             })
           )}
+          {collaborators.length === 0 && (<div className="search-option-null">{getLocale('No_collaborators_available')}</div>)}
         </div>
       </div>
     );

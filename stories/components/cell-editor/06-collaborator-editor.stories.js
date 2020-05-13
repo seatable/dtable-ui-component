@@ -5,6 +5,9 @@ import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
 import Description from '../../utils/description';
 import { CollaboratorEditor } from '../../../src/components/cell-editor';
+import { setLocale } from '../../../src/lang';
+
+// setLocale('zh-cn');
 
 const info = {
   text: '<h1>API</h1>',

@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import EditEditorButton from '../cell-editor-widgets/edit-editor-button';
+import { getLocale } from '../../lang';
 import CollaboratorItem from '../common/collaborator-item';
+import EditEditorButton from '../cell-editor-widgets/edit-editor-button';
 import PCCollaboratorEditorPopover from '../cell-editor-widgets/pc-collaborator-editor-popover';
 import MBCollaboratorEditorPopover from '../cell-editor-widgets/mb-collaborator-editor-popover';
 
@@ -129,14 +130,15 @@ class CollaboratorEditor extends React.Component {
   }
 
   render() {
-    let { collaborators } = this.props;
+    let { collaborators, isReadOnly } = this.props;
     let { isPopoverShow, popoverPosition } = this.state;
     let selectedCollaborators = this.getFormattedCollaborators();
+    let enableDeleteCollaborator = !isReadOnly;
 
     return (
       <div ref={this.setEditorContainerRef} className="cell-editor collaborator-editor">
         <div ref={this.setEditorRef} className="collaborator-editor-container">
-          <EditEditorButton text={'Add an collaborator'} onClick={this.onAddOptionToggle} />
+          <EditEditorButton text={getLocale('Add_a_collaborator')} onClick={this.onAddOptionToggle} />
           <div className="collaborators-container">
             {selectedCollaborators.length > 0 && (
               selectedCollaborators.map(collaborator => {
@@ -144,7 +146,7 @@ class CollaboratorEditor extends React.Component {
                   <CollaboratorItem 
                     key={collaborator.email} 
                     collaborator={collaborator} 
-                    enableDeleteCollaborator={true}
+                    enableDeleteCollaborator={enableDeleteCollaborator}
                     onDeleteCollaborator={this.onDeleteCollaborator}
                   />
                 );

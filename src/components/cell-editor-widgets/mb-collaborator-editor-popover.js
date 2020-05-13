@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getLocale } from '../../lang';
 import MBEditorHeader from './mb-editor-header';
 
 const propTypes = {
@@ -113,7 +114,7 @@ class MBCollaboratorEditorPopover extends React.Component {
         <MBEditorHeader
           title={column.name}
           leftContent={(<i className="dtable-font dtable-icon-return"></i>)}
-          rightContent={(<span>{'Done'}</span>)}
+          rightContent={(<span>{getLocale('Done')}</span>)}
           onLeftClick={this.props.onClosePopover}
           onRightClick={this.props.onClosePopover}
         />
@@ -122,17 +123,17 @@ class MBCollaboratorEditorPopover extends React.Component {
             <input
               className="form-control"
               type="text"
-              placeholder={'Find a collaborator'}
+              placeholder={getLocale('Find_a_collaborator')}
               value={searchVal}
               onChange={this.onChangeSearch}
               onClick={this.onInputClick}
             />
           </div>
           <div className="mb-collaborators-container">
-            <div className="title">{'Choose a collaborator'}</div>
+            <div className="title">{getLocale('Choose_a_collaborator')}</div>
             <div className="content">
               {filteredCollaborators.length === 0 && (
-                <div className="search-result-none">{'No_options_available'}</div>
+                <div className="search-result-none">{getLocale('No_collaborators_available')}</div>
               )}
               {filteredCollaborators.length > 0 && this.renderFilteredCollaborators(filteredCollaborators)}
             </div>
