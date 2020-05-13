@@ -85,8 +85,8 @@ class SingleSelectEditor extends React.Component {
 
     this.setState({newValue}, () => {
       this.onCommit(newValue);
+      this.onClosePopover();
     });
-    this.onClosePopover();
   }
 
   caculatePopoverPosition = () => {

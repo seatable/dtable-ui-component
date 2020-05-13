@@ -27,7 +27,10 @@
 
 .select-editor-popover .select-options-container {
   min-height: 160px;
-  padding: 10px;
+  max-height: 200px;
+  margin: 10px 0;
+  padding: 0 10px;
+  overflow: auto;
 }
 
 /* option item */
@@ -83,7 +86,7 @@
 }
 
 /* mobile single-select */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767.8px) {
   /* common */
   .mb-editor-popover {
     position: fixed;
@@ -93,6 +96,7 @@
     bottom: 0;
     display: flex;
     background-color: #f5f5f5;
+    z-index: 9;
   }
 
   .mb-editor-header {
@@ -236,6 +240,11 @@
     overflow: hidden;
   }
 
+  .mb-select-options-container .mb-select-option-item .dtable-font {
+    font-size: 12px;
+    color: #798d99;
+  }
+
   .mb-select-editor-body .mb-create-select-item {
     display: flex;
     align-items: center;
@@ -259,4 +268,139 @@
     font-weight: 500px;
   }
 
+}
+
+/* pc-multiple-select */
+
+.multiple-select-editor {
+  position: relative;
+}
+
+/* collaborator-editor */
+.collaborator-editor {
+  position: relative;
+}
+
+.collaborator-editor-container .collaborators-container {
+  margin-top: 8px;
+}
+
+.collaborator-editor-popover .collaborator-search-container {
+  padding: 10px 10px 0 10px;
+}
+
+.collaborator-editor-popover .collaborator-search-container input {
+  height: 28px;
+}
+
+.collaborator-editor-popover .collaborator-list-container {
+  min-height: 160px;
+  max-height: 200px;
+  margin: 10px 0;
+  padding: 0 10px;
+  overflow: auto;
+}
+
+.collaborator-editor-popover .collaborator-list-container .collaborator-item-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  padding-left: 12px;
+  font-size: 14px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.collaborator-editor-popover .collaborator-checked {
+  width: 20px;
+  margin-right: 4px;
+  text-align: center;
+  color: #798d99;
+}
+
+@media screen and (max-width: 767.8px) {
+  .mb-collaborator-editor-body .mb-search-collaborator-items {
+    padding: 8px 16px;
+    margin-top: 20px;
+    border-top: 1px solid #e9e9e9;
+    border-bottom: 1px solid #e9e9e9;
+    background-color: #fff;
+  }
+
+  .mb-collaborator-editor-body .mb-search-collaborator-items > input {
+    outline: none;
+    height: 30px;
+    padding: 0;
+    line-height: 30px;
+    border: none;
+  }
+  .mb-collaborator-editor-body .mb-search-collaborator-items > input:focus,
+  .mb-collaborator-editor-body .mb-search-collaborator-items > input:active {
+    outline: none;
+    box-shadow: none;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborators-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    min-height: 0;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborators-container .title {
+    padding: 6px 16px;
+    border-bottom: 1px solid #e9e9e9;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborators-container .content {
+    flex: 1;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    padding-left: 16px;
+    border-bottom: 1px solid #e9e9e9;
+    background-color: #fff;
+  }
+
+  .mb-collaborator-editor-body .search-result-none {
+    padding: 16px 0;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborator-option-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    padding: 10px;
+    padding-left: 0;
+    font-size: 13px;
+    color: #202428;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborator-option-item + .mb-collaborator-option-item {
+    border-top: 1px solid #e9e9e9;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborator-option-item .mb-collaborator-info {
+    display: flex;
+    align-items: center;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborator-option-item .collaborator-avatar img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborator-option-item .collaborator-name {
+    padding: 0 10px;
+    overflow: hidden;
+  }
+
+  .mb-collaborator-editor-body .mb-collaborator-option-item .dtable-font {
+    font-size: 12px;
+    color: #798d99;
+  }
 }

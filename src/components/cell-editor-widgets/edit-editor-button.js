@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   text: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 };
 
 class EditEditorButton extends React.Component {
@@ -26,7 +27,7 @@ class EditEditorButton extends React.Component {
     let { text } = this.props;
     let style = this.getStyle();
     return (
-      <span style={style}>{text}</span>
+      <span style={style} onClick={this.props.onClick}>{text}</span>
     );
   }
 }
