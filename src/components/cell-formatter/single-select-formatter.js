@@ -6,15 +6,16 @@ import SelectItem from '../common/select-item';
 const propTypes = {
   value: PropTypes.string,
   containerClassName: PropTypes.string,
+  fontSize: PropTypes.number,
   options: PropTypes.array.isRequired,
 };
 
 class SingleSelectFormatter extends React.PureComponent {
 
   getOption = () => {
-    let { value, options } = this.props;
+    let { value, options, fontSize } = this.props;
     let option  = options.find(item => item.id === value);
-    return <SelectItem option={option}/>;
+    return <SelectItem option={option} fontSize={fontSize}/>;
   }
 
   render() {
