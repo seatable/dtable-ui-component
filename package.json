@@ -22,7 +22,8 @@
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.0",
     "react-responsive": "^8.0.3",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "reactstrap": "^8.4.1"
   },
   "scripts": {
     "clean:esm": "rm -rf es && mkdir es",
