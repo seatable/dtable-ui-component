@@ -29,12 +29,21 @@ storiesOf('CELLS|creator-formatter', module)
   .addDecorator(withInfo)
   .add('Creator show component', () => (
     <div>
-      <ShowCode sub={"A creator: an avatar and current value's name will be displayed in the creator component."}>
+      <ShowCode sub={"A creator"}>
+        <Description>If the collaborator is not in the collaborator list, a default avatar and current value will be displayed.</Description>
+        <CreatorFormatter 
+          value={'abc'} 
+          containerClassName={''} 
+          collaborators={collaborators}
+          />
+      </ShowCode>
+      <ShowCode sub={"A creator"}>
+      <Description>If the collaborator is in the collaborator list, the collaborator's name and avatar will be displayed.</Description>
         <CreatorFormatter 
           value={'alex@seafile.com'} 
           containerClassName={''} 
           collaborators={collaborators}
-          />
+        />
       </ShowCode>
     </div>
   ), {info})
