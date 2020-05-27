@@ -13,3 +13,4 @@ export { default as ImageFormatter } from './image-formatter';
 export { default as GeolocationFormatter } from './geolocation-formatter';
 export { default as CTimeFormatter} from './ctime-formatter';
 export { default as CreatorFormatter} from './creator-formatter';
+export { default as LastModifierFormatter} from './last-modifier-formatter';
