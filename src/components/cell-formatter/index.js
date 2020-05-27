@@ -12,3 +12,4 @@ export { default as FileFormatter } from './file-formatter';
 export { default as ImageFormatter } from './image-formatter';
 export { default as GeolocationFormatter } from './geolocation-formatter';
 export { default as CTimeFormatter} from './ctime-formatter';
+export { default as CreatorFormatter} from './creator-formatter';
