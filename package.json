@@ -16,6 +16,7 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "glamor": "^2.20.40",
     "is-hotkey": "^0.1.6",
+    "moment": "^2.26.0",
     "number-currency-format": "^1.0.10",
     "pre-commit": "^1.2.2",
     "react": "^16.13.0",

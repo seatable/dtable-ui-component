@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, ModalHeader, ModalBody } from 'reactstrap';
-import { getLocale } from '../../../lang';
+import { getLocale } from '../../lang';
 
 const propTypes = {
   isCheckRepeat: PropTypes.bool,
