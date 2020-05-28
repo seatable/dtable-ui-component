@@ -11,7 +11,7 @@ class TextFormatter extends React.Component {
 
   render() {
     const { containerClassName, value } = this.props;
-    let classname = cn('cell-formatter-container single-select-formatter', containerClassName);
+    let classname = cn('cell-formatter-container text-formatter', containerClassName);
     return (
       <div className={classname}>{value}</div>
     );

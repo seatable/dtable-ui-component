@@ -4,7 +4,7 @@ import cn from 'astro-classname';
 import moment from 'moment';
 
 const propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   containerClassName: PropTypes.string
 };
 
