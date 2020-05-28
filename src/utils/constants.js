@@ -15,3 +15,10 @@ export const DATE_TYPES = {
   'YYYY-MM-DD': 'YYYY-MM-DD',
   'YYYY-MM-DD HH:mm': 'YYYY-MM-DD HH:mm',
 }
+
+export const FORMULA_RESULT_TYPE = {
+  NUMBER: 'number',
+  STRING: 'string',
+  DATE: 'date',
+  BOOL: 'bool',
+};
