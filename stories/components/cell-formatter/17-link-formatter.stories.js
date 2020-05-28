@@ -72,9 +72,9 @@ let linkedTables = [
   { 
     _id: '0000',
     rows: [
-      {_id: '111', '0000': '小强'},
-      {_id: '222', '0000': '小红'},
-      {_id: '333', '0000': '小刚'},
+      {_id: '111', '0000': 'xiaohong'},
+      {_id: '222', '0000': 'xiaomei'},
+      {_id: '333', '0000': 'xiaogang'},
     ],
     columns: [
       { key: '0000', name: 'Name', type: 'text'},
@@ -84,10 +84,10 @@ let linkedTables = [
   { 
     _id: '1111',
     rows: [
-      {_id: 'aaa', '0000': '大疆'},
-      {_id: 'bbb', '0000': '大河'},
-      {_id: 'ccc', '0000': '大力'},
-      {_id: 'ddd', '0000': '举头望明月，低头思故乡。举杯邀明月，对影成三人。'},
+      {_id: 'aaa', '0000': 'Alex'},
+      {_id: 'bbb', '0000': 'LiLei'},
+      {_id: 'ccc', '0000': 'Kitty'},
+      {_id: 'ddd', '0000': 'A long time ago, I had a lot of money to buy anything I wanted'},
     ],
     columns: [
       { key: '0000', name: 'Name', type: 'text'},
@@ -156,7 +156,7 @@ let linkMetaData = {
     });
   },
   expandLinkedTableRow: function(row, tableId) {
-    alert(row, tableId);
+    alert('Row: ' + JSON.stringify(row) + ' tableId: ' +tableId);
   }
 }
 
@@ -165,7 +165,7 @@ storiesOf('CELLS|link-formatter', module)
   .add('link component', () => (
     <div>
       <h1>Sample display</h1>
-      <ShowCode title={'the fomula result is a number value'}>
+      <ShowCode title={'Display linked table rows names.'}>
         <LinkFormatter 
           row={row1}
           column={column1}
@@ -173,7 +173,7 @@ storiesOf('CELLS|link-formatter', module)
           linkMetaData={linkMetaData}
         />
       </ShowCode>
-      <ShowCode title={'the fomula result is a string value'}>
+      <ShowCode title={'Display linked table rows names.'}>
         <LinkFormatter 
           row={row2} 
           column={column2}
@@ -181,7 +181,7 @@ storiesOf('CELLS|link-formatter', module)
           linkMetaData={linkMetaData}
         />
       </ShowCode>
-      <ShowCode title={'the fomula result is a date value'}>
+      <ShowCode title={'Enable to show linked table rows detail information.'}>
         <LinkFormatter 
           row={row3}
           column={column3}
