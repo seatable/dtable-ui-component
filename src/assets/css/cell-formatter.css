@@ -161,5 +161,29 @@
   transform: translate(-50%, 8px) scale(.8);
 }
 
+.link-formmatter {
+  display: inline-flex;
+  align-items: center;
+  overflow: hidden;
+  flex-wrap: nowrap;
+}
+
+.link-formatter .link-item {
+  display: inline-flex;
+  height: 20px;
+  max-width: 230px;
+  padding: 0 8px 0 2px;
+  font-size: 13px;
+  margin-right: 10px;
+  border-radius: 3px;
+  background: #eceff4;
+}
+
+.link-formatter .link-item .link-name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 
 
