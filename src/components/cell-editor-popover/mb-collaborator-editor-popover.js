@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getLocale } from '../../lang';
-import MBEditorHeader from './mb-editor-header';
+import MBEditorHeader from '../common/mobile/mb-editor-header';
 
 const propTypes = {
   isReadOnly: PropTypes.bool.isRequired,
@@ -133,7 +133,7 @@ class MBCollaboratorEditorPopover extends React.Component {
             <div className="title">{getLocale('Choose_a_collaborator')}</div>
             <div className="content">
               {filteredCollaborators.length === 0 && (
-                <div className="search-result-none">{getLocale('No_collaborators_available')}</div>
+                <div className="search-result-none">{getLocale('No_collaborators_avaliable')}</div>
               )}
               {filteredCollaborators.length > 0 && this.renderFilteredCollaborators(filteredCollaborators)}
             </div>
