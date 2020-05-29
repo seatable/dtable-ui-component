@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { getLocale } from '../../lang';
-import MBEditorHeader from './mb-editor-header';
-import SelectEditorOption from './select-editor-option';
+import SelectEditorOption from '../common/select-editor-option';
+import MBEditorHeader from '../common/mobile/mb-editor-header';
 
 const propTypes = {
   isReadOnly: PropTypes.bool,

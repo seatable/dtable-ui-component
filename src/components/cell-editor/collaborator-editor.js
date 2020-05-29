@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { getLocale } from '../../lang';
 import CollaboratorItem from '../common/collaborator-item';
-import EditEditorButton from '../cell-editor-widgets/edit-editor-button';
+import EditEditorButton from '../common/edit-editor-button';
 import PCCollaboratorEditorPopover from '../cell-editor-widgets/pc-collaborator-editor-popover';
 import MBCollaboratorEditorPopover from '../cell-editor-widgets/mb-collaborator-editor-popover';
 

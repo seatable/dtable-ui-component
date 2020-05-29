@@ -7,7 +7,7 @@ const en = {
   Choose_an_option: "Choose an option",
   Add_a_collaborator: "Add a collaborator",
   Find_a_collaborator: "Find a collaborator",
-  No_collaborators_avaliable: "No collaborators avaliable",
+  No_collaborators_available: "No collaborators available",
   Done: 'Done',
   Choose_a_collaborator: "Choose a collaborator",
 };

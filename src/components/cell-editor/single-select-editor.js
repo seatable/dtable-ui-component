@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { getLocale } from '../../lang';
-import EditEditorButton from '../cell-editor-widgets/edit-editor-button';
-import SelectEditorOption from '../cell-editor-widgets/select-editor-option';
+import EditEditorButton from '../common/edit-editor-button';
+import SelectEditorOption from '../common/select-editor-option';
 import PCSelectEditorPopover from '../cell-editor-widgets/pc-select-editor-popover';
 import MBSingleSelectPopover from '../cell-editor-widgets/mb-select-editor-popover'
 
