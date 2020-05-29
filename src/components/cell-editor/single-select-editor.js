@@ -4,8 +4,8 @@ import MediaQuery from 'react-responsive';
 import { getLocale } from '../../lang';
 import EditEditorButton from '../common/edit-editor-button';
 import SelectEditorOption from '../common/select-editor-option';
-import PCSelectEditorPopover from '../cell-editor-widgets/pc-select-editor-popover';
-import MBSingleSelectPopover from '../cell-editor-widgets/mb-select-editor-popover'
+import PCSelectEditorPopover from '../cell-editor-popover/pc-select-editor-popover';
+import MBSingleSelectPopover from '../cell-editor-popover/mb-select-editor-popover'
 
 import '../../assets/css/cell-editor.css';
 
