@@ -7,6 +7,7 @@ import { formatNumberToString, formatDateToString } from '../../utils/value-form
 import EditEditorButton from '../common/edit-editor-button';
 import LinkEditorOption from '../common/link-editor-option';
 import PCLinkEditorPopover from '../cell-editor-popover/pc-link-editor-popover';
+import MBLinkEditorPopover from '../cell-editor-popover/mb-link-editor-popover';
 
 import '../../assets/css/cell-editor.css';
 
@@ -218,6 +219,14 @@ class LinkEditor extends React.Component {
               />
             </MediaQuery>
             <MediaQuery query="(max-width: 767.8px)">
+              <MBLinkEditorPopover 
+                isReadOnly={this.props.isReadOnly}
+                value={this.state.newValue}
+                column={this.props.column}
+                options={options}
+                onOptionItemToggle={this.onOptionItemToggle}
+                onClosePopover={this.onClosePopover}
+              />
             </MediaQuery>
           </Fragment>
           )}

@@ -97,6 +97,8 @@ let linkedTables = [
       {_id: 'hhh', '0000': 'nothing can make me happy, if you married with me.'},
       {_id: 'iii', '0000': 'you are a sweet cat.'},
       {_id: 'jjj', '0000': 'i me a luck dog.'},
+      {_id: 'kkk', '0000': 'who are you.'},
+      {_id: 'lll', '0000': 'i am a dockert.'},
     ],
     columns: [
       { key: '0000', name: 'Name', type: 'text'},
