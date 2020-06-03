@@ -147,7 +147,7 @@ class LinkEditor extends React.Component {
     let optionIndex = newValue.findIndex(option_id => option_id === option.id);
     if (optionIndex !== -1) {
       newValue.splice(optionIndex, 1);
-      linkMetaData.removeLink(this.linkId, this.tableId, this.currentTableId, row._id, option.id);
+      linkMetaData.removeLink(this.linkId, this.tableId, this.otherTableId, row._id, option.id);
     } else {
       newValue.push(option.id);
       linkMetaData.addLink(this.linkId, this.tableId, this.otherTableId, row._id, option.id);
