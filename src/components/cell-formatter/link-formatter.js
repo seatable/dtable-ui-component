@@ -59,7 +59,7 @@ class LinkFormatter extends React.Component {
     let { value: rowIds } = this.state;
     if (rowIds && Array.isArray(rowIds) && rowIds.length > 0) {
       let linkedTable = linkMetaData.getLinkedTable(this.otherTableID);
-      let linkedRows = linkMetaData.getLinkedRows(linkedTable, rowIds);
+      let linkedRows = linkMetaData.getLinkedRows(this.otherTableID, rowIds);
       let result = linkedRows.map((row, index) => {
         let { display_column_key: displayColumnKey } = column.data;
         let displayValue = this.getDisplayValue(linkedTable, row, displayColumnKey);

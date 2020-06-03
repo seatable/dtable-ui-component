@@ -1,16 +1,19 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
+import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
-import { LinkFormatter } from '../../../src/components/cell-formatter';
+import Description from '../../utils/description';
+import { LinkEditor } from '../../../src/components/cell-editor';
+import { setLocale } from '../../../src/lang';
 
-import '../../css/cell-formatter.css';
+// setLocale('zh-cn');
 
 const info = {
   text: '<h1>API</h1>',
   inline: true,
   source: false,
-  propTablesExclude: [ShowCode],
+  propTablesExclude: [ShowCode, Description],
   styles: {
     header: {
       h1: {
@@ -26,12 +29,12 @@ const linkedData = [
     table1_id: '0000', 
     table2_id: '1111',
     table1_table2_maps: {
-      '111': ['aaa', 'bbb', 'ddd'],
+      '111': ['aaa', 'bbb', 'ddd', 'eee', 'ffff', 'hhh', 'iii'],
       '222': ['ccc'],
       '333': ['aaa', 'bbb', 'ccc'],
     },
     table2_table1_maps: {
-      'aaa': ['111', '333'],
+      'aaa': [],
       'bbb': ['111', '333'],
       'ccc': ['222', '333'],
     }
@@ -62,7 +65,7 @@ const linkedData = [
     },
     table2_table1_maps: {
       'aaa': ['222'],
-      'bbb': ['333'],
+      'bbb': [],
       'ccc': ['111'],
     }
   },
@@ -88,6 +91,14 @@ let linkedTables = [
       {_id: 'bbb', '0000': 'LiLei'},
       {_id: 'ccc', '0000': 'Kitty'},
       {_id: 'ddd', '0000': 'A long time ago, I had a lot of money to buy anything I wanted'},
+      {_id: 'eee', '0000': 'Bob'},
+      {_id: 'fff', '0000': 'simth'},
+      {_id: 'ggg', '0000': 'Today i need do many work'},
+      {_id: 'hhh', '0000': 'nothing can make me happy, if you married with me.'},
+      {_id: 'iii', '0000': 'you are a sweet cat.'},
+      {_id: 'jjj', '0000': 'i me a luck dog.'},
+      {_id: 'kkk', '0000': 'who are you.'},
+      {_id: 'lll', '0000': 'i am a dockert.'},
     ],
     columns: [
       { key: '0000', name: 'Name', type: 'text'},
@@ -136,7 +147,6 @@ let column3 = {
   }
 }
 
-
 let linkMetaData = {
   getLinkedCellValue: function(linkId, table1Id, table2Id, row_id) {
     let link = linkedData.find(link => link._id === linkId);
@@ -155,40 +165,63 @@ let linkMetaData = {
       return rowIds.find(rowId => rowId === row._id);
     });
   },
-  expandLinkedTableRow: function(row, tableId) {
-    alert('Row: ' + JSON.stringify(row) + ' tableId: ' +tableId);
+  addLink: function(linkId, table_id, other_table_id, row_id, other_row_id) {
+    console.log(linkId, table_id, other_table_id, row_id, other_row_id);
+  },
+  removeLink: function(linkId, table_id, other_table_id, row_id, other_row_id) {
+    console.log(linkId, table_id, other_table_id, row_id, other_row_id);
   }
 }
 
-storiesOf('CELLS|link-formatter', module)
+storiesOf('Editors|link-editor', module)
   .addDecorator(withInfo)
-  .add('link component', () => (
-    <div>
-      <h1>Sample display</h1>
-      <ShowCode title={'Display linked table rows names.'}>
-        <LinkFormatter 
-          row={row1}
-          column={column1}
-          currentTableId={'0000'}
-          linkMetaData={linkMetaData}
-        />
-      </ShowCode>
-      <ShowCode title={'Display linked table rows names.'}>
-        <LinkFormatter 
-          row={row2} 
-          column={column2}
-          currentTableId={'1111'}
-          linkMetaData={linkMetaData}
-        />
-      </ShowCode>
-      <ShowCode title={'Enable to show linked table rows detail information.'}>
-        <LinkFormatter 
-          row={row3}
-          column={column3}
-          currentTableId={'1111'}
-          enableOpenLinkedRow={true}
-          linkMetaData={linkMetaData}
-        />
-      </ShowCode>
-    </div>
-  ), {info})
+  .add('link editor component', () => {
+    return (
+      <div>
+        <h1>Scene One: editor permission is readonly</h1>
+        <ShowCode sub={"link editor: some default linked value in the linkData"}>
+          <LinkEditor 
+            isReadOnly={true}
+            row={row1}
+            column={column1}
+            currentTableId={'0000'}
+            linkMetaData={linkMetaData}
+          />
+        </ShowCode>
+        <ShowCode sub={"link editor: no default linked value in the linkData"}>
+          <LinkEditor 
+            isReadOnly={true}
+            row={row2}
+            column={column2}
+            currentTableId={'1111'}
+            linkMetaData={linkMetaData}
+          />
+        </ShowCode>
+        <h1>Scene One: editor permission is read and write</h1>
+        <ShowCode sub={"link editor: some default linked value in the linkData"}>
+          <LinkEditor 
+            isReadOnly={false}
+            row={row1}
+            column={column1}
+            currentTableId={'0000'}
+            linkMetaData={linkMetaData}
+          />
+        </ShowCode>
+        <ShowCode sub={"link editor: no default linked value in the linkData"}>
+          <LinkEditor 
+            isReadOnly={false}
+            row={row3}
+            column={column3}
+            currentTableId={'1111'}
+            linkMetaData={linkMetaData}
+          />
+        </ShowCode>
+      </div>
+    )
+  }, {info})
+
+
+
+
+
+
