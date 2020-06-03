@@ -149,8 +149,8 @@ let linkMetaData = {
   getLinkedTable: function(tableId) {
     return linkedTables.find(linkedTable => linkedTable._id === tableId);
   },
-  getLinkedRows: function(table, rowIds) {
-    console.log(table);
+  getLinkedRows: function(tableId, rowIds) {
+    let table = this.getLinkedTable(tableId);
     return table.rows.filter(row => {
       return rowIds.find(rowId => rowId === row._id);
     });
