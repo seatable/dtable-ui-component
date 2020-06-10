@@ -480,6 +480,16 @@
   border-top: 1px solid #ccc;
 }
 
+.file-uploader {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  font-size: 0;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 767.8px) {
   .mb-link-editor-body .mb-search-link-items {
     padding: 8px 16px;
