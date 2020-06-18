@@ -10,3 +10,4 @@ export { default as SingleSelectEdtior } from './single-select-editor';
 export { default as MultipleSelectEditor } from './multiple-select-editor';
 export { default as CollaboratorEditor } from './collaborator-editor';
 export { default as LinkEditor } from './link-editor';
+export { default as DateEditor } from './date-editor';

@@ -562,3 +562,8 @@
     color: #798d99;
   }
 }
+
+.date-editor .date-editor-container {
+  display: flex;
+  width: 400px;
+}
