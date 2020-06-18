@@ -63,7 +63,6 @@ class PCDateEditorPopover extends React.Component {
   getCalender = () => {
     let { dateFormat, showHourAndMinute, lang } = this.props;
     let defaultValue = moment().clone();
-    console.log(lang);
     return (
       <Calendar 
         locale={initDateEditorLanguage(lang)}

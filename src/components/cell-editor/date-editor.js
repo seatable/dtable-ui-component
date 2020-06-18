@@ -46,10 +46,6 @@ class DateEditor extends React.Component {
     let { column } = this.props;
     let defaultDateFormat = 'YYYY-MM-DD';
     let dateFormat = column.data && column.data.format;
-    // Old Europe format is D/M/YYYY new format is DD/MM/YYYY
-    if (dateFormat) {
-      dateFormat = dateFormat.replace(/D\/M\/YYYY/, 'DD/MM/YYYY');
-    }
     return dateFormat || defaultDateFormat;
   }
 
