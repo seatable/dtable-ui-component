@@ -95,7 +95,6 @@ storiesOf('Editors|date-editor', module)
         <h1>Scene Three: editor permission is read-write, current lang is 'zh-cn'</h1>
         <ShowCode sub={"date editor: no default date value in the date editor"}>
           <DateEditor 
-            lang={'zh-cn'}
             value={''}
             column={column2}
             onCommit={(updated) => action('onCommit')(updated)}

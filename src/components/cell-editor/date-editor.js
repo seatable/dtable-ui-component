@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { formatDateToString }  from '../../utils/value-format-utils';
 import PCDateEditorPopover from '../cell-editor-popover/pc-date-editor-popover';
+import MBDateEditorPopover from '../cell-editor-popover/mb-date-editor-popover';
 
 const propTypes = {
   isReadOnly: PropTypes.bool,
@@ -71,6 +72,10 @@ class DateEditor extends React.Component {
     this.props.onCommit(updated);
   }
 
+  onClosePopover = () => {
+    this.setState({isPopoverShow: false});
+  }
+
   render() {
     if (!this.state.isDateInit) {
       return (
@@ -82,7 +87,7 @@ class DateEditor extends React.Component {
       );
     }
 
-    let { lang } = this.props;
+    let { lang, column } = this.props;
     let { newValue, isPopoverShow, dateFormat, showHourAndMinute } = this.state;
     
     return (
@@ -104,6 +109,16 @@ class DateEditor extends React.Component {
               />
             </MediaQuery>
             <MediaQuery query={'(max-width: 767.8px)'}>
+              <MBDateEditorPopover 
+                isReadOnly={this.props.isReadOnly}
+                lang={lang}
+                value={newValue}
+                dateFormat={dateFormat}
+                showHourAndMinute={showHourAndMinute}
+                column={column}
+                onValueChanged={this.onValueChanged}
+                onClosePopover={this.onClosePopover}
+              />
             </MediaQuery>
           </Fragment>
         )}
