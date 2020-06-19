@@ -10,6 +10,9 @@ const en = {
   No_collaborators_available: "No collaborators available",
   Done: 'Done',
   Choose_a_collaborator: "Choose a collaborator",
+  Please_input: "Please input",
+  Please_select: "Please select",
+  Clear: "Clear"
 };
 
 export default en; 

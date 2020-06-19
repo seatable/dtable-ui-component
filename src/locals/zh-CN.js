@@ -10,6 +10,9 @@ const zh_CN = {
   No_collaborators_available: "没有找到协作者",
   Done: '完成',
   Choose_a_collaborator: "选择一个协作者",
+  Please_input: "请输入",
+  Please_select: "请选择",
+  Clear: "清空"
 };
 
 export default zh_CN; 

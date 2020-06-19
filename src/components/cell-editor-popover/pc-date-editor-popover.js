@@ -6,6 +6,7 @@ import Calendar from '@seafile/seafile-calendar';
 import { initDateEditorLanguage } from '../../utils/editor-utils';
 
 import '@seafile/seafile-calendar/assets/index.css';
+import { getLocale } from '../../lang';
 
 const propTypes = {
   lang: PropTypes.string.isRequired,
@@ -70,7 +71,7 @@ class PCDateEditorPopover extends React.Component {
         format={dateFormat}
         defaultValue={defaultValue}
         showHourAndMinute={showHourAndMinute}
-        dateInputPlaceholder={'Please input'}
+        dateInputPlaceholder={getLocale('Please_input')}
         showDateInput={true}
         focusablePanel={false}
         onClear={this.onClear}
@@ -102,7 +103,7 @@ class PCDateEditorPopover extends React.Component {
                 readOnly
                 tabIndex="-1"
                 className="form-control"
-                placeholder={'Please select'}
+                placeholder={getLocale('Please_select')}
                 value={value || ''}
                 onMouseDown={this.handleMouseDown}
               />

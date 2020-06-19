@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
+import moment from 'moment';
 import { formatDateToString }  from '../../utils/value-format-utils';
 import PCDateEditorPopover from '../cell-editor-popover/pc-date-editor-popover';
 import MBDateEditorPopover from '../cell-editor-popover/mb-date-editor-popover';
@@ -33,7 +34,8 @@ class DateEditor extends React.Component {
   }
 
   componentDidMount() {
-    const { value } = this.props;
+    const { value, lang } = this.props;
+    moment.locale(lang);
     let dateFormat = this.getDateFormat();
     this.setState({
       isDateInit: true,

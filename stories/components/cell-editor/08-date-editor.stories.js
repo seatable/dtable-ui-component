@@ -7,7 +7,7 @@ import Description from '../../utils/description';
 import { DateEditor } from '../../../src/components/cell-editor';
 import { setLocale } from '../../../src/lang';
 
-// setLocale('zh-cn');
+setLocale('zh-cn');
 
 const info = {
   text: '<h1>API</h1>',

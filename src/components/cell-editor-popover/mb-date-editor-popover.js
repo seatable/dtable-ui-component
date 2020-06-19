@@ -113,7 +113,7 @@ class DateEidtorPopover extends React.PureComponent {
         locale={initDateEditorLanguage(lang)}
         format={dateFormat}
         defaultValue={defaultValue}
-        dateInputPlaceholder={'Please input date'}
+        dateInputPlaceholder={getLocale('Please_input')}
         showDateInput={false}
         focusablePanel={false}
         showToday={false}
@@ -142,7 +142,7 @@ class DateEidtorPopover extends React.PureComponent {
           return (
             <div tabIndex="0" onFocus={this.onReadOnlyFocus}>
               <input
-                placeholder={'Please select'}
+                placeholder={getLocale('Please_select')}
                 readOnly
                 tabIndex="-1"
                 className="form-control"
@@ -161,7 +161,6 @@ class DateEidtorPopover extends React.PureComponent {
     const leftFormat = dateFormat.split(' ')[0];
     const rightFormat = dateFormat.split(' ')[1];
     const { datePickerValue } = this.state;
-    console.log(lang);
 
     return (
       <div ref={this.setEditorPopover} className="mb-editor-popover mb-date-editor-popover" onClick={this.onContainerClick}>
@@ -191,7 +190,7 @@ class DateEidtorPopover extends React.PureComponent {
             {this.renderDataPicker()}
           </div>
           <div className="mb-date-editor-clear">
-            <div onClick={this.deleteDate} className="clear-date">{'Clear'}</div>
+            <div onClick={this.deleteDate} className="clear-date">{getLocale('Clear')}</div>
           </div>
         </div>
       </div>
