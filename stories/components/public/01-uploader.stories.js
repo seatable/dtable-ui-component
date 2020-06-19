@@ -25,13 +25,6 @@ const info = {
   }
 };
 
-
-const options = {
-  isUploadImageSuccessTip: false
-}
-
-
-
 storiesOf('Public|uploader-component', module)
   .addDecorator(withInfo)
   .add('uploader component', () => {
@@ -50,7 +43,7 @@ storiesOf('Public|uploader-component', module)
             onFileUploadProgress={(updated) => action('uploadProgress')(updated)}
             onFileUploadFailed={(updated) => action('uploadFailed')(updated)}
           >
-            {!options.isUploadImageSuccessTip && <span>{'Start Upload'}</span>}
+            <span>{'Start Upload'}</span>
           </FileUploader>
         </ShowCode>
         <ShowCode sub={"uploader component: upload file"}>
