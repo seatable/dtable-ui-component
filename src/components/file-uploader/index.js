@@ -1,39 +1,52 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { getLocale } from '../../lang';
 import { getFileIconUrl } from '../../utils/utils';
+import UploadRemindDialog from '../dialog/upload-remind-dialog';
 
 const propTypes = {
+  uploadType: PropTypes.string,
+  isSupportDragDrop: PropTypes.bool,
   isCheckRepeat: PropTypes.bool,
-  onFileUploadProgress: PropTypes.func,
-  onFileUploadSuccess: PropTypes.func,
-  onFileUploadFailed: PropTypes.func,
+  server: PropTypes.string.isRequired,
   dtableWebAPI: PropTypes.object.isRequired,
-  fileName: PropTypes.string,
-  workspaceID: PropTypes.number,
+  fileName: PropTypes.string.isRequired,
+  workspaceID: PropTypes.number.isRequired,
+  onFileUploadProgress: PropTypes.func,
+  onFileUploadSuccess: PropTypes.func.isRequired,
+  onFileUploadFailed: PropTypes.func,
+  updateParentTips: PropTypes.func,
 };
 
 class FileUploader extends React.Component {
 
+  static defaultProps = {
+    isSupportDragDrop: false,
+    // value: false
+  }
+
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      uploadFileMessage: {},
+      assetUploadLinkMessage: {},
+      isShowUploadRemindDialog: false,
+    };
 
-    // this.uploadFiles = [];
     this.enteredCounter = 0;
   }
 
-  uploadFileClick = () => {
-    this.uploadFileRef.click();
+  updateParentTips = (state) => {
+    const { updateParentTips } = this.props;
+    if (updateParentTips) updateParentTips(state)
   }
 
   onDragEnter = (e) => {
-    const { isSupportDragDrop, updateParentTips } = this.props;
+    const { isSupportDragDrop } = this.props;
     if (isSupportDragDrop) {
       e.preventDefault();
       this.enteredCounter++;
       if (this.enteredCounter !== 0) {
-        updateParentTips(true);
+        this.updateParentTips(true);
       }
     }
   }
@@ -47,27 +60,53 @@ class FileUploader extends React.Component {
   }
 
   onDragLeave = (e) => {
-    const { isSupportDragDrop, updateParentTips, isCellContent } = this.props;
+    const { isSupportDragDrop } = this.props;
     if (isSupportDragDrop) {
       this.enteredCounter--;
-      if (this.enteredCounter === 0 || isCellContent) {
-        updateParentTips(false);
+      if (this.enteredCounter === 0) {
+        this.updateParentTips(false);
       }
     }
   }
 
   onDrop = (event) => {
-    const { isSupportDragDrop, updateParentTips, onCellTipShow } = this.props;
+    event.preventDefault();
+    const { isSupportDragDrop } = this.props;
     if (isSupportDragDrop) {
       this.enteredCounter = 0;
-      updateParentTips(false);
+      this.updateParentTips(false);
       let files = event.dataTransfer.files;
       if (files.length === 0) {
-        if (onCellTipShow) onCellTipShow();
         return;
       }
-      this.handleFilesChange(files);
+      this.uploadFiles(files);
     }
+  }
+
+  onCancelUploadRemindDialog = () => {
+    this.setState({isShowUploadRemindDialog: false});
+    const { updateUploadFileList } = this.props;
+    if (updateUploadFileList) updateUploadFileList();
+  }
+
+  replaceRepetitionFile = () => {
+    this.uploadFile(null, true);
+    this.onUploadRemindDialogToggle();
+  }
+
+  uploadRepetitionFile = () => {
+    this.uploadFile(null, false);
+    this.onUploadRemindDialogToggle();
+  }
+
+  onUploadRemindDialogToggle = () => {
+    this.setState({
+      isShowUploadRemindDialog: !this.state.isShowUploadRemindDialog
+    });
+  }
+
+  uploadFileClick = () => {
+    this.uploadFileRef.click();
   }
 
   onInputFile = (e) => {
@@ -82,7 +121,7 @@ class FileUploader extends React.Component {
 
   uploadFiles = (files) => {
     const _this = this;
-    const { uploadType, updateUploadFileList, onCellTipShow } = this.props;
+    const { uploadType, updateUploadFileList } = this.props;
     let uploadFileList = [];
     let dealFileCnt = 0; 
     let isMultipleFiles = true;
@@ -93,9 +132,6 @@ class FileUploader extends React.Component {
     function checkLoadFinish () {
       if (dealFileCnt === allFileLen - 1) {
         if (uploadFileList.length === 0) {
-          if (uploadType === 'image') {
-            if (onCellTipShow) onCellTipShow();
-          }
           return;
         }
         if (updateUploadFileList) updateUploadFileList(uploadFileList);
@@ -143,35 +179,35 @@ class FileUploader extends React.Component {
   }
 
   handleFileChange = (file, isMultipleFiles) => {
-    return setTimeout(() => this.checkUploadFileExist(file, isMultipleFiles), 0);
+    return this.checkUploadFileExist(file, isMultipleFiles);
   }
 
-  async checkUploadFileExist(uploadFile, isMultipleFiles = false) {
+  checkUploadFileExist = (uploadFile, isMultipleFiles = false) => {
     const { uploadType, dtableWebAPI, workspaceID, fileName } = this.props;
-    let assetUploadLinkMessage;
-    try {
-      assetUploadLinkMessage = await dtableWebAPI.getTableAssetUploadLink(workspaceID, fileName);
-      let relativePath = assetUploadLinkMessage.file_relative_path;
-      let path = `${relativePath}/` + encodeURIComponent(uploadFile.name);
-      if (isMultipleFiles) {
-        this.uploadFile({assetUploadLinkMessage, uploadFileMessage: uploadFile}, false);
-        return;
-      }
-      let is_exist = false;
-      is_exist = await dtableWebAPI.isDTableAssetExist(workspaceID, fileName, path);
-      if (is_exist && uploadType === 'file') {
-        uploadFile.assetUploadLinkMessage = assetUploadLinkMessage;
-        this.setState({
-          isShowUploadRemindDialog: true,
-          assetUploadLinkMessage: assetUploadLinkMessage,
-          uploadFileMessage: uploadFile
+    return (
+      dtableWebAPI.getTableAssetUploadLink(workspaceID, fileName).then((res) => {
+        let assetUploadLinkMessage = res.data;
+        let relativePath = assetUploadLinkMessage.file_relative_path;
+        let path = `${relativePath}/` + encodeURIComponent(uploadFile.name);
+        if (isMultipleFiles || uploadType === 'image') {
+          this.uploadFile({assetUploadLinkMessage, uploadFileMessage: uploadFile}, false);
+          return;
+        }
+        dtableWebAPI.isDTableAssetExist(workspaceID, fileName, path).then(res => {
+          let isExist = res.data.is_exist;
+          if (isExist && uploadType === 'file') {
+            uploadFile.assetUploadLinkMessage = assetUploadLinkMessage;
+            this.setState({
+              isShowUploadRemindDialog: true,
+              assetUploadLinkMessage: assetUploadLinkMessage,
+              uploadFileMessage: uploadFile
+            });
+            return;
+          }
+          this.uploadFile({ assetUploadLinkMessage, uploadFileMessage: uploadFile }, false);
         });
-        return;
-      }
-      this.uploadFile({ assetUploadLinkMessage, uploadFileMessage: uploadFile }, false);
-    } catch(error) {
-      //todo
-    }
+      })
+    );
   }
 
   uploadFile = (options, isReplace) => {
@@ -207,14 +243,6 @@ class FileUploader extends React.Component {
     });
   }
 
-  checkRepeat = () => {
-
-  }
-
-  cancelUploadFile = () => {
-
-  }
-
   onUploadProgress = (event, uploadFileMessage) => {
     const { onFileUploadProgress } = this.props;
     let uploadPercent = Math.floor(event.loaded / event.total * 100);
@@ -222,8 +250,8 @@ class FileUploader extends React.Component {
     if (onFileUploadProgress) onFileUploadProgress(uploadFileMessage);
   }
 
-  onFileUploadSuccess = () => {
-    this.props.onFileUploadSuccess();
+  onFileUploadSuccess = (uploadFileMessage) => {
+    this.props.onFileUploadSuccess(uploadFileMessage);
   }
 
   onFileUploadFailed = (uploadFileMessage) => {
@@ -234,28 +262,38 @@ class FileUploader extends React.Component {
   render() {
     const { uploadType, className, children } = this.props;
     return (
-      <div
-        onDragEnter={this.onDragEnter} 
-        onDragOver={this.onDragOver} 
-        onDragLeave={this.onDragLeave}
-        onDrop={this.onDrop}
-        onPaste={this.onPaste}
-        onClick={this.uploadFileClick}
-        className={className}
-      >
-        {children}
-        {uploadType && 
-          <input 
-            type="file" 
-            className='file-uploader' 
-            ref={ref => this.uploadFileRef = ref}  
-            accept={uploadType === 'image' ? 'image/*' : ''} 
-            onClick={this.onInputFile} 
-            onChange={this.onFilesChanged} 
-            value="" 
-          /> 
+      <Fragment>
+        <div
+          onDragEnter={this.onDragEnter} 
+          onDragOver={this.onDragOver} 
+          onDragLeave={this.onDragLeave} 
+          onDrop={this.onDrop}
+          onPaste={this.onPaste}
+          onClick={this.uploadFileClick}
+          className={className}
+        >
+          {children}
+          {uploadType && 
+            <input 
+              type="file" 
+              className='file-uploader' 
+              ref={ref => this.uploadFileRef = ref}  
+              accept={uploadType === 'image' ? 'image/*' : ''} 
+              onClick={this.onInputFile} 
+              onChange={this.onFilesChanged} 
+              value="" 
+            /> 
+          }
+        </div>
+        {this.state.isShowUploadRemindDialog && 
+          <UploadRemindDialog
+            cancelFileUpload={this.onCancelUploadRemindDialog}
+            uploadRepetitionFile={this.uploadRepetitionFile}
+            replaceRepetitionFile={this.replaceRepetitionFile}
+            uploadFileMessage={this.state.uploadFileMessage}
+          />
         }
-      </div>
+      </Fragment>
     );
   }
 }

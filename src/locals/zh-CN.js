@@ -10,6 +10,10 @@ const zh_CN = {
   No_collaborators_available: "没有找到协作者",
   Done: '完成',
   Choose_a_collaborator: "选择一个协作者",
+  Replace: "替换",
+  Cancel: "取消",
+  Do_not_replace: "不替换",
+  replace_file_message: "表格下已有同名文件。你想要替换它吗？"
 };
 
 export default zh_CN; 

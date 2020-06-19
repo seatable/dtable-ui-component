@@ -1,0 +1,11 @@
+.uploader-container {
+  position: relative;
+  color: #fff;
+  background-color: #28a745;
+  border-color: #28a745;
+  padding: .5rem .75rem;
+  width: 150px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 4px;
+}
