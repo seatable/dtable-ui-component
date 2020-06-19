@@ -3,6 +3,8 @@
   "version": "0.1.1",
   "main": "./es/index.js",
   "dependencies": {
+    "@seafile/seafile-calendar": "0.0.12",
+    "antd-mobile": "^2.3.3",
     "astro-classname": "^2.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",

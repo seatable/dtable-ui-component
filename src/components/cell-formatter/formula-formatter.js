@@ -28,7 +28,6 @@ class FormulaFormatter extends React.Component {
     }
   
     let isNumber = resultType === FORMULA_RESULT_TYPE.NUMBER;
-    console.log(isNumber);
     let classname = cn('cell-formatter-container formula-formatter', containerClassName, {"text-right": isNumber});
 
     let formattedValue = this.getFormattedValue(value);
