@@ -20,12 +20,21 @@ export {
   ImageFormatter,
   FileFormatter,
   LongTextFormatter,
-  GeolocationFormatter
+  GeolocationFormatter,
+  LinkFormatter,
+  FormulaFormatter,
+  CTimeFormatter,
+  CreatorFormatter,
+  LastModifierFormatter,
+  MTimeFormatter
 } from './components/cell-formatter';
 
 export {
   TextEditor,
   NumberEditor,
   CheckboxEditor,
-  SingleSelectEdtior
+  SingleSelectEdtior,
+  CollaboratorEditor,
+  DateEditor,
+  LinkEditor
 } from './components/cell-editor';
