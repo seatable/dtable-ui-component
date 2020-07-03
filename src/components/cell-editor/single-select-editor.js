@@ -7,8 +7,6 @@ import SelectEditorOption from '../common/select-editor-option';
 import PCSelectEditorPopover from '../cell-editor-popover/pc-select-editor-popover';
 import MBSingleSelectPopover from '../cell-editor-popover/mb-select-editor-popover'
 
-import '../../assets/css/cell-editor.css';
-
 const propTypes = {
   isReadOnly: PropTypes.bool,
   value: PropTypes.string,
