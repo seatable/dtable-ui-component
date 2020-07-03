@@ -9,8 +9,6 @@ import LinkEditorOption from '../common/link-editor-option';
 import PCLinkEditorPopover from '../cell-editor-popover/pc-link-editor-popover';
 import MBLinkEditorPopover from '../cell-editor-popover/mb-link-editor-popover';
 
-import '../../assets/css/cell-editor.css';
-
 const propTypes = {
   isReadOnly: PropTypes.bool,
   row: PropTypes.object.isRequired,

@@ -10,7 +10,7 @@ import MBEditorHeader from '../common/mobile/mb-editor-header';
 
 import '@seafile/seafile-calendar/assets/index.css';
 import 'antd-mobile/dist/antd-mobile.css'
-import '../../assets/css/custom-rc-calendar.css';
+import '../../css/custom-rc-calendar.css';
 
 const propTypes = {
   isReadOnly: PropTypes.bool,
