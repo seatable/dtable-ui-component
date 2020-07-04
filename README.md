@@ -12,7 +12,7 @@ When using dtable-ui-component component library, you need to import dtable-font
 ```js
   import { CollaboratorEditor } from 'dtable-ui-component';
 
-  import 'dtable-ui-component/es/assets/dtable-font.css';
+  import 'dtable-ui-component/assets/dtable-font.css';
 
   ...
 ```

@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.1.2",
+  "version": "0.1.4",
   "main": "./es/index.js",
   "dependencies": {
     "@seafile/seafile-calendar": "0.0.12",
@@ -12,7 +12,6 @@
     "is-hotkey": "^0.1.6",
     "moment": "^2.26.0",
     "number-currency-format": "^1.0.10",
-    "pre-commit": "^1.2.2",
     "react": "^16.13.0",
     "react-app-polyfill": "^1.0.6",
     "react-dom": "^16.13.0",
@@ -37,17 +36,13 @@
     "prepublishOnly": "npm run pub:lib && npm run pub:esm && npm run pub:umd && npm run pub:optimized"
   },
   "files": [
+    "assets",
     "dist",
     "lib",
     "es",
     "index.js",
     "packagge.json"
   ],
-  "pre-commit": {
-    "run": [
-      "eslint"
-    ]
-  },
   "browserslist": {
     "production": [
       ">0.2%",
