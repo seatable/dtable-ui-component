@@ -95,7 +95,7 @@ class LinkFormatter extends React.Component {
 
   render() {
     const { containerClassName } = this.props;
-    const classname = cn('cell-formatter link-formatter', containerClassName);
+    const classname = cn('dtable-ui cell-formatter-container link-formatter', containerClassName);
 
     let displayValues = this.getDisplayValues();
     return (

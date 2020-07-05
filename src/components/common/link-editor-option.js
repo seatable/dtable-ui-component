@@ -68,7 +68,7 @@ class LinkEditorOption extends React.Component {
     let operationStyle = this.getOperationStyle();
 
     return (
-      <div className="link-option-item" style={containerStyle}>
+      <div className="dtable-ui link-option-item" style={containerStyle}>
         <div className="option-info" style={optionStyle}>
           <div className="option-name" style={optionNameStyle}>{option.name}</div>
         </div>

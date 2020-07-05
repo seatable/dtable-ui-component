@@ -23,7 +23,7 @@ class DateFormatter extends React.Component {
 
   render() {
     let { value: date, format, containerClassName } = this.props;
-    let classname = cn('cell-formatter-container date-formatter', containerClassName);
+    let classname = cn('dtable-ui cell-formatter-container date-formatter', containerClassName);
     if (date !== '') {
       date = this.formatDate(date, format);
     }

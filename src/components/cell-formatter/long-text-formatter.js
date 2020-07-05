@@ -53,7 +53,7 @@ class LongTextFormatter extends React.Component {
 
   render() {
     let { containerClassName } = this.props;
-    let classname = cn('cell-formatter-container long-text-formatter', containerClassName);
+    let classname = cn('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
     return (
       <div className={classname}>
         {this.renderLinks()}

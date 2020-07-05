@@ -51,7 +51,7 @@ class CollaboratorFormatter extends React.PureComponent {
 
   render() {
     const { containerClassName, value } = this.props;
-    const classname = cn('cell-formatter-container collaborator-formatter', containerClassName)
+    const classname = cn('dtable-ui cell-formatter-container collaborator-formatter', containerClassName)
     if (!value || (Array.isArray(value) && value.length === 0)) {
       return (<div className={classname}></div>)
     }

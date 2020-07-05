@@ -45,7 +45,7 @@ class CreatorFormatter extends React.PureComponent {
 
   render() {
     const { containerClassName, value } = this.props;
-    const classname = cn('cell-formatter-container creator-formatter', containerClassName)
+    const classname = cn('dtable-ui cell-formatter-container creator-formatter', containerClassName)
     if (!value || (Array.isArray(value) && value.length === 0)) {
       return (<div className={classname}></div>)
     }

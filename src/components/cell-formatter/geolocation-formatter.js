@@ -21,7 +21,7 @@ class GeolocationFormatter extends React.Component {
 
   render() {
     let { value, containerClassName } = this.props;
-    let classname = cn('cell-formatter-container geolocation-formatter', containerClassName);
+    let classname = cn('dtable-ui cell-formatter-container geolocation-formatter', containerClassName);
 
     if (typeof value !== 'object') {
       return null;

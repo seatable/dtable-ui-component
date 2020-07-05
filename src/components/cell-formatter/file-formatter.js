@@ -25,7 +25,7 @@ class FileFormatter extends React.PureComponent {
 
   render() {
     let { isSample, value, containerClassName } = this.props;
-    let classname = cn('cell-formatter-container file-formatter', containerClassName);
+    let classname = cn('dtable-ui cell-formatter-container file-formatter', containerClassName);
     if (!Array.isArray(value) || value.length === 0) {
       return null;
     }

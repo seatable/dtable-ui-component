@@ -23,7 +23,7 @@ class MultipleSelectFormatter extends React.PureComponent {
 
   render() {
     let { value, containerClassName } = this.props;
-    let classname = cn('cell-formatter-container multiple-select-formatter', containerClassName);
+    let classname = cn('dtable-ui cell-formatter-container multiple-select-formatter', containerClassName);
     if (!value || (Array.isArray(value) && value.length === 0)) {
       return (<div className={classname}></div>)
     }

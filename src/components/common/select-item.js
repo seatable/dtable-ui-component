@@ -32,7 +32,7 @@ class SelectItem extends React.PureComponent {
     const style = this.getStyle(option, fontSize);
 
     return (
-      <div className="select-item" style={style}>{option.name}</div>
+      <div className="dtable-ui select-item" style={style}>{option.name}</div>
     );
   }
 }

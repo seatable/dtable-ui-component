@@ -28,7 +28,7 @@ class ImageFormatter extends React.Component {
   render() {
 
     let { isSample, value, server, containerClassName } = this.props;
-    let classname = cn('cell-formatter-container image-formatter', containerClassName);
+    let classname = cn('dtable-ui cell-formatter-container image-formatter', containerClassName);
     if (!Array.isArray(value) || value.length === 0) {
       return null;
     }

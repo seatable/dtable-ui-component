@@ -70,7 +70,7 @@ class SelectEditorOption extends React.Component {
     let operationStyle = this.getOperationStyle(option);
 
     return (
-      <div className="select-option-item" style={containerStyle}>
+      <div className="dtable-ui select-option-item" style={containerStyle}>
         <div className="option-info" style={optionStyle}>
           <div className="option-name">{option.name}</div>
         </div>

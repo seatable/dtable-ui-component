@@ -30,7 +30,7 @@ class CheckboxFormatter extends React.PureComponent {
     let { value, containerClassName } = this.props;
     value = value === true ? true : false;
     let style = this.getStyle();
-    let classname = cn('cell-formatter-container checkbox-formatter', containerClassName);
+    let classname = cn('dtable-ui cell-formatter-container checkbox-formatter', containerClassName);
     return (
       <div className={classname}>
         <input className="checkbox" type='checkbox' style={style} readOnly checked={value}/>

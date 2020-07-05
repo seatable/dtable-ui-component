@@ -28,7 +28,7 @@ class FormulaFormatter extends React.Component {
     }
   
     let isNumber = resultType === FORMULA_RESULT_TYPE.NUMBER;
-    let classname = cn('cell-formatter-container formula-formatter', containerClassName, {"text-right": isNumber});
+    let classname = cn('dtable-ui cell-formatter-container formula-formatter', containerClassName, {"text-right": isNumber});
 
     let formattedValue = this.getFormattedValue(value);
     return <div className={classname}>{formattedValue}</div>;

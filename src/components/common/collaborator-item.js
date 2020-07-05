@@ -25,7 +25,7 @@ class CollaboratorItem extends React.Component {
   render() {
     const { collaborator, enableDeleteCollaborator } = this.props;
     return (
-      <div className="collaborator-item">
+      <div className="dtable-ui collaborator-item">
         <span className="collaborator-avatar">
           <img className="collaborator-avatar-icon" alt={collaborator.name} src={collaborator.avatar_url} />
         </span>

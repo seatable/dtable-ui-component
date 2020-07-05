@@ -1,10 +1,10 @@
-.cell-formatter-container {
+.dtable-ui.cell-formatter-container {
   overflow: hidden;
   line-height: 1;
 }
 
 /* collaborator */
-.collaborator-item {
+.dtable-ui.collaborator-item {
   display: inline-flex;
   align-items: center;
   margin-right: 10px;
@@ -15,33 +15,33 @@
   background: #eaeaea;
 }
 
-.collaborator-item .collaborator-avatar,
-.collaborator-item .collaborator-name,
-.collaborator-item .collaborator-remove {
+.dtable-ui.collaborator-item .collaborator-avatar,
+.dtable-ui.collaborator-item .collaborator-name,
+.dtable-ui.collaborator-item .collaborator-remove {
   height: 20px;
   line-height: 20px;
 }
 
-.collaborator-item .collaborator-avatar {
+.dtable-ui.collaborator-item .collaborator-avatar {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 4px 0 2px;
 }
 
-.collaborator-item .collaborator-avatar img {
+.dtable-ui.collaborator-item .collaborator-avatar img {
   width: 16px;
   height: 16px;
   border-radius: 50%;
 }
 
-.collaborator-item .collaborator-remove {
+.dtable-ui.collaborator-item .collaborator-remove {
   display: inline-block;
   width: 14px;
   margin: 0 -2px 0 2px;
 }
 
-.collaborator-item .collaborator-remove .dtable-font {
+.dtable-ui.collaborator-item .collaborator-remove .dtable-font {
   display: inline-block;
   font-size: 12px;
   color: #909090;
@@ -49,13 +49,13 @@
   cursor: pointer;
 }
 
-.collaborator-item .collaborator-remove .dtable-font:hover {
+.dtable-ui.collaborator-item .collaborator-remove .dtable-font:hover {
   color: #666666;
   cursor: pointer;
 }
 
 /* long-text */
-.long-text-formatter {
+.dtable-ui.long-text-formatter {
   display: flex;
   align-items: center;
   height: 28px;
@@ -64,7 +64,7 @@
   white-space: nowrap;
 }
 
-.long-text-formatter .long-text-links {
+.dtable-ui.long-text-formatter .long-text-links {
   display: inline-block;
   height: 20px;
   padding: 2px;
@@ -74,11 +74,11 @@
   border-radius: 3px;
 }
 
-.long-text-formatter .long-text-images {
+.dtable-ui.long-text-formatter .long-text-images {
   margin-right: -10px;
 }
 
-.long-text-formatter .long-text-images img {
+.dtable-ui.long-text-formatter .long-text-images img {
   max-width: 28px;
   max-height: 28px;
   border: 1px solid #f0f0f0;
@@ -86,7 +86,7 @@
   border-radius: 3px;
 }
 
-.long-text-formatter .long-text-images .image-number {
+.dtable-ui.long-text-formatter .long-text-images .image-number {
   display: inline-block;
   min-width: 14px;
   padding: 0 3px;
@@ -99,19 +99,19 @@
   transform: translate(-50%, 9px) scale(0.8);
 }
 
-.file-formatter {
+.dtable-ui.file-formatter {
   display: flex;
   align-items: center;
 }
 
-.file-formatter .file-item-icon {
+.dtable-ui.file-formatter .file-item-icon {
   display: inline-block;
   height: 28px;
   width: 28px;
   border: 1px solid #f0f0f0;
 }
 
-.file-formatter .file-item-count {
+.dtable-ui.file-formatter .file-item-count {
   display: inline-block;
   padding: 0 3px;
   min-width: 14px;
@@ -128,12 +128,12 @@
 }
 
 
-.image-formatter {
+.dtable-ui.image-formatter {
   display: flex;
   align-items: center;
 }
 
-.image-formatter .image-item {
+.dtable-ui.image-formatter .image-item {
   display: inline-block;
   height: 28px;
   width: 28px;
@@ -141,11 +141,11 @@
   border: 1px solid #f0f0f0;
 }
 
-.image-formatter .image-item:hover {
+.dtable-ui.image-formatter .image-item:hover {
   border: 1px solid #c9c9c9;
 }
 
-.image-formatter .image-item-count {
+.dtable-ui.image-formatter .image-item-count {
   display: inline-block;
   padding: 0 3px;
   min-width: 14px;
@@ -161,14 +161,14 @@
   transform: translate(-50%, 8px) scale(.8);
 }
 
-.link-formmatter {
+.dtable-ui.link-formmatter {
   display: inline-flex;
   align-items: center;
   overflow: hidden;
   flex-wrap: nowrap;
 }
 
-.link-formatter .link-item {
+.dtable-ui.link-formatter .link-item {
   display: inline-flex;
   height: 20px;
   max-width: 230px;
@@ -180,7 +180,7 @@
   cursor: pointer;
 }
 
-.link-formatter .link-item .link-name {
+.dtable-ui.link-formatter .link-item .link-name {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
