@@ -17,7 +17,9 @@ class MultipleSelectFormatter extends React.PureComponent {
 
     return value.map(item => {
       let option = options.find(option => option.id === item);
-      return <SelectItem key={item} option={option}/>;
+      if (option) {
+        return <SelectItem key={item} option={option}/>;
+      }
     })
   }
 
