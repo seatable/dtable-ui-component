@@ -17,3 +17,4 @@ export { default as LastModifierFormatter} from './last-modifier-formatter';
 export { default as MTimeFormatter} from './mtime-formatter';
 export { default as FormulaFormatter} from './formula-formatter';
 export { default as LinkFormatter} from './link-formatter';
+export { default as AutoNumberFormatter} from './auto-number-formatter';
