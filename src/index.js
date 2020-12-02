@@ -27,7 +27,8 @@ export {
   CreatorFormatter,
   LastModifierFormatter,
   MTimeFormatter,
-  AutoNumberFormatter
+  AutoNumberFormatter,
+  UrlFormatter
 } from './components/cell-formatter';
 
 export {
