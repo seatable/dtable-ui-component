@@ -186,5 +186,11 @@
   text-overflow: ellipsis;
 }
 
+/* url formatter */
+
+.dtable-ui.url-formatter {
+  text-decoration: underline;
+}
+
 
 
