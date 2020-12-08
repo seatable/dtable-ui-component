@@ -5,14 +5,45 @@ import { FORMULA_RESULT_TYPE } from '../../utils/constants';
 
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object, PropTypes.bool]),
-  resultType: PropTypes.oneOf(['string', 'number', 'bool', 'date']),
+  data: PropTypes.Object,
   continerClassName: PropTypes.string,
 };
 
 class FormulaFormatter extends React.Component {
 
-  static defaultProps = {
-    resultType: 'string'
+  shouldComponentUpdate(nextProps) {
+    let prevColumnData = this.props.data;
+    let nextColumnData = nextProps.data;
+    return nextProps.value !== this.props.value
+      || nextProps.isCellSelected !== this.props.isCellSelected
+      || nextColumnData.format !== prevColumnData.format
+      || nextColumnData.decimal !== prevColumnData.decimal
+      || nextColumnData.thousands !== prevColumnData.thousands
+      || nextColumnData.linked_table_id !== prevColumnData.linked_table_id
+      || nextColumnData.display_column_key !== prevColumnData.display_column_key
+      || nextColumnData.result_type !== prevColumnData.result_type
+      || nextColumnData.enable_precision !== prevColumnData.enable_precision
+      || nextColumnData.precision !== prevColumnData.precision;
+  }
+
+  // need update: use `cellFormatterFactory.createFormatter`
+  renderOtherColumnFormatter = () => {
+    let { value, column, isCellSelected } = this.props;
+    let { data: columnData } = column;
+    let { linked_table_id, display_column_key } = columnData || {};
+    let linkedTable = window.app.getLinkedTable(linked_table_id);
+    if (!linkedTable) return null;
+    let linkedColumn = TableUtils.getTableColumnByKey(linkedTable, display_column_key);
+    if (!linkedColumn) return null;
+    let { type: linkedColumnType } = linkedColumn;
+    let Formatter = cellFormatterFactory.createFormatter(linkedColumnType);
+    let formatterProps = {value, column: linkedColumn, isCellSelected, readOnly: true };
+    if (React.isValidElement(Formatter)) {
+      return React.cloneElement(Formatter, {...formatterProps});
+    } else if (isFunction(Formatter)) {
+      return <Formatter {...formatterProps} />;
+    }
+    return <SimpleCellFormatter {...formatterProps} />;
   }
 
   getFormattedValue = (val) => {

@@ -89,8 +89,7 @@ class LinkEditor extends React.Component {
     let { type, data } = linkedColumn;
     switch(type) {
       case CellTypes.NUMBER: {
-        let { format } = data;
-        return formatNumberToString(value, format);
+        return formatNumberToString(value, data);
       }
       case CellTypes.DATE: {
         let { format } = data;
