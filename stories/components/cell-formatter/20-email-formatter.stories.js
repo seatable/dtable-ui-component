@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { UrlFormatter } from '../../../src/components/cell-formatter';
+import { EmailFormatter } from '../../../src/components/cell-formatter';
 
 import '../../css/cell-formatter.css';
 
@@ -31,13 +31,13 @@ storiesOf('CELLS|email-formatter', module)
     <div>
       <h1>Sample display</h1>
       <ShowCode>
-        <UrlFormatter value={value1} />
+        <EmailFormatter value={value1} />
       </ShowCode>
       <ShowCode>
-        <UrlFormatter value={value2} />
+        <EmailFormatter value={value2} />
       </ShowCode>
       <ShowCode>
-        <UrlFormatter value={value3} />
+        <EmailFormatter value={value3} />
       </ShowCode>
     </div>
   ), {info})
