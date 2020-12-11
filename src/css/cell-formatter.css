@@ -186,9 +186,13 @@
   text-overflow: ellipsis;
 }
 
-/* url formatter */
+/* 
+* url formatter 
+* email formatter 
+*/
 
-.dtable-ui.url-formatter {
+.dtable-ui.url-formatter,
+.dtable-ui.email-formatter{
   text-decoration: underline;
 }
 
