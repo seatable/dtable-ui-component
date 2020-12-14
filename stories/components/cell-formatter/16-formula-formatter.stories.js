@@ -102,7 +102,6 @@ let column1 = {
     thousands: "comma",
     precision: 2,
     result_type: 'number',
-
   }
 };
 
@@ -161,28 +160,27 @@ storiesOf('CELLS|formula-formatter', module)
   .add('formula component', () => (
     <div>
       <h1>Sample display</h1>
-      <ShowCode title={'the fomula result is a number value'}>
+      <ShowCode title={'the formula result is a number value'}>
         <FormulaFormatter
           value={value1} 
           column={column1}
-          // resultType={'number'} 
           containerClassName={'formula-container'} 
         />
       </ShowCode>
-      <ShowCode title={'the fomula result is a string value'}>
+      <ShowCode title={'the formula result is a string value'}>
         <FormulaFormatter 
           value={value2} 
           column={column2}
           containerClassName={'formula-container'} 
         />
       </ShowCode>
-       <ShowCode title={'the fomula result is a date value'}>
+       <ShowCode title={'the formula result is a date value'}>
         <FormulaFormatter 
           value={value3} 
           column={column3}
         />
       </ShowCode>
-     <ShowCode title={'the fomula result is a bool value'}>
+     <ShowCode title={'the formula result is a bool value'}>
         <FormulaFormatter 
           value={value4} 
           column={column4}
@@ -190,16 +188,16 @@ storiesOf('CELLS|formula-formatter', module)
           collaborators={collaborators}
         />
       </ShowCode>
-      <ShowCode title={'the fomula result is a column value'}>
+      <ShowCode title={'the formula result is a column value'}>
         <FormulaFormatter 
           value={value5} 
           column={column5}
           tables={tables}
         />
       </ShowCode>
-      <ShowCode title={'the fomula result is a column value'}>
+      <ShowCode title={'the formula result is a column value'}>
         <FormulaFormatter 
-          value={['lilei@seafile.com']} 
+          value={value6} 
           column={column6}
           tables={tables}
           collaborators={collaborators}

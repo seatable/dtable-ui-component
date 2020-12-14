@@ -1,4 +1,4 @@
-import NP from 'number-precision';
+import NP from './number-precision';
 import { NUMBER_TYPES, DATE_TYPES } from './constants';
 import DEFAULT_NUMBER_FORMAT from './constants';
 
@@ -53,7 +53,13 @@ const _getDecimalDigits = (num) => {
 
 export const formatNumberToString = (value, formatData) => {
   // formatData: old version maybe 'null'
-  if (Object.prototype.toString.call(value) !== '[object Number]') return null;
+  let type = Object.prototype.toString.call(value);
+  if (type !== '[object Number]') {
+    if (type === '[object String]' && value.startsWith('#')) {
+      return value;
+    }
+    return null;
+  }
   if (isNaN(value) || value === Infinity || value === -Infinity || (value + '').indexOf('e') > -1) return value + '';
   let { format = DEFAULT_NUMBER_FORMAT } = formatData || {};
   switch(format) {

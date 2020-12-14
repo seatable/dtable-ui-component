@@ -16,13 +16,6 @@ const propTypes = {
 
 class FormulaFormatter extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: props.value,
-    };
-  }
-
   getOtherColumnFormatter = (value, column) => {
     const { collaborators } = this.props;
     let formatterProps = { value };
