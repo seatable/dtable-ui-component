@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "main": "./es/index.js",
   "dependencies": {
     "@seafile/seafile-calendar": "0.0.12",
