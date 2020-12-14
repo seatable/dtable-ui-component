@@ -3,30 +3,24 @@ import PropTypes from 'prop-types';
 import cn from 'astro-classname';
 import { formatNumberToString } from '../../utils/value-format-utils';
 
-
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  format: PropTypes.oneOf(['number', 'number-with-commas', 'percent', 'yuan', 'dollar', 'euro']),
+  data: PropTypes.object,
   containerClassName: PropTypes.string,
 };
 
 class NumberFormatter extends React.Component {
 
   static defaultProps = {
-    value: '', 
-    format: 'number',
+    value: '',
     containerClassName: '',
   }
 
-  formatNumber = (number, format) => {
-    return formatNumberToString(number, format);
-  }
-
   render() {
-    let { value: number, format, containerClassName } = this.props;
+    let { value: number, data, containerClassName } = this.props;
     let classname = cn('dtable-ui cell-formatter-container number-formatter', containerClassName);
-    if (number !== '') {
-      number = this.formatNumber(number, format);
+    if (number || number === 0) {
+      number = formatNumberToString(number, data);
     }
 
     return (

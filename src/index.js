@@ -3,7 +3,7 @@ export { setLocale } from './lang';
 export { 
   formatDateToString,
   formatNumberToString,
-  fromatStringToNumber,
+  formatStringToNumber,
   formatNumberString,
 } from './utils/value-format-utils';
 

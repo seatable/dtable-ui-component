@@ -1,39 +1,85 @@
-import { format } from 'number-currency-format';
+import NP from './number-precision';
 import { NUMBER_TYPES, DATE_TYPES } from './constants';
+import DEFAULT_NUMBER_FORMAT from './constants';
 
+NP.enableBoundaryChecking(false);
 
-export const formatNumberToString = (value, currentType) => {
-  let formatedValue = '';
-  if (!value && value !== 0) {
-    return formatedValue;
-  }
-  switch(currentType) {
-    case NUMBER_TYPES.NUMBER:
-      formatedValue = value.toString();
-      break;
-    case NUMBER_TYPES.PERCENT:
-      let percentValue = Number.parseFloat((value * 100).toFixed(8));
-      formatedValue = `${percentValue}%`;
-      break;
-    case NUMBER_TYPES.NUMBER_WITH_COMMAS:
-      formatedValue = format(value);
-      break;
-    case NUMBER_TYPES.YUAN:
-      formatedValue = format(value, {currency: '¥', spacing: false, currencyPosition: 'LEFT'});
-      break;
-    case NUMBER_TYPES.DOLLAR:
-      formatedValue = format(value, {currency: '$', spacing: false, currencyPosition: 'LEFT'});
-      break;
-    case NUMBER_TYPES.EURO:
-      formatedValue = format(value, {currency: '€', spacing: false, currencyPosition: 'LEFT'});
-      break;
-    default: 
-      formatedValue = value;
-  }
-  return formatedValue;
+const _separatorMap = {
+  'comma': ',',
+  'dot': '.',
+  'no': '',
+  'space': ' ',
 };
 
-export const fromatStringToNumber = (value) => {
+const _toThousands = (num, isCurrency, formatData) => {
+  let { decimal = 'dot', thousands = 'no', precision = 2, enable_precision = false } = formatData || {};
+  const decimalString = _separatorMap[decimal];
+  const thousandsString = _separatorMap[thousands];
+  let decimalDigits = enable_precision ? precision : _getDecimalDigits(num);
+  let value = parseFloat(num.toFixed(decimalDigits));
+  let integer = Math.trunc(value);
+  let decimalValue = String(Math.abs(NP.minus(value, integer)).toFixed(decimalDigits)).slice(1);
+  if (isCurrency) {
+    if (decimalValue.length === 2) {
+      decimalValue = decimalValue.padEnd(3, '0');
+    } else {
+      decimalValue = (decimalValue.substring(0, 3) || '.').padEnd(3, '0');
+    }
+    if (enable_precision) {
+      decimalValue = precision === 0 ? '' : decimalValue.slice(0, precision + 1);
+    }
+  }
+  decimalValue = decimalValue.replace(/./, decimalString);
+  let result = [], counter = 0;
+  integer = Object.is(integer, -0) ? ['-', '0'] : integer.toString().split('');
+  for (var i = integer.length - 1; i >= 0; i--) {
+    counter++;
+    result.unshift(integer[i]);
+    if (!(counter % 3) && i !== 0) {
+      result.unshift(thousandsString);
+    }
+  }
+  return result.join('') + decimalValue;
+};
+
+const _getDecimalDigits = (num) => {
+  if (Number.isInteger(num)) {
+    return 0;
+  }
+  let valueArr = (num + '').split('.');
+  let digitsLength = valueArr[1] ? valueArr[1].length : 8;
+  return digitsLength > 8 ? 8 : digitsLength;
+};
+
+export const formatNumberToString = (value, formatData) => {
+  // formatData: old version maybe 'null'
+  let type = Object.prototype.toString.call(value);
+  if (type !== '[object Number]') {
+    if (type === '[object String]' && value.startsWith('#')) {
+      return value;
+    }
+    return null;
+  }
+  if (isNaN(value) || value === Infinity || value === -Infinity || (value + '').indexOf('e') > -1) return value + '';
+  let { format = DEFAULT_NUMBER_FORMAT } = formatData || {};
+  switch(format) {
+    case 'number':
+      return _toThousands(value, false, formatData);
+    case 'percent': {
+      return `${_toThousands(Number.parseFloat((value * 100).toFixed(8)), false, formatData)}%`;
+    }
+    case 'yuan':
+      return `￥${_toThousands(value, true, formatData)}`;
+    case 'dollar':
+      return `$${_toThousands(value, true, formatData)}`;
+    case 'euro':
+      return `€${_toThousands(value, true, formatData)}`;
+    default:
+      return '' + value;
+  }
+};
+
+export const formatStringToNumber = (value) => {
   let isIncludePercent = value.indexOf('%') > -1;
   let newData = parseFloat(value.replace(/[^.-\d]/g, ''));
   if (isIncludePercent && !isNaN(newData)) {
