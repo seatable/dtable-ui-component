@@ -1,5 +1,6 @@
-import NP from './number-precision';
+import NP from 'number-precision';
 import { NUMBER_TYPES, DATE_TYPES } from './constants';
+import DEFAULT_NUMBER_FORMAT from './constants';
 
 NP.enableBoundaryChecking(false);
 

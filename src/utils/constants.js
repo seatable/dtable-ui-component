@@ -21,4 +21,7 @@ export const FORMULA_RESULT_TYPE = {
   STRING: 'string',
   DATE: 'date',
   BOOL: 'bool',
+  COLUMN: 'column',
 };
+
+export const DEFAULT_NUMBER_FORMAT = 'number';

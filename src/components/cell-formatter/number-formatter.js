@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import cn from 'astro-classname';
 import { formatNumberToString } from '../../utils/value-format-utils';
 
-
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   data: PropTypes.object,

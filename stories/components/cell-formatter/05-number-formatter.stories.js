@@ -18,6 +18,38 @@ const info = {
   }
 };
 
+const data = {
+  decimal: "dot",
+  enable_precision: true,
+  format: "number",
+  precision: 1,
+  thousands: "no",
+}
+
+const data2 = {
+  decimal: "dot",
+  enable_precision: true,
+  format: "percent",
+  precision: 0,
+  thousands: "no"
+}
+
+const data3 = {
+  decimal: "dot",
+  enable_precision: false,
+  format: "number",
+  precision: 2,
+  thousands: "no"
+}
+
+const data4 = {
+  decimal: "dot",
+  enable_precision: false,
+  format: "yuan",
+  precision: 2,
+  thousands: "comma"
+}
+
 storiesOf('CELLS|number-formatter', module)
   .addDecorator(withInfo)
   .add('number component', () => (
@@ -27,13 +59,16 @@ storiesOf('CELLS|number-formatter', module)
         <NumberFormatter value={1234444}  />
       </ShowCode>
       <ShowCode title={'Number with commas'}>
-        <NumberFormatter value={1234445.123}  format={'number-with-commas'}/>
+        <NumberFormatter value={1234445.123} data={data}/>
+      </ShowCode>
+      <ShowCode title={'Number with commas'}>
+        <NumberFormatter value={1234445.123} data={data3}/>
       </ShowCode>
       <ShowCode title={'Number with suffix "%"'}>
-        <NumberFormatter value={0.12123} format={'percent'}/>
+        <NumberFormatter value={0.12123} data={data2} />
       </ShowCode>
       <ShowCode title={'Number with suffix "¥"'}>
-        <NumberFormatter value={10000} format={'yuan'}/>
+        <NumberFormatter value={10000} data={data4}/>
       </ShowCode>
       <ShowCode title={'Number with suffix "$"'}>
         <NumberFormatter value={999} format={'dollar'}/>
