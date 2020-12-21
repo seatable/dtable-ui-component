@@ -20,6 +20,7 @@ import FormulaFormatter from './formula-formatter';
 import AutoNumberFormatter from './auto-number-formatter';
 import UrlFormatter from './url-formatter';
 import EmailFormatter from './email-formatter';
+import DurationFormatter from './duration-formatter';
 
 const FormatterConfig = {
   [CellTypes.DEFAULT]: <TextCellFormatter />,
@@ -43,6 +44,7 @@ const FormatterConfig = {
   [CellTypes.AUTO_NUMBER]: <AutoNumberFormatter />,
   [CellTypes.URL]: <UrlFormatter />,
   [CellTypes.EMAIL]: <EmailFormatter />,
+  [CellTypes.DURATION]: <DurationFormatter />,
 };
 
 export default FormatterConfig;

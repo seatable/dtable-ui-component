@@ -1,5 +1,11 @@
 import NP from './number-precision';
-import { NUMBER_TYPES, DATE_TYPES, DEFAULT_NUMBER_FORMAT } from './constants';
+import { 
+  NUMBER_TYPES, 
+  DATE_TYPES, DEFAULT_NUMBER_FORMAT, 
+  DURATION_FORMATS_MAP, 
+  DURATION_FORMATS, 
+  DURATION_ZERO_DISPLAY, 
+  DURATION_DECIMAL_DIGITS } from './constants';
 
 NP.enableBoundaryChecking(false);
 
@@ -73,6 +79,9 @@ export const formatNumberToString = (value, formatData) => {
       return `$${_toThousands(value, true, formatData)}`;
     case 'euro':
       return `€${_toThousands(value, true, formatData)}`;
+    case 'duration': {
+      return getDurationDisplayString(value, formatData.duration_format);
+    }
     default:
       return '' + value;
   }
@@ -152,3 +161,75 @@ export const formatDateToString = (value, format) => {
 
   return formatedValue;
 };
+
+export const getDurationDisplayString = (value, duration_format) => {
+  if (!value && value !== 0) return '';
+  duration_format = duration_format || DURATION_FORMATS_MAP.H_MM;
+  if (DURATION_FORMATS.findIndex((format) => format.type === duration_format) < 0) {
+    return '';
+  }
+  if (value === 0) {
+    return DURATION_ZERO_DISPLAY[duration_format];
+  }
+  const includeDecimal = duration_format.indexOf('.') > -1;
+  let positiveValue = Math.abs(value);
+  if (!includeDecimal) {
+    positiveValue = Math.round(positiveValue);
+  }
+
+  positiveValue = getMathRoundedDuration(positiveValue, duration_format);
+  const decimalParts = (positiveValue + '').split('.');
+  const decimalPartsLen = decimalParts.length;
+  let decimal = 0;
+  if (decimalPartsLen > 1) {
+    decimal = decimalParts[decimalPartsLen - 1];
+    decimal = decimal ? decimal - 0 : 0;
+  }
+  const decimalDigits = DURATION_DECIMAL_DIGITS[duration_format];
+  const decimalSuffix = getDurationDecimalSuffix(duration_format, decimal);
+  let displayString = value < 0 ? '-' : '';
+  const hours = parseInt(positiveValue / 3600);
+  let minutes = parseInt((positiveValue - hours * 3600) / 60);
+  if (duration_format === DURATION_FORMATS_MAP.H_MM) {
+    displayString += `${hours}:${minutes > 9 ? minutes : '0' + minutes}`;
+    return displayString;
+  }
+  let seconds = Number.parseFloat((positiveValue - hours * 3600 - minutes * 60).toFixed(decimalDigits));
+  if (hours > 0) {
+    displayString += `${hours}:`;
+    minutes = minutes > 9 ? minutes : `0${minutes}`;
+  }
+  seconds = seconds > 9 ? seconds : `0${seconds}`;
+  displayString += `${minutes}:${seconds}${decimalSuffix}`;
+  return displayString;
+}
+
+const getMathRoundedDuration = (num, duration_format) => {
+  const decimalDigits = DURATION_DECIMAL_DIGITS[duration_format];
+  if (decimalDigits < 1) {
+    return num;
+  }
+  const ratio = Math.pow(10, decimalDigits);
+  return Math.round(num * ratio) / ratio;
+}
+
+const getDurationDecimalSuffix = (duration_format, decimal) => {
+  if (duration_format === DURATION_FORMATS_MAP.H_MM_SS_S) {
+    return decimal === 0 ? '.0' : '';
+  } else if (duration_format === DURATION_FORMATS_MAP.H_MM_SS_SS) {
+    if (decimal === 0) {
+      return '.00';
+    } else if (decimal < 10) {
+      return '0';
+    }
+  } else if (duration_format === DURATION_FORMATS_MAP.H_MM_SS_SSS) {
+    if (decimal === 0) {
+      return '.000';
+    } else if (decimal < 10) {
+      return '00';
+    } else if (decimal < 100) {
+      return '0';
+    }
+  }
+  return '';
+}

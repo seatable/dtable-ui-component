@@ -83,7 +83,8 @@ const value2 = true;
 const value3 = '1992-07-09 12:24';
 const value4 = 'abcdeale';
 const value5 = '5555';
-const value6 = ['lilei@seafile.com']
+const value6 = ['lilei@seafile.com'];
+const value7 = 12300;
 
 const collaborators = [
   {name: 'Alex', email: 'alex@seafile.com', contact_email: 'alex@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3574700877,553982185&fm=26&gp=0.jpg'},
@@ -155,6 +156,16 @@ let column6 = {
   }
 }
 
+let column7 = {
+  key: '666',
+  type: 'formula',
+  name: 'xiaowang',
+  data: {
+    result_type: 'number',
+    format: 'duration',
+  }
+}
+
 storiesOf('CELLS|formula-formatter', module)
   .addDecorator(withInfo)
   .add('formula component', () => (
@@ -201,6 +212,13 @@ storiesOf('CELLS|formula-formatter', module)
           column={column6}
           tables={tables}
           collaborators={collaborators}
+        />
+      </ShowCode>
+      <ShowCode title={'the formula result is a column value'}>
+        <FormulaFormatter 
+          value={value7} 
+          column={column7}
+          containerClassName={'formula-container'} 
         />
       </ShowCode>
     </div>

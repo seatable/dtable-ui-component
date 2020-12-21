@@ -19,3 +19,4 @@ export const GEOLOCATION = 'geolocation';
 export const AUTO_NUMBER = 'auto-number';
 export const URL = 'url';
 export const EMAIL = 'email';
+export const DURATION = 'duration';
