@@ -1,4 +1,8 @@
-import { formatNumberToString, formatStringToNumber } from '../../src/utils/value-format-utils'; 
+import { 
+  formatNumberToString, 
+  formatStringToNumber,
+  getDurationDisplayString,
+ } from '../../src/utils/value-format-utils'; 
 
 describe('format string to number to save on the server', () => {
   it('format the value to common number', () => {
@@ -63,6 +67,52 @@ describe('format number to string display in the GUI', () => {
     const number = '€1,877,333.00';
     const formattedValue = formatStringToNumber(number, {format: 'euro'});
     expect(formattedValue).toEqual(1877333);
+  });
+
+});
+
+
+describe('format duration to string display in the GUI', () => {
+  it('the formatted value is 0', () => {
+    const number = 0;
+    const formattedValue = getDurationDisplayString(number, 'h:mm');
+    expect(formattedValue).toEqual('0:00');
+  });
+
+  it('the formatted value is 0', () => {
+    const number = 0;
+    const formattedValue = getDurationDisplayString(number, 'h:mm:ss');
+    expect(formattedValue).toEqual('0:00');
+  });
+
+  it('format the value to common number', () => {
+    const number = 12300;
+    const formattedValue = getDurationDisplayString(number, 'h:mm');
+    expect(formattedValue).toEqual('3:25');
+  });
+
+  it('format the value to common number', () => {
+    const number = 12300;
+    const formattedValue = getDurationDisplayString(number, 'h:mm:ss');
+    expect(formattedValue).toEqual('3:25:00');
+  });
+
+  it('format the value to common number', () => {
+    const number = 660;
+    const formattedValue = getDurationDisplayString(number, 'h:mm:ss');
+    expect(formattedValue).toEqual('11:00');
+  });
+
+  it('format negative values as displayed strings', () => {
+    const number = -12300;
+    const formattedValue = getDurationDisplayString(number, 'h:mm');
+    expect(formattedValue).toEqual('-3:25');
+  });
+
+  it('format negative values as displayed strings', () => {
+    const number = -12300;
+    const formattedValue = getDurationDisplayString(number, 'h:mm:ss');
+    expect(formattedValue).toEqual('-3:25:00');
   });
 
 });
