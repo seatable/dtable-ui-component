@@ -20,3 +20,4 @@ export { default as LinkFormatter } from './link-formatter';
 export { default as AutoNumberFormatter } from './auto-number-formatter';
 export { default as UrlFormatter } from './url-formatter';
 export { default as EmailFormatter } from './email-formatter';
+export { default as DurationFormatter } from './duration-formatter';

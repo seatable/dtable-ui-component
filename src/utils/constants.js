@@ -25,3 +25,23 @@ export const FORMULA_RESULT_TYPE = {
 };
 
 export const DEFAULT_NUMBER_FORMAT = 'number';
+
+export const DURATION_FORMATS_MAP = {
+  H_MM: 'h:mm',
+  H_MM_SS: 'h:mm:ss',
+};
+
+export const DURATION_FORMATS = [
+  {name: DURATION_FORMATS_MAP.H_MM, type: DURATION_FORMATS_MAP.H_MM},
+  {name: DURATION_FORMATS_MAP.H_MM_SS, type: DURATION_FORMATS_MAP.H_MM_SS}
+];
+
+export const DURATION_ZERO_DISPLAY = {
+  [DURATION_FORMATS_MAP.H_MM]: '0:00',
+  [DURATION_FORMATS_MAP.H_MM_SS]: '0:00',
+};
+
+export const DURATION_DECIMAL_DIGITS = {
+  [DURATION_FORMATS_MAP.H_MM]: 0,
+  [DURATION_FORMATS_MAP.H_MM_SS]: 0,
+};
