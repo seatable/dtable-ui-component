@@ -29,7 +29,8 @@ export {
   MTimeFormatter,
   AutoNumberFormatter,
   UrlFormatter,
-  EmailFormatter
+  EmailFormatter,
+  DurationFormatter
 } from './components/cell-formatter';
 
 export {
