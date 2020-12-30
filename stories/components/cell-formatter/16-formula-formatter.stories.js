@@ -85,6 +85,8 @@ const value4 = 'abcdeale';
 const value5 = '5555';
 const value6 = ['lilei@seafile.com'];
 const value7 = 12300;
+const value8 = ['1111', '3333', '5555'];
+const value9 = ['alex', 'LiLei', 'xiaoqiang'];
 
 const collaborators = [
   {name: 'Alex', email: 'alex@seafile.com', contact_email: 'alex@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3574700877,553982185&fm=26&gp=0.jpg'},
@@ -166,6 +168,28 @@ let column7 = {
   }
 }
 
+let column8 = {
+  key: '777',
+  type: 'formula',
+  name: 'xiaowang',
+  data: {
+    result_type: 'column',
+    display_column_key: '1111',
+    linked_table_id: '0000'
+  }
+}
+
+let column9 = {
+  key: '888',
+  type: 'formula',
+  name: 'xiaowang',
+  data: {
+    result_type: 'column',
+    display_column_key: '0000',
+    linked_table_id: '0000'
+  }
+}
+
 storiesOf('CELLS|formula-formatter', module)
   .addDecorator(withInfo)
   .add('formula component', () => (
@@ -178,7 +202,7 @@ storiesOf('CELLS|formula-formatter', module)
           containerClassName={'formula-container'} 
         />
       </ShowCode>
-      <ShowCode title={'the formula result is a string value'}>
+      <ShowCode title={'the formula result is a bool value'}>
         <FormulaFormatter 
           value={value2} 
           column={column2}
@@ -191,7 +215,7 @@ storiesOf('CELLS|formula-formatter', module)
           column={column3}
         />
       </ShowCode>
-     <ShowCode title={'the formula result is a bool value'}>
+     <ShowCode title={'the formula result is a string value'}>
         <FormulaFormatter 
           value={value4} 
           column={column4}
@@ -218,6 +242,22 @@ storiesOf('CELLS|formula-formatter', module)
         <FormulaFormatter 
           value={value7} 
           column={column7}
+          containerClassName={'formula-container'} 
+        />
+      </ShowCode>
+      <ShowCode title={'the formula result is a column value'}>
+        <FormulaFormatter 
+          value={value8} 
+          column={column8}
+          tables={tables}
+          containerClassName={'formula-container'} 
+        />
+      </ShowCode>
+      <ShowCode title={'the formula result is a column value'}>
+        <FormulaFormatter 
+          value={value9} 
+          column={column9}
+          tables={tables}
           containerClassName={'formula-container'} 
         />
       </ShowCode>

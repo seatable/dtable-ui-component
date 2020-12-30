@@ -6,6 +6,10 @@ import cellFormatterFactory from '../cell-factory/cell-formatter-factory';
 import * as CellTypes from '../../utils/cell-types';
 import { formatNumberToString, formatDateToString } from '../../utils/value-format-utils';
 
+const SIMPLE_CELL_FORMATTER_COLUMNS = [CellTypes.TEXT, CellTypes.NUMBER, CellTypes.DATE, CellTypes.CTIME, CellTypes.MTIME, CellTypes.GEOLOCATION,
+  CellTypes.AUTO_NUMBER, CellTypes.URL, CellTypes.EMAIL, CellTypes.DURATION];
+const ARRAY_FORMAL_COLUMNS = [CellTypes.IMAGE, CellTypes.FILE, CellTypes.MULTIPLE_SELECT, CellTypes.COLLABORATOR];
+
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object, PropTypes.bool]),
   column: PropTypes.Object,
@@ -51,6 +55,27 @@ class FormulaFormatter extends React.Component {
     if (!linkedTable) return null;
     let linkedColumn = linkedTable.columns.find(column => column.key === display_column_key);
     if (!linkedColumn) return null;
+    const linkedColumnType = linkedColumn.type;
+    if (!ARRAY_FORMAL_COLUMNS.includes(linkedColumnType) && Object.prototype.toString.call(value) === '[object Array]') {
+      const contentItemClassName = cn(
+        'dtable-ui',
+        'formula-formatter-content-item',
+        {
+          'simple-cell-formatter': SIMPLE_CELL_FORMATTER_COLUMNS.includes(linkedColumnType),
+        }
+      );
+      return (
+        <div className="formula-formatter multiple">
+          {value.map((v, index) => {
+            return (
+              <div className={contentItemClassName} key={`formula-formatter-content-item-${index}`}>
+                {this.getOtherColumnFormatter(v, linkedColumn)}
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
     return this.getOtherColumnFormatter(value, linkedColumn);
   }
 
