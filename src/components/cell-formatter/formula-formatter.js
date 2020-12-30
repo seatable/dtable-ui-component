@@ -58,14 +58,13 @@ class FormulaFormatter extends React.Component {
     const linkedColumnType = linkedColumn.type;
     if (!ARRAY_FORMAL_COLUMNS.includes(linkedColumnType) && Object.prototype.toString.call(value) === '[object Array]') {
       const contentItemClassName = cn(
-        'dtable-ui',
         'formula-formatter-content-item',
         {
           'simple-cell-formatter': SIMPLE_CELL_FORMATTER_COLUMNS.includes(linkedColumnType),
         }
       );
       return (
-        <div className="formula-formatter multiple">
+        <div className="dtable-ui formula-formatter multiple">
           {value.map((v, index) => {
             return (
               <div className={contentItemClassName} key={`formula-formatter-content-item-${index}`}>

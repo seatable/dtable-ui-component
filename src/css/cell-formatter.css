@@ -196,24 +196,21 @@
   text-decoration: underline;
 }
 
-.dtable-ui.formula-formatter-content-item {
+.dtable-ui.formula-formatter.multiple .formula-formatter-content-item {
   display: inline-flex;
+  margin-right: 10px;
 }
 
-.dtable-ui.formula-formatter-content-item.simple-cell-formatter {
+
+.dtable-ui.formula-formatter.multiple .formula-formatter-content-item.simple-cell-formatter {
   height: 20px;
   padding: 0 8px;
   align-items: center;
   background: #eceff4;
   border-radius: 3px;
-  margin-right: 10px;
 }
 
-.dtable-ui.formula-formatter-content-item .checkbox {
-  margin-right: 10px;
-}
-
-.dtable-ui.formula-formatter-content-item .collaborator {
+.dtable-ui.formula-formatter.multiple .formula-formatter-content-item .collaborator {
   margin-right: 0;
 }
 
