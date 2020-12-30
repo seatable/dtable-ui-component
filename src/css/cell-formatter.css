@@ -209,7 +209,10 @@
   margin-right: 10px;
 }
 
-.dtable-ui.formula-formatter-content-item .checkbox,
+.dtable-ui.formula-formatter-content-item .checkbox {
+  margin-right: 10px;
+}
+
 .dtable-ui.formula-formatter-content-item .collaborator {
   margin-right: 0;
 }
