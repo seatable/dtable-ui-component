@@ -47,7 +47,6 @@ class DateEidtorPopover extends React.PureComponent {
   }
 
   handleDateChange = (date) => {
-    console.log(date)
     let { dateFormat, showHourAndMinute } = this.props;
     let newValue = moment(date);
     if (showHourAndMinute) {
