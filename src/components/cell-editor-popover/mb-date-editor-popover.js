@@ -9,7 +9,6 @@ import { initDateEditorLanguage } from '../../utils/editor-utils';
 import MBEditorHeader from '../common/mobile/mb-editor-header';
 
 import '@seafile/seafile-calendar/assets/index.css';
-import 'antd-mobile/dist/antd-mobile.css'
 import '../../css/custom-rc-calendar.css';
 
 const propTypes = {
@@ -48,6 +47,7 @@ class DateEidtorPopover extends React.PureComponent {
   }
 
   handleDateChange = (date) => {
+    console.log(date)
     let { dateFormat, showHourAndMinute } = this.props;
     let newValue = moment(date);
     if (showHourAndMinute) {
