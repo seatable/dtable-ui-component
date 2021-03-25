@@ -64,7 +64,8 @@
   white-space: nowrap;
 }
 
-.dtable-ui.long-text-formatter .long-text-links {
+.dtable-ui.long-text-formatter .long-text-links,
+.dtable-ui.long-text-formatter .long-text-check-list {
   display: inline-block;
   height: 20px;
   padding: 2px;
@@ -72,6 +73,17 @@
   color: #9c9c9c;
   background-color: #f0f0f0;
   border-radius: 3px;
+  line-height: 16px;
+}
+
+.dtable-ui.long-text-formatter .long-text-check-list .dtable-font,
+.dtable-ui.long-text-formatter .long-text-links .dtable-font {
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.dtable-ui.long-text-formatter .long-text-check-list .long-text-check-list-completed {
+  color: #61BD4F;
 }
 
 .dtable-ui.long-text-formatter .long-text-images {
