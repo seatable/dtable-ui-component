@@ -24,7 +24,7 @@ class LongTextFormatter extends React.Component {
     if (!Array.isArray(links) || links.length === 0) return null;
     return (
       <span className="long-text-links">
-        <i className="dtable-font dtable-icon-url"></i>&nbsp;
+        <i className="dtable-font dtable-icon-url"></i>
         {links.length}
       </span>
     );
