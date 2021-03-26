@@ -33,12 +33,21 @@ class LinkFormatter extends React.Component {
     this.otherTableID = '';
 
     this.state = {
-      value: this.getLinkedCellValue(),
+      value: this.getLinkedCellValue(props.row),
     };
   }
 
-  getLinkedCellValue = () => {
-    const { column, currentTableId, linkMetaData, row } = this.props;
+  componentWillReceiveProps(nextProps) {
+    const { row: nextRow } = nextProps;
+    if (nextRow._id !== this.props.row._id) {
+      this.setState({value: this.getLinkedCellValue(nextRow)});
+    }
+  }
+  
+
+  getLinkedCellValue = (row) => {
+    if (!row) return [];
+    const { column, currentTableId, linkMetaData } = this.props;
     const { link_id, table_id, other_table_id } = column.data || {};
     this.linkID = link_id;
     this.tableID = currentTableId === table_id ? table_id : other_table_id;
