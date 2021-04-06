@@ -33,7 +33,7 @@ class LastModifierFormatter extends React.PureComponent {
     let { collaborators } = this.props;
     return value.map((item, index) => {
       let collaborator = collaborators.find(collaborator => collaborator.email === item);
-      // the collaborator can be not exist, because the row created by third app
+      // the collaborator can be not exist, because the row modifier by third app
       if (!collaborator) {
         collaborator = {
           name: item,
