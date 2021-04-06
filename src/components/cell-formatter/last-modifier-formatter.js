@@ -55,7 +55,7 @@ class LastModifierFormatter extends React.PureComponent {
       return (<div className={className}></div>);
     }
 
-    const collaborators = this.getCollaborators(validValue);;
+    const collaborators = this.getCollaborators(validValue);
     return (
       <div className={className}>
         {collaborators}
