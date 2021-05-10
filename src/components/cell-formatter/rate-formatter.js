@@ -23,6 +23,7 @@ class RateFormatter extends React.Component {
     for (let i = 0; i < validValue; i++) {
       rateList.push(
         <i
+          key={`dtable-ui-component-rate-${i}`}
           className="dtable-font dtable-icon-star"
           style={{color: rate_style_color || '#e5e5e5'}}
         >

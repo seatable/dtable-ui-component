@@ -22,6 +22,7 @@ import UrlFormatter from './url-formatter';
 import EmailFormatter from './email-formatter';
 import DurationFormatter from './duration-formatter';
 import RateFormatter from './rate-formatter';
+import ButtonFormatter from './button-formatter';
 
 const FormatterConfig = {
   [CellTypes.DEFAULT]: <TextCellFormatter />,
@@ -47,6 +48,7 @@ const FormatterConfig = {
   [CellTypes.EMAIL]: <EmailFormatter />,
   [CellTypes.DURATION]: <DurationFormatter />,
   [CellTypes.RATE]: <RateFormatter />,
+  [CellTypes.BUTTON]: <ButtonFormatter />,
 };
 
 export default FormatterConfig;

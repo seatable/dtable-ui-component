@@ -32,6 +32,7 @@ export {
   EmailFormatter,
   DurationFormatter,
   RateFormatter,
+  ButtonFormatter,
 } from './components/cell-formatter';
 
 export {

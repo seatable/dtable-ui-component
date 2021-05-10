@@ -21,3 +21,4 @@ export const URL = 'url';
 export const EMAIL = 'email';
 export const DURATION = 'duration';
 export const RATE = 'rate';
+export const BUTTON = 'button';

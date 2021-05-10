@@ -227,4 +227,16 @@
   margin-right: 0;
 }
 
+/* button */
+.dtable-ui.button-formatter {
+  height: 26px;
+  width: 80px;
+  padding: 5px 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
