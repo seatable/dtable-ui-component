@@ -30,7 +30,8 @@ export {
   AutoNumberFormatter,
   UrlFormatter,
   EmailFormatter,
-  DurationFormatter
+  DurationFormatter,
+  RateFormatter,
 } from './components/cell-formatter';
 
 export {
