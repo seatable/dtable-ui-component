@@ -11,6 +11,7 @@ export const MULTIPLE_SELECT = 'multiple-select';
 export const COLLABORATOR = 'collaborator';
 export const LINK = 'link';
 export const FORMULA = 'formula';
+export const LINK_FORMULA = 'link-formula';
 export const CREATOR = 'creator';
 export const CTIME = 'ctime';
 export const LAST_MODIFIER = 'last-modifier';

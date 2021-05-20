@@ -5,6 +5,8 @@ import { FORMULA_RESULT_TYPE } from '../../utils/constants';
 import cellFormatterFactory from '../cell-factory/cell-formatter-factory';
 import * as CellTypes from '../../utils/cell-types';
 import { formatNumberToString, formatDateToString } from '../../utils/value-format-utils';
+import { isFunction } from '../../utils/utils';
+import TextFormatter from './text-formatter';
 
 const SIMPLE_CELL_FORMATTER_COLUMNS = [CellTypes.TEXT, CellTypes.NUMBER, CellTypes.DATE, CellTypes.CTIME, CellTypes.MTIME, CellTypes.GEOLOCATION,
   CellTypes.AUTO_NUMBER, CellTypes.URL, CellTypes.EMAIL, CellTypes.DURATION];
@@ -24,6 +26,7 @@ class FormulaFormatter extends React.Component {
     const { collaborators } = this.props;
     let formatterProps = { value };
     const { type: columnType } = column;
+    let Formatter = cellFormatterFactory.createFormatter(columnType);
     switch(columnType) {
       case CellTypes.NUMBER: {
         formatterProps.data = column.data;
@@ -42,9 +45,18 @@ class FormulaFormatter extends React.Component {
         formatterProps.collaborators = collaborators;
         break;
       }
+      case CellTypes.FORMULA:
+      case CellTypes.LINK_FORMULA: {
+        formatterProps.column = column;
+        Formatter = FormulaFormatter;
+      }
     }
-    let Formatter = cellFormatterFactory.createFormatter(columnType);
-    return React.cloneElement(Formatter, {...formatterProps});;
+    if (React.isValidElement(Formatter)) {
+      return React.cloneElement(Formatter, {...formatterProps});
+    } else if (isFunction(Formatter)) {
+      return <Formatter {...formatterProps} />;
+    }
+    return <TextFormatter {...formatterProps} />;
   }
 
   renderOtherColumnFormatter = () => {
