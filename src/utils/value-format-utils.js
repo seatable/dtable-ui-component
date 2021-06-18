@@ -1,3 +1,4 @@
+import moment from 'moment';
 import NP from './number-precision';
 import { 
   NUMBER_TYPES, 
@@ -128,35 +129,28 @@ export const formatDateToString = (value, format) => {
     return formatedValue;
   }
 
-  let newValue = value.split(' ');
-  let cellDate = newValue[0].split('-');
   switch(format) {
-    case DATE_TYPES['D/M/YYYY']:
-      formatedValue = `${Number(cellDate[2])}/${Number(cellDate[1])}/${cellDate[0]}`;
-      break;
-    case DATE_TYPES['D/M/YYYY HH:mm']:
-      formatedValue = `${Number(cellDate[2])}/${Number(cellDate[1])}/${cellDate[0]}`;
-      if (newValue[1]) {
-        formatedValue = `${formatedValue} ${newValue[1]}` 
-      }
-      break;
-    case DATE_TYPES['M/D/YYYY']:
-      formatedValue = `${Number(cellDate[1])}/${Number(cellDate[2])}/${cellDate[0]}`;
-      break;
-    case DATE_TYPES['M/D/YYYY HH:mm']:
-      formatedValue = `${Number(cellDate[1])}/${Number(cellDate[2])}/${cellDate[0]}`;
-      if (newValue[1]) {
-        formatedValue = `${formatedValue} ${newValue[1]}`;
-      }
-      break;
-    case DATE_TYPES['YYYY-MM-DD']:
-      formatedValue = `${cellDate[0]}-${cellDate[1]}-${cellDate[2]}`;
-      break;
-    case DATE_TYPES['YYYY-MM-DD HH:mm']:
-      formatedValue = value;
-      break;
+    case 'D/M/YYYY':
+    case 'DD/MM/YYYY':
+      const formatValue = moment(value).format('YYYY-MM-DD');
+      const formatValueList = formatValue.split('-');
+      return `${formatValueList[2]}/${formatValueList[1]}/${formatValueList[0]}`;
+    case 'D/M/YYYY HH:mm':
+    case 'DD/MM/YYYY HH:mm':
+      const formatValues = moment(value).format('YYYY-MM-DD HH:mm');
+      const formatValuesList = formatValues.split(' ')
+      const formatDateList = formatValuesList[0].split('-');
+      return `${formatDateList[2]}/${formatDateList[1]}/${formatDateList[0]} ${formatValuesList[1]}`;
+    case 'M/D/YYYY':
+      return moment(value).format('M/D/YYYY');
+    case 'M/D/YYYY HH:mm':
+      return moment(value).format('M/D/YYYY HH:mm');
+    case 'YYYY-MM-DD':
+      return moment(value).format('YYYY-MM-DD');
+    case 'YYYY-MM-DD HH:mm':
+      return moment(value).format('YYYY-MM-DD HH:mm');
     default:
-      formatedValue = value;
+      return value;
   }
 
   return formatedValue;
