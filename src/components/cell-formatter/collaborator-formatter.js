@@ -24,11 +24,15 @@ const propTypes = {
 // 4 value is exist, typeof value is array
 class CollaboratorFormatter extends React.PureComponent {
 
-  getCollaborators = () => {
-    let { value, collaborators, enableDeleteCollaborator, onDeleteCollaborator } = this.props;
-    if (!Array.isArray(value)) {
-      value = [value];
-    }
+  getValidValue = () => {
+    const { value } = this.props;
+    if (!value) return [];
+    if (!Array.isArray(value)) return [value];
+    return value.filter(item => item);
+  }
+
+  getCollaborators = (value) => {
+    let { collaborators, enableDeleteCollaborator, onDeleteCollaborator } = this.props;
 
     return value.map((item, index) => {
       let collaborator = collaborators.find(collaborator => collaborator.email === item);
@@ -50,15 +54,17 @@ class CollaboratorFormatter extends React.PureComponent {
   }
 
   render() {
-    const { containerClassName, value } = this.props;
-    const classname = cn('dtable-ui cell-formatter-container collaborator-formatter', containerClassName)
-    if (!value || (Array.isArray(value) && value.length === 0)) {
-      return (<div className={classname}></div>)
+    const { containerClassName } = this.props;
+    const className = cn('dtable-ui cell-formatter-container collaborator-formatter', containerClassName);
+    const validValue = this.getValidValue();
+
+    if (validValue.length === 0) {
+      return (<div className={className}></div>);
     }
 
-    const collaborators = this.getCollaborators();
+    const collaborators = this.getCollaborators(validValue);
     return (
-      <div className={classname}>
+      <div className={className}>
         {collaborators}
       </div>
     );
