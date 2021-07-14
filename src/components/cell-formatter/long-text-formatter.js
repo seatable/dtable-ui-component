@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
-import { deserialize } from '@seafile/seafile-editor/dist/utils/slate2markdown';
 import getPreviewContent from '../../utils/normalize-long-text-value';
 
 const propTypes = {
@@ -62,8 +61,7 @@ class LongTextFormatter extends React.Component {
     if (!value) return {};
     const valueType = Object.prototype.toString.call(value);
     if (valueType === '[object String]') {
-      const slateContent = deserialize(value);
-      return getPreviewContent(slateContent);
+      return getPreviewContent(value);
     }
     if (valueType === '[object Object]') {
       return value;
