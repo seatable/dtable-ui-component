@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
+import { deserialize } from '@seafile/seafile-editor/dist/utils/slate2markdown';
+import getPreviewContent from '../../utils/normalize-long-text-value';
 
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
@@ -18,8 +20,7 @@ class LongTextFormatter extends React.Component {
     },
   }
 
-  renderLinks = () => {
-    const { value } = this.props;
+  renderLinks = (value) => {
     const links = value.links;
     if (!Array.isArray(links) || links.length === 0) return null;
     return (
@@ -30,8 +31,7 @@ class LongTextFormatter extends React.Component {
     );
   }
 
-  renderCheckList = () => {
-    const { value } = this.props;
+  renderCheckList = (value) => {
     const checkList = value.checklist;
     if (!checkList || checkList.total === 0) return null;
     return (
@@ -42,8 +42,7 @@ class LongTextFormatter extends React.Component {
     );
   }
 
-  renderImages = () => {
-    let { value } = this.props;
+  renderImages = (value) => {
     const images = value.images;
     if (!Array.isArray(images) || images.length === 0) return null;
     return (
@@ -54,20 +53,34 @@ class LongTextFormatter extends React.Component {
     );
   }
 
-  renderContent = () => {
-    let { value } = this.props;
+  renderContent = (value) => {
     return (<span className="long-text-content">{value.preview}</span>)
   }
 
+  translateValue = () => {
+    const { value } = this.props;
+    if (!value) return {};
+    const valueType = Object.prototype.toString.call(value);
+    if (valueType === '[object String]') {
+      const slateContent = deserialize(value);
+      return getPreviewContent(slateContent);
+    }
+    if (valueType === '[object Object]') {
+      return value;
+    }
+    return {};
+  }
+
   render() {
-    let { containerClassName } = this.props;
-    let classname = cn('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
+    const { containerClassName } = this.props;
+    const className = cn('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
+    const value = this.translateValue();
     return (
-      <div className={classname}>
-        {this.renderLinks()}
-        {this.renderCheckList()}
-        {this.renderImages()}
-        {this.renderContent()}
+      <div className={className}>
+        {this.renderLinks(value)}
+        {this.renderCheckList(value)}
+        {this.renderImages(value)}
+        {this.renderContent(value)}
       </div>
     );
   }

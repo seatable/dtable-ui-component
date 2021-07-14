@@ -2,7 +2,7 @@ import moment from 'moment';
 import NP from './number-precision';
 import { 
   NUMBER_TYPES, 
-  DATE_TYPES, DEFAULT_NUMBER_FORMAT, 
+  DEFAULT_NUMBER_FORMAT, 
   DURATION_FORMATS_MAP, 
   DURATION_FORMATS, 
   DURATION_ZERO_DISPLAY, 
@@ -128,32 +128,31 @@ export const formatDateToString = (value, format) => {
   if (!value) { // value === '', value === undefine, value === null
     return formatedValue;
   }
-
+  const date = moment(value);
+  if (!date.isValid()) return value;
   switch(format) {
     case 'D/M/YYYY':
     case 'DD/MM/YYYY':
-      const formatValue = moment(value).format('YYYY-MM-DD');
+      const formatValue = date.format('YYYY-MM-DD');
       const formatValueList = formatValue.split('-');
       return `${formatValueList[2]}/${formatValueList[1]}/${formatValueList[0]}`;
     case 'D/M/YYYY HH:mm':
     case 'DD/MM/YYYY HH:mm':
-      const formatValues = moment(value).format('YYYY-MM-DD HH:mm');
+      const formatValues = date.format('YYYY-MM-DD HH:mm');
       const formatValuesList = formatValues.split(' ')
       const formatDateList = formatValuesList[0].split('-');
       return `${formatDateList[2]}/${formatDateList[1]}/${formatDateList[0]} ${formatValuesList[1]}`;
     case 'M/D/YYYY':
-      return moment(value).format('M/D/YYYY');
+      return date.format('M/D/YYYY');
     case 'M/D/YYYY HH:mm':
-      return moment(value).format('M/D/YYYY HH:mm');
+      return date.format('M/D/YYYY HH:mm');
     case 'YYYY-MM-DD':
-      return moment(value).format('YYYY-MM-DD');
+      return date.format('YYYY-MM-DD');
     case 'YYYY-MM-DD HH:mm':
-      return moment(value).format('YYYY-MM-DD HH:mm');
+      return date.format('YYYY-MM-DD HH:mm');
     default:
       return value;
   }
-
-  return formatedValue;
 };
 
 export const getDurationDisplayString = (value, duration_format) => {
