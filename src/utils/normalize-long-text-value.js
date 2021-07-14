@@ -68,6 +68,4 @@ const getPreviewText = (content, previewContent) => {
   previewContent.preview = preview;
 };
 
-
-
 export default getPreviewContent;
