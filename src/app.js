@@ -1,5 +1,5 @@
 import React from 'react';
-import { CollaboratorFormatter, SingleSelectFormatter } from './components/cell-formatter';
+import { CollaboratorFormatter, SingleSelectFormatter, LongTextFormatter } from './components/cell-formatter';
 
 import './app.css';
 
@@ -47,6 +47,19 @@ class App extends React.Component {
         color: '#00e500',
       },
     ]
+    const server = 'https://dev.seatable.cn/';
+    const longTextValue = {
+      "text": "<img src=\"https://dev.seatable.cn/workspace/8/asset/f58d188d-63cb-4b51-82b8-16ebe5d08683/images/auto-upload/image-1625064380449.png\" width=\"519\" height=\"null\" />\n\n* [x] 鼠标移上去后才显示三个点\n\n",
+      "preview": "",
+      "links": [],
+      "images": [
+        "https://dev.seatable.cn/workspace/8/asset/f58d188d-63cb-4b51-82b8-16ebe5d08683/images/auto-upload/image-1625064380449.png"
+      ],
+      "checklist": {
+        "total": 5,
+        "completed": 5
+      }
+    };
     return (
       <div className="app">
         <header className="app-header">
@@ -71,6 +84,10 @@ class App extends React.Component {
           <div>
             <h2>single-select测试</h2>
             <SingleSelectFormatter value={'3333'} options={options}/>
+          </div>
+          <div>
+            <h2>long-text测试</h2>
+            <LongTextFormatter value={longTextValue} server={server}/>
           </div>
         </div>
       </div>

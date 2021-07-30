@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
 import getPreviewContent from '../../utils/normalize-long-text-value';
+import { getImageThumbnailUrl } from '../../utils/utils';
 
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   containerClassName: PropTypes.string,
+  server: PropTypes.string,
 };
 
 class LongTextFormatter extends React.Component {
@@ -17,6 +19,7 @@ class LongTextFormatter extends React.Component {
       links: [],
       preview: '',
     },
+    server: '',
   }
 
   renderLinks = (value) => {
@@ -44,9 +47,10 @@ class LongTextFormatter extends React.Component {
   renderImages = (value) => {
     const images = value.images;
     if (!Array.isArray(images) || images.length === 0) return null;
+    const thumbnailUrl = getImageThumbnailUrl(images[0], this.props.server);
     return (
       <span className="long-text-images">
-        <img src={images[0]} alt=""/>
+        <img src={thumbnailUrl} alt=""/>
         <i className="image-number">{images.length > 1 ? '+' + images.length : null}</i>
       </span>
     );
