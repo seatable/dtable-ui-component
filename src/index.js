@@ -33,6 +33,7 @@ export {
   DurationFormatter,
   RateFormatter,
   ButtonFormatter,
+  FileItemFormatter,
 } from './components/cell-formatter';
 
 export {
