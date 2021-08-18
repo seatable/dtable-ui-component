@@ -93,9 +93,9 @@ class DateEditor extends React.Component {
     let { newValue, isPopoverShow, dateFormat, showHourAndMinute } = this.state;
     
     return (
-      <div className="cell-editor date-editor">
+      <div className="cell-editor dtable-ui-date-editor">
         {!isPopoverShow && (
-          <div className="date-editor-container">
+          <div className="dtable-ui-date-editor-container">
             <div className="form-control" onClick={this.onDateEditorToggle}>{formatDateToString(newValue, dateFormat)}</div>
           </div>
         )}

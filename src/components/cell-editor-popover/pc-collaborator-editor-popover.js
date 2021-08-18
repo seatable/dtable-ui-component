@@ -51,7 +51,7 @@ class PCCollaboratorEditorPopover extends React.Component {
     let popoverStyle = Object.assign({}, {...popoverPosition}, {position: 'absolute'});
 
     return (
-      <div className="editor-popover collaborator-editor-popover" style={popoverStyle}>
+      <div className="dtable-ui-editor-popover dtable-ui-collaborator-editor-popover" style={popoverStyle}>
         <div className="collaborator-search-container">
           <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_a_collaborator')}></input>
         </div>

@@ -61,7 +61,7 @@ class App extends React.Component {
             <CollaboratorFormatter value={['123', '4567']} collaborators={collaborators} />
             <div>带删除按钮测试</div>
             <CollaboratorFormatter 
-              containerClassName={'abcd'}
+              containerClassName='collaborator-container'
               value={['123', '4567']} 
               collaborators={collaborators} 
               enableDeleteCollaborator={true} 

@@ -140,8 +140,8 @@ class MultipleSelectEditor extends React.Component {
     let selectedOptions = this.getFormattedOptions();
 
     return (
-      <div ref={this.setEditorContainerRef} className="cell-editor multiple-select-editor">
-        <div ref={this.setEditorRef} className="select-editor-container" onClick={this.onAddOptionToggle}>
+      <div ref={this.setEditorContainerRef} className="cell-editor dtable-ui-multiple-select-editor">
+        <div ref={this.setEditorRef} className="dtable-ui-select-editor-container" onClick={this.onAddOptionToggle}>
           {selectedOptions.length === 0 && <EditEditorButton text={getLocale('Add_an_option')} />}
           {selectedOptions.length !== 0 && (
             selectedOptions.map(option => {

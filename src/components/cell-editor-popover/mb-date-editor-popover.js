@@ -162,7 +162,7 @@ class DateEidtorPopover extends React.PureComponent {
     const { datePickerValue } = this.state;
 
     return (
-      <div ref={this.setEditorPopover} className="mb-editor-popover mb-date-editor-popover" onClick={this.onContainerClick}>
+      <div ref={this.setEditorPopover} className="dtable-ui-mb-editor-popover mb-date-editor-popover" onClick={this.onContainerClick}>
         <MBEditorHeader
           title={column.name}
           leftContent={(<i className="dtable-font dtable-icon-return"></i>)}
@@ -170,7 +170,7 @@ class DateEidtorPopover extends React.PureComponent {
           onLeftClick={this.props.onClosePopover}
           onRightClick={this.props.onClosePopover}
         />
-        <div className="mb-editor-body mb-date-editor-body">
+        <div className="dtable-ui-mb-editor-body dtable-ui-mb-date-editor-body">
           <div className="mb-date-editor-input">
             <div className="date-input">
               <DatePicker mode="date" locale={initDateEditorLanguage(lang)} value={this.state.value} onChange={this.handleDateChange}>
@@ -185,7 +185,7 @@ class DateEidtorPopover extends React.PureComponent {
               </div>
             }
           </div>
-          <div className="mb-date-editor-picker">
+          <div className="dtable-ui mb-date-editor-picker">
             {this.renderDataPicker()}
           </div>
           <div className="mb-date-editor-clear">

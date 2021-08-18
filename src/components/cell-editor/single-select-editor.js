@@ -123,8 +123,8 @@ class SingleSelectEditor extends React.Component {
     let options = this.options;
     let selectedOptions = option ? [option] : [];
     return (
-      <div ref={this.setEditorContainerRef} className="cell-editor single-select-editor">
-        <div ref={this.setEditorRef} className="select-editor-container" onClick={this.onAddOptionToggle}>
+      <div ref={this.setEditorContainerRef} className="cell-editor dtable-ui-single-select-editor">
+        <div ref={this.setEditorRef} className="dtable-ui-select-editor-container" onClick={this.onAddOptionToggle}>
           {option ? <SelectEditorOption option={option} /> : <EditEditorButton text={getLocale('Add_an_option')} />}
         </div>
         {isPopoverShow && (

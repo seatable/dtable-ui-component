@@ -6,23 +6,15 @@ html, body, #root {
 .app {
   width: 100%;
   height: 100%;
-}
-
-.app {
   display: flex;
   flex-direction: column;
 }
 
-.app-header {
-
-}
-
-.app-body {
+.app .app-body {
   flex: 1;
 }
 
-.abcd {
+.app .app-body .collaborator-container {
   padding: 5px;
   border: 1px solid;
 }
-

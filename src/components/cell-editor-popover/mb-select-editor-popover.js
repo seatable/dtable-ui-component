@@ -136,13 +136,13 @@ class MBSingleSelectPopover extends React.Component {
     }
 
     return (
-      <div ref={this.setEditorPopover} className="mb-editor-popover mb-select-editor-popover" style={{zIndex: 99}} onClick={this.onContainerClick}>
+      <div ref={this.setEditorPopover} className="dtable-ui-mb-editor-popover mb-select-editor-popover" style={{zIndex: 99}} onClick={this.onContainerClick}>
         <MBEditorHeader
           title={column.name}
           leftContent={(<i className="dtable-font dtable-icon-return"></i>)}
           onLeftClick={this.props.onClosePopover}
         />
-        <div className="mb-editor-body mb-select-editor-body">
+        <div className="dtable-ui-mb-editor-body dtable-ui-mb-select-editor-body">
           <div className="mb-selected-item">
             <div className="title">{getLocale('Current_option')}</div>
             <div className="content">

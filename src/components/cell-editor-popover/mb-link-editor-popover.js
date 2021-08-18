@@ -107,7 +107,7 @@ class MBLinkEditorPopover extends React.Component {
     let filterOptions = this.getFilterOptions();
 
     return (
-      <div ref={this.setEditorPopover} className="mb-editor-popover mb-link-editor-popover" onClick={this.onContainerClick}>
+      <div ref={this.setEditorPopover} className="dtable-ui-mb-editor-popover mb-link-editor-popover" onClick={this.onContainerClick}>
         <MBEditorHeader
           title={column.name}
           leftContent={(<i className="dtable-font dtable-icon-return"></i>)}
@@ -115,7 +115,7 @@ class MBLinkEditorPopover extends React.Component {
           onLeftClick={this.props.onClosePopover}
           onRightClick={this.props.onClosePopover}
         />
-        <div className="mb-editor-body mb-link-editor-body">
+        <div className="dtable-ui-mb-editor-body dtable-ui-mb-link-editor-body">
           <div className="mb-search-link-items">
             <input
               className="form-control"
