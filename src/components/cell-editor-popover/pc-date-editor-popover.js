@@ -98,7 +98,7 @@ class PCDateEditorPopover extends React.Component {
         {({value}) => {
           value = value && value.format(dateFormat);
           return (
-            <span className="date-editor-container" tabIndex="0" onFocus={this.onFocusDatePicker}>
+            <span className="dtable-ui-date-editor-container" tabIndex="0" onFocus={this.onFocusDatePicker}>
               <input
                 readOnly
                 tabIndex="-1"

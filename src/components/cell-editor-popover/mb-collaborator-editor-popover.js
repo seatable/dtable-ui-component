@@ -110,7 +110,7 @@ class MBCollaboratorEditorPopover extends React.Component {
     let filteredCollaborators = this.getFilteredCollaborators();
 
     return (
-      <div ref={this.setEditorPopover} className="mb-editor-popover mb-collaborator-editor-popover" onClick={this.onContainerClick}>
+      <div ref={this.setEditorPopover} className="dtable-ui-mb-editor-popover mb-collaborator-editor-popover" onClick={this.onContainerClick}>
         <MBEditorHeader
           title={column.name}
           leftContent={(<i className="dtable-font dtable-icon-return"></i>)}
@@ -118,7 +118,7 @@ class MBCollaboratorEditorPopover extends React.Component {
           onLeftClick={this.props.onClosePopover}
           onRightClick={this.props.onClosePopover}
         />
-        <div className="mb-editor-body mb-collaborator-editor-body">
+        <div className="dtable-ui-mb-editor-body dtable-ui-mb-collaborator-editor-body">
           <div className="mb-search-collaborator-items">
             <input
               className="form-control"
