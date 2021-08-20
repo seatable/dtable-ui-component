@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
-import { getFileIconUrl } from '../../utils/utils';
+import FileItemFormatter from './widgets/file-item-formatter';
 
 const propTypes = {
   isSample: PropTypes.bool,
@@ -17,15 +17,9 @@ class FileFormatter extends React.PureComponent {
     containerClassName: ''
   }
 
-  getFileIconData = (item) => {
-    let fileIconUrl = getFileIconUrl(item.name, item.type);
-    let fileIconData = require('../../' + fileIconUrl);
-    return fileIconData;
-  }
-
   render() {
     let { isSample, value, containerClassName } = this.props;
-    let classname = cn('dtable-ui cell-formatter-container file-formatter', containerClassName);
+    let className = cn('dtable-ui cell-formatter-container file-formatter', containerClassName);
     if (!Array.isArray(value) || value.length === 0) {
       return null;
     }
@@ -33,23 +27,18 @@ class FileFormatter extends React.PureComponent {
     if (isSample) {
       let item = value[0];
       return (
-        <div className={classname}>
-          <img className="file-item-icon" src={this.getFileIconData(item)} alt={item.name} />
+        <div className={className}>
+          <FileItemFormatter file={item}/>
           {value.length !== 1 && <span className="file-item-count">{`+${value.length}`}</span>}
         </div>
       );
     }
     
     return (
-      <div className={classname}>
+      <div className={className}>
         {value.map((item, index) => {
           return (
-            <img 
-              key={index} 
-              className="file-item-icon" 
-              src={this.getFileIconData(item)} 
-              alt={item.name}
-            />
+            <FileItemFormatter file={item} key={index} />
           );
         })}
       </div>

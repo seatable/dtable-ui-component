@@ -23,3 +23,4 @@ export { default as EmailFormatter } from './email-formatter';
 export { default as DurationFormatter } from './duration-formatter';
 export { default as RateFormatter } from './rate-formatter';
 export { default as ButtonFormatter } from './button-formatter';
+export { default as FileItemFormatter } from './widgets/file-item-formatter';
