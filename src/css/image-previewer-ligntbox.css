@@ -1,0 +1,87 @@
+.dtable-ui-component.mobile-image-previewer .ril-prev-button,
+.dtable-ui-component.mobile-image-previewer .ril-next-button,
+.dtable-ui-component.mobile-image-previewer .ril-caption .ril-zoom-in,
+.dtable-ui-component.mobile-image-previewer .ril-caption .ril-zoom-out {
+  display: none;
+}
+
+.dtable-ui-component.mobile-image-previewer .ril-toolbar .ril__toolbarRightSide {
+  padding-right: 14px;
+}
+
+.dtable-ui-component.image-footer-choice.mobile-image-footer-choice {
+  height: 100px;
+  background-color: #000;
+  z-index: 1052;
+  padding: 0;
+  width: 100%;
+  border-radius: 2px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  bottom: 0;
+  position: absolute;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dtable-ui-component.image-footer-choice.mobile-image-footer-choice .image-footer-icon {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  margin: 0 20px;
+}
+
+.dtable-ui-component.image-footer-choice.mobile-image-footer-choice .image-footer-icon .image-footer-choice-item {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  background-color: #333;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dbdbdb;
+}
+
+.dtable-ui-component.image-footer-choice.mobile-image-footer-choice .image-footer-icon .image-footer-choice-item i {
+  font-size: 20px;
+}
+
+.ril__outer .ril-caption button.dtable-font {
+  height: 50px;
+  font-size: 20px;
+}
+
+.ril__outer .ril-toolbar button.dtable-font {
+  border: none;
+}
+
+.ril__outer .ril-toolbar button.dtable-font:focus {
+  outline: none;
+}
+
+.ril__outer button.dtable-font {
+  font-size: 16px;
+}
+
+.ril__outer .ril-toolbar .ril-close {
+  width: 30px;
+  height: 53px;
+}
+
+.ril__outer .ril__toolbarItem {
+  height: 50px;
+}
+
+.ril__outer .ril__toolbarItem button {
+  opacity: 0.7;
+}
+
+.ril__outer .ril__toolbarItem button:hover {
+  opacity: 1;
+}

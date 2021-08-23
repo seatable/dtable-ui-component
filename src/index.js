@@ -34,6 +34,7 @@ export {
   RateFormatter,
   ButtonFormatter,
   FileItemFormatter,
+  ImagePreviewerLightbox,
 } from './components/cell-formatter';
 
 export {
