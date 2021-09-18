@@ -94,6 +94,7 @@ class FormulaFormatter extends React.Component {
     if (!columnData) return '';
     const { result_type } = columnData;
     if (result_type === FORMULA_RESULT_TYPE.NUMBER) {
+      cellValue = parseFloat(cellValue);
       return formatNumberToString(cellValue, columnData);
     } else if (result_type === FORMULA_RESULT_TYPE.DATE) {
       const { format } = columnData;
