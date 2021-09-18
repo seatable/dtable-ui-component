@@ -14,7 +14,7 @@ class SingleSelectFormatter extends React.PureComponent {
 
   getOption = () => {
     let { value, options, fontSize } = this.props;
-    let option  = options.find(item => item.id === value);
+    let option  = options.find(item => item.id === value || item.name === value);
     if (option) {
       return <SelectItem option={option} fontSize={fontSize}/>;
     }
