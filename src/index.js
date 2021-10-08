@@ -35,6 +35,7 @@ export {
   ButtonFormatter,
   FileItemFormatter,
   ImagePreviewerLightbox,
+  CollaboratorItem
 } from './components/cell-formatter';
 
 export {

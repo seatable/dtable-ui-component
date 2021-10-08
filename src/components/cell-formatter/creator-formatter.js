@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
-import ColloboratorItem from '../common/collaborator-item';
+import CollaboratorItem from '../common/collaborator-item';
 import DefaultAvatar from '../../assets/images/avatar/default_avatar.png';
 
 const propTypes = {
@@ -38,7 +38,7 @@ class CreatorFormatter extends React.PureComponent {
         };
       };
       return (
-        <ColloboratorItem key={index} collaborator={collaborator} />
+        <CollaboratorItem key={index} collaborator={collaborator} />
       );
     });
   }

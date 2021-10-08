@@ -25,3 +25,4 @@ export { default as RateFormatter } from './rate-formatter';
 export { default as ButtonFormatter } from './button-formatter';
 export { default as FileItemFormatter } from './widgets/file-item-formatter';
 export { default as ImagePreviewerLightbox } from './widgets/image-previewer-lightbox';
+export { default as CollaboratorItem } from '../common/collaborator-item';
