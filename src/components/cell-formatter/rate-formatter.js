@@ -17,7 +17,7 @@ class RateFormatter extends React.Component {
 
   getRateList = () => {
     const { data, value } = this.props;
-    const { rate_max_number, rate_style_color } = data;
+    const { rate_max_number = 5, rate_style_color = '#e5e5e5' } = data || {};
     const validValue = Math.min(rate_max_number, value);
     let rateList = [];
     for (let i = 0; i < validValue; i++) {

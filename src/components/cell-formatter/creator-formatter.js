@@ -19,7 +19,7 @@ const propTypes = {
 // 1 value is not exist, typeof value is array, but it's length is 0
 // 2 value is exist, but can't find in collaborators
 // 3 value is exist, typeof value is a string
-// 4 vlaue is exist, typeof value is array
+// 4 value is exist, typeof value is array
 class CreatorFormatter extends React.PureComponent {
 
   getCollaborators = () => {
