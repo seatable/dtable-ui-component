@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
-import ColloboratorItem from '../common/collaborator-item';
+import CollaboratorItem from '../common/collaborator-item';
 import DefaultAvatar from '../../assets/images/avatar/default_avatar.png';
 
 const propTypes = {
@@ -19,7 +19,7 @@ const propTypes = {
 // 1 value is not exist, typeof value is array, but it's length is 0
 // 2 value is exist, but can't find in collaborators
 // 3 value is exist, typeof value is a string
-// 4 vlaue is exist, typeof value is array
+// 4 value is exist, typeof value is array
 class CreatorFormatter extends React.PureComponent {
 
   getCollaborators = () => {
@@ -38,7 +38,7 @@ class CreatorFormatter extends React.PureComponent {
         };
       };
       return (
-        <ColloboratorItem key={index} collaborator={collaborator} />
+        <CollaboratorItem key={index} collaborator={collaborator} />
       );
     });
   }

@@ -226,3 +226,28 @@ const getDurationDecimalSuffix = (duration_format, decimal) => {
   }
   return '';
 }
+
+export const getGeolocationDisplayString = (value, columnData) => {
+  const { geo_format } = columnData || {};
+  const cellValue = value || {};
+  if (!value) {
+    return null;
+  }
+  if (geo_format === 'lng_lat' && value.lng && value.lat) {
+    return `${cellValue.lng}, ${cellValue.lat}`;
+  }
+  if (geo_format === 'country_region' && cellValue.country_region) {
+    return value.country_region || '';
+  }
+
+  const { province, city, district, detail } = cellValue;
+  if (geo_format === 'province') {
+    return `${province || ''}`;
+  }
+
+  if (geo_format === 'province_city') {
+    return `${province || ''}${city || ''}`;
+  }
+
+  return `${province || ''}${city || ''}${district || ''}${detail || ''}`;
+};

@@ -49,6 +49,15 @@ class FormulaFormatter extends React.Component {
       case CellTypes.LINK_FORMULA: {
         formatterProps.column = column;
         Formatter = FormulaFormatter;
+        break;
+      }
+      case CellTypes.CREATOR:
+      case CellTypes.LAST_MODIFIER: {
+        formatterProps.collaborators = collaborators;
+        break;
+      }
+      default: {
+        break;
       }
     }
     if (React.isValidElement(Formatter)) {
