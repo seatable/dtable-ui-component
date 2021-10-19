@@ -1,3 +1,5 @@
+export { default as toaster } from './components/toast';
+
 export { setLocale } from './lang';
 
 export { 

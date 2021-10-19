@@ -78,8 +78,7 @@ class ImagesLazyLoad extends React.Component {
   }
 
   render() {
-
-    let { images, loadedImages, loadedCount } = this.state;
+    const { images, loadedImages, loadedCount } = this.state;
 
     if (!Array.isArray(images) || images.length === 0) {
       return '';
@@ -106,6 +105,7 @@ class ImagesLazyLoad extends React.Component {
         })
       );
     }
+    return '';
   }
 }
 
