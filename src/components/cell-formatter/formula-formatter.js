@@ -38,15 +38,11 @@ class FormulaFormatter extends React.Component {
       return null;
     }
     let Formatter = cellFormatterFactory.createFormatter(array_type);
-    let formatterProps = { ...array_data, collaborators };
+    let formatterProps = this.getFormatterProps(array_type, array_data, collaborators);
 
     if (isArrayFormalColumn(array_type)) {
       formatterProps.value = value;
       return this.createColumnFormatter(Formatter, formatterProps);
-    }
-
-    if (array_type === CellType.FORMULA || array_type === CellType.FORMULA) {
-      formatterProps.column = { data: array_data }
     }
 
     const _isSimpleCellFormatterColumn = isSimpleCellFormatter(array_type);
@@ -76,6 +72,23 @@ class FormulaFormatter extends React.Component {
       return <Formatter {...formatterProps} />;
     }
     return <TextFormatter {...formatterProps} />;
+  }
+
+  getFormatterProps = (array_type, array_data, collaborators) => {
+    switch (array_type) {
+      case CellType.DURATION: {
+        const { duration_format } = array_data;
+        return { format: duration_format };
+      }
+      case CellType.NUMBER:
+      case CellType.RATE:
+      case CellType.GEOLOCATION: {
+        return { data: array_data };
+      }
+      default: {
+        return { ...array_data, collaborators };
+      }
+    }
   }
 
   render() {
