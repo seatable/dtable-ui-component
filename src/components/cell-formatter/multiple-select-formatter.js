@@ -13,14 +13,13 @@ const propTypes = {
 class MultipleSelectFormatter extends React.PureComponent {
 
   getOptions = () => {
-    let { value, options } = this.props;
-
-    return value.map(item => {
-      let option = options.find(option => option.id === item || option.name === item);
-      if (option) {
-        return <SelectItem key={item} option={option}/>;
-      }
-    })
+    const { value, options } = this.props;
+    if (!Array.isArray(value) || !Array.isArray(options)) return [];
+    let selectedOptions = options.filter(option => value.includes(option.id));
+    if (selectedOptions.length === 0) return [];
+    return selectedOptions.map(option => {
+      return <SelectItem key={`multiple-${option.id}`} option={option} />;
+    });
   }
 
   render() {
