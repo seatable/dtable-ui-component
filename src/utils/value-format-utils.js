@@ -6,7 +6,13 @@ import {
   DURATION_FORMATS_MAP, 
   DURATION_FORMATS, 
   DURATION_ZERO_DISPLAY, 
-  DURATION_DECIMAL_DIGITS } from './constants';
+  DURATION_DECIMAL_DIGITS,
+  FORMULA_RESULT_TYPE,
+  COLLABORATOR_COLUMN_TYPES,
+  ARRAY_FORMAL_COLUMNS_TYPES,
+  DEFAULT_DATE_FORMAT
+} from '../constants';
+import * as CellType from '../constants/cell-types';
 
 NP.enableBoundaryChecking(false);
 
@@ -57,7 +63,7 @@ const _getDecimalDigits = (num) => {
   return digitsLength > 8 ? 8 : digitsLength;
 };
 
-export const formatNumberToString = (value, formatData) => {
+export const getNumberDisplayString = (value, formatData) => {
   // formatData: old version maybe 'null'
   let type = Object.prototype.toString.call(value);
   if (type !== '[object Number]') {
@@ -98,35 +104,35 @@ export const formatStringToNumber = (value) => {
 };
 
 export const formatNumberString = (value, format) => {
-  let formatedValue = '';
+  let formattedValue = '';
   switch(format) {
     case NUMBER_TYPES.NUMBER:
     case NUMBER_TYPES.NUMBER_WITH_COMMAS:
-      formatedValue = value.replace(/[^.-\d,]/g,'');
+      formattedValue = value.replace(/[^.-\d,]/g,'');
       break;
     case NUMBER_TYPES.PERCENT:
-      formatedValue = value.replace(/[^.-\d,%]/g, '');
+      formattedValue = value.replace(/[^.-\d,%]/g, '');
       break;
     case NUMBER_TYPES.YUAN:
-      formatedValue = value.replace(/[^.-\d￥,]/g, '');
+      formattedValue = value.replace(/[^.-\d￥,]/g, '');
       break;
     case NUMBER_TYPES.DOLLAR:
-      formatedValue = value.replace(/[^.-\d$,]/g, '');
+      formattedValue = value.replace(/[^.-\d$,]/g, '');
       break;
     case NUMBER_TYPES.EURO:
-      formatedValue = value.replace(/[^.-\d€,]/g, '');
+      formattedValue = value.replace(/[^.-\d€,]/g, '');
       break;
     default:
-      formatedValue = value.replace(/[^.-\d,]/g,'');
+      formattedValue = value.replace(/[^.-\d,]/g,'');
   }
 
-  return formatedValue;
+  return formattedValue;
 }
 
-export const formatDateToString = (value, format) => {
-  let formatedValue = ''
+export const getDateDisplayString = (value, format) => {
+  let formattedValue = ''
   if (!value) { // value === '', value === undefine, value === null
-    return formatedValue;
+    return formattedValue;
   }
   const date = moment(value);
   if (!date.isValid()) return value;
@@ -227,6 +233,44 @@ const getDurationDecimalSuffix = (duration_format, decimal) => {
   return '';
 }
 
+export const getOptionName = (options, targetOptionID) => {
+  if (!targetOptionID || !options || !Array.isArray(options)) return null;
+  let option = options.find(option => option.id === targetOptionID);
+  return option ? option.name : null;
+};
+
+export const getMultipleOptionName = (options, cellVal) => {
+  if (!cellVal || !options || !Array.isArray(options)) return null;
+  let selectedOptions = options.filter((option) => cellVal.includes(option.id));
+  if (selectedOptions.length === 0) return null;
+  return selectedOptions.map((option) => option.name).join(', ');
+};
+
+export const getLongtextDisplayString = (value) => {
+  let { text } = value || {};
+  if (!text) {
+    return null;
+  }
+  return text;
+};
+
+export const getCollaboratorsName = (collaborators, cellVal) => {
+  if (cellVal) {
+    let collaboratorsName = [];
+    cellVal.forEach((v) => {
+      let collaborator = collaborators.find(c => c.email === v);
+      if (collaborator) {
+        collaboratorsName.push(collaborator.name);
+      }
+    });
+    if (collaboratorsName.length === 0) {
+      return null;
+    }
+    return collaboratorsName.join(', ');
+  }
+  return null;
+};
+
 export const getGeolocationDisplayString = (value, columnData) => {
   const { geo_format } = columnData || {};
   const cellValue = value || {};
@@ -251,3 +295,91 @@ export const getGeolocationDisplayString = (value, columnData) => {
 
   return `${province || ''}${city || ''}${district || ''}${detail || ''}`;
 };
+
+export const getFormulaDisplayString = (cellValue, columnData, { collaborators = [] } = {}) => {
+  if (!columnData) {
+    return null;
+  }
+  const { result_type } = columnData;
+  if (result_type === FORMULA_RESULT_TYPE.NUMBER) {
+    return getNumberDisplayString(cellValue, columnData);
+  }
+  if (result_type === FORMULA_RESULT_TYPE.DATE) {
+    const { format } = columnData;
+    return getDateDisplayString(cellValue, format);
+  }
+  if (result_type === FORMULA_RESULT_TYPE.ARRAY) {
+    const { array_type, array_data } = columnData;
+    if (!array_type) {
+      return null;
+    }
+    if (COLLABORATOR_COLUMN_TYPES.includes(array_type)) {
+      return cellValue;
+    }
+    if (ARRAY_FORMAL_COLUMNS_TYPES.indexOf(array_type) < 0 && Array.isArray(cellValue)) {
+      return cellValue.map((val) => {
+        return getCellValueDisplayString(
+          val,
+          array_type,
+          { data: array_data, collaborators }
+        );
+      }).join(', ');
+    }
+
+    return getCellValueDisplayString(
+      cellValue,
+      array_type,
+      { data: array_data, collaborators }
+    );
+  }
+  if (Object.prototype.toString.call(cellValue) === '[object Boolean]') {
+    return cellValue + '';
+  }
+  return cellValue;
+};
+
+export function getCellValueDisplayString(cellValue, type, { data, collaborators = [] } = {}) {
+  let newData = data || {};
+  switch (type) {
+    case CellType.GEOLOCATION: {
+      return getGeolocationDisplayString(cellValue, data);
+    }
+    case CellType.SINGLE_SELECT: {
+      if (!data) return '';
+      let { options } = newData;
+      return getOptionName(options, cellValue);
+    }
+    case CellType.MULTIPLE_SELECT: {
+      if (!data) return '';
+      let { options } = newData;
+      return getMultipleOptionName(options, cellValue);
+    }
+    case CellType.FORMULA:
+    case CellType.LINK_FORMULA: {
+      return getFormulaDisplayString(cellValue, newData, { collaborators});
+    }
+    case CellType.LONG_TEXT: {
+      return getLongtextDisplayString(cellValue);
+    }
+    case CellType.NUMBER: {
+      return getNumberDisplayString(cellValue, newData);
+    }
+    case CellType.DATE: {
+      let { format = DEFAULT_DATE_FORMAT } = newData || {};
+      return getDateDisplayString(cellValue, format);
+    }
+    case CellType.CREATOR:
+    case CellType.LAST_MODIFIER: {
+      return cellValue === 'anonymous' ? cellValue : getCollaboratorsName(collaborators, [cellValue]);
+    }
+    case CellType.COLLABORATOR: {
+      return getCollaboratorsName(collaborators, cellValue);
+    }
+    case CellType.DURATION: {
+      return getDurationDisplayString(cellValue, data);
+    }
+    default: {
+      return cellValue ? cellValue + '' : '';
+    }
+  }
+}

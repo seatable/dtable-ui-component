@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
-import { formatNumberToString } from '../../utils/value-format-utils';
+import { getNumberDisplayString } from '../../utils/value-format-utils';
 
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -20,7 +20,7 @@ class NumberFormatter extends React.Component {
     let { value: number, data, containerClassName } = this.props;
     let classname = cn('dtable-ui cell-formatter-container number-formatter', containerClassName);
     if (number || number === 0) {
-      number = formatNumberToString(number, data);
+      number = getNumberDisplayString(number, data);
     }
 
     return (

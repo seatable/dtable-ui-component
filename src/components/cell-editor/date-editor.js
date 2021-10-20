@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import moment from 'moment';
-import { formatDateToString }  from '../../utils/value-format-utils';
+import { getDateDisplayString }  from '../../utils/value-format-utils';
 import PCDateEditorPopover from '../cell-editor-popover/pc-date-editor-popover';
 import MBDateEditorPopover from '../cell-editor-popover/mb-date-editor-popover';
 
@@ -96,7 +96,7 @@ class DateEditor extends React.Component {
       <div className="cell-editor dtable-ui-date-editor">
         {!isPopoverShow && (
           <div className="dtable-ui-date-editor-container">
-            <div className="form-control" onClick={this.onDateEditorToggle}>{formatDateToString(newValue, dateFormat)}</div>
+            <div className="form-control" onClick={this.onDateEditorToggle}>{getDateDisplayString(newValue, dateFormat)}</div>
           </div>
         )}
         {isPopoverShow && (

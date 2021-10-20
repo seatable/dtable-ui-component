@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isHotkey from 'is-hotkey';
-import { NUMBER_TYPES } from '../../utils/constants';
-import { formatNumberToString, formatStringToNumber, formatNumberString } from '../../utils/value-format-utils';
+import { NUMBER_TYPES } from '../../constants';
+import { getNumberDisplayString, formatStringToNumber, formatNumberString } from '../../utils/value-format-utils';
 
 const propTypes = {
   isReadOnly: PropTypes.bool,
@@ -11,7 +11,7 @@ const propTypes = {
   onCommit: PropTypes.func,
 };
 
-class NumebrEditor extends React.Component {
+class NumberEditor extends React.Component {
 
   static defaultProps = {
     isReadOnly: false,
@@ -23,7 +23,7 @@ class NumebrEditor extends React.Component {
     let { value, column } = this.props;
     let dataFormat = column.data && column.data.format;
     this.dataFormat = dataFormat || NUMBER_TYPES.NUMBER;
-    let initValue = formatNumberToString(value, column.data);     // format the number to display
+    let initValue = getNumberDisplayString(value, column.data);     // format the number to display
 
     this.state = {
       inputValue: initValue,
@@ -52,7 +52,7 @@ class NumebrEditor extends React.Component {
     updated[column.key] = value;
     this.props.onCommit(updated);
 
-    let newValue = formatNumberToString(value, column.data); // format the number to display
+    let newValue = getNumberDisplayString(value, column.data); // format the number to display
     this.setState({
       isEditorShow: false,
       textValue: newValue
@@ -133,6 +133,6 @@ class NumebrEditor extends React.Component {
 
 }
 
-NumebrEditor.propTypes = propTypes;
+NumberEditor.propTypes = propTypes;
 
-export default NumebrEditor;
+export default NumberEditor;

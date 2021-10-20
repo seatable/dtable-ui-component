@@ -1,5 +1,5 @@
 import { 
-  formatNumberToString, 
+  getNumberDisplayString, 
   formatStringToNumber,
   getDurationDisplayString,
  } from '../../src/utils/value-format-utils'; 
@@ -7,31 +7,31 @@ import {
 describe('format string to number to save on the server', () => {
   it('format the value to common number', () => {
     const number = 1877333;
-    const formattedValue = formatNumberToString(number, {format: 'number'});
+    const formattedValue = getNumberDisplayString(number, {format: 'number'});
     expect(formattedValue).toEqual('1877333');
   });
   
   it('format the value to percent', () => {
     const number = 1877333;
-    const formattedValue = formatNumberToString(number, {format: 'percent'});
+    const formattedValue = getNumberDisplayString(number, {format: 'percent'});
     expect(formattedValue).toBe('187733300%');
   });
 
   it('format the value to yuan', () => {
     const number = 1877333;
-    const formattedValue = formatNumberToString(number, {format: 'yuan'});
+    const formattedValue = getNumberDisplayString(number, {format: 'yuan'});
     expect(formattedValue).toEqual('￥1877333.00');
   });
 
   it('format the value to number dollar', () => {
     const number = 1877333;
-    const formattedValue = formatNumberToString(number, {format: 'dollar'});
+    const formattedValue = getNumberDisplayString(number, {format: 'dollar'});
     expect(formattedValue).toEqual('$1877333.00');
   });
 
   it('format the value to number euro', () => {
     const number = 1877333;
-    const formattedValue = formatNumberToString(number, {format: 'euro'});
+    const formattedValue = getNumberDisplayString(number, {format: 'euro'});
     expect(formattedValue).toEqual('€1877333.00');
   });
 

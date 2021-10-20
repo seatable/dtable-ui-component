@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { getLocale } from '../../lang';
-import * as CellTypes from '../../utils/cell-types';
-import { formatNumberToString, formatDateToString } from '../../utils/value-format-utils';
+import * as CellTypes from '../../constants/cell-types';
+import { getNumberDisplayString, getDateDisplayString } from '../../utils/value-format-utils';
 import EditEditorButton from '../common/edit-editor-button';
 import LinkEditorOption from '../common/link-editor-option';
 import PCLinkEditorPopover from '../cell-editor-popover/pc-link-editor-popover';
@@ -89,11 +89,11 @@ class LinkEditor extends React.Component {
     let { type, data } = linkedColumn;
     switch(type) {
       case CellTypes.NUMBER: {
-        return formatNumberToString(value, data);
+        return getNumberDisplayString(value, data);
       }
       case CellTypes.DATE: {
         let { format } = data;
-        return formatDateToString(value, format);
+        return getDateDisplayString(value, format);
       }
       default:
         return value;
