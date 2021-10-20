@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.1.53",
+  "version": "0.1.57",
   "main": "./es/index.js",
   "dependencies": {
     "@seafile/seafile-calendar": "0.0.15",
@@ -63,6 +63,7 @@
     "@babel/plugin-proposal-export-namespace-from": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.5",
     "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/runtime": "^7.14.0",
     "@babel/polyfill": "^7.10.1",
     "@babel/preset-env": "^7.9.5",
     "@storybook/addon-actions": "^5.3.14",
