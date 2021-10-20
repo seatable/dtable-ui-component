@@ -56,7 +56,7 @@ class FormulaFormatter extends React.Component {
     }
     const contentItemClassName = `formula-formatter-content-item ${_isSimpleCellFormatterColumn ? 'simple-cell-formatter' : ''}`
     return (
-      <div className="formula-formatter-column">
+      <div className="dtable-ui formula-formatter multiple">
         {cellValue.map((v, index) => {
           formatterProps.value = v;
           return (
