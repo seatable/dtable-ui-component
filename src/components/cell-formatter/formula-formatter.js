@@ -14,7 +14,6 @@ const propTypes = {
   column: PropTypes.Object,
   containerClassName: PropTypes.string,
   collaborators: PropTypes.array,
-  tables: PropTypes.array,
 };
 
 class FormulaFormatter extends React.Component {
