@@ -4,7 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
 import Description from '../../utils/description';
-import { NUMBER_TYPES } from '../../../src/utils/constants';
+import { NUMBER_TYPES } from '../../../src/constants';
 import { NumberEditor } from '../../../src/components/cell-editor';
 
 const info = {

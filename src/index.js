@@ -44,7 +44,7 @@ export {
   TextEditor,
   NumberEditor,
   CheckboxEditor,
-  SingleSelectEdtior,
+  SingleSelectEditor,
   CollaboratorEditor,
   DateEditor,
   LinkEditor
