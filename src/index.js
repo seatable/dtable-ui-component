@@ -3,8 +3,8 @@ export { default as toaster } from './components/toast';
 export { setLocale } from './lang';
 
 export { 
-  formatDateToString,
-  formatNumberToString,
+  getDateDisplayString,
+  getNumberDisplayString,
   formatStringToNumber,
   formatNumberString,
 } from './utils/value-format-utils';
@@ -44,7 +44,7 @@ export {
   TextEditor,
   NumberEditor,
   CheckboxEditor,
-  SingleSelectEdtior,
+  SingleSelectEditor,
   CollaboratorEditor,
   DateEditor,
   LinkEditor

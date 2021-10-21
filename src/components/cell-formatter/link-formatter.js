@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
-import * as CellTypes from '../../utils/cell-types';
-import { formatNumberToString, formatDateToString } from '../../utils/value-format-utils';
+import * as CellTypes from '../../constants/cell-types';
+import { getNumberDisplayString, getDateDisplayString } from '../../utils/value-format-utils';
 
 const propTypes = {
   containerClassName: PropTypes.string,
@@ -90,11 +90,11 @@ class LinkFormatter extends React.Component {
     // todo: improve
     switch(type) {
       case CellTypes.NUMBER: {
-        return formatNumberToString(value, data);
+        return getNumberDisplayString(value, data);
       }
       case CellTypes.DATE: {
         let { format } = data;
-        return formatDateToString(value, format);
+        return getDateDisplayString(value, format);
       }
       default:
         return value;

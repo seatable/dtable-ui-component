@@ -9,11 +9,21 @@ const propTypes = {
 
 class TextFormatter extends React.Component {
 
+  getFormattedValue = (val) => {
+    if (typeof val === 'object') {
+      return null;
+    }
+    if (Object.prototype.toString.call(val) === '[object Boolean]') {
+      return val + ''
+    }
+    return val;
+  }
+
   render() {
     const { containerClassName, value } = this.props;
     let classname = cn('dtable-ui cell-formatter-container text-formatter', containerClassName);
     return (
-      <div className={classname}>{value}</div>
+      <div className={classname}>{this.getFormattedValue(value)}</div>
     );
   }
 }

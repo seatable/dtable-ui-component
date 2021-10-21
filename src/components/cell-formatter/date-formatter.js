@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
-import { formatDateToString } from '../../utils/value-format-utils';
+import { getDateDisplayString } from '../../utils/value-format-utils';
 
 const propTypes = {
   value: PropTypes.string,
@@ -18,7 +18,7 @@ class DateFormatter extends React.Component {
   }
 
   formatDate = (date, format) => {
-    return formatDateToString(date, format);
+    return getDateDisplayString(date, format);
   }
 
   render() {

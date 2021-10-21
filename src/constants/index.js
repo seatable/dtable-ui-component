@@ -1,3 +1,5 @@
+import * as CellType from './cell-types';
+
 export const NUMBER_TYPES = {
   'NUMBER': 'number',
   'NUMBER_WITH_COMMAS': 'number-with-commas',
@@ -21,10 +23,49 @@ export const FORMULA_RESULT_TYPE = {
   STRING: 'string',
   DATE: 'date',
   BOOL: 'bool',
-  COLUMN: 'column',
+  ARRAY: 'array',
 };
 
+export const SIMPLE_CELL_COLUMNS = [
+  CellType.TEXT,
+  CellType.NUMBER,
+  CellType.DATE,
+  CellType.CTIME,
+  CellType.MTIME,
+  CellType.GEOLOCATION,
+  CellType.AUTO_NUMBER,
+  CellType.URL,
+  CellType.EMAIL,
+  CellType.DURATION,
+  CellType.CHECKBOX,
+  CellType.RATE
+];
+
+export const ARRAY_FORMAL_COLUMNS = [CellType.IMAGE, CellType.FILE, CellType.MULTIPLE_SELECT, CellType.COLLABORATOR];
+
+export const SIMPLE_CELL_FORMULA_RESULTS = [
+  FORMULA_RESULT_TYPE.NUMBER,
+  FORMULA_RESULT_TYPE.STRING,
+  FORMULA_RESULT_TYPE.DATE,
+  FORMULA_RESULT_TYPE.BOOL,
+];
+
+export const COLLABORATOR_COLUMN_TYPES = [
+  CellType.COLLABORATOR,
+  CellType.CREATOR,
+  CellType.LAST_MODIFIER
+];
+
+export const ARRAY_FORMAL_COLUMNS_TYPES = [
+  CellType.IMAGE,
+  CellType.FILE,
+  CellType.MULTIPLE_SELECT,
+  CellType.COLLABORATOR
+];
+
 export const DEFAULT_NUMBER_FORMAT = 'number';
+
+export const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 
 export const DURATION_FORMATS_MAP = {
   H_MM: 'h:mm',

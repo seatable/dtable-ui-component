@@ -4,7 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
 import Description from '../../utils/description';
-import { SingleSelectEdtior } from '../../../src/components/cell-editor';
+import { SingleSelectEditor } from '../../../src/components/cell-editor';
 import { setLocale } from '../../../src/lang';
 
 // setLocale('zh-cn');
@@ -64,7 +64,7 @@ storiesOf('Editors|single-select-editor', module)
       <div>
         <h1>Scene One: editor permission is readonly</h1>
         <ShowCode sub={"single-select editor: null value in the editor"}>
-          <SingleSelectEdtior 
+          <SingleSelectEditor 
             isReadOnly={true}
             value={value1_1} 
             column={column1_1}
@@ -72,7 +72,7 @@ storiesOf('Editors|single-select-editor', module)
           />
         </ShowCode>
         <ShowCode sub={"single-select editor: a default value in the editor"}>
-          <SingleSelectEdtior 
+          <SingleSelectEditor 
             isReadOnly={true}
             value={value1_2} 
             column={column1_1}
@@ -81,7 +81,7 @@ storiesOf('Editors|single-select-editor', module)
         </ShowCode>
         <h1>Scene One: editor permission is read and write</h1>
         <ShowCode sub={"single-select editor: null value in the editor"}>
-          <SingleSelectEdtior 
+          <SingleSelectEditor 
             isReadOnly={false}
             value={value2_1} 
             column={column2_1}
@@ -89,7 +89,7 @@ storiesOf('Editors|single-select-editor', module)
           />
         </ShowCode>
         <ShowCode sub={"single-select editor: a default value in the editor"}>
-          <SingleSelectEdtior 
+          <SingleSelectEditor 
             isReadOnly={false}
             value={value2_2} 
             column={column2_1}
@@ -97,7 +97,7 @@ storiesOf('Editors|single-select-editor', module)
           />
         </ShowCode>
         <ShowCode sub={"single-select editor: can create a new option by the search value"}>
-          <SingleSelectEdtior 
+          <SingleSelectEditor 
             isReadOnly={false}
             value={value2_2} 
             column={column2_1}

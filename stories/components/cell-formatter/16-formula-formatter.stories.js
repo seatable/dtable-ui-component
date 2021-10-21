@@ -84,9 +84,8 @@ const value3 = '1992-07-09 12:24';
 const value4 = 'abcdeale';
 const value5 = '5555';
 const value6 = ['lilei@seafile.com'];
-const value7 = 12300;
-const value8 = ['1111', '3333', '5555'];
-const value9 = ['alex', 'LiLei', 'xiaoqiang'];
+const value7 = ['1111', '3333', '5555'];
+const value8 = ['alex', 'LiLei', 'xiaoqiang'];
 
 const collaborators = [
   {name: 'Alex', email: 'alex@seafile.com', contact_email: 'alex@seafile.com', avatar_url: 'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3574700877,553982185&fm=26&gp=0.jpg'},
@@ -136,14 +135,22 @@ let column4 = {
   }
 }
 
+const linkedTable = tables.find(table => table._id === '0000');
+const linkedTableColumns = linkedTable.columns;
+const displayTextColumn = linkedTableColumns.find(column => column.key === '0000');
+const displaySingleSelectColumn = linkedTableColumns.find(column => column.key === '1111');
+const displayCollaboratorColumn = linkedTableColumns.find(column => column.key === '2222');
+
 let column5 = {
   key: '444',
   type: 'formula',
   name: 'xiaoqiang',
   data: {
-    result_type: 'column',
-    display_column_key: '1111',
-    linked_table_id: '0000'
+    result_type: 'array',
+    array_type: displaySingleSelectColumn.type,
+    array_data: {
+      options: displaySingleSelectColumn.data.options
+    },
   }
 }
 
@@ -152,41 +159,31 @@ let column6 = {
   type: 'formula',
   name: 'xiaowang',
   data: {
-    result_type: 'column',
-    display_column_key: '2222',
-    linked_table_id: '0000'
+    result_type: 'array',
+    array_type: displayCollaboratorColumn.type,
   }
 }
 
 let column7 = {
-  key: '666',
-  type: 'formula',
-  name: 'xiaowang',
-  data: {
-    result_type: 'number',
-    format: 'duration',
-  }
-}
-
-let column8 = {
   key: '777',
   type: 'formula',
   name: 'xiaowang',
   data: {
-    result_type: 'column',
-    display_column_key: '1111',
-    linked_table_id: '0000'
+    result_type: 'array',
+    array_type: displaySingleSelectColumn.type,
+    array_data: {
+      options: displaySingleSelectColumn.data.options
+    },
   }
 }
 
-let column9 = {
+let column8 = {
   key: '888',
   type: 'formula',
   name: 'xiaowang',
   data: {
-    result_type: 'column',
-    display_column_key: '0000',
-    linked_table_id: '0000'
+    result_type: 'array',
+    array_type: displayTextColumn.type,
   }
 }
 
@@ -223,40 +220,33 @@ storiesOf('CELLS|formula-formatter', module)
           collaborators={collaborators}
         />
       </ShowCode>
-      <ShowCode title={'the formula result is a column value'}>
-        <FormulaFormatter 
-          value={value5} 
+      <ShowCode title={`the formula result is array and array_type is "single-select"`}>
+        <FormulaFormatter
+          value={value5}
           column={column5}
           tables={tables}
         />
       </ShowCode>
-      <ShowCode title={'the formula result is a column value'}>
-        <FormulaFormatter 
-          value={value6} 
+      <ShowCode title={`the formula result is array and array_type is "collaborator"`}>
+        <FormulaFormatter
+          value={value6}
           column={column6}
           tables={tables}
           collaborators={collaborators}
         />
       </ShowCode>
-      <ShowCode title={'the formula result is a column value'}>
-        <FormulaFormatter 
-          value={value7} 
+      <ShowCode title={`the formula result is array and array_type is "single-select"`}>
+        <FormulaFormatter
+          value={value7}
           column={column7}
-          containerClassName={'formula-container'} 
-        />
-      </ShowCode>
-      <ShowCode title={'the formula result is a column value'}>
-        <FormulaFormatter 
-          value={value8} 
-          column={column8}
           tables={tables}
-          containerClassName={'formula-container'} 
+          containerClassName={'formula-container'}
         />
       </ShowCode>
-      <ShowCode title={'the formula result is a column value'}>
-        <FormulaFormatter 
-          value={value9} 
-          column={column9}
+      <ShowCode title={`the formula result is array and array_type is "text"`}>
+        <FormulaFormatter
+          value={8}
+          column={column8}
           tables={tables}
           containerClassName={'formula-container'} 
         />

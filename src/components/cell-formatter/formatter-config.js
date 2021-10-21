@@ -1,5 +1,5 @@
 import React from 'react';
-import * as CellTypes from '../../utils/cell-types';
+import * as CellTypes from '../../constants/cell-types';
 import CheckboxFormatter from './checkbox-formatter';
 import ImageFormatter from './image-formatter';
 import LongTextFormatter from './long-text-formatter';
