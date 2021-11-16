@@ -64,6 +64,12 @@
   white-space: nowrap;
 }
 
+.dtable-ui.long-text-formatter.article {
+  display: block;
+  height: auto;
+  overflow: auto;
+}
+
 .dtable-ui.long-text-formatter .long-text-links,
 .dtable-ui.long-text-formatter .long-text-check-list {
   display: inline-block;
