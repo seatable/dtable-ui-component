@@ -1,5 +1,5 @@
 const hrefReg = /\[.+\]\(\S+\)|<img src=(\S+).+\/>|!\[\]\(\S+\)|<\S+>/g;
-const imageReg1 = /^<img src="(\S+)" .+\/>/;
+const imageReg1 = /^<img( width=[\\|/|"](\d)+[\\|/|"])? src="(\S+)" .?\/>/;
 const imageReg2 = /^!\[\]\((\S+)\)/;
 const linkReg1 = /^\[.+\]\(\S+\)/;
 const linkReg2 = /^<\S+>$/;
@@ -36,7 +36,7 @@ const getPreviewContent = (markdownContent) => {
     } else {
       preview += newMarkdownContent[index];
     }
-    if (preview.length === 30) {
+    if (preview.length === 150) {
       break;
     }
   }
