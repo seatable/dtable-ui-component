@@ -1,11 +1,11 @@
 @font-face {
   font-family: "dtable-font"; /* Project id 1206632 */
-  src: url('./dtable-fonts/dtable-font.eot?t=1631248254616'); /* IE9 */
-  src: url('./dtable-fonts/dtable-font.eot?t=1631248254616#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('./dtable-fonts/dtable-font.woff2?t=1631248254616') format('woff2'),
-       url('./dtable-fonts/dtable-font.woff?t=1631248254616') format('woff'),
-       url('./dtable-fonts/dtable-font.ttf?t=1631248254616') format('truetype'),
-       url('./dtable-fonts/dtable-font.svg?t=1631248254616#dtable-font') format('svg');
+  src: url('./dtable-font/dtable-font.eot?t=1631248254616'); /* IE9 */
+  src: url('./dtable-font/dtable-font.eot?t=1631248254616#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./dtable-font/dtable-font.woff2?t=1631248254616') format('woff2'),
+       url('./dtable-font/dtable-font.woff?t=1631248254616') format('woff'),
+       url('./dtable-font/dtable-font.ttf?t=1631248254616') format('truetype'),
+       url('./dtable-font/dtable-font.svg?t=1631248254616#dtable-font') format('svg');
 }
 
 .dtable-font {
