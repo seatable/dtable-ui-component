@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import getPreviewContent from '../../../../utils/normalize-long-text-value';
-import { deserialize } from '../../../../utils/slate2markdown';
 
 class SimpleLongTextFormatter extends React.Component {
 
@@ -56,9 +55,7 @@ class SimpleLongTextFormatter extends React.Component {
     if (!value) return {};
     const valueType = Object.prototype.toString.call(value);
     if (valueType === '[object String]') {
-      const content = deserialize(value);
-      const { previewText, images, links, checklist } = getPreviewContent(content);
-      return Object.assign({}, { text: value, preview: previewText, images, links, checklist });
+      return getPreviewContent(value);
     }
     if (valueType === '[object Object]') {
       return value;

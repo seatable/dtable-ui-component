@@ -1,71 +1,51 @@
-import { Node } from 'slate';
+const hrefReg = /\[.+\]\(\S+\)|<img src=(\S+).+\/>|!\[\]\(\S+\)|<\S+>/g;
+const imageReg1 = /^<img src="(\S+)" .+\/>/;
+const imageReg2 = /^!\[\]\((\S+)\)/;
+const linkReg1 = /^\[.+\]\(\S+\)/;
+const linkReg2 = /^<\S+>$/;
 
-const getPreviewContent = (content) => {
-  let previewContent = {previewText: '', images: [], links: [], checklist: {total: 0, completed: 0}};
-  getPreviewInfo(content, previewContent);
-  getPreviewText(content, previewContent);
-  return previewContent;
-};
-
-const getPreviewInfo = (nodes, previewContent) => {
-  let nodeIndex = 0;
-  while(nodes && nodeIndex <= nodes.length - 1) {
-    const currentNode = nodes[nodeIndex];
-    if (currentNode.type === 'link') {
-      previewContent.links.push(currentNode.data.href);
-    } else if (currentNode.type === 'image') {
-      previewContent.images.push(currentNode.data.src);
-    } else if (currentNode.type === 'list_item' && currentNode.data) {
-      const data = currentNode.data;
-      if (data.hasOwnProperty('checked')) {
-        previewContent.checklist.total += 1;
-        if (data.checked) {
-          previewContent.checklist.completed++;
-        }
-      }
-      getPreviewInfo(currentNode.children, previewContent);
+const getLinks = (hrefList) => {
+  const hrefObj = {
+    links: [],
+    images: []
+  };
+  hrefList.forEach((href) => {
+    if (href.search(linkReg1) >= 0 || href.search(linkReg2) >= 0) {
+      hrefObj.links.push(href);
     } else {
-      getPreviewInfo(currentNode.children, previewContent);
+      let imageSrcList = href.match(imageReg1);
+      let imageSrcList1 = href.match(imageReg2);
+      if (imageSrcList) {
+        hrefObj.images.push(imageSrcList[1]);
+      } else if (imageSrcList1) {
+        hrefObj.images.push(imageSrcList1[1]);
+      }
     }
-    nodeIndex++;
-  }
+  });
+  return hrefObj;
 };
 
-const getTextOfNode = (node) => {
-  let text = '';
-  for(let index = 0; index < node.children.length; index++) {
-    const currentNode = node.children[index];
-    const data = currentNode.data;
-    const type = currentNode.type;
-    if (type === 'link') {
-      text += '';
-    } else if (type === 'list_item') {
-      if (data && data.hasOwnProperty('checked')) {
-        text += '';
-      } else {
-        text += Node.text(currentNode) + ' ';
-      }
+const getPreviewContent = (markdownContent) => {
+  let preview = '';
+  let newMarkdownContent = markdownContent.replace(hrefReg, '');
+  for (let index = 0; index < newMarkdownContent.length; index++) {
+    if (newMarkdownContent[index] === '#') {
+      continue;
+    } else if (newMarkdownContent[index] === '\n') {
+      preview += ' ';
     } else {
-      if (currentNode.hasOwnProperty('text')) {
-        text += currentNode.text;
-      } else {
-        text += Node.text(currentNode) + ' ';
-      }
-    }    
-  }
-  return text;
-};
-
-const getPreviewText = (content, previewContent) => {
-  let previewText = '';
-  for(let index = 0; index < content.length; index++) {
-    previewText += getTextOfNode(content[index]) + ' ';
-    let textLength = previewText.length;
-    if (textLength >= 150) {
+      preview += newMarkdownContent[index];
+    }
+    if (preview.length === 30) {
       break;
     }
   }
-  previewContent.previewText = previewText;
+  const hrefList = markdownContent.match(hrefReg);
+  if (hrefList) {
+    const { images, links } = getLinks(hrefList);
+    return { preview, images, links };
+  }
+  return { preview, images: [], links: [], text: markdownContent };
 };
 
 export default getPreviewContent;

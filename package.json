@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.1.70",
+  "version": "0.1.72",
   "main": "./es/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "0.0.9",
@@ -15,7 +15,6 @@
     "hast-util-sanitize": "^1.1.2",
     "hast-util-to-html": "3.1.0",
     "is-hotkey": "^0.1.6",
-    "mdast-util-definitions": "^1.2.2",
     "moment": "^2.26.0",
     "react": "^16.13.0",
     "react-app-polyfill": "^1.0.6",
@@ -31,9 +30,6 @@
     "remark-parse": "^5.0.0",
     "remark-rehype": "^3.0.0",
     "remark-slug": "^5.0.0",
-    "remark-stringify": "5.0.0",
-    "slate": "^0.54.2",
-    "slate-schema-violations": "^0.1.39",
     "trough": "1.0.5",
     "xtend": "^4.0.1",
     "x-is-string": "0.1.0",
@@ -52,8 +48,8 @@
     "pub:esm": "npm run clean:esm && export BABEL_ENV=production && ./node_modules/.bin/babel src --out-dir es --copy-files",
     "pub:lib": "npm run clean:lib && export BABEL_ENV=node && ./node_modules/.bin/babel src --out-dir lib --copy-files",
     "pub:umd": "npm run build",
-    "pub:optimized": "rm es/index.local.js && rm lib/index.local.js",
-    "prepublishOnly": "npm run pub:lib && npm run pub:esm && npm run pub:umd && npm run pub:optimized"
+    "pub:optimized": "rm es/index.local.js",
+    "prepublishOnly": "npm run pub:esm && npm run pub:umd && npm run pub:optimized"
   },
   "files": [
     "assets",
