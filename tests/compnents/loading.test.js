@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Loading from '../../src/components/loading';
+import Loading from '../../src/Loading';
 
 describe('components/loading', () => {
   it('basic test', () => {
