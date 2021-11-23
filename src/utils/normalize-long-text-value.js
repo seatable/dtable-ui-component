@@ -1,8 +1,8 @@
-const hrefReg = /\[.+\]\(\S+\)|<img src=(\S+).+\/>|!\[\]\(\S+\)|<\S+>/g,
-  imageReg1 = /^<img src="(\S+)" .+\/>/,
-  imageReg2 = /^!\[\]\((\S+)\)/,
-  linkReg1 = /^\[.+\]\(\S+\)/,
-  linkReg2 = /^<\S+>$/;
+const hrefReg = /\[.+\]\(\S+\)|<img src=(\S+).+\/>|!\[\]\(\S+\)|<\S+>/g;
+const imageReg1 = /^<img( width=[\\|/|"](\d)+[\\|/|"])? src="(\S+)" .?\/>/;
+const imageReg2 = /^!\[\]\((\S+)\)/;
+const linkReg1 = /^\[.+\]\(\S+\)/;
+const linkReg2 = /^<\S+>$/;
 
 const getLinks = (hrefList) => {
   const hrefObj = {
@@ -36,18 +36,16 @@ const getPreviewContent = (markdownContent) => {
     } else {
       preview += newMarkdownContent[index];
     }
-    if (preview.length === 30) {
+    if (preview.length === 150) {
       break;
     }
   }
-
   const hrefList = markdownContent.match(hrefReg);
   if (hrefList) {
     const { images, links } = getLinks(hrefList);
     return { preview, images, links };
   }
-  return { preview, images: [], links: [] };
+  return { preview, images: [], links: [], text: markdownContent };
 };
-
 
 export default getPreviewContent;

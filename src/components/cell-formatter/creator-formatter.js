@@ -30,13 +30,13 @@ class CreatorFormatter extends React.PureComponent {
 
     return value.map((item, index) => {
       let collaborator = collaborators.find(collaborator => collaborator.email === item);
-      // the collaborator can be not exist, beacuse the row created by third app
+      // the collaborator can be not exist, because the row created by third app
       if (!collaborator) {
         collaborator = {
           name: item,
           avatar_url: DefaultAvatar,
         };
-      };
+      }
       return (
         <CollaboratorItem key={index} collaborator={collaborator} />
       );
@@ -45,9 +45,9 @@ class CreatorFormatter extends React.PureComponent {
 
   render() {
     const { containerClassName, value } = this.props;
-    const classname = cn('dtable-ui cell-formatter-container creator-formatter', containerClassName)
+    const classname = cn('dtable-ui cell-formatter-container creator-formatter', containerClassName);
     if (!value || (Array.isArray(value) && value.length === 0)) {
-      return (<div className={classname}></div>)
+      return (<div className={classname}></div>);
     }
 
     const collaborators = this.getCollaborators();
