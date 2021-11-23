@@ -1,0 +1,63 @@
+@import url('../css/cell-formatter.css');
+
+.dtable-ui.long-text-formatter {
+  display: flex;
+  align-items: center;
+  height: 28px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dtable-ui.long-text-formatter.article {
+  display: block;
+  height: auto;
+  overflow: auto;
+}
+
+.dtable-ui.long-text-formatter .long-text-links,
+.dtable-ui.long-text-formatter .long-text-check-list {
+  display: inline-block;
+  height: 20px;
+  padding: 2px;
+  margin: 4px;
+  color: #9c9c9c;
+  background-color: #f0f0f0;
+  border-radius: 3px;
+  line-height: 16px;
+}
+
+.dtable-ui.long-text-formatter .long-text-check-list .dtable-font,
+.dtable-ui.long-text-formatter .long-text-links .dtable-font {
+  margin-right: 4px;
+  font-size: 12px;
+}
+
+.dtable-ui.long-text-formatter .long-text-check-list .long-text-check-list-completed {
+  color: #61BD4F;
+}
+
+.dtable-ui.long-text-formatter .long-text-images {
+  margin-right: -10px;
+}
+
+.dtable-ui.long-text-formatter .long-text-images img {
+  max-width: 28px;
+  max-height: 28px;
+  border: 1px solid #f0f0f0;
+  box-sizing: border-box;
+  border-radius: 3px;
+}
+
+.dtable-ui.long-text-formatter .long-text-images .image-number {
+  display: inline-block;
+  min-width: 14px;
+  padding: 0 3px;
+  line-height: 14px;
+  font-style: normal;
+  font-size: 12px;
+  border-radius: 6px;
+  background-color: #999;
+  color: #fff;
+  transform: translate(-50%, 9px) scale(0.8);
+}

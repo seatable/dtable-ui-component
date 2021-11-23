@@ -1,0 +1,49 @@
+.dtable-ui.collaborator-item {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 0 8px 0 2px;
+  height: 20px;
+  font-size: 13px;
+  border-radius: 10px;
+  background: #eaeaea;
+}
+
+.dtable-ui.collaborator-item .collaborator-avatar,
+.dtable-ui.collaborator-item .collaborator-name,
+.dtable-ui.collaborator-item .collaborator-remove {
+  height: 20px;
+  line-height: 20px;
+}
+
+.dtable-ui.collaborator-item .collaborator-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 4px 0 2px;
+}
+
+.dtable-ui.collaborator-item .collaborator-avatar img {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+}
+
+.dtable-ui.collaborator-item .collaborator-remove {
+  display: inline-block;
+  width: 14px;
+  margin: 0 -2px 0 2px;
+}
+
+.dtable-ui.collaborator-item .collaborator-remove .dtable-font {
+  display: inline-block;
+  font-size: 12px;
+  color: #909090;
+  transform: scale(.8);
+  cursor: pointer;
+}
+
+.dtable-ui.collaborator-item .collaborator-remove .dtable-font:hover {
+  color: #666666;
+  cursor: pointer;
+}

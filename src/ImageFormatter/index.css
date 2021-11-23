@@ -1,0 +1,34 @@
+@import url('../css/cell-formatter.css');
+
+.dtable-ui.image-formatter {
+  display: flex;
+  align-items: center;
+}
+
+.dtable-ui.image-formatter .image-item {
+  display: inline-block;
+  height: 28px;
+  width: 28px;
+  margin-right: 4px;
+  border: 1px solid #f0f0f0;
+}
+
+.dtable-ui.image-formatter .image-item:hover {
+  border: 1px solid #c9c9c9;
+}
+
+.dtable-ui.image-formatter .image-item-count {
+  display: inline-block;
+  padding: 0 3px;
+  min-width: 14px;
+  line-height: 14px;
+  font-size: 12px;
+  border-radius: 6px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  background-color: #999;
+  -webkit-transform: translate(-50%, 8px) scale(.8);
+  transform: translate(-50%, 8px) scale(.8);
+}

@@ -1,0 +1,19 @@
+@import url('../css/cell-formatter.css');
+
+.dtable-ui.formula-formatter.multiple .formula-formatter-content-item {
+  display: inline-flex;
+  margin-right: 10px;
+}
+
+
+.dtable-ui.formula-formatter.multiple .formula-formatter-content-item.simple-cell-formatter {
+  height: 20px;
+  padding: 0 8px;
+  align-items: center;
+  background: #eceff4;
+  border-radius: 3px;
+}
+
+.dtable-ui.formula-formatter.multiple .formula-formatter-content-item .collaborator {
+  margin-right: 0;
+}

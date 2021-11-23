@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.1.73",
+  "version": "0.1.75beta9",
   "main": "./es/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "0.0.9",
@@ -45,11 +45,11 @@
     "eslint": "eslint --ext .jsx,.js src --max-warnings=0",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o docs",
-    "pub:esm": "npm run clean:esm && export BABEL_ENV=production && ./node_modules/.bin/babel src --out-dir es --copy-files",
-    "pub:lib": "npm run clean:lib && export BABEL_ENV=node && ./node_modules/.bin/babel src --out-dir lib --copy-files",
+    "pub:esm": "npm run clean:esm && export BABEL_ENV=node && ./node_modules/.bin/babel src --out-dir es --copy-files",
+    "pub:lib": "npm run clean:lib && export BABEL_ENV=production && ./node_modules/.bin/babel src --out-dir lib --copy-files",
     "pub:umd": "npm run build",
-    "pub:optimized": "rm es/index.local.js",
-    "prepublishOnly": "npm run pub:esm && npm run pub:umd && npm run pub:optimized"
+    "pub:optimized": "rm lib/index.local.js && rm lib/app.js && rm lib/app.css",
+    "prepublishOnly": "npm run pub:lib && npm run pub:umd && npm run pub:optimized"
   },
   "files": [
     "assets",

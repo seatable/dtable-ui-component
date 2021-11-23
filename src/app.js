@@ -1,5 +1,5 @@
 import React from 'react';
-import { CollaboratorFormatter, SingleSelectFormatter } from './components/cell-formatter';
+import { CollaboratorFormatter, SingleSelectFormatter } from './index';
 
 import './app.css';
 
@@ -46,7 +46,7 @@ class App extends React.Component {
         name: '完成',
         color: '#00e500',
       },
-    ]
+    ];
     return (
       <div className="app">
         <header className="app-header">
