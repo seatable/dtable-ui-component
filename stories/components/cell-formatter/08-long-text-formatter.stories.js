@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { LongTextFormatter } from '../../../src/components/cell-formatter';
+import LongTextFormatter from '../../../src/LongTextFormatter';
 
 const info = {
   text: '<h1>API</h1>',

@@ -2,7 +2,7 @@ import React from 'react';
 import { CellType } from '../constants';
 import CheckboxFormatter from '../CheckboxFormatter';
 import ImageFormatter from '../ImageFormatter';
-import LongTextFormatter from '../LongTextFormatter';
+import SimpleLongTextFormatter from '../SimpleLongTextFormatter';
 import TextCellFormatter from '../TextFormatter';
 import SingleSelectFormatter from '../SingleSelectFormatter';
 import MultipleSelectFormatter from '../MultipleSelectFormatter';
@@ -28,7 +28,7 @@ const FormatterConfig = {
   [CellType.DEFAULT]: <TextCellFormatter />,
   [CellType.TEXT]: <TextCellFormatter />,
   [CellType.CHECKBOX]: <CheckboxFormatter />,
-  [CellType.LONG_TEXT]: <LongTextFormatter />,
+  [CellType.LONG_TEXT]: <SimpleLongTextFormatter />,
   [CellType.SINGLE_SELECT]: <SingleSelectFormatter />,
   [CellType.IMAGE]: <ImageFormatter />,
   [CellType.FILE]: <FileFormatter />,

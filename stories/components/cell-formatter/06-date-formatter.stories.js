@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
 import { DATE_TYPES } from '../../../src/constants';
-import { DateFormatter } from '../../../src/components/cell-formatter';
+import DateFormatter from '../../../src/DateFormatter';
 
 const info = {
   text: '<h1>API</h1>',

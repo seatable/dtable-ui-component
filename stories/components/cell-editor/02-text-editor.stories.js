@@ -4,7 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
 import Description from '../../utils/description';
-import { TextEditor } from '../../../src/components/cell-editor';
+import TextEditor from '../../../src/TextEditor';
 
 const info = {
   text: '<h1>API</h1>',

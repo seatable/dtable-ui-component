@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import cn from 'astro-classname';
 import { processor } from './markdown2html';
 
 import './index.css';
@@ -50,8 +51,9 @@ class HtmlLongTextFormatter extends Component {
   }
 
   render() {
-    const {innerHtml} = this.state;
-    const { className } = this.props;
+    const { innerHtml } = this.state;
+    const { containerClassName } = this.props;
+    const className= cn('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
     if (!innerHtml) return null;
     return (
       <div
@@ -64,7 +66,7 @@ class HtmlLongTextFormatter extends Component {
 
 HtmlLongTextFormatter.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  className: PropTypes.string,
+  containerClassName: PropTypes.string,
 };
 
 export default HtmlLongTextFormatter;

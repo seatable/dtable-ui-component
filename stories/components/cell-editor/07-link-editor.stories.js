@@ -4,7 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
 import Description from '../../utils/description';
-import { LinkEditor } from '../../../src/components/cell-editor';
+import LinkEditor from '../../../src/LinkEditor';
 import { setLocale } from '../../../src/lang';
 
 // setLocale('zh-cn');

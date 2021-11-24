@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { ImageFormatter } from '../../../src/components/cell-formatter';
+import ImageFormatter from '../../../src/ImageFormatter';
 
 const info = {
   text: '<h1>API</h1>',

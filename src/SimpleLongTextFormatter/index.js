@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cn from 'astro-classname';
 import getPreviewContent from './normalize-long-text-value';
 
 import './index.css';
@@ -66,7 +67,8 @@ class SimpleLongTextFormatter extends React.Component {
   }
 
   render() {
-    const { className } = this.props;
+    const { containerClassName } = this.props;
+    const className= cn('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
     const value = this.translateValue();
     return (
       <div className={className}>
@@ -81,7 +83,7 @@ class SimpleLongTextFormatter extends React.Component {
 
 SimpleLongTextFormatter.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  className: PropTypes.string,
+  containerClassName: PropTypes.string,
 };
 
 export default SimpleLongTextFormatter;

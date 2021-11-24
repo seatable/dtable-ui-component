@@ -2,8 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { SingleSelectFormatter } from '../../../src/components/cell-formatter';
-
+import SingleSelectFormatter from '../../../src/SingleSelectFormatter';
 
 const info = {
   text: '<h1>API</h1>',

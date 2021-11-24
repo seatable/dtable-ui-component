@@ -25,3 +25,12 @@ If you want to use on-demand loading, add the following content to the ` .babelr
     ["on-demand-loading", {"library": "dtable-ui-component"}]
  ]
 ```
+
+Long Text Formatter
+
+If your project only uses a simple long text formatter, you can reference the SimpleLongTextFormatter component.
+
+```js
+import { SimpleLongTextFormatter } from 'dtable-ui-component';
+```
+

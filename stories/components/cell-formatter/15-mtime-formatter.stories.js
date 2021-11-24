@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { MTimeFormatter } from '../../../src/components/cell-formatter';
+import MTimeFormatter from '../../../src/MTimeFormatter';
 
 const info = {
   text: '<h1>API</h1>',

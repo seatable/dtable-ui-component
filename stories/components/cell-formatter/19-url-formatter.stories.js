@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { UrlFormatter } from '../../../src/components/cell-formatter';
+import UrlFormatter from '../../../src/UrlFormatter';
 
 import '../../css/cell-formatter.css';
 
