@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { FileFormatter } from '../../../src/components/cell-formatter';
+import FileFormatter from '../../../src/FileFormatter';
 
 const info = {
   text: '<h1>API</h1>',

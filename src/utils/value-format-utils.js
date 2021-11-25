@@ -1,6 +1,8 @@
+/* eslint-disable no-case-declarations */
 import moment from 'moment';
 import NP from './number-precision';
-import { 
+import {
+  CellType,
   NUMBER_TYPES, 
   DEFAULT_NUMBER_FORMAT, 
   DURATION_FORMATS_MAP, 
@@ -12,7 +14,6 @@ import {
   ARRAY_FORMAL_COLUMNS_TYPES,
   DEFAULT_DATE_FORMAT
 } from '../constants';
-import * as CellType from '../constants/cell-types';
 
 NP.enableBoundaryChecking(false);
 
@@ -127,10 +128,10 @@ export const formatNumberString = (value, format) => {
   }
 
   return formattedValue;
-}
+};
 
 export const getDateDisplayString = (value, format) => {
-  let formattedValue = ''
+  let formattedValue = '';
   if (!value) { // value === '', value === undefine, value === null
     return formattedValue;
   }
@@ -139,13 +140,14 @@ export const getDateDisplayString = (value, format) => {
   switch(format) {
     case 'D/M/YYYY':
     case 'DD/MM/YYYY':
+      // no-case-declarations
       const formatValue = date.format('YYYY-MM-DD');
       const formatValueList = formatValue.split('-');
       return `${formatValueList[2]}/${formatValueList[1]}/${formatValueList[0]}`;
     case 'D/M/YYYY HH:mm':
     case 'DD/MM/YYYY HH:mm':
       const formatValues = date.format('YYYY-MM-DD HH:mm');
-      const formatValuesList = formatValues.split(' ')
+      const formatValuesList = formatValues.split(' ');
       const formatDateList = formatValuesList[0].split('-');
       return `${formatDateList[2]}/${formatDateList[1]}/${formatDateList[0]} ${formatValuesList[1]}`;
     case 'M/D/YYYY':
@@ -201,7 +203,7 @@ export const getDurationDisplayString = (value, duration_format) => {
   seconds = seconds > 9 ? seconds : `0${seconds}`;
   displayString += `${minutes}:${seconds}${decimalSuffix}`;
   return displayString;
-}
+};
 
 const getMathRoundedDuration = (num, duration_format) => {
   const decimalDigits = DURATION_DECIMAL_DIGITS[duration_format];
@@ -210,7 +212,7 @@ const getMathRoundedDuration = (num, duration_format) => {
   }
   const ratio = Math.pow(10, decimalDigits);
   return Math.round(num * ratio) / ratio;
-}
+};
 
 const getDurationDecimalSuffix = (duration_format, decimal) => {
   if (duration_format === DURATION_FORMATS_MAP.H_MM_SS_S) {
@@ -231,7 +233,7 @@ const getDurationDecimalSuffix = (duration_format, decimal) => {
     }
   }
   return '';
-}
+};
 
 export const getOptionName = (options, targetOptionID) => {
   if (!targetOptionID || !options || !Array.isArray(options)) return null;

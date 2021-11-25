@@ -1,0 +1,5 @@
+@import url('../css/cell-formatter.css');
+
+.dtable-ui.email-formatter {
+  text-decoration: underline;
+}

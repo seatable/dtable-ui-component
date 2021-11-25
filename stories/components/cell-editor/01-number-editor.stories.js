@@ -5,7 +5,7 @@ import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
 import Description from '../../utils/description';
 import { NUMBER_TYPES } from '../../../src/constants';
-import { NumberEditor } from '../../../src/components/cell-editor';
+import NumberEditor from '../../../src/NumberEditor';
 
 const info = {
   text: '<h1>API</h1>',

@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withInfo } from '@storybook/addon-info';
 import ShowCode from '../../utils/show-code';
-import { MultipleSelectFormatter } from '../../../src/components/cell-formatter';
+import MultipleSelectFormatter from '../../../src/MultipleSelectFormatter';
 
 
 const info = {

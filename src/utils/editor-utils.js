@@ -45,8 +45,8 @@ export const initDateEditorLanguage = (lang) => {
       language = zhCN;
   }
   return language;
-}
+};
 
 export const getSelectOptionItem = (options, optionId) => {
   return options.find(option => option.id === optionId);
-}
+};

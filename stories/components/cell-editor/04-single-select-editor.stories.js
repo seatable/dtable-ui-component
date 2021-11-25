@@ -4,7 +4,7 @@ import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
 import ShowCode from '../../utils/show-code';
 import Description from '../../utils/description';
-import { SingleSelectEditor } from '../../../src/components/cell-editor';
+import SingleSelectEditor from '../../../src/SingleSelectEditor';
 import { setLocale } from '../../../src/lang';
 
 // setLocale('zh-cn');

@@ -41,6 +41,7 @@ function float2Fixed(num) {
 function checkBoundary(num) {
   if (_boundaryCheckingState) {
     if (num > Number.MAX_SAFE_INTEGER || num < Number.MIN_SAFE_INTEGER) {
+      // eslint-disable-next-line no-console
       console.warn(`${num} is beyond boundary when transfer to integer, the results may not be accurate`);
     }
   }
