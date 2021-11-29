@@ -4,13 +4,10 @@
 /* Dependencies. */
 var extend = require('extend');
 var bail = require('bail');
-var vfile = require('../vfile');
 var trough = require('trough');
 var string = require('x-is-string');
 var plain = require('is-plain-obj');
-
-/* Expose a frozen processor. */
-module.exports = unified().freeze();
+var vfile = require('../vfile').default;
 
 var slice = [].slice;
 var own = {}.hasOwnProperty;
@@ -465,3 +462,8 @@ function assertDone(name, asyncName, complete) {
     );
   }
 }
+
+/* Expose a frozen processor. */
+const unified_freeze = unified().freeze();
+
+export default unified_freeze;
