@@ -5,8 +5,6 @@ var path = require('path');
 var replace = require('replace-ext');
 var buffer = require('is-buffer');
 
-module.exports = VFile;
-
 var own = {}.hasOwnProperty;
 var proto = VFile.prototype;
 
@@ -167,3 +165,5 @@ function assertPath(path, name) {
     throw new Error('Setting `' + name + '` requires `path` to be set too');
   }
 }
+
+export default VFile;

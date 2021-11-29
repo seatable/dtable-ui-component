@@ -1,9 +1,7 @@
 'use strict'
 
 var VMessage = require('vfile-message')
-var VFile = require('./core.js')
-
-module.exports = VFile
+var VFile = require('./core.js').default;
 
 var proto = VFile.prototype
 
@@ -51,3 +49,5 @@ function info() {
 
   return message
 }
+
+export default VFile;

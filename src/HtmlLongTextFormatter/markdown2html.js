@@ -1,4 +1,3 @@
-var unified = require('./unified');
 var markdown = require('remark-parse');
 var slug = require('remark-slug');
 var breaks = require('remark-breaks');
@@ -12,6 +11,7 @@ var gh = require('hast-util-sanitize/lib/github');
 var deepmerge = require('deepmerge').default;
 const mathjax = require('rehype-mathjax/browser');
 const math = require('remark-math/block');
+var unified = require('./unified').default;
  
 function stringify(config) {
   var settings = xtend(config, this.data('settings'));
