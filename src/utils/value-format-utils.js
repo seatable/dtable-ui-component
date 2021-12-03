@@ -151,15 +151,14 @@ export const getDateDisplayString = (value, format) => {
       const formatDateList = formatValuesList[0].split('-');
       return `${formatDateList[2]}/${formatDateList[1]}/${formatDateList[0]} ${formatValuesList[1]}`;
     case 'M/D/YYYY':
-      return date.format('M/D/YYYY');
     case 'M/D/YYYY HH:mm':
-      return date.format('M/D/YYYY HH:mm');
     case 'YYYY-MM-DD':
-      return date.format('YYYY-MM-DD');
     case 'YYYY-MM-DD HH:mm':
-      return date.format('YYYY-MM-DD HH:mm');
+    case 'DD.MM.YYYY':
+    case 'DD.MM.YYYY HH:mm':
+      return date.format(format);
     default:
-      return value;
+      return date.format('YYYY-MM-DD');
   }
 };
 
