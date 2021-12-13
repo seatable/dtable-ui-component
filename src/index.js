@@ -20,6 +20,7 @@ export { default as LongTextFormatter } from './LongTextFormatter';
 export { default as TextFormatter } from './TextFormatter';
 export { default as SingleSelectFormatter } from './SingleSelectFormatter';
 export { default as MultipleSelectFormatter } from './MultipleSelectFormatter';
+export { default as SelectItem } from './SelectItem';
 export { default as FileFormatter } from './FileFormatter';
 export { default as LinkFormatter } from './LinkFormatter';
 export { default as CollaboratorFormatter } from './CollaboratorFormatter';
