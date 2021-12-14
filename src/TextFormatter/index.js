@@ -23,9 +23,10 @@ class TextFormatter extends React.Component {
 
   render() {
     const { containerClassName, value } = this.props;
-    let classname = cn('dtable-ui cell-formatter-container text-formatter', containerClassName);
+    const classname = cn('dtable-ui cell-formatter-container text-formatter', containerClassName);
+    const formattedValue = this.getFormattedValue(value);
     return (
-      <div className={classname}>{this.getFormattedValue(value)}</div>
+      <div className={classname} title={formattedValue}>{formattedValue}</div>
     );
   }
 }
