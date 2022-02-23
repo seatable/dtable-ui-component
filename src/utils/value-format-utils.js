@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import moment from 'moment';
+import dayjs from 'dayjs';
 import NP from './number-precision';
 import {
   CellType,
@@ -135,7 +135,7 @@ export const getDateDisplayString = (value, format) => {
   if (!value) { // value === '', value === undefine, value === null
     return formattedValue;
   }
-  const date = moment(value);
+  const date = dayjs(value);
   if (!date.isValid()) return value;
   switch(format) {
     case 'D/M/YYYY':

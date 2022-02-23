@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker } from 'antd-mobile';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import Calendar from '@seafile/seafile-calendar';
 import * as SeaDatePicker from '@seafile/seafile-calendar/lib/Picker';
 import { getLocale } from '../../lang';
@@ -28,7 +28,7 @@ class DateEditorPopover extends React.PureComponent {
     super(props);
     this.state = {
       open: true,
-      datePickerValue: props.value ? moment(props.value) : moment().clone(),
+      datePickerValue: props.value ? dayjs(props.value) : dayjs().clone(),
     };
     this.calendarContainerRef = React.createRef();
   }
@@ -49,15 +49,15 @@ class DateEditorPopover extends React.PureComponent {
 
   handleDateChange = (date) => {
     let { dateFormat, showHourAndMinute } = this.props;
-    let newValue = moment(date);
+    let newValue = dayjs(date);
     if (showHourAndMinute) {
       const { datePickerValue } = this.state;
       const HM = datePickerValue.format('HH:mm');
       const format = dateFormat.split(' ')[0];  // 'YYYY-MM-DD HH:mm'
-      const newDate = moment(date).format(format) + ' ' + HM;
-      newValue = moment(newDate);
+      const newDate = dayjs(date).format(format) + ' ' + HM;
+      newValue = dayjs(newDate);
     }
-    this.setState({datePickerValue: moment(date)});
+    this.setState({datePickerValue: dayjs(date)});
     this.props.onValueChanged(newValue.format(dateFormat));
   }
   
@@ -66,8 +66,8 @@ class DateEditorPopover extends React.PureComponent {
     const { dateFormat } = this.props;
     const format = dateFormat.split(' ')[0];  // 'YYYY-MM-DD HH:mm'
     const YMD = datePickerValue.format(format);
-    const newDate = YMD + ' ' + moment(time).format('HH:mm');
-    const newValue = moment(newDate);
+    const newDate = YMD + ' ' + dayjs(time).format('HH:mm');
+    const newValue = dayjs(newDate);
 
     this.setState({ datePickerValue: newValue });
     this.props.onValueChanged(datePickerValue.format(dateFormat));
@@ -107,7 +107,7 @@ class DateEditorPopover extends React.PureComponent {
 
   getCalender = () => {
     let { dateFormat, lang } = this.props;
-    let defaultValue = moment().clone();
+    let defaultValue = dayjs().clone();
     return (
       <Calendar 
         locale={initDateEditorLanguage(lang)}

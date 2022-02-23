@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import DatePicker from '@seafile/seafile-calendar/lib/Picker';
 import Calendar from '@seafile/seafile-calendar';
 import { initDateEditorLanguage } from '../utils/editor-utils';
@@ -22,7 +22,7 @@ class PCDateEditorPopover extends React.Component {
     super(props);
     this.state = {
       open: true,
-      datePickerValue: props.value ? moment(props.value) : null,
+      datePickerValue: props.value ? dayjs(props.value) : null,
     };
 
     this.calendarContainerRef = React.createRef();
@@ -63,7 +63,7 @@ class PCDateEditorPopover extends React.Component {
 
   getCalender = () => {
     let { dateFormat, showHourAndMinute, lang } = this.props;
-    let defaultValue = moment().clone();
+    let defaultValue = dayjs().clone();
     return (
       <Calendar 
         locale={initDateEditorLanguage(lang)}

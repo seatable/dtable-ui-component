@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 import './index.css';
 
@@ -18,7 +18,7 @@ class MTimeFormatter extends React.Component {
   }
 
   formatDate = (date) => {
-    return moment(date).format('YYYY-MM-DD HH:mm:ss');
+    return dayjs(date).format('YYYY-MM-DD HH:mm:ss');
   }
 
   render() {
