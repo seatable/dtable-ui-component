@@ -1,10 +1,10 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.1.83",
+  "version": "0.1.84",
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "0.0.9",
-    "@seafile/seafile-calendar": "^0.0.18",
+    "@seafile/seafile-calendar": "^0.0.19",
     "antd-mobile": "^2.3.3",
     "astro-classname": "^2.1.0",
     "bail": "1.0.5",
