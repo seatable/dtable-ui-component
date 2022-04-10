@@ -68,6 +68,7 @@ class DtableSelect extends React.Component {
     isClearable: PropTypes.bool,
     placeholder: PropTypes.string,
     classNamePrefix: PropTypes.string,
+    style: PropTypes.object, 
     onChange: PropTypes.func.isRequired,
     menuPortalTarget: PropTypes.string,
     menuPosition: PropTypes.string,
@@ -94,7 +95,7 @@ class DtableSelect extends React.Component {
 
   render() {
     const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage, 
-      classNamePrefix } = this.props;
+      classNamePrefix, style } = this.props;
     return(
       <Select
         value={value}
@@ -102,7 +103,7 @@ class DtableSelect extends React.Component {
         options={options}
         isMulti={isMulti}
         classNamePrefix={classNamePrefix}
-        styles={MenuSelectStyle}
+        styles={style || MenuSelectStyle}
         components={{ Option, DropdownIndicator, MenuList }}
         placeholder={placeholder}
         isSearchable={isSearchable}
