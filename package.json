@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.1.84",
+  "version": "0.1.86",
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "0.0.9",
@@ -22,6 +22,7 @@
     "react-responsive": "^8.0.3",
     "react-transition-group": "^4.4.1",
     "reactstrap": "^8.4.1",
+    "react-select": "4.3.0",
     "rehype-format": "^2.2.0",
     "rehype-mathjax": "^2.0.0",
     "rehype-raw": "^2.0.0",

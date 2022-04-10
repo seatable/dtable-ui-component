@@ -51,3 +51,8 @@ export { default as MultipleSelectEditor } from './MultipleSelectEditor';
 export { default as CollaboratorEditor } from './CollaboratorEditor';
 export { default as DateEditor } from './DateEditor';
 export { default as LinkEditor } from './LinkEditor';
+
+// dtable custom
+export { default as DTablePopover } from './DTablePopover';
+export { default as DTableSelect } from './DTableSelect';
+export { default as DTableSwitch } from './DTableSwitch';
