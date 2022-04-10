@@ -39,16 +39,17 @@ class FormulaFormatter extends React.Component {
     let Formatter = cellFormatterFactory.createFormatter(array_type);
     let formatterProps = this.getFormatterProps(array_type, array_data, collaborators);
 
-    if (isArrayFormalColumn(array_type)) {
-      formatterProps.value = value;
-      return this.createColumnFormatter(Formatter, formatterProps);
-    }
-
-    const _isSimpleCellFormatterColumn = isSimpleCellFormatter(array_type);
     let cellValue = value;
     if (!Array.isArray(value)) {
       cellValue = cellValueValidator(value, array_type) ? [value] : [];
     }
+
+    if (isArrayFormalColumn(array_type)) {
+      formatterProps.value = cellValue.filter(Boolean);
+      return this.createColumnFormatter(Formatter, formatterProps);
+    }
+
+    const _isSimpleCellFormatterColumn = isSimpleCellFormatter(array_type);
     const contentItemClassName = `formula-formatter-content-item ${_isSimpleCellFormatterColumn ? 'simple-cell-formatter' : ''}`;
     return (
       <div className="dtable-ui formula-formatter multiple">
