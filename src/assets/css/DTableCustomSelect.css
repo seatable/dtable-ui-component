@@ -1,0 +1,148 @@
+.dtable-select {
+  position: relative;
+}
+
+.dtable-select.custom-select {
+  display: flex;
+  padding: 0 10px;
+  border-radius: 3px;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 900px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+  text-align: left;
+}
+
+.dtable-select.custom-select:focus,
+.dtable-select.custom-select.focus {
+  border-color: #1991eb !important;
+  box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25);
+}
+
+.dtable-select.custom-select.disabled:focus,
+.dtable-select.custom-select.focus.disabled,
+.dtable-select.custom-select.disabled:hover {
+  border-color: rgba(0, 40, 100, 0.12) !important;
+  box-shadow: unset;
+  cursor: default;
+}
+
+.dtable-select.custom-select:hover {
+  cursor: pointer;
+  border-color: rgb(179, 179, 179);
+}
+
+.dtable-select .select-option-name {
+  color: #202428;
+}
+
+.dtable-select .dtable-icon-drop-down {
+  display: inline-block;
+  font-size: 12px;
+  color: #949494;
+  transform: scale(.8) translateY(2px);
+  transition: all .1s;
+}
+
+.dtable-select .dtable-icon-drop-down:hover {
+  color: #000;
+}
+
+.dtable-select .selected-option {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.dtable-select .option-group {
+  position: absolute;
+  left: 0;
+  min-height: 60px;
+  max-height: 300px;
+  min-width: 100%;
+  max-width: 15rem;
+  padding: .5rem 0;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  background: #fff;
+  border: 1px solid rgba(0, 40, 100, 0.12);
+  border-radius: 3px;
+  z-index: 10001;
+}
+
+.dtable-select .option-group .option-group-search {
+  width: 100%;
+  padding: 0 10px 6px 10px;
+  min-width: 170px;
+}
+
+.dtable-select .option-group-search .form-control {
+  height: 31px;
+}
+
+.dtable-select .option-group .none-search-result {
+  height: 100px;
+  width: 100%;
+  padding: 10px;
+  opacity: .5;
+}
+
+.dtable-select .option-group .option-group-content {
+  max-height: 252px;
+  overflow-y: auto;
+}
+
+.dtable-select .option {
+  display: block;
+  width: 100%;
+  line-height: 24px;
+  padding: .25rem 10px;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dtable-select.selector-collaborator .option-group .option-group-content {
+  padding: 10px;
+}
+
+.dtable-select.selector-collaborator .option {
+  padding: 5px 0 5px 10px !important;
+  line-height: 20px;
+}
+
+.dtable-select .option.option-active {
+  background-color: #20a0ff;
+  color: #fff;
+  cursor: pointer;
+}
+
+.dtable-select .option.option-active .select-option-name {
+  color: #fff;
+}
+
+.dtable-select .selected-option-show {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dtable-select .select-placeholder {
+  line-height: 1;
+  font-size: 14px;
+  color: #949494;
+  white-space: nowrap;
+}

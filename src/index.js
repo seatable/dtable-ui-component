@@ -56,3 +56,6 @@ export { default as LinkEditor } from './LinkEditor';
 export { default as DTablePopover } from './DTablePopover';
 export { default as DTableSelect } from './DTableSelect';
 export { default as DTableSwitch } from './DTableSwitch';
+export { default as DTableCustomizeSelect } from './DTableCustomizeSelect';
+export { default as DTableCustomizeCollaboratorSelect } from './DTableCustomizeCollaboratorSelect';
+export { default as DTableSearchInput } from './DTableSearchInput';
