@@ -4,7 +4,7 @@
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "0.0.9",
-    "@seafile/seafile-calendar": "^0.0.19",
+    "@seafile/seafile-calendar": "^0.0.21",
     "antd-mobile": "^2.3.3",
     "astro-classname": "^2.1.0",
     "bail": "1.0.5",
