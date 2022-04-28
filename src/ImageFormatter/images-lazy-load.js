@@ -86,7 +86,7 @@ class ImagesLazyLoad extends React.Component {
 
     if (images.length > loadedCount) {
       let style = { marginLeft: '4px' };
-      return <div style={style}><Loading /></div>;
+      return <div style={style} className="d-flex align-items-center"><Loading /></div>;
     }
 
     if (images.length === loadedCount) {
