@@ -40,7 +40,7 @@ class ImagesLazyLoad extends React.Component {
     if (!Array.isArray(images) || images.length === 0) {
       return;
     }
-    let { server } = this.props.server;
+    let { server } = this.props;
     images.forEach(item => {
       let url = getImageThumbnailUrl(item, server);
       this.lazyLoadImage(
