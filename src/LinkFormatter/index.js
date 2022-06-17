@@ -74,7 +74,7 @@ class LinkFormatter extends React.Component {
         let displayValue = this.getDisplayValue(linkedTable, row, displayColumnKey);
         return (
           <div key={index} className="link-item" onClick={this.expandLinkedTableRow.bind(this, row)}>
-            <div className="link-name">{displayValue}</div>
+            <div className="link-name" title={displayValue}>{displayValue}</div>
           </div>
         );
       });

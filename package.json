@@ -1,10 +1,11 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.1.90",
+  "version": "0.1.91",
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "0.0.9",
     "@seafile/seafile-calendar": "^0.0.21",
+    "@seafile/seafile-editor": "^0.3.103",
     "antd-mobile": "^2.3.3",
     "astro-classname": "^2.1.0",
     "bail": "1.0.5",
@@ -20,9 +21,9 @@
     "react-app-polyfill": "^1.0.6",
     "react-dom": "16.14.0",
     "react-responsive": "^8.0.3",
+    "react-select": "4.3.0",
     "react-transition-group": "^4.4.1",
     "reactstrap": "^8.4.1",
-    "react-select": "4.3.0",
     "rehype-format": "^2.2.0",
     "rehype-mathjax": "^2.0.0",
     "rehype-raw": "^2.0.0",
