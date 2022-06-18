@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'astro-classname';
 import getPreviewContent from './normalize-long-text-value';
+import LongTextPreview from './widgets/LongTextPreview';
+import ModalPortal from '../ModalPortal';
 
 import './index.css';
 
@@ -14,6 +16,14 @@ class SimpleLongTextFormatter extends React.Component {
       links: [],
       preview: '',
     },
+  }
+
+  constructor(props) {
+    super(props);
+    this.formatterStyle = null;
+    this.state = {
+      isPreview: false
+    };
   }
 
   renderLinks = (value) => {
@@ -66,16 +76,54 @@ class SimpleLongTextFormatter extends React.Component {
     return {};
   }
 
+  clearTimer = () => {
+    if (this.timer) {
+      clearTimeout(this.timer);
+      this.timer = null;
+    }
+  }
+
+  onMouseEnter = () => {
+    // in case that there is no `modal-wrapper`
+    if (!document.getElementById('modal-wrapper')) {
+      return;
+    }
+    this.clearTimer();
+    if (this.props.value) {
+      this.timer = setTimeout(() => {
+        const style = this.ref.getBoundingClientRect();
+        this.formatterStyle = style;
+        this.setState({ isPreview: true });
+      }, 2000);
+    }
+  }
+
+  onMouseLeave = () => {
+    this.clearTimer();
+    if (this.state.isPreview) {
+      this.setState({ isPreview: false });
+    }
+  }
+
   render() {
+    const { isPreview } = this.state;
     const { containerClassName } = this.props;
     const className= cn('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
     const value = this.translateValue();
     return (
-      <div className={className}>
+      <div
+        className={className}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+        ref={ref => this.ref = ref}
+      >
         {this.renderLinks(value)}
         {this.renderCheckList(value)}
         {this.renderImages(value)}
         {this.renderContent(value)}
+        {isPreview &&
+          <ModalPortal><LongTextPreview value={value} formatterStyle={this.formatterStyle}/></ModalPortal>
+        }
       </div>
     );
   }
