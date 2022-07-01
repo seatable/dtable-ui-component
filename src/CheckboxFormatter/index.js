@@ -18,12 +18,15 @@ class CheckboxFormatter extends React.PureComponent {
   render() {
     let { value, containerClassName } = this.props;
     value = value === true ? true : false;
-    let classname = cn('dtable-ui cell-formatter-container checkbox-formatter', containerClassName);
-    return (
-      <div className={classname}>
-        <input className="checkbox" type='checkbox' readOnly checked={value}/>
-      </div>
-    );
+    let classname = cn('dtable-ui cell-formatter-container checkbox-formatter d-flex align-items-center justify-content-center', containerClassName);
+    if (value) {
+      return (
+        <div className={classname}>
+          <span className="dtable-font dtable-icon-check-mark checkbox-checked-mark"></span>
+        </div>
+      );
+    }
+    return null;
   }
 }
 
