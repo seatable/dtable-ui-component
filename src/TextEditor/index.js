@@ -28,7 +28,7 @@ class TextEditor extends React.Component {
     let updated = {};
     let { column } = this.props;
     let { newValue } = this.state;
-    updated[column.key] = newValue ? newValue.trim() : '';
+    updated[column.name] = newValue ? newValue.trim() : '';
     this.props.onCommit(updated);
   }
 
@@ -45,7 +45,7 @@ class TextEditor extends React.Component {
     let { selectionStart, selectionEnd, value } = event.currentTarget;
     if (isHotkey('enter', event)) {
       event.preventDefault();
-      this.onBlur();
+      event.target.blur();
     } else if ((event.keyCode === 37 && selectionStart === 0) ||
       (event.keyCode === 39 && selectionEnd === value.length)
     ) {
