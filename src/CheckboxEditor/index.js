@@ -25,7 +25,7 @@ class CheckboxEditor extends React.Component {
   getValue = () => {
     let updated = {};
     let { column } = this.props;
-    updated[column.key] = this.state.value;
+    updated[column.name] = this.state.value;
     return updated;
   }
 
