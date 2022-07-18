@@ -76,7 +76,7 @@ class CollaboratorEditor extends React.Component {
   onCommit = (newValue) => {
     let updated = {};
     let { column } = this.props;
-    updated[column.key] = newValue;
+    updated[column.name] = newValue;
     this.props.onCommit(updated);
   }
 
