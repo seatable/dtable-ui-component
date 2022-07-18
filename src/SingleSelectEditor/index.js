@@ -51,7 +51,7 @@ class SingleSelectEditor extends React.Component {
 
   formatOption = () => {
     let { newValue } = this.state;
-    let option = this.options.find(option => option.id === newValue);
+    let option = this.options.find(option => option.name === newValue);
     return option;
   }
 
@@ -73,13 +73,13 @@ class SingleSelectEditor extends React.Component {
   onCommit = (newValue) => {
     let updated = {};
     let { column } = this.props;
-    updated[column.key] = newValue;
+    updated[column.name] = newValue;
     this.props.onCommit(updated);
   }
 
   onOptionItemToggle = (option) => {
 
-    let newValue = this.state.newValue === option.id ? '' : option.id;
+    let newValue = this.state.newValue === option.name ? '' : option.name;
 
     this.setState({newValue}, () => {
       this.onCommit(newValue);
