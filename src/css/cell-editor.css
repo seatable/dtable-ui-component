@@ -1,5 +1,6 @@
 .dtable-ui-editor-popover {
-  width: 320px;
+  width: 300px;
+  max-width: 100%;
   box-shadow: 0 0 5px #ccc;
   background-color: #fff;
   z-index: 10;

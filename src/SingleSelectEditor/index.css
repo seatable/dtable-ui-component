@@ -3,7 +3,12 @@
 }
 
 .dtable-ui-select-editor-container {
-  display: inline-block;
-  height: 30px;
-  padding: 0 10px;
+  height: 40px;
+  padding: 10px 5px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.dtable-ui-select-editor-container:hover {
+  background-color: #f5f5f5;
 }
