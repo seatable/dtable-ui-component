@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './index.css';
+
 const propTypes = {
   isReadOnly: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -18,19 +20,14 @@ class CheckboxEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value ? props.value : false,
+      value: props.value ? props.value : false
     };
   }
 
-  getValue = () => {
+  onCommit = () => {
     let updated = {};
     let { column } = this.props;
     updated[column.name] = this.state.value;
-    return updated;
-  }
-
-  onCommit = () => {
-    let updated = this.getValue();
     this.props.onCommit(updated);
   }
 
@@ -38,52 +35,27 @@ class CheckboxEditor extends React.Component {
     if (this.props.isReadOnly) {
       return;
     }
-    let value = event.target.checked;
-    if (value === this.state.value) {
-      return;
-    }
-    this.setState({ value }, () => {
+    this.setState({value: !this.state.value}, () => {
       this.onCommit();
     });
   }
 
-  onKeyDown = (event) => {
-    event.stopPropagation();
-  }
-
-  onBlur = () => {
-    // this.onCommit();
-  }
-
-  setInputRef = (input) => {
-    this.input = input;
-  }
-
-  getStyle = () => {
-    return {
-      marginLeft: 0,
-      transform: 'scale(1.1)'
-    };
-  }
-
   render() {
-    let style = this.getStyle();
-    
+    const { value } = this.state;
+    const { isReadOnly } = this.props;
+    let style = {
+      cursor: isReadOnly ? 'default': 'pointer'
+    };
+
     return (
-      <div className="cell-editor checkbox-editor">
-        <div className="checkbox-editor-container">
-          <input 
-            ref={this.setInputRef}
-            type="checkbox"
-            className="checkbox"
-            checked={this.state.value}
-            onBlur={this.onBlur}
-            onPaste={this.onPaste}
-            onKeyDown={this.onKeyDown}
-            onChange={this.onChange}
-            style={style}
-            readOnly={this.props.isReadOnly}
-          />
+      <div className="dtable-ui-checkbox-editor" style={style}>
+        <input type="checkbox"
+          className="raw-checkbox"
+          checked={value}
+          onChange={this.onChange}
+        />
+        <div className="shown-checkbox">
+          {value && <span className="dtable-font dtable-icon-check-mark"></span>}
         </div>
       </div>
     );
