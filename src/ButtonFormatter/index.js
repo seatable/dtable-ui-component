@@ -26,20 +26,22 @@ class ButtonFormatter extends React.Component {
     let colorOption = Array.isArray(optionColors) ?
       (optionColors.find(item => item.COLOR === button_color) || optionColors[0])
       :
-      {COLOR: '#FFFCB5', BORDER_COLOR: '#E8E79D', TEXT_COLOR: '#202428'};
-    
+      {COLOR: '#FFFCB5', BORDER_COLOR: '#E8E79D', TEXT_COLOR: '#666'};
+
     const btnStyle = {
       backgroundColor: colorOption.COLOR,
       borderColor: colorOption.BORDER_COLOR,
       color: colorOption.TEXT_COLOR
     };
     return (
-      <div
-        className={cn('dtable-ui cell-formatter-container button-formatter', containerClassName)}
-        style={btnStyle}
-        onClick={this.handleClick}
-      >
-        {button_name}
+      <div>
+        <button
+          className={cn('dtable-ui cell-formatter-container button-formatter', containerClassName)}
+          style={btnStyle}
+          onClick={this.handleClick}
+        >
+          {button_name}
+        </button>
       </div>
     );
   }
