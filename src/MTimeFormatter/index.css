@@ -1,1 +1,3 @@
-@import url('../css/cell-formatter.css');
+.dtable-ui-mtime-formatter {
+  max-width: 320px;
+}
