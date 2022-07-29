@@ -2,13 +2,13 @@
   position: relative;
 }
 
-.dtable-ui-select-editor-container {
+.dtable-ui-single-select-option-container {
   height: 40px;
   padding: 10px 5px;
   border-radius: 3px;
   cursor: pointer;
 }
 
-.dtable-ui-select-editor-container:hover {
+.dtable-ui-single-select-option-container:hover {
   background-color: #f5f5f5;
 }
