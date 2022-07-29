@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './index.css';
+
 const propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func
@@ -8,26 +10,10 @@ const propTypes = {
 
 class EditEditorButton extends React.Component {
 
-  getStyle = () => {
-    return {
-      display: 'inline-block',
-      padding: '0 12px',
-      height: '28px',
-      lineHeight: '28px',
-      fontSize: '14px',
-      backgroundColor: '#f0f0f0',
-      color: '#8f8f8f',
-      borderRadius: '4px',
-      cursor: 'pointer',
-      userSelect: 'none'
-    };
-  }
-
   render() {
-    let { text } = this.props;
-    let style = this.getStyle();
+    const { text } = this.props;
     return (
-      <span style={style} onClick={this.props.onClick}>{text}</span>
+      <span className="dtable-ui-editor-button" onClick={this.props.onClick}>{text}</span>
     );
   }
 }
