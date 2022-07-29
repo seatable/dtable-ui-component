@@ -69,21 +69,17 @@ class TextEditor extends React.Component {
     const { isReadOnly } = this.props;
 
     return (
-      <div className="cell-editor text-editor">
-        <div className="text-editor-container">
-          <Input
-            ref={this.setInputRef}
-            type="text"
-            value={this.state.newValue}
-            readOnly={isReadOnly}
-            onChange={this.onChange}
-            onKeyDown={this.onKeyDown}
-            onBlur={this.onBlur}
-            onCut={this.onCut}
-            onPaste={this.onPaste}
-          />
-        </div>
-      </div>
+      <Input
+        ref={this.setInputRef}
+        type="text"
+        value={this.state.newValue}
+        readOnly={isReadOnly}
+        onChange={this.onChange}
+        onKeyDown={this.onKeyDown}
+        onBlur={this.onBlur}
+        onCut={this.onCut}
+        onPaste={this.onPaste}
+      />
     );
   }
 

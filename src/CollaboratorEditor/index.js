@@ -138,7 +138,7 @@ class CollaboratorEditor extends React.Component {
     let enableDeleteCollaborator = !isReadOnly;
 
     return (
-      <div ref={this.setEditorContainerRef} className="cell-editor dtable-ui-collaborator-editor">
+      <div ref={this.setEditorContainerRef} className="dtable-ui-collaborator-editor">
         <div ref={this.setEditorRef} className="dtable-ui-collaborator-editor-container">
           <EditEditorButton text={getLocale('Add_a_collaborator')} onClick={this.onAddOptionToggle} />
           {selectedCollaborators.length > 0 && (

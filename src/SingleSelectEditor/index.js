@@ -124,7 +124,11 @@ class SingleSelectEditor extends React.Component {
     let selectedOptions = option ? [option] : [];
     return (
       <div ref={this.setEditorContainerRef} className="dtable-ui-single-select-editor">
-        <div ref={this.setEditorRef} className="dtable-ui-single-select-editor-container d-inline-block" onClick={this.onAddOptionToggle}>
+        <div
+          ref={this.setEditorRef}
+          className={option ? '' : 'd-inline-block'}
+          onClick={this.onAddOptionToggle}
+        >
           {option ? (
             <div className="dtable-ui-single-select-option-container">
               <SelectEditorOption option={option} />
