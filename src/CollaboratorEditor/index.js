@@ -138,28 +138,28 @@ class CollaboratorEditor extends React.Component {
     let enableDeleteCollaborator = !isReadOnly;
 
     return (
-      <div ref={this.setEditorContainerRef} className="cell-editor dtable-ui-collaborator-editor">
+      <div ref={this.setEditorContainerRef} className="dtable-ui-collaborator-editor">
         <div ref={this.setEditorRef} className="dtable-ui-collaborator-editor-container">
           <EditEditorButton text={getLocale('Add_a_collaborator')} onClick={this.onAddOptionToggle} />
-          <div className="collaborators-container">
-            {selectedCollaborators.length > 0 && (
-              selectedCollaborators.map(collaborator => {
+          {selectedCollaborators.length > 0 && (
+            <div className="collaborators-container mt-2">
+              {selectedCollaborators.map(collaborator => {
                 return (
-                  <CollaboratorItem 
-                    key={collaborator.email} 
-                    collaborator={collaborator} 
+                  <CollaboratorItem
+                    key={collaborator.email}
+                    collaborator={collaborator}
                     enableDeleteCollaborator={enableDeleteCollaborator}
                     onDeleteCollaborator={this.onDeleteCollaborator}
                   />
                 );
-              })
-            )}
-          </div>
+              })}
+            </div>
+          )}
         </div>
         {isPopoverShow && (
           <Fragment>
             <MediaQuery query={'(min-width: 768px)'}>
-              <PCCollaboratorEditorPopover 
+              <PCCollaboratorEditorPopover
                 popoverPosition={popoverPosition}
                 isReadOnly={this.props.isReadOnly}
                 selectedCollaborators={selectedCollaborators}
@@ -168,7 +168,7 @@ class CollaboratorEditor extends React.Component {
               />
             </MediaQuery>
             <MediaQuery query={'(max-width: 767.8px)'}>
-              <MBCollaboratorEditorPopover 
+              <MBCollaboratorEditorPopover
                 isReadOnly={this.props.isReadOnly}
                 value={this.state.newValue}
                 column={this.props.column}

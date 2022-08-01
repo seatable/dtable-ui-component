@@ -1,0 +1,17 @@
+.dtable-ui-editor-button {
+  display: inline-block;
+  padding: 0 12px;
+  height: 28px;
+  line-height: 28px;
+  font-size: 14px;
+  background-color: #f0f0f0;
+  color: #8f8f8f;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.dtable-ui-editor-button:hover {
+  background-color: #dbdbdb;
+  color: #666;
+}

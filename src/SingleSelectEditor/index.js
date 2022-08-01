@@ -123,14 +123,22 @@ class SingleSelectEditor extends React.Component {
     let options = this.options;
     let selectedOptions = option ? [option] : [];
     return (
-      <div ref={this.setEditorContainerRef} className="cell-editor dtable-ui-single-select-editor">
-        <div ref={this.setEditorRef} className="dtable-ui-select-editor-container" onClick={this.onAddOptionToggle}>
-          {option ? <SelectEditorOption option={option} /> : <EditEditorButton text={getLocale('Add_an_option')} />}
+      <div ref={this.setEditorContainerRef} className="dtable-ui-single-select-editor">
+        <div
+          ref={this.setEditorRef}
+          className={option ? '' : 'd-inline-block'}
+          onClick={this.onAddOptionToggle}
+        >
+          {option ? (
+            <div className="dtable-ui-single-select-option-container">
+              <SelectEditorOption option={option} />
+            </div>
+          ) : <EditEditorButton text={getLocale('Add_an_option')} />}
         </div>
         {isPopoverShow && (
           <Fragment>
             <MediaQuery query="(min-width: 768px)">
-              <PCSelectEditorPopover 
+              <PCSelectEditorPopover
                 popoverPosition={popoverPosition}
                 options={options}
                 selectedOptions={selectedOptions}
@@ -140,7 +148,7 @@ class SingleSelectEditor extends React.Component {
               />
             </MediaQuery>
             <MediaQuery query="(max-width: 767.8px)">
-              <MBSelectEditorPopover 
+              <MBSelectEditorPopover
                 isReadOnly={this.props.isReadOnly}
                 value={[this.state.newValue]}
                 column={this.props.column}

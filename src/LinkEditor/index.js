@@ -198,7 +198,7 @@ class LinkEditor extends React.Component {
     let isShowRemoveIcon = !isReadOnly;
 
     return (
-      <div ref={this.setEditorContainerRef} className="cell-editor dtable-ui-link-editor">
+      <div ref={this.setEditorContainerRef} className="dtable-ui-link-editor">
         <div ref={this.setEditorRef} className="dtable-ui-link-editor-container" onClick={this.onAddOptionToggle}>
           {selectedOptions.length === 0 && <EditEditorButton text={getLocale('Add_an_option')} />}
           {selectedOptions.length !== 0 && (

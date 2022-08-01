@@ -2,10 +2,6 @@
   position: relative;
 }
 
-.dtable-ui-collaborator-editor-container .collaborators-container {
-  margin-top: 8px;
-}
-
 .dtable-ui-collaborator-editor-popover .collaborator-search-container {
   padding: 10px 10px 0 10px;
 }
