@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 function DtableSwitch(props) {
   const { onChange, checked, placeholder, disabled, switchClassName } = props;
   return(
-    <div className={`dtable-switch ${switchClassName || ''}`}>
+    <div className={`dtable-switch position-relative ${switchClassName || ''}`}>
       <label className="custom-switch">
-        <input 
-          className="custom-switch-input" 
-          type="checkbox" 
-          checked={checked} 
-          onChange={onChange} 
-          name="custom-switch-checkbox" 
+        <input
+          className="custom-switch-input"
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          name="custom-switch-checkbox"
           disabled={disabled}
         />
         <span className="custom-switch-description text-truncate">{placeholder}</span>
