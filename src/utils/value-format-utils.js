@@ -24,27 +24,61 @@ const _separatorMap = {
   'space': ' ',
 };
 
+/**
+ * @param {string} value
+ * e.g. removeZerosFromEnd('0.0100') // '0.01'
+ */
+const removeZerosFromEnd = (value) => {
+  if (value.endsWith('0')) {
+    return value.replace(/(?:\.0*|(\.\d+?)0+)$/, '$1');
+  }
+  return value;
+};
+
 const _toThousands = (num, isCurrency, formatData) => {
   let { decimal = 'dot', thousands = 'no', precision = 2, enable_precision = false } = formatData || {};
   const decimalString = _separatorMap[decimal];
   const thousandsString = _separatorMap[thousands];
-  let decimalDigits = enable_precision ? precision : _getDecimalDigits(num);
-  let value = parseFloat(num.toFixed(decimalDigits));
-  let integer = Math.trunc(value);
-  let decimalValue = String(Math.abs(NP.minus(value, integer)).toFixed(decimalDigits)).slice(1);
-  if (isCurrency) {
-    if (decimalValue.length === 2) {
-      decimalValue = decimalValue.padEnd(3, '0');
-    } else {
-      decimalValue = (decimalValue.substring(0, 3) || '.').padEnd(3, '0');
+  if ((num + '').indexOf('e') > -1) {
+    if (num < 1 && num > -1) {
+      // 1.convert to non-scientific number
+      let numericString = num.toFixed(enable_precision ? precision : 8);
+
+      // 2.remove 0 from end of the number which not set precision. e.g. 0.100000
+      if (!enable_precision) {
+        numericString = removeZerosFromEnd(numericString);
+      }
+
+      // 3.remove minus from number which equal to 0. e.g. '-0.00'
+      if (parseFloat(numericString) === 0) {
+        return numericString.startsWith('-') ? numericString.substring(1) : numericString;
+      }
+      return numericString;
     }
-    if (enable_precision) {
-      decimalValue = precision === 0 ? '' : decimalValue.slice(0, precision + 1);
+    return num;
+  }
+  const decimalDigits = enable_precision ? precision : _getDecimalDigits(num);
+  let value = parseFloat(num.toFixed(decimalDigits));
+  const isMinus = value < 0;
+  let integer = Math.trunc(value);
+  // format decimal value
+  let decimalValue = String(Math.abs(NP.minus(value, integer)).toFixed(decimalDigits)).slice(1);
+  if (!enable_precision) {
+    decimalValue = removeZerosFromEnd(decimalValue);
+  }
+  if (isCurrency) {
+    if (!enable_precision) {
+      if (decimalValue.length === 2) {
+        decimalValue = decimalValue.padEnd(3, '0');
+      } else {
+        decimalValue = (decimalValue.substring(0, 3) || '.').padEnd(3, '0');
+      }
     }
   }
   decimalValue = decimalValue.replace(/./, decimalString);
+  // format integer value
   let result = [], counter = 0;
-  integer = Object.is(integer, -0) ? ['-', '0'] : integer.toString().split('');
+  integer = Math.abs(integer).toString();
   for (var i = integer.length - 1; i >= 0; i--) {
     counter++;
     result.unshift(integer[i]);
@@ -52,7 +86,7 @@ const _toThousands = (num, isCurrency, formatData) => {
       result.unshift(thousandsString);
     }
   }
-  return result.join('') + decimalValue;
+  return (isMinus ? '-' : '') + result.join('') + decimalValue;
 };
 
 const _getDecimalDigits = (num) => {
@@ -66,29 +100,41 @@ const _getDecimalDigits = (num) => {
 
 export const getNumberDisplayString = (value, formatData) => {
   // formatData: old version maybe 'null'
-  let type = Object.prototype.toString.call(value);
+  const type = Object.prototype.toString.call(value);
   if (type !== '[object Number]') {
+    // return formula internal errors directly.
     if (type === '[object String]' && value.startsWith('#')) {
       return value;
     }
-    return null;
+    return '';
   }
-  if (isNaN(value) || value === Infinity || value === -Infinity || (value + '').indexOf('e') > -1) return value + '';
-  let { format = DEFAULT_NUMBER_FORMAT } = formatData || {};
+  if (isNaN(value) || value === Infinity || value === -Infinity) return value + '';
+  const { format = DEFAULT_NUMBER_FORMAT } = formatData || {};
   switch(format) {
-    case 'number':
+    case 'number': {
       return _toThousands(value, false, formatData);
+    }
     case 'percent': {
       return `${_toThousands(Number.parseFloat((value * 100).toFixed(8)), false, formatData)}%`;
     }
-    case 'yuan':
+    case 'yuan': {
       return `￥${_toThousands(value, true, formatData)}`;
-    case 'dollar':
+    }
+    case 'dollar': {
       return `$${_toThousands(value, true, formatData)}`;
-    case 'euro':
+    }
+    case 'euro': {
       return `€${_toThousands(value, true, formatData)}`;
+    }
     case 'duration': {
-      return getDurationDisplayString(value, formatData.duration_format);
+      return getDurationDisplayString(value, formatData);
+    }
+    case 'custom_currency': {
+      if (formatData.currency_symbol_position === 'after') {
+        return `${_toThousands(value, true, formatData)}${formatData.currency_symbol || ''}`;
+      } else {
+        return `${formatData.currency_symbol || ''}${_toThousands(value, true, formatData)}`;
+      }
     }
     default:
       return '' + value;
