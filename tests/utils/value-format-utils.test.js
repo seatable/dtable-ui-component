@@ -48,7 +48,7 @@ describe('format number to string display in the GUI', () => {
   it('format the value to number-with-commas', () => {
     const number = '187733300%';
     const formattedValue = formatStringToNumber(number, {format: 'number'});
-    expect(formattedValue).toEqual(1877333);
+    expect(formattedValue).toEqual(187733300);
   });
 
   it('format the value to yuan', () => {
@@ -75,43 +75,43 @@ describe('format number to string display in the GUI', () => {
 describe('format duration to string display in the GUI', () => {
   it('the formatted value is 0', () => {
     const number = 0;
-    const formattedValue = getDurationDisplayString(number, 'h:mm');
+    const formattedValue = getDurationDisplayString(number, { duration_format: 'h:mm' });
     expect(formattedValue).toEqual('0:00');
   });
 
   it('the formatted value is 0', () => {
     const number = 0;
-    const formattedValue = getDurationDisplayString(number, 'h:mm:ss');
+    const formattedValue = getDurationDisplayString(number, { duration_format: 'h:mm:ss' });
     expect(formattedValue).toEqual('0:00');
   });
 
   it('format the value to common number', () => {
     const number = 12300;
-    const formattedValue = getDurationDisplayString(number, 'h:mm');
+    const formattedValue = getDurationDisplayString(number, { duration_format: 'h:mm' });
     expect(formattedValue).toEqual('3:25');
   });
 
   it('format the value to common number', () => {
     const number = 12300;
-    const formattedValue = getDurationDisplayString(number, 'h:mm:ss');
+    const formattedValue = getDurationDisplayString(number, { duration_format: 'h:mm:ss' });
     expect(formattedValue).toEqual('3:25:00');
   });
 
   it('format the value to common number', () => {
     const number = 660;
-    const formattedValue = getDurationDisplayString(number, 'h:mm:ss');
-    expect(formattedValue).toEqual('11:00');
+    const formattedValue = getDurationDisplayString(number, { duration_format: 'h:mm:ss' });
+    expect(formattedValue).toEqual('0:11:00');
   });
 
   it('format negative values as displayed strings', () => {
     const number = -12300;
-    const formattedValue = getDurationDisplayString(number, 'h:mm');
+    const formattedValue = getDurationDisplayString(number, { duration_format: 'h:mm' });
     expect(formattedValue).toEqual('-3:25');
   });
 
   it('format negative values as displayed strings', () => {
     const number = -12300;
-    const formattedValue = getDurationDisplayString(number, 'h:mm:ss');
+    const formattedValue = getDurationDisplayString(number, { duration_format: 'h:mm:ss' });
     expect(formattedValue).toEqual('-3:25:00');
   });
 
