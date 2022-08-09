@@ -18,7 +18,7 @@ class DurationFormatter extends React.Component {
     let classname = cn('dtable-ui cell-formatter-container duration-formatter', containerClassName);
 
     return (
-      <div className={classname}>{getDurationDisplayString(value, format)}</div>
+      <div className={classname}>{getDurationDisplayString(value, { duration_format: format })}</div>
     );
   }
 }

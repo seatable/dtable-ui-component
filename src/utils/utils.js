@@ -1,3 +1,5 @@
+import NP from './number-precision';
+
 export const debounce = (fn, wait) => {
   let timeout = null;
   return function() {
@@ -22,4 +24,21 @@ export const throttle = (func, delay) => {
       timer = setTimeout(func, remaining);
     }
   };
+};
+
+export const getFloatNumber = (data, format) =>  {
+  if (!data && data !== 0) {
+    return null;
+  }
+  let newData = parseFloat(data.replace(/[^.-\d]/g, ''));
+  if (format === 'percent' && !isNaN(newData)) {
+    return NP.divide(newData, 100);
+  }
+  return isNaN(newData) ? null : newData;
+};
+
+export const isMac = () => {
+  const platform = navigator.platform;
+  // eslint-disable-next-line eqeqeq
+  return (platform == 'Mac68K') || (platform == 'MacPPC') || (platform == 'Macintosh') || (platform == 'MacIntel');
 };

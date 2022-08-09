@@ -3,17 +3,17 @@ import dayjs from 'dayjs';
 import NP from './number-precision';
 import {
   CellType,
-  NUMBER_TYPES, 
-  DEFAULT_NUMBER_FORMAT, 
-  DURATION_FORMATS_MAP, 
-  DURATION_FORMATS, 
-  DURATION_ZERO_DISPLAY, 
+  DEFAULT_NUMBER_FORMAT,
+  DURATION_FORMATS_MAP,
+  DURATION_FORMATS,
+  DURATION_ZERO_DISPLAY,
   DURATION_DECIMAL_DIGITS,
   FORMULA_RESULT_TYPE,
   COLLABORATOR_COLUMN_TYPES,
   ARRAY_FORMAL_COLUMNS_TYPES,
   DEFAULT_DATE_FORMAT
 } from '../constants';
+import { getFloatNumber } from './utils';
 
 NP.enableBoundaryChecking(false);
 
@@ -141,45 +141,63 @@ export const getNumberDisplayString = (value, formatData) => {
   }
 };
 
-export const formatStringToNumber = (value) => {
-  let isIncludePercent = value.indexOf('%') > -1;
-  let newData = parseFloat(value.replace(/[^.-\d]/g, ''));
-  if (isIncludePercent && !isNaN(newData)) {
-    return newData / 100;
+export const formatStringToNumber = (numberString, formatData) => {
+  let { format, decimal, thousands, enable_precision, precision } = formatData || {};
+  let value = numberString;
+  if (decimal && thousands && decimal === 'comma') {
+    if (thousands === 'dot') {
+      value = value.replace(/,/, '@');
+      value = value.replace(/\./g, ',');
+      value = value.replace(/@/, '.');
+    } else {
+      value = value.replace(/\./g, '');
+      value = value.replace(/,/, '.');
+    }
   }
-  return isNaN(newData) ? '' : newData;
+  value = getFloatNumber(value, format);
+  if (enable_precision && value) {
+    if (format === 'percent') {
+      precision += 2;
+    }
+    value = Number(parseFloat(value).toFixed(precision));
+  }
+  return value;
 };
 
-export const formatNumberString = (value, format) => {
-  let formattedValue = '';
-  switch(format) {
-    case NUMBER_TYPES.NUMBER:
-    case NUMBER_TYPES.NUMBER_WITH_COMMAS:
-      formattedValue = value.replace(/[^.-\d,]/g,'');
-      break;
-    case NUMBER_TYPES.PERCENT:
-      formattedValue = value.replace(/[^.-\d,%]/g, '');
-      break;
-    case NUMBER_TYPES.YUAN:
-      formattedValue = value.replace(/[^.-\d￥,]/g, '');
-      break;
-    case NUMBER_TYPES.DOLLAR:
-      formattedValue = value.replace(/[^.-\d$,]/g, '');
-      break;
-    case NUMBER_TYPES.EURO:
-      formattedValue = value.replace(/[^.-\d€,]/g, '');
-      break;
-    default:
-      formattedValue = value.replace(/[^.-\d,]/g,'');
+export const replaceNumberNotAllowInput = (value, format = DEFAULT_NUMBER_FORMAT, currency_symbol = null) => {
+  if (!value) {
+    return '';
   }
-
-  return formattedValue;
+  value = value.replace(/。/g, '.');
+  switch(format) {
+    case 'number': {
+      return value.replace(/[^.-\d,]/g,'');
+    }
+    case 'percent': {
+      return value.replace(/[^.-\d,%]/g, '');
+    }
+    case 'yuan': {
+      return value.replace(/[^.-\d¥￥,]/g, '');
+    }
+    case 'dollar': {
+      return value.replace(/[^.-\d$,]/g, '');
+    }
+    case 'euro': {
+      return value.replace(/[^.-\d€,]/g, '');
+    }
+    case 'custom_currency': {
+      // eslint-disable-next-line
+      const reg = new RegExp('[^.-\d' + currency_symbol + ',]', 'g');
+      return value.replace(reg, '');
+    }
+    default:
+      return value.replace(/[^.-\d,]/g, '');
+  }
 };
 
 export const getDateDisplayString = (value, format) => {
-  let formattedValue = '';
-  if (!value) { // value === '', value === undefine, value === null
-    return formattedValue;
+  if (value === '' || !value || typeof value !== 'string') {
+    return '';
   }
   const date = dayjs(value);
   if (!date.isValid()) return value;
@@ -208,49 +226,7 @@ export const getDateDisplayString = (value, format) => {
   }
 };
 
-export const getDurationDisplayString = (value, duration_format) => {
-  if (!value && value !== 0) return '';
-  duration_format = duration_format || DURATION_FORMATS_MAP.H_MM;
-  if (DURATION_FORMATS.findIndex((format) => format.type === duration_format) < 0) {
-    return '';
-  }
-  if (value === 0) {
-    return DURATION_ZERO_DISPLAY[duration_format];
-  }
-  const includeDecimal = duration_format.indexOf('.') > -1;
-  let positiveValue = Math.abs(value);
-  if (!includeDecimal) {
-    positiveValue = Math.round(positiveValue);
-  }
-
-  positiveValue = getMathRoundedDuration(positiveValue, duration_format);
-  const decimalParts = (positiveValue + '').split('.');
-  const decimalPartsLen = decimalParts.length;
-  let decimal = 0;
-  if (decimalPartsLen > 1) {
-    decimal = decimalParts[decimalPartsLen - 1];
-    decimal = decimal ? decimal - 0 : 0;
-  }
-  const decimalDigits = DURATION_DECIMAL_DIGITS[duration_format];
-  const decimalSuffix = getDurationDecimalSuffix(duration_format, decimal);
-  let displayString = value < 0 ? '-' : '';
-  const hours = parseInt(positiveValue / 3600);
-  let minutes = parseInt((positiveValue - hours * 3600) / 60);
-  if (duration_format === DURATION_FORMATS_MAP.H_MM) {
-    displayString += `${hours}:${minutes > 9 ? minutes : '0' + minutes}`;
-    return displayString;
-  }
-  let seconds = Number.parseFloat((positiveValue - hours * 3600 - minutes * 60).toFixed(decimalDigits));
-  if (hours > 0) {
-    displayString += `${hours}:`;
-    minutes = minutes > 9 ? minutes : `0${minutes}`;
-  }
-  seconds = seconds > 9 ? seconds : `0${seconds}`;
-  displayString += `${minutes}:${seconds}${decimalSuffix}`;
-  return displayString;
-};
-
-const getMathRoundedDuration = (num, duration_format) => {
+const _getMathRoundedDuration = (num, duration_format) => {
   const decimalDigits = DURATION_DECIMAL_DIGITS[duration_format];
   if (decimalDigits < 1) {
     return num;
@@ -259,7 +235,7 @@ const getMathRoundedDuration = (num, duration_format) => {
   return Math.round(num * ratio) / ratio;
 };
 
-const getDurationDecimalSuffix = (duration_format, decimal) => {
+const _getDurationDecimalSuffix = (duration_format, decimal) => {
   if (duration_format === DURATION_FORMATS_MAP.H_MM_SS_S) {
     return decimal === 0 ? '.0' : '';
   } else if (duration_format === DURATION_FORMATS_MAP.H_MM_SS_SS) {
@@ -278,6 +254,46 @@ const getDurationDecimalSuffix = (duration_format, decimal) => {
     }
   }
   return '';
+};
+
+export const getDurationDisplayString = (value, data) => {
+  if (!value && value !== 0) return '';
+  let { duration_format } = data || {};
+  duration_format = duration_format || DURATION_FORMATS_MAP.H_MM;
+  if (DURATION_FORMATS.findIndex((format) => format.type === duration_format) < 0) {
+    return '';
+  }
+  if (value === 0) {
+    return DURATION_ZERO_DISPLAY[duration_format];
+  }
+  const includeDecimal = duration_format.indexOf('.') > -1;
+  let positiveValue = Math.abs(value);
+  if (!includeDecimal) {
+    positiveValue = Math.round(positiveValue);
+  }
+
+  positiveValue = _getMathRoundedDuration(positiveValue, duration_format);
+  const decimalParts = (positiveValue + '').split('.');
+  const decimalPartsLen = decimalParts.length;
+  let decimal = 0;
+  if (decimalPartsLen > 1) {
+    decimal = decimalParts[decimalPartsLen - 1];
+    decimal = decimal ? decimal - 0 : 0;
+  }
+  const decimalDigits = DURATION_DECIMAL_DIGITS[duration_format];
+  const decimalSuffix = _getDurationDecimalSuffix(duration_format, decimal);
+  let displayString = value < 0 ? '-' : '';
+  let hours = parseInt(positiveValue / 3600);
+  let minutes = parseInt((positiveValue - hours * 3600) / 60);
+  if (duration_format === DURATION_FORMATS_MAP.H_MM) {
+    displayString += `${hours}:${minutes > 9 ? minutes : '0' + minutes}`;
+    return displayString;
+  }
+  let seconds = Number.parseFloat((positiveValue - hours * 3600 - minutes * 60).toFixed(decimalDigits));
+  minutes = minutes > 9 ? minutes : `0${minutes}`;
+  seconds = seconds > 9 ? seconds : `0${seconds}`;
+  displayString += `${hours}:${minutes}:${seconds}${decimalSuffix}`;
+  return displayString;
 };
 
 export const getOptionName = (options, targetOptionID) => {
@@ -322,7 +338,7 @@ export const getGeolocationDisplayString = (value, columnData) => {
   const { geo_format } = columnData || {};
   const cellValue = value || {};
   if (!value) {
-    return null;
+    return '';
   }
   if (geo_format === 'lng_lat' && value.lng && value.lat) {
     return `${cellValue.lng}, ${cellValue.lat}`;
