@@ -6,7 +6,8 @@ const NUMBER_TYPES = {
   'PERCENT': 'percent',
   'YUAN': 'yuan',
   'EURO': 'euro',
-  'DOLLAR': 'dollar'
+  'DOLLAR': 'dollar',
+  'CUSTOM_CURRENCY': 'custom_currency'
 };
 
 const DATE_TYPES = {

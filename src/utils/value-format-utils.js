@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import NP from './number-precision';
 import {
   CellType,
+  NUMBER_TYPES,
   DEFAULT_NUMBER_FORMAT,
   DURATION_FORMATS_MAP,
   DURATION_FORMATS,
@@ -111,25 +112,25 @@ export const getNumberDisplayString = (value, formatData) => {
   if (isNaN(value) || value === Infinity || value === -Infinity) return value + '';
   const { format = DEFAULT_NUMBER_FORMAT } = formatData || {};
   switch(format) {
-    case 'number': {
+    case NUMBER_TYPES.NUMBER: {
       return _toThousands(value, false, formatData);
     }
-    case 'percent': {
+    case NUMBER_TYPES.PERCENT: {
       return `${_toThousands(Number.parseFloat((value * 100).toFixed(8)), false, formatData)}%`;
     }
-    case 'yuan': {
+    case NUMBER_TYPES.YUAN: {
       return `￥${_toThousands(value, true, formatData)}`;
     }
-    case 'dollar': {
+    case NUMBER_TYPES.DOLLAR: {
       return `$${_toThousands(value, true, formatData)}`;
     }
-    case 'euro': {
+    case NUMBER_TYPES.EURO: {
       return `€${_toThousands(value, true, formatData)}`;
     }
     case 'duration': {
       return getDurationDisplayString(value, formatData);
     }
-    case 'custom_currency': {
+    case NUMBER_TYPES.CUSTOM_CURRENCY: {
       if (formatData.currency_symbol_position === 'after') {
         return `${_toThousands(value, true, formatData)}${formatData.currency_symbol || ''}`;
       } else {
@@ -170,22 +171,23 @@ export const replaceNumberNotAllowInput = (value, format = DEFAULT_NUMBER_FORMAT
   }
   value = value.replace(/。/g, '.');
   switch(format) {
-    case 'number': {
+    case NUMBER_TYPES.NUMBER:
+    case NUMBER_TYPES.NUMBER_WITH_COMMAS: {
       return value.replace(/[^.-\d,]/g,'');
     }
-    case 'percent': {
+    case NUMBER_TYPES.PERCENT: {
       return value.replace(/[^.-\d,%]/g, '');
     }
-    case 'yuan': {
+    case NUMBER_TYPES.YUAN: {
       return value.replace(/[^.-\d¥￥,]/g, '');
     }
-    case 'dollar': {
+    case NUMBER_TYPES.DOLLAR: {
       return value.replace(/[^.-\d$,]/g, '');
     }
-    case 'euro': {
+    case NUMBER_TYPES.EURO: {
       return value.replace(/[^.-\d€,]/g, '');
     }
-    case 'custom_currency': {
+    case NUMBER_TYPES.CUSTOM_CURRENCY: {
       // eslint-disable-next-line
       const reg = new RegExp('[^.-\d' + currency_symbol + ',]', 'g');
       return value.replace(reg, '');
@@ -196,7 +198,7 @@ export const replaceNumberNotAllowInput = (value, format = DEFAULT_NUMBER_FORMAT
 };
 
 export const getDateDisplayString = (value, format) => {
-  if (value === '' || !value || typeof value !== 'string') {
+  if (!value || typeof value !== 'string') {
     return '';
   }
   const date = dayjs(value);
