@@ -26,6 +26,10 @@ class SimpleLongTextFormatter extends React.Component {
     };
   }
 
+  componentWillUnmount() {
+    this.clearTimer();
+  }
+
   renderLinks = (value) => {
     const links = value.links;
     if (!Array.isArray(links) || links.length === 0) return null;
