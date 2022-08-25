@@ -6,7 +6,8 @@ const NUMBER_TYPES = {
   'PERCENT': 'percent',
   'YUAN': 'yuan',
   'EURO': 'euro',
-  'DOLLAR': 'dollar'
+  'DOLLAR': 'dollar',
+  'CUSTOM_CURRENCY': 'custom_currency'
 };
 
 const DATE_TYPES = {
@@ -75,6 +76,9 @@ const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
 const DURATION_FORMATS_MAP = {
   H_MM: 'h:mm',
   H_MM_SS: 'h:mm:ss',
+  H_MM_SS_S: 'h:mm:ss.s',
+  H_MM_SS_SS: 'h:mm:ss.ss',
+  H_MM_SS_SSS: 'h:mm:ss.sss'
 };
 
 const DURATION_FORMATS = [
@@ -85,11 +89,17 @@ const DURATION_FORMATS = [
 const DURATION_ZERO_DISPLAY = {
   [DURATION_FORMATS_MAP.H_MM]: '0:00',
   [DURATION_FORMATS_MAP.H_MM_SS]: '0:00',
+  [DURATION_FORMATS_MAP.H_MM_SS_S]: '0:00.0',
+  [DURATION_FORMATS_MAP.H_MM_SS_SS]: '0:00.00',
+  [DURATION_FORMATS_MAP.H_MM_SS_SSS]: '0:00.000',
 };
 
 const DURATION_DECIMAL_DIGITS = {
   [DURATION_FORMATS_MAP.H_MM]: 0,
   [DURATION_FORMATS_MAP.H_MM_SS]: 0,
+  [DURATION_FORMATS_MAP.H_MM_SS_S]: 1,
+  [DURATION_FORMATS_MAP.H_MM_SS_SS]: 2,
+  [DURATION_FORMATS_MAP.H_MM_SS_SSS]: 3,
 };
 
 export {

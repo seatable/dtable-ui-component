@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import isHotkey from 'is-hotkey';
 import { NUMBER_TYPES } from '../constants';
-import { getNumberDisplayString, formatStringToNumber, formatNumberString } from '../utils/value-format-utils';
+import { getNumberDisplayString, formatStringToNumber, replaceNumberNotAllowInput } from '../utils/value-format-utils';
+import { isMac } from '../utils/utils';
 
 const propTypes = {
   isReadOnly: PropTypes.bool,
@@ -60,12 +61,18 @@ class NumberEditor extends React.Component {
   }
 
   onChange = (event) => {
+    const { data } = this.props.column; // data maybe 'null'
     let value = event.target.value.trim();
-    value = formatNumberString(value, this.dataFormat);  // format the number in changing
-    if (value === this.state.inputValue) {
-      return;
+    let currency_symbol = null;
+    if (data && data.format === 'custom_currency') {
+      currency_symbol = data['currency_symbol'];
     }
-    this.setState({inputValue : value});
+
+    //Prevent the repetition of periods bug in the Chinese input method of the Windows system
+    if (!isMac() && value.indexOf('.。') > -1) return;
+    value = replaceNumberNotAllowInput(value, this.dataFormat, currency_symbol);
+    if (value === this.state.inputValue) return;
+    this.setState({ inputValue : value });
   }
 
   onBlur = () => {
@@ -77,7 +84,7 @@ class NumberEditor extends React.Component {
     if (isHotkey('enter', event)) {
       event.preventDefault();
       this.onBlur();
-    } else if ((event.keyCode === 37 && selectionStart === 0) || 
+    } else if ((event.keyCode === 37 && selectionStart === 0) ||
       (event.keyCode === 39 && selectionEnd === value.length)
     ) {
       event.stopPropagation();
@@ -103,7 +110,7 @@ class NumberEditor extends React.Component {
     this.input = input;
     return this.input;
   };
-  
+
   render() {
     let style = this.getStyle();
     return (
@@ -113,7 +120,7 @@ class NumberEditor extends React.Component {
             <div className="form-control" style={style} onClick={this.onEditorHandle}>{this.state.textValue}</div>
           }
           {this.state.isEditorShow && (
-            <input 
+            <input
               ref={this.setInputRef}
               type="text"
               className="form-control"

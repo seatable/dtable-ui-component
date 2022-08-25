@@ -6,11 +6,10 @@ export { default as Loading } from './Loading';
 export { setLocale } from './lang';
 
 // utils
-export { 
+export {
   getDateDisplayString,
   getNumberDisplayString,
   formatStringToNumber,
-  formatNumberString,
 } from './utils/value-format-utils';
 
 // formatter
