@@ -108,7 +108,7 @@ class MBSelectEditorPopover extends React.Component {
         backgroundColor: option.color,
         color: option.textColor || null,
       };
-  
+
       return (
         <div className="mb-select-option-item" key={index} onMouseDown={this.onSelectOption.bind(this, option)}>
           <span className="mb-select-item">
@@ -161,7 +161,7 @@ class MBSelectEditorPopover extends React.Component {
                       onDeleteSelectOption={this.onRemoveOption}
                     />
                   );
-                }) 
+                })
               )}
             </div>
           </div>

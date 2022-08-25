@@ -106,7 +106,7 @@ class LinkEditor extends React.Component {
     let { column, linkMetaData } = this.props;
     let { display_column_key: displayColumnKey } = column.data;
     let linkedTable = linkMetaData.getLinkedTable(this.otherTableId);
-    
+
     let availableRows = linkedTable.rows.filter(row => {
       return !!row[displayColumnKey];
     });
@@ -210,7 +210,7 @@ class LinkEditor extends React.Component {
         {isPopoverShow && (
           <Fragment>
             <MediaQuery query="(min-width: 768px)">
-              <PCLinkEditorPopover 
+              <PCLinkEditorPopover
                 popoverPosition={popoverPosition}
                 options={options}
                 selectedOptions={selectedOptions}
@@ -218,7 +218,7 @@ class LinkEditor extends React.Component {
               />
             </MediaQuery>
             <MediaQuery query="(max-width: 767.8px)">
-              <MBLinkEditorPopover 
+              <MBLinkEditorPopover
                 isReadOnly={this.props.isReadOnly}
                 value={this.state.newValue}
                 column={this.props.column}
