@@ -91,7 +91,7 @@ class MBLinkEditorPopover extends React.Component {
       return (
         <div className="mb-link-option-item" key={index} onMouseDown={this.onSelectOption.bind(this, option)}>
           <span className="mb-option-info">
-            <span className="option-name">{option.name}</span>
+            <span className="option-name" title={option.name}>{option.name}</span>
           </span>
           {isSelect && <i className="mb-option-checked dtable-font dtable-icon-check-mark"></i>}
         </div>
