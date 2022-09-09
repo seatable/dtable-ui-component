@@ -1,16 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/**
- * option : {
- *   id: '',
- *   name: '',
- *   color: '',
- * }
- */
-
 const propTypes = {
-  option: PropTypes.object.isRequired,
+  option: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+  }).isRequired,
   isShowRemoveIcon: PropTypes.bool,
   onDeleteSelectOption: PropTypes.func,
 };
@@ -72,7 +68,7 @@ class SelectEditorOption extends React.Component {
     return (
       <div className="dtable-ui select-option-item" style={containerStyle}>
         <div className="option-info" style={optionStyle}>
-          <div className="option-name">{option.name}</div>
+          <div className="option-name" title={option.name}>{option.name}</div>
         </div>
         {isShowRemoveIcon && (
           <div className="option-remove" style={operationStyle} onClick={this.onDeleteOption}>

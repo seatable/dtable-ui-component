@@ -25,14 +25,8 @@ class SingleSelectFormatter extends React.PureComponent {
   render() {
     const { containerClassName, value } = this.props;
     let classname = cn('dtable-ui cell-formatter-container single-select-formatter', containerClassName);
-    
-    if (!value) {
-      return (<div className={classname}></div>);
-    }
-
-    let option = this.getOption();
     return (
-      <div className={classname}>{option}</div>
+      <div className={classname}>{value ? this.getOption() : ''}</div>
     );
   }
 }

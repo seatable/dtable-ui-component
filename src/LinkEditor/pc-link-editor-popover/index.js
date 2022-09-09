@@ -68,7 +68,7 @@ class PCLinkEditorPopover extends React.Component {
             return (
               <div key={index} className="link-option-item" onClick={this.onOptionItemToggle.bind(this, option)}>
                 <div className="option-info">
-                  <div className="option-name">{option.name}</div>
+                  <div className="option-name" title={option.name}>{option.name}</div>
                 </div>
                 <div className="option-checked">
                   {isSelect && <i className="dtable-font dtable-icon-check-mark"></i>}

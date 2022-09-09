@@ -112,7 +112,7 @@ class MBSelectEditorPopover extends React.Component {
       return (
         <div className="mb-select-option-item" key={index} onMouseDown={this.onSelectOption.bind(this, option)}>
           <span className="mb-select-item">
-            <span className="item-name" style={style}>{option.name}</span>
+            <span className="item-name" style={style} title={option.name}>{option.name}</span>
           </span>
           <span className="mb-item-checked">
             {isSelect && <i className="dtable-font dtable-icon-check-mark"></i>}

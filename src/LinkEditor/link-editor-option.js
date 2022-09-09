@@ -70,7 +70,7 @@ class LinkEditorOption extends React.Component {
     return (
       <div className="dtable-ui link-option-item" style={containerStyle}>
         <div className="option-info" style={optionStyle}>
-          <div className="option-name" style={optionNameStyle}>{option.name}</div>
+          <div className="option-name" style={optionNameStyle} title={option.name}>{option.name}</div>
         </div>
         {isShowRemoveIcon && (
           <div className="option-remove" style={operationStyle} onClick={this.onDeleteOption}>
