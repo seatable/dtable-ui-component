@@ -12,17 +12,9 @@ const propTypes = {
 
 class ButtonFormatter extends React.Component {
 
-  handleClick = () => {
-    const { button_type, url_address } = this.props.data;
-    if (button_type == 'open_url' && url_address) {
-      window.open(url_address);
-    }
-  }
-
   render() {
     let { data, containerClassName, optionColors } = this.props;
-    const { button_color, button_type, button_name } = data || {};
-    if (!button_type) return null;
+    const { button_color, button_name } = data || {};
     let colorOption = Array.isArray(optionColors) ?
       (optionColors.find(item => item.COLOR === button_color) || optionColors[0])
       :
@@ -34,14 +26,8 @@ class ButtonFormatter extends React.Component {
       color: colorOption.TEXT_COLOR
     };
     return (
-      <div>
-        <button
-          className={cn('dtable-ui cell-formatter-container button-formatter', containerClassName)}
-          style={btnStyle}
-          onClick={this.handleClick}
-        >
-          {button_name}
-        </button>
+      <div className={cn('dtable-ui cell-formatter-container button-formatter', containerClassName)} style={btnStyle}>
+        {button_name}
       </div>
     );
   }
