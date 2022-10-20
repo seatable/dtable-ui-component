@@ -26,6 +26,10 @@ const propTypes = {
 // 4 value is exist, typeof value is array
 class CollaboratorFormatter extends React.PureComponent {
 
+  static defaultProps = {
+    value: [],
+  };
+
   getCollaborators = () => {
     let { value, collaborators, enableDeleteCollaborator, onDeleteCollaborator } = this.props;
     if (!Array.isArray(value)) {
@@ -41,9 +45,9 @@ class CollaboratorFormatter extends React.PureComponent {
         };
       }
       return (
-        <CollaboratorItem 
+        <CollaboratorItem
           key={index}
-          collaborator={collaborator} 
+          collaborator={collaborator}
           enableDeleteCollaborator={enableDeleteCollaborator}
           onDeleteCollaborator={onDeleteCollaborator}
         />

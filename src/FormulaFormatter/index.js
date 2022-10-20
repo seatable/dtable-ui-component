@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FORMULA_RESULT_TYPE, CellType } from '../constants';
-import cellFormatterFactory from '../cellFormatterFactory';
+import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
 import { isArrayFormalColumn, isSimpleCellFormatter, isFunction } from './utils';
 import cellValueValidator from './cell-value-validator';
@@ -10,8 +10,8 @@ import { getFormulaDisplayString } from '../utils/value-format-utils';
 import './index.css';
 
 const propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object, PropTypes.bool]),
-  column: PropTypes.Object,
+  value: PropTypes.any,
+  column: PropTypes.object,
   containerClassName: PropTypes.string,
   collaborators: PropTypes.array,
 };
@@ -36,7 +36,7 @@ class FormulaFormatter extends React.Component {
     if (!array_type || array_type === CellType.LINK) {
       return null;
     }
-    let Formatter = cellFormatterFactory.createFormatter(array_type);
+    const Formatter = BaseFormatterConfig[array_type];
     let formatterProps = this.getFormatterProps(array_type, array_data, collaborators);
 
     if (isArrayFormalColumn(array_type)) {

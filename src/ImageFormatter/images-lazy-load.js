@@ -44,11 +44,11 @@ class ImagesLazyLoad extends React.Component {
     images.forEach(item => {
       let url = getImageThumbnailUrl(item, server);
       this.lazyLoadImage(
-        url, 
+        url,
         (image) => {
           let { loadedCount, loadedImages } = this.state;
           this.setState({loadedCount: loadedCount + 1, loadedImages: loadedImages.concat(image)});
-        }, 
+        },
         () => {
           let { loadedCount } = this.state;
           this.setState({loadedCount: loadedCount + 1});
@@ -71,7 +71,7 @@ class ImagesLazyLoad extends React.Component {
   onMouseDown = (event) => {
     event.stopPropagation();
   }
-  
+
   onImageClick = (event, index) => {
     event.stopPropagation();
     this.props.onImageClick(index);
@@ -93,12 +93,12 @@ class ImagesLazyLoad extends React.Component {
       return (
         loadedImages.map((image, index) => {
           return (
-            <img 
-              key={index} 
+            <img
+              key={index}
               className="image-item"
-              src={image.src} 
-              onMouseDown={this.onMouseDown} 
-              onClick={(event) => this.onImageClick(event, index)} 
+              src={image.src}
+              onMouseDown={this.onMouseDown}
+              onClick={(event) => this.onImageClick(event, index)}
               alt=""
             />
           );

@@ -14,6 +14,10 @@ const propTypes = {
 
 class MultipleSelectFormatter extends React.PureComponent {
 
+  static defaultProps = {
+    options: [],
+  };
+
   getOptions = () => {
     const { value, options } = this.props;
     if (!Array.isArray(value) || !Array.isArray(options)) return [];

@@ -48,4 +48,4 @@ export function substitute(str, obj) {
   }
 
   return '';
-} 
+}

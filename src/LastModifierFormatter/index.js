@@ -24,6 +24,10 @@ const propTypes = {
 // 4 value is exist, typeof value is array
 class LastModifierFormatter extends React.PureComponent {
 
+  static defaultProps = {
+    value: '',
+  };
+
   getCollaborators = () => {
     let { value, collaborators } = this.props;
     if (!Array.isArray(value)) {

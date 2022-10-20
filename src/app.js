@@ -60,11 +60,11 @@ class App extends React.Component {
             <div>多个collaborators测试</div>
             <CollaboratorFormatter value={['123', '4567']} collaborators={collaborators} />
             <div>带删除按钮测试</div>
-            <CollaboratorFormatter 
+            <CollaboratorFormatter
               containerClassName='collaborator-container'
-              value={['123', '4567']} 
-              collaborators={collaborators} 
-              enableDeleteCollaborator={true} 
+              value={['123', '4567']}
+              collaborators={collaborators}
+              enableDeleteCollaborator={true}
               onDeleteCollaborator={this.onDeleteCollaborator}
             />
           </div>

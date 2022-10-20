@@ -14,7 +14,7 @@ class ButtonFormatter extends React.Component {
 
   handleClick = () => {
     const { button_type, url_address } = this.props.data;
-    if (button_type == 'open_url' && url_address) {
+    if (button_type === 'open_url' && url_address) {
       window.open(url_address);
     }
   }

@@ -60,7 +60,7 @@ class DateEditorPopover extends React.PureComponent {
     this.setState({datePickerValue: dayjs(date)});
     this.props.onValueChanged(newValue.format(dateFormat));
   }
-  
+
   handleTimeChange = (time) => {
     const { datePickerValue } = this.state;
     const { dateFormat } = this.props;
@@ -109,7 +109,7 @@ class DateEditorPopover extends React.PureComponent {
     let { dateFormat, lang } = this.props;
     let defaultValue = dayjs().clone();
     return (
-      <Calendar 
+      <Calendar
         locale={initDateEditorLanguage(lang)}
         format={dateFormat}
         defaultValue={defaultValue}

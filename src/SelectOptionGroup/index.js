@@ -95,7 +95,7 @@ class SelectOptionGroup extends Component {
     let value = searchVal || '';
     if (value !== this.state.searchVal) {
       this.setState({searchVal: value, activeIndex: -1,});
-    } 
+    }
   }
 
   renderOptGroup = (searchVal) => {
@@ -127,7 +127,7 @@ class SelectOptionGroup extends Component {
 
   render() {
     const { searchable, searchPlaceholder, top, left, minWidth, value, isShowSelected } = this.props;
-    let { searchVal } = this.state;    
+    let { searchVal } = this.state;
     let style = {top: top || 0, left: left || 0 };
     if (minWidth) {
       style = {top: top || 0, left: left || 0, minWidth};
@@ -143,7 +143,7 @@ class SelectOptionGroup extends Component {
         }
         {searchable && (
           <div className="option-group-search">
-            <DTableSearchInput 
+            <DTableSearchInput
               className="option-search-control"
               placeholder={searchPlaceholder}
               onChange={this.onChangeSearch}

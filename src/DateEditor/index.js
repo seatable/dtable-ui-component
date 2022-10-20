@@ -93,7 +93,7 @@ class DateEditor extends React.Component {
 
     let { lang, column } = this.props;
     let { newValue, isPopoverShow, dateFormat, showHourAndMinute } = this.state;
-    
+
     return (
       <div className="cell-editor dtable-ui-date-editor">
         {!isPopoverShow && (
@@ -104,7 +104,7 @@ class DateEditor extends React.Component {
         {isPopoverShow && (
           <Fragment>
             <MediaQuery query={'(min-width: 768px)'}>
-              <PCDateEditorPopover 
+              <PCDateEditorPopover
                 lang={lang}
                 value={newValue}
                 dateFormat={dateFormat}
@@ -113,7 +113,7 @@ class DateEditor extends React.Component {
               />
             </MediaQuery>
             <MediaQuery query={'(max-width: 767.8px)'}>
-              <MBDateEditorPopover 
+              <MBDateEditorPopover
                 isReadOnly={this.props.isReadOnly}
                 lang={lang}
                 value={newValue}

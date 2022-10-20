@@ -152,7 +152,7 @@ class MultipleSelectEditor extends React.Component {
         {isPopoverShow && (
           <Fragment>
             <MediaQuery query="(min-width: 768px)">
-              <PCSelectEditorPopover 
+              <PCSelectEditorPopover
                 popoverPosition={popoverPosition}
                 options={options}
                 selectedOptions={selectedOptions}
@@ -162,7 +162,7 @@ class MultipleSelectEditor extends React.Component {
               />
             </MediaQuery>
             <MediaQuery query="(max-width: 767.8px)">
-              <MBSelectEditorPopover 
+              <MBSelectEditorPopover
                 isReadOnly={this.props.isReadOnly}
                 value={this.state.newValue}
                 column={this.props.column}

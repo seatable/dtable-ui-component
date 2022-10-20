@@ -64,7 +64,7 @@ class PCLinkEditorPopover extends React.Component {
           {options.length > 0 && options.map((option, index) => {
             let isSelect = selectedOptions.some(selectedOption => {
               return selectedOption.id === option.id;
-            }); 
+            });
             return (
               <div key={index} className="link-option-item" onClick={this.onOptionItemToggle.bind(this, option)}>
                 <div className="option-info">
