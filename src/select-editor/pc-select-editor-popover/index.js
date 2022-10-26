@@ -36,7 +36,7 @@ class PCSelectEditorPopover extends React.Component {
   onInputClick = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     event.stopPropagation();
-  } 
+  }
 
   onAddNewOption = () => {
     let name = this.state.searchValue.trim();
@@ -87,7 +87,7 @@ class PCSelectEditorPopover extends React.Component {
             let optionStyle = this.getOptionStyle(option);
             let isSelect = selectedOptions.some(selectedOption => {
               return selectedOption.id === option.id;
-            }); 
+            });
             return (
               <div key={index} className="select-option-item" onClick={this.onOptionItemToggle.bind(this, option)}>
                 <div className="option-info">

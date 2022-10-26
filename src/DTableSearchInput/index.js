@@ -82,10 +82,10 @@ class DtableSearchInput extends Component {
   render() {
     const { placeholder, autoFocus, className, onKeyDown, disabled, style } = this.props;
     const { searchValue } = this.state;
-    
+
     return (
       <Fragment>
-        <input 
+        <input
           type="text"
           value={searchValue}
           className={classnames('form-control', className)}

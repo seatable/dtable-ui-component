@@ -65,7 +65,7 @@ class PCDateEditorPopover extends React.Component {
     let { dateFormat, showHourAndMinute, lang } = this.props;
     let defaultValue = dayjs().clone();
     return (
-      <Calendar 
+      <Calendar
         locale={initDateEditorLanguage(lang)}
         style={{zIndex: 1001}}
         format={dateFormat}
@@ -85,7 +85,7 @@ class PCDateEditorPopover extends React.Component {
     const calendar = this.getCalender();
 
     return (
-      <DatePicker 
+      <DatePicker
         open={open}
         value={datePickerValue}
         animation="slide-up"

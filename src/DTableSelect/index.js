@@ -68,7 +68,7 @@ class DtableSelect extends React.Component {
     isClearable: PropTypes.bool,
     placeholder: PropTypes.string,
     classNamePrefix: PropTypes.string,
-    style: PropTypes.object, 
+    style: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     menuPortalTarget: PropTypes.string,
     menuPosition: PropTypes.string,
@@ -94,7 +94,7 @@ class DtableSelect extends React.Component {
   }
 
   render() {
-    const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage, 
+    const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage,
       classNamePrefix, style } = this.props;
     return(
       <Select
@@ -108,13 +108,13 @@ class DtableSelect extends React.Component {
         placeholder={placeholder}
         isSearchable={isSearchable}
         isClearable={isClearable}
-        menuPosition={menuPosition || 'fixed'} // when use default menuPosition(absolute), menuPortalTarget is unnecessary. 
+        menuPosition={menuPosition || 'fixed'} // when use default menuPosition(absolute), menuPortalTarget is unnecessary.
         menuShouldScrollIntoView
         menuPortalTarget={this.getMenuPortalTarget()}
         captureMenuScroll={false}
         noOptionsMessage={noOptionsMessage}
       />
-    ); 
+    );
   }
 }
 

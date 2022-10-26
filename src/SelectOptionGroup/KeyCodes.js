@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   LeftArrow: 37,
   UpArrow: 38,
   RightArrow: 39,

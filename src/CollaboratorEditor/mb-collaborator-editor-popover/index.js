@@ -87,7 +87,7 @@ class MBCollaboratorEditorPopover extends React.Component {
     let { value } = this.props;
     return collaborators.map((collaborator, index) => {
       let isSelect = value.some(item => item === collaborator.email);
-  
+
       return (
         <div className="mb-collaborator-option-item" key={index} onMouseDown={this.onSelectCollaborator.bind(this, collaborator)}>
           <span className="mb-collaborator-info">

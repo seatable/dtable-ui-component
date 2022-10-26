@@ -14,7 +14,7 @@ const propTypes = {
 class DateFormatter extends React.Component {
 
   static defaultProps = {
-    value: '', 
+    value: '',
     format: 'YYYY-MM-DD',
     containerClassName: '',
   }

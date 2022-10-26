@@ -13,7 +13,7 @@ const propTypes = {
 class CTimeFormatter extends React.Component {
 
   static defaultProps = {
-    value: '', 
+    value: '',
     containerClassName: '',
   }
 

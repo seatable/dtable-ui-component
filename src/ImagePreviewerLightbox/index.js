@@ -26,7 +26,7 @@ function ImagePreviewerLightbox(props) {
     toolbarButtons.push(<button className='dtable-font dtable-icon-delete' onClick={() => {deleteImage(imageIndex, 'previewer');}}></button>);
   }
   if (downloadImage) {
-    toolbarButtons.push(<button className='dtable-font dtable-icon-download' onClick={() => {downloadImage(URL);}}></button>); 
+    toolbarButtons.push(<button className='dtable-font dtable-icon-download' onClick={() => {downloadImage(URL);}}></button>);
   }
   return (
     <Fragment>
@@ -74,7 +74,7 @@ function ImagePreviewerLightbox(props) {
           <div className="image-footer-choice mobile-image-footer-choice dtable-ui-component">
             <div className="image-footer-icon">
               <div className="d-flex">
-                {canRotateImage && 
+                {canRotateImage &&
                   <span className="image-footer-choice-item mr-4" onClick={() => {onRotateImage(imageIndex, 90);}}>
                     <i className="dtable-font dtable-icon-rotate"></i>
                   </span>

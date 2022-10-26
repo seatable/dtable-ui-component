@@ -11,6 +11,10 @@ const propTypes = {
 
 class AutoNumberFormatter extends React.Component {
 
+  static defaultProps = {
+    value: '',
+  };
+
   render() {
     const { containerClassName, value } = this.props;
     let classname = cn('dtable-ui cell-formatter-container auto-number-formatter', containerClassName);

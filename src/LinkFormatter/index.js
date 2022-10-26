@@ -23,7 +23,10 @@ class LinkFormatter extends React.Component {
 
   static defaultProps = {
     enableOpenLinkedRow: false,
+    currentTableId: '',
     value: [],
+    column: {},
+    row: {},
   }
 
   constructor(props) {
@@ -43,7 +46,7 @@ class LinkFormatter extends React.Component {
       this.setState({value: this.getLinkedCellValue(nextRow)});
     }
   }
-  
+
 
   getLinkedCellValue = (row) => {
     if (!row) return [];

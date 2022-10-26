@@ -39,7 +39,7 @@ class CollaboratorSelect extends Component {
     if (this.state.isShowSelectOptions) event.nativeEvent.stopImmediatePropagation();
     let eventClassName = event.target.className;
     if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'option-group-search') return;
-    //Prevent closing by pressing the spacebar in the search input 
+    //Prevent closing by pressing the spacebar in the search input
     if (event.target.value === '') return;
     this.selectedOptionWidth = this.selectedOptionRef.clientWidth;
     this.setState({
@@ -124,11 +124,11 @@ class CollaboratorSelect extends Component {
     return(
       <button
         ref={(node) => this.selector = node}
-        className={classnames('dtable-select custom-select collaborator-select', 
+        className={classnames('dtable-select custom-select collaborator-select',
           {'focus': this.state.isShowSelectOptions},
           {'disabled': isLocked},
           className
-        )} 
+        )}
         id={this.id}
         onClick={this.onSelectToggle}
       >
@@ -139,7 +139,7 @@ class CollaboratorSelect extends Component {
             <span className="select-placeholder">{placeholder}</span>
           }
           {!isLocked && <i className="dtable-font dtable-icon-drop-down"></i>}
-        </div>       
+        </div>
         {this.state.isShowSelectOptions && this.renderOptionGroup()}
       </button>
     );

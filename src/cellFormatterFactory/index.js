@@ -1,10 +1,10 @@
-import formatterConfig from '../formatterConfig';
+import FormatterConfig from '../formatterConfig';
 
 class CellFormatterFactory {
 
   createFormatter(formatterType) {
-    if (formatterConfig[formatterType]) {
-      return formatterConfig[formatterType];
+    if (FormatterConfig[formatterType]) {
+      return FormatterConfig[formatterType];
     }
 
     return null;

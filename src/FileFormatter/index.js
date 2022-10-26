@@ -35,7 +35,7 @@ class FileFormatter extends React.PureComponent {
         </div>
       );
     }
-    
+
     return (
       <div className={className}>
         {value.map((item, index) => {
