@@ -1,6 +1,7 @@
-export const isInternalImg = (url) => {
+export const isInternalImg = (url, server) => {
   if(!url) return;
-  return url.indexOf(window.dtable.server) > -1;
+  const currentServer = server || (window.dtable && window.dtable.server);
+  return url.indexOf(currentServer) > -1;
 };
 
 export const checkSVGImage = (url) => {
