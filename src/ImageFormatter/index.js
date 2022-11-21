@@ -104,6 +104,7 @@ class ImageFormatter extends React.Component {
             downloadImage={this.downloadImage}
             onRotateImage={readOnly ? null : this.onRotateImage}
             readOnly={readOnly}
+            server={server}
           />
         )}
       </Fragment>

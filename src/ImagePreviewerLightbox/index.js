@@ -9,12 +9,12 @@ import '@seafile/react-image-lightbox/style.css';
 import './index.css';
 
 function ImagePreviewerLightbox(props) {
-  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly,  } = props;
+  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server  } = props;
   const imageItemsLength = imageItems.length;
   const URL = imageItems[imageIndex];
   const imageTitle = URL ? decodeURI(URL.slice(URL.lastIndexOf('/') + 1)) : '';
   // svg image is vectorgraph and can't rotate, external image can't rotate
-  const canRotateImage = onRotateImage && !readOnly && !checkSVGImage(URL) && isInternalImg(URL);
+  const canRotateImage = onRotateImage && !readOnly && !checkSVGImage(URL) && isInternalImg(URL, server);
   const imageTitleEl = (
     <span className="d-flex">
       <span className="text-truncate">{imageTitle}</span>
@@ -108,6 +108,7 @@ ImagePreviewerLightbox.propTypes = {
   deleteImage: PropTypes.func,
   onRotateImage: PropTypes.func,
   readOnly: PropTypes.bool,
+  server: PropTypes.string,
 };
 
 export default ImagePreviewerLightbox;
