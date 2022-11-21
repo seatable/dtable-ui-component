@@ -9,7 +9,7 @@ import '@seafile/react-image-lightbox/style.css';
 import './index.css';
 
 function ImagePreviewerLightbox(props) {
-  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server  } = props;
+  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server, moveToPrevRowImage, moveToNextRowImage  } = props;
   const imageItemsLength = imageItems.length;
   const URL = imageItems[imageIndex];
   const imageTitle = URL ? decodeURI(URL.slice(URL.lastIndexOf('/') + 1)) : '';
@@ -22,6 +22,16 @@ function ImagePreviewerLightbox(props) {
     </span>
   );
   let toolbarButtons = [];
+  if (moveToPrevRowImage) {
+    toolbarButtons.push(
+      <button className='dtable-font dtable-icon-retract' onClick={() => {moveToPrevRowImage();}}></button>
+    );
+  }
+  if (moveToNextRowImage) {
+    toolbarButtons.push(
+      <button className='dtable-font dtable-icon-display' onClick={() => {moveToNextRowImage();}}></button>
+    );
+  }
   if (!readOnly && deleteImage) {
     toolbarButtons.push(<button className='dtable-font dtable-icon-delete' onClick={() => {deleteImage(imageIndex, 'previewer');}}></button>);
   }
@@ -109,6 +119,8 @@ ImagePreviewerLightbox.propTypes = {
   onRotateImage: PropTypes.func,
   readOnly: PropTypes.bool,
   server: PropTypes.string,
+  moveToPrevRowImage: PropTypes.func,
+  moveToNextRowImage: PropTypes.func,
 };
 
 export default ImagePreviewerLightbox;
