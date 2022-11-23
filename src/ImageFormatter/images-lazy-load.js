@@ -21,13 +21,12 @@ class ImagesLazyLoad extends React.Component {
   }
 
   componentDidMount = () => {
-    let { images } = this.state;
-    this.lazyLoadImages(images);
+    this.lazyLoadImages(this.props);
   }
 
   componentWillReceiveProps = (nextProps) => {
     if (nextProps.images.toString() !== this.props.images.toString()) {
-      this.lazyLoadImages(nextProps.images);
+      this.lazyLoadImages(nextProps);
     }
   }
 
@@ -36,24 +35,31 @@ class ImagesLazyLoad extends React.Component {
     this.setState = (state, callback) => { return; };
   }
 
-  lazyLoadImages = (images) => {
+  lazyLoadImages = (props) => {
+    const { images } = props;
     if (!Array.isArray(images) || images.length === 0) {
       return;
     }
-    let { server } = this.props;
-    images.forEach(item => {
-      let url = getImageThumbnailUrl(item, server);
-      this.lazyLoadImage(
-        url,
-        (image) => {
-          let { loadedCount, loadedImages } = this.state;
-          this.setState({loadedCount: loadedCount + 1, loadedImages: loadedImages.concat(image)});
-        },
-        () => {
-          let { loadedCount } = this.state;
-          this.setState({loadedCount: loadedCount + 1});
-        }
-      );
+    this.setState({
+      images,
+      loadedImages: [],
+      loadedCount: 0
+    }, () => {
+      let { server } = this.props;
+      images.forEach(item => {
+        let url = getImageThumbnailUrl(item, server);
+        this.lazyLoadImage(
+          url,
+          (image) => {
+            let { loadedCount, loadedImages } = this.state;
+            this.setState({loadedCount: loadedCount + 1, loadedImages: loadedImages.concat(image)});
+          },
+          () => {
+            let { loadedCount } = this.state;
+            this.setState({loadedCount: loadedCount + 1});
+          }
+        );
+      });
     });
   }
 
