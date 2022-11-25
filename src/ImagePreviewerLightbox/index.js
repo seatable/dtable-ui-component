@@ -24,12 +24,12 @@ function ImagePreviewerLightbox(props) {
   let toolbarButtons = [];
   if (moveToPrevRowImage) {
     toolbarButtons.push(
-      <button className='dtable-font dtable-icon-retract' onClick={() => {moveToPrevRowImage();}}></button>
+      <button className='dtable-font dtable-icon-retract' onClick={(event) => {moveToPrevRowImage(event);}}></button>
     );
   }
   if (moveToNextRowImage) {
     toolbarButtons.push(
-      <button className='dtable-font dtable-icon-display' onClick={() => {moveToNextRowImage();}}></button>
+      <button className='dtable-font dtable-icon-display' onClick={(event) => {moveToNextRowImage(event);}}></button>
     );
   }
   if (!readOnly && deleteImage) {
