@@ -33,6 +33,9 @@ class ImageFormatter extends React.Component {
 
   closeImagePopup = () => {
     if (!this.props.isSupportPreview) return;
+    if (this.props.onCloseCallback) {
+      this.props.onCloseCallback();
+    }
     this.setState({ isPreviewImage: false, previewImageIndex: -1 });
   }
 
@@ -126,6 +129,7 @@ ImageFormatter.propTypes = {
   rotateImage: PropTypes.func,
   moveToPrevRowImage: PropTypes.func,
   moveToNextRowImage: PropTypes.func,
+  onCloseCallback: PropTypes.func,
 };
 
 
