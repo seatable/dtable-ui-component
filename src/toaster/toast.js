@@ -116,7 +116,11 @@ export default class Toast extends React.PureComponent {
     this.clearCloseTimer();
   }
 
-  close = () => {
+  close = (event) => {
+    if (event) {
+      event.nativeEvent.stopImmediatePropagation();
+      event.stopPropagation();
+    }
     this.clearCloseTimer();
     this.setState({
       isShown: false
@@ -183,7 +187,7 @@ export default class Toast extends React.PureComponent {
                 title={this.props.title}
                 children={this.props.children || ''}
                 isRemoveable={this.props.hasCloseButton}
-                onRemove={() => this.close()}
+                onRemove={(event) => this.close(event)}
               />
             </div>
           </div>
