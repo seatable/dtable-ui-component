@@ -7,6 +7,10 @@
   font-size: 14px;
 }
 
+.dtable-radio:not(.dtable-radio-disable):hover {
+  cursor: pointer;
+}
+
 .dtable-radio .dtable-radio-input {
   position: absolute;
   z-index: -1;
@@ -40,8 +44,12 @@
   border-radius: 50%;
 }
 
-.dtable-radio .dtable-radio-disable {
+.dtable-radio.dtable-radio-disable .dtable-radio-indicator {
   background-color: #f5f5f5;
+}
+
+.dtable-radio.dtable-radio-disable .dtable-radio-selected-indicator::before {
+  opacity: .5;
 }
 
 .dtable-radio .dtable-radio-description {

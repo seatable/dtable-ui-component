@@ -4,9 +4,9 @@ import classnames from 'classnames';
 
 import './index.css';
 
-function SeaTableRadio(props) {
+function DTableRadio(props) {
   return (
-    <label className="dtable-radio">
+    <label className={classnames('dtable-radio', { 'dtable-radio-disable': props.disabled })}>
       <input
         type="radio"
         className="dtable-radio-input"
@@ -18,7 +18,6 @@ function SeaTableRadio(props) {
       <span
         className={classnames('dtable-radio-indicator', {
           'dtable-radio-selected-indicator': props.isChecked,
-          'dtable-radio-disable': props.disabled
         })}
       ></span>
       <span className="dtable-radio-description text-truncate">{props.label}</span>
@@ -26,7 +25,7 @@ function SeaTableRadio(props) {
   );
 }
 
-SeaTableRadio.propTypes = {
+DTableRadio.propTypes = {
   isChecked: PropTypes.bool,
   label: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   disabled: PropTypes.bool,
@@ -35,10 +34,10 @@ SeaTableRadio.propTypes = {
   onCheckedChange: PropTypes.func,
 };
 
-SeaTableRadio.defaultProps = {
+DTableRadio.defaultProps = {
   disabled: false,
   name: 'dtable-radio-input',
   onCheckedChange: () => {}
 };
 
-export default SeaTableRadio;
+export default DTableRadio;
