@@ -21,8 +21,7 @@ class ButtonFormatter extends React.Component {
 
   render() {
     let { data, containerClassName, optionColors } = this.props;
-    const { button_color, button_type, button_name } = data || {};
-    if (!button_type) return null;
+    const { button_color, button_name } = data || {};
     let colorOption = Array.isArray(optionColors) ?
       (optionColors.find(item => item.COLOR === button_color) || optionColors[0])
       :
