@@ -46,17 +46,19 @@ class ImagesLazyLoad extends React.Component {
       loadedCount: 0
     }, () => {
       let { server } = this.props;
-      images.forEach(item => {
+      images.forEach((item, index) => {
         let url = getImageThumbnailUrl(item, server);
         this.lazyLoadImage(
           url,
           (image) => {
             let { loadedCount, loadedImages } = this.state;
-            this.setState({loadedCount: loadedCount + 1, loadedImages: loadedImages.concat(image)});
+            let newImageList = loadedImages.slice(0);
+            newImageList[index] = image;
+            this.setState({ loadedCount: loadedCount + 1, loadedImages: newImageList });
           },
           () => {
             let { loadedCount } = this.state;
-            this.setState({loadedCount: loadedCount + 1});
+            this.setState({ loadedCount: loadedCount + 1 });
           }
         );
       });
