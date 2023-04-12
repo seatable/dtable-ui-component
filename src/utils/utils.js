@@ -42,3 +42,15 @@ export const isMac = () => {
   // eslint-disable-next-line eqeqeq
   return (platform == 'Mac68K') || (platform == 'MacPPC') || (platform == 'Macintosh') || (platform == 'MacIntel');
 };
+
+export const downloadFile = (downloadUrl) => {
+  const downloadFrame = document.getElementById('dtableUiComponentDownloadFrame');
+  if (downloadFrame != null) {
+    document.body.removeChild(downloadFrame);
+  }
+  let iframe = document.createElement('iframe');
+  iframe.setAttribute('id', 'dtableUiComponentDownloadFrame');
+  iframe.style.display = 'none';
+  iframe.src = downloadUrl;
+  document.body.appendChild(iframe);
+};

@@ -1,0 +1,21 @@
+@import url('../css/cell-formatter.css');
+
+.dtable-ui.digital-sign-formatter {
+  display: flex;
+  align-items: center;
+}
+
+.dtable-ui.digital-sign-formatter .image-item {
+  height: 100%;
+  margin-right: 4px;
+  border: 1px solid #f0f0f0;
+  background-color: #fff;
+}
+
+.dtable-ui.digital-sign-formatter .image-item:hover {
+  border: 1px solid #c9c9c9;
+}
+
+.digital-sign-formatter-image-previewer .ril__image {
+  background-color: #fff;
+}

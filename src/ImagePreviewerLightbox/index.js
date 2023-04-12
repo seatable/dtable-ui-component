@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
+import cn from 'astro-classname';
 import ModalPortal from '../ModalPortal';
 import Lightbox from '@seafile/react-image-lightbox';
 import { checkSVGImage, isInternalImg } from './utils';
@@ -9,7 +10,8 @@ import '@seafile/react-image-lightbox/style.css';
 import './index.css';
 
 function ImagePreviewerLightbox(props) {
-  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server, moveToPrevRowImage, moveToNextRowImage  } = props;
+  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server, moveToPrevRowImage, moveToNextRowImage,
+    className } = props;
   const imageItemsLength = imageItems.length;
   const URL = imageItems[imageIndex];
   const imageTitle = URL ? decodeURI(URL.slice(URL.lastIndexOf('/') + 1)) : '';
@@ -42,7 +44,7 @@ function ImagePreviewerLightbox(props) {
     <Fragment>
       <MediaQuery query="(min-width: 767.8px)">
         <Lightbox
-          wrapperClassName="PC-image-previewer"
+          wrapperClassName={cn('PC-image-previewer', className)}
           imageTitle={imageTitleEl}
           toolbarButtons={toolbarButtons}
           mainSrc={imageItems[imageIndex]}
@@ -63,7 +65,7 @@ function ImagePreviewerLightbox(props) {
       <MediaQuery query="(max-width: 767.8px)">
         <Lightbox
           isDesktop={false}
-          wrapperClassName="mobile-image-previewer dtable-ui-component"
+          wrapperClassName={cn('mobile-image-previewer dtable-ui-component', className)}
           mainSrc={imageItems[imageIndex]}
           nextSrc={imageItems[(imageIndex + 1) % imageItemsLength]}
           prevSrc={imageItems[(imageIndex + imageItemsLength - 1) % imageItemsLength]}
@@ -109,6 +111,7 @@ function ImagePreviewerLightbox(props) {
 }
 
 ImagePreviewerLightbox.propTypes = {
+  className: PropTypes.string,
   imageItems: PropTypes.array.isRequired,
   imageIndex: PropTypes.number.isRequired,
   closeImagePopup: PropTypes.func.isRequired,

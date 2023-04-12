@@ -40,6 +40,7 @@ export { default as ButtonFormatter } from './ButtonFormatter';
 export { default as ImagePreviewerLightbox } from './ImagePreviewerLightbox';
 export { default as CollaboratorItem } from './CollaboratorItem';
 export { default as FileItemFormatter } from './FileItemFormatter';
+export { default as DigitalSignFormatter } from './DigitalSignFormatter';
 
 // editor
 export { default as TextEditor } from './TextEditor';
