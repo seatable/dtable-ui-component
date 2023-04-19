@@ -15,7 +15,7 @@ class DigitalSignFormatter extends Component {
     isSupportPreview: false,
     readOnly: true,
     value: '',
-    server: '',
+    config: {},
     containerClassName: '',
   }
 
@@ -28,8 +28,8 @@ class DigitalSignFormatter extends Component {
   }
 
   getSignImages = () => {
-    const { value } = this.props;
-    return [ getDigitalSignImageUrl(value) ].filter(Boolean);
+    const { value, config } = this.props;
+    return [ getDigitalSignImageUrl(value, config) ].filter(Boolean);
   }
 
   onClickSignImage = (index) => {
@@ -57,7 +57,7 @@ class DigitalSignFormatter extends Component {
   }
 
   render() {
-    const { server, containerClassName, readOnly } = this.props;
+    const { containerClassName, readOnly, config, isSample } = this.props;
     const className = cn('dtable-ui cell-formatter-container digital-sign-formatter', containerClassName);
     const signImages = this.getSignImages();
     if (signImages.length === 0) return null;
@@ -66,13 +66,13 @@ class DigitalSignFormatter extends Component {
     return (
       <>
         <div className={className}>
-          <ImagesLazyLoad images={signImages} server={server} onImageClick={this.onClickSignImage}/>
+          <ImagesLazyLoad images={signImages} server={config.server} onImageClick={this.onClickSignImage}/>
         </div>
         {isPreviewSignImage && (
           <ImagePreviewerLightbox
             className="digital-sign-formatter-image-previewer"
             readOnly={readOnly}
-            server={server}
+            server={isSample ? config.server : ''}
             imageItems={signImages}
             imageIndex={largeSignImageIndex}
             closeImagePopup={this.hideLargeSignImage}
@@ -92,7 +92,11 @@ DigitalSignFormatter.propTypes = {
   readOnly: PropTypes.bool,
   isSupportPreview: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-  server: PropTypes.string,
+  config: PropTypes.shape({
+    server: PropTypes.string,
+    workspaceID: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    dtableUuid: PropTypes.string,
+  }),
   containerClassName: PropTypes.string,
   onCloseCallback: PropTypes.func,
 };
