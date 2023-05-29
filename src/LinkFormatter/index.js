@@ -4,6 +4,8 @@ import cn from 'astro-classname';
 import * as CellTypes from '../constants/cell-types';
 import { getNumberDisplayString, getDateDisplayString } from '../utils/value-format-utils';
 
+import './index.css';
+
 const propTypes = {
   containerClassName: PropTypes.string,
   row: PropTypes.object.isRequired,
