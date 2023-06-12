@@ -15,9 +15,19 @@ class ButtonFormatter extends React.Component {
   handleClick = () => {
     const { button_type, url_address } = this.props.data;
     if (button_type === 'open_url' && url_address) {
-      window.open(url_address);
+      this.openUrlLink(url_address);
     }
   }
+
+  openUrlLink = (url) => {
+    let a = document.createElement('a');
+    document.body.appendChild(a);
+    a.href = url;
+    a.target = '_blank'; 
+    a.rel = 'noopener noreferrer';
+    a.click();
+    document.body.removeChild(a);
+  };
 
   render() {
     let { data, containerClassName, optionColors } = this.props;
