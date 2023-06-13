@@ -11,6 +11,7 @@
     "bail": "1.0.5",
     "dayjs": "1.10.7",
     "deepmerge": "^2.1.0",
+    "dtable-store": "4.1.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "glamor": "^2.20.40",

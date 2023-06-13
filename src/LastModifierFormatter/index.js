@@ -10,6 +10,8 @@ const propTypes = {
   containerClassName: PropTypes.string,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired,
   collaborators: PropTypes.arrayOf(PropTypes.exact({
+    id: PropTypes.string.isRequired,
+    name_pinyin: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     contact_email: PropTypes.string.isRequired,

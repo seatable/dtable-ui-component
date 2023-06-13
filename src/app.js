@@ -1,77 +1,53 @@
 import React from 'react';
-import { CollaboratorFormatter, SingleSelectFormatter } from './index';
+import { CellType } from 'dtable-store';
+import { Row, Col } from 'reactstrap';
+import { DTABLE_VALUE, COLUMNS_ICON_CONFIG } from './data/dtable-value';
+import EditorFormatter from './editor-formatter';
 
 import './app.css';
 
 class App extends React.Component {
 
-
-  onDeleteCollaborator = () => {
-    //
+  renderRow = () => {
+    this.value = DTABLE_VALUE;
+    const table = this.value.tables[0];
+    const { rows, columns } = table;
+    const row = rows[0];
+    return columns.map(column => {
+      const props = {
+        isRowExpand: true,
+        row,
+        column,
+        className: 'readonly-form-control',
+        empty: {component: <div className={`dtable-ui cell-formatter-container ${column.type}-formatter`}></div>},
+        getOptionColors: () => {},
+        CellType: CellType,
+      };
+      const { key, type, name } = column;
+      return (
+        <Row className="pb-4" key={key}>
+          <Col md={3}>
+            <span className="header-icon" id={`header-icon-${key}`}>
+              <i className={COLUMNS_ICON_CONFIG[type]}></i>
+            </span>
+            <span className="column-name">{name || ''}</span>
+          </Col>
+          <Col md={9} className='d-flex align-items-center'>
+            <EditorFormatter {...props} />
+          </Col>
+        </Row>
+      );
+    });
   }
 
   render() {
-    let collaborators = [
-      {
-        name: '小强',
-        email: '214402@qq.com',
-        avatar_url: '你好饿',
-        contact_email: 'adbd'
-      }
-    ];
-
-    let options = [
-      {
-        id: '1111',
-        name: '未开始',
-        color: '#e3f9f6',
-      },
-      {
-        id: '2222',
-        name: '进行中',
-        color: '#ff7500',
-      },
-      {
-        id: '3333',
-        name: '待评审',
-        color: '#eaff56',
-      },
-      {
-        id: '4444',
-        name: '已评审',
-        color: '#faff72',
-      },
-      {
-        id: '5555',
-        name: '完成',
-        color: '#00e500',
-      },
-    ];
     return (
       <div className="app">
-        <header className="app-header">
+        <header className="app-header mt-4">
           <h1 className="text-center">{'seatable ui component test'}</h1>
         </header>
         <div className="app-body">
-          <div>
-            <h2>collaborators测试</h2>
-            <div>单个collaborators测试</div>
-            <CollaboratorFormatter value={'123'} collaborators={collaborators} />
-            <div>多个collaborators测试</div>
-            <CollaboratorFormatter value={['123', '4567']} collaborators={collaborators} />
-            <div>带删除按钮测试</div>
-            <CollaboratorFormatter
-              containerClassName='collaborator-container'
-              value={['123', '4567']}
-              collaborators={collaborators}
-              enableDeleteCollaborator={true}
-              onDeleteCollaborator={this.onDeleteCollaborator}
-            />
-          </div>
-          <div>
-            <h2>single-select测试</h2>
-            <SingleSelectFormatter value={'3333'} options={options}/>
-          </div>
+          {this.renderRow()}
         </div>
       </div>
     );
