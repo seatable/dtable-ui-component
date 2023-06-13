@@ -38,6 +38,7 @@
     "xtend": "^4.0.1"
   },
   "scripts": {
+    "lint": "./node_modules/.bin/eslint ./src/ --fix",
     "clean:esm": "rm -rf es && mkdir es",
     "clean:lib": "rm -rf lib && mkdir lib",
     "clean:dist": "rm -rf dist && mkdir dist",

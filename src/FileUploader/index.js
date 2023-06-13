@@ -14,36 +14,28 @@ class FileUploader extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
-
     this.uploadFiles = [];
   }
 
   onFilesChanged = () => {
-
   }
 
   uploadFiles = (fileList, isMultiple = false) => {
-
   }
 
   checkRepeat = () => {
-
   }
 
   cancelUploadFile = () => {
-
   }
 
   onFileUploadProgress = () => {
-    
   }
 
   onFileUploadSuccss = () => {
-
   }
 
   onFileUploadFailed = () => {
-
   }
 
   render() {
