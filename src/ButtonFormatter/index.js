@@ -23,7 +23,7 @@ class ButtonFormatter extends React.Component {
     let a = document.createElement('a');
     document.body.appendChild(a);
     a.href = url;
-    a.target = '_blank'; 
+    a.target = '_blank';
     a.rel = 'noopener noreferrer';
     a.click();
     document.body.removeChild(a);

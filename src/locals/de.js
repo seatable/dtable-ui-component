@@ -3,4 +3,4 @@ const de = {
 
 };
 
-export default de; 
+export default de;

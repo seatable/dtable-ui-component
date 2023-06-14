@@ -19,7 +19,7 @@ class FileItemFormatter extends Component {
 }
 
 FileItemFormatter.propTypes = {
-  file: PropTypes.string.isRequired,
+  file: PropTypes.object.isRequired,
 };
 
 export default FileItemFormatter;

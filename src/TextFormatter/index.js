@@ -5,7 +5,7 @@ import cn from 'astro-classname';
 import './index.css';
 
 const propTypes = {
-  value: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
+  value: PropTypes.any,
   containerClassName: PropTypes.string,
 };
 

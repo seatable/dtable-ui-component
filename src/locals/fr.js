@@ -2,4 +2,4 @@ const fr = {
 
 };
 
-export default fr; 
+export default fr;
