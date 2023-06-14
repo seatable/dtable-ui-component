@@ -9,6 +9,7 @@
     "antd-mobile": "^2.3.3",
     "astro-classname": "^2.1.0",
     "bail": "1.0.5",
+    "classnames": "^2.3.2",
     "dayjs": "1.10.7",
     "deepmerge": "^2.1.0",
     "dtable-store": "4.1.0",
