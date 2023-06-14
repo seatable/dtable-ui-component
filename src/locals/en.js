@@ -12,7 +12,11 @@ const en = {
   Choose_a_collaborator: 'Choose a collaborator',
   Please_input: 'Please input',
   Please_select: 'Please select',
-  Clear: 'Clear'
+  Clear: 'Clear',
+  Are_you_sure_you_want_to_delete_this_file: 'Are you sure you want to delete this file?',
+  Are_you_sure_you_want_to_delete_this_image: 'Are you sure you want to delete this image?',
+  Cancel: 'Cancel',
+  Delete: 'Delete',
 };
 
 export default en;

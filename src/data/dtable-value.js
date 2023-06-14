@@ -26,9 +26,48 @@ const DTABLE_VALUE = {
             '31392'
           ],
           'ne46': [
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg'
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
           ],
           'U8Ee': [
+            {
+              'name': '01.txt',
+              'type': 'file',
+              'url': 'custom-asset://1494332c-eb38-407f-b74e-9bda53918712.txt'
+            },
+            {
+              'name': '01.txt',
+              'type': 'file',
+              'url': 'custom-asset://1494332c-eb38-407f-b74e-9bda53918712.txt'
+            },
+            {
+              'name': '01.txt',
+              'type': 'file',
+              'url': 'custom-asset://1494332c-eb38-407f-b74e-9bda53918712.txt'
+            },
+            {
+              'name': '01.txt',
+              'type': 'file',
+              'url': 'custom-asset://1494332c-eb38-407f-b74e-9bda53918712.txt'
+            },
+            {
+              'name': '01.txt',
+              'type': 'file',
+              'url': 'custom-asset://1494332c-eb38-407f-b74e-9bda53918712.txt'
+            },
+            {
+              'name': '01.txt',
+              'type': 'file',
+              'url': 'custom-asset://1494332c-eb38-407f-b74e-9bda53918712.txt'
+            },
             {
               'name': '01.txt',
               'type': 'file',

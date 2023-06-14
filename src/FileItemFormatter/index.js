@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getFileIconUrl } from './utils';
 
-class FileItemFormatter extends Component {
+export default class FileItemFormatter extends Component {
+
+  static propTypes = {
+    file: PropTypes.object.isRequired,
+  };
 
   getFileIconData = (item) => {
     let fileIconUrl = getFileIconUrl(item.name, item.type);
@@ -17,9 +21,3 @@ class FileItemFormatter extends Component {
     );
   }
 }
-
-FileItemFormatter.propTypes = {
-  file: PropTypes.object.isRequired,
-};
-
-export default FileItemFormatter;

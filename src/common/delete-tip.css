@@ -1,0 +1,16 @@
+.dtable-tip.tip-container {
+  display: flex;
+  flex-direction: column;
+  width: 232px;
+  padding: 16px;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 8px 1px rgba(0,0,0,.2);
+  position: fixed;
+  z-index: 10000;
+}
+
+.dtable-tip.tip-container b {
+  line-height: 1.5;
+}

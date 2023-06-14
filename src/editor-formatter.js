@@ -22,8 +22,8 @@ import {
   DurationFormatter,
   RateFormatter,
   ButtonFormatter,
-  ImageFormatter,
-  FileFormatter,
+  RowExpandImageFormatter,
+  RowExpandFileFormatter,
   // LongTextFormatter,
   // FormulaFormatter,
 } from './index';
@@ -54,6 +54,8 @@ const emptyTypeMap = {
   [CellType.IMAGE]: true,
   [CellType.FILE]: true,
 };
+
+const noop = () => {};
 
 class EditorFormatter extends React.Component {
 
@@ -108,13 +110,6 @@ class EditorFormatter extends React.Component {
         }
         return longTextFormatter;
       }
-      case CellType.IMAGE: {
-        let imageFormatter = <ImageFormatter value={cellValue} />;
-        if (!cellValue || cellValue.length === 0) {
-          imageFormatter = this.renderEmptyFormatter();
-        }
-        return imageFormatter;
-      }
       case CellType.GEOLOCATION : {
         let geolocationFormatter = (
           <GeolocationFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
@@ -155,14 +150,30 @@ class EditorFormatter extends React.Component {
         return singleSelectFormatter;
       }
       case CellType.FILE: {
-        let fileFormatter = <FileFormatter value={cellValue} isSample />;
-        if (!cellValue || cellValue.length === 0) {
-          fileFormatter = this.renderEmptyFormatter();
-        }
-        return fileFormatter;
+        return (
+          <RowExpandFileFormatter
+            value={cellValue}
+            column={column}
+            downloadFile={noop}
+            deleteFile={noop}
+            readOnly={false}
+          />
+        );
+      }
+      case CellType.IMAGE: {
+        return (
+          <RowExpandImageFormatter
+            value={cellValue}
+            column={column}
+            downloadFile={noop}
+            deleteFile={noop}
+            onRotateImage={noop}
+            readOnly={false}
+          />
+        );
       }
       case CellType.CHECKBOX: {
-        return  <CheckboxFormatter value={cellValue} />;
+        return <CheckboxFormatter value={cellValue} />;
       }
       case CellType.CTIME: {
         let cTimeFormatter = <CTimeFormatter value={row._ctime} containerClassName={containerClassName} />;

@@ -12,7 +12,7 @@ let langData = {
 
 const LANGUAGE = 'en';
 
-let LANGUAGE_MAP = {};
+let LANGUAGE_MAP = langData[LANGUAGE];
 
 export function setLocale(args) {
   let lang = typeof args === 'string' ? args : LANGUAGE;
