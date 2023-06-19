@@ -1,27 +1,26 @@
 import React from 'react';
-import { CellType } from 'dtable-store';
 import { Row, Col } from 'reactstrap';
-import { DTABLE_VALUE, COLUMNS_ICON_CONFIG } from './data/dtable-value';
-import EditorFormatter from './editor-formatter';
+import { DTABLE_VALUE, COLUMNS_ICON_CONFIG, COLLABORATORS } from './data/dtable-value';
+import RowExpandFormatter from './RowExpandFormatter';
 
 import './app.css';
 
 class App extends React.Component {
 
-  renderRow = () => {
+  renderRow = (rowIndex) => {
     this.value = DTABLE_VALUE;
     const table = this.value.tables[0];
     const { rows, columns } = table;
-    const row = rows[0];
+    const row = rows[rowIndex];
     return columns.map(column => {
       const props = {
-        isRowExpand: true,
         row,
         column,
         className: 'readonly-form-control',
-        empty: {component: <div className={`dtable-ui cell-formatter-container ${column.type}-formatter`}></div>},
+        empty: {
+          component: <div className={`dtable-ui cell-formatter-container ${column.type}-formatter`}></div>
+        },
         getOptionColors: () => {},
-        CellType: CellType,
       };
       const { key, type, name } = column;
       return (
@@ -33,7 +32,7 @@ class App extends React.Component {
             <span className="column-name">{name || ''}</span>
           </Col>
           <Col md={9} className='d-flex align-items-center'>
-            <EditorFormatter {...props} />
+            <RowExpandFormatter {...props} collaborators={COLLABORATORS} />
           </Col>
         </Row>
       );
@@ -47,7 +46,10 @@ class App extends React.Component {
           <h1 className="text-center">{'seatable ui component test'}</h1>
         </header>
         <div className="app-body">
-          {this.renderRow()}
+          {this.renderRow(0)}
+        </div>
+        <div className="app-body mt-8">
+          {this.renderRow(1)}
         </div>
       </div>
     );

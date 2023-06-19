@@ -1,0 +1,7 @@
+.row-cell-empty {
+  height: 8px;
+  width: 20px;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  display: inline-block;
+}

@@ -13,7 +13,7 @@ export default class RowExpandImageFormatter extends React.Component {
     value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     server: PropTypes.string,
     containerClassName: PropTypes.string,
-    deleteImage: PropTypes.func,
+    deleteFile: PropTypes.func,
     downloadImage: PropTypes.func,
     rotateImage: PropTypes.func,
     moveToPrevRowImage: PropTypes.func,
@@ -62,20 +62,6 @@ export default class RowExpandImageFormatter extends React.Component {
     }));
   }
 
-  deleteImage = (index) => {
-    const { readOnly } = this.props;
-    if (readOnly) return;
-    if (!this.props.deleteImage) return;
-    this.props.deleteImage(index);
-  }
-
-  onRotateImage = (index, degree) => {
-    const { readOnly } = this.props;
-    if (readOnly) return;
-    if (!this.props.rotateImage) return;
-    this.props.rotateImage(index, degree);
-  }
-
   render() {
     const { value, server, containerClassName, readOnly, column, downloadImage } = this.props;
     const { isPreviewImage, previewImageIndex } = this.state;
@@ -93,7 +79,7 @@ export default class RowExpandImageFormatter extends React.Component {
                 index={index}
                 column={column}
                 downloadFile={downloadImage}
-                deleteFile={readOnly ? null : this.deleteImage}
+                deleteFile={this.props.deleteFile}
                 readOnly={readOnly}
                 onImageClick={this.onImageClick}
               />
@@ -107,9 +93,9 @@ export default class RowExpandImageFormatter extends React.Component {
             closeImagePopup={this.closeImagePopup}
             moveToPrevImage={this.movePrev}
             moveToNextImage={this.moveNext}
-            deleteImage={readOnly ? null : this.deleteImage}
+            deleteImage={this.props.deleteFile}
             downloadImage={downloadImage}
-            onRotateImage={readOnly ? null : this.onRotateImage}
+            onRotateImage={this.props.rotateImage}
             readOnly={readOnly}
             server={server}
             moveToPrevRowImage={this.props.moveToPrevRowImage}

@@ -114,6 +114,16 @@ const DTABLE_VALUE = {
           'H7QK': '220',
           'zw4Q': '549580',
           'l9fg': 'test',
+          '2uZ2': [
+            {
+              'row_id': 'BUOKV7pySG6F0-3LcKIFuA',
+              'display_value': '联机记录-12436'
+            },
+            {
+              'row_id': 'CU3j3PNyQaetnLWyiizURg',
+              'display_value': '第二行'
+            }
+          ],
           'EC80': [
             {
               'url': 'https://dev.seatable.cn/workspace/8/asset/3054cef5-ae9a-4323-bc2e-1fd1538db1f2/external-apps/files/2022-11/%E6%88%AA%E5%B1%8F2022-11-24%2010.45.13.png',

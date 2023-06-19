@@ -11,7 +11,6 @@ import {
   CollaboratorFormatter,
   SimpleLongTextFormatter,
   GeolocationFormatter,
-  LinkFormatter,
   CTimeFormatter,
   CreatorFormatter,
   LastModifierFormatter,
@@ -24,19 +23,9 @@ import {
   ButtonFormatter,
   RowExpandImageFormatter,
   RowExpandFileFormatter,
-  // LongTextFormatter,
-  // FormulaFormatter,
-} from './index';
-import { COLLABORATORS } from './data/dtable-value';
-
-const propTypes = {
-  type: PropTypes.string,
-  className: PropTypes.string,
-  column: PropTypes.object.isRequired,
-  row: PropTypes.object.isRequired,
-  CellType: PropTypes.object,
-  getOptionColors: PropTypes.func,
-};
+  RowExpandLinkFormatter,
+} from '../index';
+import './index.css';
 
 const emptyTypeMap = {
   [CellType.TEXT]: true,
@@ -55,35 +44,93 @@ const emptyTypeMap = {
   [CellType.FILE]: true,
 };
 
-const noop = () => {};
+export default class EditorFormatter extends React.Component {
 
-class EditorFormatter extends React.Component {
+  static propTypes = {
+    className: PropTypes.string,
+    column: PropTypes.object.isRequired,
+    row: PropTypes.object.isRequired,
+    getOptionColors: PropTypes.func,
+    collaborators: PropTypes.array,
+    onClickButton: PropTypes.func,
+    downloadFile: PropTypes.func,
+    deleteFile: PropTypes.func,
+    onRotateImage: PropTypes.func,
+    context: PropTypes.object,
+    eventBus: PropTypes.object,
+  };
 
   constructor(props) {
     super(props);
     this.state = {
-      collaborators: COLLABORATORS,
+      collaborators: this.getCollaborator(),
     };
   }
 
-  renderEmptyFormatter = () => {
-    let emptyFormatter = <span className="row-cell-empty d-inline-block"></span>;
-    if (this.props.type === 'row_title') {
-      emptyFormatter = <span>未命名行</span>;
+  componentDidMount() {
+    this.calculateCollaboratorData(this.props);
+    if (this.props.eventBus) {
+      this.listenCollaboratorsUpdated = this.props.eventBus.subscribe('collaborators-updated', this.updateCollaborators);
     }
-    return emptyFormatter;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.calculateCollaboratorData(nextProps);
+  }
+
+  componentWillUnmount() {
+    this.listenCollaboratorsUpdated();
+  }
+
+  updateCollaborators = () => {
+    this.setState({ collaborators: this.getCollaborator() });
+  }
+
+  calculateCollaboratorData = (props) => {
+    const { row, column } = props;
+    if (column.type === CellType.CREATOR || column.type === CellType.LAST_MODIFIER) {
+      const email = row[column.name];
+      this.loadCollaborator(email);
+    }
+    else if (column.type === CellType.COLLABORATOR) {
+      const emails = row[column.name];
+      if (Array.isArray(emails)) {
+        emails.forEach(email => {
+          this.loadCollaborator(email);
+        });
+      }
+    }
+  }
+
+  getCollaborator = () => {
+    const { context, collaborators } = this.props;
+    if (context && context.getCollaboratorsFromCache) {
+      return context.getCollaboratorsFromCache();
+    }
+    return collaborators || [];
+  }
+
+  loadCollaborator = (email) => {
+    const { context } = this.props;
+    if (context && context.loadCollaborator) {
+      context.loadCollaborator(email);
+    }
+  }
+
+  renderEmpty = () => {
+    return <span className="row-cell-empty"></span>;
   }
 
   renderFormatter = () => {
-    const { column, row, CellType, className } = this.props;
+    let { column, row, className } = this.props;
     let { type: columnType } = column;
 
     const { collaborators } = this.state;
     const containerClassName = `dtable-${columnType}-formatter ${className || ''}`;
-    let cellValue = row[column.key];
+    let cellValue = row[column.key] || row[column.name];
 
     if (!cellValue && emptyTypeMap[columnType]) {
-      return this.renderEmptyFormatter();
+      return this.renderEmpty();
     }
 
     switch(columnType) {
@@ -92,7 +139,7 @@ class EditorFormatter extends React.Component {
       }
       case CellType.COLLABORATOR: {
         if (!cellValue || cellValue.length === 0) {
-          return this.renderEmptyFormatter();
+          return this.renderEmpty();
         }
         let collaboratorFormatter = (
           <CollaboratorFormatter
@@ -104,59 +151,50 @@ class EditorFormatter extends React.Component {
         return collaboratorFormatter;
       }
       case CellType.LONG_TEXT: {
-        let longTextFormatter = <SimpleLongTextFormatter value={cellValue} containerClassName={containerClassName} />;
-        if (!cellValue) {
-          longTextFormatter =  this.renderEmptyFormatter();
-        }
-        return longTextFormatter;
+        return <SimpleLongTextFormatter value={cellValue} containerClassName={containerClassName} />;
       }
       case CellType.GEOLOCATION : {
-        let geolocationFormatter = (
-          <GeolocationFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
-        );
-        if (!cellValue) {
-          geolocationFormatter = this.renderEmptyFormatter();
-        }
-        return geolocationFormatter;
+        return <GeolocationFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />;
       }
       case CellType.NUMBER: {
-        let numberFormatter = <NumberFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />;
-        if (!cellValue) {
-          numberFormatter = this.renderEmptyFormatter();
+        if (!cellValue && cellValue !== 0) {
+          return this.renderEmpty();
         }
-        return numberFormatter;
+        return <NumberFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />;
       }
       case CellType.DATE: {
-        let dateFormatter = <DateFormatter value={cellValue} format={column.data.format} containerClassName={containerClassName} />;
-        if (!cellValue) {
-          dateFormatter =  this.renderEmptyFormatter();
-        }
-        return dateFormatter;
+        return <DateFormatter value={cellValue} format={column.data.format} containerClassName={containerClassName} />;
       }
       case CellType.MULTIPLE_SELECT: {
-        const options = column.data ? column.data.options : [];
-        let multipleSelectFormatter = <MultipleSelectFormatter value={cellValue} options={options} containerClassName={containerClassName} />;
         if (!cellValue || cellValue.length === 0) {
-          multipleSelectFormatter = this.renderEmptyFormatter();
+          return this.renderEmpty();
         }
-        return multipleSelectFormatter;
+        const options = column.data ? column.data.options : [];
+        return (
+          <MultipleSelectFormatter
+            value={cellValue}
+            options={options}
+            containerClassName={containerClassName}
+          />
+        );
       }
       case CellType.SINGLE_SELECT: {
         const options = column.data ? column.data.options : [];
-        let singleSelectFormatter = <SingleSelectFormatter value={cellValue} options={options} containerClassName={containerClassName} />;
-        if (!cellValue) {
-          singleSelectFormatter = this.renderEmptyFormatter();
-        }
-        return singleSelectFormatter;
+        return (
+          <SingleSelectFormatter
+            value={cellValue}
+            options={options}
+            containerClassName={containerClassName}
+          />
+        );
       }
       case CellType.FILE: {
         return (
           <RowExpandFileFormatter
             value={cellValue}
             column={column}
-            downloadFile={noop}
-            deleteFile={noop}
-            readOnly={false}
+            downloadFile={this.props.downloadFile}
+            deleteFile={this.props.deleteFile}
           />
         );
       }
@@ -165,10 +203,9 @@ class EditorFormatter extends React.Component {
           <RowExpandImageFormatter
             value={cellValue}
             column={column}
-            downloadFile={noop}
-            deleteFile={noop}
-            onRotateImage={noop}
-            readOnly={false}
+            downloadFile={this.props.downloadFile}
+            deleteFile={this.props.deleteFile}
+            onRotateImage={this.props.onRotateImage}
           />
         );
       }
@@ -178,24 +215,24 @@ class EditorFormatter extends React.Component {
       case CellType.CTIME: {
         let cTimeFormatter = <CTimeFormatter value={row._ctime} containerClassName={containerClassName} />;
         if (!row._ctime) {
-          cTimeFormatter = this.renderEmptyFormatter();
+          cTimeFormatter = this.renderEmpty();
         }
         return cTimeFormatter;
       }
       case CellType.MTIME: {
         let mTimeFormatter = <MTimeFormatter value={row._mtime} containerClassName={containerClassName} />;
         if (!row._mtime) {
-          mTimeFormatter = this.renderEmptyFormatter();
+          mTimeFormatter = this.renderEmpty();
         }
         return mTimeFormatter;
       }
       case CellType.CREATOR: {
-        if (!cellValue) return this.renderEmptyFormatter();
+        if (!cellValue) return this.renderEmpty();
         let creatorFormatter = <CreatorFormatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />;
         return creatorFormatter;
       }
       case CellType.LAST_MODIFIER: {
-        if (!cellValue) return this.renderEmptyFormatter();
+        if (!cellValue) return this.renderEmpty();
         let lastModifierFormatter = <LastModifierFormatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />;
         return lastModifierFormatter;
       }
@@ -203,22 +240,38 @@ class EditorFormatter extends React.Component {
       case CellType.LINK_FORMULA: {
         let textFormatter = <TextFormatter value={cellValue} containerClassName={containerClassName} />;
         if (!cellValue) {
-          textFormatter = this.renderEmptyFormatter();
+          textFormatter = this.renderEmpty();
         }
         return textFormatter;
       }
       case CellType.LINK: {
-        if (!Array.isArray(cellValue) || cellValue.length === 0) return this.renderEmptyFormatter();
+        // handle link column do not have column.data.display_column
+        const { data } = column;
+        const { display_column_key, array_type, array_data } = data;
+        if (!data.display_column) {
+          column = {
+            ...column,
+            data: {
+              ...data,
+              display_column: {
+                key: display_column_key || '0000',
+                type: array_type || CellType.TEXT,
+                data: array_data || null,
+              }
+            }
+          };
+        }
+        if (!Array.isArray(cellValue) || cellValue.length === 0) {
+          return this.renderEmpty();
+        }
         return (
-          <LinkFormatter
+          <RowExpandLinkFormatter
             value={cellValue}
             column={column}
             collaborators={collaborators}
-            containerClassName={'map-app-link-formatter'}
-            renderEmptyFormatter={this.renderEmptyFormatter}
+            containerClassName={containerClassName}
+            renderEmpty={this.renderEmpty}
             getOptionColors={this.props.getOptionColors}
-            getUserCommonInfo={() => {}}
-            CellType={CellType}
           />
         );
       }
@@ -238,12 +291,7 @@ class EditorFormatter extends React.Component {
         return <RateFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />;
       }
       case CellType.BUTTON: {
-        const { data = {} } = column;
-        let buttonFormatter = <ButtonFormatter data={data} containerClassName={containerClassName} />;
-        if (!data.button_name) {
-          buttonFormatter = this.renderEmptyFormatter();
-        }
-        return buttonFormatter;
+        return <ButtonFormatter data={column.data} containerClassName={containerClassName} onClickButton={this.props.onClickButton}/>;
       }
       default:
         return null;
@@ -258,7 +306,3 @@ class EditorFormatter extends React.Component {
     );
   }
 }
-
-EditorFormatter.propTypes = propTypes;
-
-export default EditorFormatter;
