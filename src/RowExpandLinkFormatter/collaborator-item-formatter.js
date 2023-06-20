@@ -8,7 +8,7 @@ export default class CollaboratorItemFormatter extends Component {
     cellValue: PropTypes.string,
     collaborators: PropTypes.array,
     context: PropTypes.object,
-    renderEmptyFormatter: PropTypes.func,
+    renderEmpty: PropTypes.func,
   };
 
   constructor(props) {
@@ -92,7 +92,7 @@ export default class CollaboratorItemFormatter extends Component {
     const { cellValue } = this.props;
     const { collaborator, isDataLoaded } = this.state;
     if (!isDataLoaded || !cellValue || !collaborator) {
-      return this.props.renderEmptyFormatter();
+      return this.props.renderEmpty();
     }
     return (
       <CollaboratorItem collaborator={collaborator} enableDeleteCollaborator={false} />

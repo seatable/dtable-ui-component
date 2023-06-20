@@ -11,17 +11,7 @@ class App extends React.Component {
     this.value = DTABLE_VALUE;
     const table = this.value.tables[0];
     const { rows, columns } = table;
-    const row = rows[rowIndex];
     return columns.map(column => {
-      const props = {
-        row,
-        column,
-        className: 'readonly-form-control',
-        empty: {
-          component: <div className={`dtable-ui cell-formatter-container ${column.type}-formatter`}></div>
-        },
-        getOptionColors: () => {},
-      };
       const { key, type, name } = column;
       return (
         <Row className="pb-4" key={key}>
@@ -32,7 +22,11 @@ class App extends React.Component {
             <span className="column-name">{name || ''}</span>
           </Col>
           <Col md={9} className='d-flex align-items-center'>
-            <RowExpandFormatter {...props} collaborators={COLLABORATORS} />
+            <RowExpandFormatter
+              row={rows[rowIndex]}
+              column={column}
+              collaborators={COLLABORATORS}
+            />
           </Col>
         </Row>
       );
@@ -50,6 +44,9 @@ class App extends React.Component {
         </div>
         <div className="app-body mt-8">
           {this.renderRow(1)}
+        </div>
+        <div className="app-body mt-8">
+          {this.renderRow(2)}
         </div>
       </div>
     );

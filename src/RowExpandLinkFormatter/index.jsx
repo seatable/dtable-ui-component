@@ -14,8 +14,7 @@ export default class RowExpandLinkFormatter extends Component {
     value: PropTypes.any,
     collaborators: PropTypes.array,
     containerClassName: PropTypes.string,
-    renderEmptyFormatter: PropTypes.func,
-    getOptionColors: PropTypes.func,
+    renderEmpty: PropTypes.func,
     context: PropTypes.object,
   }
 
@@ -25,19 +24,19 @@ export default class RowExpandLinkFormatter extends Component {
     const { data } = column;
 
     if (!Array.isArray(value) || value.length === 0) {
-      return props.renderEmptyFormatter();
+      return props.renderEmpty();
     }
 
     let { display_column: displayColumn } = data || {};
     if (!displayColumn) {
-      return props.renderEmptyFormatter();
+      return props.renderEmpty();
     }
 
     const { type: displayColumnType, data: displayColumnData } = displayColumn;
     const cellValue = getFormulaArrayValue(value, !isArrayFormalColumn(displayColumnType));
 
     if (!Array.isArray(cellValue) || cellValue.length === 0) {
-      return props.renderEmptyFormatter();
+      return props.renderEmpty();
     }
 
     switch(displayColumnType) {
@@ -122,7 +121,7 @@ export default class RowExpandLinkFormatter extends Component {
                   cellValue={value}
                   collaborators={collaborators}
                   context={props.context}
-                  renderEmptyFormatter={props.renderEmptyFormatter}
+                  renderEmpty={props.renderEmpty}
                 />
               );
             })}
@@ -131,7 +130,7 @@ export default class RowExpandLinkFormatter extends Component {
       }
       case CellType.SINGLE_SELECT: {
         if (!cellValue || cellValue.length === 0) {
-          return props.renderEmptyFormatter();
+          return props.renderEmpty();
         }
         const options = displayColumnData && Array.isArray(displayColumnData.options) ? displayColumnData.options : [];
         return (
@@ -156,7 +155,7 @@ export default class RowExpandLinkFormatter extends Component {
         );
       }
       default: {
-        return props.renderEmptyFormatter();
+        return props.renderEmpty();
       }
     }
   }

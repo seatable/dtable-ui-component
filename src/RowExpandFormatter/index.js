@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { CellType } from 'dtable-store';
+import classnames from 'classnames';
 import {
   TextFormatter,
   NumberFormatter,
@@ -9,7 +10,7 @@ import {
   SingleSelectFormatter,
   MultipleSelectFormatter,
   CollaboratorFormatter,
-  SimpleLongTextFormatter,
+  LongTextFormatter,
   GeolocationFormatter,
   CTimeFormatter,
   CreatorFormatter,
@@ -25,6 +26,7 @@ import {
   RowExpandFileFormatter,
   RowExpandLinkFormatter,
 } from '../index';
+
 import './index.css';
 
 const emptyTypeMap = {
@@ -42,15 +44,20 @@ const emptyTypeMap = {
   [CellType.DURATION]: true,
   [CellType.IMAGE]: true,
   [CellType.FILE]: true,
+  [CellType.CREATOR]: true,
+  [CellType.LAST_MODIFIER]: true,
 };
 
 export default class EditorFormatter extends React.Component {
 
+  static defaultProps = {
+    className: '',
+  };
+
   static propTypes = {
-    className: PropTypes.string,
     column: PropTypes.object.isRequired,
     row: PropTypes.object.isRequired,
-    getOptionColors: PropTypes.func,
+    className: PropTypes.string,
     collaborators: PropTypes.array,
     onClickButton: PropTypes.func,
     downloadFile: PropTypes.func,
@@ -135,35 +142,76 @@ export default class EditorFormatter extends React.Component {
 
     switch(columnType) {
       case CellType.TEXT: {
-        return <TextFormatter value={cellValue} containerClassName={containerClassName} />;
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <TextFormatter value={cellValue} containerClassName={containerClassName} />
+          </div>
+        );
       }
       case CellType.COLLABORATOR: {
         if (!cellValue || cellValue.length === 0) {
           return this.renderEmpty();
         }
-        let collaboratorFormatter = (
-          <CollaboratorFormatter
-            value={cellValue}
-            collaborators={collaborators}
-            containerClassName={containerClassName}
-          />
+        return (
+          <div className="form-control d-flex align-items-center w-100 h-auto">
+            <CollaboratorFormatter
+              value={cellValue}
+              collaborators={collaborators}
+              containerClassName={containerClassName}
+            />
+          </div>
         );
-        return collaboratorFormatter;
       }
       case CellType.LONG_TEXT: {
-        return <SimpleLongTextFormatter value={cellValue} containerClassName={containerClassName} />;
+        return (
+          <div className="longtext-formatter-container">
+            <LongTextFormatter value={cellValue} containerClassName={containerClassName} isSample={false} />
+          </div>
+        );
       }
       case CellType.GEOLOCATION : {
-        return <GeolocationFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />;
+        return (
+          <div className="geolocation-formatter-container">
+            <GeolocationFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
+          </div>
+        );
       }
       case CellType.NUMBER: {
         if (!cellValue && cellValue !== 0) {
           return this.renderEmpty();
         }
-        return <NumberFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />;
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <NumberFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
+          </div>
+        );
       }
       case CellType.DATE: {
-        return <DateFormatter value={cellValue} format={column.data.format} containerClassName={containerClassName} />;
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <DateFormatter value={cellValue} format={column.data.format} containerClassName={containerClassName} />
+          </div>
+        );
+      }
+      case CellType.CTIME: {
+        if (!row._ctime) {
+          return this.renderEmpty();
+        }
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <CTimeFormatter value={row._ctime} containerClassName={containerClassName} />
+          </div>
+        );
+      }
+      case CellType.MTIME: {
+        if (!row._mtime) {
+          return this.renderEmpty();
+        }
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <MTimeFormatter value={row._mtime} containerClassName={containerClassName} />
+          </div>
+        );
       }
       case CellType.MULTIPLE_SELECT: {
         if (!cellValue || cellValue.length === 0) {
@@ -171,21 +219,25 @@ export default class EditorFormatter extends React.Component {
         }
         const options = column.data ? column.data.options : [];
         return (
-          <MultipleSelectFormatter
-            value={cellValue}
-            options={options}
-            containerClassName={containerClassName}
-          />
+          <div className="form-control d-flex align-items-center w-100 h-auto">
+            <MultipleSelectFormatter
+              value={cellValue}
+              options={options}
+              containerClassName={containerClassName}
+            />
+          </div>
         );
       }
       case CellType.SINGLE_SELECT: {
         const options = column.data ? column.data.options : [];
         return (
-          <SingleSelectFormatter
-            value={cellValue}
-            options={options}
-            containerClassName={containerClassName}
-          />
+          <div className="form-control d-flex align-items-center w-100">
+            <SingleSelectFormatter
+              value={cellValue}
+              options={options}
+              containerClassName={containerClassName}
+            />
+          </div>
         );
       }
       case CellType.FILE: {
@@ -210,39 +262,28 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.CHECKBOX: {
-        return <CheckboxFormatter value={cellValue} />;
-      }
-      case CellType.CTIME: {
-        let cTimeFormatter = <CTimeFormatter value={row._ctime} containerClassName={containerClassName} />;
-        if (!row._ctime) {
-          cTimeFormatter = this.renderEmpty();
-        }
-        return cTimeFormatter;
-      }
-      case CellType.MTIME: {
-        let mTimeFormatter = <MTimeFormatter value={row._mtime} containerClassName={containerClassName} />;
-        if (!row._mtime) {
-          mTimeFormatter = this.renderEmpty();
-        }
-        return mTimeFormatter;
+        return (
+          <div className="checkbox-formatter-container">
+            <CheckboxFormatter value={cellValue} />
+          </div>
+        );
       }
       case CellType.CREATOR: {
-        if (!cellValue) return this.renderEmpty();
-        let creatorFormatter = <CreatorFormatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />;
-        return creatorFormatter;
+        return (
+          <CreatorFormatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />
+        );
       }
       case CellType.LAST_MODIFIER: {
-        if (!cellValue) return this.renderEmpty();
-        let lastModifierFormatter = <LastModifierFormatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />;
-        return lastModifierFormatter;
+        return (
+          <LastModifierFormatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />
+        );
       }
       case CellType.FORMULA:
       case CellType.LINK_FORMULA: {
-        let textFormatter = <TextFormatter value={cellValue} containerClassName={containerClassName} />;
-        if (!cellValue) {
-          textFormatter = this.renderEmpty();
+        if (!cellValue && cellValue !== 0) {
+          return this.renderEmpty();
         }
-        return textFormatter;
+        return <TextFormatter value={cellValue} containerClassName={containerClassName} />;
       }
       case CellType.LINK: {
         // handle link column do not have column.data.display_column
@@ -271,7 +312,6 @@ export default class EditorFormatter extends React.Component {
             collaborators={collaborators}
             containerClassName={containerClassName}
             renderEmpty={this.renderEmpty}
-            getOptionColors={this.props.getOptionColors}
           />
         );
       }
@@ -279,19 +319,37 @@ export default class EditorFormatter extends React.Component {
         return <AutoNumberFormatter value={cellValue} containerClassName={containerClassName} />;
       }
       case CellType.URL: {
-        return <UrlFormatter value={cellValue} containerClassName={containerClassName} />;
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <UrlFormatter value={cellValue} containerClassName={containerClassName} />
+          </div>
+        );
       }
       case CellType.EMAIL: {
-        return <EmailFormatter value={cellValue} containerClassName={containerClassName} />;
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <EmailFormatter value={cellValue} containerClassName={containerClassName} />
+          </div>
+        );
       }
       case CellType.DURATION: {
-        return <DurationFormatter value={cellValue} format={column.data.duration_format} containerClassName={containerClassName} />;
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <DurationFormatter value={cellValue} format={column.data.duration_format} containerClassName={containerClassName} />
+          </div>
+        );
       }
       case CellType.RATE: {
-        return <RateFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />;
+        return (
+          <div className="form-control d-flex align-items-center w-100">
+            <RateFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
+          </div>
+        );
       }
       case CellType.BUTTON: {
-        return <ButtonFormatter data={column.data} containerClassName={containerClassName} onClickButton={this.props.onClickButton}/>;
+        return (
+          <ButtonFormatter data={column.data} containerClassName={containerClassName} onClickButton={this.props.onClickButton}/>
+        );
       }
       default:
         return null;
@@ -299,10 +357,11 @@ export default class EditorFormatter extends React.Component {
   }
 
   render() {
+    const { className } = this.props;
     return(
-      <Fragment>
+      <div className={classnames('dtable-row-expand-formatter', {[className]: className})}>
         {this.renderFormatter()}
-      </Fragment>
+      </div>
     );
   }
 }
