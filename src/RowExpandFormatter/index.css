@@ -69,5 +69,5 @@
 }
 
 .dtable-row-expand-formatter .dtable-link-formatter {
-  min-height: 38px;
+  padding-top: 8px;
 }
