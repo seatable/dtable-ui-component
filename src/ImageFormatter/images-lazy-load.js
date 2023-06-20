@@ -52,14 +52,12 @@ class ImagesLazyLoad extends React.Component {
           url,
           (image) => {
             let { loadedCount, loadedImages } = this.state;
-            if (loadedCount + 1 > images.length) return;
             let newImageList = loadedImages.slice(0);
             newImageList[index] = image;
             this.setState({ loadedCount: loadedCount + 1, loadedImages: newImageList });
           },
           () => {
             let { loadedCount } = this.state;
-            if (loadedCount + 1 > images.length) return;
             this.setState({ loadedCount: loadedCount + 1 });
           }
         );
@@ -99,23 +97,20 @@ class ImagesLazyLoad extends React.Component {
       return <div style={style} className="d-flex align-items-center"><Loading /></div>;
     }
 
-    if (images.length === loadedCount) {
-      return (
-        loadedImages.map((image, index) => {
-          return (
-            <img
-              key={index}
-              className="image-item"
-              src={image.src}
-              onMouseDown={this.onMouseDown}
-              onClick={(event) => this.onImageClick(event, index)}
-              alt=""
-            />
-          );
-        })
-      );
-    }
-    return '';
+    return (
+      loadedImages.map((image, index) => {
+        return (
+          <img
+            key={index}
+            className="image-item"
+            src={image.src}
+            onMouseDown={this.onMouseDown}
+            onClick={(event) => this.onImageClick(event, index)}
+            alt=""
+          />
+        );
+      })
+    );
   }
 }
 
