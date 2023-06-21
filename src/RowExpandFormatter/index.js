@@ -368,7 +368,7 @@ export default class EditorFormatter extends React.Component {
   render() {
     const { className } = this.props;
     return(
-      <div className={classnames('dtable-row-expand-formatter', {[className]: className})}>
+      <div className={classnames('dtable-ui dtable-row-expand-formatter', {[className]: className})}>
         {this.renderFormatter()}
       </div>
     );
