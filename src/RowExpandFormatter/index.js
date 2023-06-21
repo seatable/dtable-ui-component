@@ -62,6 +62,7 @@ export default class EditorFormatter extends React.Component {
     onClickButton: PropTypes.func,
     downloadFile: PropTypes.func,
     deleteFile: PropTypes.func,
+    downloadImage: PropTypes.func,
     onRotateImage: PropTypes.func,
     context: PropTypes.object,
     eventBus: PropTypes.object,
@@ -256,7 +257,7 @@ export default class EditorFormatter extends React.Component {
           <RowExpandImageFormatter
             value={cellValue}
             column={column}
-            downloadFile={this.props.downloadFile}
+            downloadImage={this.props.downloadImage}
             deleteFile={this.props.deleteFile}
             onRotateImage={this.props.onRotateImage}
           />
