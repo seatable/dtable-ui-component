@@ -10,8 +10,8 @@ import '@seafile/react-image-lightbox/style.css';
 import './index.css';
 
 function ImagePreviewerLightbox(props) {
-  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server, moveToPrevRowImage, moveToNextRowImage,
-    className } = props;
+  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server,
+    moveToPrevRowImage, moveToNextRowImage, className } = props;
   const imageItemsLength = imageItems.length;
   const URL = imageItems[imageIndex];
   const imageTitle = URL ? decodeURI(URL.slice(URL.lastIndexOf('/') + 1)) : '';
@@ -35,10 +35,14 @@ function ImagePreviewerLightbox(props) {
     );
   }
   if (!readOnly && deleteImage) {
-    toolbarButtons.push(<button className='dtable-font dtable-icon-delete' onClick={() => {deleteImage(imageIndex, 'previewer');}}></button>);
+    toolbarButtons.push(
+      <button className='dtable-font dtable-icon-delete' onClick={() => {deleteImage(imageIndex, 'previewer');}}></button>
+    );
   }
   if (downloadImage) {
-    toolbarButtons.push(<button className='dtable-font dtable-icon-download' onClick={() => {downloadImage(URL);}}></button>);
+    toolbarButtons.push(
+      <button className='dtable-font dtable-icon-download' onClick={() => {downloadImage(URL);}}></button>
+    );
   }
   return (
     <Fragment>

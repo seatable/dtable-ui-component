@@ -5,13 +5,13 @@ import FileItemFormatter from '../FileItemFormatter';
 
 import './index.css';
 
-const propTypes = {
-  isSample: PropTypes.bool,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  containerClassName: PropTypes.string,
-};
+export default class FileFormatter extends React.PureComponent {
 
-class FileFormatter extends React.PureComponent {
+  static propTypes = {
+    isSample: PropTypes.bool,
+    value: PropTypes.array,
+    containerClassName: PropTypes.string,
+  };
 
   static defaultProps = {
     isSample: false,
@@ -21,10 +21,11 @@ class FileFormatter extends React.PureComponent {
 
   render() {
     let { isSample, value, containerClassName } = this.props;
-    let className = cn('dtable-ui cell-formatter-container file-formatter', containerClassName);
     if (!Array.isArray(value) || value.length === 0) {
       return null;
     }
+
+    let className = cn('dtable-ui cell-formatter-container file-formatter', containerClassName);
 
     if (isSample) {
       let item = value[0];
@@ -47,7 +48,3 @@ class FileFormatter extends React.PureComponent {
     );
   }
 }
-
-FileFormatter.propTypes = propTypes;
-
-export default FileFormatter;

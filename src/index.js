@@ -43,6 +43,12 @@ export { default as FileItemFormatter } from './FileItemFormatter';
 export { default as DigitalSignFormatter } from './DigitalSignFormatter';
 export { default as SimpleLongTextFormatter } from './SimpleLongTextFormatter';
 
+// row expand formatter
+export { default as RowExpandFileFormatter } from './RowExpandFileFormatter';
+export { default as RowExpandImageFormatter } from './RowExpandImageFormatter';
+export { default as RowExpandLinkFormatter } from './RowExpandLinkFormatter';
+export { default as RowExpandFormatter } from './RowExpandFormatter';
+
 // editor
 export { default as TextEditor } from './TextEditor';
 export { default as NumberEditor } from './NumberEditor';

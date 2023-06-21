@@ -12,7 +12,11 @@ const zh_CN = {
   Choose_a_collaborator: '选择一个协作者',
   Please_input: '请输入',
   Please_select: '请选择',
-  Clear: '清空'
+  Clear: '清空',
+  Are_you_sure_you_want_to_delete_this_file: '你确定要删除此文件吗？',
+  Are_you_sure_you_want_to_delete_this_image: '你确定要删除此图片吗？',
+  Cancel: '取消',
+  Delete: '删除',
 };
 
 export default zh_CN;

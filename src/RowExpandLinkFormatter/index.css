@@ -1,0 +1,25 @@
+.dtable-link-formatter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: auto;
+}
+
+.dtable-link-formatter .row-expand-link-item {
+  flex-shrink: 0;
+  margin: 2px 4px 2px 0;
+  padding: 0 6px;
+  font-size: 13px;
+  max-width: 100%;
+  background: #eceff4;
+  border-radius: 3px;
+  align-items: center;
+  vertical-align: middle;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 20px;
+  width: fit-content;
+}
