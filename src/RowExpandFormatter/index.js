@@ -25,6 +25,7 @@ import {
   RowExpandImageFormatter,
   RowExpandFileFormatter,
   RowExpandLinkFormatter,
+  DigitalSignFormatter,
 } from '../index';
 
 import './index.css';
@@ -65,6 +66,7 @@ export default class EditorFormatter extends React.Component {
     onRotateImage: PropTypes.func,
     context: PropTypes.object,
     eventBus: PropTypes.object,
+    config: PropTypes.object, // for digital sign formatter
   };
 
   constructor(props) {
@@ -349,6 +351,11 @@ export default class EditorFormatter extends React.Component {
       case CellType.BUTTON: {
         return (
           <ButtonFormatter data={column.data} containerClassName={containerClassName} onClickButton={this.props.onClickButton}/>
+        );
+      }
+      case CellType.DIGITAL_SIGN: {
+        return (
+          <DigitalSignFormatter value={cellValue} containerClassName={containerClassName} config={this.props.config}/>
         );
       }
       default:

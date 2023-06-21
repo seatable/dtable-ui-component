@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
-import { DTABLE_VALUE, COLUMNS_ICON_CONFIG, COLLABORATORS } from './data/dtable-value';
+import { DTABLE_VALUE, COLUMNS_ICON_CONFIG, COLLABORATORS, SIGN_CONFIG } from './data/dtable-value';
 import RowExpandFormatter from './RowExpandFormatter';
 
 import './app.css';
@@ -26,6 +26,7 @@ class App extends React.Component {
               row={rows[rowIndex]}
               column={column}
               collaborators={COLLABORATORS}
+              config={SIGN_CONFIG}
             />
           </Col>
         </Row>

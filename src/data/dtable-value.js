@@ -124,6 +124,12 @@ const DTABLE_VALUE = {
               'display_value': '第二行'
             }
           ],
+          'mFuA':
+          {
+            'username': 'bing.an@seafile.com',
+            'sign_image_url': '/digital-signs/2023-06/bing.an%40seafile.com-1687316234288.png',
+            'sign_time': '2023-06-21T02:57:14.600+00:00'
+          },
           'EC80': [
             {
               'url': 'https://dev.seatable.cn/workspace/8/asset/3054cef5-ae9a-4323-bc2e-1fd1538db1f2/external-apps/files/2022-11/%E6%88%AA%E5%B1%8F2022-11-24%2010.45.13.png',
@@ -1359,6 +1365,33 @@ const DTABLE_VALUE = {
             'array_data': null,
             'result_type': 'array'
           },
+          'permission_type': '',
+          'permitted_users': [],
+          'edit_metadata_permission_type': '',
+          'edit_metadata_permitted_users': [],
+          'description': null,
+          'editor': {
+            'key': null,
+            'ref': null,
+            'props': {},
+            '_owner': null
+          },
+          'formatter': {
+            'key': null,
+            'ref': null,
+            'props': {},
+            '_owner': null
+          }
+        },
+        {
+          'key': 'mFuA',
+          'type': 'digital-sign',
+          'name': '签名',
+          'editable': true,
+          'width': 200,
+          'resizable': true,
+          'draggable': true,
+          'data': null,
           'permission_type': '',
           'permitted_users': [],
           'edit_metadata_permission_type': '',
@@ -3034,6 +3067,7 @@ const COLUMNS_ICON_CONFIG = {
   [CellType.DURATION]: 'dtable-font dtable-icon-duration',
   [CellType.BUTTON]: 'dtable-font dtable-icon-button',
   [CellType.RATE]: 'dtable-font dtable-icon-star',
+  [CellType.DIGITAL_SIGN]: 'dtable-font dtable-icon-handwritten-signature',
 };
 
 const COLLABORATORS = [
@@ -3071,4 +3105,10 @@ const COLLABORATORS = [
   }
 ];
 
-export { DTABLE_VALUE, COLUMNS_ICON_CONFIG, COLLABORATORS };
+const SIGN_CONFIG = {
+  server: 'https://dev.seatable.cn',
+  workspaceID: 3,
+  dtableUuid: '8327efbf-c9ff-4a14-9010-00e801a7e295',
+};
+
+export { DTABLE_VALUE, COLUMNS_ICON_CONFIG, COLLABORATORS, SIGN_CONFIG };

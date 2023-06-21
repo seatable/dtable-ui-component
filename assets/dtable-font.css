@@ -1,11 +1,11 @@
 @font-face {
   font-family: "dtable-font"; /* Project id 1206632 */
-  src: url('./dtable-font/dtable-font.eot?t=1631248254616'); /* IE9 */
-  src: url('./dtable-font/dtable-font.eot?t=1631248254616#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('./dtable-font/dtable-font.woff2?t=1631248254616') format('woff2'),
-       url('./dtable-font/dtable-font.woff?t=1631248254616') format('woff'),
-       url('./dtable-font/dtable-font.ttf?t=1631248254616') format('truetype'),
-       url('./dtable-font/dtable-font.svg?t=1631248254616#dtable-font') format('svg');
+  src: url('./dtable-font/dtable-font.eot?t=1680493637259'); /* IE9 */
+  src: url('./dtable-font/dtable-font.eot?t=1680493637259#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./dtable-font/dtable-font.woff2?t=1680493637259') format('woff2'),
+       url('./dtable-font/dtable-font.woff?t=1680493637259') format('woff'),
+       url('./dtable-font/dtable-font.ttf?t=1680493637259') format('truetype'),
+       url('./dtable-font/dtable-font.svg?t=1680493637259#dtable-font') format('svg');
 }
 
 .dtable-font {
@@ -14,6 +14,630 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dtable-icon-handwritten-signature-sync:before {
+  content: "\e7ea";
+}
+
+.dtable-icon-handwritten-signature:before {
+  content: "\e7eb";
+}
+
+.dtable-icon-collapse-all:before {
+  content: "\e7e8";
+}
+
+.dtable-icon-expand-all:before {
+  content: "\e7e9";
+}
+
+.dtable-icon-comment1:before {
+  content: "\e7e7";
+}
+
+.dtable-icon-border-style:before {
+  content: "\e7e6";
+}
+
+.dtable-icon-automation-rules1:before {
+  content: "\e7e4";
+}
+
+.dtable-icon-notification-rules:before {
+  content: "\e7e5";
+}
+
+.dtable-icon-app-purchase:before {
+  content: "\e7d7";
+}
+
+.dtable-icon-app-statistics:before {
+  content: "\e7d8";
+}
+
+.dtable-icon-app-address-book:before {
+  content: "\e7d9";
+}
+
+.dtable-icon-app-product-library:before {
+  content: "\e7da";
+}
+
+.dtable-icon-app-individual-bill:before {
+  content: "\e7db";
+}
+
+.dtable-icon-app-email:before {
+  content: "\e7dc";
+}
+
+.dtable-icon-app-distribution:before {
+  content: "\e7dd";
+}
+
+.dtable-icon-app-history1:before {
+  content: "\e7de";
+}
+
+.dtable-icon-app-contract:before {
+  content: "\e7df";
+}
+
+.dtable-icon-app-post-sale:before {
+  content: "\e7e0";
+}
+
+.dtable-icon-app-logistics:before {
+  content: "\e7e1";
+}
+
+.dtable-icon-app-invoice:before {
+  content: "\e7e2";
+}
+
+.dtable-icon-app-achievement-distribution:before {
+  content: "\e7e3";
+}
+
+.dtable-icon-underline:before {
+  content: "\e7d6";
+}
+
+.dtable-icon-chart:before {
+  content: "\e7d4";
+}
+
+.dtable-icon-text:before {
+  content: "\e7d5";
+}
+
+.dtable-icon-calendar1:before {
+  content: "\e7cc";
+}
+
+.dtable-icon-data-deduplication:before {
+  content: "\e7cd";
+}
+
+.dtable-icon-advanced-statistics:before {
+  content: "\e7ce";
+}
+
+.dtable-icon-gallery:before {
+  content: "\e7cf";
+}
+
+.dtable-icon-kanban:before {
+  content: "\e7d0";
+}
+
+.dtable-icon-page-design:before {
+  content: "\e7d1";
+}
+
+.dtable-icon-timeline:before {
+  content: "\e7d2";
+}
+
+.dtable-icon-map1:before {
+  content: "\e7d3";
+}
+
+.dtable-icon-upload1:before {
+  content: "\e7cb";
+}
+
+.dtable-icon-qr-code:before {
+  content: "\e7ca";
+}
+
+.dtable-icon-monitor1:before {
+  content: "\e7c8";
+}
+
+.dtable-icon-more:before {
+  content: "\e7c9";
+}
+
+.dtable-icon-italic:before {
+  content: "\e7c1";
+}
+
+.dtable-icon-font-color1:before {
+  content: "\e7c2";
+}
+
+.dtable-icon-clear-format:before {
+  content: "\e7c3";
+}
+
+.dtable-icon-bold:before {
+  content: "\e7c4";
+}
+
+.dtable-icon-display1:before {
+  content: "\e7c5";
+}
+
+.dtable-icon-list-ol1:before {
+  content: "\e7c6";
+}
+
+.dtable-icon-list-ul1:before {
+  content: "\e7c7";
+}
+
+.dtable-icon-activities:before {
+  content: "\e7c0";
+}
+
+.dtable-icon-import-from-another-table1:before {
+  content: "\e7bc";
+}
+
+.dtable-icon-monitor:before {
+  content: "\e7bd";
+}
+
+.dtable-icon-custom-color1:before {
+  content: "\e7be";
+}
+
+.dtable-icon-switch2:before {
+  content: "\e7bf";
+}
+
+.dtable-icon-justify-align:before {
+  content: "\e7ac";
+}
+
+.dtable-icon-font-color:before {
+  content: "\e7ad";
+}
+
+.dtable-icon-increase-indent:before {
+  content: "\e7ae";
+}
+
+.dtable-icon-decrease-indent:before {
+  content: "\e7af";
+}
+
+.dtable-icon-list-ol-capital-english-letters:before {
+  content: "\e7b0";
+}
+
+.dtable-icon-list-ol-capital-roman-numerals:before {
+  content: "\e7b1";
+}
+
+.dtable-icon-list-ul:before {
+  content: "\e7b2";
+}
+
+.dtable-icon-list-ul-black-square:before {
+  content: "\e7b3";
+}
+
+.dtable-icon-list-ul-hollow-circle:before {
+  content: "\e7b4";
+}
+
+.dtable-icon-list-ol-small-roman-numerals:before {
+  content: "\e7b5";
+}
+
+.dtable-icon-switch1:before {
+  content: "\e7b6";
+}
+
+.dtable-icon-list-ol-small-english-letters:before {
+  content: "\e7b7";
+}
+
+.dtable-icon-custom-color:before {
+  content: "\e7b8";
+}
+
+.dtable-icon-import-from-another-table:before {
+  content: "\e7b9";
+}
+
+.dtable-icon-list-ol-small-greek:before {
+  content: "\e7ba";
+}
+
+.dtable-icon-list-ol:before {
+  content: "\e7bb";
+}
+
+.dtable-icon-align-right:before {
+  content: "\e79f";
+}
+
+.dtable-icon-horizontal-center:before {
+  content: "\e7a5";
+}
+
+.dtable-icon-align-left:before {
+  content: "\e7a6";
+}
+
+.dtable-icon-bottom-alignment:before {
+  content: "\e7a7";
+}
+
+.dtable-icon-horizontal-distribution:before {
+  content: "\e7a8";
+}
+
+.dtable-icon-top-alignment:before {
+  content: "\e7a9";
+}
+
+.dtable-icon-vertical-center:before {
+  content: "\e7aa";
+}
+
+.dtable-icon-vertical-distribution:before {
+  content: "\e7ab";
+}
+
+.dtable-icon-novice-guide:before {
+  content: "\e79b";
+}
+
+.dtable-icon-wide:before {
+  content: "\e79c";
+}
+
+.dtable-icon-narrow1:before {
+  content: "\e79d";
+}
+
+.dtable-icon-choose-column:before {
+  content: "\e79e";
+}
+
+.dtable-icon-app-share:before {
+  content: "\e794";
+}
+
+.dtable-icon-app-user-management:before {
+  content: "\e795";
+}
+
+.dtable-icon-paused:before {
+  content: "\e793";
+}
+
+.dtable-icon-app-preview:before {
+  content: "\e792";
+}
+
+.dtable-icon-app-authority-management:before {
+  content: "\e78d";
+}
+
+.dtable-icon-app-settings:before {
+  content: "\e78e";
+}
+
+.dtable-icon-rule:before {
+  content: "\e78c";
+}
+
+.dtable-icon-workflow1:before {
+  content: "\e78b";
+}
+
+.dtable-icon-app-page:before {
+  content: "\e78a";
+}
+
+.dtable-icon-app-home:before {
+  content: "\e788";
+}
+
+.dtable-icon-app-personnel:before {
+  content: "\e787";
+}
+
+.dtable-icon-app-star-mark:before {
+  content: "\e786";
+}
+
+.dtable-icon-app-history:before {
+  content: "\e785";
+}
+
+.dtable-icon-app-edit:before {
+  content: "\e784";
+}
+
+.dtable-icon-app-folder:before {
+  content: "\e783";
+}
+
+.dtable-icon-app-calendar:before {
+  content: "\e782";
+}
+
+.dtable-icon-app-map:before {
+  content: "\e789";
+}
+
+.dtable-icon-app-position:before {
+  content: "\e781";
+}
+
+.dtable-icon-app-gallery:before {
+  content: "\e780";
+}
+
+.dtable-icon-automation-rules:before {
+  content: "\e77f";
+}
+
+.dtable-icon-dingtalk:before {
+  content: "\e77e";
+}
+
+.dtable-icon-delete:before {
+  content: "\e77d";
+}
+
+.dtable-icon-checklist-sync:before {
+  content: "\e767";
+}
+
+.dtable-icon-button-sync:before {
+  content: "\e768";
+}
+
+.dtable-icon-email-sync:before {
+  content: "\e769";
+}
+
+.dtable-icon-link-formulas-sync:before {
+  content: "\e76a";
+}
+
+.dtable-icon-location-sync:before {
+  content: "\e76b";
+}
+
+.dtable-icon-creation-time-sync:before {
+  content: "\e76c";
+}
+
+.dtable-icon-calendar-alt-solid-sync:before {
+  content: "\e76d";
+}
+
+.dtable-icon-multiple-selection-sync:before {
+  content: "\e76e";
+}
+
+.dtable-icon-collaborator-sync:before {
+  content: "\e76f";
+}
+
+.dtable-icon-picture-sync:before {
+  content: "\e770";
+}
+
+.dtable-icon-renewal-person-sync:before {
+  content: "\e771";
+}
+
+.dtable-icon-duration-sync:before {
+  content: "\e772";
+}
+
+.dtable-icon-single-election-sync:before {
+  content: "\e773";
+}
+
+.dtable-icon-autonumber-sync:before {
+  content: "\e774";
+}
+
+.dtable-icon-link-other-record-sync:before {
+  content: "\e775";
+}
+
+.dtable-icon-formula-sync:before {
+  content: "\e776";
+}
+
+.dtable-icon-single-line-text-sync:before {
+  content: "\e777";
+}
+
+.dtable-icon-rate-sync:before {
+  content: "\e778";
+}
+
+.dtable-icon-file-alt-solid-sync:before {
+  content: "\e779";
+}
+
+.dtable-icon-long-text-sync:before {
+  content: "\e77a";
+}
+
+.dtable-icon-url-sync:before {
+  content: "\e77b";
+}
+
+.dtable-icon-number-sync:before {
+  content: "\e77c";
+}
+
+.dtable-icon-periodic-sync:before {
+  content: "\e766";
+}
+
+.dtable-icon-table-encryption:before {
+  content: "\e765";
+}
+
+.dtable-icon-funnel-chart:before {
+  content: "\e764";
+}
+
+.dtable-icon-convert:before {
+  content: "\e763";
+}
+
+.dtable-icon-include-archived-records:before {
+  content: "\e761";
+}
+
+.dtable-icon-exclude-archived-records:before {
+  content: "\e762";
+}
+
+.dtable-icon-use-values:before {
+  content: "\e760";
+}
+
+.dtable-icon-restore:before {
+  content: "\e75f";
+}
+
+.dtable-icon-partially-selected:before {
+  content: "\e75e";
+}
+
+.dtable-icon-workflow:before {
+  content: "\e75d";
+}
+
+.dtable-icon-rectangular-tree-diagram:before {
+  content: "\e75c";
+}
+
+.dtable-icon-scan-code:before {
+  content: "\e75b";
+}
+
+.dtable-icon-a-qr-code:before {
+  content: "\e75a";
+}
+
+.dtable-icon-histogram:before {
+  content: "\e759";
+}
+
+.dtable-icon-bar-chart:before {
+  content: "\e758";
+}
+
+.dtable-icon-line-chart:before {
+  content: "\e757";
+}
+
+.dtable-icon-area-chart:before {
+  content: "\e756";
+}
+
+.dtable-icon-pie-chart:before {
+  content: "\e755";
+}
+
+.dtable-icon-scatter-chart:before {
+  content: "\e754";
+}
+
+.dtable-icon-combination-chart:before {
+  content: "\e753";
+}
+
+.dtable-icon-map:before {
+  content: "\e752";
+}
+
+.dtable-icon-heat-map:before {
+  content: "\e751";
+}
+
+.dtable-icon-facet-chart:before {
+  content: "\e750";
+}
+
+.dtable-icon-card:before {
+  content: "\e74f";
+}
+
+.dtable-icon-gauge:before {
+  content: "\e74e";
+}
+
+.dtable-icon-adjust-column:before {
+  content: "\e74d";
+}
+
+.dtable-icon-private-archive-view:before {
+  content: "\e74b";
+}
+
+.dtable-icon-private-database:before {
+  content: "\e74c";
+}
+
+.dtable-icon-up-move:before {
+  content: "\e749";
+}
+
+.dtable-icon-down-move:before {
+  content: "\e74a";
+}
+
+.dtable-icon-flag:before {
+  content: "\e748";
+}
+
+.dtable-icon-praise:before {
+  content: "\e747";
+}
+
+.dtable-icon-like:before {
+  content: "\e746";
+}
+
+.dtable-icon-mysql-database:before {
+  content: "\e744";
+}
+
+.dtable-icon-more-menus:before {
+  content: "\e745";
+}
+
+.dtable-icon-pdf:before {
+  content: "\e743";
 }
 
 .dtable-icon-export-to-new-table:before {
@@ -338,10 +962,6 @@
 
 .dtable-icon-organization-name:before {
   content: "\e6ce";
-}
-
-.dtable-icon-revoke1:before {
-  content: "\e6cc";
 }
 
 .dtable-icon-star:before {
@@ -838,10 +1458,6 @@
 
 .dtable-icon-rename:before {
   content: "\e626";
-}
-
-.dtable-icon-delete:before {
-  content: "\e627";
 }
 
 .dtable-icon-drop-down:before {
