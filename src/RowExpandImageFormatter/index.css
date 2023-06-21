@@ -48,7 +48,7 @@
   height: 16px;
   width: 16px;
   border-radius: 50%;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   cursor: pointer;
   display: flex;

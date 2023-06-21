@@ -32,7 +32,7 @@ body {
 #root > div:last-child > div {
   position: relative;
   padding-top: 50px !important;
-  background-color: rgba(255,255,255,0.3) !important;
+  background-color: rgba(255, 255, 255, 0.3) !important;
 }
 
 #root > div:first-child > div::after,
@@ -52,7 +52,7 @@ body {
   box-sizing: border-box;
   padding: 50px 20px 0;
   border: 1px solid rgb(238, 238, 238);
-  background-color: rgba(255,255,255,0.3);
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 #story-root:after {
