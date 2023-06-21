@@ -42,7 +42,6 @@ const emptyTypeMap = {
   [CellType.AUTO_NUMBER]: true,
   [CellType.URL]: true,
   [CellType.EMAIL]: true,
-  [CellType.DURATION]: true,
   [CellType.IMAGE]: true,
   [CellType.FILE]: true,
   [CellType.CREATOR]: true,
@@ -335,6 +334,9 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.DURATION: {
+        if (!cellValue && cellValue !== 0) {
+          return this.renderEmpty();
+        }
         return (
           <div className="form-control d-flex align-items-center w-100">
             <DurationFormatter value={cellValue} format={column.data.duration_format} containerClassName={containerClassName} />
