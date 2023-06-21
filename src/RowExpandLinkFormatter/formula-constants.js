@@ -1,4 +1,4 @@
-import { CellType } from 'dtable-store';
+import { CellType } from '../constants';
 
 export const FORMULA_RESULT_TYPE = {
   NUMBER: 'number',

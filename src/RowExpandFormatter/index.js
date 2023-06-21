@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CellType } from 'dtable-store';
 import classnames from 'classnames';
 import {
   TextFormatter,
@@ -27,6 +26,7 @@ import {
   RowExpandLinkFormatter,
   DigitalSignFormatter,
 } from '../index';
+import { CellType } from '../constants';
 
 import './index.css';
 

@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { CellType } from 'dtable-store';
+import { CellType } from '../constants';
 import { MultipleSelectFormatter, DateFormatter, CTimeFormatter, MTimeFormatter } from '../index';
 import CollaboratorItemFormatter from './collaborator-item-formatter';
 import { getFormulaArrayValue, isArrayFormalColumn } from './utils';

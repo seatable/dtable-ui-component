@@ -1,4 +1,4 @@
-import { CellType } from 'dtable-store';
+import { CellType } from '../constants';
 import { isArrayFormalColumn } from './utils';
 import NP from './number-precision';
 import DateUtils from './date-utils';

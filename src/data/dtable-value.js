@@ -1,4 +1,4 @@
-import { CellType } from 'dtable-store';
+import { CellType } from '../constants';
 
 const DTABLE_VALUE = {
   'tables': [
