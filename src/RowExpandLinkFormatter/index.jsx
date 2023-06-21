@@ -129,9 +129,6 @@ export default class RowExpandLinkFormatter extends Component {
         );
       }
       case CellType.SINGLE_SELECT: {
-        if (!cellValue || cellValue.length === 0) {
-          return props.renderEmpty();
-        }
         const options = displayColumnData && Array.isArray(displayColumnData.options) ? displayColumnData.options : [];
         return (
           <MultipleSelectFormatter
