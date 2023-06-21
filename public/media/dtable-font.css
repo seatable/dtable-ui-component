@@ -1,11 +1,11 @@
 @font-face {
   font-family: "dtable-font"; /* Project id 1206632 */
-  src: url('./dtable-fonts/dtable-font.eot?t=1651801953083'); /* IE9 */
-  src: url('./dtable-fonts/dtable-font.eot?t=1651801953083#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('./dtable-fonts/dtable-font.woff2?t=1651801953083') format('woff2'),
-       url('./dtable-fonts/dtable-font.woff?t=1651801953083') format('woff'),
-       url('./dtable-fonts/dtable-font.ttf?t=1651801953083') format('truetype'),
-       url('./dtable-fonts/dtable-font.svg?t=1651801953083#dtable-font') format('svg');
+  src: url('./dtable-fonts/dtable-font.eot?t=1680493637259'); /* IE9 */
+  src: url('./dtable-fonts/dtable-font.eot?t=1680493637259#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./dtable-fonts/dtable-font.woff2?t=1680493637259') format('woff2'),
+       url('./dtable-fonts/dtable-font.woff?t=1680493637259') format('woff'),
+       url('./dtable-fonts/dtable-font.ttf?t=1680493637259') format('truetype'),
+       url('./dtable-fonts/dtable-font.svg?t=1680493637259#dtable-font') format('svg');
 }
 
 .dtable-font {
@@ -14,6 +14,326 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dtable-icon-handwritten-signature-sync:before {
+  content: "\e7ea";
+}
+
+.dtable-icon-handwritten-signature:before {
+  content: "\e7eb";
+}
+
+.dtable-icon-collapse-all:before {
+  content: "\e7e8";
+}
+
+.dtable-icon-expand-all:before {
+  content: "\e7e9";
+}
+
+.dtable-icon-comment1:before {
+  content: "\e7e7";
+}
+
+.dtable-icon-border-style:before {
+  content: "\e7e6";
+}
+
+.dtable-icon-automation-rules1:before {
+  content: "\e7e4";
+}
+
+.dtable-icon-notification-rules:before {
+  content: "\e7e5";
+}
+
+.dtable-icon-app-purchase:before {
+  content: "\e7d7";
+}
+
+.dtable-icon-app-statistics:before {
+  content: "\e7d8";
+}
+
+.dtable-icon-app-address-book:before {
+  content: "\e7d9";
+}
+
+.dtable-icon-app-product-library:before {
+  content: "\e7da";
+}
+
+.dtable-icon-app-individual-bill:before {
+  content: "\e7db";
+}
+
+.dtable-icon-app-email:before {
+  content: "\e7dc";
+}
+
+.dtable-icon-app-distribution:before {
+  content: "\e7dd";
+}
+
+.dtable-icon-app-history1:before {
+  content: "\e7de";
+}
+
+.dtable-icon-app-contract:before {
+  content: "\e7df";
+}
+
+.dtable-icon-app-post-sale:before {
+  content: "\e7e0";
+}
+
+.dtable-icon-app-logistics:before {
+  content: "\e7e1";
+}
+
+.dtable-icon-app-invoice:before {
+  content: "\e7e2";
+}
+
+.dtable-icon-app-achievement-distribution:before {
+  content: "\e7e3";
+}
+
+.dtable-icon-underline:before {
+  content: "\e7d6";
+}
+
+.dtable-icon-chart:before {
+  content: "\e7d4";
+}
+
+.dtable-icon-text:before {
+  content: "\e7d5";
+}
+
+.dtable-icon-calendar1:before {
+  content: "\e7cc";
+}
+
+.dtable-icon-data-deduplication:before {
+  content: "\e7cd";
+}
+
+.dtable-icon-advanced-statistics:before {
+  content: "\e7ce";
+}
+
+.dtable-icon-gallery:before {
+  content: "\e7cf";
+}
+
+.dtable-icon-kanban:before {
+  content: "\e7d0";
+}
+
+.dtable-icon-page-design:before {
+  content: "\e7d1";
+}
+
+.dtable-icon-timeline:before {
+  content: "\e7d2";
+}
+
+.dtable-icon-map1:before {
+  content: "\e7d3";
+}
+
+.dtable-icon-upload1:before {
+  content: "\e7cb";
+}
+
+.dtable-icon-qr-code:before {
+  content: "\e7ca";
+}
+
+.dtable-icon-monitor1:before {
+  content: "\e7c8";
+}
+
+.dtable-icon-more:before {
+  content: "\e7c9";
+}
+
+.dtable-icon-italic:before {
+  content: "\e7c1";
+}
+
+.dtable-icon-font-color1:before {
+  content: "\e7c2";
+}
+
+.dtable-icon-clear-format:before {
+  content: "\e7c3";
+}
+
+.dtable-icon-bold:before {
+  content: "\e7c4";
+}
+
+.dtable-icon-display1:before {
+  content: "\e7c5";
+}
+
+.dtable-icon-list-ol1:before {
+  content: "\e7c6";
+}
+
+.dtable-icon-list-ul1:before {
+  content: "\e7c7";
+}
+
+.dtable-icon-activities:before {
+  content: "\e7c0";
+}
+
+.dtable-icon-import-from-another-table1:before {
+  content: "\e7bc";
+}
+
+.dtable-icon-monitor:before {
+  content: "\e7bd";
+}
+
+.dtable-icon-custom-color1:before {
+  content: "\e7be";
+}
+
+.dtable-icon-switch2:before {
+  content: "\e7bf";
+}
+
+.dtable-icon-justify-align:before {
+  content: "\e7ac";
+}
+
+.dtable-icon-font-color:before {
+  content: "\e7ad";
+}
+
+.dtable-icon-increase-indent:before {
+  content: "\e7ae";
+}
+
+.dtable-icon-decrease-indent:before {
+  content: "\e7af";
+}
+
+.dtable-icon-list-ol-capital-english-letters:before {
+  content: "\e7b0";
+}
+
+.dtable-icon-list-ol-capital-roman-numerals:before {
+  content: "\e7b1";
+}
+
+.dtable-icon-list-ul:before {
+  content: "\e7b2";
+}
+
+.dtable-icon-list-ul-black-square:before {
+  content: "\e7b3";
+}
+
+.dtable-icon-list-ul-hollow-circle:before {
+  content: "\e7b4";
+}
+
+.dtable-icon-list-ol-small-roman-numerals:before {
+  content: "\e7b5";
+}
+
+.dtable-icon-switch1:before {
+  content: "\e7b6";
+}
+
+.dtable-icon-list-ol-small-english-letters:before {
+  content: "\e7b7";
+}
+
+.dtable-icon-custom-color:before {
+  content: "\e7b8";
+}
+
+.dtable-icon-import-from-another-table:before {
+  content: "\e7b9";
+}
+
+.dtable-icon-list-ol-small-greek:before {
+  content: "\e7ba";
+}
+
+.dtable-icon-list-ol:before {
+  content: "\e7bb";
+}
+
+.dtable-icon-align-right:before {
+  content: "\e79f";
+}
+
+.dtable-icon-horizontal-center:before {
+  content: "\e7a5";
+}
+
+.dtable-icon-align-left:before {
+  content: "\e7a6";
+}
+
+.dtable-icon-bottom-alignment:before {
+  content: "\e7a7";
+}
+
+.dtable-icon-horizontal-distribution:before {
+  content: "\e7a8";
+}
+
+.dtable-icon-top-alignment:before {
+  content: "\e7a9";
+}
+
+.dtable-icon-vertical-center:before {
+  content: "\e7aa";
+}
+
+.dtable-icon-vertical-distribution:before {
+  content: "\e7ab";
+}
+
+.dtable-icon-novice-guide:before {
+  content: "\e79b";
+}
+
+.dtable-icon-wide:before {
+  content: "\e79c";
+}
+
+.dtable-icon-narrow1:before {
+  content: "\e79d";
+}
+
+.dtable-icon-choose-column:before {
+  content: "\e79e";
+}
+
+.dtable-icon-app-share:before {
+  content: "\e794";
+}
+
+.dtable-icon-app-user-management:before {
+  content: "\e795";
+}
+
+.dtable-icon-paused:before {
+  content: "\e793";
+}
+
+.dtable-icon-app-preview:before {
+  content: "\e792";
 }
 
 .dtable-icon-app-authority-management:before {
