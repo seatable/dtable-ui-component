@@ -23,3 +23,8 @@ export const EMAIL = 'email';
 export const DURATION = 'duration';
 export const RATE = 'rate';
 export const BUTTON = 'button';
+export const DIGITAL_SIGN = 'digital-sign';
+
+// formula | link-formula column calculate result type
+export const BOOL = 'bool';
+export const STRING = 'string';
