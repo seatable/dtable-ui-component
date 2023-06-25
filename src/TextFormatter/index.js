@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 
 import './index.css';
 
@@ -23,7 +23,7 @@ class TextFormatter extends React.Component {
 
   render() {
     const { containerClassName, value } = this.props;
-    const classname = cn('dtable-ui cell-formatter-container text-formatter', containerClassName);
+    const classname = classnames('dtable-ui cell-formatter-container text-formatter', containerClassName);
     const formattedValue = this.getFormattedValue(value);
     return (
       <div className={classname} title={formattedValue}>{formattedValue}</div>

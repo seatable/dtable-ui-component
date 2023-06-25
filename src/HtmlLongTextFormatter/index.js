@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import { processor } from './markdown2html';
 
 import './index.css';
@@ -53,7 +53,7 @@ class HtmlLongTextFormatter extends Component {
   render() {
     const { innerHtml } = this.state;
     const { containerClassName } = this.props;
-    const className= cn('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
+    const className= classnames('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
     if (!innerHtml) return null;
     return (
       <div

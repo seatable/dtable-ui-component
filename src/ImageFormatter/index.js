@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import ImagesLazyLoad from './images-lazy-load';
 import { getImageThumbnailUrl } from './utils';
 import ImagePreviewerLightbox from '../ImagePreviewerLightbox';
@@ -74,7 +74,7 @@ class ImageFormatter extends React.Component {
 
   render() {
     const { isSample, value, server, containerClassName, readOnly } = this.props;
-    const className = cn('dtable-ui cell-formatter-container image-formatter', containerClassName);
+    const className = classnames('dtable-ui cell-formatter-container image-formatter', containerClassName);
     const { isPreviewImage, previewImageIndex } = this.state;
     if (!Array.isArray(value) || value.length === 0) {
       return null;

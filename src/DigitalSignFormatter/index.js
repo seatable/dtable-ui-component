@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import ImagesLazyLoad from '../ImageFormatter/images-lazy-load';
 import ImagePreviewerLightbox from '../ImagePreviewerLightbox';
 import { getDigitalSignImageUrl } from './utils';
@@ -58,7 +58,7 @@ class DigitalSignFormatter extends Component {
 
   render() {
     const { containerClassName, readOnly, config, isSample } = this.props;
-    const className = cn('dtable-ui cell-formatter-container digital-sign-formatter', containerClassName);
+    const className = classnames('dtable-ui cell-formatter-container digital-sign-formatter', containerClassName);
     const signImages = this.getSignImages();
     if (signImages.length === 0) return null;
     const { isPreviewSignImage, largeSignImageIndex } = this.state;

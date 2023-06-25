@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import { getDateDisplayString } from '../utils/value-format-utils';
 
 import './index.css';
@@ -25,7 +25,7 @@ class DateFormatter extends React.Component {
 
   render() {
     let { value: date, format, containerClassName } = this.props;
-    let classname = cn('dtable-ui cell-formatter-container date-formatter', containerClassName);
+    let classname = classnames('dtable-ui cell-formatter-container date-formatter', containerClassName);
     if (date !== '') {
       date = this.formatDate(date, format);
     }

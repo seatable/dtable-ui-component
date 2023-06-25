@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import { getDurationDisplayString } from '../utils/value-format-utils';
 
 import './index.css';
@@ -15,7 +15,7 @@ class DurationFormatter extends React.Component {
 
   render() {
     let { value, containerClassName, format } = this.props;
-    let classname = cn('dtable-ui cell-formatter-container duration-formatter', containerClassName);
+    let classname = classnames('dtable-ui cell-formatter-container duration-formatter', containerClassName);
 
     return (
       <div className={classname}>{getDurationDisplayString(value, { duration_format: format })}</div>
