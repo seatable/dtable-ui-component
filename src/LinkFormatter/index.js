@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import * as CellTypes from '../constants/cell-types';
 import { getNumberDisplayString, getDateDisplayString } from '../utils/value-format-utils';
 
@@ -40,7 +40,7 @@ class LinkFormatter extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const { row: nextRow } = nextProps;
     if (nextRow._id !== this.props.row._id) {
       this.setState({value: this.getLinkedCellValue(nextRow)});
@@ -106,7 +106,7 @@ class LinkFormatter extends React.Component {
 
   render() {
     const { containerClassName } = this.props;
-    const classname = cn('dtable-ui cell-formatter-container link-formatter', containerClassName);
+    const classname = classnames('dtable-ui cell-formatter-container link-formatter', containerClassName);
 
     let displayValues = this.getDisplayValues();
     return (

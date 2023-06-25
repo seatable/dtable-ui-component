@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import FileItemFormatter from '../FileItemFormatter';
 
 import './index.css';
@@ -25,7 +25,7 @@ export default class FileFormatter extends React.PureComponent {
       return null;
     }
 
-    let className = cn('dtable-ui cell-formatter-container file-formatter', containerClassName);
+    let className = classnames('dtable-ui cell-formatter-container file-formatter', containerClassName);
 
     if (isSample) {
       let item = value[0];

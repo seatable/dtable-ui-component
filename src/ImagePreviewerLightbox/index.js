@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import ModalPortal from '../ModalPortal';
 import Lightbox from '@seafile/react-image-lightbox';
 import { checkSVGImage, isInternalImg } from './utils';
@@ -48,7 +48,7 @@ function ImagePreviewerLightbox(props) {
     <Fragment>
       <MediaQuery query="(min-width: 767.8px)">
         <Lightbox
-          wrapperClassName={cn('PC-image-previewer', className)}
+          wrapperClassName={classnames('PC-image-previewer', className)}
           imageTitle={imageTitleEl}
           toolbarButtons={toolbarButtons}
           mainSrc={imageItems[imageIndex]}
@@ -69,7 +69,7 @@ function ImagePreviewerLightbox(props) {
       <MediaQuery query="(max-width: 767.8px)">
         <Lightbox
           isDesktop={false}
-          wrapperClassName={cn('mobile-image-previewer dtable-ui-component', className)}
+          wrapperClassName={classnames('mobile-image-previewer dtable-ui-component', className)}
           mainSrc={imageItems[imageIndex]}
           nextSrc={imageItems[(imageIndex + 1) % imageItemsLength]}
           prevSrc={imageItems[(imageIndex + imageItemsLength - 1) % imageItemsLength]}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 
 import './index.css';
 
@@ -37,7 +37,7 @@ class RateFormatter extends React.Component {
 
   render() {
     let { value: number, containerClassName } = this.props;
-    let className = cn('dtable-ui cell-formatter-container rate-formatter', containerClassName);
+    let className = classnames('dtable-ui cell-formatter-container rate-formatter', containerClassName);
     if (!number) return null;
 
     let rateList = this.getRateList();

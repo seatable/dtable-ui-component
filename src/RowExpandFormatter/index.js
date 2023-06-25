@@ -83,7 +83,7 @@ export default class EditorFormatter extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     this.calculateCollaboratorData(nextProps);
   }
 

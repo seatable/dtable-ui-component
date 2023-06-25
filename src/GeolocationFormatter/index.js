@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import { getGeolocationDisplayString } from '../utils/value-format-utils';
 
 import './index.css';
@@ -26,7 +26,7 @@ class GeolocationFormatter extends React.Component {
 
   render() {
     let { value, data, containerClassName } = this.props;
-    let className = cn('dtable-ui cell-formatter-container geolocation-formatter', containerClassName);
+    let className = classnames('dtable-ui cell-formatter-container geolocation-formatter', containerClassName);
 
     if (typeof value !== 'object') {
       return null;

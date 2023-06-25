@@ -24,7 +24,7 @@ class ImagesLazyLoad extends React.Component {
     this.lazyLoadImages(this.props);
   }
 
-  componentWillReceiveProps = (nextProps) => {
+  UNSAFE_componentWillReceiveProps = (nextProps) => {
     if (nextProps.images.toString() !== this.props.images.toString()) {
       this.lazyLoadImages(nextProps);
     }

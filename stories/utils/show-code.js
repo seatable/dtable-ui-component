@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import Description from './description';
 
 const options = {
@@ -45,7 +45,7 @@ export default class ShowCode extends Component {
     const { title, sub, children } = this.props;
     const { fold } = this.state;
 
-    const codeClass = cn('storybook-code-wrapper', {'storybook-code-wrapper-fold': fold});
+    const codeClass = classnames('storybook-code-wrapper', {'storybook-code-wrapper-fold': fold});
 
     return (
       <div className='storybook-wrapper'>

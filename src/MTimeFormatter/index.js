@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import dayjs from 'dayjs';
 
 import './index.css';
@@ -23,7 +23,7 @@ class MTimeFormatter extends React.Component {
 
   render() {
     let { value: date, containerClassName } = this.props;
-    let classname = cn('dtable-ui cell-formatter-container ctime-formatter', containerClassName);
+    let classname = classnames('dtable-ui cell-formatter-container ctime-formatter', containerClassName);
     if (date !== '') {
       date = this.formatDate(date);
     }

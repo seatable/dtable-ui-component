@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import SelectItem from '../SelectItem';
 
 import './index.css';
@@ -30,7 +30,7 @@ class MultipleSelectFormatter extends React.PureComponent {
 
   render() {
     let { value, containerClassName } = this.props;
-    let classname = cn('dtable-ui cell-formatter-container multiple-select-formatter', containerClassName);
+    let classname = classnames('dtable-ui cell-formatter-container multiple-select-formatter', containerClassName);
     if (!value || (Array.isArray(value) && value.length === 0)) {
       return (<div className={classname}></div>);
     }

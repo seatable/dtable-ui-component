@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 
 import './index.css';
 
@@ -35,7 +35,7 @@ class ButtonFormatter extends React.Component {
     return (
       <div>
         <button
-          className={cn('dtable-ui cell-formatter-container button-formatter', containerClassName)}
+          className={classnames('dtable-ui cell-formatter-container button-formatter', containerClassName)}
           style={btnStyle}
           onClick={this.handleClick}
         >

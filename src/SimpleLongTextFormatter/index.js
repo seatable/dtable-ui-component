@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import getPreviewContent from './normalize-long-text-value';
 import LongTextPreview from './widgets/LongTextPreview';
 import ModalPortal from '../ModalPortal';
@@ -112,7 +112,7 @@ class SimpleLongTextFormatter extends React.Component {
   render() {
     const { isPreview } = this.state;
     const { containerClassName } = this.props;
-    const className= cn('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
+    const className= classnames('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
     const value = this.translateValue();
     return (
       <div

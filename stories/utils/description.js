@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 
 const propTypes = {
   isDisplayInline: PropTypes.bool,
@@ -12,7 +12,7 @@ class Description extends React.Component {
 
   render() {
     let { isDisplayInline, children } = this.props;
-    let classname = cn('description-demo', {'description-inline': isDisplayInline})
+    let classname = classnames('description-demo', {'description-inline': isDisplayInline})
     return (
       <div className={classname}>{children}</div>
     );

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import CollaboratorItem from '../CollaboratorItem';
 import DefaultAvatar from '../assets/images/avatar/default_avatar.png';
 
@@ -59,7 +59,7 @@ class CollaboratorFormatter extends React.PureComponent {
 
   render() {
     const { containerClassName, value } = this.props;
-    const classname = cn('dtable-ui cell-formatter-container collaborator-formatter', containerClassName);
+    const classname = classnames('dtable-ui cell-formatter-container collaborator-formatter', containerClassName);
     if (!value || (Array.isArray(value) && value.length === 0)) {
       return (<div className={classname}></div>);
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 
 import './index.css';
 
@@ -18,7 +18,7 @@ class CheckboxFormatter extends React.PureComponent {
   render() {
     let { value, containerClassName } = this.props;
     value = value === true ? true : false;
-    let classname = cn('dtable-ui cell-formatter-container checkbox-formatter d-flex align-items-center justify-content-center', containerClassName);
+    let classname = classnames('dtable-ui cell-formatter-container checkbox-formatter d-flex align-items-center justify-content-center', containerClassName);
     if (value) {
       return (
         <div className={classname}>

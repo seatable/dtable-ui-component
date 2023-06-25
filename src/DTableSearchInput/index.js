@@ -15,7 +15,7 @@ class DtableSearchInput extends Component {
     this.inputRef = null;
   }
 
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ searchValue: nextProps.value });
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'astro-classname';
+import classnames from 'classnames';
 import SelectItem from '../SelectItem';
 
 import './index.css';
@@ -28,7 +28,7 @@ class SingleSelectFormatter extends React.PureComponent {
 
   render() {
     const { containerClassName, value } = this.props;
-    let classname = cn('dtable-ui cell-formatter-container single-select-formatter', containerClassName);
+    let classname = classnames('dtable-ui cell-formatter-container single-select-formatter', containerClassName);
     return (
       <div className={classname}>{value ? this.getOption() : ''}</div>
     );
