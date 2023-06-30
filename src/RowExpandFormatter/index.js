@@ -25,6 +25,7 @@ import {
   RowExpandFileFormatter,
   RowExpandLinkFormatter,
   DigitalSignFormatter,
+  FormulaFormatter,
 } from '../index';
 import { CellType } from '../constants';
 
@@ -282,10 +283,17 @@ export default class EditorFormatter extends React.Component {
       }
       case CellType.FORMULA:
       case CellType.LINK_FORMULA: {
-        if (!cellValue && cellValue !== 0) {
+        if (!cellValue && cellValue !== 0 && cellValue !== false) {
           return this.renderEmpty();
         }
-        return <TextFormatter value={cellValue} containerClassName={containerClassName} />;
+        return (
+          <FormulaFormatter
+            value={cellValue}
+            column={column}
+            collaborators={collaborators}
+            containerClassName={containerClassName}
+          />
+        );
       }
       case CellType.LINK: {
         // handle link column do not have column.data.display_column

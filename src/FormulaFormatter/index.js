@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { FORMULA_RESULT_TYPE, CellType } from '../constants';
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
-import { isArrayFormalColumn, isSimpleCellFormatter, isFunction } from './utils';
+import { isArrayFormalColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
+  convertValueToDtableLongTextValue } from './utils';
 import cellValueValidator from './cell-value-validator';
 import { getFormulaDisplayString } from '../utils/value-format-utils';
 
@@ -91,9 +92,24 @@ class FormulaFormatter extends React.Component {
   }
 
   render() {
-    const { value, containerClassName, column, collaborators } = this.props;
-    const { data: columnData } = column;
-    const { result_type: resultType } = columnData;
+    const { containerClassName, column, collaborators } = this.props;
+    const { data } = column;
+    const { array_type, result_type: resultType } = data;
+
+    let value = this.props.value;
+    if (Array.isArray(value)) {
+      value = getFormulaArrayValue(value);
+      if (array_type === CellType.DATE || resultType === FORMULA_RESULT_TYPE.DATE) {
+        value = value.map(item => item.replace('T', ' ').replace('Z', ''));
+      } else if (array_type === CellType.LONG_TEXT) {
+        value = value.map(item => convertValueToDtableLongTextValue(item));
+      }
+    } else {
+      if (resultType === FORMULA_RESULT_TYPE.DATE) {
+        value = value.replace('T', ' ').replace('Z', '');
+      }
+    }
+
     if (resultType === FORMULA_RESULT_TYPE.ARRAY) {
       return this.renderOtherColumnFormatter();
     }
@@ -102,8 +118,14 @@ class FormulaFormatter extends React.Component {
     }
 
     const gridCellClassName = this.getGridCellClassName(resultType);
-    let formattedValue = getFormulaDisplayString(value, columnData, { collaborators });
-    return <div className={`dtable-ui cell-formatter-container formula-formatter ${containerClassName} ${gridCellClassName}`} title={formattedValue} aria-label={formattedValue}>{formattedValue}</div>;
+    const formattedValue = getFormulaDisplayString(value, data, { collaborators });
+    return (
+      <div
+        className={`dtable-ui cell-formatter-container formula-formatter ${containerClassName} ${gridCellClassName}`}
+        title={formattedValue}
+        aria-label={formattedValue}
+      >{formattedValue}</div>
+    );
   }
 }
 
