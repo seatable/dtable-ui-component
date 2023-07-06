@@ -1,9 +1,12 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
+import {
+  getNumberDisplayString,
+  getDateDisplayString,
+} from 'dtable-utils';
 import { getLocale } from '../lang';
 import { CellType } from '../constants';
-import { getNumberDisplayString, getDateDisplayString } from '../utils/value-format-utils';
 import EditEditorButton from '../EditEditorButton';
 import LinkEditorOption from './link-editor-option';
 import PCLinkEditorPopover from './pc-link-editor-popover';

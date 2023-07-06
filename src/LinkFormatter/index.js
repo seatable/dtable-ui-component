@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import * as CellTypes from '../constants/cell-types';
-import { getNumberDisplayString, getDateDisplayString } from '../utils/value-format-utils';
+import {
+  CellType,
+  getNumberDisplayString,
+  getDateDisplayString,
+} from 'dtable-utils';
 
 const propTypes = {
   containerClassName: PropTypes.string,
@@ -92,10 +95,10 @@ class LinkFormatter extends React.Component {
     let { type, data } = linkedColumn;
     // todo: improve
     switch(type) {
-      case CellTypes.NUMBER: {
+      case CellType.NUMBER: {
         return getNumberDisplayString(value, data);
       }
-      case CellTypes.DATE: {
+      case CellType.DATE: {
         let { format } = data;
         return getDateDisplayString(value, format);
       }

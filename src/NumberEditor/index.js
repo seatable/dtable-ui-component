@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import isHotkey from 'is-hotkey';
+import {
+  getNumberDisplayString,
+  formatStringToNumber,
+  replaceNumberNotAllowInput,
+} from 'dtable-utils';
 import { NUMBER_TYPES } from '../constants';
-import { getNumberDisplayString, formatStringToNumber, replaceNumberNotAllowInput } from '../utils/value-format-utils';
 import { isMac } from '../utils/utils';
 
 const propTypes = {

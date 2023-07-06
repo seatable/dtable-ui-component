@@ -1,6 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
-import { DTABLE_VALUE, COLUMNS_ICON_CONFIG, COLLABORATORS, SIGN_CONFIG } from './data/dtable-value';
+import { COLUMNS_ICON_CONFIG } from 'dtable-utils';
+import { DTABLE_VALUE, COLLABORATORS, SIGN_CONFIG } from './data/dtable-value';
 import RowExpandFormatter from './RowExpandFormatter';
 
 import './app.css';

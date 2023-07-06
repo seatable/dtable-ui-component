@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { isValidEmail } from 'dtable-utils';
 import CollaboratorItem from '../CollaboratorItem';
 
 export default class CollaboratorItemFormatter extends Component {
@@ -26,11 +27,6 @@ export default class CollaboratorItemFormatter extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     this.calculateCollaboratorData(nextProps);
   }
-
-  isValidEmail = (email) => {
-    const reg = /^[A-Za-zd]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,6}$/;
-    return reg.test(email);
-  };
 
   calculateCollaboratorData = (props) => {
     const { context, collaborators } = this.props;
@@ -65,7 +61,7 @@ export default class CollaboratorItemFormatter extends Component {
       return;
     }
 
-    if (!this.isValidEmail(cellValue)) {
+    if (!isValidEmail(cellValue)) {
       collaborator = {
         name: cellValue,
         avatar_url: defaultAvatarUrl,

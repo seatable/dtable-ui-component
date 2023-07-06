@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getDurationDisplayString } from '../utils/value-format-utils';
+import { getDurationDisplayString } from 'dtable-utils';
 
 import './index.css';
 

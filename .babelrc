@@ -29,5 +29,8 @@
         "@babel/plugin-transform-runtime"
       ]
     }
-  }
+  },
+  "plugins": [
+    ["import", { "libraryName": "antd-mobile", "libraryDirectory": "lib"}, "antd-mobile"]
+  ]
 }

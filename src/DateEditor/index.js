@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import dayjs from 'dayjs';
-import { getDateDisplayString }  from '../utils/value-format-utils';
+import { getDateDisplayString }  from 'dtable-utils';
 import PCDateEditorPopover from './pc-date-editor-popover';
 import MBDateEditorPopover from './mb-date-editor-popover';
 

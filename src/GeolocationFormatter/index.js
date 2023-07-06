@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getGeolocationDisplayString } from '../utils/value-format-utils';
+import { getGeolocationDisplayString } from 'dtable-utils';
 
 import './index.css';
 
@@ -9,6 +9,7 @@ const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   data: PropTypes.object,
   containerClassName: PropTypes.string,
+  isBaiduMap: PropTypes.bool,
 };
 
 class GeolocationFormatter extends React.Component {
@@ -21,11 +22,12 @@ class GeolocationFormatter extends React.Component {
       detail: '',
     },
     data: {},
-    containerClassName: ''
+    containerClassName: '',
+    isBaiduMap: false,
   }
 
   render() {
-    let { value, data, containerClassName } = this.props;
+    let { value, data, containerClassName, isBaiduMap } = this.props;
     let className = classnames('dtable-ui cell-formatter-container geolocation-formatter', containerClassName);
 
     if (typeof value !== 'object') {
@@ -34,7 +36,7 @@ class GeolocationFormatter extends React.Component {
 
     return (
       <div className={className}>
-        {getGeolocationDisplayString(value, data)}
+        {getGeolocationDisplayString(value, data, { isBaiduMap, hyphen: ' ' })}
       </div>
     );
   }

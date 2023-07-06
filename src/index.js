@@ -5,13 +5,6 @@ export { default as toaster } from './toaster';
 export { default as Loading } from './Loading';
 export { setLocale } from './lang';
 
-// utils
-export {
-  getDateDisplayString,
-  getNumberDisplayString,
-  formatStringToNumber,
-} from './utils/value-format-utils';
-
 // formatter
 export { default as CheckboxFormatter } from './CheckboxFormatter';
 export { default as ImageFormatter } from './ImageFormatter';

@@ -1,12 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FORMULA_RESULT_TYPE, CellType } from '../constants';
+import {
+  CellType,
+  FORMULA_RESULT_TYPE,
+  getFormulaDisplayString,
+} from 'dtable-utils';
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
 import { isArrayFormalColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
   convertValueToDtableLongTextValue } from './utils';
 import cellValueValidator from './cell-value-validator';
-import { getFormulaDisplayString } from '../utils/value-format-utils';
 
 import './index.css';
 
