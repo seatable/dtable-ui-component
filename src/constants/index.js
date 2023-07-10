@@ -1,4 +1,7 @@
-import * as CellType from './cell-types';
+import {
+  CellType,
+  FORMULA_RESULT_TYPE,
+} from 'dtable-utils';
 
 const NUMBER_TYPES = {
   'NUMBER': 'number',
@@ -19,21 +22,12 @@ const DATE_TYPES = {
   'YYYY-MM-DD HH:mm': 'YYYY-MM-DD HH:mm',
 };
 
-const FORMULA_RESULT_TYPE = {
-  NUMBER: 'number',
-  STRING: 'string',
-  DATE: 'date',
-  BOOL: 'bool',
-  ARRAY: 'array',
-};
-
 const SIMPLE_CELL_COLUMNS = [
   CellType.TEXT,
   CellType.NUMBER,
   CellType.DATE,
   CellType.CTIME,
   CellType.MTIME,
-  CellType.GEOLOCATION,
   CellType.AUTO_NUMBER,
   CellType.URL,
   CellType.EMAIL,
@@ -56,52 +50,6 @@ const SIMPLE_CELL_FORMULA_RESULTS = [
   FORMULA_RESULT_TYPE.BOOL,
 ];
 
-const COLLABORATOR_COLUMN_TYPES = [
-  CellType.COLLABORATOR,
-  CellType.CREATOR,
-  CellType.LAST_MODIFIER
-];
-
-const ARRAY_FORMAL_COLUMNS_TYPES = [
-  CellType.IMAGE,
-  CellType.FILE,
-  CellType.MULTIPLE_SELECT,
-  CellType.COLLABORATOR
-];
-
-const DEFAULT_NUMBER_FORMAT = 'number';
-
-const DEFAULT_DATE_FORMAT = 'YYYY-MM-DD';
-
-const DURATION_FORMATS_MAP = {
-  H_MM: 'h:mm',
-  H_MM_SS: 'h:mm:ss',
-  H_MM_SS_S: 'h:mm:ss.s',
-  H_MM_SS_SS: 'h:mm:ss.ss',
-  H_MM_SS_SSS: 'h:mm:ss.sss'
-};
-
-const DURATION_FORMATS = [
-  {name: DURATION_FORMATS_MAP.H_MM, type: DURATION_FORMATS_MAP.H_MM},
-  {name: DURATION_FORMATS_MAP.H_MM_SS, type: DURATION_FORMATS_MAP.H_MM_SS}
-];
-
-const DURATION_ZERO_DISPLAY = {
-  [DURATION_FORMATS_MAP.H_MM]: '0:00',
-  [DURATION_FORMATS_MAP.H_MM_SS]: '0:00',
-  [DURATION_FORMATS_MAP.H_MM_SS_S]: '0:00.0',
-  [DURATION_FORMATS_MAP.H_MM_SS_SS]: '0:00.00',
-  [DURATION_FORMATS_MAP.H_MM_SS_SSS]: '0:00.000',
-};
-
-const DURATION_DECIMAL_DIGITS = {
-  [DURATION_FORMATS_MAP.H_MM]: 0,
-  [DURATION_FORMATS_MAP.H_MM_SS]: 0,
-  [DURATION_FORMATS_MAP.H_MM_SS_S]: 1,
-  [DURATION_FORMATS_MAP.H_MM_SS_SS]: 2,
-  [DURATION_FORMATS_MAP.H_MM_SS_SSS]: 3,
-};
-
 export {
   CellType,
   NUMBER_TYPES,
@@ -110,12 +58,4 @@ export {
   SIMPLE_CELL_COLUMNS,
   ARRAY_FORMAL_COLUMNS,
   SIMPLE_CELL_FORMULA_RESULTS,
-  COLLABORATOR_COLUMN_TYPES,
-  ARRAY_FORMAL_COLUMNS_TYPES,
-  DEFAULT_NUMBER_FORMAT,
-  DEFAULT_DATE_FORMAT,
-  DURATION_FORMATS_MAP,
-  DURATION_FORMATS,
-  DURATION_ZERO_DISPLAY,
-  DURATION_DECIMAL_DIGITS,
 };

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { getNumberDisplayString } from '../utils/value-format-utils';
+import { getNumberDisplayString } from 'dtable-utils';
 
 import './index.css';
 
