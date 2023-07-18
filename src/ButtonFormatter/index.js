@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { SELECT_OPTION_COLORS } from 'dtable-utils';
 
 import './index.css';
 
 const propTypes = {
   data: PropTypes.object,
   containerClassName: PropTypes.string,
-  optionColors: PropTypes.array,
   onClickButton: PropTypes.func,
 };
 
@@ -20,17 +20,13 @@ class ButtonFormatter extends React.Component {
   }
 
   render() {
-    let { data, containerClassName, optionColors } = this.props;
+    let { data, containerClassName } = this.props;
     const { button_color, button_name } = data || {};
-    let colorOption = Array.isArray(optionColors) ?
-      (optionColors.find(item => item.COLOR === button_color) || optionColors[0])
-      :
-      {COLOR: '#FFFCB5', BORDER_COLOR: '#E8E79D', TEXT_COLOR: '#666'};
+    const colorObj = SELECT_OPTION_COLORS.find(item => item.COLOR === button_color) || SELECT_OPTION_COLORS[0];
 
     const btnStyle = {
-      backgroundColor: colorOption.COLOR,
-      borderColor: colorOption.BORDER_COLOR,
-      color: colorOption.TEXT_COLOR
+      backgroundColor: colorObj.COLOR,
+      borderColor: colorObj.BORDER_COLOR
     };
     return (
       <div>

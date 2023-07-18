@@ -16,11 +16,11 @@ import {
   LastModifierFormatter,
   MTimeFormatter,
   AutoNumberFormatter,
-  UrlFormatter,
-  EmailFormatter,
   DurationFormatter,
-  RateFormatter,
   ButtonFormatter,
+  RowExpandUrlFormatter,
+  RowExpandEmailFormatter,
+  RowExpandRateFormatter,
   RowExpandImageFormatter,
   RowExpandFileFormatter,
   RowExpandLinkFormatter,
@@ -184,14 +184,14 @@ export default class EditorFormatter extends React.Component {
           return this.renderEmpty();
         }
         return (
-          <div className="form-control d-flex align-items-center w-100">
+          <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
             <NumberFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.DATE: {
         return (
-          <div className="form-control d-flex align-items-center w-100">
+          <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
             <DateFormatter value={cellValue} format={column.data.format} containerClassName={containerClassName} />
           </div>
         );
@@ -331,14 +331,14 @@ export default class EditorFormatter extends React.Component {
       case CellType.URL: {
         return (
           <div className="form-control d-flex align-items-center w-100">
-            <UrlFormatter value={cellValue} containerClassName={containerClassName} />
+            <RowExpandUrlFormatter value={cellValue} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.EMAIL: {
         return (
           <div className="form-control d-flex align-items-center w-100">
-            <EmailFormatter value={cellValue} containerClassName={containerClassName} />
+            <RowExpandEmailFormatter value={cellValue} containerClassName={containerClassName} />
           </div>
         );
       }
@@ -347,15 +347,15 @@ export default class EditorFormatter extends React.Component {
           return this.renderEmpty();
         }
         return (
-          <div className="form-control d-flex align-items-center w-100">
+          <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
             <DurationFormatter value={cellValue} format={column.data.duration_format} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.RATE: {
         return (
-          <div className="form-control d-flex align-items-center w-100">
-            <RateFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
+          <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
+            <RowExpandRateFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
           </div>
         );
       }

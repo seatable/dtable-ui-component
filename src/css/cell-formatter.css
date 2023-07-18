@@ -1,4 +1,5 @@
 .dtable-ui.cell-formatter-container {
   overflow: hidden;
   line-height: 1;
+  width: 100%;
 }
