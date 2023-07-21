@@ -201,7 +201,7 @@ export default class EditorFormatter extends React.Component {
           return this.renderEmpty();
         }
         return (
-          <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
+          <div className="form-control d-flex align-items-center ctime-formatter-container" style={{ width: 320 }}>
             <CTimeFormatter value={row._ctime} containerClassName={containerClassName} />
           </div>
         );
@@ -211,7 +211,7 @@ export default class EditorFormatter extends React.Component {
           return this.renderEmpty();
         }
         return (
-          <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
+          <div className="form-control d-flex align-items-center mtime-formatter-container" style={{ width: 320 }}>
             <MTimeFormatter value={row._mtime} containerClassName={containerClassName} />
           </div>
         );

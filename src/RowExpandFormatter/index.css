@@ -48,6 +48,11 @@
   min-height: 2.375rem;
 }
 
+.dtable-ui.dtable-row-expand-formatter .ctime-formatter-container,
+.dtable-ui.dtable-row-expand-formatter .mtime-formatter-container {
+  padding: 0.375rem 0.75rem;
+}
+
 .dtable-ui.dtable-row-expand-formatter .checkbox-formatter-container {
   width: 24px;
   height: 24px;
@@ -55,6 +60,32 @@
   border-radius: 3px;
   display: flex;
   justify-content: center;
+}
+
+.dtable-ui.dtable-row-expand-formatter .checkbox-formatter-container .cell-formatter-container {
+  line-height: inherit;
+}
+
+.dtable-ui.dtable-row-expand-formatter .button-formatter {
+  margin-top: 6px;
+  text-align: center;
+  height: 26px;
+  line-height: 14px;
+  min-width: 80px;
+  max-width: 100%;
+  width: fit-content;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  border-radius: 3px;
+  border-width: 2px;
+  font-weight: 500;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: .03em;
 }
 
 .dtable-ui.dtable-row-expand-formatter .longtext-formatter-container {
