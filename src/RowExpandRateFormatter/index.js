@@ -10,7 +10,7 @@ const propTypes = {
   containerClassName: PropTypes.string,
 };
 
-class RateFormatter extends React.Component {
+class RateExpendRateFormatter extends React.Component {
 
   static defaultProps = {
     value: '',
@@ -20,14 +20,16 @@ class RateFormatter extends React.Component {
   getRateList = () => {
     const { data, value } = this.props;
     const { rate_max_number = 5, rate_style_color = '#e5e5e5', rate_style_type = 'dtable-icon-rate' } = data || {};
-    const validValue = Math.min(rate_max_number, value);
     let rateList = [];
-    for (let i = 0; i < validValue; i++) {
+    for (let i = 0; i < rate_max_number; i++) {
+      let style = {
+        color: value >= i + 1 ? rate_style_color : '#e5e5e5'
+      };
       rateList.push(
         <i
           key={`dtable-ui-component-rate-${i}`}
           className={`dtable-font ${rate_style_type}`}
-          style={{color: rate_style_color || '#e5e5e5'}}
+          style={style}
         >
         </i>
       );
@@ -36,9 +38,8 @@ class RateFormatter extends React.Component {
   }
 
   render() {
-    const { value: number, containerClassName } = this.props;
+    const { containerClassName } = this.props;
     const className = classnames('dtable-ui cell-formatter-container rate-formatter', containerClassName);
-    if (!number) return null;
 
     const rateList = this.getRateList();
     return (
@@ -47,6 +48,6 @@ class RateFormatter extends React.Component {
   }
 }
 
-RateFormatter.propTypes = propTypes;
+RateExpendRateFormatter.propTypes = propTypes;
 
-export default RateFormatter;
+export default RateExpendRateFormatter;

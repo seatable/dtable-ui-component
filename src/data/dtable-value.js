@@ -1,5 +1,3 @@
-import { CellType } from '../constants';
-
 const DTABLE_VALUE = {
   'tables': [
     {

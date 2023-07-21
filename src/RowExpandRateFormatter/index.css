@@ -1,0 +1,5 @@
+@import url('../css/cell-formatter.css');
+
+.dtable-ui.dtable-row-expand-formatter .dtable-rate-formatter .dtable-icon-rate {
+  padding-right: 5px;
+}

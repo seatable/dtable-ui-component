@@ -40,6 +40,9 @@ export { default as SimpleLongTextFormatter } from './SimpleLongTextFormatter';
 export { default as RowExpandFileFormatter } from './RowExpandFileFormatter';
 export { default as RowExpandImageFormatter } from './RowExpandImageFormatter';
 export { default as RowExpandLinkFormatter } from './RowExpandLinkFormatter';
+export { default as RowExpandRateFormatter } from './RowExpandRateFormatter';
+export { default as RowExpandEmailFormatter } from './RowExpandEmailFormatter';
+export { default as RowExpandUrlFormatter } from './RowExpandUrlFormatter';
 export { default as RowExpandFormatter } from './RowExpandFormatter';
 
 // editor
