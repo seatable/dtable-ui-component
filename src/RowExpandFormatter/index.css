@@ -43,6 +43,9 @@
 
 .dtable-ui.dtable-row-expand-formatter .form-control {
   background-color: #f8f9fa;
+  padding: 0 10px;
+  height: fit-content;
+  min-height: 2.375rem;
 }
 
 .dtable-ui.dtable-row-expand-formatter .checkbox-formatter-container {
@@ -63,7 +66,7 @@
 }
 
 .dtable-ui.dtable-row-expand-formatter .geolocation-formatter-container {
-  height: 38px;
+  margin-top: 0.5rem;
   display: flex;
   align-items: center;
 }

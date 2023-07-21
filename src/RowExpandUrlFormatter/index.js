@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import toaster from '../toaster';
+import { isValidUrl, getTrimmedString } from '../utils/editor-utils';
 
 import './index.css';
 
@@ -11,20 +13,10 @@ const propTypes = {
 
 class UrlFormatter extends React.Component {
 
-  isValidUrl = (url) => {
-    const reg = /^(([-a-zA-Z0-9+.]+):\/\/)[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/;
-    return reg.test(url);
-  };
-
-  getTrimmedString = () => {
-    const { value } = this.props;
-    return (typeof value === 'string') ? value.trim() : '';
-  };
-
   onOpenUrlLink = () => {
     const { value } = this.props;
-    const url = this.getTrimmedString(value);
-    const validUrl = this.isValidUrl(url) ? url : `http://${url}`;
+    const url = getTrimmedString(value);
+    const validUrl = isValidUrl(url) ? url : `http://${url}`;
     try {
       let a = document.createElement('a');
       document.body.appendChild(a);
@@ -34,7 +26,7 @@ class UrlFormatter extends React.Component {
       a.click();
       document.body.removeChild(a);
     } catch {
-      throw new Error('The url is invalid');
+      toaster.danger('The url is invalid');
     }
   }
 
@@ -44,7 +36,7 @@ class UrlFormatter extends React.Component {
     return (
       <div className={classname}>
         <span className="url-formatter-value text-truncate">{value}</span>
-        {this.getTrimmedString() &&
+        {getTrimmedString(value) &&
           <span className="dtable-font dtable-icon-url row-expand-jump-link" onClick={this.onOpenUrlLink}></span>
         }
       </div>

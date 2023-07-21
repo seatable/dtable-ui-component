@@ -5,6 +5,10 @@
   margin-right: 10px;
 }
 
+.dtable-ui.dtable-row-expand-formatter .formula-formatter-content-item {
+  margin-top: 0.5rem;
+  margin-bottom: 5px;
+}
 
 .dtable-ui.formula-formatter.multiple .formula-formatter-content-item.simple-cell-formatter {
   height: 20px;

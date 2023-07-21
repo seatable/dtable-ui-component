@@ -38,19 +38,15 @@ class RateExpendRateFormatter extends React.Component {
   }
 
   render() {
-    let { containerClassName } = this.props;
-    let className = classnames('dtable-ui cell-formatter-container rate-formatter', containerClassName);
+    const { containerClassName } = this.props;
+    const className = classnames('dtable-ui cell-formatter-container rate-formatter', containerClassName);
 
-    let rateList = this.getRateList();
+    const rateList = this.getRateList();
     return (
       <div className={className}>{rateList}</div>
     );
   }
 }
-
-RateExpendRateFormatter.defaultProps = {
-  editable: true,
-};
 
 RateExpendRateFormatter.propTypes = propTypes;
 

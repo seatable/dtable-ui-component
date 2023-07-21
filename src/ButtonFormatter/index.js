@@ -11,6 +11,8 @@ const propTypes = {
   onClickButton: PropTypes.func,
 };
 
+const WHITE = '#FFFFFF';
+
 class ButtonFormatter extends React.Component {
 
   handleClick = () => {
@@ -26,7 +28,8 @@ class ButtonFormatter extends React.Component {
 
     const btnStyle = {
       backgroundColor: colorObj.COLOR,
-      borderColor: colorObj.BORDER_COLOR
+      borderColor: colorObj.BORDER_COLOR,
+      color: colorObj.TEXT_COLOR === WHITE ? WHITE : '#666666'
     };
     return (
       <div>
