@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "main": "./lib/index.js",
   "dependencies": {
     "dtable-utils": "0.0.2",
