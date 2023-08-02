@@ -123,7 +123,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
 
     const formattedValue = getFormulaDisplayString(value, data, { collaborators });
 
-    let className = `dtable-ui cell-formatter-container formula-formatter ${containerClassName}}`;
+    let className = `dtable-ui cell-formatter-container formula-formatter ${containerClassName}`;
     if (result_type === FORMULA_RESULT_TYPE.NUMBER) {
       className = className + ' text-right';
     }
