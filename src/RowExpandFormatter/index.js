@@ -24,8 +24,8 @@ import {
   RowExpandImageFormatter,
   RowExpandFileFormatter,
   RowExpandLinkFormatter,
+  RowExpandFormulaFormatter,
   DigitalSignFormatter,
-  FormulaFormatter,
 } from '../index';
 import { CellType } from '../constants';
 
@@ -287,7 +287,7 @@ export default class EditorFormatter extends React.Component {
           return this.renderEmpty();
         }
         return (
-          <FormulaFormatter
+          <RowExpandFormulaFormatter
             value={cellValue}
             column={column}
             collaborators={collaborators}
