@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { CellType } from '../constants';
 import { MultipleSelectFormatter, DateFormatter, CTimeFormatter, MTimeFormatter } from '../index';
 import CollaboratorItemFormatter from './collaborator-item-formatter';
-import { getFormulaArrayValue, isArrayFormalColumn } from './utils';
+import { getFormulaArrayValue, isArrayFormatColumn } from './utils';
 import { getCellDisplayValue } from './value-display-utils';
 import './index.css';
 
@@ -33,7 +33,7 @@ export default class RowExpandLinkFormatter extends Component {
     }
 
     const { type: displayColumnType, data: displayColumnData } = displayColumn;
-    const cellValue = getFormulaArrayValue(value, !isArrayFormalColumn(displayColumnType));
+    const cellValue = getFormulaArrayValue(value, !isArrayFormatColumn(displayColumnType));
 
     if (!Array.isArray(cellValue) || cellValue.length === 0) {
       return props.renderEmpty();

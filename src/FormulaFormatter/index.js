@@ -7,7 +7,7 @@ import {
 } from 'dtable-utils';
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
-import { isArrayFormalColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
+import { isArrayFormatColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
   convertValueToDtableLongTextValue } from './utils';
 import cellValueValidator from './cell-value-validator';
 
@@ -43,7 +43,7 @@ class FormulaFormatter extends React.Component {
     const Formatter = BaseFormatterConfig[array_type];
     let formatterProps = this.getFormatterProps(array_type, array_data, collaborators);
 
-    if (isArrayFormalColumn(array_type)) {
+    if (isArrayFormatColumn(array_type)) {
       formatterProps.value = value;
       return this.createColumnFormatter(Formatter, formatterProps);
     }

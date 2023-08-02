@@ -54,6 +54,6 @@ export const getTwoDimensionArrayValue = (value) => {
     });
 };
 
-export function isArrayFormalColumn(columnType) {
+export function isArrayFormatColumn(columnType) {
   return [CellType.IMAGE, CellType.FILE, CellType.MULTIPLE_SELECT, CellType.COLLABORATOR].includes(columnType);
 }
