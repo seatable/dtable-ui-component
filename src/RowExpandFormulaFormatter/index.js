@@ -21,7 +21,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
   renderBorder = (dom) => {
     const { column } = this.props;
     const { result_type } = column.data;
-    let style = {};
+    let style = { minHeight: '38px' };
     if (result_type === FORMULA_RESULT_TYPE.DATE || result_type === FORMULA_RESULT_TYPE.NUMBER) {
       style = { width: '320px' };
     }
