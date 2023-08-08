@@ -31,24 +31,6 @@ import { CellType } from '../constants';
 
 import './index.css';
 
-const emptyTypeMap = {
-  [CellType.TEXT]: true,
-  [CellType.LONG_TEXT]: true,
-  [CellType.GEOLOCATION]: true,
-  [CellType.SINGLE_SELECT]: true,
-  [CellType.MULTIPLE_SELECT]: true,
-  [CellType.CTIME]: true,
-  [CellType.MTIME]: true,
-  [CellType.DATE]: true,
-  [CellType.AUTO_NUMBER]: true,
-  [CellType.URL]: true,
-  [CellType.EMAIL]: true,
-  [CellType.IMAGE]: true,
-  [CellType.FILE]: true,
-  [CellType.CREATOR]: true,
-  [CellType.LAST_MODIFIER]: true,
-};
-
 export default class EditorFormatter extends React.Component {
 
   static defaultProps = {
@@ -128,7 +110,9 @@ export default class EditorFormatter extends React.Component {
   }
 
   renderEmpty = () => {
-    return <span className="row-cell-empty"></span>;
+    return (
+      <div className="d-flex align-items-center form-control disabled h-auto"></div>
+    );
   }
 
   renderFormatter = () => {
@@ -139,10 +123,6 @@ export default class EditorFormatter extends React.Component {
     const containerClassName = `dtable-${columnType}-formatter ${className || ''}`;
     let cellValue = row[column.key] || row[column.name];
 
-    if (!cellValue && emptyTypeMap[columnType]) {
-      return this.renderEmpty();
-    }
-
     switch(columnType) {
       case CellType.TEXT: {
         return (
@@ -152,9 +132,6 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.COLLABORATOR: {
-        if (!cellValue || cellValue.length === 0) {
-          return this.renderEmpty();
-        }
         return (
           <div className="form-control d-flex align-items-center w-100 h-auto">
             <CollaboratorFormatter
@@ -180,9 +157,6 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.NUMBER: {
-        if (!cellValue && cellValue !== 0) {
-          return this.renderEmpty();
-        }
         return (
           <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
             <NumberFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
@@ -197,9 +171,6 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.CTIME: {
-        if (!row._ctime) {
-          return this.renderEmpty();
-        }
         return (
           <div className="form-control d-flex align-items-center ctime-formatter-container" style={{ width: 320 }}>
             <CTimeFormatter value={row._ctime} containerClassName={containerClassName} />
@@ -207,9 +178,6 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.MTIME: {
-        if (!row._mtime) {
-          return this.renderEmpty();
-        }
         return (
           <div className="form-control d-flex align-items-center mtime-formatter-container" style={{ width: 320 }}>
             <MTimeFormatter value={row._mtime} containerClassName={containerClassName} />
@@ -217,9 +185,6 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.MULTIPLE_SELECT: {
-        if (!cellValue || cellValue.length === 0) {
-          return this.renderEmpty();
-        }
         const options = column.data ? column.data.options : [];
         return (
           <div className="form-control d-flex align-items-center w-100 h-auto">
@@ -283,9 +248,6 @@ export default class EditorFormatter extends React.Component {
       }
       case CellType.FORMULA:
       case CellType.LINK_FORMULA: {
-        if (!cellValue && cellValue !== 0 && cellValue !== false) {
-          return this.renderEmpty();
-        }
         return (
           <RowExpandFormulaFormatter
             value={cellValue}
@@ -311,9 +273,6 @@ export default class EditorFormatter extends React.Component {
               }
             }
           };
-        }
-        if (!Array.isArray(cellValue) || cellValue.length === 0) {
-          return this.renderEmpty();
         }
         return (
           <RowExpandLinkFormatter
@@ -343,9 +302,6 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.DURATION: {
-        if (!cellValue && cellValue !== 0) {
-          return this.renderEmpty();
-        }
         return (
           <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
             <DurationFormatter value={cellValue} format={column.data.duration_format} containerClassName={containerClassName} />
