@@ -150,6 +150,7 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.GEOLOCATION : {
+        if (typeof cellValue !== 'object') return null;
         return (
           <div className="geolocation-formatter-container">
             <GeolocationFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
