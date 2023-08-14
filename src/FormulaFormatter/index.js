@@ -102,14 +102,8 @@ class FormulaFormatter extends React.Component {
     let value = this.props.value;
     if (Array.isArray(value)) {
       value = getFormulaArrayValue(value);
-      if (array_type === CellType.DATE || resultType === FORMULA_RESULT_TYPE.DATE) {
-        value = value.map(item => item.replace('T', ' ').replace('Z', ''));
-      } else if (array_type === CellType.LONG_TEXT) {
+      if (array_type === CellType.LONG_TEXT) {
         value = value.map(item => convertValueToDtableLongTextValue(item));
-      }
-    } else {
-      if (resultType === FORMULA_RESULT_TYPE.DATE) {
-        value = value.replace('T', ' ').replace('Z', '');
       }
     }
 

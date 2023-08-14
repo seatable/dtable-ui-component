@@ -102,15 +102,8 @@ export default class RowExpandFormulaFormatter extends React.Component {
     if (!value) return null;
     if (Array.isArray(value)) {
       value = getFormulaArrayValue(value);
-      if (array_type === CellType.DATE || result_type === FORMULA_RESULT_TYPE.DATE) {
-        value = value.map(item => item.replace('T', ' ').replace('Z', ''));
-      }
-      else if (array_type === CellType.LONG_TEXT) {
+      if (array_type === CellType.LONG_TEXT) {
         value = value.map(item => convertValueToDtableLongTextValue(item));
-      }
-    } else {
-      if (result_type === FORMULA_RESULT_TYPE.DATE && typeof value === 'string') {
-        value = value.replace('T', ' ').replace('Z', '');
       }
     }
 

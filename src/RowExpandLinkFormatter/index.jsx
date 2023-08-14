@@ -68,7 +68,7 @@ export default class RowExpandLinkFormatter extends Component {
               return (
                 <DateFormatter
                   key={`link-${displayColumnType}-${index}`}
-                  value={value.replace('T', ' ').replace('Z', '')}
+                  value={value}
                   format={format}
                   containerClassName="row-expand-link-item"
                 />
