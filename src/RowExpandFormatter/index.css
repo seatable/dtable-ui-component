@@ -21,6 +21,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  width: 100%;
 }
 
 .dtable-ui.dtable-row-expand-formatter .dtable-ui.multiple-select-formatter .dtable-ui.select-item {
