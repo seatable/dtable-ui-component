@@ -15,12 +15,16 @@
   margin: 5px 10px 5px 0;
 }
 
+.dtable-ui.dtable-row-expand-formatter .dtable-ui.formula-formatter,
 .dtable-ui.dtable-row-expand-formatter .dtable-ui.text-formatter,
 .dtable-ui.dtable-row-expand-formatter .dtable-ui.url-formatter,
 .dtable-ui.dtable-row-expand-formatter .dtable-ui.email-formatter {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  width: 100%;
 }
 
 .dtable-ui.dtable-row-expand-formatter .dtable-ui.multiple-select-formatter .dtable-ui.select-item {
