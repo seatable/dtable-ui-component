@@ -15,6 +15,7 @@
   margin: 5px 10px 5px 0;
 }
 
+.dtable-ui.dtable-row-expand-formatter .dtable-ui.formula-formatter,
 .dtable-ui.dtable-row-expand-formatter .dtable-ui.text-formatter,
 .dtable-ui.dtable-row-expand-formatter .dtable-ui.url-formatter,
 .dtable-ui.dtable-row-expand-formatter .dtable-ui.email-formatter {
