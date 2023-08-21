@@ -71,8 +71,12 @@
 }
 
 @keyframes wave {
-  0% { box-shadow: 0 0 0 0 #ff80001f; }
- 100% { box-shadow: 0 0 0px 5px #ff80001f, 0 0 0 2px rgb(0 0 0 /0%); }
+  0% {
+    box-shadow: 0 0 0 0 #ff80001f;
+  }
+  100% {
+    box-shadow: 0 0 0px 5px #ff80001f, 0 0 0 2px rgb(0 0 0 /0%);
+  }
 }
 
 .dtable-radio .dtable-radio-description {
