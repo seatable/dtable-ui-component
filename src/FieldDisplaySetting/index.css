@@ -1,0 +1,74 @@
+.field-setting .field-setting-header .expand-button {
+  color: #ccc;
+  font-size: 10px;
+  cursor: pointer;
+  transition: transform .3s cubic-bezier(.645,.045,.355,1);
+}
+
+.field-setting .field-setting-header .expand-button.revolving {
+  transform: rotate(90deg);
+}
+
+.field-setting .field-setting-header .expand-button:hover {
+  color: #3a2121;
+  cursor: pointer;
+}
+
+.field-setting .field-setting-banner .show-all-button {
+  color: #ff8000;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.field-setting .field-setting-body .field-item-container {
+  position: relative;
+  display: flex;
+  font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 4px;
+}
+
+.field-setting .field-setting-body .field-item-container:hover {
+  background-color: #f0f0f0;
+}
+
+.field-setting .field-setting-body .field-dragbar {
+  color: #c2c2c2;
+  cursor: grab;
+}
+
+.field-item-container .dtable-switch .custom-switch {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.field-item-container .dtable-switch .custom-switch .dtable-font {
+  -webkit-transform: scale(.8);
+  transform: scale(.8);
+  display: inline-block;
+  line-height: 24px;
+  margin-right: 8px;
+  color: #666;
+}
+
+.field-item-container .dtable-switch .custom-switch .custom-switch-description {
+  width: 192px;
+}
+
+.field-item-container .dtable-switch .custom-switch .custom-switch-indicator {
+  width: 22px;
+  height: 12px;
+  border-radius: 6px;
+  margin-right: .25rem;
+}
+
+.field-item-container .dtable-switch .custom-switch .custom-switch-indicator::before {
+  height: 8px;
+  width: 8px;
+}
+
+.field-item-container .dtable-switch .custom-switch-input:checked~.custom-switch-indicator:before {
+  left: 12px;
+}
+
