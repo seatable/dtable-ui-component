@@ -58,6 +58,7 @@ export { default as LinkEditor } from './LinkEditor';
 
 // dtable custom
 export { default as DTablePopover } from './DTablePopover';
+export { default as NotificationPopover } from './NotificationPopover';
 export { default as DTableSelect } from './DTableSelect';
 export { default as DTableSwitch } from './DTableSwitch';
 export { default as DTableCustomizeSelect } from './DTableCustomizeSelect';
