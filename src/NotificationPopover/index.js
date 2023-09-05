@@ -15,6 +15,7 @@ export default class NotificationPopover extends React.Component {
     enableWeixin: PropTypes.bool,
     onOpenWeixinQRCodeDialog: PropTypes.func,
     onMarkAllNotifications: PropTypes.func,
+    children: PropTypes.any,
   };
 
   static defaultProps = {

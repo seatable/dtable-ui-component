@@ -1,9 +1,8 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.3.14",
+  "version": "0.3.15",
   "main": "./lib/index.js",
   "dependencies": {
-    "dtable-utils": "0.0.2",
     "@seafile/react-image-lightbox": "0.0.9",
     "@seafile/seafile-calendar": "0.0.24",
     "@seafile/seafile-editor": "0.3.121",
@@ -12,6 +11,7 @@
     "classnames": "^2.3.2",
     "dayjs": "1.10.7",
     "deepmerge": "^2.1.0",
+    "dtable-utils": "4.2.2",
     "glamor": "^2.20.40",
     "hast-util-sanitize": "^1.1.2",
     "hast-util-to-html": "3.1.0",
