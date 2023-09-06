@@ -65,3 +65,6 @@ export { default as DTableCustomizeSelect } from './DTableCustomizeSelect';
 export { default as DTableCustomizeCollaboratorSelect } from './DTableCustomizeCollaboratorSelect';
 export { default as DTableSearchInput } from './DTableSearchInput';
 export { default as ModalPortal } from './ModalPortal';
+
+// setting
+export { default as FieldDisplaySetting } from './FieldDisplaySetting';
