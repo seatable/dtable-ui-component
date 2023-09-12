@@ -40,9 +40,9 @@ function FieldDisplaySetting({ fields, textProperties, fieldAllShown, onClickFie
 
   return (
     <div className="field-setting">
-      <div className="field-setting-header d-flex align-items-center justify-content-between">
+      <div className="field-setting-header d-flex align-items-center justify-content-between" onClick={expandAllFields} >
         <Label className="mb-0">{textProperties.titleValue}</Label>
-        <span className={`dtable-font dtable-icon-right expand-button ${isCollapsed ? '' : 'revolving'}`} onClick={expandAllFields} />
+        <span className={`dtable-font dtable-icon-right expand-button ${isCollapsed ? '' : 'revolving'}`} />
       </div>
       <Transition nodeRef={nodeRef} in={!isCollapsed} timeout={DURATION}>
         {state => (
