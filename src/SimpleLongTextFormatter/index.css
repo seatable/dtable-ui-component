@@ -3,10 +3,10 @@
 .dtable-ui.long-text-formatter {
   display: flex;
   align-items: center;
-  height: 28px;
+  min-height: 28px;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space: unset;
 }
 
 .dtable-ui.long-text-formatter.article {

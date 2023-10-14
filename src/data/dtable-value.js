@@ -24,16 +24,16 @@ const DTABLE_VALUE = {
             '31392'
           ],
           'ne46': [
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg',
           ],
           'U8Ee': [
             {
@@ -1619,7 +1619,7 @@ const DTABLE_VALUE = {
             '31392'
           ],
           'ne46': [
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg'
+            'https://raw.githubusercontent.com/xiaolin/react-image-gallery/master/static/6.jpg'
           ],
           'U8Ee': [
             {
