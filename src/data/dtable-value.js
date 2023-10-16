@@ -24,16 +24,16 @@ const DTABLE_VALUE = {
             '31392'
           ],
           'ne46': [
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg',
+            'https://www.baidu.com/img/flexible/logo/pc/result@2.png',
+            'https://www.seafile.com/media/img/seafile-logo.png',
+            'https://www.baidu.com/img/flexible/logo/pc/result@2.png',
+            'https://www.seafile.com/media/img/seafile-logo.png',
+            'https://www.baidu.com/img/flexible/logo/pc/result@2.png',
+            'https://www.seafile.com/media/img/seafile-logo.png',
+            'https://www.baidu.com/img/flexible/logo/pc/result@2.png',
+            'https://www.seafile.com/media/img/seafile-logo.png',
+            'https://www.baidu.com/img/flexible/logo/pc/result@2.png',
+            'https://www.seafile.com/media/img/seafile-logo.png',
           ],
           'U8Ee': [
             {
@@ -1619,7 +1619,7 @@ const DTABLE_VALUE = {
             '31392'
           ],
           'ne46': [
-            'https://dev.seatable.cn/workspace/3/asset/8327efbf-c9ff-4a14-9010-00e801a7e295/images/2023-02/test.jpeg'
+            'https://www.baidu.com/img/flexible/logo/pc/result@2.png'
           ],
           'U8Ee': [
             {
