@@ -1,13 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import MediaQuery from 'react-responsive';
 import classnames from 'classnames';
-import ModalPortal from '../ModalPortal';
 import Lightbox from '@seafile/react-image-lightbox';
 import { checkSVGImage, isInternalImg } from './utils';
 
 import '@seafile/react-image-lightbox/style.css';
-import './index.css';
 
 function ImagePreviewerLightbox(props) {
   const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server,
@@ -23,94 +20,22 @@ function ImagePreviewerLightbox(props) {
       <span className="flex-shrink-0">({imageIndex + 1}/{imageItemsLength})</span>
     </span>
   );
-  let toolbarButtons = [];
-  if (moveToPrevRowImage) {
-    toolbarButtons.push(
-      <button className='dtable-font dtable-icon-retract' onClick={(event) => {moveToPrevRowImage(event);}}></button>
-    );
-  }
-  if (moveToNextRowImage) {
-    toolbarButtons.push(
-      <button className='dtable-font dtable-icon-display' onClick={(event) => {moveToNextRowImage(event);}}></button>
-    );
-  }
-  if (!readOnly && deleteImage) {
-    toolbarButtons.push(
-      <button className='dtable-font dtable-icon-delete' onClick={() => {deleteImage(imageIndex, 'previewer');}}></button>
-    );
-  }
-  if (downloadImage) {
-    toolbarButtons.push(
-      <button className='dtable-font dtable-icon-download' onClick={() => {downloadImage(URL);}}></button>
-    );
-  }
   return (
-    <Fragment>
-      <MediaQuery query="(min-width: 767.8px)">
-        <Lightbox
-          wrapperClassName={classnames('PC-image-previewer', className)}
-          imageTitle={imageTitleEl}
-          toolbarButtons={toolbarButtons}
-          mainSrc={imageItems[imageIndex]}
-          nextSrc={imageItems[(imageIndex + 1) % imageItemsLength]}
-          prevSrc={imageItems[(imageIndex + imageItemsLength - 1) % imageItemsLength]}
-          onCloseRequest={props.closeImagePopup}
-          onMovePrevRequest={props.moveToPrevImage}
-          onMoveNextRequest={props.moveToNextImage}
-          onRotateImage={canRotateImage ? (deg) => {onRotateImage(imageIndex, deg);} : null}
-          imagePadding={70}
-          reactModalStyle={{
-            overlay: {
-              zIndex: 1051
-            }
-          }}
-        />
-      </MediaQuery>
-      <MediaQuery query="(max-width: 767.8px)">
-        <Lightbox
-          isDesktop={false}
-          wrapperClassName={classnames('mobile-image-previewer dtable-ui-component', className)}
-          mainSrc={imageItems[imageIndex]}
-          nextSrc={imageItems[(imageIndex + 1) % imageItemsLength]}
-          prevSrc={imageItems[(imageIndex + imageItemsLength - 1) % imageItemsLength]}
-          onCloseRequest={props.closeImagePopup}
-          onMovePrevRequest={props.moveToPrevImage}
-          onMoveNextRequest={props.moveToNextImage}
-          imagePadding={0}
-          animationDisabled={true}
-          imageTitle={imageTitleEl}
-          reactModalStyle={{
-            overlay: {
-              zIndex: 1051,
-              backgroundColor: '#000',
-            }
-          }}
-        />
-        <ModalPortal>
-          <div className="image-footer-choice mobile-image-footer-choice dtable-ui-component">
-            <div className="image-footer-icon">
-              <div className="d-flex">
-                {canRotateImage &&
-                  <span className="image-footer-choice-item mr-4" onClick={() => {onRotateImage(imageIndex, 90);}}>
-                    <i className="dtable-font dtable-icon-rotate"></i>
-                  </span>
-                }
-                {downloadImage && (
-                  <span className="image-footer-choice-item" onClick={() => {downloadImage(URL);}}>
-                    <i className="dtable-font dtable-icon-download"></i>
-                  </span>
-                )}
-              </div>
-              {(!readOnly && deleteImage) &&
-                <span className="image-footer-choice-item" onClick={() => {deleteImage(imageIndex, 'previewer');}}>
-                  <i className="dtable-font dtable-icon-delete"></i>
-                </span>
-              }
-            </div>
-          </div>
-        </ModalPortal>
-      </MediaQuery>
-    </Fragment>
+    <Lightbox
+      wrapperClassName={classnames('dtable-ui-component', className)}
+      imageTitle={imageTitleEl}
+      mainSrc={imageItems[imageIndex]}
+      nextSrc={imageItems[(imageIndex + 1) % imageItemsLength]}
+      prevSrc={imageItems[(imageIndex + imageItemsLength - 1) % imageItemsLength]}
+      onCloseRequest={props.closeImagePopup}
+      onMovePrevRequest={props.moveToPrevImage}
+      onMoveNextRequest={props.moveToNextImage}
+      onClickMoveUp={moveToPrevRowImage}
+      onClickMoveDown={moveToNextRowImage}
+      onRotateImage={canRotateImage ? (deg) => {onRotateImage(imageIndex, deg);} : null}
+      onClickDelete={(!readOnly && deleteImage) ? () => {deleteImage(imageIndex, 'previewer');} : null}
+      onClickDownload={downloadImage ? () => {downloadImage(URL);} : null}
+    />
   );
 }
 

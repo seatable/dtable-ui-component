@@ -15,6 +15,12 @@ html, body, #root {
   padding: 20px;
   border: 1px solid rgb(136, 136, 136);
   width: 800px;
+  max-width: 100%;
+}
+
+.app .app-body .dtable-ui.row-expand-image-formatter,
+.app .app-body .dtable-ui.row-expand-file-formatter {
+  max-width: 100%;
 }
 
 .app .app-body .header-icon {
@@ -36,4 +42,10 @@ html, body, #root {
 
 .app-body .col-md-3 .column-name {
   color: #949494;
+}
+
+@media screen and (max-width: 767.8px) {
+  .app .app-body {
+    border: none;
+  }
 }
