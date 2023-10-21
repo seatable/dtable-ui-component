@@ -122,6 +122,7 @@ const DTABLE_VALUE = {
               'display_value': '第二行'
             }
           ],
+          '9zu5': 1,
           'mFuA':
           {
             'username': 'bing.an@seafile.com',
@@ -1407,7 +1408,28 @@ const DTABLE_VALUE = {
             'props': {},
             '_owner': null
           }
-        }
+        },
+        {
+          'key': '9zu5',
+          'name': '部门单选',
+          'type': 'department-single-select',
+          'width': 200,
+          'editable': true,
+          'resizable': true,
+          'frozen': false,
+          'editor': {
+            'key': null,
+            'ref': null,
+            'props': {},
+            '_owner': null
+          },
+          'formatter': {
+            'key': null,
+            'ref': null,
+            'props': {},
+            '_owner': null
+          }
+        },
       ],
       'view_structure': {
         'folders': [
@@ -3039,6 +3061,30 @@ const DTABLE_VALUE = {
   ]
 };
 
+const DEPARTMENTS = [
+  {
+    id: 1,
+    id_in_org: 1,
+    name: '海文互知',
+    org_id: -1,
+    parent_id: -1,
+  },
+  {
+    id: 2,
+    id_in_org: 2,
+    name: '产品组',
+    org_id: -1,
+    parent_id: 1,
+  },
+  {
+    id: 3,
+    id_in_org: 3,
+    name: '研发组',
+    org_id: -1,
+    parent_id: 1,
+  },
+];
+
 const COLLABORATORS = [
   {
     'avatar_url': 'https://dev.seatable.cn/image-view/avatars/0/0/916e1e9e7c6184061cb7d96a680292/resized/80/de58ef113a311d390934b06ceafd77cf.png',
@@ -3080,4 +3126,4 @@ const SIGN_CONFIG = {
   dtableUuid: '8327efbf-c9ff-4a14-9010-00e801a7e295',
 };
 
-export { DTABLE_VALUE, COLLABORATORS, SIGN_CONFIG };
+export { DTABLE_VALUE, COLLABORATORS, DEPARTMENTS, SIGN_CONFIG };
