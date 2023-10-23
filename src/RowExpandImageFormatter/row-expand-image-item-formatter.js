@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'reactstrap';
+import MediaQuery from 'react-responsive';
 import { getLocale } from '../lang';
 import DeleteTip from '../common/delete-tip';
 
@@ -87,16 +88,18 @@ export default class RowExpandImageItemFormatter extends Component {
             deleteTip={getLocale('Are_you_sure_you_want_to_delete_this_image')}
           />
         }
-        <Tooltip
-          placement='bottom'
-          isOpen={this.state.isTooltipOpen}
-          toggle={this.toggleTooltip}
-          target={id}
-          delay={{show: 0, hide: 0 }}
-          fade={false}
-        >
-          {name}
-        </Tooltip>
+        <MediaQuery query={'(min-width: 768px)'}>
+          <Tooltip
+            placement='bottom'
+            isOpen={this.state.isTooltipOpen}
+            toggle={this.toggleTooltip}
+            target={id}
+            delay={{show: 0, hide: 0 }}
+            fade={false}
+          >
+            {name}
+          </Tooltip>
+        </MediaQuery>
       </>
     );
   }
