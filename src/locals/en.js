@@ -17,6 +17,7 @@ const en = {
   Are_you_sure_you_want_to_delete_this_image: 'Are you sure you want to delete this image?',
   Cancel: 'Cancel',
   Delete: 'Delete',
+  Deleted_department: 'Deleted department',
 };
 
 export default en;

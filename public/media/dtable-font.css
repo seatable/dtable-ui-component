@@ -1,11 +1,11 @@
 @font-face {
   font-family: "dtable-font"; /* Project id 1206632 */
-  src: url('./dtable-fonts/dtable-font.eot?t=1680493637259'); /* IE9 */
-  src: url('./dtable-fonts/dtable-font.eot?t=1680493637259#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('./dtable-fonts/dtable-font.woff2?t=1680493637259') format('woff2'),
-       url('./dtable-fonts/dtable-font.woff?t=1680493637259') format('woff'),
-       url('./dtable-fonts/dtable-font.ttf?t=1680493637259') format('truetype'),
-       url('./dtable-fonts/dtable-font.svg?t=1680493637259#dtable-font') format('svg');
+  src: url('./dtable-fonts/dtable-font.eot?t=1691034193364'); /* IE9 */
+  src: url('./dtable-fonts/dtable-font.eot?t=1691034193364#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./dtable-fonts/dtable-font.woff2?t=1691034193364') format('woff2'),
+       url('./dtable-fonts/dtable-font.woff?t=1691034193364') format('woff'),
+       url('./dtable-fonts/dtable-font.ttf?t=1691034193364') format('truetype'),
+       url('./dtable-fonts/dtable-font.svg?t=1691034193364#dtable-font') format('svg');
 }
 
 .dtable-font {
@@ -14,6 +14,90 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dtable-icon-recycle-bin1:before {
+  content: "\e7ff";
+}
+
+.dtable-icon-department-single-selection:before {
+  content: "\e800";
+}
+
+.dtable-icon-decoration:before {
+  content: "\e7fd";
+}
+
+.dtable-icon-dynamic-materials:before {
+  content: "\e7fe";
+}
+
+.dtable-icon-first-page:before {
+  content: "\e7f8";
+}
+
+.dtable-icon-thumbnail:before {
+  content: "\e7f9";
+}
+
+.dtable-icon-next-page:before {
+  content: "\e7fa";
+}
+
+.dtable-icon-previous-page:before {
+  content: "\e7fb";
+}
+
+.dtable-icon-last-page:before {
+  content: "\e7fc";
+}
+
+.dtable-icon-using-templates:before {
+  content: "\e7f6";
+}
+
+.dtable-icon-ai-assistant:before {
+  content: "\e7f7";
+}
+
+.dtable-icon-down1:before {
+  content: "\e7f4";
+}
+
+.dtable-icon-up1:before {
+  content: "\e7f5";
+}
+
+.dtable-icon-refresh:before {
+  content: "\e7f3";
+}
+
+.dtable-icon-table-of-content:before {
+  content: "\e7f2";
+}
+
+.dtable-icon-remove-from-toolbar1:before {
+  content: "\e7f0";
+}
+
+.dtable-icon-add-to-toolbar1:before {
+  content: "\e7f1";
+}
+
+.dtable-icon-add-to-toolbar:before {
+  content: "\e7ee";
+}
+
+.dtable-icon-remove-from-toolbar:before {
+  content: "\e7ef";
+}
+
+.dtable-icon-folders1:before {
+  content: "\e7ed";
+}
+
+.dtable-icon-info-circle:before {
+  content: "\e7ec";
 }
 
 .dtable-icon-handwritten-signature-sync:before {
