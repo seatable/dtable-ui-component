@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
 import { COLUMNS_ICON_CONFIG } from 'dtable-utils';
-import { DTABLE_VALUE, COLLABORATORS, SIGN_CONFIG } from './data/dtable-value';
+import { DTABLE_VALUE, COLLABORATORS, DEPARTMENTS, SIGN_CONFIG } from './data/dtable-value';
 import RowExpandFormatter from './RowExpandFormatter';
 
 import './app.css';
@@ -27,6 +27,7 @@ class App extends React.Component {
               row={rows[rowIndex]}
               column={column}
               collaborators={COLLABORATORS}
+              departments={DEPARTMENTS}
               config={SIGN_CONFIG}
             />
           </Col>

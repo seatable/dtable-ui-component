@@ -34,6 +34,7 @@ export { default as ImagePreviewerLightbox } from './ImagePreviewerLightbox';
 export { default as CollaboratorItem } from './CollaboratorItem';
 export { default as FileItemFormatter } from './FileItemFormatter';
 export { default as DigitalSignFormatter } from './DigitalSignFormatter';
+export { default as DepartmentSingleSelectFormatter } from './DepartmentSingleSelectFormatter';
 export { default as SimpleLongTextFormatter } from './SimpleLongTextFormatter';
 
 // row expand formatter

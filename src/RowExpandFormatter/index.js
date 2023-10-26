@@ -26,6 +26,7 @@ import {
   RowExpandLinkFormatter,
   RowExpandFormulaFormatter,
   DigitalSignFormatter,
+  DepartmentSingleSelectFormatter,
 } from '../index';
 import { CellType } from '../constants';
 
@@ -42,6 +43,7 @@ export default class EditorFormatter extends React.Component {
     row: PropTypes.object.isRequired,
     className: PropTypes.string,
     collaborators: PropTypes.array,
+    departments: PropTypes.array,
     onClickButton: PropTypes.func,
     downloadFile: PropTypes.func,
     deleteFile: PropTypes.func,
@@ -324,6 +326,11 @@ export default class EditorFormatter extends React.Component {
       case CellType.DIGITAL_SIGN: {
         return (
           <DigitalSignFormatter value={cellValue} containerClassName={containerClassName} config={this.props.config}/>
+        );
+      }
+      case CellType.DEPARTMENT_SINGLE_SELECT: {
+        return (
+          <DepartmentSingleSelectFormatter value={cellValue} departments={this.props.departments}/>
         );
       }
       default:
