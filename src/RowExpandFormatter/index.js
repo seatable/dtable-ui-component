@@ -145,6 +145,7 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.LONG_TEXT: {
+        if (!cellValue) return null;
         return (
           <div className="longtext-formatter-container">
             <LongTextFormatter value={cellValue} containerClassName={containerClassName} isSample={false} />
