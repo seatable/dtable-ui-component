@@ -14,7 +14,7 @@ class ImagesLazyLoad extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: props.images,
+      images: props.images || [],
       loadedImages: [],
       loadedCount: 0,
     };
@@ -52,13 +52,15 @@ class ImagesLazyLoad extends React.Component {
           url,
           (image) => {
             let { loadedCount, loadedImages } = this.state;
+            if (loadedCount + 1 > images.length) return;
             let newImageList = loadedImages.slice(0);
             newImageList[index] = image;
-            this.setState({ loadedCount: loadedCount + 1, loadedImages: newImageList });
+            this.setState({ loadedCount: index + 1, loadedImages: newImageList });
           },
           () => {
             let { loadedCount } = this.state;
-            this.setState({ loadedCount: loadedCount + 1 });
+            if (loadedCount + 1 > images.length) return;
+            this.setState({ loadedCount: index + 1 });
           }
         );
       });
