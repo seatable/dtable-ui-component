@@ -1,11 +1,11 @@
 {
   "name": "dtable-ui-component",
-  "version": "0.3.25",
+  "version": "0.3.26",
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "2.0.5",
     "@seafile/seafile-calendar": "0.0.24",
-    "@seafile/seafile-editor": "0.3.137",
+    "@seafile/seafile-editor": "0.3.139",
     "antd-mobile": "2.3.1",
     "bail": "1.0.5",
     "classnames": "^2.3.2",
@@ -20,7 +20,7 @@
     "react-app-polyfill": "^1.0.6",
     "react-dom": "17.0.2",
     "react-responsive": "^8.0.3",
-    "react-select": "4.3.0",
+    "react-select": "5.7.0",
     "react-transition-group": "^4.4.1",
     "reactstrap": "8.9.0",
     "rehype-format": "^2.2.0",
@@ -143,6 +143,10 @@
     "ts-pnp": "1.1.5",
     "url-loader": "2.3.0",
     "webpack": "4.41.5",
+    "i18next": "22.4.9",
+    "i18next-browser-languagedetector": "7.0.1",
+    "i18next-xhr-backend": "3.2.2",
+    "react-i18next": "12.1.4",
     "webpack-dev-server": "3.11.3",
     "webpack-manifest-plugin": "2.2.0",
     "workbox-webpack-plugin": "4.3.1"
