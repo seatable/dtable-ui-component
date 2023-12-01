@@ -64,7 +64,7 @@ export default class EditorFormatter extends React.Component {
   componentDidMount() {
     this.calculateCollaboratorData(this.props);
     if (this.props.eventBus) {
-      this.listenCollaboratorsUpdated = this.props.eventBus.subscribe('collaborators-updated', this.updateCollaborators);
+      this.unsubscribeCollaboratorsUpdated = this.props.eventBus.subscribe('collaborators-updated', this.updateCollaborators);
     }
   }
 
@@ -73,7 +73,9 @@ export default class EditorFormatter extends React.Component {
   }
 
   componentWillUnmount() {
-    this.listenCollaboratorsUpdated();
+    if (this.props.eventBus && this.unsubscribeCollaboratorsUpdated) {
+      this.unsubscribeCollaboratorsUpdated();
+    }
   }
 
   updateCollaborators = () => {
