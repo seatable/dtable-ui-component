@@ -57,24 +57,16 @@ const FILEEXT_ICON_MAP = {
 };
 
 export const getFileIconUrl = (filename, direntType) => {
-  if (direntType === 'dir') {
-    let iconUrl = 'assets/folder/' + FILEEXT_ICON_MAP['folder'];
-    return iconUrl;
+  if (typeof direntType === 'string' && direntType === 'dir') {
+    return 'assets/folder/' + FILEEXT_ICON_MAP['folder'];
   }
 
-  let iconUrl = '';
-  if (filename.lastIndexOf('.') === -1) {
-    iconUrl = 'assets/file/192/' + FILEEXT_ICON_MAP['default'];
-    return iconUrl;
+  const identifierIndex = typeof filename === 'string' && filename.lastIndexOf('.');
+  if (identifierIndex === -1) {
+    return 'assets/file/192/' + FILEEXT_ICON_MAP['default'];
   }
 
-  let file_ext = filename.substr(filename.lastIndexOf('.') + 1).toLowerCase();
-
-  if (FILEEXT_ICON_MAP[file_ext]) {
-    iconUrl = 'assets/file/192/' + FILEEXT_ICON_MAP[file_ext];
-  } else {
-    iconUrl = 'assets/file/192/' + FILEEXT_ICON_MAP['default'];
-  }
-
+  const file_ext = (typeof filename === 'string' && filename.slice(identifierIndex + 1).toLowerCase()) || 'default';
+  const iconUrl = FILEEXT_ICON_MAP[file_ext] ? 'assets/file/192/' + FILEEXT_ICON_MAP[file_ext] : 'assets/file/192/' + FILEEXT_ICON_MAP['default'];
   return iconUrl;
 };
