@@ -8,13 +8,13 @@ class DTablePopover extends React.Component {
   dtablePopoverRef = null;
 
   componentDidMount() {
-    document.addEventListener('click', this.onClick);
+    document.addEventListener('mousedown', this.onMousedown);
     document.addEventListener('keydown', this.onKeyDown);
     window.addEventListener('popstate', this.onHistoryState);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onClick);
+    document.removeEventListener('mousedown', this.onMousedown);
     document.removeEventListener('keydown', this.onKeyDown);
     window.removeEventListener('popstate', this.onHistoryState);
   }
@@ -36,7 +36,7 @@ class DTablePopover extends React.Component {
     }
   }
 
-  onClick = (e) => {
+  onMousedown = (e) => {
     const { canHideDTablePopover } = this.props;
     if (!canHideDTablePopover) return;
     if (this.dtablePopoverRef && e && getEventClassName(e).indexOf('popover') === -1 && !this.dtablePopoverRef.contains(e.target)) {

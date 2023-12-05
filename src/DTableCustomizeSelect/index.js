@@ -15,11 +15,11 @@ class DTableCustomizeSelect extends Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.onClick);
+    document.addEventListener('mousedown', this.onMousedown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onClick);
+    document.removeEventListener('mousedown', this.onMousedown);
   }
 
   onSelectToggle = (event) => {
@@ -38,7 +38,7 @@ class DTableCustomizeSelect extends Component {
     });
   }
 
-  onClick = (event) => {
+  onMousedown = (event) => {
     if (this.props.isShowSelected && event.target.className.includes('icon-fork-number')) {
       return;
     }

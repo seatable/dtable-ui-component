@@ -22,12 +22,12 @@ class CollaboratorSelect extends Component {
   };
 
   componentDidMount() {
-    document.addEventListener('click', this.onClick);
+    document.addEventListener('mousedown', this.onMousedown);
     this.btnWidth = this.selector.clientWidth;
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onClick);
+    document.removeEventListener('mousedown', this.onMousedown);
   }
 
   onSelectToggle = (event) => {
@@ -47,7 +47,7 @@ class CollaboratorSelect extends Component {
     });
   }
 
-  onClick = (event) => {
+  onMousedown = (event) => {
     const name = event.target.className;
     if (name === 'select-placeholder' || name.includes('icon-fork-number')) {
       return;
