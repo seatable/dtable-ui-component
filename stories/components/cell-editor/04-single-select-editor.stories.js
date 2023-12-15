@@ -47,9 +47,9 @@ const column2_1 = {
   data: {
     options: [
       {id: "256713", name: "待开始", color: "#EED5FF"},
-      {name: "进行中", color: "#D7E8FF", textColor: "#202428", id: "839569"},
+      {name: "进行中", color: "#D7E8FF", textColor: "#212529", id: "839569"},
       {name: "评审", color: "#FFFDCF", id: "954270"},
-      {name: "已完成", color: "#DDFFE6", textColor: "#202428", id: "686249"},
+      {name: "已完成", color: "#DDFFE6", textColor: "#212529", id: "686249"},
       {id: "669117", name: "需要设计稿", color: "#FFFDCF"},
     ]
   },
