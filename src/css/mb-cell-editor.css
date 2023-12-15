@@ -33,7 +33,6 @@
     font-size: 18px;
     text-align: center;
     text-overflow: ellipsis;
-    color: #333;
     overflow: hidden;
     white-space: nowrap;
   }

@@ -637,16 +637,16 @@ const DTABLE_VALUE = {
               {
                 'name': 'Start',
                 'color': '#D7E8FF',
-                'text_color': '#202428',
+                'text_color': '#212529',
                 'id': '968592',
-                'textColor': '#202428'
+                'textColor': '#212529'
               },
               {
                 'name': 'Finished',
                 'color': '#DDFFE6',
-                'text_color': '#202428',
+                'text_color': '#212529',
                 'id': '523201',
-                'textColor': '#202428'
+                'textColor': '#212529'
               },
               {
                 'name': 'Node 1',
