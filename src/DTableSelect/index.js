@@ -1,69 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Select, { components } from 'react-select';
+import Select from 'react-select';
+import { MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option } from './utils';
 
-const MenuSelectStyle = {
-  option: (provided, state) => {
-    const { isDisabled, isSelected, isFocused } = state;
-    return ({
-      ...provided,
-      cursor: isDisabled ? 'default' : 'pointer',
-      backgroundColor: isSelected ? '#20a0ff' : (isFocused ? '#f5f5f5' : '#fff'),
-      '.header-icon .dtable-font': {
-        color: isSelected ? '#fff' : '#aaa',
-      },
-    });
-  },
-  control: (provided) => ({
-    ...provided,
-    fontSize: '14px',
-    cursor: 'pointer',
-    lineHeight: '1.5',
-  }),
-  menuPortal:  base => ({ ...base, zIndex: 9999 }),
-  indicatorSeparator: () => {},
-};
-
-const DropdownIndicator = props => {
-  return (
-    components.DropdownIndicator && (
-      <components.DropdownIndicator {...props}>
-        <span className="dtable-font dtable-icon-drop-down" style={{fontSize: '12px'}}></span>
-      </components.DropdownIndicator>
-    )
-  );
-};
-
-const MenuList = (props) => (
-  <div onClick={e => e.nativeEvent.stopImmediatePropagation()} onMouseDown={e => e.nativeEvent.stopImmediatePropagation()} >
-    <components.MenuList {...props}>{props.children}</components.MenuList>
-  </div>
-);
-
-MenuList.propTypes = {
-  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-};
-
-const Option = props => {
-  return (
-    <div style={props.data.style}>
-      <components.Option {...props} />
-    </div>
-  );
-};
-
-Option.propTypes = {
-  data: PropTypes.shape({
-    style: PropTypes.object,
-  }),
-};
-
-class DtableSelect extends React.Component {
+export default class DTableSelect extends React.Component {
 
   static propTypes = {
     isMulti: PropTypes.bool,
     options: PropTypes.array.isRequired,
-    value: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+    value: PropTypes.oneOfType([PropTypes.object, PropTypes.array, PropTypes.string]),
     isSearchable: PropTypes.bool,
     isClearable: PropTypes.bool,
     placeholder: PropTypes.string,
@@ -73,11 +18,16 @@ class DtableSelect extends React.Component {
     menuPortalTarget: PropTypes.string,
     menuPosition: PropTypes.string,
     noOptionsMessage: PropTypes.func,
+    innerRef: PropTypes.object,
+    isDisabled: PropTypes.bool,
+    customFilterOption: PropTypes.func,
+    form: PropTypes.string,
   };
 
   static defaultProps = {
     options: [],
     value: {},
+    isDisabled: false,
     isSearchable: false,
     isClearable: false,
     placeholder: '',
@@ -88,15 +38,10 @@ class DtableSelect extends React.Component {
     },
   };
 
-  getMenuPortalTarget = () => {
-    let { menuPortalTarget } = this.props;
-    return document.querySelector(menuPortalTarget);
-  }
-
   render() {
     const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage,
-      classNamePrefix, style } = this.props;
-    return(
+      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption } = this.props;
+    return (
       <Select
         value={value}
         onChange={onChange}
@@ -104,18 +49,21 @@ class DtableSelect extends React.Component {
         isMulti={isMulti}
         classNamePrefix={classNamePrefix}
         styles={style || MenuSelectStyle}
-        components={{ Option, DropdownIndicator, MenuList }}
+        components={{ Option, DropdownIndicator, MenuList, ClearIndicator }}
         placeholder={placeholder}
         isSearchable={isSearchable}
         isClearable={isClearable}
         menuPosition={menuPosition || 'fixed'} // when use default menuPosition(absolute), menuPortalTarget is unnecessary.
         menuShouldScrollIntoView
-        menuPortalTarget={this.getMenuPortalTarget()}
+        menuPortalTarget={document.querySelector(this.props.menuPortalTarget)}
         captureMenuScroll={false}
+        hideSelectedOptions={false}
         noOptionsMessage={noOptionsMessage}
+        isDisabled={isDisabled}
+        ref={innerRef}
+        filterOption={customFilterOption}
+        form={form}
       />
     );
   }
 }
-
-export default DtableSelect;
