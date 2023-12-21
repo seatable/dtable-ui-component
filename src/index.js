@@ -61,6 +61,7 @@ export { default as LinkEditor } from './LinkEditor';
 export { default as DTablePopover } from './DTablePopover';
 export { default as NotificationPopover } from './NotificationPopover';
 export { default as DTableSelect } from './DTableSelect';
+export { default as DTableSelectLabel } from './DTableSelect/dtable-select-label';
 export { default as DTableSwitch } from './DTableSwitch';
 export { default as DTableCustomizeSelect } from './DTableCustomizeSelect';
 export { default as DTableCustomizeCollaboratorSelect } from './DTableCustomizeCollaboratorSelect';

@@ -1,0 +1,10 @@
+.dtable-select-check-icon {
+  width: 20px;
+  height: 20px;
+  text-align: center;
+}
+
+.dtable-select-check-icon .dtable-font {
+  font-size: 12px;
+  color: #798d99;
+}
