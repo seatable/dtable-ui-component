@@ -22,7 +22,7 @@
   font-size: 12px;
   white-space: pre-wrap;
   word-wrap: break-word;
-  word-break: keep-all;
+  word-break: break-all;
   color: #999;
   user-select: none;
 }
@@ -32,6 +32,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 2px 12px;
+  min-width: 140px;
+  min-height: 28px;
 }
 
 .dropdown-editor .dropdown-menu .dropdown-item:hover {
@@ -48,6 +50,14 @@
   outline: 0;
   color: unset;
   background-color: unset;
+}
+
+.dropdown-editor .dropdown-toggle-button div,
+.dropdown-editor .dropdown-menu .dropdown-item div {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-all;
+  user-select: none;
 }
 
 .dropdown-editor .dropdown-menu .dropdown-item .dtable-icon-check-mark {
