@@ -3,7 +3,7 @@ import SelectOptionGroup from '../SelectOptionGroup';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-import '../assets/css/DTableCustomSelect.css';
+import './index.css';
 
 class DTableCustomizeSelect extends Component {
 

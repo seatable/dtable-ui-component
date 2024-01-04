@@ -115,15 +115,6 @@
   white-space: nowrap;
 }
 
-.dtable-select.selector-collaborator .option-group .option-group-content {
-  padding: 10px;
-}
-
-.dtable-select.selector-collaborator .option {
-  padding: 5px 0 5px 10px !important;
-  line-height: 20px;
-}
-
 .dtable-select .option.option-active {
   background-color: #20a0ff;
   color: #fff;
