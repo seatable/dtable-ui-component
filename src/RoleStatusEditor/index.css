@@ -1,0 +1,57 @@
+.role-status-editor .dropdown-toggle-button .dtable-icon-drop-down {
+  font-size: 12px;
+  color: #b5b5b5;
+  transform: scale(0.8);
+  cursor: pointer;
+}
+
+.role-status-editor .dropdown-toggle-button .dtable-icon-drop-down.hide {
+  display: none;
+}
+
+.role-status-editor .dropdown-toggle-button .dtable-icon-drop-down:hover {
+  color: #555;
+}
+
+.role-status-editor .dropdown-toggle-button .dropdown-icon-container {
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
+  width: 20px;
+  height: 20px;
+}
+
+.role-status-editor .dropdown-menu {
+  max-width: 200px;
+}
+
+.role-status-editor .dropdown-menu .dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 12px;
+  min-width: 140px;
+  min-height: 28px;
+}
+
+.role-status-editor .dropdown-menu .dropdown-item .label-container span {
+  word-wrap: normal;
+  white-space: pre-wrap;
+}
+
+.role-status-editor .dropdown-menu .dropdown-item:hover {
+  color: #212529;
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.role-status-editor .dropdown-menu .dropdown-item:focus {
+  outline: 0;
+  color: unset;
+  background-color: unset;
+}
+
+.role-status-editor .dropdown-menu .dropdown-item .dtable-icon-check-mark {
+  font-size: 12px;
+  color: #798d99;
+}
