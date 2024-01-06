@@ -3,36 +3,52 @@ import Option from './option';
 import PropTypes from 'prop-types';
 import DTableSearchInput from '../DTableSearchInput';
 import KeyCodes from './KeyCodes';
+import ClickOutside from '../common/ClickOutside';
+
+import './index.css';
 
 const OPTION_HEIGHT = 32;
 
 class SelectOptionGroup extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
       searchVal: '',
       activeIndex: -1,
+      disableHover: false,
     };
     this.filterOptions = null;
+    this.timer = null;
   }
 
   componentDidMount() {
     window.addEventListener('keydown', this.onHotKey);
-    window.addEventListener('click', this.onClick, true);
-    this.resetMenuStyle();
+    setTimeout(() => {
+      this.resetMenuStyle();
+    }, 1);
   }
 
   componentWillUnmount() {
     this.filterOptions = null;
-    window.removeEventListener('click', this.onClick, true);
+    this.timer && clearTimeout(this.timer);
     window.removeEventListener('keydown', this.onHotKey);
   }
 
   resetMenuStyle = () => {
+    const { isInModal, position } = this.props;
     const { top, height } = this.optionGroupRef.getBoundingClientRect();
-    if (height + top > window.innerHeight) {
-      const borderWidth = 2;
-      this.optionGroupRef.style.top = -1 * (height + borderWidth) + 'px';
+    if (isInModal) {
+      if (position.y + position.height + height > window.innerHeight) {
+        this.optionGroupRef.style.top = (position.y - height) + 'px';
+      }
+      this.optionGroupRef.style.opacity = 1;
+    }
+    else {
+      if (height + top > window.innerHeight) {
+        const borderWidth = 2;
+        this.optionGroupRef.style.top = -1 * (height + borderWidth) + 'px';
+      }
     }
   }
 
@@ -71,14 +87,17 @@ class SelectOptionGroup extends Component {
     }
   }
 
-  onClick = (e) => {
-    if (this.props.stopClickEvent && this.optionGroupRef.contains(e.target) && !e.target.className.includes('dtable-font')) {
-      e.stopPropagation();
-    }
-  }
-
   scrollContent = () => {
     const { offsetHeight, scrollTop } = this.optionGroupContentRef;
+    this.setState({ disableHover: true });
+    this.timer = setTimeout(() => {
+      this.setState({ disableHover: false });
+    }, 500);
+    if (this.state.activeIndex * OPTION_HEIGHT === 0) {
+      this.optionGroupContentRef.scrollTop = 0;
+      return;
+    }
+
     if (this.state.activeIndex * OPTION_HEIGHT < scrollTop) {
       this.optionGroupContentRef.scrollTop = scrollTop - OPTION_HEIGHT;
     }
@@ -99,9 +118,9 @@ class SelectOptionGroup extends Component {
   }
 
   renderOptGroup = (searchVal) => {
-    let { noOptionsPlaceholder, onSelectOption } = this.props;
+    let { noOptionsPlaceholder, onSelectOption, isInModal } = this.props;
     this.filterOptions = this.props.getFilterOptions(searchVal);
-    if (this.filterOptions === 0) {
+    if (this.filterOptions.length === 0) {
       return (
         <div className="none-search-result">{noOptionsPlaceholder}</div>
       );
@@ -114,10 +133,12 @@ class SelectOptionGroup extends Component {
           key={key}
           index={i}
           isActive={isActive}
+          isInModal={isInModal}
           value={opt.value}
           onSelectOption={onSelectOption}
           changeIndex={this.changeIndex}
           supportMultipleSelect={this.props.supportMultipleSelect}
+          disableHover={this.state.disableHover}
         >
           {opt.label}
         </Option>
@@ -126,35 +147,47 @@ class SelectOptionGroup extends Component {
   }
 
   render() {
-    const { searchable, searchPlaceholder, top, left, minWidth, value, isShowSelected } = this.props;
+    const { searchable, searchPlaceholder, top, left, minWidth, value, isShowSelected, isInModal, position,
+      className } = this.props;
     let { searchVal } = this.state;
     let style = {top: top || 0, left: left || 0 };
     if (minWidth) {
       style = {top: top || 0, left: left || 0, minWidth};
     }
+    if (isInModal) {
+      style = {
+        position: 'fixed',
+        left: position.x,
+        top: position.y + position.height,
+        minWidth: position.width,
+        opacity: 0,
+      };
+    }
     return (
-      <div
-        className={`option-group ${isShowSelected ? 'pt-0' : ''}`}
-        ref={(ref) => this.optionGroupRef = ref}
-        style={style}
-      >
-        {isShowSelected &&
-          <div className="editor-list-delete mb-2" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>
-        }
-        {searchable && (
-          <div className="option-group-search">
-            <DTableSearchInput
-              className="option-search-control"
-              placeholder={searchPlaceholder}
-              onChange={this.onChangeSearch}
-              autoFocus={true}
-            />
+      <ClickOutside onClickOutside={this.props.onClickOutside}>
+        <div
+          className={`option-group ${isShowSelected ? 'pt-0' : ''} ${className ? 'option-group-' + className : ''}`}
+          ref={(ref) => this.optionGroupRef = ref}
+          style={style}
+        >
+          {isShowSelected &&
+            <div className="editor-list-delete mb-2" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>
+          }
+          {searchable && (
+            <div className="option-group-search">
+              <DTableSearchInput
+                className="option-search-control"
+                placeholder={searchPlaceholder}
+                onChange={this.onChangeSearch}
+                autoFocus={true}
+              />
+            </div>
+          )}
+          <div className="option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
+            {this.renderOptGroup(searchVal)}
           </div>
-        )}
-        <div className="option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
-          {this.renderOptGroup(searchVal)}
         </div>
-      </div>
+      </ClickOutside>
     );
   }
 }
@@ -168,12 +201,16 @@ SelectOptionGroup.propTypes = {
   searchable: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   noOptionsPlaceholder: PropTypes.string,
+  onClickOutside: PropTypes.func.isRequired,
   closeSelect: PropTypes.func.isRequired,
   getFilterOptions: PropTypes.func.isRequired,
   supportMultipleSelect: PropTypes.bool,
   value: PropTypes.object,
   isShowSelected: PropTypes.bool,
   stopClickEvent: PropTypes.bool,
+  isInModal: PropTypes.bool,
+  position: PropTypes.object,
+  className: PropTypes.string,
 };
 
 export default SelectOptionGroup;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import SelectOptionGroup from '../SelectOptionGroup';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import ModalPortal from '../common/modal-portal';
 
 import './index.css';
 
@@ -14,21 +15,13 @@ class DTableCustomizeSelect extends Component {
     };
   }
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.onMousedown);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.onMousedown);
-  }
-
   onSelectToggle = (event) => {
     event.preventDefault();
     /*
       if select is showing, click events do not need to be monitored by other click events,
       so it can be closed when other select is clicked.
     */
-    if (this.state.isShowSelectOptions) event.nativeEvent.stopImmediatePropagation();
+    if (this.state.isShowSelectOptions) event.stopPropagation();
     let eventClassName = event.target.className;
     if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'option-group-search') return;
     //Prevent closing by pressing the spacebar in the search input
@@ -38,7 +31,7 @@ class DTableCustomizeSelect extends Component {
     });
   }
 
-  onMousedown = (event) => {
+  onClick = (event) => {
     if (this.props.isShowSelected && event.target.className.includes('icon-fork-number')) {
       return;
     }
@@ -68,6 +61,12 @@ class DTableCustomizeSelect extends Component {
         return name.toLowerCase().indexOf(validSearchVal) > -1;
       }
       if (typeof value === 'object') {
+        if (value.column) {
+          return value.column.name.toLowerCase().indexOf(validSearchVal) > -1;
+        }
+        if (value.name) {
+          return value.name.toLowerCase().indexOf(validSearchVal) > -1;
+        }
         return value.columnOption && value.columnOption.name.toLowerCase().indexOf(validSearchVal) > -1;
       }
       return false;
@@ -75,8 +74,9 @@ class DTableCustomizeSelect extends Component {
   }
 
   render() {
-    let { className, value, options, placeholder, searchable, searchPlaceholder, noOptionsPlaceholder, isLocked } = this.props;
-    return(
+    let { className, value, options, placeholder, searchable, searchPlaceholder, noOptionsPlaceholder,
+      isLocked, isInModal } = this.props;
+    return (
       <div
         ref={(node) => this.selector = node}
         className={classnames('dtable-select custom-select',
@@ -86,14 +86,14 @@ class DTableCustomizeSelect extends Component {
         )}
         onClick={this.onSelectToggle}>
         <div className="selected-option">
-          {value.label ? (
+          {value && value.label ?
             <span className="selected-option-show">{value.label}</span>
-          ) : (
+            :
             <span className="select-placeholder">{placeholder}</span>
-          )}
+          }
           {!isLocked && <i className="dtable-font dtable-icon-drop-down"></i>}
         </div>
-        {this.state.isShowSelectOptions && (
+        {this.state.isShowSelectOptions && !isInModal && (
           <SelectOptionGroup
             value={value}
             isShowSelected={this.props.isShowSelected}
@@ -103,10 +103,32 @@ class DTableCustomizeSelect extends Component {
             searchable={searchable}
             searchPlaceholder={searchPlaceholder}
             noOptionsPlaceholder={noOptionsPlaceholder}
+            onClickOutside={this.onClick}
             closeSelect={this.closeSelect}
             getFilterOptions={this.getFilterOptions}
             supportMultipleSelect={this.props.supportMultipleSelect}
           />
+        )}
+        {this.state.isShowSelectOptions && isInModal && (
+          <ModalPortal>
+            <SelectOptionGroup
+              className={className}
+              value={value}
+              isShowSelected={this.props.isShowSelected}
+              position={this.selector.getBoundingClientRect()}
+              isInModal={isInModal}
+              top={this.getSelectedOptionTop()}
+              options={options}
+              onSelectOption={this.props.onSelectOption}
+              searchable={searchable}
+              searchPlaceholder={searchPlaceholder}
+              noOptionsPlaceholder={noOptionsPlaceholder}
+              onClickOutside={this.onClick}
+              closeSelect={this.closeSelect}
+              getFilterOptions={this.getFilterOptions}
+              supportMultipleSelect={this.props.supportMultipleSelect}
+            />
+          </ModalPortal>
         )}
       </div>
     );
@@ -125,6 +147,7 @@ DTableCustomizeSelect.propTypes = {
   noOptionsPlaceholder: PropTypes.string,
   supportMultipleSelect: PropTypes.bool,
   isShowSelected: PropTypes.bool,
+  isInModal: PropTypes.bool, // if select component in a modal (option group need ModalPortal to show)
 };
 
 export default DTableCustomizeSelect;
