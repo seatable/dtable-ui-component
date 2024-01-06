@@ -4,29 +4,38 @@ import PropTypes from 'prop-types';
 class Option extends Component {
 
   onSelectOption = (value, event) => {
-    this.props.onSelectOption(value, event);
-  }
-
-  onClick = (event) => {
     if (this.props.supportMultipleSelect) {
       event.stopPropagation();
     }
+    this.props.onSelectOption(value, event);
   }
 
   onMouseEnter = () => {
-    this.props.changeIndex(this.props.index);
+    if (!this.props.disableHover) {
+      this.props.changeIndex(this.props.index);
+    }
   }
 
   onMouseLeave = () => {
-    this.props.changeIndex(-1);
+    if (!this.props.disableHover) {
+      this.props.changeIndex(-1);
+    }
+  }
+
+  onMouseDown = (event) => {
+    if (this.props.isInModal) {
+      // prevent close modal via select option
+      event.stopPropagation();
+      event.nativeEvent.stopImmediatePropagation();
+    }
   }
 
   render() {
     return(
       <div
         className={this.props.isActive ? 'option option-active' : 'option'}
-        onMouseDown={this.onSelectOption.bind(this, this.props.value)}
-        onClick={this.onClick}
+        onClick={this.onSelectOption.bind(this, this.props.value)}
+        onMouseDown={this.onMouseDown}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >{this.props.children}</div>
@@ -37,11 +46,13 @@ class Option extends Component {
 Option.propTypes = {
   index: PropTypes.number,
   isActive: PropTypes.bool,
+  isInModal: PropTypes.bool,
   changeIndex: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   onSelectOption: PropTypes.func,
-  supportMultipleSelect: PropTypes.bool
+  supportMultipleSelect: PropTypes.bool,
+  disableHover: PropTypes.bool,
 };
 
 export default Option;
