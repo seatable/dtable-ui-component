@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ToastManager from './toastManager';
 
+import './index.css';
+
 const isBrowser =
     typeof window !== 'undefined' && typeof window.document !== 'undefined';
 
