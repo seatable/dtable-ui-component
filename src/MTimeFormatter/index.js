@@ -24,7 +24,7 @@ class MTimeFormatter extends React.Component {
   render() {
     let { value: date, containerClassName } = this.props;
     let classname = classnames('dtable-ui cell-formatter-container ctime-formatter', containerClassName);
-    if (date !== '') {
+    if (date) {
       date = this.formatDate(date);
     }
 
