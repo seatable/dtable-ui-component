@@ -3,6 +3,8 @@ import SelectOptionGroup from '../SelectOptionGroup';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ModalPortal from '../common/modal-portal';
+import eventBus from '../utils/event-bus';
+import { EVENT_BUS_TYPE } from '../constants';
 
 import './index.css';
 
@@ -26,8 +28,8 @@ class DTableCustomizeSelect extends Component {
     if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'option-group-search') return;
     //Prevent closing by pressing the spacebar in the search input
     if (event.target.value === '') return;
-    this.setState({
-      isShowSelectOptions: !this.state.isShowSelectOptions
+    this.setState({ isShowSelectOptions: !this.state.isShowSelectOptions }, () => {
+      eventBus.dispatch(EVENT_BUS_TYPE.OPEN_SELECT, !this.state.isShowSelectOptions);
     });
   }
 
