@@ -17,6 +17,12 @@ const en = {
   Are_you_sure_you_want_to_delete_this_image: 'Are you sure you want to delete this image?',
   Cancel: 'Cancel',
   Delete: 'Delete',
+  Find_a_department: 'Find a department',
+  No_departments_available: 'No departments available',
+  Current_user_department: "Current user's department",
+  Current_user_department_and_sub: "Current user's department and sub-departments",
+  Specific_departments: "Specific departments",
+  Deleted_department: 'Deleted department'
 };
 
 export default en;
