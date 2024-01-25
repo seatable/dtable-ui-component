@@ -5,7 +5,7 @@ export default class ClickOutside extends React.Component {
 
   static propTypes = {
     children: PropTypes.element.isRequired,
-    onClickOutside: PropTypes.func.isRequired
+    onClickOutside: PropTypes.func,
   };
 
   isClickedInside = false;
@@ -24,7 +24,7 @@ export default class ClickOutside extends React.Component {
       return;
     }
 
-    this.props.onClickOutside(e);
+    this.props.onClickOutside && this.props.onClickOutside(e);
   };
 
   handleMouseDown = () => {

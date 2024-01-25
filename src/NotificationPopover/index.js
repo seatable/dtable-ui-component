@@ -25,16 +25,16 @@ export default class NotificationPopover extends React.Component {
   };
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleOutsideClick);
+    document.addEventListener('mousedown', this.onMouseDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleOutsideClick);
+    document.removeEventListener('mousedown', this.onMouseDown);
   }
 
-  handleOutsideClick = (e) => {
+  onMouseDown = (e) => {
     if (!this.notificationContainerRef.contains(e.target)) {
-      document.removeEventListener('mousedown', this.handleOutsideClick);
+      document.removeEventListener('mousedown', this.onMouseDown);
       if (e.target.className === 'tool notification' || e.target.parentNode.className === 'tool notification') {
         return;
       }

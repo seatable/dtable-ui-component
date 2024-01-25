@@ -6,6 +6,9 @@ import { getDateDisplayString }  from 'dtable-utils';
 import PCDateEditorPopover from './pc-date-editor-popover';
 import MBDateEditorPopover from './mb-date-editor-popover';
 
+import 'dayjs/locale/zh-cn';
+import 'dayjs/locale/en-gb';
+
 import './index.css';
 
 const propTypes = {
