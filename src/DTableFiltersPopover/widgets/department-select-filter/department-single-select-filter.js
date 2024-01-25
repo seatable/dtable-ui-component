@@ -11,11 +11,13 @@ const propTypes = {
   roleId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
   column: PropTypes.object,
+  userDepartmentIdsMap: PropTypes.object,
+  departments: PropTypes.array,
   onCommit: PropTypes.func,
 };
 
 function DepartmentSingleSelectFilter(props) {
-  const { value, column, roleId } = props;
+  const { value, column, roleId, departments, userDepartmentIdsMap } = props;
   const [isShowSelector, setIsShowSelector] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState(value || '');
   const selectorRef = useRef(null);
@@ -74,7 +76,7 @@ function DepartmentSingleSelectFilter(props) {
       <div className="selected-option">
         {value ?
           <span className="selected-option-show">
-            <SelectedDepartments value={selectedDepartmentIds} />
+            <SelectedDepartments value={selectedDepartmentIds} departments={departments} />
           </span>
           :
           <span className="select-placeholder">{getLocale('Select_department')}</span>
@@ -87,6 +89,8 @@ function DepartmentSingleSelectFilter(props) {
           column={column}
           value={value}
           onCommit={onCommit}
+          userDepartmentIdsMap={userDepartmentIdsMap}
+          departments={departments}
           renderUserDepartmentOptions={renderUserDepartmentOptions}
         />
       } 

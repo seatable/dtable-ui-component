@@ -9,12 +9,13 @@ import { getLocale } from '../../../lang';
 
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+  departments: PropTypes.object,
   column: PropTypes.object,
   onCommit: PropTypes.func,
 };
 
 function DepartmentMultipleSelectFilter(props) {
-  const { value } = props;
+  const { value, departments } = props;
   const [isShowSelector, setIsShowSelector] = useState(false);
   const [selectedDepartments, setSelectedDepartments] = useState(value || []);
   const selectorRef = useRef(null);
@@ -77,7 +78,7 @@ function DepartmentMultipleSelectFilter(props) {
       <div className="selected-option">
         {selectedDepartments.length > 0 ?
           <span className="selected-option-show">
-            <SelectedDepartments value={selectedDepartments} />
+            <SelectedDepartments value={selectedDepartments} departments={departments} />
           </span>
           :
           <span className="select-placeholder">{getLocale('Select_department')}</span>
@@ -91,6 +92,7 @@ function DepartmentMultipleSelectFilter(props) {
           value={selectedDepartments}
           onCommit={selectDepartment}
           renderUserDepartmentOptions={renderUserDepartmentOptions}
+          departments={departments}
         />
       }
     </div>

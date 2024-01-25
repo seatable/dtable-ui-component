@@ -158,6 +158,7 @@ DepartmentMultipleSelect.propTypes = {
   isShowSelectedDepartments: PropTypes.bool,
   classNamePrefix: PropTypes.string,
   value: PropTypes.array,
+  departments: PropTypes.array,
   renderUserDepartmentOptions: PropTypes.func,
   onCommit: PropTypes.func,
 };

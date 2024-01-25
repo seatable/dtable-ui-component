@@ -16,6 +16,9 @@ import './index.css';
 const propTypes = {
   isLocked: PropTypes.bool,
   className: PropTypes.string,
+  roleId: PropTypes.string,
+  userDepartmentIdsMap: PropTypes.object,
+  departments: PropTypes.array,
   filters: PropTypes.array,
   columns: PropTypes.array.isRequired,
   filterConjunction: PropTypes.string.isRequired,
@@ -26,7 +29,6 @@ const propTypes = {
   value: PropTypes.object,
   collaborators: PropTypes.array,
   scheduleUpdate: PropTypes.func,
-  isPre: PropTypes.bool,
 };
 
 class FiltersList extends Component {
@@ -89,13 +91,14 @@ class FiltersList extends Component {
   }
 
   renderFilterItem = (filter, index, errMsg, filterColumn) => {
-    const { filterConjunction, value } = this.props;
+    const { filterConjunction, value, roleId, isLocked, collaborators, userDepartmentIdsMap, departments } = this.props;
     const conjunctionOptions = this.getConjunctionOptions();
     const columnOptions = this.getColumnOptions();
     return (
       <FilterItem
         key={index}
-        isLocked={this.props.isLocked}
+        isLocked={isLocked}
+        roleId={roleId}
         index={index}
         filter={filter}
         errMsg={errMsg}
@@ -107,8 +110,9 @@ class FiltersList extends Component {
         deleteFilter={this.deleteFilter}
         updateFilter={this.updateFilter}
         updateConjunction={this.updateConjunction}
-        collaborators={this.props.collaborators}
-        isPre={this.props.isPre}
+        collaborators={collaborators}
+        userDepartmentIdsMap={userDepartmentIdsMap}
+        departments={departments}
       />
     );
   }

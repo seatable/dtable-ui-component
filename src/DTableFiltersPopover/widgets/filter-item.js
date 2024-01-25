@@ -26,6 +26,9 @@ import { FilterItemUtils, getFilterByColumn, getUpdatedFilterBySelectSingle, get
 
 const propTypes = {
   index: PropTypes.number.isRequired,
+  roleId: PropTypes.string,
+  userDepartmentIdsMap: PropTypes.object,
+  departments: PropTypes.array,
   filter: PropTypes.object.isRequired,
   filterColumn: PropTypes.object.isRequired,
   filterConjunction: PropTypes.string.isRequired,
@@ -36,7 +39,6 @@ const propTypes = {
   updateFilter: PropTypes.func.isRequired,
   updateConjunction: PropTypes.func.isRequired,
   collaborators: PropTypes.array,
-  isPre: PropTypes.bool,
   errMsg: PropTypes.bool,
 };
 
@@ -81,11 +83,11 @@ class FilterItem extends React.Component {
   }
 
   initSelectOptions = (props) => {
-    const { filter, filterColumn, value, isPre } = props;
+    const { filter, filterColumn, value } = props;
     let { filterPredicateList, filterTermModifierList } = getColumnOptions(filterColumn, value);
     // The value of the calculation formula column does not exist in the shared view
     this.filterPredicateOptions = filterPredicateList ? filterPredicateList.map(predicate => {
-      return FilterItemUtils.generatorPredicateOption(predicate, isPre);
+      return FilterItemUtils.generatorPredicateOption(predicate);
     }).filter(item => item) : [];
 
     const { filter_predicate } = filter;
@@ -337,7 +339,7 @@ class FilterItem extends React.Component {
   }
 
   renderFilterTerm = (filterColumn) => {
-    const { index, filter, collaborators } = this.props;
+    const { index, filter, collaborators, roleId, userDepartmentIdsMap, departments } = this.props;
     const { type } = filterColumn;
     const { filter_term, filter_predicate, filter_term_modifier } = filter;
     // predicate is empty or not empty
@@ -430,14 +432,19 @@ class FilterItem extends React.Component {
             <DepartmentMultipleSelectFilter
               column={filterColumn}
               value={filter_term || []}
+              userDepartmentIdsMap={userDepartmentIdsMap}
+              departments={departments}
               onCommit={this.onSelectMultiple}
             />
           );
         }
         return (
           <DepartmentSingleSelectFilter
+            roleId={roleId}
             column={filterColumn}
             value={filter_term || ''}
+            userDepartmentIdsMap={userDepartmentIdsMap}
+            departments={departments}
             onCommit={this.onSelectSingle}
           />
         );
@@ -583,10 +590,10 @@ class FilterItem extends React.Component {
 
   render() {
     const { filterPredicateOptions, filterTermModifierOptions } = this;
-    const { filter, filterColumn, filterColumnOptions, isPre, errMsg } = this.props;
+    const { filter, filterColumn, filterColumnOptions, errMsg } = this.props;
     const { filter_predicate, filter_term_modifier } = filter;
     const activeColumn = FilterItemUtils.generatorColumnOption(filterColumn);
-    const activePredicate = FilterItemUtils.generatorPredicateOption(filter_predicate, isPre);
+    const activePredicate = FilterItemUtils.generatorPredicateOption(filter_predicate);
     let activeTermModifier = null;
     let _isCheckboxColumn = false;
     if (isDateColumn(filterColumn)) {

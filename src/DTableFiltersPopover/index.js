@@ -5,12 +5,11 @@ import isHotkey from 'is-hotkey';
 import { Button, UncontrolledPopover } from 'reactstrap';
 import { FILTER_COLUMN_OPTIONS, getValidFilters } from 'dtable-utils';
 import CommonAddTool from '../DTableCommonAddTool';
-
-import { getEventClassName } from '../../utils/utils';
-import { getFilterByColumn } from '../../utils/filters-utils';
-import FiltersList from './filter-popover-widgets/filters-list';
-import eventBus from '../../utils/event-bus';
-import { EVENT_BUS_TYPE } from '../../constants';
+import { getEventClassName } from '../utils/utils';
+import { getFilterByColumn } from './utils';
+import FiltersList from './widgets/filter-list';
+import eventBus from '../utils/event-bus';
+import { EVENT_BUS_TYPE } from '../constants';
 
 import './index.css';
 
@@ -25,7 +24,7 @@ import './index.css';
 class FilterPopover extends Component {
 
   static defaultProps = {
-    filtersClassName: '',
+    className: '',
   };
 
   constructor(props) {
@@ -76,7 +75,7 @@ class FilterPopover extends Component {
   update = (filters) => {
     if (this.isNeedSubmit()) {
       const isSubmitDisabled = false;
-      this.setState({filters, isSubmitDisabled});
+      this.setState({ filters, isSubmitDisabled });
       return;
     }
     this.setState({filters}, () => {
@@ -144,7 +143,7 @@ class FilterPopover extends Component {
   }
 
   render() {
-    const { target, columns } = this.props;
+    const { target, columns, className, roleId, userDepartmentIdsMap, departments } = this.props;
     const { filters, filterConjunction } = this.state;
     const canAddFilter = columns.length > 0;
     return (
@@ -154,14 +153,15 @@ class FilterPopover extends Component {
         target={target}
         fade={false}
         hideArrow={true}
-        className="filter-popover"
+        className="dtable-filter-popover"
         boundariesElement={document.body}
       >
         {({ scheduleUpdate }) => (
-          <div ref={ref => this.dtablePopoverRef = ref} onClick={this.onPopoverInsideClick} className={this.props.filtersClassName}>
+          <div ref={ref => this.dtablePopoverRef = ref} onClick={this.onPopoverInsideClick} className={className}>
             <FiltersList
               filterConjunction={filterConjunction}
               filters={filters}
+              roleId={roleId}
               columns={columns}
               emptyPlaceholder={intl.get('No_filters')}
               updateFilter={this.updateFilter}
@@ -170,7 +170,8 @@ class FilterPopover extends Component {
               collaborators={this.props.collaborators}
               readOnly={false}
               scheduleUpdate={scheduleUpdate}
-              isPre={this.props.isPre}
+              userDepartmentIdsMap={userDepartmentIdsMap}
+              departments={departments}
             />
             <CommonAddTool
               className={`popover-add-tool ${canAddFilter ? '' : 'disabled'}`}
@@ -179,7 +180,7 @@ class FilterPopover extends Component {
               addIconClassName="popover-add-icon"
             />
             {this.isNeedSubmit() && (
-              <div className='filter-popover-footer'>
+              <div className='dtable-filter-popover-footer'>
                 <Button className='mr-2' onClick={this.onClosePopover}>{intl.get('Cancel')}</Button>
                 <Button color="primary" disabled={this.state.isSubmitDisabled} onClick={this.onSubmitFilters}>{intl.get('Submit')}</Button>
               </div>
@@ -192,15 +193,17 @@ class FilterPopover extends Component {
 }
 
 FilterPopover.propTypes = {
-  filtersClassName: PropTypes.string,
-  target: PropTypes.string.isRequired,
   isNeedSubmit: PropTypes.bool,
   isLocked: PropTypes.bool,
+  className: PropTypes.string,
+  roleId: PropTypes.string,
+  userDepartmentIdsMap: PropTypes.object,
+  departments: PropTypes.array,
+  target: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   columns: PropTypes.array.isRequired,
   filterConjunction: PropTypes.string,
   filters: PropTypes.array,
   collaborators: PropTypes.array,
-  isPre: PropTypes.bool,
   hidePopover: PropTypes.func,
   update: PropTypes.func,
 };
