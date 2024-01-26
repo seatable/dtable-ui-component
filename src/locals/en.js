@@ -19,9 +19,9 @@ const en = {
   Delete: 'Delete',
   Find_a_department: 'Find a department',
   No_departments_available: 'No departments available',
-  Current_user_department: "Current user's department",
-  Current_user_department_and_sub: "Current user's department and sub-departments",
-  Specific_departments: "Specific departments",
+  Current_user_department: 'Current user\'s department',
+  Current_user_department_and_sub: 'Current user\'s department and sub-departments',
+  Specific_departments: 'Specific departments',
   Deleted_department: 'Deleted department',
   Add_filter: 'Add filter',
   Submit: 'Submit',
@@ -49,14 +49,14 @@ const en = {
   This_month: 'This month',
   This_year: 'This year',
   Select_an_option: 'Select_an_option',
-  Find_an_option: 'Find_an_option',
-  No_options_available: 'No_options_available',
   Add_collaborator: 'Add_collaborator',
   Add_a_creator: 'Add_a_creator',
   Add_a_last_modifier: 'Add_a_last_modifier',
   Invalid_filter: 'Invalid_filter',
   Find_column: 'Find_column',
   No_results: 'No_results',
+  'Select_option(s)': 'Select option(s)',
+
 };
 
 export default en;

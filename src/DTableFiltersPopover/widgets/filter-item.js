@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import intl from 'react-intl-universal';
 import { UncontrolledTooltip } from 'reactstrap';
 import {
   CellType,
@@ -13,7 +12,7 @@ import {
   filterTermModifierIsWithin,
   isDateColumn,
 } from 'dtable-utils';
-import { DTableCustomizeSelect } from 'dtable-ui-component';
+import DTableCustomizeSelect from '../../DTableCustomizeSelect';
 import DtableSearchInput from '../../DTableSearchInput';
 import CollaboratorFilter from './collaborator-filter';
 import DepartmentSingleSelectFilter from './department-select-filter/department-single-select-filter';
@@ -23,12 +22,14 @@ import FilterCalendar from './filter-calendar';
 import { FilterItemUtils, getFilterByColumn, getUpdatedFilterBySelectSingle, getUpdatedFilterBySelectMultiple,
   getUpdatedFilterByCreator, getUpdatedFilterByCollaborator, getColumnOptions, getUpdatedFilterByPredicate, isCheckboxColumn,
   generateDefaultUser, } from '../utils';
+import { getLocale } from '../../lang';
 
 const propTypes = {
   index: PropTypes.number.isRequired,
   roleId: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
+  lang: PropTypes.string,
   filter: PropTypes.object.isRequired,
   filterColumn: PropTypes.object.isRequired,
   filterConjunction: PropTypes.string.isRequired,
@@ -175,16 +176,15 @@ class FilterItem extends React.Component {
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
   }
-  
+
   onSelectMultiple = (value) => {
     const { index, filter } = this.props;
     const { columnOption: option } = value;
-  
     let newFilter = getUpdatedFilterBySelectMultiple(filter, option);
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
   }
-  
+
   onSelectCollaborator = (value) => {
     const { index, filter } = this.props;
     const { columnOption: collaborator } = value;
@@ -192,13 +192,13 @@ class FilterItem extends React.Component {
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
   }
-  
+
   onSelectCreator = (value) => {
     const { index, filter } = this.props;
     const { columnOption: collaborator } = value;
     let newFilter = getUpdatedFilterByCreator(filter, collaborator);
     // the predicate is 'is' or 'is not'
-    if (!newFilter) { 
+    if (!newFilter) {
       return;
     }
     this.resetState(newFilter);
@@ -249,11 +249,7 @@ class FilterItem extends React.Component {
       );
     } else if (type === 'checkbox') {
       return (
-        <input 
-          type="checkbox" 
-          checked={filterTerm} 
-          onChange={this.onFilterTermCheckboxChanged} 
-        />
+        <input type="checkbox" checked={filterTerm} onChange={this.onFilterTermCheckboxChanged} />
       );
     }
   }
@@ -276,7 +272,7 @@ class FilterItem extends React.Component {
       }
       default: {
         return (
-          <span className="selected-conjunction-show">{intl.get(filterConjunction)}</span>
+          <span className="selected-conjunction-show">{getLocale(filterConjunction)}</span>
         );
       }
     }
@@ -289,11 +285,11 @@ class FilterItem extends React.Component {
     let isSupportMultipleSelect = false;
     //The first two options are used for single selection, and the last four options are used for multiple selection
     const supportMultipleSelectOptions = [
-      FILTER_PREDICATE_TYPE.IS_ANY_OF, 
-      FILTER_PREDICATE_TYPE.IS_NONE_OF, 
-      FILTER_PREDICATE_TYPE.HAS_ANY_OF, 
-      FILTER_PREDICATE_TYPE.HAS_ALL_OF, 
-      FILTER_PREDICATE_TYPE.HAS_NONE_OF, 
+      FILTER_PREDICATE_TYPE.IS_ANY_OF,
+      FILTER_PREDICATE_TYPE.IS_NONE_OF,
+      FILTER_PREDICATE_TYPE.HAS_ANY_OF,
+      FILTER_PREDICATE_TYPE.HAS_ALL_OF,
+      FILTER_PREDICATE_TYPE.HAS_NONE_OF,
       FILTER_PREDICATE_TYPE.IS_EXACTLY
     ];
     if (supportMultipleSelectOptions.includes(filter_predicate)) {
@@ -329,17 +325,17 @@ class FilterItem extends React.Component {
         value={selectedOptionNames}
         options={dataOptions}
         onSelectOption={this.onSelectMultiple}
-        placeholder={intl.get('Select_option(s)')}
+        placeholder={getLocale('Select_option(s)')}
         searchable={true}
-        searchPlaceholder={intl.get('Find_an_option')}
-        noOptionsPlaceholder={intl.get('No_options_available')}
+        searchPlaceholder={getLocale('Find_an_option')}
+        noOptionsPlaceholder={getLocale('No_options_available')}
         supportMultipleSelect={isSupportMultipleSelect}
       />
     );
   }
 
   renderFilterTerm = (filterColumn) => {
-    const { index, filter, collaborators, roleId, userDepartmentIdsMap, departments } = this.props;
+    const { index, filter, collaborators, roleId, userDepartmentIdsMap, departments, lang } = this.props;
     const { type } = filterColumn;
     const { filter_term, filter_predicate, filter_term_modifier } = filter;
     // predicate is empty or not empty
@@ -363,12 +359,13 @@ class FilterItem extends React.Component {
       if (inputRangeLabel.indexOf(filter_term_modifier) > -1) {
         if (filter_term_modifier === 'exact_date') {
           return (
-            <FilterCalendar 
-              onChange={this.onFilterTermTextChanged}
+            <FilterCalendar
+              lang={lang}
               value={this.state.filterTerm}
               filterColumn={filterColumn}
-            /> 
-          ); 
+              onChange={this.onFilterTermTextChanged}
+            />
+          );
         }
         return this.getInputComponent('text');
       }
@@ -415,10 +412,10 @@ class FilterItem extends React.Component {
             value={selectedOptionName}
             options={dataOptions}
             onSelectOption={this.onSelectSingle}
-            placeholder={intl.get('Select_an_option')}
+            placeholder={getLocale('Select_an_option')}
             searchable={true}
-            searchPlaceholder={intl.get('Find_an_option')}
-            noOptionsPlaceholder={intl.get('No_options_available')}
+            searchPlaceholder={getLocale('Find_an_option')}
+            noOptionsPlaceholder={getLocale('No_options_available')}
           />
         );
       }
@@ -460,7 +457,7 @@ class FilterItem extends React.Component {
             filter_predicate={filter_predicate}
             collaborators={collaborators}
             onSelectCollaborator={this.onSelectCollaborator}
-            placeholder={intl.get('Add_collaborator')}
+            placeholder={getLocale('Add_collaborator')}
           />
         );
       }
@@ -476,7 +473,7 @@ class FilterItem extends React.Component {
             filterTerm={filter_term || []}
             collaborators={creators}
             onSelectCollaborator={this.onSelectCreator}
-            placeholder={type === CellType.CREATOR ? intl.get('Add_a_creator') : intl.get('Add_a_last_modifier')}
+            placeholder={type === CellType.CREATOR ? getLocale('Add_a_creator') : getLocale('Add_a_last_modifier')}
           />
         );
       }
@@ -485,7 +482,7 @@ class FilterItem extends React.Component {
         let rateList = [];
         for (let i = 0; i < rate_max_number; i++) {
           let rateItem = (
-            <RateItem 
+            <RateItem
               key={i}
               enterRateItemIndex={this.state.enterRateItemIndex}
               rateItemIndex={i + 1}
@@ -566,7 +563,7 @@ class FilterItem extends React.Component {
           filterTerm={filterTerm || []}
           collaborators={collaborators}
           onSelectCollaborator={this.onSelectCollaborator}
-          placeholder={intl.get('Add_collaborator')}
+          placeholder={getLocale('Add_collaborator')}
         />
       );
     }
@@ -582,7 +579,7 @@ class FilterItem extends React.Component {
           placement='bottom'
           fade={false}
         >
-          {intl.get('Invalid_filter')}
+          {getLocale('Invalid_filter')}
         </UncontrolledTooltip>
       </div>
     );
@@ -621,8 +618,8 @@ class FilterItem extends React.Component {
                 options={filterColumnOptions}
                 onSelectOption={this.onSelectColumn}
                 searchable={true}
-                searchPlaceholder={intl.get('Find_column')}
-                noOptionsPlaceholder={intl.get('No_results')}
+                searchPlaceholder={getLocale('Find_column')}
+                noOptionsPlaceholder={getLocale('No_results')}
               />
             </div>
             <div className={`filter-predicate ml-2 ${_isCheckboxColumn ? 'filter-checkbox-predicate' : ''}`}>

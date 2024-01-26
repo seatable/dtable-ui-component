@@ -19,6 +19,7 @@ const propTypes = {
   roleId: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
+  lang: PropTypes.string,
   filters: PropTypes.array,
   columns: PropTypes.array.isRequired,
   filterConjunction: PropTypes.string.isRequired,
@@ -91,7 +92,7 @@ class FiltersList extends Component {
   }
 
   renderFilterItem = (filter, index, errMsg, filterColumn) => {
-    const { filterConjunction, value, roleId, isLocked, collaborators, userDepartmentIdsMap, departments } = this.props;
+    const { filterConjunction, value, roleId, isLocked, collaborators, userDepartmentIdsMap, departments, lang } = this.props;
     const conjunctionOptions = this.getConjunctionOptions();
     const columnOptions = this.getColumnOptions();
     return (
@@ -107,12 +108,13 @@ class FiltersList extends Component {
         conjunctionOptions={conjunctionOptions}
         filterColumnOptions={columnOptions}
         value={value}
-        deleteFilter={this.deleteFilter}
-        updateFilter={this.updateFilter}
-        updateConjunction={this.updateConjunction}
         collaborators={collaborators}
         userDepartmentIdsMap={userDepartmentIdsMap}
         departments={departments}
+        lang={lang}
+        deleteFilter={this.deleteFilter}
+        updateFilter={this.updateFilter}
+        updateConjunction={this.updateConjunction}
       />
     );
   }

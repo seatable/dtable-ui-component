@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import intl from 'react-intl-universal';
 import isHotkey from 'is-hotkey';
 import { Button, UncontrolledPopover } from 'reactstrap';
 import { FILTER_COLUMN_OPTIONS, getValidFilters } from 'dtable-utils';
@@ -10,6 +9,7 @@ import { getFilterByColumn } from './utils';
 import FiltersList from './widgets/filter-list';
 import eventBus from '../utils/event-bus';
 import { EVENT_BUS_TYPE } from '../constants';
+import { getLocale } from '../lang';
 
 import './index.css';
 
@@ -21,10 +21,11 @@ import './index.css';
  *  filter_term_modifier: '',
  * }
  */
-class FilterPopover extends Component {
+class DTableFiltersPopover extends Component {
 
   static defaultProps = {
     className: '',
+    readOnly: false,
   };
 
   constructor(props) {
@@ -143,7 +144,7 @@ class FilterPopover extends Component {
   }
 
   render() {
-    const { target, columns, className, roleId, userDepartmentIdsMap, departments } = this.props;
+    const { target, columns, className, roleId, userDepartmentIdsMap, departments, lang, readOnly } = this.props;
     const { filters, filterConjunction } = this.state;
     const canAddFilter = columns.length > 0;
     return (
@@ -163,26 +164,27 @@ class FilterPopover extends Component {
               filters={filters}
               roleId={roleId}
               columns={columns}
-              emptyPlaceholder={intl.get('No_filters')}
-              updateFilter={this.updateFilter}
-              deleteFilter={this.deleteFilter}
-              updateFilterConjunction={this.updateFilterConjunction}
+              emptyPlaceholder={getLocale('No_filters')}
               collaborators={this.props.collaborators}
-              readOnly={false}
+              readOnly={readOnly}
               scheduleUpdate={scheduleUpdate}
               userDepartmentIdsMap={userDepartmentIdsMap}
               departments={departments}
+              lang={lang}
+              updateFilter={this.updateFilter}
+              deleteFilter={this.deleteFilter}
+              updateFilterConjunction={this.updateFilterConjunction}
             />
             <CommonAddTool
               className={`popover-add-tool ${canAddFilter ? '' : 'disabled'}`}
               callBack={canAddFilter ? () => this.addFilter(scheduleUpdate) : () => {}}
-              footerName={intl.get('Add_filter')}
+              footerName={getLocale('Add_filter')}
               addIconClassName="popover-add-icon"
             />
             {this.isNeedSubmit() && (
               <div className='dtable-filter-popover-footer'>
-                <Button className='mr-2' onClick={this.onClosePopover}>{intl.get('Cancel')}</Button>
-                <Button color="primary" disabled={this.state.isSubmitDisabled} onClick={this.onSubmitFilters}>{intl.get('Submit')}</Button>
+                <Button className='mr-2' onClick={this.onClosePopover}>{getLocale('Cancel')}</Button>
+                <Button color="primary" disabled={this.state.isSubmitDisabled} onClick={this.onSubmitFilters}>{getLocale('Submit')}</Button>
               </div>
             )}
           </div>
@@ -192,13 +194,14 @@ class FilterPopover extends Component {
   }
 }
 
-FilterPopover.propTypes = {
+DTableFiltersPopover.propTypes = {
   isNeedSubmit: PropTypes.bool,
-  isLocked: PropTypes.bool,
+  readOnly: PropTypes.bool,
   className: PropTypes.string,
   roleId: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
+  lang: PropTypes.string,
   target: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   columns: PropTypes.array.isRequired,
   filterConjunction: PropTypes.string,
@@ -208,4 +211,4 @@ FilterPopover.propTypes = {
   update: PropTypes.func,
 };
 
-export default FilterPopover;
+export default DTableFiltersPopover;

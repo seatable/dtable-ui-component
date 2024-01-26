@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import SelectedDepartments from '../../../Department-editor/selected-departments';
 import DepartmentMultipleSelect from '../../../Department-editor/department-multiple-select';
 import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../Department-editor/constants';
-import { useClickOutside } from '../../../hooks/use-click-outside';
+import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
 
 const propTypes = {
@@ -34,10 +34,10 @@ function DepartmentMultipleSelectFilter(props) {
           key={index}
           onClick={(event) => selectDepartment(event, type)}
         >
-          <input 
-            type="checkbox" 
-            className="vam department-select-input" 
-            checked={selectedDepartments.includes(type)} 
+          <input
+            type="checkbox"
+            className="vam department-select-input"
+            checked={selectedDepartments.includes(type)}
             onChange={(event) => selectDepartment(event, type)}
           />
           <span className="text-truncate department-name">{getLocale(name)}</span>
@@ -69,11 +69,11 @@ function DepartmentMultipleSelectFilter(props) {
   return (
     <div
       ref={selectorRef}
-      className={classnames('dtable-select custom-select', 
+      className={classnames('dtable-select custom-select',
         {'focus': isShowSelector}
       )}
       onClick={onSelectToggle}
-      id='filter-department-editor' 
+      id='filter-department-editor'
     >
       <div className="selected-option">
         {selectedDepartments.length > 0 ?

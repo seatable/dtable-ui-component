@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import SelectedDepartments from '../../../Department-editor/selected-departments';
 import DepartmentSingleSelect from '../../../Department-editor/department-single-select';
 import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../Department-editor/constants';
-import { useClickOutside } from '../../../hooks/use-click-outside';
+import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
 
 const propTypes = {
@@ -41,11 +41,11 @@ function DepartmentSingleSelectFilter(props) {
         >
           <div className="department-item-left-content d-flex align-items-center">
             <span className="text-truncate department-name">{getLocale(name)}</span>
-            {selectedDepartment === type && 
+            {selectedDepartment === type && (
               <span className="department-check-icon">
                 <i className="dtable-font dtable-icon-check-mark"></i>
               </span>
-            }
+            )}
           </div>
         </div>
       );
@@ -67,11 +67,11 @@ function DepartmentSingleSelectFilter(props) {
   return (
     <div
       ref={selectorRef}
-      className={classnames('dtable-select custom-select', 
+      className={classnames('dtable-select custom-select',
         {'focus': isShowSelector}
       )}
       onClick={onSelectToggle}
-      id='filter-department-editor' 
+      id='filter-department-editor'
     >
       <div className="selected-option">
         {value ?
@@ -93,7 +93,7 @@ function DepartmentSingleSelectFilter(props) {
           departments={departments}
           renderUserDepartmentOptions={renderUserDepartmentOptions}
         />
-      } 
+      }
     </div>
   );
 }

@@ -13,6 +13,7 @@ import '@seafile/seafile-calendar/assets/index.css';
 let now = dayjs();
 
 const propTypes = {
+  lang: PropTypes.string,
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   filterColumn: PropTypes.object.isRequired,
@@ -22,7 +23,7 @@ const propTypes = {
 class FilterCalendar extends Component {
 
   constructor(props) {
-    super(props); 
+    super(props);
     this.state = {
       open: false,
       value: null
@@ -35,14 +36,14 @@ class FilterCalendar extends Component {
   }
 
   componentDidMount() {
-    const iszhcn = (window.app && window.app.config && window.app.config.lang === 'zh-cn');
+    const { value, lang } = this.props;
+    const iszhcn = lang === 'zh-cn';
     if (iszhcn) {
       now = now.locale('zh-cn');
     } else {
       now = now.locale('en-gb');
     }
     this.defaultCalendarValue = now.clone();
-    const { value } = this.props;
     if (value && dayjs(value).isValid()) {
       let validValue = dayjs(value).isValid() ? dayjs(value) : dayjs(this.defaultCalendarValue);
       this.setState({
@@ -69,7 +70,7 @@ class FilterCalendar extends Component {
 
   onClear = () => {
     this.setState({
-      value: null 
+      value: null
     },() => {
       this.setState({
         open:true
@@ -93,8 +94,8 @@ class FilterCalendar extends Component {
         open: true,
       });
     }
-  } 
-  
+  }
+
   getCalendarContainer = () => {
     return this.calendarContainerRef.current;
   }
@@ -112,12 +113,12 @@ class FilterCalendar extends Component {
     }
     return calendarFormat;
   }
-  
+
   render() {
     const { isReadOnly } = this.props;
     const state = this.state;
     if (isReadOnly) return (
-      <input 
+      <input
         className="ant-calendar-picker-input ant-input form-control"
         value={state.value ? state.value.format(this.columnDataFormat) : ''}
         disabled={true}
