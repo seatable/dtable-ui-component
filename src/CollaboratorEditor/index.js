@@ -15,11 +15,13 @@ const propTypes = {
   column: PropTypes.object,
   collaborators: PropTypes.array.isRequired,
   onCommit: PropTypes.func,
+  isShowEditButton: PropTypes.bool,
 };
 
 class CollaboratorEditor extends React.Component {
 
   static defaultProps = {
+    isShowEditButton: true,
     isReadOnly: false,
     value: [],
   }
@@ -34,14 +36,14 @@ class CollaboratorEditor extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.onDocumentToggle);
+    document.addEventListener('mousedown', this.onMouseDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onDocumentToggle);
+    document.removeEventListener('mousedown', this.onMouseDown);
   }
 
-  onDocumentToggle = (e) => {
+  onMouseDown = (e) => {
     if (this.editorContainer !== e.target && !this.editorContainer.contains(e.target)) {
       this.onClosePopover();
     }
@@ -58,7 +60,7 @@ class CollaboratorEditor extends React.Component {
     return [];
   }
 
-  onAddOptionToggle = (event) => {
+  togglePopover = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     event.stopPropagation();
     if (this.props.isReadOnly) {
@@ -91,7 +93,6 @@ class CollaboratorEditor extends React.Component {
 
     this.setState({newValue}, () => {
       this.onCommit(newValue);
-      this.onClosePopover();
     });
   }
 
@@ -123,6 +124,16 @@ class CollaboratorEditor extends React.Component {
     this.setState({isPopoverShow: false});
   }
 
+  onClickContainer = (e) => {
+    e.stopPropagation();
+    if (!this.props.isShowEditButton && !this.state.isPopoverShow) {
+      this.setState({
+        isPopoverShow: true,
+        popoverPosition: this.caculatePopoverPosition(),
+      });
+    }
+  }
+
   setEditorContainerRef = (editorContainer) => {
     this.editorContainer = editorContainer;
   }
@@ -132,17 +143,19 @@ class CollaboratorEditor extends React.Component {
   }
 
   render() {
-    let { collaborators, isReadOnly } = this.props;
+    let { collaborators, isReadOnly, isShowEditButton } = this.props;
     let { isPopoverShow, popoverPosition } = this.state;
     let selectedCollaborators = this.getFormattedCollaborators();
     let enableDeleteCollaborator = !isReadOnly;
 
     return (
       <div ref={this.setEditorContainerRef} className="dtable-ui-collaborator-editor">
-        <div ref={this.setEditorRef} className="dtable-ui-collaborator-editor-container">
-          <EditEditorButton text={getLocale('Add_a_collaborator')} onClick={this.onAddOptionToggle} />
+        <div ref={this.setEditorRef} className={`dtable-ui-collaborator-editor-container ${isShowEditButton ? '' : 'dtable-ui-collaborator-editor-container-no-btn'}`} onClick={this.onClickContainer}>
+          {isShowEditButton &&
+            <EditEditorButton text={getLocale('Add_a_collaborator')} onClick={this.togglePopover} />
+          }
           {selectedCollaborators.length > 0 && (
-            <div className="collaborators-container mt-2">
+            <div className={`collaborators-container ${isShowEditButton ? 'mt-2' : ''}`}>
               {selectedCollaborators.map(collaborator => {
                 return (
                   <CollaboratorItem

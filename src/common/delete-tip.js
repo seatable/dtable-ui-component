@@ -15,14 +15,14 @@ export default class DeleteTip extends React.Component {
   };
 
   componentDidMount() {
-    document.addEventListener('click', this.handleOutsideClick);
+    document.addEventListener('mousedown', this.onMouseDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.handleOutsideClick);
+    document.removeEventListener('mousedown', this.onMouseDown);
   }
 
-  handleOutsideClick = (e) => {
+  onMouseDown = (e) => {
     if (this.tipContainer && !this.tipContainer.contains(e.target)) {
       this.props.toggle();
     }

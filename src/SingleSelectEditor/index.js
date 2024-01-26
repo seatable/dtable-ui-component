@@ -36,14 +36,14 @@ class SingleSelectEditor extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('click', this.onDocumentToggle);
+    document.addEventListener('mousedown', this.onMouseDown);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('click', this.onDocumentToggle);
+    document.removeEventListener('mousedown', this.onMouseDown);
   }
 
-  onDocumentToggle = (e) => {
+  onMouseDown = (e) => {
     if (this.editorContainer !== e.target && !this.editorContainer.contains(e.target)) {
       this.onClosePopover();
     }
