@@ -19,6 +19,11 @@ class PCCollaboratorEditorPopover extends React.Component {
     this.state = {
       searchValue: ''
     };
+    this.editorInputRef = React.createRef();
+  }
+
+  componentDidMount() {
+    this.editorInputRef.current.focus();
   }
 
   onValueChanged = (event) => {
@@ -55,7 +60,14 @@ class PCCollaboratorEditorPopover extends React.Component {
     return (
       <div className="dtable-ui-editor-popover dtable-ui-collaborator-editor-popover" style={popoverStyle}>
         <div className="collaborator-search-container">
-          <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_a_collaborator')}></input>
+          <input
+            className="form-control"
+            value={searchValue}
+            onChange={this.onValueChanged}
+            onClick={this.onInputClick}
+            placeholder={getLocale('Find_a_collaborator')}
+            ref={this.editorInputRef}
+          ></input>
         </div>
         <div className="collaborator-list-container">
           {collaborators.length > 0 && (

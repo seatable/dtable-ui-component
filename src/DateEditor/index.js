@@ -69,6 +69,9 @@ class DateEditor extends React.Component {
     if (value !== this.state.newValue) {
       this.setState({newValue: value});
       this.onCommit(value);
+      if (!this.state.showHourAndMinute) {
+        this.onClosePopover();
+      }
     }
   }
 
