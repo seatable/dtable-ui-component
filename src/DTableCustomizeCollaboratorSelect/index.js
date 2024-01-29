@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Popover } from 'reactstrap';
+import { searchCollaborators } from 'dtable-utils';
 import SelectOptionGroup from '../SelectOptionGroup';
-import { searchCollaborators } from './utils';
 
 import './index.css';
 
