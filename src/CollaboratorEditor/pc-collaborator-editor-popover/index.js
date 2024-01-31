@@ -10,6 +10,7 @@ const propTypes = {
   selectedCollaborators: PropTypes.array.isRequired,
   collaborators: PropTypes.array.isRequired,
   onCollaboratorItemToggle: PropTypes.func.isRequired,
+  setPopoverRef: PropTypes.func.isRequired,
 };
 
 class PCCollaboratorEditorPopover extends React.Component {
@@ -58,7 +59,7 @@ class PCCollaboratorEditorPopover extends React.Component {
     let popoverStyle = Object.assign({}, {...popoverPosition}, {position: 'absolute'});
 
     return (
-      <div className="dtable-ui-editor-popover dtable-ui-collaborator-editor-popover" style={popoverStyle}>
+      <div className="dtable-ui-editor-popover dtable-ui-collaborator-editor-popover" style={popoverStyle} ref={this.props.setPopoverRef}>
         <div className="collaborator-search-container">
           <input
             className="form-control"
