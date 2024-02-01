@@ -129,7 +129,7 @@ class FiltersList extends Component {
           filters.map((filter, index) => {
             const { column_key } = filter;
             const { error_message } = ValidateFilter.validateColumn(column_key, columns);
-            const filterColumn = getColumnByKey(column_key, columns) || {};
+            const filterColumn = getColumnByKey(columns, column_key) || {};
             return this.renderFilterItem(filter, index, error_message, filterColumn);
           })
         }
