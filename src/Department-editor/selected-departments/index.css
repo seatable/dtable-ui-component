@@ -1,0 +1,26 @@
+
+.selected-departments.dtable-ui .remove-container {
+  width: 16px;
+  text-align: right;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.selected-departments.dtable-ui .remove-icon {
+  display: inline-block;
+  position: relative;
+  right: -2px;
+  width: 14px;
+  height: 20px;
+}
+
+.selected-departments.dtable-ui .remove-icon .dtable-font {
+  display: inline-block;
+  font-size: 12px;
+  color: #909090;
+  transform: scale(0.8);
+}
+
+.selected-departments.dtable-ui .remove-container:hover .remove-icon .dtable-font {
+  color: #5a5a5a;
+}

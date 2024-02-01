@@ -17,6 +17,11 @@ const zh_CN = {
   Are_you_sure_you_want_to_delete_this_image: '你确定要删除此图片吗？',
   Cancel: '取消',
   Delete: '删除',
+  Find_a_department: "查找部门",
+  Current_user_department: "当前用户的部门",
+  Current_user_department_and_sub: "当前用户的部门和子部门",
+  Specific_departments: "具体部门",
+  Deleted_department: "已经删除的部门",
 };
 
 export default zh_CN;
