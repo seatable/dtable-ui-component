@@ -1,0 +1,39 @@
+.dtable-filter-popover .popover {
+  max-width: none;
+  min-width: 300px;
+}
+
+.dtable-filter-popover .dtable-filter-popover-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/*  */
+.dtable-filter-popover .popover-add-tool {
+  border-top: none;
+  color: #555555;
+}
+
+.dtable-filter-popover .popover-add-tool.disabled {
+  color: #c2c2c2;
+}
+
+.dtable-filter-popover .popover-add-tool.disabled:hover {
+  cursor: not-allowed;
+  background: #fff;
+}
+
+.dtable-filter-popover .popover-add-tool .popover-add-icon {
+  margin-right: 14px;
+}
+
+.dtable-filter-popover .dtable-filter-popover-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 1rem;
+  border-top: 1px solid #e9ecef;
+}

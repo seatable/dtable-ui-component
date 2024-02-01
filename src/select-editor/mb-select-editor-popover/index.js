@@ -191,7 +191,7 @@ class MBSelectEditorPopover extends React.Component {
           {isShowCreateBtn && (
             <div className="mb-create-select-item" onClick={this.onAddNewOption}>
               <i className="dtable-font dtable-icon-add-table"></i>
-              <span className="add-new-option">{`${getLocale('Add_an_option')} ${searchVal}`}</span>
+              <span className="dtable-ui-add-new-option">{`${getLocale('Add_an_option')} ${searchVal}`}</span>
             </div>
           )}
         </div>

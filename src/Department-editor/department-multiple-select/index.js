@@ -7,8 +7,8 @@ import { getLocale } from '../../lang';
 import './index.css';
 
 function DepartmentMultipleSelect(props) {
-  const { departments: initialDepartments } = window.app.state;
-  const { value, onCommit, classNamePrefix, isShowSelectedDepartments, renderUserDepartmentOptions } = props;
+  const { value, onCommit, classNamePrefix, isShowSelectedDepartments, renderUserDepartmentOptions,
+    departments: initialDepartments } = props;
   const [searchVal, setSearchVal] = useState('');
   const [departments, setDepartments] = useState(getNormalizedDepartments(initialDepartments));
   const departmentContainerRef = useRef(null);
@@ -158,6 +158,7 @@ DepartmentMultipleSelect.propTypes = {
   isShowSelectedDepartments: PropTypes.bool,
   classNamePrefix: PropTypes.string,
   value: PropTypes.array,
+  departments: PropTypes.array,
   renderUserDepartmentOptions: PropTypes.func,
   onCommit: PropTypes.func,
 };

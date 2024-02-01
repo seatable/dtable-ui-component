@@ -71,3 +71,6 @@ export { default as RoleStatusEditor } from './RoleStatusEditor';
 
 // setting
 export { default as FieldDisplaySetting } from './FieldDisplaySetting';
+
+// popover
+export { default as DTableFiltersPopover } from './DTableFiltersPopover';

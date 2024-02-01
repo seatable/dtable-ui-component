@@ -119,7 +119,7 @@
     transition: translateY(1px);
   }
 
-  .dtable-ui-mb-select-editor-body .mb-create-select-item .add-new-option {
+  .dtable-ui-mb-select-editor-body .mb-create-select-item .dtable-ui-add-new-option {
     font-size: 14px;
     font-weight: 500px;
   }

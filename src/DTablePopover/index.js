@@ -1,7 +1,7 @@
 import React from 'react';
 import { Popover } from 'reactstrap';
 import PropTypes from 'prop-types';
-import { getEventClassName } from './utils';
+import { getEventClassName } from '../utils/utils';
 
 class DTablePopover extends React.Component {
 
