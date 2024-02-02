@@ -211,6 +211,7 @@
 .filters-list .multiple-option-name {
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .filters-list .multiple-check-icon,
@@ -318,4 +319,24 @@
   font-size: 14px;
   color: #aaa;
   cursor: default;
+}
+
+.option.option-active .filter-header-icon .dtable-font {
+  color: #fff;
+}
+
+.filters-list .single-select-option,
+.filters-list .multiple-select-option {
+  display: block;
+  text-align: left;
+  width: min-content;
+  max-width: 150px;
+  line-height: 20px;
+  border-radius: 10px;
+  padding: 0px 10px;
+  margin: 0;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
