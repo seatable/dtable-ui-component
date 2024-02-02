@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import { getLocale } from '../lang';
+import ModalPortal from '../common/modal-portal';
 import CollaboratorItem from '../CollaboratorItem';
 import EditEditorButton from '../EditEditorButton';
 import PCCollaboratorEditorPopover from './pc-collaborator-editor-popover';
@@ -11,6 +12,7 @@ import './index.css';
 
 const propTypes = {
   isReadOnly: PropTypes.bool,
+  isInModel: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   column: PropTypes.object,
   collaborators: PropTypes.array.isRequired,
@@ -24,6 +26,7 @@ class CollaboratorEditor extends React.Component {
     isShowEditButton: true,
     isReadOnly: false,
     value: [],
+    isInModel: false,
   }
 
   constructor(props) {
@@ -44,6 +47,11 @@ class CollaboratorEditor extends React.Component {
   }
 
   onMouseDown = (e) => {
+    if (this.state.isPopoverShow && this.editorPopoverRef) {
+      if (this.editorPopoverRef === e.target || this.editorPopoverRef.contains(e.target)) {
+        return;
+      }
+    }
     if (this.editorContainer !== e.target && !this.editorContainer.contains(e.target)) {
       this.onClosePopover();
     }
@@ -108,6 +116,14 @@ class CollaboratorEditor extends React.Component {
   }
 
   caculatePopoverPosition = () => {
+    if (this.props.isInModel) {
+      const { top, left } = this.editor.getBoundingClientRect();
+      return {
+        top: top + 40,
+        left,
+        zIndex: 1051,
+      };
+    }
     const POPOVER_MAX_HEIGHT = 200;
     let innerHeight = window.innerHeight;
     let { top, height } = this.editor.getClientRects()[0];
@@ -142,6 +158,10 @@ class CollaboratorEditor extends React.Component {
     this.editor = editor;
   }
 
+  setPopoverRef = (ref) => {
+    this.editorPopoverRef = ref;
+  }
+
   render() {
     let { collaborators, isReadOnly, isShowEditButton } = this.props;
     let { isPopoverShow, popoverPosition } = this.state;
@@ -172,13 +192,16 @@ class CollaboratorEditor extends React.Component {
         {isPopoverShow && (
           <Fragment>
             <MediaQuery query={'(min-width: 768px)'}>
-              <PCCollaboratorEditorPopover
-                popoverPosition={popoverPosition}
-                isReadOnly={this.props.isReadOnly}
-                selectedCollaborators={selectedCollaborators}
-                collaborators={collaborators}
-                onCollaboratorItemToggle={this.onCollaboratorItemToggle}
-              />
+              <ModalPortal>
+                <PCCollaboratorEditorPopover
+                  popoverPosition={popoverPosition}
+                  isReadOnly={this.props.isReadOnly}
+                  selectedCollaborators={selectedCollaborators}
+                  collaborators={collaborators}
+                  onCollaboratorItemToggle={this.onCollaboratorItemToggle}
+                  setPopoverRef={this.setPopoverRef}
+                />
+              </ModalPortal>
             </MediaQuery>
             <MediaQuery query={'(max-width: 767.8px)'}>
               <MBCollaboratorEditorPopover
