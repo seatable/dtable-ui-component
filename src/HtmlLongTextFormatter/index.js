@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { processor } from './markdown2html';
+import { processor } from '@seafile/seafile-editor';
 
 import './index.css';
 
