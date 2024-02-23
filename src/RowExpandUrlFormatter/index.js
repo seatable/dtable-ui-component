@@ -28,7 +28,7 @@ class UrlFormatter extends React.Component {
     } catch {
       toaster.danger('The url is invalid');
     }
-  }
+  };
 
   render() {
     const { containerClassName, value } = this.props;

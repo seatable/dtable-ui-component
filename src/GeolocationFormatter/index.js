@@ -24,7 +24,7 @@ class GeolocationFormatter extends React.Component {
     data: {},
     containerClassName: '',
     isBaiduMap: false,
-  }
+  };
 
   render() {
     let { value, data, containerClassName, isBaiduMap } = this.props;

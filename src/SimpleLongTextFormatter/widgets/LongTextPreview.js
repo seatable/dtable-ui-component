@@ -42,7 +42,7 @@ class LongTextPreview extends React.PureComponent {
       top = top - height > 0 ? top - height : 0;
     }
     return { left, top, opacity: this.state.opacity };
-  }
+  };
 
   render() {
     let markdownContent = this.props.value ? this.props.value.text : '';

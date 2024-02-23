@@ -12,7 +12,7 @@ export default class FileItemFormatter extends Component {
     let fileIconUrl = getFileIconUrl(item.name, item.type);
     let fileIconData = require('./' + fileIconUrl);
     return fileIconData;
-  }
+  };
 
   render() {
     const { file } = this.props;

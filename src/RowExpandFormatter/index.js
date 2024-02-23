@@ -80,7 +80,7 @@ export default class EditorFormatter extends React.Component {
 
   updateCollaborators = () => {
     this.setState({ collaborators: this.getCollaborator() });
-  }
+  };
 
   calculateCollaboratorData = (props) => {
     const { row, column } = props;
@@ -96,7 +96,7 @@ export default class EditorFormatter extends React.Component {
         });
       }
     }
-  }
+  };
 
   getCollaborator = () => {
     const { context, collaborators } = this.props;
@@ -104,20 +104,20 @@ export default class EditorFormatter extends React.Component {
       return context.getCollaboratorsFromCache();
     }
     return collaborators || [];
-  }
+  };
 
   loadCollaborator = (email) => {
     const { context } = this.props;
     if (context && context.loadCollaborator) {
       context.loadCollaborator(email);
     }
-  }
+  };
 
   renderEmpty = () => {
     return (
       <div className="d-flex align-items-center form-control disabled h-auto"></div>
     );
-  }
+  };
 
   renderFormatter = () => {
     let { column, row, className } = this.props;
@@ -339,7 +339,7 @@ export default class EditorFormatter extends React.Component {
       default:
         return null;
     }
-  }
+  };
 
   render() {
     const { className } = this.props;

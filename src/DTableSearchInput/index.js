@@ -29,7 +29,7 @@ class DtableSearchInput extends Component {
 
   onCompositionStart = () => {
     this.isInputtingChinese = true;
-  }
+  };
 
   onChange = (e) => {
     this.timer && clearTimeout(this.timer);
@@ -41,12 +41,12 @@ class DtableSearchInput extends Component {
         onChange && onChange(this.state.searchValue.trim());
       }, wait);
     });
-  }
+  };
 
   onCompositionEnd = (e) => {
     this.isInputtingChinese = false;
     this.onChange(e);
-  }
+  };
 
   clearSearch = () => {
     const { clearValue } = this.props;
@@ -62,7 +62,7 @@ class DtableSearchInput extends Component {
       const txtLength = this.state.searchValue.length;
       this.inputRef.setSelectionRange(0, txtLength);
     }
-  }
+  };
 
   renderClear = () => {
     const { isClearable, clearClassName, components = {} } = this.props;
@@ -77,7 +77,7 @@ class DtableSearchInput extends Component {
     return (
       <i className={classnames('search-text-clear input-icon-addon', clearClassName)} onClick={this.clearSearch}>×</i>
     );
-  }
+  };
 
   render() {
     const { placeholder, autoFocus, className, onKeyDown, disabled, style } = this.props;

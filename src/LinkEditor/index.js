@@ -32,7 +32,7 @@ class LinkEditor extends React.Component {
 
   static defaultProps = {
     isReadOnly: false,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -60,7 +60,7 @@ class LinkEditor extends React.Component {
     if (this.editorContainer !== e.target && !this.editorContainer.contains(e.target)) {
       this.onClosePopover();
     }
-  }
+  };
 
   getLinkedCellValue = () => {
     let { row, column, linkMetaData } = this.props;
@@ -70,7 +70,7 @@ class LinkEditor extends React.Component {
     this.otherTableId = other_table_id;
 
     return linkMetaData.getLinkedCellValue(this.linkId, this.tableId, this.otherTableId, row._id);
-  }
+  };
 
   formatLinkedValuesToOptions = () => {
     let { column, linkMetaData } = this.props;
@@ -86,7 +86,7 @@ class LinkEditor extends React.Component {
       });
     }
     return [];
-  }
+  };
 
   getDisplayValue = (linkedTable, linkedRow, displayColumnKey) => {
     let value = linkedRow[displayColumnKey];
@@ -103,7 +103,7 @@ class LinkEditor extends React.Component {
       default:
         return value;
     }
-  }
+  };
 
   getAvailableLinkedOptions = () => {
     let { column, linkMetaData } = this.props;
@@ -122,11 +122,11 @@ class LinkEditor extends React.Component {
       };
     });
     return availableOptions;
-  }
+  };
 
   onCommit = (newValue) => {
     // nothing todo
-  }
+  };
 
   onAddOptionToggle = (event) => {
     event.nativeEvent.stopImmediatePropagation();
@@ -141,7 +141,7 @@ class LinkEditor extends React.Component {
     } else {
       this.setState({isPopoverShow});
     }
-  }
+  };
 
   onOptionItemToggle = (option) => {
     let { row, linkMetaData } = this.props;
@@ -156,7 +156,7 @@ class LinkEditor extends React.Component {
     }
 
     this.setState({newValue});
-  }
+  };
 
   onDeleteOption = (option) => {
     let { row, linkMetaData } = this.props;
@@ -166,7 +166,7 @@ class LinkEditor extends React.Component {
     this.setState({newValue}, () => {
       linkMetaData.removeLink(this.linkId, this.tableId, this.otherTableId, row._id, option.id);
     });
-  }
+  };
 
   caculatePopoverPosition = () => {
     const POPOVER_MAX_HEIGHT = 200;
@@ -179,19 +179,19 @@ class LinkEditor extends React.Component {
       position = { bottom: bottom, left: 0 };
     }
     return position;
-  }
+  };
 
   onClosePopover = () => {
     this.setState({isPopoverShow: false});
-  }
+  };
 
   setEditorContainerRef = (editorContainer) => {
     this.editorContainer = editorContainer;
-  }
+  };
 
   setEditorRef = (editor) => {
     this.editor = editor;
-  }
+  };
 
   render() {
     let { isReadOnly } = this.props;

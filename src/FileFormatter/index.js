@@ -17,7 +17,7 @@ export default class FileFormatter extends React.PureComponent {
     isSample: false,
     value: [],
     containerClassName: ''
-  }
+  };
 
   render() {
     let { isSample, value, containerClassName } = this.props;

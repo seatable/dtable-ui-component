@@ -26,7 +26,7 @@ class MultipleSelectFormatter extends React.PureComponent {
     return selectedOptions.map(option => {
       return <SelectItem key={`multiple-${option.id}`} option={option} />;
     });
-  }
+  };
 
   render() {
     let { value, containerClassName } = this.props;

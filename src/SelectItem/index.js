@@ -26,7 +26,7 @@ export default class SelectItem extends React.PureComponent {
       backgroundColor: option.color,
       color: option.textColor || null,
     };
-  }
+  };
 
   render() {
     let { option, fontSize } = this.props;

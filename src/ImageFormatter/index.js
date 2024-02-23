@@ -16,7 +16,7 @@ class ImageFormatter extends React.Component {
     value: [],
     server: '',
     containerClassName: '',
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class ImageFormatter extends React.Component {
   onImageClick = (index) => {
     if (!this.props.isSupportPreview) return;
     this.setState({ isPreviewImage: true, previewImageIndex: index });
-  }
+  };
 
   closeImagePopup = () => {
     if (!this.props.isSupportPreview) return;
@@ -37,40 +37,40 @@ class ImageFormatter extends React.Component {
       this.props.onCloseCallback();
     }
     this.setState({ isPreviewImage: false, previewImageIndex: -1 });
-  }
+  };
 
   movePrev = () => {
     let images = this.props.value;
     this.setState(prevState => ({
       previewImageIndex: (prevState.previewImageIndex + images.length - 1) % images.length,
     }));
-  }
+  };
 
   moveNext = () => {
     let images = this.props.value;
     this.setState(prevState => ({
       previewImageIndex: (prevState.previewImageIndex + 1) % images.length,
     }));
-  }
+  };
 
   downloadImage = (imageItemUrl) => {
     if (!this.props.downloadImage) return;
     this.props.downloadImage(imageItemUrl);
-  }
+  };
 
   deleteImage = (index) => {
     const { readOnly } = this.props;
     if (readOnly) return;
     if (!this.props.deleteImage) return;
     this.props.deleteImage(index);
-  }
+  };
 
   onRotateImage = (index, degree) => {
     const { readOnly } = this.props;
     if (readOnly) return;
     if (!this.props.rotateImage) return;
     this.props.rotateImage(index, degree);
-  }
+  };
 
   render() {
     const { isSample, value, server, containerClassName, readOnly } = this.props;

@@ -22,7 +22,7 @@ class DTablePopover extends React.Component {
   onHistoryState = (e) => {
     e.preventDefault();
     this.props.hideDTablePopover(e);
-  }
+  };
 
   onKeyDown = (e) => {
     const { canHideDTablePopover, hideDTablePopoverWithEsc } = this.props;
@@ -34,7 +34,7 @@ class DTablePopover extends React.Component {
       if (canHideDTablePopover) return;
       e.stopImmediatePropagation();
     }
-  }
+  };
 
   onMousedown = (e) => {
     const { canHideDTablePopover } = this.props;
@@ -42,11 +42,11 @@ class DTablePopover extends React.Component {
     if (this.dtablePopoverRef && e && getEventClassName(e).indexOf('popover') === -1 && !this.dtablePopoverRef.contains(e.target)) {
       this.props.hideDTablePopover(e);
     }
-  }
+  };
 
   onPopoverInsideClick = (e) => {
     e.stopPropagation();
-  }
+  };
 
   render() {
     const { target, innerClassName, popoverClassName, hideArrow, modifiers, placement } = this.props;

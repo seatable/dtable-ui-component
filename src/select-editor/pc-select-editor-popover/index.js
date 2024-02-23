@@ -19,7 +19,7 @@ class PCSelectEditorPopover extends React.Component {
     popoverPosition: {},
     options: [],
     isShowAddBtn: false,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -31,21 +31,21 @@ class PCSelectEditorPopover extends React.Component {
   onValueChanged = (event) => {
     let value = event.target.value;
     this.setState({searchValue: value});
-  }
+  };
 
   onInputClick = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     event.stopPropagation();
-  }
+  };
 
   onAddNewOption = () => {
     let name = this.state.searchValue.trim();
     this.props.onAddNewOption(name);
-  }
+  };
 
   onOptionItemToggle = (item) => {
     this.props.onOptionItemToggle(item);
-  }
+  };
 
   getFilterOptions = () => {
     let { options } = this.props;
@@ -56,7 +56,7 @@ class PCSelectEditorPopover extends React.Component {
     return options.filter(option => {
       return (option.name.toString().toLowerCase()).indexOf(filter) > -1;
     });
-  }
+  };
 
   getOptionStyle = (option) => {
     const textColor = option.textColor || null;
@@ -70,7 +70,7 @@ class PCSelectEditorPopover extends React.Component {
       backgroundColor: option.color,
       color: textColor,
     };
-  }
+  };
 
   render() {
     let options = this.getFilterOptions();

@@ -21,7 +21,7 @@ class MultipleSelectEditor extends React.Component {
   static defaultProps = {
     isReadOnly: false,
     value: [],
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -47,7 +47,7 @@ class MultipleSelectEditor extends React.Component {
     if (this.editorContainer !== e.target && !this.editorContainer.contains(e.target)) {
       this.onClosePopover();
     }
-  }
+  };
 
   getFormattedOptions = () => {
     let { newValue } = this.state;
@@ -57,7 +57,7 @@ class MultipleSelectEditor extends React.Component {
       }).filter(option => !!option);
     }
     return [];
-  }
+  };
 
   onAddOptionToggle = (event) => {
     event.nativeEvent.stopImmediatePropagation();
@@ -72,14 +72,14 @@ class MultipleSelectEditor extends React.Component {
     } else {
       this.setState({isPopoverShow});
     }
-  }
+  };
 
   onCommit = (newValue) => {
     let updated = {};
     let { column } = this.props;
     updated[column.key] = newValue;
     this.props.onCommit(updated);
-  }
+  };
 
   onOptionItemToggle = (option) => {
     let newValue = this.state.newValue.slice();
@@ -93,7 +93,7 @@ class MultipleSelectEditor extends React.Component {
     this.setState({newValue}, () => {
       this.onCommit(newValue);
     });
-  }
+  };
 
   onDeleteOption = (option) => {
     let newValue = this.state.newValue.slice();
@@ -102,12 +102,12 @@ class MultipleSelectEditor extends React.Component {
     this.setState({newValue}, () => {
       this.onCommit(newValue);
     });
-  }
+  };
 
   onAddNewOption = (optionName) => {
     this.props.onAddNewOption(optionName);
     this.onClosePopover();
-  }
+  };
 
   caculatePopoverPosition = () => {
     const POPOVER_MAX_HEIGHT = 200;
@@ -120,19 +120,19 @@ class MultipleSelectEditor extends React.Component {
       position = { bottom: bottom, left: 0 };
     }
     return position;
-  }
+  };
 
   onClosePopover = () => {
     this.setState({isPopoverShow: false});
-  }
+  };
 
   setEditorContainerRef = (editorContainer) => {
     this.editorContainer = editorContainer;
-  }
+  };
 
   setEditorRef = (editor) => {
     this.editor = editor;
-  }
+  };
 
   render() {
     let { isPopoverShow, popoverPosition } = this.state;

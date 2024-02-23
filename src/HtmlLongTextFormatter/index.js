@@ -41,14 +41,14 @@ class HtmlLongTextFormatter extends Component {
       return;
     }
     return;
-  }
+  };
 
   convertMarkdown = (mdFile) => {
     processor.process(mdFile).then((result) => {
       let innerHtml = String(result).replace(/<a /ig, '<a target="_blank" ');
       this.setState({ innerHtml });
     });
-  }
+  };
 
   render() {
     const { innerHtml } = this.state;

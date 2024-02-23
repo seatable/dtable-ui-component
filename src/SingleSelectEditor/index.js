@@ -21,7 +21,7 @@ class SingleSelectEditor extends React.Component {
   static defaultProps = {
     isReadOnly: false,
     value: ''
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -47,13 +47,13 @@ class SingleSelectEditor extends React.Component {
     if (this.editorContainer !== e.target && !this.editorContainer.contains(e.target)) {
       this.onClosePopover();
     }
-  }
+  };
 
   formatOption = () => {
     let { newValue } = this.state;
     let option = this.options.find(option => option.name === newValue);
     return option;
-  }
+  };
 
   onAddOptionToggle = (event) => {
     event.nativeEvent.stopImmediatePropagation();
@@ -68,14 +68,14 @@ class SingleSelectEditor extends React.Component {
     } else {
       this.setState({isPopoverShow});
     }
-  }
+  };
 
   onCommit = (newValue) => {
     let updated = {};
     let { column } = this.props;
     updated[column.name] = newValue;
     this.props.onCommit(updated);
-  }
+  };
 
   onOptionItemToggle = (option) => {
 
@@ -85,7 +85,7 @@ class SingleSelectEditor extends React.Component {
       this.onCommit(newValue);
       this.onClosePopover();
     });
-  }
+  };
 
   caculatePopoverPosition = () => {
     const POPOVER_MAX_HEIGHT = 200;
@@ -98,24 +98,24 @@ class SingleSelectEditor extends React.Component {
       position = { bottom: bottom, left: 0 };
     }
     return position;
-  }
+  };
 
   onAddNewOption = (optionName) => {
     this.props.onAddNewOption(optionName);
     this.onClosePopover();
-  }
+  };
 
   onClosePopover = () => {
     this.setState({isPopoverShow: false});
-  }
+  };
 
   setEditorContainerRef = (editorContainer) => {
     this.editorContainer = editorContainer;
-  }
+  };
 
   setEditorRef = (editor) => {
     this.editor = editor;
-  }
+  };
 
   render() {
     let { isPopoverShow, popoverPosition } = this.state;

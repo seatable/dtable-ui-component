@@ -15,11 +15,11 @@ class MTimeFormatter extends React.Component {
   static defaultProps = {
     value: '',
     containerClassName: '',
-  }
+  };
 
   formatDate = (date) => {
     return dayjs(date).format('YYYY-MM-DD HH:mm:ss');
-  }
+  };
 
   render() {
     let { value: date, containerClassName } = this.props;

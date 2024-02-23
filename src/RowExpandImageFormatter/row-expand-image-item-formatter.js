@@ -27,11 +27,11 @@ export default class RowExpandImageItemFormatter extends Component {
 
   toggleTooltip = () => {
     this.setState({ isTooltipOpen: !this.state.isTooltipOpen });
-  }
+  };
 
   closeDeleteTip = () => {
     this.setState({ isDeleteTipOpen: false });
-  }
+  };
 
   onClickDelete = (e) => {
     e.preventDefault();
@@ -41,23 +41,23 @@ export default class RowExpandImageItemFormatter extends Component {
       left: e.clientX,
     };
     this.setState({ isDeleteTipOpen: true });
-  }
+  };
 
   onClickDownload = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.props.downloadFile(this.props.url, e);
-  }
+  };
 
   onDelete = (e) => {
     e.stopPropagation();
     this.closeDeleteTip();
     this.props.deleteFile(this.props.index);
-  }
+  };
 
   onClickImage = () => {
     this.props.onImageClick(this.props.index);
-  }
+  };
 
   render() {
     const { url, column, index, readOnly, downloadFile, deleteFile } = this.props;

@@ -16,7 +16,7 @@ class PCLinkEditorPopover extends React.Component {
   static defaultProps = {
     popoverPosition: {},
     options: [],
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -28,16 +28,16 @@ class PCLinkEditorPopover extends React.Component {
   onValueChanged = (event) => {
     let value = event.target.value;
     this.setState({searchValue: value});
-  }
+  };
 
   onInputClick = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     event.stopPropagation();
-  }
+  };
 
   onOptionItemToggle = (item) => {
     this.props.onOptionItemToggle(item);
-  }
+  };
 
   getFilterOptions = () => {
     let { options } = this.props;
@@ -48,7 +48,7 @@ class PCLinkEditorPopover extends React.Component {
     return options.filter(option => {
       return (option.name.toString().toLowerCase()).indexOf(filter) > -1;
     });
-  }
+  };
 
   render() {
     let options = this.getFilterOptions();

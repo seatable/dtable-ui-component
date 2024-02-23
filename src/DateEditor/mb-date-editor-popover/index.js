@@ -45,7 +45,7 @@ class DateEditorPopover extends React.PureComponent {
   handleHistaryBack = (e) => {
     e.preventDefault();
     this.closePopover();
-  }
+  };
 
   handleDateChange = (date) => {
     let { dateFormat, showHourAndMinute } = this.props;
@@ -59,7 +59,7 @@ class DateEditorPopover extends React.PureComponent {
     }
     this.setState({datePickerValue: dayjs(date)});
     this.props.onValueChanged(newValue.format(dateFormat));
-  }
+  };
 
   handleTimeChange = (time) => {
     const { datePickerValue } = this.state;
@@ -71,23 +71,23 @@ class DateEditorPopover extends React.PureComponent {
 
     this.setState({ datePickerValue: newValue });
     this.props.onValueChanged(datePickerValue.format(dateFormat));
-  }
+  };
 
   closePopover = () => {
     this.props.onClosePopover();
-  }
+  };
 
   deleteDate = () => {
     this.props.onValueChanged('');
     this.closePopover();
-  }
+  };
 
   onChange = (value) => {
     if (!value) return;
     let { dateFormat } = this.props;
     this.setState({datePickerValue: value,});
     this.props.onValueChanged(value.format(dateFormat));
-  }
+  };
 
   onContainerClick = (event) => {
     if (this.editorPopover && this.editorPopover.contains(event.target)) {
@@ -95,15 +95,15 @@ class DateEditorPopover extends React.PureComponent {
       event.nativeEvent.stopImmediatePropagation();
       return false;
     }
-  }
+  };
 
   setEditorPopover = (editorPopover) => {
     this.editorPopover = editorPopover;
-  }
+  };
 
   getCalendarContainer = () => {
     return this.calendarContainerRef.current;
-  }
+  };
 
   getCalender = () => {
     let { dateFormat, lang } = this.props;
@@ -121,7 +121,7 @@ class DateEditorPopover extends React.PureComponent {
         style={{width: '100%', fontSize: '14px'}}
       />
     );
-  }
+  };
 
   renderDataPicker = () => {
     let { dateFormat } = this.props;
@@ -154,7 +154,7 @@ class DateEditorPopover extends React.PureComponent {
         }}
       </SeaDatePicker>
     );
-  }
+  };
 
   render() {
     const { lang, column, dateFormat, showHourAndMinute } = this.props;

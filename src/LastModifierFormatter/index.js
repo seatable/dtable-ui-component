@@ -49,7 +49,7 @@ class LastModifierFormatter extends React.PureComponent {
         <CollaboratorItem key={index} collaborator={collaborator} />
       );
     });
-  }
+  };
 
   render() {
     const { containerClassName, value } = this.props;

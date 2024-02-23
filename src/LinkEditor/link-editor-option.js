@@ -11,13 +11,13 @@ class LinkEditorOption extends React.Component {
 
   static defaultProps = {
     isShowRemoveIcon: false
-  }
+  };
 
   onDeleteOption = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     event.stopPropagation();
     this.props.onDeleteLinkOption(this.props.option);
-  }
+  };
 
   getContainerStyle = () => {
     return {
@@ -30,7 +30,7 @@ class LinkEditorOption extends React.Component {
       background: '#eceff4',
       cursor: 'pointer'
     };
-  }
+  };
 
   getOptionStyle = () => {
     return {
@@ -39,7 +39,7 @@ class LinkEditorOption extends React.Component {
       alignContent: 'center',
       margin: '0 4px 0 2px',
     };
-  }
+  };
 
   getOptionNameStyle = () => {
     return {
@@ -48,7 +48,7 @@ class LinkEditorOption extends React.Component {
       whiteSpace: 'nowrap',
       textOverflow: 'ellipsis'
     };
-  }
+  };
 
   getOperationStyle = () => {
     return {
@@ -58,7 +58,7 @@ class LinkEditorOption extends React.Component {
       color: '#909090',
       transform: 'scale(.8)',
     };
-  }
+  };
 
   render() {
     let { option, isShowRemoveIcon } = this.props;

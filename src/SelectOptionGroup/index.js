@@ -50,7 +50,7 @@ class SelectOptionGroup extends Component {
         this.optionGroupRef.style.top = -1 * (height + borderWidth) + 'px';
       }
     }
-  }
+  };
 
   onHotKey = (event) => {
     const keyCode = event.keyCode;
@@ -69,7 +69,7 @@ class SelectOptionGroup extends Component {
     } else if (keyCode === KeyCodes.Tab || keyCode === KeyCodes.Escape) {
       this.props.closeSelect();
     }
-  }
+  };
 
   onPressUp = () => {
     if (this.state.activeIndex > 0) {
@@ -77,7 +77,7 @@ class SelectOptionGroup extends Component {
         this.scrollContent();
       });
     }
-  }
+  };
 
   onPressDown = () => {
     if (this.filterOptions && this.state.activeIndex < this.filterOptions.length - 1) {
@@ -85,7 +85,7 @@ class SelectOptionGroup extends Component {
         this.scrollContent();
       });
     }
-  }
+  };
 
   onMouseDown = (e) => {
     const { isInModal } = this.props;
@@ -113,18 +113,18 @@ class SelectOptionGroup extends Component {
     else if (this.state.activeIndex * OPTION_HEIGHT > offsetHeight + scrollTop) {
       this.optionGroupContentRef.scrollTop = scrollTop + OPTION_HEIGHT;
     }
-  }
+  };
 
   changeIndex = (index) => {
     this.setState({ activeIndex: index });
-  }
+  };
 
   onChangeSearch = (searchVal) => {
     let value = searchVal || '';
     if (value !== this.state.searchVal) {
       this.setState({searchVal: value, activeIndex: -1,});
     }
-  }
+  };
 
   renderOptGroup = (searchVal) => {
     let { noOptionsPlaceholder, onSelectOption } = this.props;
@@ -152,7 +152,7 @@ class SelectOptionGroup extends Component {
         </Option>
       );
     });
-  }
+  };
 
   render() {
     const { searchable, searchPlaceholder, top, left, minWidth, value, isShowSelected, isInModal, position,

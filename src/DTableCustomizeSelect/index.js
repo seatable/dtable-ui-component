@@ -29,7 +29,7 @@ class DTableCustomizeSelect extends Component {
     this.setState({
       isShowSelectOptions: !this.state.isShowSelectOptions
     });
-  }
+  };
 
   onClick = (event) => {
     if (this.props.isShowSelected && event.target.className.includes('icon-fork-number')) {
@@ -38,17 +38,17 @@ class DTableCustomizeSelect extends Component {
     if (!this.selector.contains(event.target)) {
       this.closeSelect();
     }
-  }
+  };
 
   closeSelect = () => {
     this.setState({isShowSelectOptions: false});
-  }
+  };
 
   getSelectedOptionTop = () => {
     if (!this.selector) return 38;
     const { height } = this.selector.getBoundingClientRect();
     return height;
-  }
+  };
 
   getFilterOptions = (searchValue) => {
     const { options, searchable } = this.props;
@@ -71,7 +71,7 @@ class DTableCustomizeSelect extends Component {
       }
       return false;
     });
-  }
+  };
 
   render() {
     let { className, value, options, placeholder, searchable, searchPlaceholder, noOptionsPlaceholder,

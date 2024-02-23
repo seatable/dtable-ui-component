@@ -16,7 +16,7 @@ class NumberFormatter extends React.Component {
   static defaultProps = {
     value: '',
     containerClassName: '',
-  }
+  };
 
   render() {
     let { value: number, data, containerClassName } = this.props;

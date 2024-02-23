@@ -15,7 +15,7 @@ class CheckboxEditor extends React.Component {
   static defaultProps = {
     isReadOnly: false,
     value: false
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -29,7 +29,7 @@ class CheckboxEditor extends React.Component {
     let { column } = this.props;
     updated[column.name] = this.state.value;
     this.props.onCommit(updated);
-  }
+  };
 
   onChange = (event) => {
     if (this.props.isReadOnly) {
@@ -38,7 +38,7 @@ class CheckboxEditor extends React.Component {
     this.setState({value: !this.state.value}, () => {
       this.onCommit();
     });
-  }
+  };
 
   render() {
     const { value } = this.state;

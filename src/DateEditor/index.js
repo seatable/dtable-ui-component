@@ -25,7 +25,7 @@ class DateEditor extends React.Component {
     isReadOnly: false,
     value: '',
     lang: 'en'
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -55,7 +55,7 @@ class DateEditor extends React.Component {
     let defaultDateFormat = 'YYYY-MM-DD';
     let dateFormat = column.data && column.data.format;
     return dateFormat || defaultDateFormat;
-  }
+  };
 
   onDateEditorToggle = () => {
     const { isReadOnly } = this.props;
@@ -63,7 +63,7 @@ class DateEditor extends React.Component {
       return;
     }
     this.setState({isPopoverShow: !this.state.isPopoverShow});
-  }
+  };
 
   onValueChanged = (value) => {
     if (value !== this.state.newValue) {
@@ -73,18 +73,18 @@ class DateEditor extends React.Component {
         this.onClosePopover();
       }
     }
-  }
+  };
 
   onCommit = (newValue) => {
     let updated = {};
     let { column } = this.props;
     updated[column.key] = newValue;
     this.props.onCommit(updated);
-  }
+  };
 
   onClosePopover = () => {
     this.setState({isPopoverShow: false});
-  }
+  };
 
   render() {
     if (!this.state.isDateInit) {

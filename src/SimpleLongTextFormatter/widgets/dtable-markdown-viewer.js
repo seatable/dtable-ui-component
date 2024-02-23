@@ -34,14 +34,14 @@ class DtableMarkdownViewer extends React.PureComponent {
         this.isWindowsWechat = true;
       }
     }
-  }
+  };
 
   convertMarkdown = (mdFile) => {
     processor.process(mdFile).then((result) => {
       let innerHtml = String(result).replace(/<a /ig, '<a target="_blank" tabindex="-1"');
       this.setState({innerHtml});
     });
-  }
+  };
 
   render() {
     if (this.isWindowsWechat) {

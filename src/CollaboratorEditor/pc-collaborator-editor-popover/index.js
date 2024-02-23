@@ -30,16 +30,16 @@ class PCCollaboratorEditorPopover extends React.Component {
   onValueChanged = (event) => {
     let value = event.target.value;
     this.setState({searchValue: value});
-  }
+  };
 
   onInputClick = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     event.stopPropagation();
-  }
+  };
 
   onCollaboratorItemToggle = (item) => {
     this.props.onCollaboratorItemToggle(item);
-  }
+  };
 
   getFilterCollaborator = () => {
     let { collaborators } = this.props;
@@ -50,7 +50,7 @@ class PCCollaboratorEditorPopover extends React.Component {
     return collaborators.filter(collaborator => {
       return (collaborator.name.toString().toLowerCase()).indexOf(filter) > -1;
     });
-  }
+  };
 
   render() {
     let { searchValue } = this.state;

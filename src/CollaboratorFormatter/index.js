@@ -55,7 +55,7 @@ class CollaboratorFormatter extends React.PureComponent {
         />
       );
     });
-  }
+  };
 
   render() {
     const { containerClassName, value } = this.props;

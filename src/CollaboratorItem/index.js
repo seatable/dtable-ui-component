@@ -17,12 +17,12 @@ class CollaboratorItem extends React.Component {
 
   static defaultProps = {
     enableDelete: false
-  }
+  };
 
   onDeleteCollaborator = () => {
     let  { collaborator } = this.props;
     this.props.onDeleteCollaborator(collaborator);
-  }
+  };
 
   render() {
     const { collaborator, enableDeleteCollaborator } = this.props;
