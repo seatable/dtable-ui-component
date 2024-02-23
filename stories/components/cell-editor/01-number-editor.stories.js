@@ -1,25 +1,7 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react';
-import { withInfo } from '@storybook/addon-info';
 import { action } from '@storybook/addon-actions';
-import ShowCode from '../../utils/show-code';
-import Description from '../../utils/description';
 import { NUMBER_TYPES } from '../../../src/constants';
 import NumberEditor from '../../../src/NumberEditor';
-
-const info = {
-  text: '<h1>API</h1>',
-  inline: true,
-  source: false,
-  propTablesExclude: [ShowCode, Description],
-  styles: {
-    header: {
-      h1: {
-        'marginBottom': '8px'
-      }
-    }
-  }
-};
 
 const value1_1 = 12345;
 const column1_1 = {
@@ -132,116 +114,171 @@ const column2_6 = {
 };
 
 
+const meta = {
+  title: 'Editors/number-editor',
+  component: NumberEditor,
+  tags: ['autodocs'],
+  decorators: [
+    (Story, context) => {
+      return (
+        <div>
+          {context.parameters.title && <h1>{context.parameters.title}</h1>}
+          {context.parameters.subTitle && <p className='storybook-sub'>{context.parameters.subTitle}</p>}
+          <Story />
+        </div>
+      )
+    } 
+  ],
+  parameters: {
+    title: '',
+    subTitle: '',
+  }
+}
 
-storiesOf('Editors|number-editor', module)
-  .addDecorator(withInfo)
-  .add('number editor component', () => {
-    return (
-      <div>
-        <h1>Scene One: editor permission is readonly</h1>
-        <ShowCode sub={"number format: 'NUMBER' "}>
-          <NumberEditor 
-            isReadOnly={true}
-            value={value1_1} 
-            column={column1_1}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'NUMBER_WITH_COMMAS' "}>
-          <NumberEditor 
-            isReadOnly={true}
-            value={value1_1} 
-            column={column1_2}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'DOLLAR' "}>
-          <NumberEditor 
-            isReadOnly={true}
-            value={value1_1} 
-            column={column1_3}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'EURO' "}>
-          <NumberEditor 
-            isReadOnly={true}
-            value={value1_1} 
-            column={column1_4}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'YUAN' "}>
-          <NumberEditor 
-            isReadOnly={true}
-            value={value1_1} 
-            column={column1_5}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'PERCENT' "}>
-          <NumberEditor 
-            isReadOnly={true}
-            value={value1_1} 
-            column={column1_6}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <h1>Scene One: editor permission is read and write</h1>
-        <ShowCode sub={"number format: 'NUMBER' "}>
-          <NumberEditor 
-            isReadOnly={false}
-            value={value2_1} 
-            column={column2_1}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'NUMBER_WITH_COMMAS' "}>
-          <NumberEditor 
-            isReadOnly={false}
-            value={value2_1} 
-            column={column2_2}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'DOLLAR' "}>
-          <NumberEditor 
-            isReadOnly={false}
-            value={value2_1} 
-            column={column2_3}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'EURO' "}>
-          <NumberEditor 
-            isReadOnly={false}
-            value={value2_1} 
-            column={column2_4}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'YUAN' "}>
-          <NumberEditor 
-            isReadOnly={false}
-            value={value2_1} 
-            column={column2_5}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-        <ShowCode sub={"number format: 'PERCENT' "}>
-          <NumberEditor 
-            isReadOnly={false}
-            value={value2_1} 
-            column={column2_6}
-            onCommit={(updated) => action('onCommit')(updated)}
-          />
-        </ShowCode>
-      </div>
-    )
-  }, {info})
+export default meta;
 
+export const Demo1 = {
+  args: {
+    isReadOnly: true,
+    value: value1_1,
+    column: column1_1,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    // title: 'Scene One: editor permission is readonly',
+    subTitle: "number format: 'NUMBER'"
+  }
+};
 
+export const Demo2 = {
+  args: {
+    isReadOnly: true,
+    value: value1_1,
+    column: column1_2,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'NUMBER_WITH_COMMAS'",
+  }
+}
 
+export const Demo3 = {
+  args: {
+    isReadOnly: true,
+    value: value1_1,
+    column: column1_3,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'DOLLAR' ",
+  }
+}
 
+export const Demo4 = {
+  args: {
+    isReadOnly: true,
+    value: value1_1,
+    column: column1_4,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'EURO' ",
+  }
+}
 
+export const Demo5 = {
+  args: {
+    isReadOnly: true,
+    value: value1_1,
+    column: column1_5,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'YUAN' ",
+  }
+}
 
+export const Demo6 = {
+  args: {
+    isReadOnly: true,
+    value: value1_1,
+    column: column1_6,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'PERCENT' ",
+  }
+}
+
+export const Demo7 = {
+  args: {
+    isReadOnly: false,
+    value: value2_1,
+    column: column2_1,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    // title: 'Scene One: editor permission is read and write',
+    subTitle: "number format: 'NUMBER'"
+  }
+};
+
+export const Demo8 = {
+  args: {
+    isReadOnly: false,
+    value: value2_1,
+    column: column2_2,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'NUMBER_WITH_COMMAS'",
+  }
+}
+
+export const Demo9 = {
+  args: {
+    isReadOnly: false,
+    value: value2_1,
+    column: column2_3,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'DOLLAR' ",
+  }
+}
+
+export const Demo10 = {
+  args: {
+    isReadOnly: false,
+    value: value2_1,
+    column: column2_4,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'EURO' ",
+  }
+}
+
+export const Demo11 = {
+  args: {
+    isReadOnly: false,
+    value: value2_1,
+    column: column2_5,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'YUAN' ",
+  }
+}
+
+export const Demo12 = {
+  args: {
+    isReadOnly: false,
+    value: value2_1,
+    column: column2_6,
+    onCommit: (updated) => { action('onCommit')(updated) },
+  },
+  parameters: {
+    subTitle: "number format: 'PERCENT' ",
+  }
+}
