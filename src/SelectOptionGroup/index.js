@@ -87,6 +87,15 @@ class SelectOptionGroup extends Component {
     }
   }
 
+  onMouseDown = (e) => {
+    const { isInModal } = this.props;
+    // prevent event propagation when click option or search input
+    if (isInModal) {
+      e.stopPropagation();
+      e.nativeEvent.stopImmediatePropagation();
+    }
+  }
+
   scrollContent = () => {
     const { offsetHeight, scrollTop } = this.optionGroupContentRef;
     this.setState({ disableHover: true });
@@ -118,7 +127,7 @@ class SelectOptionGroup extends Component {
   }
 
   renderOptGroup = (searchVal) => {
-    let { noOptionsPlaceholder, onSelectOption, isInModal } = this.props;
+    let { noOptionsPlaceholder, onSelectOption } = this.props;
     this.filterOptions = this.props.getFilterOptions(searchVal);
     if (this.filterOptions.length === 0) {
       return (
@@ -133,7 +142,6 @@ class SelectOptionGroup extends Component {
           key={key}
           index={i}
           isActive={isActive}
-          isInModal={isInModal}
           value={opt.value}
           onSelectOption={onSelectOption}
           changeIndex={this.changeIndex}
@@ -169,6 +177,7 @@ class SelectOptionGroup extends Component {
           className={`option-group ${isShowSelected ? 'pt-0' : ''} ${className ? 'option-group-' + className : ''}`}
           ref={(ref) => this.optionGroupRef = ref}
           style={style}
+          onMouseDown={this.onMouseDown}
         >
           {isShowSelected &&
             <div className="editor-list-delete mb-2" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>

@@ -22,20 +22,11 @@ class Option extends Component {
     }
   }
 
-  onMouseDown = (event) => {
-    if (this.props.isInModal) {
-      // prevent close modal via select option
-      event.stopPropagation();
-      event.nativeEvent.stopImmediatePropagation();
-    }
-  }
-
   render() {
     return(
       <div
         className={this.props.isActive ? 'option option-active' : 'option'}
         onClick={this.onSelectOption.bind(this, this.props.value)}
-        onMouseDown={this.onMouseDown}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
       >{this.props.children}</div>
@@ -46,7 +37,6 @@ class Option extends Component {
 Option.propTypes = {
   index: PropTypes.number,
   isActive: PropTypes.bool,
-  isInModal: PropTypes.bool,
   changeIndex: PropTypes.func,
   value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
