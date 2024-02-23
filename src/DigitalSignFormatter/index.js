@@ -17,7 +17,7 @@ class DigitalSignFormatter extends Component {
     value: '',
     config: {},
     containerClassName: '',
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -30,12 +30,12 @@ class DigitalSignFormatter extends Component {
   getSignImages = () => {
     const { value, config } = this.props;
     return [ getDigitalSignImageUrl(value, config) ].filter(Boolean);
-  }
+  };
 
   onClickSignImage = (index) => {
     if (!this.props.isSupportPreview) return;
     this.setState({ isPreviewSignImage:true, largeSignImageIndex: index });
-  }
+  };
 
   hideLargeSignImage = () => {
     if (!this.props.isSupportPreview) return;
@@ -43,7 +43,7 @@ class DigitalSignFormatter extends Component {
       this.props.onCloseCallback();
     }
     this.setState({ isPreviewSignImage: false, largeSignImageIndex: -1 });
-  }
+  };
 
   downloadImage = (url) => {
     let availableUrl = url;
@@ -54,7 +54,7 @@ class DigitalSignFormatter extends Component {
     const urlSuffix = availableUrl.indexOf('?dl=1');
     const downloadUrl = urlSuffix !== -1 ? availableUrl : availableUrl + '?dl=1';
     downloadFile(downloadUrl);
-  }
+  };
 
   render() {
     const { containerClassName, readOnly, config, isSample } = this.props;

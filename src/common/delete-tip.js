@@ -26,7 +26,7 @@ export default class DeleteTip extends React.Component {
     if (this.tipContainer && !this.tipContainer.contains(e.target)) {
       this.props.toggle();
     }
-  }
+  };
 
   render() {
     const { toggle, onDelete, position, deleteTip } = this.props;

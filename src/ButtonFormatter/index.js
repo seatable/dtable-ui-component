@@ -19,7 +19,7 @@ class ButtonFormatter extends React.Component {
     if (this.props.onClickButton) {
       this.props.onClickButton(this.props.data);
     }
-  }
+  };
 
   render() {
     let { data, containerClassName } = this.props;

@@ -28,7 +28,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
     return (
       <div className="d-flex align-items-center form-control disabled h-auto" style={style}>{dom}</div>
     );
-  }
+  };
 
   renderOtherColumnFormatter = () => {
     const { value, column, collaborators } = this.props;
@@ -63,7 +63,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
         })}
       </div>
     );
-  }
+  };
 
   createColumnFormatter(Formatter, formatterProps) {
     if (React.isValidElement(Formatter)) {
@@ -92,7 +92,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
         return { ...array_data, collaborators };
       }
     }
-  }
+  };
 
   render() {
     let { containerClassName, column, collaborators, value } = this.props;

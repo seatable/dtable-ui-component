@@ -8,19 +8,19 @@ class Option extends Component {
       event.stopPropagation();
     }
     this.props.onSelectOption(value, event);
-  }
+  };
 
   onMouseEnter = () => {
     if (!this.props.disableHover) {
       this.props.changeIndex(this.props.index);
     }
-  }
+  };
 
   onMouseLeave = () => {
     if (!this.props.disableHover) {
       this.props.changeIndex(-1);
     }
-  }
+  };
 
   render() {
     return(

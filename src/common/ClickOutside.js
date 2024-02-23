@@ -29,7 +29,7 @@ export default class ClickOutside extends React.Component {
 
   handleMouseDown = () => {
     this.isClickedInside = true;
-  }
+  };
 
   render() {
     return React.cloneElement(

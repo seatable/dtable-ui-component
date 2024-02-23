@@ -20,7 +20,7 @@ export default class ToastManager extends React.PureComponent {
      * Function called with the `this.closeAll` function.
      */
     bindCloseAll: PropTypes.func.isRequired
-  }
+  };
 
   static idCounter = 0;
 
@@ -38,11 +38,11 @@ export default class ToastManager extends React.PureComponent {
 
   getToasts = () => {
     return this.state.toasts;
-  }
+  };
 
   closeAll = () => {
     this.getToasts().forEach(toast => toast.close());
-  }
+  };
 
   notify = (title, settings) => {
     // If there's a custom toast ID passed, close existing toasts with the same custom ID
@@ -64,7 +64,7 @@ export default class ToastManager extends React.PureComponent {
     });
 
     return instance;
-  }
+  };
 
   createToastInstance = (title, settings) => {
     const uniqueId = ++ToastManager.idCounter;
@@ -89,7 +89,7 @@ export default class ToastManager extends React.PureComponent {
       close: () => this.closeToast(id),
       intent: settings.intent
     };
-  }
+  };
 
   /**
    * This will set isShown on the Toast which will close the toast.
@@ -109,7 +109,7 @@ export default class ToastManager extends React.PureComponent {
         })
       };
     });
-  }
+  };
 
   removeToast = id => {
     this.setState(previousState => {
@@ -117,7 +117,7 @@ export default class ToastManager extends React.PureComponent {
         toasts: previousState.toasts.filter(toast => toast.id !== id)
       };
     });
-  }
+  };
 
   render() {
     return (

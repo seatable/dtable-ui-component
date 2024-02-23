@@ -24,7 +24,7 @@ class SingleSelectFormatter extends React.PureComponent {
     if (option) {
       return <SelectItem option={option} fontSize={fontSize}/>;
     }
-  }
+  };
 
   render() {
     const { containerClassName, value } = this.props;

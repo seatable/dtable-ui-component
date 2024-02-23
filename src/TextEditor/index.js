@@ -15,7 +15,7 @@ class TextEditor extends React.Component {
   static defaultProps = {
     isReadOnly: false,
     value: ''
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -30,16 +30,16 @@ class TextEditor extends React.Component {
     let { newValue } = this.state;
     updated[column.name] = newValue ? newValue.trim() : '';
     this.props.onCommit(updated);
-  }
+  };
 
   onBlur = () => {
     this.onCommit();
-  }
+  };
 
   onChange = (event) => {
     let value = event.target.value;
     this.setState({newValue: value});
-  }
+  };
 
   onKeyDown = (event) => {
     let { selectionStart, selectionEnd, value } = event.currentTarget;
@@ -51,19 +51,19 @@ class TextEditor extends React.Component {
     ) {
       event.stopPropagation();
     }
-  }
+  };
 
   onPaste = (e) => {
     e.stopPropagation();
-  }
+  };
 
   onCut = (e) => {
     e.stopPropagation();
-  }
+  };
 
   setInputRef = (input) => {
     this.input = input;
-  }
+  };
 
   render() {
     const { isReadOnly } = this.props;

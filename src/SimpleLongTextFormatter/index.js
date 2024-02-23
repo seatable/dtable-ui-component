@@ -16,7 +16,7 @@ class SimpleLongTextFormatter extends React.Component {
       links: [],
       preview: '',
     },
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -39,7 +39,7 @@ class SimpleLongTextFormatter extends React.Component {
         {links.length}
       </span>
     );
-  }
+  };
 
   renderCheckList = (value) => {
     const checkList = value.checklist;
@@ -50,7 +50,7 @@ class SimpleLongTextFormatter extends React.Component {
         {`${checkList.completed}/${checkList.total}`}
       </span>
     );
-  }
+  };
 
   renderImages = (value) => {
     const images = value.images;
@@ -61,11 +61,11 @@ class SimpleLongTextFormatter extends React.Component {
         <i className="image-number">{images.length > 1 ? '+' + images.length : null}</i>
       </span>
     );
-  }
+  };
 
   renderContent = (value) => {
     return (<span className="long-text-content">{value.preview}</span>);
-  }
+  };
 
   translateValue = () => {
     const { value } = this.props;
@@ -78,14 +78,14 @@ class SimpleLongTextFormatter extends React.Component {
       return value;
     }
     return {};
-  }
+  };
 
   clearTimer = () => {
     if (this.timer) {
       clearTimeout(this.timer);
       this.timer = null;
     }
-  }
+  };
 
   onMouseEnter = () => {
     // in case that there is no `modal-wrapper`
@@ -100,14 +100,14 @@ class SimpleLongTextFormatter extends React.Component {
         this.setState({ isPreview: true });
       }, 2000);
     }
-  }
+  };
 
   onMouseLeave = () => {
     this.clearTimer();
     if (this.state.isPreview) {
       this.setState({ isPreview: false });
     }
-  }
+  };
 
   render() {
     const { isPreview } = this.state;

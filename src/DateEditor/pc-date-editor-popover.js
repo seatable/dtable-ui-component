@@ -37,29 +37,29 @@ class PCDateEditorPopover extends React.Component {
       open: true, // if value changed, don't close datePicker
     });
     this.props.onValueChanged(value.format(dateFormat));
-  }
+  };
 
   onOpenChange = (open) => {
     this.setState({open: open});
     return;
-  }
+  };
 
   onClear = () => {
     this.setState({datePickerValue: null});
-  }
+  };
 
   onFocusDatePicker = () => {
     this.setState({open: true});
-  }
+  };
 
   handleMouseDown = (event) => {
     event.preventDefault();
     event.stopPropagation();
-  }
+  };
 
   getCalendarContainer = () => {
     return this.calendarContainerRef.current;
-  }
+  };
 
   getCalender = () => {
     let { dateFormat, showHourAndMinute, lang } = this.props;
@@ -77,7 +77,7 @@ class PCDateEditorPopover extends React.Component {
         onClear={this.onClear}
       />
     );
-  }
+  };
 
   render() {
     let { dateFormat } = this.props;

@@ -16,7 +16,7 @@ class RowExpandEmailFormatter extends React.Component {
     const { value } = this.props;
     let newValue = value.trim();
     window.location.href = `mailto:${newValue}`;
-  }
+  };
 
   render() {
     const { containerClassName, value } = this.props;

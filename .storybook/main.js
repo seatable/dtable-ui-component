@@ -1,9 +1,23 @@
 module.exports = {
   stories: ['../stories/**/*.stories.js'],
-  addons: ['@storybook/addon-actions', '@storybook/addon-links'],
-  webpackFinal: async config => {
-    // do mutation to the config
-
-    return config;
-  },
+  staticDirs: ['../public'],
+  addons: [
+    '@storybook/addon-actions', 
+    '@storybook/addon-links',
+    '@storybook/addon-knobs',
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        configureJSX: true,
+      }
+    }
+  ],
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {
+      builder: {
+        useSWC: true,
+      },
+    },
+  }
 };

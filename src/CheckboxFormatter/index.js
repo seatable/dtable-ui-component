@@ -13,7 +13,7 @@ class CheckboxFormatter extends React.PureComponent {
 
   static defaultProps = {
     value: false
-  }
+  };
 
   render() {
     let { value, containerClassName } = this.props;

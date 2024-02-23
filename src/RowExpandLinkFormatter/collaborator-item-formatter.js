@@ -82,7 +82,7 @@ export default class CollaboratorItemFormatter extends Component {
       collaboratorsCache[cellValue] = collaborator;
       this.setState({ isDataLoaded: true, collaborator });
     });
-  }
+  };
 
   render() {
     const { cellValue } = this.props;

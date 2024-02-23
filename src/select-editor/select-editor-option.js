@@ -15,13 +15,13 @@ class SelectEditorOption extends React.Component {
 
   static defaultProps = {
     isShowRemoveIcon: false,
-  }
+  };
 
   onDeleteOption = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     event.stopPropagation();
     this.props.onDeleteSelectOption(this.props.option);
-  }
+  };
 
   getContainerStyle = () => {
     let option = this.props.option;
@@ -35,7 +35,7 @@ class SelectEditorOption extends React.Component {
       fontSize: '13px',
       backgroundColor: option.color,
     };
-  }
+  };
 
   getOptionStyle = (option) => {
     const textColor = option.textColor || null;
@@ -46,7 +46,7 @@ class SelectEditorOption extends React.Component {
       margin: '0 4px 0 2px',
       color: textColor,
     };
-  }
+  };
 
   getOperationStyle = (option) => {
     const textColor = option.textColor || null;
@@ -57,7 +57,7 @@ class SelectEditorOption extends React.Component {
       color: textColor === '#FFFFFF' ? '#FFFFFF' : '#909090',
       transform: 'scale(.8)',
     };
-  }
+  };
 
   render() {
     let { option, isShowRemoveIcon } = this.props;

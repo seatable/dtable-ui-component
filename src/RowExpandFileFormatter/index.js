@@ -19,7 +19,7 @@ export default class RowExpandFileFormatter extends React.PureComponent {
   static defaultProps = {
     value: [],
     containerClassName: ''
-  }
+  };
 
   render() {
     let { value, containerClassName, column, downloadFile, deleteFile, readOnly } = this.props;

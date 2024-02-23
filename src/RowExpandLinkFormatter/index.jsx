@@ -16,7 +16,7 @@ export default class RowExpandLinkFormatter extends Component {
     containerClassName: PropTypes.string,
     renderEmpty: PropTypes.func,
     context: PropTypes.object,
-  }
+  };
 
   render() {
     const props = this.props;

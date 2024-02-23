@@ -21,7 +21,7 @@ class NumberEditor extends React.Component {
   static defaultProps = {
     isReadOnly: false,
     value: '',
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -47,7 +47,7 @@ class NumberEditor extends React.Component {
     }, () => {
       this.input.focus();
     });
-  }
+  };
 
   onCommit = () => {
     let updated = {};
@@ -62,7 +62,7 @@ class NumberEditor extends React.Component {
       isEditorShow: false,
       textValue: newValue
     });
-  }
+  };
 
   onChange = (event) => {
     const { data } = this.props.column; // data maybe 'null'
@@ -77,11 +77,11 @@ class NumberEditor extends React.Component {
     value = replaceNumberNotAllowInput(value, this.dataFormat, currency_symbol);
     if (value === this.state.inputValue) return;
     this.setState({ inputValue : value });
-  }
+  };
 
   onBlur = () => {
     this.onCommit();
-  }
+  };
 
   onKeyDown = (event) => {
     let { selectionStart, selectionEnd, value } = event.currentTarget;
@@ -93,22 +93,22 @@ class NumberEditor extends React.Component {
     ) {
       event.stopPropagation();
     }
-  }
+  };
 
   onPaste = (e) => {
     e.stopPropagation();
-  }
+  };
 
   onCut = (e) => {
     e.stopPropagation();
-  }
+  };
 
   getStyle = () => {
     return {
       width: '320px',
       textAlign: 'left',
     };
-  }
+  };
 
   setInputRef = (input) => {
     this.input = input;

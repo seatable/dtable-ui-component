@@ -27,18 +27,18 @@ class RateItem extends React.Component {
   onMouseEnterRateItem = () => {
     const { rateItemIndex } = this.props;
     this.props.onMouseEnterRateItem(rateItemIndex);
-  }
+  };
 
   onMouseLeaveRateItem = () => {
     this.props.onMouseLeaveRateItem();
-  }
+  };
 
   onChangeRateNumber = () => {
     const { onChangeRateNumber, rateItemIndex, editable } = this.props;
     if (onChangeRateNumber && editable) {
       onChangeRateNumber(rateItemIndex);
     }
-  }
+  };
 
   render() {
     const { enterRateItemIndex, rateItemIndex, value, column, isShowRateItem, editable } = this.props;

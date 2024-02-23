@@ -19,7 +19,7 @@ class MBLinkEditorPopover extends React.Component {
   static defaultProps = {
     isReadOnly: false,
     value: [],
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -40,7 +40,7 @@ class MBLinkEditorPopover extends React.Component {
   handleHistaryBack = (e) => {
     e.preventDefault();
     this.props.onClosePopover();
-  }
+  };
 
   onContainerClick = (event) => {
     if (this.editorPopover && this.editorPopover.contains(event.target)) {
@@ -48,7 +48,7 @@ class MBLinkEditorPopover extends React.Component {
       event.nativeEvent.stopImmediatePropagation();
       return false;
     }
-  }
+  };
 
   onChangeSearch = (event) => {
     let { searchVal } = this.state;
@@ -57,7 +57,7 @@ class MBLinkEditorPopover extends React.Component {
     }
     searchVal = event.target.value;
     this.setState({ searchVal });
-  }
+  };
 
   getSelectedOptions = () => {
     let { value, options } = this.props;
@@ -67,21 +67,21 @@ class MBLinkEditorPopover extends React.Component {
     return options.filter(option => {
       return value.indexOf(option.email) > -1;
     });
-  }
+  };
 
   getFilterOptions = () => {
     let { options } = this.props;
     let { searchVal } = this.state;
     return searchVal ? options.filter((item) => item.name.indexOf(searchVal) > -1) : options;
-  }
+  };
 
   onSelectOption = (option) => {
     this.props.onOptionItemToggle(option);
-  }
+  };
 
   onRemoveOption = (option) => {
     this.props.onOptionItemToggle(option);
-  }
+  };
 
   renderFilteredOptions = (options) => {
     let { value } = this.props;
@@ -97,11 +97,11 @@ class MBLinkEditorPopover extends React.Component {
         </div>
       );
     });
-  }
+  };
 
   setEditorPopover = (editorPopover) => {
     this.editorPopover = editorPopover;
-  }
+  };
 
   render() {
     const { column } = this.props;

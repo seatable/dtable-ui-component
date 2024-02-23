@@ -57,12 +57,12 @@ class CollaboratorFilter extends Component {
         )
       };
     });
-  }
+  };
 
   onClick = (e, collaborator) => {
     e.stopPropagation();
     this.props.onSelectCollaborator({ columnOption: collaborator });
-  }
+  };
 
   render() {
     let { filterIndex, filterTerm, collaborators, placeholder, filter_predicate } = this.props;

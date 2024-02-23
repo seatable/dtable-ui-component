@@ -17,9 +17,11 @@ const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 // like /todos/42/static/js/bundle.7289d.js. We have to know the root.
 const publicUrlOrPath = getPublicUrlOrPath(
   process.env.NODE_ENV === 'development',
-  require(resolveApp('package.json')).homepage,
+  // require(resolveApp('package.json')).homepage,
   process.env.PUBLIC_URL
 );
+
+const buildPath = process.env.BUILD_PATH || 'build';
 
 const moduleFileExtensions = [
   'web.mjs',
@@ -52,10 +54,11 @@ const resolveModule = (resolveFn, filePath) => {
 module.exports = {
   dotenv: resolveApp('.env'),
   appPath: resolveApp('.'),
-  appBuild: resolveApp('build'),
+  appBuild: resolveApp(buildPath),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),
-  appIndexJs: resolveModule(resolveApp, 'src/index.local'),
+  appIndexJs: resolveModule(resolveApp, 'src/index'),
+  appEntryJs: resolveModule(resolveApp, 'src/entry'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
   appTsConfig: resolveApp('tsconfig.json'),
@@ -64,6 +67,11 @@ module.exports = {
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
+  zipPath: resolveApp('plugin-zip'),
+  pluginConfigPath: resolveApp('plugin-config'),
+  appWebpackCache: resolveApp('node_modules/.cache'),
+  appTsBuildInfoFile: resolveApp('node_modules/.cache/tsconfig.tsbuildinfo'),
+  swSrc: resolveModule(resolveApp, 'src/service-worker'),
   publicUrlOrPath,
 };
 

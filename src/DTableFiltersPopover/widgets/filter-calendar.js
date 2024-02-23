@@ -54,7 +54,7 @@ class FilterCalendar extends Component {
 
   handleMouseDown = (e) => {
     e.preventDefault();
-  }
+  };
 
   onChange = (value) => {
     const { onChange } = this.props;
@@ -66,7 +66,7 @@ class FilterCalendar extends Component {
         onChange(this.state.value.format(searchFormat));
       }
     });
-  }
+  };
 
   onClear = () => {
     this.setState({
@@ -76,13 +76,13 @@ class FilterCalendar extends Component {
         open:true
       });
     });
-  }
+  };
 
   onOpenChange = (open) => {
     this.setState({
       open,
     });
-  }
+  };
 
   onReadOnlyFocus = () => {
     if (!this.state.open && this.state.isMouseDown) {
@@ -94,11 +94,11 @@ class FilterCalendar extends Component {
         open: true,
       });
     }
-  }
+  };
 
   getCalendarContainer = () => {
     return this.calendarContainerRef.current;
-  }
+  };
 
   getCalendarFormat = () => {
     let calendarFormat = [];
@@ -112,7 +112,7 @@ class FilterCalendar extends Component {
       calendarFormat = [this.columnDataFormat];
     }
     return calendarFormat;
-  }
+  };
 
   render() {
     const { isReadOnly } = this.props;

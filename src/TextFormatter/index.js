@@ -19,7 +19,7 @@ class TextFormatter extends React.Component {
       return val + '';
     }
     return val;
-  }
+  };
 
   render() {
     const { containerClassName, value } = this.props;

@@ -17,7 +17,7 @@ class DateFormatter extends React.Component {
     value: '',
     format: 'YYYY-MM-DD',
     containerClassName: '',
-  }
+  };
 
   render() {
     let { value: date, format, containerClassName } = this.props;

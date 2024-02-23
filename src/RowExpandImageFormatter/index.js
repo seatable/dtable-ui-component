@@ -27,7 +27,7 @@ export default class RowExpandImageFormatter extends React.Component {
     value: [],
     server: '',
     containerClassName: '',
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -39,28 +39,28 @@ export default class RowExpandImageFormatter extends React.Component {
 
   onImageClick = (index) => {
     this.setState({ isPreviewImage: true, previewImageIndex: index });
-  }
+  };
 
   closeImagePopup = () => {
     if (this.props.onCloseCallback) {
       this.props.onCloseCallback();
     }
     this.setState({ isPreviewImage: false, previewImageIndex: -1 });
-  }
+  };
 
   movePrev = () => {
     let images = this.props.value;
     this.setState(prevState => ({
       previewImageIndex: (prevState.previewImageIndex + images.length - 1) % images.length,
     }));
-  }
+  };
 
   moveNext = () => {
     let images = this.props.value;
     this.setState(prevState => ({
       previewImageIndex: (prevState.previewImageIndex + 1) % images.length,
     }));
-  }
+  };
 
   render() {
     const { value, server, containerClassName, readOnly, column, downloadImage } = this.props;

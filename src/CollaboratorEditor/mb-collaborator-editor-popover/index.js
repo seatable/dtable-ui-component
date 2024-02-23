@@ -19,7 +19,7 @@ class MBCollaboratorEditorPopover extends React.Component {
   static defaultProps = {
     isReadOnly: false,
     value: [],
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -40,7 +40,7 @@ class MBCollaboratorEditorPopover extends React.Component {
   handleHistaryBack = (e) => {
     e.preventDefault();
     this.props.onClosePopover();
-  }
+  };
 
   onContainerClick = (event) => {
     if (this.editorPopover && this.editorPopover.contains(event.target)) {
@@ -48,7 +48,7 @@ class MBCollaboratorEditorPopover extends React.Component {
       event.nativeEvent.stopImmediatePropagation();
       return false;
     }
-  }
+  };
 
   onChangeSearch = (event) => {
     let { searchVal } = this.state;
@@ -57,7 +57,7 @@ class MBCollaboratorEditorPopover extends React.Component {
     }
     searchVal = event.target.value;
     this.setState({ searchVal });
-  }
+  };
 
   getSelectedCollaborators = () => {
     let { value, collaborators } = this.props;
@@ -67,21 +67,21 @@ class MBCollaboratorEditorPopover extends React.Component {
     return collaborators.filter(collaborator => {
       return value.indexOf(collaborator.email) > -1;
     });
-  }
+  };
 
   getFilteredCollaborators = () => {
     let { collaborators } = this.props;
     let { searchVal } = this.state;
     return searchVal ? collaborators.filter((item) => item.name.indexOf(searchVal) > -1) : collaborators;
-  }
+  };
 
   onSelectCollaborator = (collaborator) => {
     this.props.onCollaboratorItemToggle(collaborator);
-  }
+  };
 
   onRemoveCollaborator = (collaborator) => {
     this.props.onCollaboratorItemToggle(collaborator);
-  }
+  };
 
   renderFilteredCollaborators = (collaborators) => {
     let { value } = this.props;
@@ -100,11 +100,11 @@ class MBCollaboratorEditorPopover extends React.Component {
         </div>
       );
     });
-  }
+  };
 
   setEditorPopover = (editorPopover) => {
     this.editorPopover = editorPopover;
-  }
+  };
 
   render() {
     const { column } = this.props;

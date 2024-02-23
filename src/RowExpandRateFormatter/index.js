@@ -15,7 +15,7 @@ class RateExpendRateFormatter extends React.Component {
   static defaultProps = {
     value: '',
     containerClassName: '',
-  }
+  };
 
   getRateList = () => {
     const { data, value } = this.props;
@@ -35,7 +35,7 @@ class RateExpendRateFormatter extends React.Component {
       );
     }
     return rateList;
-  }
+  };
 
   render() {
     const { containerClassName } = this.props;

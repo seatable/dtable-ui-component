@@ -100,17 +100,17 @@ class FilterItem extends React.Component {
         return FilterItemUtils.generatorTermModifierOption(termModifier);
       });
     }
-  }
+  };
 
   onDeleteFilter = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     const { index } = this.props;
     this.props.deleteFilter(index);
-  }
+  };
 
   resetState = (filter) => {
     this.setState({filterTerm: filter.filter_term});
-  }
+  };
 
   onSelectConjunction = (value) => {
     const { filterConjunction } = this.props;
@@ -118,7 +118,7 @@ class FilterItem extends React.Component {
       return;
     }
     this.props.updateConjunction(value.filterConjunction);
-  }
+  };
 
   onSelectColumn = (value) => {
     const { index, filter } = this.props;
@@ -130,7 +130,7 @@ class FilterItem extends React.Component {
 
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
-  }
+  };
 
   onSelectPredicate = (value) => {
     const { index, filter, filterColumn } = this.props;
@@ -141,7 +141,7 @@ class FilterItem extends React.Component {
     let newFilter = getUpdatedFilterByPredicate(filter, filterColumn, filterPredicate);
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
-  }
+  };
 
   onSelectTermModifier = (value) => {
     const { index, filter } = this.props;
@@ -163,7 +163,7 @@ class FilterItem extends React.Component {
     let newFilter = Object.assign({}, filter, {filter_term_modifier: filterTermModifier, filter_term});
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
-  }
+  };
 
   onSelectSingle = (value) => {
     const { index, filter } = this.props;
@@ -175,7 +175,7 @@ class FilterItem extends React.Component {
     let newFilter = getUpdatedFilterBySelectSingle(filter, option);
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
-  }
+  };
 
   onSelectMultiple = (value) => {
     const { index, filter } = this.props;
@@ -183,7 +183,7 @@ class FilterItem extends React.Component {
     let newFilter = getUpdatedFilterBySelectMultiple(filter, option);
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
-  }
+  };
 
   onSelectCollaborator = (value) => {
     const { index, filter } = this.props;
@@ -191,7 +191,7 @@ class FilterItem extends React.Component {
     let newFilter = getUpdatedFilterByCollaborator(filter, collaborator);
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
-  }
+  };
 
   onSelectCreator = (value) => {
     const { index, filter } = this.props;
@@ -204,15 +204,15 @@ class FilterItem extends React.Component {
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
 
-  }
+  };
 
   onFilterTermCheckboxChanged = (e) => {
     this.onFilterTermChanged(e.target.checked);
-  }
+  };
 
   onFilterTermTextChanged = (value) => {
     this.onFilterTermChanged(value);
-  }
+  };
 
   onFilterTermChanged = (newFilterTerm) => {
     const { index, filter } = this.props;
@@ -222,19 +222,19 @@ class FilterItem extends React.Component {
       let newFilter = Object.assign({}, filter, {filter_term: newFilterTerm});
       this.props.updateFilter(index, newFilter);
     }
-  }
+  };
 
   onMouseEnterRateItem = (index) => {
     this.setState({enterRateItemIndex: index});
-  }
+  };
 
   onMouseLeaveRateItem = () => {
     this.setState({enterRateItemIndex: 0});
-  }
+  };
 
   onChangeRateNumber = (index) => {
     this.onFilterTermChanged(index);
-  }
+  };
 
   getInputComponent = (type) => {
     const { filterTerm } = this.state;
@@ -252,7 +252,7 @@ class FilterItem extends React.Component {
         <input type="checkbox" checked={filterTerm} onChange={this.onFilterTermCheckboxChanged} />
       );
     }
-  }
+  };
 
   renderConjunction = () => {
     const { index, filterConjunction, conjunctionOptions } = this.props;
@@ -277,7 +277,7 @@ class FilterItem extends React.Component {
       }
     }
 
-  }
+  };
 
   renderMultipleSelectOption = (options = [], filterTerm) => {
     const { filter } = this.props;
@@ -332,7 +332,7 @@ class FilterItem extends React.Component {
         supportMultipleSelect={isSupportMultipleSelect}
       />
     );
-  }
+  };
 
   renderFilterTerm = (filterColumn) => {
     const { index, filter, collaborators, roleId, userDepartmentIdsMap, departments, lang } = this.props;
@@ -514,7 +514,7 @@ class FilterItem extends React.Component {
         return null;
       }
     }
-  }
+  };
 
   renderFormulaFilterTerm = (filterPredicate, filterTerm, index, filterColumn) => {
     const { data } = filterColumn || {};
@@ -526,14 +526,14 @@ class FilterItem extends React.Component {
       return this.renderFilterTermByArrayType(filterPredicate, filterTerm, index, filterColumn);
     }
     return this.getInputComponent('text');
-  }
+  };
 
   renderLinkFilterTerm = (filterPredicate, filterTerm, index, filterColumn) => {
     if (filterPredicate === FILTER_PREDICATE_TYPE.IS_CURRENT_USER_ID) {
       return null;
     }
     return this.renderFilterTermByArrayType(filterPredicate, filterTerm, index, filterColumn);
-  }
+  };
 
   renderFilterTermByArrayType = (filterPredicate, filterTerm, index, filterColumn) => {
     const { collaborators } = this.props;
@@ -568,7 +568,7 @@ class FilterItem extends React.Component {
       );
     }
     return this.getInputComponent('text');
-  }
+  };
 
   renderErrorMessage = () => {
     return (
@@ -583,7 +583,7 @@ class FilterItem extends React.Component {
         </UncontrolledTooltip>
       </div>
     );
-  }
+  };
 
   render() {
     const { filterPredicateOptions, filterTermModifierOptions } = this;

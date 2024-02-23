@@ -26,7 +26,7 @@ class MBSelectEditorPopover extends React.Component {
     isShowRemoveIcon: false,
     isSupportNewOption: false,
     value: [],
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -47,7 +47,7 @@ class MBSelectEditorPopover extends React.Component {
   handleHistaryBack = (e) => {
     e.preventDefault();
     this.props.onClosePopover();
-  }
+  };
 
   onContainerClick = (event) => {
     if (this.editorPopover && this.editorPopover.contains(event.target)) {
@@ -55,7 +55,7 @@ class MBSelectEditorPopover extends React.Component {
       event.nativeEvent.stopImmediatePropagation();
       return false;
     }
-  }
+  };
 
   onChangeSearch = (event) => {
     let { searchVal } = this.state;
@@ -64,7 +64,7 @@ class MBSelectEditorPopover extends React.Component {
     }
     searchVal = event.target.value;
     this.setState({ searchVal });
-  }
+  };
 
   getSelectedOptions = () => {
     let { value, options } = this.props;
@@ -74,17 +74,17 @@ class MBSelectEditorPopover extends React.Component {
     return options.filter(option => {
       return value.indexOf(option.id) > -1;
     });
-  }
+  };
 
   getFilteredOptions = () => {
     let { options } = this.props;
     let { searchVal } = this.state;
     return searchVal ? options.filter((item) => item.name.indexOf(searchVal) > -1) : options;
-  }
+  };
 
   onSelectOption = (option) => {
     this.props.onOptionItemToggle(option);
-  }
+  };
 
   onAddNewOption = (event) => {
     event.stopPropagation();
@@ -94,11 +94,11 @@ class MBSelectEditorPopover extends React.Component {
       this.props.onAddNewOption(newOption);
       this.props.onClosePopover();
     }
-  }
+  };
 
   onRemoveOption = (option) => {
     this.props.onOptionItemToggle(option);
-  }
+  };
 
   renderSelectOptions = (options) => {
     let { value } = this.props;
@@ -120,11 +120,11 @@ class MBSelectEditorPopover extends React.Component {
         </div>
       );
     });
-  }
+  };
 
   setEditorPopover = (editorPopover) => {
     this.editorPopover = editorPopover;
-  }
+  };
 
   render() {
     const { isReadOnly, column, isSupportNewOption, isShowRemoveIcon } = this.props;

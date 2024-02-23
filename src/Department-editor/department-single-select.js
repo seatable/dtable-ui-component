@@ -48,13 +48,13 @@ class DepartmentSingleSelect extends Component {
     if (bottom > window.innerHeight) {
       this.departmentsRef.style.top = (parseInt(this.departmentsRef.style.top) - bottom + window.innerHeight) + 'px';
     }
-  }
+  };
 
   initDepartments = (departments) => {
     const normalizedDepartments = getNormalizedDepartments(departments || []);
     this.validDepartments = normalizedDepartments;
     this.setState({ departments: normalizedDepartments });
-  }
+  };
 
   initRangeDepartments = (userDepartmentIdsMap, departments = []) => {
     const { selectedRange, specificDepartments } = this.getSelectedRange();
@@ -75,7 +75,7 @@ class DepartmentSingleSelect extends Component {
     const normalizedDepartments = getNormalizedDepartments(targetDepartments);
     this.validDepartments = normalizedDepartments;
     this.setState({ departments: normalizedDepartments, topParentIds });
-  }
+  };
 
   getSelectedRange = () => {
     const { column } = this.props;
@@ -83,7 +83,7 @@ class DepartmentSingleSelect extends Component {
     const selectedRange = data.selected_range || '';
     const specificDepartments = data.specific_departments || [];
     return { selectedRange, specificDepartments };
-  }
+  };
 
   onExpand = (event, id, isExpanded) => {
     event.stopPropagation();
@@ -92,7 +92,7 @@ class DepartmentSingleSelect extends Component {
     const index = newDepartments.findIndex(item => item.id === id);
     newDepartments[index].isExpanded = !isExpanded;
     this.setState({ departments: newDepartments });
-  }
+  };
 
   onChangeSearch = (event) => {
     const newSearchValue = event.target.value;
@@ -101,7 +101,7 @@ class DepartmentSingleSelect extends Component {
     const { departments } = this.state;
     this.validDepartments = searchDepartments(departments, newSearchValue);
     this.setState({ searchVal: newSearchValue });
-  }
+  };
 
   onSelectDepartment = (event, selectedValue) => {
     event.stopPropagation();
@@ -109,12 +109,12 @@ class DepartmentSingleSelect extends Component {
     const { onCommit, value } = this.props;
     const newValue = selectedValue === value ? '' : selectedValue;
     onCommit(newValue);
-  }
+  };
 
   onStopPropagation = (e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-  }
+  };
 
   renderSubDepartments = (id, subDepartments, level) => {
     const topDepartments = subDepartments.filter(department => department.parent_id === id);
@@ -128,7 +128,7 @@ class DepartmentSingleSelect extends Component {
         return this.renderDepartment(department, newSubDepartments, level, hasNextLevel);
       })
     );
-  }
+  };
 
   renderDepartment = (department, subDepartments, level, hasNextLevel) => {
     const { value } = this.props;
@@ -164,7 +164,7 @@ class DepartmentSingleSelect extends Component {
         {(isExpanded && hasChild) && this.renderSubDepartments(id, subDepartments, newLevel)}
       </Fragment>
     );
-  }
+  };
 
   renderAllDepartments = () => {
     const { departments } = this.state;
@@ -177,7 +177,7 @@ class DepartmentSingleSelect extends Component {
         }
       </>
     );
-  }
+  };
 
   renderSpecificDepartments = () => {
     const { departments } = this.state;
@@ -190,7 +190,7 @@ class DepartmentSingleSelect extends Component {
         })}
       </>
     );
-  }
+  };
 
   renderCurrentDepartmentsAndSub = () => {
     const { departments, topParentIds } = this.state;
@@ -206,7 +206,7 @@ class DepartmentSingleSelect extends Component {
         })}
       </>
     );
-  }
+  };
 
   renderEmptyTip = () => {
     return (
@@ -214,7 +214,7 @@ class DepartmentSingleSelect extends Component {
         {getLocale('No_departments_available')}
       </span>
     );
-  }
+  };
 
   renderMenuContent = () => {
     const { searchVal } = this.state;
@@ -236,7 +236,7 @@ class DepartmentSingleSelect extends Component {
         {menuContent}
       </div>
     );
-  }
+  };
 
   render() {
     return (

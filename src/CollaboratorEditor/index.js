@@ -27,7 +27,7 @@ class CollaboratorEditor extends React.Component {
     isReadOnly: false,
     value: [],
     isInModel: false,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -55,7 +55,7 @@ class CollaboratorEditor extends React.Component {
     if (this.editorContainer !== e.target && !this.editorContainer.contains(e.target)) {
       this.onClosePopover();
     }
-  }
+  };
 
   getFormattedCollaborators = () => {
     let { newValue }  = this.state;
@@ -66,7 +66,7 @@ class CollaboratorEditor extends React.Component {
       }).filter(collaborator => !!collaborator);
     }
     return [];
-  }
+  };
 
   togglePopover = (event) => {
     event.nativeEvent.stopImmediatePropagation();
@@ -81,14 +81,14 @@ class CollaboratorEditor extends React.Component {
     } else {
       this.setState({isPopoverShow});
     }
-  }
+  };
 
   onCommit = (newValue) => {
     let updated = {};
     let { column } = this.props;
     updated[column.name] = newValue;
     this.props.onCommit(updated);
-  }
+  };
 
   onCollaboratorItemToggle = (collaborator) => {
     let newValue = this.state.newValue.slice();
@@ -102,7 +102,7 @@ class CollaboratorEditor extends React.Component {
     this.setState({newValue}, () => {
       this.onCommit(newValue);
     });
-  }
+  };
 
   onDeleteCollaborator = (collaborator) => {
     let newValue = this.state.newValue.slice();
@@ -113,7 +113,7 @@ class CollaboratorEditor extends React.Component {
         this.onCommit(newValue);
       });
     }
-  }
+  };
 
   caculatePopoverPosition = () => {
     if (this.props.isInModel) {
@@ -134,11 +134,11 @@ class CollaboratorEditor extends React.Component {
       position = { bottom: bottom, left: 0 };
     }
     return position;
-  }
+  };
 
   onClosePopover = () => {
     this.setState({isPopoverShow: false});
-  }
+  };
 
   onClickContainer = (e) => {
     e.stopPropagation();
@@ -148,19 +148,19 @@ class CollaboratorEditor extends React.Component {
         popoverPosition: this.caculatePopoverPosition(),
       });
     }
-  }
+  };
 
   setEditorContainerRef = (editorContainer) => {
     this.editorContainer = editorContainer;
-  }
+  };
 
   setEditorRef = (editor) => {
     this.editor = editor;
-  }
+  };
 
   setPopoverRef = (ref) => {
     this.editorPopoverRef = ref;
-  }
+  };
 
   render() {
     let { collaborators, isReadOnly, isShowEditButton } = this.props;

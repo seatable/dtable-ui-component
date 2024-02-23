@@ -49,7 +49,7 @@ class FiltersList extends Component {
   updateFilter = (filterIndex, updatedFilter) => {
     if (!updatedFilter) return;
     this.props.updateFilter(filterIndex, updatedFilter);
-  }
+  };
 
   deleteFilter = (index) => {
     const { scheduleUpdate } = this.props;
@@ -58,14 +58,14 @@ class FiltersList extends Component {
 
   updateConjunction = (filterConjunction) => {
     this.props.updateFilterConjunction(filterConjunction);
-  }
+  };
 
   getConjunctionOptions = () => {
     if (!this.conjunctionOptions) {
       this.conjunctionOptions = FilterItemUtils.generatorConjunctionOptions();
     }
     return this.conjunctionOptions;
-  }
+  };
 
   getFilterColumns = () => {
     const { columns } = this.props;
@@ -79,7 +79,7 @@ class FiltersList extends Component {
       }
       return Object.prototype.hasOwnProperty.call(FILTER_COLUMN_OPTIONS, type);
     });
-  }
+  };
 
   getColumnOptions = () => {
     if (!this.columnOptions) {
@@ -89,7 +89,7 @@ class FiltersList extends Component {
       });
     }
     return this.columnOptions;
-  }
+  };
 
   renderFilterItem = (filter, index, errMsg, filterColumn) => {
     const { filterConjunction, value, roleId, isLocked, collaborators, userDepartmentIdsMap, departments, lang } = this.props;
@@ -117,7 +117,7 @@ class FiltersList extends Component {
         updateConjunction={this.updateConjunction}
       />
     );
-  }
+  };
 
   render() {
     let { filters, className, emptyPlaceholder, columns } = this.props;

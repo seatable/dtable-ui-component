@@ -5,15 +5,22 @@
   },
   "extends": [
     "react-app",
+    "react-app/jest",
     "eslint:recommended"
   ],
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaFeatures": {
       "experimentalObjectRestSpread": true,
       "jsx": true
     },
-    "sourceType": "module"
+    "sourceType": "module",
+    "babelOptions": {
+      "presets": [
+        [ "babel-preset-react-app", false ],
+        "babel-preset-react-app/prod"
+      ]
+    }
   },
   "plugins": [
     "react",
@@ -48,11 +55,11 @@
     "no-console": "warn",
     "no-useless-escape": "warn",
     "no-trailing-spaces": "warn",
-    
-    "react/jsx-indent": ["warn", 2],
+
+    "react/jsx-indent": [ "warn", 2 ],
     "react/prop-types": "warn",
     "react/display-name": "warn",
-    
+
     "jsx-a11y/anchor-has-content": "off",
     "jsx-a11y/href-no-hash": "off"
   }

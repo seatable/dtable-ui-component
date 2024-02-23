@@ -31,7 +31,7 @@ class FormulaFormatter extends React.Component {
         return '';
       }
     }
-  }
+  };
 
   renderOtherColumnFormatter = () => {
     const { value, column, collaborators } = this.props;
@@ -66,7 +66,7 @@ class FormulaFormatter extends React.Component {
         })}
       </div>
     );
-  }
+  };
 
   createColumnFormatter(Formatter, formatterProps) {
     if (React.isValidElement(Formatter)) {
@@ -92,7 +92,7 @@ class FormulaFormatter extends React.Component {
         return { ...array_data, collaborators };
       }
     }
-  }
+  };
 
   render() {
     const { containerClassName, column, collaborators } = this.props;

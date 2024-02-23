@@ -26,11 +26,11 @@ export default class RowExpandFileItemFormatter extends Component {
 
   toggleTooltip = () => {
     this.setState({ isTooltipOpen: !this.state.isTooltipOpen });
-  }
+  };
 
   closeDeleteTip = () => {
     this.setState({ isDeleteTipOpen: false });
-  }
+  };
 
   onClickDelete = (e) => {
     e.stopPropagation();
@@ -39,18 +39,18 @@ export default class RowExpandFileItemFormatter extends Component {
       left: e.clientX,
     };
     this.setState({ isDeleteTipOpen: true });
-  }
+  };
 
   onDelete = (e) => {
     e.stopPropagation();
     this.closeDeleteTip();
     this.props.deleteFile(this.props.index);
-  }
+  };
 
   getFileIconData = (item) => {
     let fileIconUrl = getFileIconUrl(item.name, item.type);
     return require('../FileItemFormatter/' + fileIconUrl);
-  }
+  };
 
   render() {
     const { file, column, index, readOnly, downloadFile, deleteFile } = this.props;

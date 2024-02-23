@@ -22,18 +22,18 @@ class ImagesLazyLoad extends React.Component {
 
   componentDidMount = () => {
     this.lazyLoadImages(this.props);
-  }
+  };
 
   UNSAFE_componentWillReceiveProps = (nextProps) => {
     if (nextProps.images.toString() !== this.props.images.toString()) {
       this.lazyLoadImages(nextProps);
     }
-  }
+  };
 
   componentWillUnmount = () => {
     // prevent async operation
     this.setState = (state, callback) => { return; };
-  }
+  };
 
   lazyLoadImages = (props) => {
     const { images } = props;
@@ -63,7 +63,7 @@ class ImagesLazyLoad extends React.Component {
         );
       });
     });
-  }
+  };
 
   lazyLoadImage = (url, resolve, reject) => {
     if (!url) {
@@ -74,16 +74,16 @@ class ImagesLazyLoad extends React.Component {
     image.onload = () => { resolve(image); };
     image.onerror = e => { reject(e); };
     image.src = url;
-  }
+  };
 
   onMouseDown = (event) => {
     event.stopPropagation();
-  }
+  };
 
   onImageClick = (event, index) => {
     event.stopPropagation();
     this.props.onImageClick(index);
-  }
+  };
 
   render() {
     const { images, loadedImages, loadedCount } = this.state;

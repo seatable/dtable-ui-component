@@ -45,7 +45,7 @@ class CollaboratorSelect extends Component {
     this.setState({
       isShowSelectOptions: !this.state.isShowSelectOptions
     });
-  }
+  };
 
   onMousedown = (event) => {
     const name = event.target.className;
@@ -55,17 +55,17 @@ class CollaboratorSelect extends Component {
     if (!this.selector.contains(event.target)) {
       this.closeSelect();
     }
-  }
+  };
 
   closeSelect = () => {
     this.setState({isShowSelectOptions: false});
-  }
+  };
 
   getFilterOptions = (searchValue) => {
     const { options, searchable } = this.props;
     if (!searchable) return options || [];
     return searchCollaborators(options, searchValue);
-  }
+  };
 
   renderOptionGroup = () => {
     const { value, options, searchable, searchPlaceholder, noOptionsPlaceholder, top, left,
@@ -117,7 +117,7 @@ class CollaboratorSelect extends Component {
         />
       </Popover>
     );
-  }
+  };
 
   render() {
     let { className, value, placeholder, isLocked } = this.props;

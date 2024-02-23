@@ -30,7 +30,7 @@ class LinkFormatter extends React.Component {
     value: [],
     column: {},
     row: {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -60,14 +60,14 @@ class LinkFormatter extends React.Component {
     this.otherTableID = this.tableID === table_id ? other_table_id : table_id;
 
     return linkMetaData.getLinkedCellValue(this.linkID, this.tableID, this.otherTableID, row._id);
-  }
+  };
 
   expandLinkedTableRow = (row) => {
     let { enableOpenLinkedRow, linkMetaData } = this.props;
     if (enableOpenLinkedRow) {
       linkMetaData.expandLinkedTableRow(row, this.otherTableID);
     }
-  }
+  };
 
   getDisplayValues = () => {
     let { column, linkMetaData } = this.props;
@@ -87,7 +87,7 @@ class LinkFormatter extends React.Component {
       return result;
     }
     return null;
-  }
+  };
 
   getDisplayValue = (linkedTable, row, displayColumnKey) => {
     let value = row[displayColumnKey];
@@ -105,7 +105,7 @@ class LinkFormatter extends React.Component {
       default:
         return value;
     }
-  }
+  };
 
   render() {
     const { containerClassName } = this.props;

@@ -54,11 +54,11 @@ class DTableFiltersPopover extends Component {
       e.preventDefault();
       this.props.hidePopover();
     }
-  }
+  };
 
   setSelectStatus = (status) => {
     this.isSelectOpen = status;
-  }
+  };
 
   hideDTablePopover = (e) => {
     if (this.dtablePopoverRef && !getEventClassName(e).includes('popover') && !this.dtablePopoverRef.contains(e.target)) {
@@ -67,11 +67,11 @@ class DTableFiltersPopover extends Component {
       e.stopPropagation();
       return false;
     }
-  }
+  };
 
   isNeedSubmit = () => {
     return this.props.isNeedSubmit;
-  }
+  };
 
   update = (filters) => {
     if (this.isNeedSubmit()) {
@@ -83,7 +83,7 @@ class DTableFiltersPopover extends Component {
       const update = { filters, filter_conjunction: this.state.filterConjunction };
       this.props.update(update);
     });
-  }
+  };
 
   deleteFilter = (filterIndex, scheduleUpdate) => {
     const filters = this.state.filters.slice(0);
@@ -92,13 +92,13 @@ class DTableFiltersPopover extends Component {
       scheduleUpdate();
     }
     this.update(filters);
-  }
+  };
 
   updateFilter = (filterIndex, updated) => {
     const filters = this.state.filters.slice(0);
     filters[filterIndex] = updated;
     this.update(filters);
-  }
+  };
 
   updateFilterConjunction = (conjunction) => {
     if (this.isNeedSubmit()) {
@@ -110,7 +110,7 @@ class DTableFiltersPopover extends Component {
       const update = {filters: this.state.filters, filter_conjunction: conjunction};
       this.props.update(update);
     });
-  }
+  };
 
   addFilter = (scheduleUpdate) => {
     let { columns } = this.props;
@@ -126,22 +126,22 @@ class DTableFiltersPopover extends Component {
     }
     filters.push(filter);
     this.update(filters);
-  }
+  };
 
   onClosePopover = () => {
     this.props.hidePopover();
-  }
+  };
 
   onSubmitFilters = () => {
     const { filters, filterConjunction } = this.state;
     const update = { filters, filter_conjunction: filterConjunction };
     this.props.update(update);
     this.props.hidePopover();
-  }
+  };
 
   onPopoverInsideClick = (e) => {
     e.stopPropagation();
-  }
+  };
 
   render() {
     const { target, columns, className, roleId, userDepartmentIdsMap, departments, lang, readOnly } = this.props;
