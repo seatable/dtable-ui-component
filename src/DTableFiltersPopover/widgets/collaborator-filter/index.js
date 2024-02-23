@@ -9,7 +9,7 @@ import './index.css';
 const propTypes = {
   filterIndex: PropTypes.number,
   filterTerm: PropTypes.oneOfType([PropTypes.array, PropTypes.string]), // Make the current bug execution the correct code, this can restore in this Component
-  filter_predicate: PropTypes.string, 
+  filter_predicate: PropTypes.string,
   collaborators: PropTypes.array,
   onSelectCollaborator: PropTypes.func,
   isLocked: PropTypes.bool,

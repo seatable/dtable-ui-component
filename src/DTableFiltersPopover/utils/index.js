@@ -40,7 +40,7 @@ export const isFilterTermArray = (column, filterPredicate) => {
     const { result_type, array_type } = data || {};
     if (result_type !== FORMULA_RESULT_TYPE.ARRAY) return false;
     return isArrayFilterTermByArrayType(array_type);
-  } 
+  }
   if (type === CellType.LINK) {
     const { array_type } = data || {};
     return isArrayFilterTermByArrayType(array_type);
@@ -194,7 +194,7 @@ export const getFilterByColumn = (column, value, { textDefaultPredicate } = {}, 
 
   let updatedFilter = Object.assign({}, filter, {column_key: column.key, filter_predicate: filterPredicate});
 
-  // text | number | long-text | url | email 
+  // text | number | long-text | url | email
   // auto-number | geolocation | duration
   updatedFilter.filter_term = '';
 
@@ -288,7 +288,7 @@ export const getUpdatedFilterByPredicate = (filter, column, filterPredicate) => 
   if (columnType === CellType.CHECKBOX) {
     updatedFilter.filter_term = false;
     return updatedFilter;
-  } 
+  }
   if ([CellType.SINGLE_SELECT, CellType.DEPARTMENT_SINGLE_SELECT].includes(columnType)) {
     if (ARRAY_PREDICATE[filterPredicate]) {
       if (ARRAY_PREDICATE[filter.filter_predicate] !== ARRAY_PREDICATE[filterPredicate]) {
@@ -304,7 +304,7 @@ export const getUpdatedFilterByPredicate = (filter, column, filterPredicate) => 
     return updatedFilter;
   }
   if ([CellType.CREATOR, CellType.LAST_MODIFIER].includes(columnType)) {
-    if (STRING_PREDICATE[filter.filter_predicate] !== STRING_PREDICATE[filterPredicate] 
+    if (STRING_PREDICATE[filter.filter_predicate] !== STRING_PREDICATE[filterPredicate]
       || filterPredicate === FILTER_PREDICATE_TYPE.INCLUDE_ME
     ) {
       updatedFilter.filter_term = [];
@@ -396,7 +396,7 @@ export const getDateColumnFormat = (column) => {
 
 const getMediaUrl = () => {
   return window?.dtable?.mediaUrl || window?.dtablePluginConfig?.mediaUrl || '/media/';
-}
+};
 
 export const generateDefaultUser = (name) => {
   const mediaUrl = getMediaUrl();

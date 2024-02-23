@@ -44,7 +44,7 @@ class RateItem extends React.Component {
     const { enterRateItemIndex, rateItemIndex, value, column, isShowRateItem, editable } = this.props;
     const { rate_style_color, rate_style_type } = column.data || {};
     const rateShowType = rate_style_type ? rate_style_type : 'dtable-icon-rate';
-    if (!isShowRateItem && rateItemIndex > value) return null; 
+    if (!isShowRateItem && rateItemIndex > value) return null;
     let itemStyle = {
       cursor: editable ? 'pointer': 'default',
       color: value >= rateItemIndex ? rate_style_color : '#e5e5e5'
@@ -59,7 +59,7 @@ class RateItem extends React.Component {
     }
 
     return (
-      <div 
+      <div
         onMouseEnter={this.onMouseEnterRateItem}
         onMouseLeave={this.onMouseLeaveRateItem}
         style={style}
@@ -67,9 +67,9 @@ class RateItem extends React.Component {
         className={`rate-item ${value >= rateItemIndex ? 'rate-item-active' : ''}`}
       >
         <span className={`dtable-font ${rateShowType}`} ref={this.tooltipRef}></span>
-        {editable && 
-          <UncontrolledTooltip 
-            placement='bottom' 
+        {editable &&
+          <UncontrolledTooltip
+            placement='bottom'
             target={this.tooltipRef}
           >
             {rateItemIndex}

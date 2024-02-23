@@ -66,7 +66,7 @@ class DepartmentSingleSelect extends Component {
       targetDepartments = departments.filter(department => current_user_department_ids.includes(department.id));
     } else if (selectedRange === DEPARTMENT_SELECT_RANGE_MAP.CURRENT_USER_DEPARTMENT_AND_SUB) {
       const currentUserDepartments = departments.filter(department => current_user_department_ids.includes(department.id));
-      topParentIds = currentUserDepartments.filter(department => 
+      topParentIds = currentUserDepartments.filter(department =>
         !current_user_department_ids.includes(department.parent_id)).map(department => department.id);
       targetDepartments = departments.filter(department => current_user_department_and_sub_ids.includes(department.id));
     } else {
@@ -154,7 +154,7 @@ class DepartmentSingleSelect extends Component {
               ></span>
             }
             <span style={nameStyle} title={name} className="text-truncate department-name">{name}</span>
-            {isChecked && 
+            {isChecked &&
               <span className="department-check-icon">
                 <i className="dtable-font dtable-icon-check-mark"></i>
               </span>
@@ -240,9 +240,9 @@ class DepartmentSingleSelect extends Component {
 
   render() {
     return (
-      <div 
-        className="dropdown-menu department-editor-list dtable-ui show m-0 p-0" 
-        style={this.props.menuStyle} 
+      <div
+        className="dropdown-menu department-editor-list dtable-ui show m-0 p-0"
+        style={this.props.menuStyle}
         ref={ref => this.departmentsRef = ref}
         onClick={this.onStopPropagation}
         onMouseDown={this.onStopPropagation}

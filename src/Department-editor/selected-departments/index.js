@@ -51,7 +51,7 @@ function SelectedDepartments(props) {
           <span className="dtable-font dtable-icon-department-single-selection"></span>
         </div>
         <span className="department-name">{getLocale('Deleted_department')}</span>
-        {isShowRemoveIcon && 
+        {isShowRemoveIcon &&
           <span className="remove-container">
             <span className="remove-icon" onClick={(event) => removeDepartment(event, content)}>
               <i className="dtable-font dtable-icon-fork-number department-remove-icon"></i>

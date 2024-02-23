@@ -13,7 +13,7 @@ function DepartmentMultipleSelect(props) {
   const [departments, setDepartments] = useState(getNormalizedDepartments(initialDepartments));
   const departmentContainerRef = useRef(null);
   const validDepartmentsRef = useRef([]);
-  
+
   useEffect(() => {
     if (departmentContainerRef.current) {
       resetContainerPosition();
@@ -81,11 +81,11 @@ function DepartmentMultipleSelect(props) {
     return (
       <Fragment key={id}>
         <div className="dropdown-item d-flex align-items-center" onClick={(event) => onSelectDepartment(event, id)}>
-          <input 
-            type="checkbox" 
-            className="vam department-select-input" 
-            checked={inputChecked} 
-            style={inputStyle} 
+          <input
+            type="checkbox"
+            className="vam department-select-input"
+            checked={inputChecked}
+            style={inputStyle}
             onChange={() => {}}
           />
           {hasChild && !searchVal &&
@@ -120,7 +120,7 @@ function DepartmentMultipleSelect(props) {
         onMouseDown={onStopPropagation}
         className={`dropdown-menu show departments-container dtable-ui ${classNamePrefix}`}
       >
-        {isShowSelectedDepartments && 
+        {isShowSelectedDepartments &&
           <div className="selected-departments dtable-ui" onClick={onClick}>
             <SelectedDepartments
               value={value}
