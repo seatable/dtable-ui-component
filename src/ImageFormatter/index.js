@@ -24,6 +24,8 @@ class ImageFormatter extends React.Component {
       isPreviewImage: false,
       previewImageIndex: -1,
     };
+    this.canDelete = props.deleteImage && !props.readOnly;
+    this.canRotate = props.rotateImage && !props.readOnly;
   }
 
   onImageClick = (index) => {
@@ -59,16 +61,10 @@ class ImageFormatter extends React.Component {
   };
 
   deleteImage = (index) => {
-    const { readOnly } = this.props;
-    if (readOnly) return;
-    if (!this.props.deleteImage) return;
     this.props.deleteImage(index);
   };
 
   onRotateImage = (index, degree) => {
-    const { readOnly } = this.props;
-    if (readOnly) return;
-    if (!this.props.rotateImage) return;
     this.props.rotateImage(index, degree);
   };
 
@@ -103,9 +99,9 @@ class ImageFormatter extends React.Component {
             closeImagePopup={this.closeImagePopup}
             moveToPrevImage={this.movePrev}
             moveToNextImage={this.moveNext}
-            deleteImage={readOnly ? null : this.deleteImage}
+            deleteImage={this.canDelete ? this.deleteImage : null}
             downloadImage={this.downloadImage}
-            onRotateImage={readOnly ? null : this.onRotateImage}
+            onRotateImage={this.canRotate ? this.onRotateImage : null}
             readOnly={readOnly}
             server={server}
             moveToPrevRowImage={this.props.moveToPrevRowImage}
