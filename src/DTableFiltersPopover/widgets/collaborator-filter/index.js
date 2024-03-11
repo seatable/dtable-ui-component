@@ -100,7 +100,7 @@ class CollaboratorFilter extends Component {
         isLocked={this.props.isLocked}
         supportMultipleSelect={isSupportMultipleSelect}
         searchable={true}
-        searchPlaceholder={getLocale('Find_a_collaborator')}
+        searchPlaceholder={getLocale('Search_collaborator')}
         isShowSelected={false}
       />
     );

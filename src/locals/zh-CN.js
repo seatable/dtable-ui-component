@@ -7,7 +7,7 @@ const zh_CN = {
   No_option: '没有标签',
   Choose_an_option: '选择一个标签',
   Add_a_collaborator: '添加协作者',
-  Find_a_collaborator: '查找协作者',
+  Search_collaborator: '搜索协作者',
   No_collaborators_available: '没有找到协作者',
   Done: '完成',
   Choose_a_collaborator: '选择一个协作者',

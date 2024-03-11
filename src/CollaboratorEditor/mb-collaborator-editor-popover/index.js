@@ -125,7 +125,7 @@ class MBCollaboratorEditorPopover extends React.Component {
             <input
               className="form-control"
               type="text"
-              placeholder={getLocale('Find_a_collaborator')}
+              placeholder={getLocale('Search_collaborator')}
               value={searchVal}
               onChange={this.onChangeSearch}
               onClick={this.onInputClick}
