@@ -50,13 +50,13 @@ class DepartmentSingleSelectEditor extends Component {
     this.setState({ value }, () => {
       this.isRowExpand ? onCommit(this.getValue(), column) : onCommit();
     });
-  }
+  };
 
   getValue = () => {
     const updated = {};
     updated[this.props.column.key] = this.state.value;
     return updated;
-  }
+  };
 
   createSpecificDepartments = () => {
     return DEPARTMENT_SELECT_RANGE_OPTIONS.slice(0, 2).map((option) => {
@@ -66,8 +66,8 @@ class DepartmentSingleSelectEditor extends Component {
         label: (<span className="text-truncate department-name">{getLocale(name)}</span>)
       };
     });
-  }
-  
+  };
+
   render() {
     const { target, column, userDepartmentIdsMap, departments } = this.props;
 

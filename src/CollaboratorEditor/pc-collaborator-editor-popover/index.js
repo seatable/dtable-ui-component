@@ -66,7 +66,7 @@ class PCCollaboratorEditorPopover extends React.Component {
             value={searchValue}
             onChange={this.onValueChanged}
             onClick={this.onInputClick}
-            placeholder={getLocale('Find_a_collaborator')}
+            placeholder={getLocale('Search_collaborator')}
             ref={this.editorInputRef}
           ></input>
         </div>
