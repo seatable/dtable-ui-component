@@ -34,7 +34,7 @@ class App extends React.Component {
         </Row>
       );
     });
-  }
+  };
 
   render() {
     return (

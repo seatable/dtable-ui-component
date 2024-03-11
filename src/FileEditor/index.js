@@ -20,7 +20,7 @@ class FileEditor extends React.Component {
   static defaultProps = {
     isCheckRepeat: false,
     columnType: 'file',
-  }
+  };
 
   constructor(props) {
     super(props);

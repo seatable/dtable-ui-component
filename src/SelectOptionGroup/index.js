@@ -94,7 +94,7 @@ class SelectOptionGroup extends Component {
       e.stopPropagation();
       e.nativeEvent.stopImmediatePropagation();
     }
-  }
+  };
 
   scrollContent = () => {
     const { offsetHeight, scrollTop } = this.optionGroupContentRef;
