@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const path = require('path');
@@ -366,6 +366,7 @@ module.exports = function (webpackEnv) {
       ],
       fallback: {
         path: require.resolve('path-browserify'),
+        'process/browser' : require.resolve('process/browser'),
       }
     },
     module: {

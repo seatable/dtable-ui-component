@@ -47,7 +47,8 @@ class DtableMarkdownViewer extends React.PureComponent {
     if (this.isWindowsWechat) {
       return (<div className="long-text-container article" dangerouslySetInnerHTML={{__html: this.state.innerHtml}}></div>);
     }
-    return (<MarkdownViewer markdownContent={this.props.markdownContent} showTOC={this.props.showTOC}/>);
+    const { showTOC, markdownContent } = this.props;
+    return <MarkdownViewer value={markdownContent} isShowOutline={showTOC}/>;
   }
 }
 
