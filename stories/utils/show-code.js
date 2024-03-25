@@ -1,19 +1,25 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import classnames from 'classnames';
-import Description from './description';
+
+const propTypes = {
+  children: PropTypes.any,
+  title: PropTypes.string,
+  sub: PropTypes.string,
+};
 
 const options = {
   showDefaultProps: false,
   showFunctions: true,
   maxInlineAttributesLineLength: 20
-}
+};
 
-export default class ShowCode extends Component {
+class ShowCode extends Component {
 
   state = {
     fold: true
-  }
+  };
 
   renderJsxCode() {
     const { children } = this.props;
@@ -31,7 +37,7 @@ export default class ShowCode extends Component {
         code += '\n';
       });
     } else {
-      code += reactElementToJSXString(children, options)
+      code += reactElementToJSXString(children, options);
     }
 
     return code;
@@ -39,7 +45,7 @@ export default class ShowCode extends Component {
 
   handleCodeFold = () => {
     this.setState({fold: !this.state.fold});
-  }
+  };
 
   render() {
     const { title, sub, children } = this.props;
@@ -52,15 +58,17 @@ export default class ShowCode extends Component {
         {<div className='storybook-code-btn' onClick={this.handleCodeFold}>{fold ? 'ShowCode' : 'hideCode'}</div>}
         {title && <p className='storybook-title'>{title}</p>}
         {sub && <p className='storybook-sub'>{sub}</p>}
-        <div className='storybook-children'>
-          {children}
-        </div>
+        <div className='storybook-children'>{children}</div>
         {!fold && (
           <pre className={codeClass}>
             {this.renderJsxCode()}
           </pre>
         )}
       </div>
-    )
+    );
   }
 }
+
+ShowCode.propTypes = propTypes;
+
+export default ShowCode;
