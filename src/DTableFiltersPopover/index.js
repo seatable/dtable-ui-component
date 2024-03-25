@@ -9,7 +9,7 @@ import { getFilterByColumn } from './utils';
 import FiltersList from './widgets/filter-list';
 import eventBus from '../utils/event-bus';
 import { EVENT_BUS_TYPE } from '../constants';
-import { getLocale } from '../lang';
+import { getLocale, setLocale } from '../lang';
 
 import './index.css';
 
@@ -38,6 +38,8 @@ class DTableFiltersPopover extends Component {
   }
 
   componentDidMount() {
+    const { lang } = this.props;
+    lang && setLocale(lang);
     document.addEventListener('mousedown', this.hideDTablePopover, true);
     document.addEventListener('keydown', this.onHotKey);
     this.unsubscribeOpenSelect = eventBus.subscribe(EVENT_BUS_TYPE.OPEN_SELECT, this.setSelectStatus);
