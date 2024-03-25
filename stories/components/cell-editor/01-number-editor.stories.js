@@ -126,14 +126,14 @@ const meta = {
           {context.parameters.subTitle && <p className='storybook-sub'>{context.parameters.subTitle}</p>}
           <Story />
         </div>
-      )
-    } 
+      );
+    }
   ],
   parameters: {
     title: '',
     subTitle: '',
   }
-}
+};
 
 export default meta;
 
@@ -142,11 +142,11 @@ export const Demo1 = {
     isReadOnly: true,
     value: value1_1,
     column: column1_1,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
     // title: 'Scene One: editor permission is readonly',
-    subTitle: "number format: 'NUMBER'"
+    subTitle: 'number format: \'NUMBER\''
   }
 };
 
@@ -155,71 +155,71 @@ export const Demo2 = {
     isReadOnly: true,
     value: value1_1,
     column: column1_2,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'NUMBER_WITH_COMMAS'",
+    subTitle: 'number format: \'NUMBER_WITH_COMMAS\'',
   }
-}
+};
 
 export const Demo3 = {
   args: {
     isReadOnly: true,
     value: value1_1,
     column: column1_3,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'DOLLAR' ",
+    subTitle: 'number format: \'DOLLAR\' ',
   }
-}
+};
 
 export const Demo4 = {
   args: {
     isReadOnly: true,
     value: value1_1,
     column: column1_4,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'EURO' ",
+    subTitle: 'number format: \'EURO\' ',
   }
-}
+};
 
 export const Demo5 = {
   args: {
     isReadOnly: true,
     value: value1_1,
     column: column1_5,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'YUAN' ",
+    subTitle: 'number format: \'YUAN\' ',
   }
-}
+};
 
 export const Demo6 = {
   args: {
     isReadOnly: true,
     value: value1_1,
     column: column1_6,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'PERCENT' ",
+    subTitle: 'number format: \'PERCENT\' ',
   }
-}
+};
 
 export const Demo7 = {
   args: {
     isReadOnly: false,
     value: value2_1,
     column: column2_1,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
     // title: 'Scene One: editor permission is read and write',
-    subTitle: "number format: 'NUMBER'"
+    subTitle: 'number format: \'NUMBER\''
   }
 };
 
@@ -228,57 +228,57 @@ export const Demo8 = {
     isReadOnly: false,
     value: value2_1,
     column: column2_2,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'NUMBER_WITH_COMMAS'",
+    subTitle: 'number format: \'NUMBER_WITH_COMMAS\'',
   }
-}
+};
 
 export const Demo9 = {
   args: {
     isReadOnly: false,
     value: value2_1,
     column: column2_3,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'DOLLAR' ",
+    subTitle: 'number format: \'DOLLAR\' ',
   }
-}
+};
 
 export const Demo10 = {
   args: {
     isReadOnly: false,
     value: value2_1,
     column: column2_4,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'EURO' ",
+    subTitle: 'number format: \'EURO\' ',
   }
-}
+};
 
 export const Demo11 = {
   args: {
     isReadOnly: false,
     value: value2_1,
     column: column2_5,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'YUAN' ",
+    subTitle: 'number format: \'YUAN\' ',
   }
-}
+};
 
 export const Demo12 = {
   args: {
     isReadOnly: false,
     value: value2_1,
     column: column2_6,
-    onCommit: (updated) => { action('onCommit')(updated) },
+    onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
-    subTitle: "number format: 'PERCENT' ",
+    subTitle: 'number format: \'PERCENT\' ',
   }
-}
+};
