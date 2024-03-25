@@ -3,7 +3,7 @@ import Option from './option';
 import PropTypes from 'prop-types';
 import DTableSearchInput from '../DTableSearchInput';
 import KeyCodes from './KeyCodes';
-import ClickOutside from '../common/ClickOutside';
+import ClickOutside from '../ClickOutside';
 
 import './index.css';
 

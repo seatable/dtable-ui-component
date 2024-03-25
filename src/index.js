@@ -74,3 +74,6 @@ export { default as FieldDisplaySetting } from './FieldDisplaySetting';
 
 // popover
 export { default as DTableFiltersPopover } from './DTableFiltersPopover';
+
+// clickOutside
+export { default as ClickOutside } from './ClickOutside';
