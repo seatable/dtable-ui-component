@@ -82,10 +82,10 @@ let column1 = {
   type: 'formula',
   name: 'abcd',
   data: {
-    decimal: "dot",
+    decimal: 'dot',
     enable_precision: true,
-    format: "number",
-    thousands: "comma",
+    format: 'number',
+    thousands: 'comma',
     precision: 2,
     result_type: 'number',
   }

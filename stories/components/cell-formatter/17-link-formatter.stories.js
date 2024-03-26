@@ -6,8 +6,8 @@ import '../../css/cell-formatter.css';
 
 const linkedData = [
   {
-    _id: 'abcd', 
-    table1_id: '0000', 
+    _id: 'abcd',
+    table1_id: '0000',
     table2_id: '1111',
     table1_table2_maps: {
       '111': ['aaa', 'bbb', 'ddd'],
@@ -21,8 +21,8 @@ const linkedData = [
     }
   },
   {
-    _id: 'mnpq', 
-    table1_id: '1111', 
+    _id: 'mnpq',
+    table1_id: '1111',
     table2_id: '0000',
     table1_table2_maps: {
       '111': ['aaa'],
@@ -36,8 +36,8 @@ const linkedData = [
     }
   },
   {
-    _id: 'qwer', 
-    table1_id: '0000', 
+    _id: 'qwer',
+    table1_id: '0000',
     table2_id: '1111',
     table1_table2_maps: {
       '111': ['ccc'],
@@ -53,7 +53,7 @@ const linkedData = [
 ];
 
 let linkedTables = [
-  { 
+  {
     _id: '0000',
     rows: [
       {_id: '111', '0000': 'xiaohong'},
@@ -65,7 +65,7 @@ let linkedTables = [
       { key: '1111', name: '计算', type: 'text'},
     ]
   },
-  { 
+  {
     _id: '1111',
     rows: [
       {_id: 'aaa', '0000': 'Alex'},
@@ -78,7 +78,7 @@ let linkedTables = [
       { key: '1111', name: '计算', type: 'text'},
     ]
   }
-]
+];
 
 const row1 = { _id: '111' };
 const row2 = { _id: 'aaa' };
@@ -118,7 +118,7 @@ let column3 = {
     other_table_id: '0000',
     display_column_key: '0000',
   }
-}
+};
 
 
 let linkMetaData = {
@@ -142,7 +142,7 @@ let linkMetaData = {
   expandLinkedTableRow: function(row, tableId) {
     alert('Row: ' + JSON.stringify(row) + ' tableId: ' +tableId);
   }
-}
+};
 
 const meta = {
   title: 'Formatters/link-formatter',

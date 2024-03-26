@@ -5,8 +5,8 @@ import LinkEditor from '../../../src/LinkEditor';
 
 const linkedData = [
   {
-    _id: 'abcd', 
-    table1_id: '0000', 
+    _id: 'abcd',
+    table1_id: '0000',
     table2_id: '1111',
     table1_table2_maps: {
       '111': ['aaa', 'bbb', 'ddd', 'eee', 'ffff', 'hhh', 'iii'],
@@ -20,8 +20,8 @@ const linkedData = [
     }
   },
   {
-    _id: 'mnpq', 
-    table1_id: '1111', 
+    _id: 'mnpq',
+    table1_id: '1111',
     table2_id: '0000',
     table1_table2_maps: {
       '111': ['aaa'],
@@ -35,8 +35,8 @@ const linkedData = [
     }
   },
   {
-    _id: 'qwer', 
-    table1_id: '0000', 
+    _id: 'qwer',
+    table1_id: '0000',
     table2_id: '1111',
     table1_table2_maps: {
       '111': ['ccc'],
@@ -52,7 +52,7 @@ const linkedData = [
 ];
 
 let linkedTables = [
-  { 
+  {
     _id: '0000',
     rows: [
       {_id: '111', '0000': 'xiaohong'},
@@ -64,7 +64,7 @@ let linkedTables = [
       { key: '1111', name: '计算', type: 'text'},
     ]
   },
-  { 
+  {
     _id: '1111',
     rows: [
       {_id: 'aaa', '0000': 'Alex'},

@@ -39,8 +39,8 @@ const value4 = {
 
 const value5 = {
   links: [
-    'http://baidu.com', 
-    'http://127.0.0.1', 
+    'http://baidu.com',
+    'http://127.0.0.1',
     'http://bingying.com'
   ],
   images: [
