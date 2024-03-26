@@ -1,6 +1,9 @@
 import de from '../locals/de';
 import en from '../locals/en';
 import fr from '../locals/fr';
+import pt from '../locals/pt';
+import ru from '../locals/ru';
+import es from '../locals/es';
 import zh_CN from '../locals/zh-CN';
 
 const zhCN = require('@seafile/seafile-calendar/lib/locale/zh_CN');
@@ -17,6 +20,9 @@ let langData = {
   'de': de,
   'en': en,
   'fr': fr,
+  'pt': pt,
+  'ru': ru,
+  'es': es,
   'zh-cn': zh_CN,
 };
 
