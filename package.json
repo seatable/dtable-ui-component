@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "4.4.26",
+  "version": "4.4.27",
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "2.0.5",
