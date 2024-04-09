@@ -27,7 +27,8 @@ class SimpleLongTextFormatter extends React.Component {
   }
 
   componentWillUnmount() {
-    this.clearTimer();
+    this.clearOpenPreviewTimer();
+    this.clearClosePreviewTimer();
   }
 
   renderLinks = (value) => {
@@ -80,21 +81,26 @@ class SimpleLongTextFormatter extends React.Component {
     return {};
   };
 
-  clearTimer = () => {
-    if (this.timer) {
-      clearTimeout(this.timer);
-      this.timer = null;
-    }
+  clearOpenPreviewTimer = () => {
+    if (!this.openPreviewTimer) return;
+    clearTimeout(this.openPreviewTimer);
+    this.openPreviewTimer = null;
+  };
+
+  clearClosePreviewTimer = () => {
+    if (!this.closePreviewTimer) return;
+    clearTimeout(this.closePreviewTimer);
+    this.closePreviewTimer = null;
   };
 
   onMouseEnter = () => {
+
     // in case that there is no `modal-wrapper`
-    if (!document.getElementById('modal-wrapper')) {
-      return;
-    }
-    this.clearTimer();
+    if (!document.getElementById('modal-wrapper')) return;
+
+    this.clearOpenPreviewTimer();
     if (this.props.value) {
-      this.timer = setTimeout(() => {
+      this.openPreviewTimer = setTimeout(() => {
         const style = this.ref.getBoundingClientRect();
         this.formatterStyle = style;
         this.setState({ isPreview: true });
@@ -103,7 +109,23 @@ class SimpleLongTextFormatter extends React.Component {
   };
 
   onMouseLeave = () => {
-    this.clearTimer();
+    this.clearOpenPreviewTimer();
+
+    // Case 1: The mouse moves out of the cell and is not in the preview component, close the preview component after 2S
+    this.closePreviewTimer = setTimeout(() => {
+      if (this.state.isPreview) {
+        this.setState({ isPreview: false });
+      }
+    }, 2000);
+  };
+
+  // Case 2: The mouse moves out of the cell and into the preview component, do not close the preview component
+  onPreviewMouseEnter = () => {
+    this.clearClosePreviewTimer();
+  };
+
+  // Case 2: The mouse move out of the preview component, close the preview component
+  onPreviewMouseLeave = () => {
     if (this.state.isPreview) {
       this.setState({ isPreview: false });
     }
@@ -126,7 +148,15 @@ class SimpleLongTextFormatter extends React.Component {
         {this.renderImages(value)}
         {this.renderContent(value)}
         {isPreview &&
-          <ModalPortal><LongTextPreview className={previewClassName} value={value} formatterStyle={this.formatterStyle}/></ModalPortal>
+          <ModalPortal>
+            <LongTextPreview
+              className={previewClassName}
+              value={value}
+              formatterStyle={this.formatterStyle}
+              onMouseEnter={this.onPreviewMouseEnter}
+              onMouseLeave={this.onPreviewMouseLeave}
+            />
+          </ModalPortal>
         }
       </div>
     );

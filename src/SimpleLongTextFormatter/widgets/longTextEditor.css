@@ -339,10 +339,12 @@
 
 .longtext-preview .sf-slate-viewer-scroll-container .sf-slate-viewer-article-container {
   width: 100%;
+  margin: 0;
 }
 
 .longtext-preview .longtext-container .article {
   padding: 10px 16px;
+  border: unset;
 }
 
 .row-height-128 .longtext-formatter .article {
