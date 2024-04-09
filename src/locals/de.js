@@ -85,6 +85,7 @@ const de = {
   "this_week": "Diese Woche",
   "this_month": "Diesen Monat",
   "this_year": "Dieses Jahr",
+  "Select_department": "Bereich auswählen",
 };
 
 export default de;

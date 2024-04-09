@@ -85,6 +85,7 @@ const zh_CN = {
   "this_week": "这个星期",
   "this_month": "这个月",
   "this_year": "今年",
+  "Select_department": "选择部门",
 };
 
 export default zh_CN;

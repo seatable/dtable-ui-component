@@ -85,6 +85,7 @@ const ru = {
   "this_week": "на этой неделе",
   "this_month": "в этом месяце",
   "this_year": "в этом году",
+  "Select_department": "Select department",
 };
 
 export default ru;

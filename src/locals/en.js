@@ -85,6 +85,7 @@ const en = {
   "this_week": "this week",
   "this_month": "this month",
   "this_year": "this year",
+  "Select_department": "Select department",
 };
 
 export default en;
