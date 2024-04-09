@@ -43,7 +43,7 @@ const getPreviewContent = (markdownContent) => {
   const hrefList = markdownContent.match(hrefReg);
   if (hrefList) {
     const { images, links } = getLinks(hrefList);
-    return { preview, images, links };
+    return { preview, images, links, text: markdownContent };
   }
   return { preview, images: [], links: [], text: markdownContent };
 };
