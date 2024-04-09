@@ -325,11 +325,20 @@
   height: fit-content;
   max-height: 450px;
   margin-left: 0;
-  z-index: 100;
+  z-index: 10000;
   top: 0;
   box-shadow: 0 0 5px #ccc;
   border: 1px solid rgba(0, 40, 100, 0.12);
   transform: none;
+}
+
+.longtext-preview .sf-slate-viewer-scroll-container {
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.longtext-preview .sf-slate-viewer-scroll-container .sf-slate-viewer-article-container {
+  width: 100%;
 }
 
 .longtext-preview .longtext-container .article {

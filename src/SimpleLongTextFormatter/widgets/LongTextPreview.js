@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import DtableMarkdownViewer from './dtable-markdown-viewer';
 import './longTextEditor.css';
 
 const propTypes = {
-  value: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  className: PropTypes.string,
+  value: PropTypes.object,
   toggle: PropTypes.func,
   formatterStyle: PropTypes.object,
 };
@@ -45,9 +47,10 @@ class LongTextPreview extends React.PureComponent {
   };
 
   render() {
-    let markdownContent = this.props.value ? this.props.value.text : '';
+    const { className, value } = this.props;
+    const markdownContent = value ? value.text : '';
     return (
-      <div className="longtext-modal-dialog longtext-preview" style={this.getStyle()} ref={ref => this.ref = ref}>
+      <div className={classnames('longtext-modal-dialog longtext-preview', className)} style={this.getStyle()} ref={ref => this.ref = ref}>
         <div className='longtext-container longtext-container-scroll'>
           <DtableMarkdownViewer markdownContent={markdownContent} showTOC={false} />
         </div>

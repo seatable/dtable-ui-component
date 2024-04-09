@@ -111,8 +111,8 @@ class SimpleLongTextFormatter extends React.Component {
 
   render() {
     const { isPreview } = this.state;
-    const { containerClassName } = this.props;
-    const className= classnames('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
+    const { containerClassName, previewClassName } = this.props;
+    const className = classnames('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
     const value = this.translateValue();
     return (
       <div
@@ -126,7 +126,7 @@ class SimpleLongTextFormatter extends React.Component {
         {this.renderImages(value)}
         {this.renderContent(value)}
         {isPreview &&
-          <ModalPortal><LongTextPreview value={value} formatterStyle={this.formatterStyle}/></ModalPortal>
+          <ModalPortal><LongTextPreview className={previewClassName} value={value} formatterStyle={this.formatterStyle}/></ModalPortal>
         }
       </div>
     );
@@ -136,6 +136,7 @@ class SimpleLongTextFormatter extends React.Component {
 SimpleLongTextFormatter.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   containerClassName: PropTypes.string,
+  previewClassName: PropTypes.string,
 };
 
 export default SimpleLongTextFormatter;
