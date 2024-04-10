@@ -122,7 +122,7 @@ class MBLinkEditorPopover extends React.Component {
             <input
               className="form-control"
               type="text"
-              placeholder={getLocale('Find_an_option')}
+              placeholder={getLocale('Search_option')}
               value={searchVal}
               onChange={this.onChangeSearch}
               onClick={this.onInputClick}

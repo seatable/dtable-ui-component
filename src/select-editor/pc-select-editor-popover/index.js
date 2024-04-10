@@ -80,7 +80,7 @@ class PCSelectEditorPopover extends React.Component {
     return (
       <div className="dtable-ui-editor-popover dtable-ui-select-editor-popover" style={popoverStyle}>
         <div className="select-options-search">
-          <input className="form-control" onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_an_option')}></input>
+          <input className="form-control" onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Search_option')}></input>
         </div>
         <div className="select-options-container">
           {options.length > 0 && options.map((option, index) => {

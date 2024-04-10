@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 const zh_CN = {
   "Add_an_option": "添加一个选项",
-  "Find_an_option": "查找标签",
+  "Search_option": "查找标签",
   "No_options_available": "没有找到标签。",
   "Current_option": "当前标签",
   "No_option": "没有标签",
@@ -18,7 +18,7 @@ const zh_CN = {
   "Are_you_sure_you_want_to_delete_this_image": "你确定要删除此图片吗？",
   "Cancel": "取消",
   "Delete": "删除",
-  "Find_a_department": "查找部门",
+  "Search_department": "查找部门",
   "No_departments_available": "没有可用的部门",
   "Current_user_department": "当前用户的部门",
   "Current_user_department_and_sub": "当前用户的部门和子部门",
@@ -32,7 +32,7 @@ const zh_CN = {
   "Add_a_creator": "增加创建者",
   "Add_a_last_modifier": "增加最后修改者",
   "Invalid_filter": "无效的过滤器",
-  "Find_column": "查找列",
+  "Search_column": "查找列",
   "No_results": "没有结果",
   "Select_option(s)": "选择标签",
   "contains": "包含",

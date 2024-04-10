@@ -252,7 +252,7 @@ class DepartmentSingleSelect extends Component {
             className="form-control"
             type="text"
             autoFocus
-            placeholder={getLocale('Find_a_department')}
+            placeholder={getLocale('Search_department')}
             value={this.state.searchVal}
             onChange={this.onChangeSearch}
             onClick={this.onStopPropagation}

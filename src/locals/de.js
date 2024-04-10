@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 const de = {
   "Add_an_option": "Fügen Sie eine Option hinzu",
-  "Find_an_option": "Finden Sie eine Option",
+  "Search_option": "Finden Sie eine Option",
   "No_options_available": "Es sind keine Optionen verfügbar.",
   "Current_option": "Aktuelle Option",
   "No_option": "Keine Option",
@@ -18,7 +18,7 @@ const de = {
   "Are_you_sure_you_want_to_delete_this_image": "Möchten Sie das Bild wirklich löschen?",
   "Cancel": "Abbrechen",
   "Delete": "Löschen",
-  "Find_a_department": "Bereich suchen",
+  "Search_department": "Bereich suchen",
   "No_departments_available": "Es sind keine Departments verfügbar.",
   "Current_user_department": "Department des aktuellen Benutzers",
   "Current_user_department_and_sub": "Bereich und Unterbereiche des aktuellen Benutzers",
@@ -32,7 +32,7 @@ const de = {
   "Add_a_creator": "Mitarbeiter hinzufügen",
   "Add_a_last_modifier": "Letzten Bearbeiter hinzufügen",
   "Invalid_filter": "Ungültiger Filter",
-  "Find_column": "Spalte suchen",
+  "Search_column": "Spalte suchen",
   "No_results": "Keine Ergebnisse",
   "Select_option(s)": "Option(en) auswählen",
   "contains": "enthält",

@@ -58,7 +58,7 @@ class PCLinkEditorPopover extends React.Component {
     return (
       <div className="dtable-ui-editor-popover dtable-ui-link-editor-popover" style={popoverStyle}>
         <div className="link-options-search">
-          <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Find_an_option')}></input>
+          <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Search_option')}></input>
         </div>
         <div className="link-options-container">
           {options.length > 0 && options.map((option, index) => {

@@ -135,7 +135,7 @@ function DepartmentMultipleSelect(props) {
             className="form-control"
             type="text"
             autoFocus
-            placeholder={getLocale('Find_a_department')}
+            placeholder={getLocale('Search_department')}
             value={searchVal}
             onChange={onChangeSearch}
             onClick={onClick}

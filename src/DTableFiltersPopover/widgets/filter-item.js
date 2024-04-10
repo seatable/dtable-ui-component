@@ -327,7 +327,7 @@ class FilterItem extends React.Component {
         onSelectOption={this.onSelectMultiple}
         placeholder={getLocale('Select_option(s)')}
         searchable={true}
-        searchPlaceholder={getLocale('Find_an_option')}
+        searchPlaceholder={getLocale('Search_option')}
         noOptionsPlaceholder={getLocale('No_options_available')}
         supportMultipleSelect={isSupportMultipleSelect}
       />
@@ -414,7 +414,7 @@ class FilterItem extends React.Component {
             onSelectOption={this.onSelectSingle}
             placeholder={getLocale('Select_an_option')}
             searchable={true}
-            searchPlaceholder={getLocale('Find_an_option')}
+            searchPlaceholder={getLocale('Search_option')}
             noOptionsPlaceholder={getLocale('No_options_available')}
           />
         );
@@ -618,7 +618,7 @@ class FilterItem extends React.Component {
                 options={filterColumnOptions}
                 onSelectOption={this.onSelectColumn}
                 searchable={true}
-                searchPlaceholder={getLocale('Find_column')}
+                searchPlaceholder={getLocale('Search_column')}
                 noOptionsPlaceholder={getLocale('No_results')}
               />
             </div>
