@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 const en = {
   "Add_an_option": "Add an option",
-  "Find_an_option": "Find a option",
+  "Search_option": "Search option",
   "No_options_available": "No options available",
   "Current_option": "Current option",
   "No_option": "No option",
@@ -18,7 +18,7 @@ const en = {
   "Are_you_sure_you_want_to_delete_this_image": "Are you sure you want to delete this image?",
   "Cancel": "Cancel",
   "Delete": "Delete",
-  "Find_a_department": "Find a department",
+  "Search_department": "Search department",
   "No_departments_available": "No departments available",
   "Current_user_department": "Current user\"s department",
   "Current_user_department_and_sub": "Current user\"s department and sub-departments",
@@ -32,7 +32,7 @@ const en = {
   "Add_a_creator": "Add a creator",
   "Add_a_last_modifier": "Add a last modifier",
   "Invalid_filter": "Invalid filter",
-  "Find_column": "Find column",
+  "Search_column": "Search column",
   "No_results": "No results",
   "Select_option(s)": "Select option(s)",
   "contains": "contains",

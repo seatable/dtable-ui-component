@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 const ru = {
   "Add_an_option": "Add an option",
-  "Find_an_option": "Find a option",
+  "Search_option": "Search option",
   "No_options_available": "Нет доступных вариантов.",
   "Current_option": "Текущая опция",
   "No_option": "Нет опций",
@@ -18,7 +18,7 @@ const ru = {
   "Are_you_sure_you_want_to_delete_this_file": "Are you sure you want to delete this file?",
   "Cancel": "Отменить",
   "Delete": "Удалить",
-  "Find_a_department": "Find a department",
+  "Search_department": "Search department",
   "No_departments_available": "No departments available",
   "Current_user_department": "Current user's department",
   "Current_user_department_and_sub": "Current user's department and sub-departments",
@@ -32,7 +32,7 @@ const ru = {
   "Add_a_creator": "Добавить создателя",
   "Add_a_last_modifier": "Добавить последний изменивший",
   "Invalid_filter": "Invalid filter",
-  "Find_column": "Find column",
+  "Search_column": "Search column",
   "No_results": "Нет результатов.",
   "Select_option(s)": "Выберите опцию(и)",
   "contains": "содержит",

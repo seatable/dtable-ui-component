@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 const pt = {
   "Add_an_option": "Adicione uma opção",
-  "Find_an_option": "Encontre uma opção",
+  "Search_option": "Encontre uma opção",
   "No_options_available": "Sem opções disponíveis",
   "Current_option": "Opção atual",
   "No_option": "Nenhuma opção",
@@ -18,7 +18,7 @@ const pt = {
   "Are_you_sure_you_want_to_delete_this_file": "Tem certeza de que deseja excluir este arquivo?",
   "Cancel": "Cancelar",
   "Delete": "Excluir",
-  "Find_a_department": "Find a department",
+  "Search_department": "Search department",
   "No_departments_available": "No departments available",
   "Current_user_department": "Current user's department",
   "Current_user_department_and_sub": "Current user's department and sub-departments",
@@ -32,7 +32,7 @@ const pt = {
   "Add_a_creator": "Adicione um Criador",
   "Add_a_last_modifier": "Adicione um último modificador",
   "Invalid_filter": "Filtro inválido",
-  "Find_column": "Encontrar coluna",
+  "Search_column": "Encontrar coluna",
   "No_results": "Sem resultados.",
   "Select_option(s)": "Selecione as opções)",
   "contains": "contém",
