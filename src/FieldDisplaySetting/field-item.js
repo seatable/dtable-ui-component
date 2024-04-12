@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { COLUMNS_ICON_CONFIG } from 'dtable-utils';
-import { DTableSwitch } from '../index';
+import DTableSwitch from '../DTableSwitch';
 
 const propTypes = {
   field: PropTypes.object.isRequired,
