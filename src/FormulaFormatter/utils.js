@@ -1,3 +1,4 @@
+import { CellType, FORMULA_RESULT_TYPE, FORMULA_COLUMN_TYPES } from 'dtable-utils';
 import { ARRAY_FORMAT_COLUMNS, SIMPLE_CELL_COLUMNS, SIMPLE_CELL_FORMULA_RESULTS } from '../constants';
 import getPreviewContent from '../SimpleLongTextFormatter/normalize-long-text-value';
 
@@ -21,6 +22,46 @@ export const isValidCellValue = (value) => {
   if (JSON.stringify(value) === '{}') return false;
   if (JSON.stringify(value) === '[]') return false;
   return true;
+};
+
+export const isValidUrl = (url) => {
+  const reg = /^(([-a-zA-Z0-9+.]+):\/\/)[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/;
+
+  return reg.test(url);
+};
+
+export const isUrlColumn = (column) => {
+  let { type, data } = column;
+  if (FORMULA_COLUMN_TYPES.includes(type)) {
+    const { result_type, array_type } = data || {};
+    if (result_type === FORMULA_RESULT_TYPE.ARRAY) {
+      return array_type === CellType.URL;
+    }
+    return false;
+  }
+  return type === CellType.URL;
+};
+
+export const isEmailColumn = (column) => {
+  let { type, data } = column;
+  if (FORMULA_COLUMN_TYPES.includes(type)) {
+    const { result_type, array_type } = data || {};
+    if (result_type === FORMULA_RESULT_TYPE.ARRAY) {
+      return array_type === CellType.EMAIL;
+    }
+    return false;
+  }
+  return type === CellType.EMAIL;
+};
+
+export const openUrlLink = (url) => {
+  let a = document.createElement('a');
+  document.body.appendChild(a);
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.click();
+  document.body.removeChild(a);
 };
 
 export const getFormulaArrayValue = (value, isFlat = true) => {
