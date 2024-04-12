@@ -85,6 +85,9 @@ const en = {
   "this_week": "this week",
   "this_month": "this month",
   "this_year": "this year",
+  "last_week": "last week",
+  "last_month": "last month",
+  "last_year": "last year",
 };
 
 export default en;

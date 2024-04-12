@@ -85,6 +85,9 @@ const zh_CN = {
   "this_week": "这个星期",
   "this_month": "这个月",
   "this_year": "今年",
+  "last_week": "上个星期",
+  "last_month": "上个月",
+  "last_year": "去年",
 };
 
 export default zh_CN;

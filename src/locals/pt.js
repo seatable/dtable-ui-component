@@ -85,6 +85,9 @@ const pt = {
   "this_week": "essa semana",
   "this_month": "este mês",
   "this_year": "este ano",
+  "last_week": "semana anterior",
+  "last_month": "mês passado",
+  "last_year": "ano passado",
 };
 
 export default pt;

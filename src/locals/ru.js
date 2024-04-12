@@ -85,6 +85,9 @@ const ru = {
   "this_week": "на этой неделе",
   "this_month": "в этом месяце",
   "this_year": "в этом году",
+  "last_week": "last week",
+  "last_month": "last month",
+  "last_year": "last year",
 };
 
 export default ru;

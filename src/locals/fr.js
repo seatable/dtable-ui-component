@@ -85,6 +85,9 @@ const fr = {
   "this_week": "cette semaine",
   "this_month": "ce mois",
   "this_year": "cette année",
+  "last_week": "la semaine dernière",
+  "last_month": "le mois dernier",
+  "last_year": "l'année dernière",
 };
 
 export default fr;
