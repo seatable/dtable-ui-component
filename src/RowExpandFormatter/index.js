@@ -1,33 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import {
-  TextFormatter,
-  NumberFormatter,
-  CheckboxFormatter,
-  DateFormatter,
-  SingleSelectFormatter,
-  MultipleSelectFormatter,
-  CollaboratorFormatter,
-  LongTextFormatter,
-  GeolocationFormatter,
-  CTimeFormatter,
-  CreatorFormatter,
-  LastModifierFormatter,
-  MTimeFormatter,
-  AutoNumberFormatter,
-  DurationFormatter,
-  ButtonFormatter,
-  RowExpandUrlFormatter,
-  RowExpandEmailFormatter,
-  RowExpandRateFormatter,
-  RowExpandImageFormatter,
-  RowExpandFileFormatter,
-  RowExpandLinkFormatter,
-  RowExpandFormulaFormatter,
-  DigitalSignFormatter,
-  DepartmentSingleSelectFormatter,
-} from '../index';
+import TextFormatter from '../TextFormatter';
+import NumberFormatter from '../NumberFormatter';
+import CheckboxFormatter from '../CheckboxFormatter';
+import DateFormatter from '../DateFormatter';
+import SingleSelectFormatter from '../SingleSelectFormatter';
+import MultipleSelectFormatter from '../MultipleSelectFormatter';
+import CollaboratorFormatter from '../CollaboratorFormatter';
+import LongTextFormatter from '../LongTextFormatter';
+import GeolocationFormatter from '../GeolocationFormatter';
+import CTimeFormatter from '../CTimeFormatter';
+import CreatorFormatter from '../CreatorFormatter';
+import LastModifierFormatter from '../LastModifierFormatter';
+import MTimeFormatter from '../MTimeFormatter';
+import AutoNumberFormatter from '../AutoNumberFormatter';
+import DurationFormatter from '../DurationFormatter';
+import ButtonFormatter from '../ButtonFormatter';
+import RowExpandUrlFormatter from '../RowExpandUrlFormatter';
+import RowExpandEmailFormatter from '../RowExpandEmailFormatter';
+import RowExpandRateFormatter from '../RowExpandRateFormatter';
+import RowExpandImageFormatter from '../RowExpandImageFormatter';
+import RowExpandFileFormatter from '../RowExpandFileFormatter';
+import RowExpandLinkFormatter from '../RowExpandLinkFormatter';
+import RowExpandFormulaFormatter from '../RowExpandFormulaFormatter';
+import DigitalSignFormatter from '../DigitalSignFormatter';
+import DepartmentSingleSelectFormatter from '../DepartmentSingleSelectFormatter';
 import { CellType } from '../constants';
 
 import './index.css';

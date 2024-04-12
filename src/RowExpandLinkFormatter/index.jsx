@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { CellType } from '../constants';
-import { MultipleSelectFormatter, DateFormatter, CTimeFormatter, MTimeFormatter } from '../index';
+import MultipleSelectFormatter from '../MultipleSelectFormatter';
+import CTimeFormatter from '../CTimeFormatter';
+import MTimeFormatter from '../MTimeFormatter';
+import DateFormatter from '../DateFormatter';
 import CollaboratorItemFormatter from './collaborator-item-formatter';
 import { getFormulaArrayValue, isArrayFormatColumn } from './utils';
 import { getCellDisplayValue } from './value-display-utils';

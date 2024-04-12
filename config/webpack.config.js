@@ -1,5 +1,3 @@
-
-
 const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
@@ -26,8 +24,6 @@ const ForkTsCheckerWebpackPlugin =
     : require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
-
-const createEnvironmentHash = require('./webpack/persistentCache/createEnvironmentHash');
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
@@ -212,7 +208,7 @@ module.exports = function (webpackEnv) {
       isEnvDevelopment &&
         require.resolve('react-dev-utils/webpackHotDevClient'),
       // Finally, this is your app's code:
-      paths.appIndexJs,
+      isEnvDevelopment ? paths.applocalIndexJs : paths.appIndexJs,
       // We include the app code last so that if there is a runtime error during
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
@@ -245,19 +241,6 @@ module.exports = function (webpackEnv) {
         : isEnvDevelopment &&
           (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, '/')),
     },
-    // cache: {
-    //   type: 'filesystem',
-    //   version: createEnvironmentHash(env.raw),
-    //   cacheDirectory: paths.appWebpackCache,
-    //   store: 'pack',
-    //   buildDependencies: {
-    //     defaultWebpack: ['webpack/lib/'],
-    //     config: [__filename],
-    //     tsconfig: [paths.appTsConfig, paths.appJsConfig].filter(f =>
-    //       fs.existsSync(f)
-    //     ),
-    //   },
-    // },
     infrastructureLogging: {
       level: 'none',
     },
@@ -310,16 +293,16 @@ module.exports = function (webpackEnv) {
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      splitChunks: {
+      splitChunks: isEnvProduction ? {
         chunks: 'all',
         name: false,
-      },
+      } : false,
       // Keep the runtime chunk separated to enable long term caching
       // https://twitter.com/wSokra/status/969679223278505985
       // https://github.com/facebook/create-react-app/issues/5358
-      runtimeChunk: {
+      runtimeChunk: isEnvProduction ? {
         name: entrypoint => `runtime-${entrypoint.name}`,
-      },
+      } : false,
     },
     resolve: {
       // This allows you to set a fallback for where webpack should look for modules.
@@ -791,7 +774,6 @@ module.exports = function (webpackEnv) {
       !isEnvProduction &&
         new ESLintPlugin({
           // Plugin options
-          fix: true,
           extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx'],
           formatter: require.resolve('react-dev-utils/eslintFormatter'),
           eslintPath: require.resolve('eslint'),
