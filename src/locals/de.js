@@ -88,6 +88,7 @@ const de = {
   "last_week": "letzte Woche",
   "last_month": "letzten Monat",
   "last_year": "letztes Jahr",
+  "URL_is_invalid": "Die URL ist ungültig.",
 };
 
 export default de;

@@ -23,6 +23,22 @@ export const isValidCellValue = (value) => {
   return true;
 };
 
+export const isValidUrl = (url) => {
+  const reg = /^(([-a-zA-Z0-9+.]+):\/\/)[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]/;
+
+  return reg.test(url);
+};
+
+export const openUrlLink = (url) => {
+  let a = document.createElement('a');
+  document.body.appendChild(a);
+  a.href = url;
+  a.target = '_blank';
+  a.rel = 'noopener noreferrer';
+  a.click();
+  document.body.removeChild(a);
+};
+
 export const getFormulaArrayValue = (value, isFlat = true) => {
   if (!Array.isArray(value)) {
     return [];

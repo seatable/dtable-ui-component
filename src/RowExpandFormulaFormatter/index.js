@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString } from 'dtable-utils';
+import classnames from 'classnames';
+import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString, getColumnType } from 'dtable-utils';
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
 import { isArrayFormatColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
   convertValueToDtableLongTextValue } from '../FormulaFormatter/utils';
 import cellValueValidator from '../FormulaFormatter/cell-value-validator';
+import { isValidUrl, openUrlLink } from '../FormulaFormatter/utils';
+import toaster from '../toaster';
+import { getLocale } from '../lang';
 
 import '../FormulaFormatter/index.css';
 
@@ -18,12 +22,31 @@ export default class RowExpandFormulaFormatter extends React.Component {
     collaborators: PropTypes.array,
   };
 
+  onOpenUrlLink = (url) => {
+    if (!isValidUrl(url)) {
+      url = `http://${url}`;
+    }
+    try {
+      openUrlLink(url);
+    } catch {
+      toaster.danger(getLocale('URL_is_invalid'));
+    }
+  };
+
+  onOpenEmailLink = (email) => {
+    window.location.href = `mailto:${email.trim()}`;
+  };
+
   renderBorder = (dom) => {
     const { column } = this.props;
     const { result_type } = column.data;
     let style = { minHeight: '38px' };
     if (result_type === FORMULA_RESULT_TYPE.DATE || result_type === FORMULA_RESULT_TYPE.NUMBER) {
       style = { width: '320px' };
+    }
+    const columnType = getColumnType(column);
+    if ([CellType.URL, CellType.EMAIL].includes(columnType)) {
+      style = { ...style, position: 'relative' };
     }
     return (
       <div className="d-flex align-items-center form-control disabled h-auto" style={style}>{dom}</div>
@@ -44,9 +67,20 @@ export default class RowExpandFormulaFormatter extends React.Component {
       return this.renderBorder(this.createColumnFormatter(Formatter, formatterProps));
     }
 
+    const columnType = getColumnType(column);
     let cellValue = value;
     if (!Array.isArray(value)) {
       cellValue = cellValueValidator(value, array_type) ? [value] : [];
+    }
+    let formulaUrl = '';
+    if (columnType === CellType.URL) {
+      formulaUrl = cellValue[0];
+      formulaUrl = formulaUrl ? formulaUrl.trim() : '';
+    }
+    let formulaEmail = '';
+    if (columnType === CellType.EMAIL) {
+      formulaEmail = cellValue[0];
+      formulaEmail = formulaEmail ? formulaEmail.trim() : '';
     }
     return this.renderBorder(
       <div className="dtable-ui formula-formatter multiple">
@@ -54,9 +88,18 @@ export default class RowExpandFormulaFormatter extends React.Component {
           formatterProps.value = v;
           return (
             <div
-              className={`formula-formatter-content-item ${isSimpleCellFormatter(array_type) ? 'simple-cell-formatter' : ''}`}
+              className={classnames('formula-formatter-content-item',
+                { 'simple-cell-formatter': isSimpleCellFormatter(array_type) },
+                { 'formula-url-formatter-column': formulaUrl || formulaEmail }
+              )}
               key={`formula-formatter-content-item-${index}`}
             >
+              {formulaUrl &&
+                <span aria-hidden="true" className="dtable-font dtable-icon-url formula-url-link" onClick={this.onOpenUrlLink.bind(this, formulaUrl)}></span>
+              }
+              {formulaEmail &&
+                <span aria-hidden="true" className="dtable-font dtable-icon-email formula-email-link" onClick={this.onOpenEmailLink.bind(this, formulaEmail)}></span>
+              }
               {this.createColumnFormatter(Formatter, formatterProps)}
             </div>
           );

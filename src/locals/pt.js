@@ -88,6 +88,7 @@ const pt = {
   "last_week": "semana anterior",
   "last_month": "mês passado",
   "last_year": "ano passado",
+  "URL_is_invalid": "URL é inválido",
 };
 
 export default pt;

@@ -88,6 +88,7 @@ const ru = {
   "last_week": "last week",
   "last_month": "last month",
   "last_year": "last year",
+  "URL_is_invalid": "URL-адрес недействителен",
 };
 
 export default ru;
