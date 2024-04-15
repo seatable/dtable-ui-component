@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString } from 'dtable-utils';
+import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString, getColumnType } from 'dtable-utils';
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
 import { isArrayFormatColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
   convertValueToDtableLongTextValue } from '../FormulaFormatter/utils';
 import cellValueValidator from '../FormulaFormatter/cell-value-validator';
-import { isUrlColumn, isEmailColumn, isValidUrl, openUrlLink } from '../FormulaFormatter/utils';
+import { isValidUrl, openUrlLink } from '../FormulaFormatter/utils';
 
 import '../FormulaFormatter/index.css';
 
@@ -44,7 +44,8 @@ export default class RowExpandFormulaFormatter extends React.Component {
     if (result_type === FORMULA_RESULT_TYPE.DATE || result_type === FORMULA_RESULT_TYPE.NUMBER) {
       style = { width: '320px' };
     }
-    if (isUrlColumn(column) || isEmailColumn(column)) {
+    const columnType = getColumnType(column);
+    if ([CellType.URL, CellType.EMAIL].includes(columnType)) {
       style = { ...style, position: 'relative' };
     }
     return (
@@ -66,17 +67,18 @@ export default class RowExpandFormulaFormatter extends React.Component {
       return this.renderBorder(this.createColumnFormatter(Formatter, formatterProps));
     }
 
+    const columnType = getColumnType(column);
     let cellValue = value;
     if (!Array.isArray(value)) {
       cellValue = cellValueValidator(value, array_type) ? [value] : [];
     }
     let formulaUrl = '';
-    if (isUrlColumn(column)) {
+    if (columnType === CellType.URL) {
       formulaUrl = cellValue[0];
       formulaUrl = formulaUrl ? formulaUrl.trim() : '';
     }
     let formulaEmail = '';
-    if (isEmailColumn(column)) {
+    if (columnType === CellType.EMAIL) {
       formulaEmail = cellValue[0];
       formulaEmail = formulaEmail ? formulaEmail.trim() : '';
     }
