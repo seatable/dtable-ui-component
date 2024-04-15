@@ -88,6 +88,7 @@ const zh_CN = {
   "last_week": "上个星期",
   "last_month": "上个月",
   "last_year": "去年",
+  "URL_is_invalid": "URL 无效",
 };
 
 export default zh_CN;

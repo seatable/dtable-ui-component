@@ -8,6 +8,8 @@ import { isArrayFormatColumn, isSimpleCellFormatter, isFunction, getFormulaArray
   convertValueToDtableLongTextValue } from '../FormulaFormatter/utils';
 import cellValueValidator from '../FormulaFormatter/cell-value-validator';
 import { isValidUrl, openUrlLink } from '../FormulaFormatter/utils';
+import toaster from '../toaster';
+import { getLocale } from '../lang';
 
 import '../FormulaFormatter/index.css';
 
@@ -21,21 +23,19 @@ export default class RowExpandFormulaFormatter extends React.Component {
   };
 
   onOpenUrlLink = (url) => {
-    const { t } = this.props;
     if (!isValidUrl(url)) {
       url = `http://${url}`;
     }
     try {
       openUrlLink(url);
     } catch {
-      toaster.danger(t('URL_is_invalid'));
+      toaster.danger(getLocale('URL_is_invalid'));
     }
-  }
+  };
 
   onOpenEmailLink = (email) => {
-    let validEmail = email.trim();
-    location.href = `mailto:${validEmail}`;
-  }
+    window.location.href = `mailto:${email.trim()}`;
+  };
 
   renderBorder = (dom) => {
     const { column } = this.props;
@@ -88,7 +88,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
           formatterProps.value = v;
           return (
             <div
-              className={classnames('formula-formatter-content-item', 
+              className={classnames('formula-formatter-content-item',
                 { 'simple-cell-formatter': isSimpleCellFormatter(array_type) },
                 { 'formula-url-formatter-column': formulaUrl || formulaEmail }
               )}
