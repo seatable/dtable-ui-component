@@ -9,6 +9,10 @@ export default class FileItemFormatter extends Component {
   };
 
   getFileIconData = (item) => {
+    const imageExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'];
+    if (imageExtensions.some(imageExt => item.name.toLowerCase().endsWith(imageExt))){
+      return item.url;
+    }
     let fileIconUrl = getFileIconUrl(item.name, item.type);
     let fileIconData = require('./' + fileIconUrl);
     return fileIconData;
