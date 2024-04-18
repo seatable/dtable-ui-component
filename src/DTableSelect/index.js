@@ -22,6 +22,7 @@ export default class DTableSelect extends React.Component {
     isDisabled: PropTypes.bool,
     customFilterOption: PropTypes.func,
     form: PropTypes.string,
+    autoFocus: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -32,6 +33,7 @@ export default class DTableSelect extends React.Component {
     isClearable: false,
     placeholder: '',
     isMulti: false,
+    autoFocus: false,
     menuPortalTarget: '.modal',
     noOptionsMessage: () => {
       return null;
@@ -40,7 +42,7 @@ export default class DTableSelect extends React.Component {
 
   render() {
     const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage,
-      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption } = this.props;
+      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus } = this.props;
     return (
       <Select
         value={value}
@@ -63,6 +65,7 @@ export default class DTableSelect extends React.Component {
         ref={innerRef}
         filterOption={customFilterOption}
         form={form}
+        autoFocus={autoFocus}
       />
     );
   }
