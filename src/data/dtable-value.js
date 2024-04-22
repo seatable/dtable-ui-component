@@ -2525,7 +2525,7 @@ const DTABLE_VALUE = {
           'draggable': true,
           'data': {
             'rate_max_number': 5,
-            'rate_style_color': '#FF8000',
+            'rate_style_color': '#ED7109',
             'rate_style_type': 'dtable-icon-rate',
             'enable_fill_default_value': false,
             'default_value': ''
