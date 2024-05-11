@@ -159,7 +159,7 @@ const getFilterOptionsByArrayType = (array_type) => {
   let checkType = array_type;
   if (COLLABORATOR_COLUMN_TYPES.includes(array_type)) {
     checkType = CellType.COLLABORATOR;
-  } else if (array_type === CellType.SINGLE_SELECT ) {
+  } else if (array_type === CellType.SINGLE_SELECT || array_type === CellType.DEPARTMENT_SINGLE_SELECT) {
     checkType = CellType.MULTIPLE_SELECT;
   } else if (DATE_COLUMN_OPTIONS.includes(array_type)) {
     checkType = CellType.DATE;

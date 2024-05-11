@@ -5,6 +5,8 @@ import Loading from '../Loading';
 import { getNormalizedDepartments, searchDepartments } from './utils';
 import { getLocale } from '../lang';
 
+import './index.css';
+
 const propTypes = {
   enableSelectRange: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -46,7 +48,8 @@ class DepartmentSingleSelect extends Component {
     if (!this.departmentsRef) return;
     const { bottom } = this.departmentsRef.getBoundingClientRect();
     if (bottom > window.innerHeight) {
-      this.departmentsRef.style.top = (parseInt(this.departmentsRef.style.top) - bottom + window.innerHeight) + 'px';
+      const currentTop = this.departmentsRef.style.top || 0;
+      this.departmentsRef.style.top = (parseInt(currentTop) - bottom + window.innerHeight) + 'px';
     }
   };
 
@@ -242,7 +245,7 @@ class DepartmentSingleSelect extends Component {
     return (
       <div
         className="dropdown-menu department-editor-list dtable-ui show m-0 p-0"
-        style={this.props.menuStyle}
+        style={this.props.menuStyle || {}}
         ref={ref => this.departmentsRef = ref}
         onClick={this.onStopPropagation}
         onMouseDown={this.onStopPropagation}

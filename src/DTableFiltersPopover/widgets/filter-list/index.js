@@ -16,7 +16,6 @@ import './index.css';
 const propTypes = {
   isLocked: PropTypes.bool,
   className: PropTypes.string,
-  roleId: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
   lang: PropTypes.string,
@@ -92,14 +91,13 @@ class FiltersList extends Component {
   };
 
   renderFilterItem = (filter, index, errMsg, filterColumn) => {
-    const { filterConjunction, value, roleId, isLocked, collaborators, userDepartmentIdsMap, departments, lang } = this.props;
+    const { filterConjunction, value, isLocked, collaborators, userDepartmentIdsMap, departments, lang } = this.props;
     const conjunctionOptions = this.getConjunctionOptions();
     const columnOptions = this.getColumnOptions();
     return (
       <FilterItem
         key={index}
         isLocked={isLocked}
-        roleId={roleId}
         index={index}
         filter={filter}
         errMsg={errMsg}

@@ -10,7 +10,6 @@ import { getLocale } from '../../../lang';
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
   departments: PropTypes.object,
-  column: PropTypes.object,
   onCommit: PropTypes.func,
 };
 
