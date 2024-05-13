@@ -29,12 +29,15 @@ class DigitalSignFormatter extends Component {
 
   getSignImages = () => {
     const { value, config } = this.props;
-    return [ getDigitalSignImageUrl(value, config) ].filter(Boolean);
+    return [getDigitalSignImageUrl(value, config)].filter(Boolean);
   };
 
   onClickSignImage = (index) => {
     if (!this.props.isSupportPreview) return;
-    this.setState({ isPreviewSignImage:true, largeSignImageIndex: index });
+    this.setState({
+      isPreviewSignImage: true,
+      largeSignImageIndex: index,
+    });
   };
 
   hideLargeSignImage = () => {
@@ -42,7 +45,10 @@ class DigitalSignFormatter extends Component {
     if (this.props.onCloseCallback) {
       this.props.onCloseCallback();
     }
-    this.setState({ isPreviewSignImage: false, largeSignImageIndex: -1 });
+    this.setState({
+      isPreviewSignImage: false,
+      largeSignImageIndex: -1,
+    });
   };
 
   downloadImage = (url) => {

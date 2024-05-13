@@ -22,7 +22,7 @@ import DurationFormatter from '../DurationFormatter';
 import RateFormatter from '../RateFormatter';
 import ButtonFormatter from '../ButtonFormatter';
 
-export default {
+const BaseFormatterConfig = {
   [CellType.DEFAULT]: <TextCellFormatter />,
   [CellType.TEXT]: <TextCellFormatter />,
   [CellType.CHECKBOX]: <CheckboxFormatter />,
@@ -46,3 +46,5 @@ export default {
   [CellType.RATE]: <RateFormatter />,
   [CellType.BUTTON]: <ButtonFormatter />,
 };
+
+export default BaseFormatterConfig;

@@ -5,9 +5,8 @@ import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString, getColumnType }
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
 import { isArrayFormatColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
-  convertValueToDtableLongTextValue } from '../FormulaFormatter/utils';
+  convertValueToDtableLongTextValue, isValidUrl, openUrlLink } from '../FormulaFormatter/utils';
 import cellValueValidator from '../FormulaFormatter/cell-value-validator';
-import { isValidUrl, openUrlLink } from '../FormulaFormatter/utils';
 import toaster from '../toaster';
 import { getLocale } from '../lang';
 
@@ -110,7 +109,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
 
   createColumnFormatter(Formatter, formatterProps) {
     if (React.isValidElement(Formatter)) {
-      return React.cloneElement(Formatter, {...formatterProps});
+      return React.cloneElement(Formatter, { ...formatterProps });
     }
     else if (isFunction(Formatter)) {
       return <Formatter {...formatterProps} />;
