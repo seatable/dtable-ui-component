@@ -53,13 +53,10 @@ class HtmlLongTextFormatter extends Component {
   render() {
     const { innerHtml } = this.state;
     const { containerClassName } = this.props;
-    const className= classnames('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
+    const className = classnames('dtable-ui cell-formatter-container long-text-formatter', containerClassName);
     if (!innerHtml) return null;
     return (
-      <div
-        className={`${className} article`}
-        dangerouslySetInnerHTML={{__html: innerHtml}}
-      ></div>
+      <div className={`${className} article`} dangerouslySetInnerHTML={{ __html: innerHtml }}></div>
     );
   }
 }

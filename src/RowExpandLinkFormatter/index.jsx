@@ -42,7 +42,7 @@ export default class RowExpandLinkFormatter extends Component {
       return props.renderEmpty();
     }
 
-    switch(displayColumnType) {
+    switch (displayColumnType) {
       case CellType.TEXT:
       case CellType.AUTO_NUMBER:
       case CellType.EMAIL:
@@ -147,7 +147,7 @@ export default class RowExpandLinkFormatter extends Component {
               if (!value) return null;
               return (
                 <div key={`link-${displayColumnType}-${index}`} className="row-expand-link-item">
-                  {getCellDisplayValue({[displayColumn.key]: value}, displayColumn, collaborators)}
+                  {getCellDisplayValue({ [displayColumn.key]: value }, displayColumn, collaborators)}
                 </div>
               );
             })}

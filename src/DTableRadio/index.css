@@ -26,7 +26,7 @@
 }
 
 .dtable-radio .dtable-radio-selected-indicator {
-  background-color: #ED7109;
+  background-color: #FF8000;
   border: unset !important;
 }
 
@@ -35,7 +35,7 @@
 }
 
 .dtable-radio .dtable-radio-selected-indicator.dtable-radio-indicator-disable {
-  background-color: #ED7109;
+  background-color: #FF8000;
 }
 
 .dtable-radio .dtable-radio-selected-indicator::before {

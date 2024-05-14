@@ -27,7 +27,7 @@ class RateFormatter extends React.Component {
         <i
           key={`dtable-ui-component-rate-${i}`}
           className={`dtable-font ${rate_style_type}`}
-          style={{color: rate_style_color || '#e5e5e5'}}
+          style={{ color: rate_style_color || '#e5e5e5' }}
         >
         </i>
       );

@@ -1,6 +1,6 @@
 export const debounce = (fn, wait) => {
   let timeout = null;
-  return function() {
+  return function () {
     if (timeout !== null) clearTimeout(timeout);
     timeout = setTimeout(fn, wait);
   };
@@ -9,7 +9,7 @@ export const debounce = (fn, wait) => {
 export const throttle = (func, delay) => {
   let timer = null;
   let startTime = Date.now();
-  return function() {
+  return function () {
     let curTime = Date.now();
     let remaining = delay - (curTime - startTime);
     let context = this;

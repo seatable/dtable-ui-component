@@ -1,5 +1,5 @@
 export const isInternalImg = (url, server) => {
-  if(!url) return;
+  if (!url) return;
   const currentServer = server || (window.dtable && window.dtable.server);
   return url.indexOf(currentServer) > -1;
 };

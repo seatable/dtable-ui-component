@@ -125,7 +125,7 @@ export default class EditorFormatter extends React.Component {
     const containerClassName = `dtable-${columnType}-formatter ${className || ''}`;
     let cellValue = row[column.key] || row[column.name];
 
-    switch(columnType) {
+    switch (columnType) {
       case CellType.TEXT: {
         return (
           <div className="form-control d-flex align-items-center w-100">
@@ -341,8 +341,8 @@ export default class EditorFormatter extends React.Component {
 
   render() {
     const { className } = this.props;
-    return(
-      <div className={classnames('dtable-ui dtable-row-expand-formatter', {[className]: className})}>
+    return (
+      <div className={classnames('dtable-ui dtable-row-expand-formatter', { [className]: className })}>
         {this.renderFormatter()}
       </div>
     );

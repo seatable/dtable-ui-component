@@ -39,13 +39,13 @@ class DtableMarkdownViewer extends React.PureComponent {
   convertMarkdown = (mdFile) => {
     processor.process(mdFile).then((result) => {
       let innerHtml = String(result).replace(/<a /ig, '<a target="_blank" tabindex="-1"');
-      this.setState({innerHtml});
+      this.setState({ innerHtml });
     });
   };
 
   render() {
     if (this.isWindowsWechat) {
-      return (<div className="long-text-container article" dangerouslySetInnerHTML={{__html: this.state.innerHtml}}></div>);
+      return (<div className="long-text-container article" dangerouslySetInnerHTML={{ __html: this.state.innerHtml }}></div>);
     }
     const { showTOC, markdownContent } = this.props;
     return <MarkdownViewer value={markdownContent} isShowOutline={showTOC}/>;

@@ -86,7 +86,7 @@ export default class RowExpandFileItemFormatter extends Component {
           isOpen={this.state.isTooltipOpen}
           toggle={this.toggleTooltip}
           target={id}
-          delay={{show: 0, hide: 0 }}
+          delay={{ show: 0, hide: 0 }}
           fade={false}
         >
           {file.name}
