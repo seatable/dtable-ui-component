@@ -13,7 +13,7 @@ html, body, #root {
 .app .app-body {
   margin: 0px auto;
   padding: 20px;
-  border: 1px solid rgb(136, 136, 136);
+  border: 1px solid #ccc;
   width: 800px;
   max-width: 100%;
 }
@@ -41,7 +41,7 @@ html, body, #root {
 }
 
 .app-body .col-md-3 .column-name {
-  color: #949494;
+  color: #666;
 }
 
 @media screen and (max-width: 767.8px) {

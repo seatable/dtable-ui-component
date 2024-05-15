@@ -27,7 +27,8 @@ function DTableRadio(props) {
           'dtable-radio-selected-indicator': props.isChecked,
           'dtable-radio-indicator-disable': props.disabled
         })}
-      ></span>
+      >
+      </span>
       <span className="dtable-radio-description text-truncate ml-2">{props.label}</span>
     </label>
   );
