@@ -15,6 +15,7 @@ const propTypes = {
   isReadOnly: PropTypes.bool,
   value: PropTypes.string,
   lang: PropTypes.string,
+  className: PropTypes.string,
   column: PropTypes.object.isRequired,
   onCommit: PropTypes.func.isRequired,
 };
@@ -97,7 +98,7 @@ class DateEditor extends React.Component {
       );
     }
 
-    let { lang, column } = this.props;
+    let { lang, column, className } = this.props;
     let { newValue, isPopoverShow, dateFormat, showHourAndMinute } = this.state;
 
     return (
@@ -111,6 +112,7 @@ class DateEditor extends React.Component {
           <Fragment>
             <MediaQuery query={'(min-width: 768px)'}>
               <PCDateEditorPopover
+                className={className}
                 lang={lang}
                 value={newValue}
                 dateFormat={dateFormat}
@@ -120,6 +122,7 @@ class DateEditor extends React.Component {
             </MediaQuery>
             <MediaQuery query={'(max-width: 767.8px)'}>
               <MBDateEditorPopover
+                className={className}
                 isReadOnly={this.props.isReadOnly}
                 lang={lang}
                 value={newValue}

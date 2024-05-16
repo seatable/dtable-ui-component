@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DatePicker } from 'antd-mobile';
+import classnames from 'classnames';
 import dayjs from 'dayjs';
 import Calendar from '@seafile/seafile-calendar';
 import * as SeaDatePicker from '@seafile/seafile-calendar/lib/Picker';
@@ -17,6 +18,7 @@ const propTypes = {
   value: PropTypes.string,
   dateFormat: PropTypes.string.isRequired,
   showHourAndMinute: PropTypes.bool.isRequired,
+  className: PropTypes.string,
   column: PropTypes.object.isRequired,
   onValueChanged: PropTypes.func.isRequired,
   onClosePopover: PropTypes.func,
@@ -106,11 +108,11 @@ class DateEditorPopover extends React.PureComponent {
   };
 
   getCalender = () => {
-    let { dateFormat, lang } = this.props;
+    let { dateFormat, lang, className } = this.props;
     let defaultValue = dayjs().clone();
     return (
       <Calendar
-        className="dtable-rc-calendar"
+      className={classnames('dtable-rc-calendar', className)}
         locale={initDateEditorLanguage(lang)}
         format={dateFormat}
         defaultValue={defaultValue}
