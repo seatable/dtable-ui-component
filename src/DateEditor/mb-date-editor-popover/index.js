@@ -110,6 +110,7 @@ class DateEditorPopover extends React.PureComponent {
     let defaultValue = dayjs().clone();
     return (
       <Calendar
+        className="dtable-rc-calendar"
         locale={initDateEditorLanguage(lang)}
         format={dateFormat}
         defaultValue={defaultValue}

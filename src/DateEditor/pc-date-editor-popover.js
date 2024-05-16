@@ -66,6 +66,7 @@ class PCDateEditorPopover extends React.Component {
     let defaultValue = dayjs().clone();
     return (
       <Calendar
+        className="dtable-rc-calendar"
         locale={initDateEditorLanguage(lang)}
         style={{zIndex: 1001}}
         format={dateFormat}
