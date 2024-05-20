@@ -71,6 +71,9 @@ export { default as DTableSearchInput } from './DTableSearchInput';
 export { default as ModalPortal } from './ModalPortal';
 export { default as RoleStatusEditor } from './RoleStatusEditor';
 
+// filter widgets
+export { default as DepartmentSelectFilter } from './DepartmentSelectFilter';
+
 // setting
 export { default as FieldDisplaySetting } from './FieldDisplaySetting';
 

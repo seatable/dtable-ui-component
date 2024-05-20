@@ -8,7 +8,6 @@ import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
 
 const propTypes = {
-  roleId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
   column: PropTypes.object,
   userDepartmentIdsMap: PropTypes.object,
@@ -17,7 +16,7 @@ const propTypes = {
 };
 
 function DepartmentSingleSelectFilter(props) {
-  const { value, column, roleId, departments, userDepartmentIdsMap } = props;
+  const { value, column, departments, userDepartmentIdsMap } = props;
   const [isShowSelector, setIsShowSelector] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState(value || '');
   const selectorRef = useRef(null);
@@ -30,7 +29,7 @@ function DepartmentSingleSelectFilter(props) {
   }, [selectedDepartment]);
 
   function renderUserDepartmentOptions(onSelect) {
-    if (!roleId) return [];
+    if (!departments || departments.length === 0) return [];
     return DEPARTMENT_SELECT_RANGE_OPTIONS.slice(0, 2).map((option, index) => {
       const { type, name } = option;
       return (

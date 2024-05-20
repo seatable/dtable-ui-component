@@ -26,7 +26,6 @@ import { getLocale } from '../../lang';
 
 const propTypes = {
   index: PropTypes.number.isRequired,
-  roleId: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
   lang: PropTypes.string,
@@ -335,7 +334,7 @@ class FilterItem extends React.Component {
   };
 
   renderFilterTerm = (filterColumn) => {
-    const { index, filter, collaborators, roleId, userDepartmentIdsMap, departments, lang } = this.props;
+    const { index, filter, collaborators, userDepartmentIdsMap, departments, lang } = this.props;
     const { type } = filterColumn;
     const { filter_term, filter_predicate, filter_term_modifier } = filter;
     // predicate is empty or not empty
@@ -427,7 +426,6 @@ class FilterItem extends React.Component {
         if ([FILTER_PREDICATE_TYPE.IS_ANY_OF, FILTER_PREDICATE_TYPE.IS_NONE_OF].includes(filter_predicate)) {
           return (
             <DepartmentMultipleSelectFilter
-              column={filterColumn}
               value={filter_term || []}
               userDepartmentIdsMap={userDepartmentIdsMap}
               departments={departments}
@@ -437,7 +435,6 @@ class FilterItem extends React.Component {
         }
         return (
           <DepartmentSingleSelectFilter
-            roleId={roleId}
             column={filterColumn}
             value={filter_term || ''}
             userDepartmentIdsMap={userDepartmentIdsMap}
@@ -536,7 +533,7 @@ class FilterItem extends React.Component {
   };
 
   renderFilterTermByArrayType = (filterPredicate, filterTerm, index, filterColumn) => {
-    const { collaborators } = this.props;
+    const { collaborators, departments } = this.props;
     const { data } = filterColumn || {};
     const { array_type, array_data } = data || {};
     if (!array_type) {
@@ -546,6 +543,15 @@ class FilterItem extends React.Component {
     if (array_type === CellType.SINGLE_SELECT || array_type === CellType.MULTIPLE_SELECT) {
       let { options = [] } = array_data || {};
       return this.renderMultipleSelectOption(options, filterTerm);
+    }
+    if (array_type === CellType.DEPARTMENT_SINGLE_SELECT) {
+      return (
+        <DepartmentMultipleSelectFilter
+          value={filterTerm || []}
+          departments={departments}
+          onCommit={this.onSelectMultiple}
+        />
+      );
     }
     if (DATE_COLUMN_OPTIONS.includes(array_type) ||
       array_type === CellType.RATE ||

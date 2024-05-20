@@ -144,7 +144,7 @@ class DTableFiltersPopover extends Component {
   };
 
   render() {
-    const { target, columns, className, roleId, userDepartmentIdsMap, departments, lang, readOnly } = this.props;
+    const { target, columns, className, userDepartmentIdsMap, departments, lang, readOnly } = this.props;
     const { filters, filterConjunction } = this.state;
     const canAddFilter = columns.length > 0;
     return (
@@ -162,7 +162,6 @@ class DTableFiltersPopover extends Component {
             <FiltersList
               filterConjunction={filterConjunction}
               filters={filters}
-              roleId={roleId}
               columns={columns}
               emptyPlaceholder={getLocale('No_filters')}
               collaborators={this.props.collaborators}
@@ -198,7 +197,6 @@ DTableFiltersPopover.propTypes = {
   isNeedSubmit: PropTypes.bool,
   readOnly: PropTypes.bool,
   className: PropTypes.string,
-  roleId: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
   lang: PropTypes.string,
