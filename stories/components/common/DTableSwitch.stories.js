@@ -1,9 +1,9 @@
 import React from 'react';
-import DTableRadio from '../../../src/DTableRadio';
+import DtableSwitch from '../../../src/DTableSwitch';
 
 const meta = {
-  title: 'Common/DTableRadio',
-  component: DTableRadio,
+  title: 'Common/DtableSwitch',
+  component: DtableSwitch,
   tags: ['autodocs'],
   decorators: [
     (Story, context) => {
@@ -33,8 +33,9 @@ const Demo = {
   }
 };
 
-export const Demo1 = Object.assign({}, Demo, { args: { isChecked: true, onCheckedChange: () => {}, label: 'Default Radio' } });
+export const Demo1 = Object.assign({}, Demo, { args: { isChecked: true, onCheckedChange: () => {}, placeholder: 'Default Switch' } });
 
-export const Demo2 = Object.assign({}, Demo, { args: { isChecked: true, disabled: true, label: 'Disabled Radio' } });
+export const Demo2 = Object.assign({}, Demo, { args: { isChecked: true, disabled: true, placeholder: 'Disabled Switch' } });
 
-export const Demo3 = Object.assign({}, Demo, { args: { isChecked: false, onCheckedChange: () => {}, label: 'Unchecked Radio' } });
+export const Demo3 = Object.assign({}, Demo, { args: { isChecked: false, onCheckedChange: () => {}, placeholder: 'Unchecked Switch' } });
+
