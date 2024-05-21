@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import dayjs from 'dayjs';
+import classnames from 'classnames';
 import DatePicker from '@seafile/seafile-calendar/lib/Picker';
 import Calendar from '@seafile/seafile-calendar';
 import { initDateEditorLanguage } from '../utils/editor-utils';
@@ -12,6 +13,7 @@ const propTypes = {
   lang: PropTypes.string.isRequired,
   value: PropTypes.string,
   dateFormat: PropTypes.string.isRequired,
+  className: PropTypes.string,
   showHourAndMinute: PropTypes.bool.isRequired,
   onValueChanged: PropTypes.func.isRequired,
 };
@@ -62,10 +64,11 @@ class PCDateEditorPopover extends React.Component {
   };
 
   getCalender = () => {
-    let { dateFormat, showHourAndMinute, lang } = this.props;
+    let { dateFormat, showHourAndMinute, lang, className } = this.props;
     let defaultValue = dayjs().clone();
     return (
       <Calendar
+        className={classnames('dtable-rc-calendar', className)}
         locale={initDateEditorLanguage(lang)}
         style={{zIndex: 1001}}
         format={dateFormat}
