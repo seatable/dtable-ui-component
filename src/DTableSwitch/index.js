@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 function DtableSwitch(props) {
   const { onChange, checked, placeholder, disabled, switchClassName } = props;
-  return(
+  return (
     <div className={`dtable-switch position-relative ${switchClassName || ''}`}>
       <label className="custom-switch">
         <input
