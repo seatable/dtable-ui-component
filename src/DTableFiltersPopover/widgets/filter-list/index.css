@@ -77,7 +77,7 @@
 
 .filters-list .selected-conjunction-show {
   padding: 0 10px;
-  color: #999;
+  color: #666;
 }
 
 .filters-list .filter-column {
@@ -275,7 +275,7 @@
 
 .filters-list .popover-add-tool {
   border-top: none;
-  color: #555555;
+  color: #666666;
 }
 
 .filters-list .popover-add-tool .popover-add-icon {
