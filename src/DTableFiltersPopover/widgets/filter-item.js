@@ -454,7 +454,6 @@ class FilterItem extends React.Component {
             filter_predicate={filter_predicate}
             collaborators={collaborators}
             onSelectCollaborator={this.onSelectCollaborator}
-            placeholder={getLocale('Add_collaborator')}
           />
         );
       }
@@ -470,7 +469,6 @@ class FilterItem extends React.Component {
             filterTerm={filter_term || []}
             collaborators={creators}
             onSelectCollaborator={this.onSelectCreator}
-            placeholder={type === CellType.CREATOR ? getLocale('Add_a_creator') : getLocale('Add_a_last_modifier')}
           />
         );
       }
