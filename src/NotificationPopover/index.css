@@ -60,7 +60,7 @@
 }
 
 .notification-container .notification-body .mark-notifications {
-  color: #b4b4b4;
+  color: #666;
   cursor: pointer;
   border-bottom: 1px solid #ededed;
   height: 36px;
@@ -134,7 +134,7 @@
 }
 
 .notification-item .notification-header-info .notification-time {
-  color: #b4b4b4;
+  color: #666;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

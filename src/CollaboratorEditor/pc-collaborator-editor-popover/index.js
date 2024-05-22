@@ -86,7 +86,7 @@ class PCCollaboratorEditorPopover extends React.Component {
               );
             })
           )}
-          {collaborators.length === 0 && (<div className="search-option-null">{getLocale('No_collaborators_available')}</div>)}
+          {collaborators.length === 0 && (<div className="no-search-result">{getLocale('No_collaborators_available')}</div>)}
         </div>
       </div>
     );

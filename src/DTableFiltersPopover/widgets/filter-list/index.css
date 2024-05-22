@@ -16,7 +16,7 @@
 .filters-list .empty-filters-list {
   padding: 0.25rem;
   font-size: 14px;
-  opacity: 0.5;
+  color: #666666;
 }
 
 .filters-list .filter-item {
