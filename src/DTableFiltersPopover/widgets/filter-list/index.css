@@ -16,7 +16,7 @@
 .filters-list .empty-filters-list {
   padding: 0.25rem;
   font-size: 14px;
-  opacity: 0.5;
+  color: #666666;
 }
 
 .filters-list .filter-item {
@@ -78,7 +78,7 @@
 
 .filters-list .selected-conjunction-show {
   padding: 0 10px;
-  color: #999;
+  color: #666;
 }
 
 .filters-list .filter-column {
@@ -276,7 +276,7 @@
 
 .filters-list .popover-add-tool {
   border-top: none;
-  color: #555555;
+  color: #666666;
 }
 
 .filters-list .popover-add-tool .popover-add-icon {

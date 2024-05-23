@@ -99,7 +99,7 @@ class PCSelectEditorPopover extends React.Component {
               </div>
             );
           })}
-          {options.length === 0 && (<div className="search-option-null">{getLocale('No_options_available')}</div>)}
+          {options.length === 0 && (<div className="no-search-result">{getLocale('No_options_available')}</div>)}
         </div>
         {(isSupportNewOption && !!searchValue) && (
           <div className="select-options-add" onClick={this.onAddNewOption}>

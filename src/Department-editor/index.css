@@ -12,8 +12,8 @@
 
 .dtable-ui.department-editor-list .none-search-result {
   font-size: 14px;
-  opacity: 0.5;
   display: inline-block;
+  color: #666666;
 }
 
 .dtable-ui.department-editor-list .department-item-left-content {

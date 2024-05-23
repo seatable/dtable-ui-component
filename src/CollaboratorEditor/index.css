@@ -17,8 +17,8 @@
   overflow: auto;
 }
 
-.dtable-ui-collaborator-editor-popover .collaborator-list-container .search-option-null {
-  opacity: 0.5;
+.dtable-ui-collaborator-editor-popover .collaborator-list-container .no-search-result {
+  color: #666666;
   padding-left: 10px;
 }
 
