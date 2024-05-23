@@ -40,8 +40,9 @@
   margin-left: 0;
 }
 
-.filters-list .filter-item .filter-term {
+.filters-list .filter-item .filter-term .selector-collaborator {
   max-width: 300px;
+  min-width: 70px;
 }
 
 .filters-list .filter-item .filter-term .option-group-content .option.option-active .dtable-font {
