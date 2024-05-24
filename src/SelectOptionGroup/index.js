@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import classnames from 'classnames';
 import Option from './option';
 import PropTypes from 'prop-types';
 import DTableSearchInput from '../DTableSearchInput';
@@ -156,7 +157,8 @@ class SelectOptionGroup extends Component {
 
   render() {
     const { searchable, searchPlaceholder, top, left, minWidth, value, isShowSelected, isInModal, position,
-      className } = this.props;
+      className, addOptionAble, component } = this.props;
+    const { AddOption } = component || {};
     let { searchVal } = this.state;
     let style = {top: top || 0, left: left || 0 };
     if (minWidth) {
@@ -174,7 +176,10 @@ class SelectOptionGroup extends Component {
     return (
       <ClickOutside onClickOutside={this.props.onClickOutside}>
         <div
-          className={`option-group ${isShowSelected ? 'pt-0' : ''} ${className ? 'option-group-' + className : ''}`}
+          className={classnames('option-group', className ? 'option-group-' + className : '', {
+            'pt-0': isShowSelected,
+            'create-new-option-group': addOptionAble,
+          })}
           ref={(ref) => this.optionGroupRef = ref}
           style={style}
           onMouseDown={this.onMouseDown}
@@ -195,6 +200,7 @@ class SelectOptionGroup extends Component {
           <div className="option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
             {this.renderOptGroup(searchVal)}
           </div>
+          {addOptionAble && AddOption}
         </div>
       </ClickOutside>
     );
@@ -208,6 +214,8 @@ SelectOptionGroup.propTypes = {
   options: PropTypes.array,
   onSelectOption: PropTypes.func,
   searchable: PropTypes.bool,
+  addOptionAble: PropTypes.bool,
+  component: PropTypes.object,
   searchPlaceholder: PropTypes.string,
   noOptionsPlaceholder: PropTypes.string,
   onClickOutside: PropTypes.func.isRequired,

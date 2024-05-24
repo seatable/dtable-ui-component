@@ -75,7 +75,7 @@ class DTableCustomizeSelect extends Component {
 
   render() {
     let { className, value, options, placeholder, searchable, searchPlaceholder, noOptionsPlaceholder,
-      isLocked, isInModal } = this.props;
+      isLocked, isInModal, addOptionAble, component } = this.props;
     return (
       <div
         ref={(node) => this.selector = node}
@@ -96,6 +96,8 @@ class DTableCustomizeSelect extends Component {
         {this.state.isShowSelectOptions && !isInModal && (
           <SelectOptionGroup
             value={value}
+            addOptionAble={addOptionAble}
+            component={component}
             isShowSelected={this.props.isShowSelected}
             top={this.getSelectedOptionTop()}
             options={options}
@@ -114,6 +116,8 @@ class DTableCustomizeSelect extends Component {
             <SelectOptionGroup
               className={className}
               value={value}
+              addOptionAble={addOptionAble}
+              component={component}
               isShowSelected={this.props.isShowSelected}
               position={this.selector.getBoundingClientRect()}
               isInModal={isInModal}
@@ -143,8 +147,10 @@ DTableCustomizeSelect.propTypes = {
   onSelectOption: PropTypes.func,
   isLocked: PropTypes.bool,
   searchable: PropTypes.bool,
+  addOptionAble: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   noOptionsPlaceholder: PropTypes.string,
+  component: PropTypes.object,
   supportMultipleSelect: PropTypes.bool,
   isShowSelected: PropTypes.bool,
   isInModal: PropTypes.bool, // if select component in a modal (option group need ModalPortal to show)
