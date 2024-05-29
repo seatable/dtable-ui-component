@@ -82,3 +82,9 @@ export { default as DTableFiltersPopover } from './DTableFiltersPopover';
 
 // clickOutside
 export { default as ClickOutside } from './ClickOutside';
+
+// CollapsibleSettingLayout
+export { default as CollapsibleSettingLayout } from './CollapsibleSettingLayout';
+
+// radio-group
+export { default as DTableRadioGroup } from './DTableRadioGroup';

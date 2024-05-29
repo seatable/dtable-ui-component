@@ -1,0 +1,22 @@
+.collapsible-setting-layout-header {
+  justify-content: space-between;
+  font-size: 14px;
+  color: #202428;
+}
+
+.collapsible-setting-layout-header:hover {
+  cursor: pointer;
+}
+
+.collapsible-setting-layout-header .dtable-font {
+  font-size: 10px;
+  color: #ccc;
+}
+
+.collapsible-setting-layout-header .dtable-font:hover {
+  color: #666;
+}
+
+.collapsible-setting-layout-header .dtable-font.dtable-icon-spin {
+  transform: rotate(90deg);
+}
