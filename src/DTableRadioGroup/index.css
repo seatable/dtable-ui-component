@@ -7,15 +7,14 @@
   background-clip: padding-box;
   border: 1px solid rgba(0, 40, 100, 0.12);
   border-radius: 3px;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  padding: 4px;
 }
 
 .radio-group-options {
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 4px;
+  position: relative;
 }
 
 .radio-group-options .radio-group-button {
@@ -29,20 +28,42 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   border-radius: 3px;
+  z-index: 2;
 }
 
 .radio-group-options .radio-group-button:hover {
   cursor: pointer;
+}
+
+.radio-group-options .radio-group-button:not(.active):hover {
   background-color: #f0f0f0;
 }
 
-.radio-group-options .radio-group-button.readOnly {
-  cursor: default;
-  opacity: 0.6;
+.radio-group-options .radio-group-button.active {
+  color:#fff;
 }
 
-.radio-group-options .radio-group-button.btn-primary:hover {
-  color: #fff;
-  background-color: #ED7109;
-  border-color: #ED7109;
+.radio-group-options .radio-group-slider {
+  display: inline-flex;
+  position: absolute;
+  height: 100%;
+  transition: 150ms cubic-bezier(.4, 0, .2, 1);
+  border-radius: 3px;
+  z-index: 1;
+}
+
+.radio-group-options .radio-group-button:nth-of-type(1).active ~ .radio-group-slider {
+  transform:translateX(0%);
+}
+
+.radio-group-options .radio-group-button:nth-of-type(2).active ~ .radio-group-slider {
+  transform:translateX(100%);
+}
+
+.radio-group-options .radio-group-button:nth-of-type(3).active ~ .radio-group-slider {
+  transform:translateX(200%);
+}
+
+.radio-group-options .radio-group-button:nth-of-type(4).active ~ .radio-group-slider {
+  transform:translateX(300%);
 }

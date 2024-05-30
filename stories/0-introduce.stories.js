@@ -3,6 +3,7 @@ import Welcome from './utils/welcome';
 
 import '../public/media/dtable-font.css';
 import '../public/media/seatable-ui.css';
+import '../public/media/seatable-ui-extension.css';
 import './css/story-cover.css';
 
 export default {

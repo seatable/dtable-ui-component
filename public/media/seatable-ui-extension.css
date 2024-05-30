@@ -1,0 +1,247 @@
+/* This file is temporary public style for seatable. */
+
+/* 1 reset seatable-ui.css common style */
+.custom-select {
+  color: #212529;
+}
+
+.btn-outline-primary,
+.btn-primary {
+  color: #fff;
+  background-color: #ED7109;
+  border-color: #ED7109;
+}
+
+.custom-switch {
+  padding-left: 0;
+}
+
+.text-muted {
+  color: #666666 !important;
+}
+
+/* 2 reset ant-design-mobile.css common style */
+.am-action-sheet-button-list {
+  color: #212529;
+}
+
+.am-action-sheet-button-list-item .my-am-action.disabled,
+.am-action-sheet-button-list-item .my-am-action.disabled .dtable-font {
+  color: #c2c2c2;
+}
+
+/* 3 seatable common style */
+.seatable-bg-orange {
+  background-color: #ff8000 !important;
+}
+
+.seatable-input-subtitle {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: left;
+}
+
+.seatable-tip-default {
+  font-size: 13px;
+  color: #666;
+}
+
+.seatable-tip-large {
+  font-size: 14px;
+  color: #666;
+}
+
+.seatable-tip-danger {
+  font-size: 13px;
+  color: #f25041;
+}
+
+.seatable-table-header-sm {
+  font-size: 13px;
+}
+
+.seatable-log-new-value {
+  background-color: #cef5d2;
+}
+
+.seatable-log-old-value {
+  background-color: #ffd4df;
+  text-decoration: line-through 0.5px;
+}
+
+.dtable-dropdown-menu {
+  cursor: pointer;
+}
+
+.dtable-dropdown-menu .toggle-icon {
+  font-size: 14px;
+  color: #999;
+}
+
+.dtable-dropdown-menu .toggle-icon:hover {
+  font-size: 14px;
+  color: #000;
+}
+
+.dtable-dropdown-menu .toggle-icon.small {
+  display: inline-block;
+  font-size: 12px;
+  color: #999;
+  -webkit-transform: scale(.8);
+  transform: scale(.8);
+  -webkit-transition: all .1s;
+  transition: all .1s;
+}
+
+.dtable-dropdown-menu .toggle-icon.small:hover {
+  color: #999;
+}
+
+.dtable-dropdown-menu .dropdown-item {
+  line-height: 1.5;
+  cursor: pointer;
+  min-height: 28px;
+}
+
+.dtable-dropdown-menu .dropdown-item .item-icon {
+  font-size: 14px;
+  margin-right: 10px;
+  color: #8c8c8c;
+}
+
+.dtable-dropdown-menu .dropdown-item:hover .item-icon {
+  color: #fff;
+}
+
+.dtable-dropdown-menu .dropdown-toggle .item-text {
+  width: calc(100% - 30px);
+  display: inline-block;
+}
+
+.dtable-dropdown-menu .dropdown-toggle::after {
+  color: #8c8c8c;
+}
+
+.dtable-dropdown-menu .dropdown-toggle:hover::after {
+  color: #fff;
+}
+
+.dtable-dropdown-menu.large {
+  margin: 0;
+}
+
+.dtable-dropdown-menu.large .dropdown-item {
+  min-height: 32px;
+  padding: 3px 12px;
+}
+
+.dtable-dropdown-menu .dropdown-item.disabled,
+.dtable-dropdown-menu .dropdown-item.disabled .multicolor-icon,
+.dtable-dropdown-menu .dropdown-item.disabled .item-icon,
+.dtable-dropdown-menu .dropdown-item.disabled:hover .item-icon {
+  color: #c2c2c2;
+}
+
+.dtable-dropdown-menu .dropdown-item.disabled:hover .multicolor-icon,
+.dtable-dropdown-menu .dropdown-item.disabled:hover {
+  background-color: unset;
+  cursor: default;
+  color: #c2c2c2;
+}
+
+.dtable-dropdown-menu .no-options {
+  min-height: 32px;
+  color: #c2c2c2;
+}
+
+/* 4 seatable animation */
+/* 4.1 loading */
+@-moz-keyframes loading {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes loading {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+.loading-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #eee;
+  border-left-color: #aaa;
+  border-radius: 50%;
+  -moz-animation: loading 0.9s infinite linear;
+  -webkit-animation: loading 0.9s infinite linear;
+  animation: loading 0.9s infinite linear;
+}
+
+.loading-tip {
+  display: block;
+  margin: 0 auto;
+}
+
+/* 4.2 open right side panel animation */
+@keyframes rightToLeftDisplay {
+  from {
+    right: -300px;
+  }
+  to {
+    right: 0;
+  }
+}
+
+@keyframes leftToRightHide {
+  from {
+    right: 0px;
+  }
+  to {
+    right: -300px;
+  }
+}
+
+.right-to-left-display {
+  animation: rightToLeftDisplay 0.3s;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* ease-in-out */
+  animation-fill-mode: forwards;
+}
+
+.left-to-right-hide {
+  animation: leftToRightHide 0.3s;
+  animation-timing-function: cubic-bezier(0.42, 0, 0.58, 1); /* ease-in-out */
+}
+
+@media screen and (min-width: 767.8px) {
+  :focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+}
