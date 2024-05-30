@@ -12,6 +12,12 @@ class DTableRadioGroup extends React.Component {
     };
   }
 
+  componentDidMount() {
+    if (!this.btn) return;
+    const { width } = this.btn.getBoundingClientRect();
+    this.slider.style.width = `${width}px`;
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.activeOption !== prevProps.activeOption) {
       this.setState({ activeOption: this.props.activeOption });
@@ -38,7 +44,8 @@ class DTableRadioGroup extends React.Component {
             return (
               <div
                 key={option}
-                className={`radio-group-button ${isActive ? 'btn-primary' : ''}`}
+                ref={ref => this.btn = ref}
+                className={`radio-group-button ${isActive ? 'active' : ''}`}
                 data-option={option}
                 onClick={this.onSelectChanged}
               >
@@ -46,6 +53,7 @@ class DTableRadioGroup extends React.Component {
               </div>
             );
           })}
+          <span className='radio-group-slider btn-primary' ref={ref => this.slider = ref}></span>
         </div>
       </div>
     );
