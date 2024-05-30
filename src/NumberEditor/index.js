@@ -28,7 +28,7 @@ class NumberEditor extends React.Component {
     let { value, column } = this.props;
     let dataFormat = column.data && column.data.format;
     this.dataFormat = dataFormat || NUMBER_TYPES.NUMBER;
-    let initValue = getNumberDisplayString(value, column.data);     // format the number to display
+    let initValue = getNumberDisplayString(value, column.data); // format the number to display
 
     this.state = {
       inputValue: initValue,
@@ -72,11 +72,11 @@ class NumberEditor extends React.Component {
       currency_symbol = data['currency_symbol'];
     }
 
-    //Prevent the repetition of periods bug in the Chinese input method of the Windows system
+    // Prevent the repetition of periods bug in the Chinese input method of the Windows system
     if (!isMac() && value.indexOf('.。') > -1) return;
     value = replaceNumberNotAllowInput(value, this.dataFormat, currency_symbol);
     if (value === this.state.inputValue) return;
-    this.setState({ inputValue : value });
+    this.setState({ inputValue: value });
   };
 
   onBlur = () => {

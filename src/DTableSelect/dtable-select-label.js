@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './dtable-select-label.css';
 
-function DTableSelectLabel({classname, name, isSelect}) {
+function DTableSelectLabel({ classname, name, isSelect }) {
   return (
     <div className={`${classname} w-100 d-flex justify-content-between`}>
       <span>{name}</span>

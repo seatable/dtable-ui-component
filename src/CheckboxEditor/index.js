@@ -35,7 +35,7 @@ class CheckboxEditor extends React.Component {
     if (this.props.isReadOnly) {
       return;
     }
-    this.setState({value: !this.state.value}, () => {
+    this.setState({ value: !this.state.value }, () => {
       this.onCommit();
     });
   };
@@ -44,7 +44,7 @@ class CheckboxEditor extends React.Component {
     const { value } = this.state;
     const { isReadOnly } = this.props;
     let style = {
-      cursor: isReadOnly ? 'default': 'pointer'
+      cursor: isReadOnly ? 'default' : 'pointer'
     };
 
     return (

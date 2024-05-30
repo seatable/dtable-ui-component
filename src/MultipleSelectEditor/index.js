@@ -68,9 +68,9 @@ class MultipleSelectEditor extends React.Component {
     let isPopoverShow = !this.state.isPopoverShow;
     if (isPopoverShow) {
       let popoverPosition = this.caculatePopoverPosition();
-      this.setState({isPopoverShow, popoverPosition});
+      this.setState({ isPopoverShow, popoverPosition });
     } else {
-      this.setState({isPopoverShow});
+      this.setState({ isPopoverShow });
     }
   };
 
@@ -90,7 +90,7 @@ class MultipleSelectEditor extends React.Component {
       newValue.push(option.id);
     }
 
-    this.setState({newValue}, () => {
+    this.setState({ newValue }, () => {
       this.onCommit(newValue);
     });
   };
@@ -99,7 +99,7 @@ class MultipleSelectEditor extends React.Component {
     let newValue = this.state.newValue.slice();
     let optionIndex = newValue.findIndex(option_id => option_id === option.id);
     newValue.splice(optionIndex, 1);
-    this.setState({newValue}, () => {
+    this.setState({ newValue }, () => {
       this.onCommit(newValue);
     });
   };
@@ -114,7 +114,7 @@ class MultipleSelectEditor extends React.Component {
     let innerHeight = window.innerHeight;
     let { top, height } = this.editor.getClientRects()[0];
     let isBelow = (innerHeight - (top + height)) > POPOVER_MAX_HEIGHT;
-    let position = { top : (height + 1), left: 0};
+    let position = { top: (height + 1), left: 0 };
     if (!isBelow) {
       let bottom = height + 1;
       position = { bottom: bottom, left: 0 };
@@ -123,7 +123,7 @@ class MultipleSelectEditor extends React.Component {
   };
 
   onClosePopover = () => {
-    this.setState({isPopoverShow: false});
+    this.setState({ isPopoverShow: false });
   };
 
   setEditorContainerRef = (editorContainer) => {

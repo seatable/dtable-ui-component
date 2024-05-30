@@ -92,7 +92,8 @@ function DepartmentMultipleSelect(props) {
             <span
               className={`dtable-font expand dtable-icon-${isExpanded ? 'drop-down' : 'right-slide'} pr-1`}
               onClick={(event) => onExpand(event, id, isExpanded)}
-            ></span>
+            >
+            </span>
           }
           <span style={searchVal ? {} : nameStyle} title={name} className="text-truncate">{name}</span>
         </div>

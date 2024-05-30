@@ -29,7 +29,7 @@ class FilterCalendar extends Component {
       value: null
     };
     const DataFormat = getDateColumnFormat(props.filterColumn).trim();
-    //Minutes and seconds are not supported at present
+    // Minutes and seconds are not supported at present
     this.columnDataFormat = DataFormat.split(' ')[0];
     this.calendarContainerRef = React.createRef();
     this.defaultCalendarValue = null;
@@ -61,7 +61,7 @@ class FilterCalendar extends Component {
     const searchFormat = 'YYYY-MM-DD';
     this.setState({
       value
-    },() => {
+    }, () => {
       if (this.state.value) {
         onChange(this.state.value.format(searchFormat));
       }
@@ -71,9 +71,9 @@ class FilterCalendar extends Component {
   onClear = () => {
     this.setState({
       value: null
-    },() => {
+    }, () => {
       this.setState({
-        open:true
+        open: true
       });
     });
   };
@@ -126,13 +126,13 @@ class FilterCalendar extends Component {
     );
     const calendarFormat = this.getCalendarFormat();
     const clearStyle = {
-      position:'absolute',
-      top:'15px',
-      left:'225px',
-      color:'gray',
-      fontSize:'12px'
+      position: 'absolute',
+      top: '15px',
+      left: '225px',
+      color: 'gray',
+      fontSize: '12px'
     };
-    const clearIcon = React.createElement('i', { className:'item-icon dtable-font dtable-icon-x', style: clearStyle });
+    const clearIcon = React.createElement('i', { className: 'item-icon dtable-font dtable-icon-x', style: clearStyle });
     const calendar = (
       <Calendar
         className="dtable-rc-calendar"

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import dayjs from 'dayjs';
-import { getDateDisplayString }  from 'dtable-utils';
+import { getDateDisplayString } from 'dtable-utils';
 import PCDateEditorPopover from './pc-date-editor-popover';
 import MBDateEditorPopover from './mb-date-editor-popover';
 
@@ -63,12 +63,12 @@ class DateEditor extends React.Component {
     if (isReadOnly) {
       return;
     }
-    this.setState({isPopoverShow: !this.state.isPopoverShow});
+    this.setState({ isPopoverShow: !this.state.isPopoverShow });
   };
 
   onValueChanged = (value) => {
     if (value !== this.state.newValue) {
-      this.setState({newValue: value});
+      this.setState({ newValue: value });
       this.onCommit(value);
       if (!this.state.showHourAndMinute) {
         this.onClosePopover();
@@ -84,7 +84,7 @@ class DateEditor extends React.Component {
   };
 
   onClosePopover = () => {
-    this.setState({isPopoverShow: false});
+    this.setState({ isPopoverShow: false });
   };
 
   render() {

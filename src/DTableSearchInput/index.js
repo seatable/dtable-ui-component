@@ -50,7 +50,7 @@ class DtableSearchInput extends Component {
 
   clearSearch = () => {
     const { clearValue } = this.props;
-    this.setState({searchValue: ''}, () => {
+    this.setState({ searchValue: '' }, () => {
       clearValue && clearValue();
     });
   };
@@ -70,7 +70,7 @@ class DtableSearchInput extends Component {
     if (!isClearable || !searchValue) return null;
     const { ClearIndicator } = components;
     if (React.isValidElement(ClearIndicator)) {
-      return React.cloneElement(ClearIndicator, {clearValue: this.clearSearch});
+      return React.cloneElement(ClearIndicator, { clearValue: this.clearSearch });
     } else if (isFunction(ClearIndicator)) {
       return <ClearIndicator clearValue={this.clearSearch} />;
     }

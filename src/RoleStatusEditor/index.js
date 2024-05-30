@@ -32,15 +32,15 @@ const RoleStatusEditor = ({ isShowDropdownIcon, currentOption, menuOptions, onCh
       <DropdownToggle className="dropdown-toggle-button d-flex align-items-center" tag="div">
         {currentOption.label}
         <div className="dropdown-icon-container ml-1">
-          <span className={classnames('dtable-font dtable-icon-drop-down', {'hide': !isShowDropdownIcon})} />
+          <span className={classnames('dtable-font dtable-icon-drop-down', { 'hide': !isShowDropdownIcon })} />
         </div>
       </DropdownToggle>
       <DropdownMenu
         positionFixed={true}
-        modifiers={{preventOverflow: { boundariesElement: document.body }}}
+        modifiers={{ preventOverflow: { boundariesElement: document.body } }}
       >
         {menuOptions.map(option => {
-          const {value, label } = option;
+          const { value, label } = option;
           return (
             <DropdownItem key={`item-${value}`} onClick={() => handleClickMenuOption(option)}>
               {label}

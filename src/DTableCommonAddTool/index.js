@@ -16,7 +16,7 @@ DTableCommonAddTool.propTypes = {
   className: PropTypes.string,
   style: PropTypes.object,
   addIconClassName: PropTypes.string,
-  footerName: PropTypes.oneOfType([ PropTypes.string, PropTypes.node ]),
+  footerName: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   callBack: PropTypes.func.isRequired,
   hideIcon: PropTypes.bool,
 };

@@ -72,7 +72,7 @@ class SelectEditorOption extends React.Component {
         </div>
         {isShowRemoveIcon && (
           <div className="option-remove" style={operationStyle} onClick={this.onDeleteOption}>
-            <i className="dtable-font dtable-icon-fork-number" style={{fontSize: '12px', lineHeight: '20px'}}></i>
+            <i className="dtable-font dtable-icon-fork-number" style={{ fontSize: '12px', lineHeight: '20px' }}></i>
           </div>
         )}
       </div>

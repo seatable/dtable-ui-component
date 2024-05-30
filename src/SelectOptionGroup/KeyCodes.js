@@ -1,4 +1,4 @@
-export default {
+const KeyCodes = {
   LeftArrow: 37,
   UpArrow: 38,
   RightArrow: 39,
@@ -8,3 +8,5 @@ export default {
   Escape: 27,
   Esc: 27,
 };
+
+export default KeyCodes;

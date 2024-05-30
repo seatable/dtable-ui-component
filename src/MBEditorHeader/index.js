@@ -18,7 +18,7 @@ class MBEditorHeader extends React.Component {
       <div className={`dtable-ui-mb-editor-header ${titleClass ? titleClass : ''}`}>
         <span className="editor-header-left-content" onClick={onLeftClick}>{leftContent}</span>
         <span className="editor-header-title">{title}</span>
-        <span className="editor-header-right-content" onClick={onRightClick} style={{ color: '#f09f3f'}}>{rightContent}</span>
+        <span className="editor-header-right-content" onClick={onRightClick} style={{ color: '#f09f3f' }}>{rightContent}</span>
       </div>
     );
   }

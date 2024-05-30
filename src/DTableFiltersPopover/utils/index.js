@@ -66,7 +66,7 @@ export const getUpdatedFilterByCreator = (filter, collaborator) => {
     }
     filterTerm = [collaborator.email];
   }
-  return Object.assign({}, filter, {filter_term: filterTerm});
+  return Object.assign({}, filter, { filter_term: filterTerm });
 };
 
 export const getUpdatedFilterBySelectSingle = (filter, columnOption) => {
@@ -83,7 +83,7 @@ export const getUpdatedFilterBySelectSingle = (filter, columnOption) => {
   } else {
     new_filter_term = columnOption.id;
   }
-  return Object.assign({}, filter, {filter_term: new_filter_term});
+  return Object.assign({}, filter, { filter_term: new_filter_term });
 };
 
 export const getUpdatedFilterBySelectMultiple = (filter, columnOption) => {
@@ -94,7 +94,7 @@ export const getUpdatedFilterBySelectMultiple = (filter, columnOption) => {
   } else {
     filterTerm.push(columnOption.id);
   }
-  return Object.assign({}, filter, {filter_term: filterTerm});
+  return Object.assign({}, filter, { filter_term: filterTerm });
 };
 
 export const getUpdatedFilterByCollaborator = (filter, collaborator) => {
@@ -106,14 +106,14 @@ export const getUpdatedFilterByCollaborator = (filter, collaborator) => {
   } else {
     filterTerm.push(selectedEmail);
   }
-  return Object.assign({}, filter, {filter_term: filterTerm});
+  return Object.assign({}, filter, { filter_term: filterTerm });
 };
 
 export const getUpdatedFilterByRate = (filter, value) => {
   if (filter.filter_term === value) {
     return;
   }
-  return Object.assign({}, filter, {filter_term: value});
+  return Object.assign({}, filter, { filter_term: value });
 };
 
 export const getColumnOptions = (column) => {
@@ -163,7 +163,7 @@ const getFilterOptionsByArrayType = (array_type) => {
     checkType = CellType.MULTIPLE_SELECT;
   } else if (DATE_COLUMN_OPTIONS.includes(array_type)) {
     checkType = CellType.DATE;
-  } else if (isNumericColumn({type: array_type})) {
+  } else if (isNumericColumn({ type: array_type })) {
     checkType = CellType.NUMBER;
   }
 
@@ -192,7 +192,7 @@ export const getFilterByColumn = (column, value, { textDefaultPredicate } = {}, 
     filterPredicate = textDefaultPredicate;
   }
 
-  let updatedFilter = Object.assign({}, filter, {column_key: column.key, filter_predicate: filterPredicate});
+  let updatedFilter = Object.assign({}, filter, { column_key: column.key, filter_predicate: filterPredicate });
 
   // text | number | long-text | url | email
   // auto-number | geolocation | duration
@@ -283,7 +283,7 @@ export const getUpdatedFilterByColumn = (filters, value, filterIndex, column) =>
 };
 
 export const getUpdatedFilterByPredicate = (filter, column, filterPredicate) => {
-  let updatedFilter = Object.assign({}, filter, {filter_predicate: filterPredicate});
+  let updatedFilter = Object.assign({}, filter, { filter_predicate: filterPredicate });
   let { type: columnType } = column;
   if (columnType === CellType.CHECKBOX) {
     updatedFilter.filter_term = false;
@@ -330,7 +330,7 @@ export const getUpdatedFilterByTermModifier = (filters, filterIndex, filterTermM
   if (filter.filter_term_modifier === filterTermModifier) {
     return;
   }
-  return Object.assign({}, filter, {filter_term_modifier: filterTermModifier});
+  return Object.assign({}, filter, { filter_term_modifier: filterTermModifier });
 };
 
 export const getUpdatedFilterByNormalTerm = (filters, column, filterIndex, event) => {
@@ -344,7 +344,7 @@ export const getUpdatedFilterByNormalTerm = (filters, column, filterIndex, event
   if (filter.filter_term === filterTerm) {
     return;
   }
-  return Object.assign({}, filter, {filter_term: filterTerm});
+  return Object.assign({}, filter, { filter_term: filterTerm });
 };
 
 export const getUpdatedFilterBySpecialTerm = (filters, filterIndex, type, value) => {

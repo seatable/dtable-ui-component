@@ -138,7 +138,7 @@ class MBSelectEditorPopover extends React.Component {
     }
 
     return (
-      <div ref={this.setEditorPopover} className="dtable-ui-mb-editor-popover mb-select-editor-popover" style={{zIndex: 99}} onClick={this.onContainerClick}>
+      <div ref={this.setEditorPopover} className="dtable-ui-mb-editor-popover mb-select-editor-popover" style={{ zIndex: 99 }} onClick={this.onContainerClick}>
         <MBEditorHeader
           title={column.name}
           leftContent={(<i className="dtable-font dtable-icon-return"></i>)}

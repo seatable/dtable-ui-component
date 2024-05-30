@@ -38,7 +38,7 @@ class TextEditor extends React.Component {
 
   onChange = (event) => {
     let value = event.target.value;
-    this.setState({newValue: value});
+    this.setState({ newValue: value });
   };
 
   onKeyDown = (event) => {

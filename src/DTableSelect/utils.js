@@ -22,7 +22,7 @@ const MenuSelectStyle = {
     cursor: 'pointer',
     lineHeight: '1.5',
   }),
-  menuPortal:  base => ({ ...base, zIndex: 9999 }),
+  menuPortal: base => ({ ...base, zIndex: 9999 }),
   indicatorSeparator: () => {},
 };
 
@@ -30,7 +30,7 @@ const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <span className="dtable-font dtable-icon-drop-down" style={{fontSize: '12px'}}></span>
+        <span className="dtable-font dtable-icon-drop-down" style={{ fontSize: '12px' }}></span>
       </components.DropdownIndicator>
     )
   );

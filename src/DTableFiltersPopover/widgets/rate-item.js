@@ -46,7 +46,7 @@ class RateItem extends React.Component {
     const rateShowType = rate_style_type ? rate_style_type : 'dtable-icon-rate';
     if (!isShowRateItem && rateItemIndex > value) return null;
     let itemStyle = {
-      cursor: editable ? 'pointer': 'default',
+      cursor: editable ? 'pointer' : 'default',
       color: value >= rateItemIndex ? rate_style_color : '#e5e5e5'
     };
     let style = itemStyle;
