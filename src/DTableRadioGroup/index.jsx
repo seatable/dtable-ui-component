@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import './index.css';
 
+const SLIDER_TRANSITION = '150ms cubic-bezier(.4, 0, .2, 1)';
+
 class DTableRadioGroup extends React.Component {
 
   constructor(props) {
@@ -10,25 +12,53 @@ class DTableRadioGroup extends React.Component {
     this.state = {
       activeOption: props.activeOption,
     };
+    this.setTransitionTimer = null;
   }
 
   componentDidMount() {
-    if (!this.btn) return;
+    if (!this.btn || !this.slider) return;
     const { width } = this.btn.getBoundingClientRect();
     this.slider.style.width = `${width}px`;
+    this.setSliderTransition();
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.activeOption !== prevProps.activeOption) {
-      this.setState({ activeOption: this.props.activeOption });
+    const { activeOption } = this.props;
+    if (activeOption !== prevProps.activeOption && activeOption !== this.state.activeOption) {
+      this.setState({ activeOption });
     }
   }
+
+  componentWillUnmount() {
+    this.clearTransitionTimer();
+  }
+
+  setSliderTransition = () => {
+    this.setTransitionTimer = setTimeout(() => {
+      this.slider.style.transition = SLIDER_TRANSITION;
+      this.clearTransitionTimer();
+    }, 1);
+  };
+
+  removeSliderTransition = () => {
+    if (!this.slider) return;
+    this.slider.style.transition = 'none';
+  };
+
+  clearTransitionTimer = () => {
+    if (!this.setTransitionTimer) return;
+    clearTimeout(this.setTransitionTimer);
+    this.setTransitionTimer = null;
+  };
 
   onSelectChanged = (event) => {
     const { option } = event.target.dataset;
     if (option === this.state.activeOption) return;
     this.setState({ activeOption: option });
-    this.props.onSelectChanged(option);
+
+    if (this.props.onSelectChanged) {
+      this.props.onSelectChanged(option);
+    }
   };
 
   render() {

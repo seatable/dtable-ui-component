@@ -47,7 +47,6 @@
   display: inline-flex;
   position: absolute;
   height: 100%;
-  transition: 150ms cubic-bezier(.4, 0, .2, 1);
   border-radius: 3px;
   z-index: 1;
 }
