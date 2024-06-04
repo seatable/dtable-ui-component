@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import FileItemFormatter from '../FileItemFormatter';
@@ -11,6 +11,7 @@ export default class FileFormatter extends React.PureComponent {
     isSample: PropTypes.bool,
     value: PropTypes.array,
     containerClassName: PropTypes.string,
+    renderItem: PropTypes.func,
   };
 
   static defaultProps = {
@@ -20,7 +21,7 @@ export default class FileFormatter extends React.PureComponent {
   };
 
   render() {
-    let { isSample, value, containerClassName } = this.props;
+    let { isSample, value, containerClassName, renderItem } = this.props;
     if (!Array.isArray(value) || value.length === 0) {
       return null;
     }
@@ -40,9 +41,9 @@ export default class FileFormatter extends React.PureComponent {
     return (
       <div className={className}>
         {value.map((item, index) => {
-          return (
-            <FileItemFormatter file={item} key={index} />
-          );
+          const dom = (<FileItemFormatter file={item} />);
+          if (renderItem) return (<Fragment key={index}>{renderItem(dom)}</Fragment>);
+          return (<Fragment key={index}>{dom}</Fragment>);
         })}
       </div>
     );

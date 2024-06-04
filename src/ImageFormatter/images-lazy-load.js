@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../Loading';
 import { getImageThumbnailUrl } from './utils';
@@ -7,6 +7,7 @@ const propTypes = {
   images: PropTypes.array.isRequired,
   server: PropTypes.string,
   onImageClick: PropTypes.func,
+  renderItem: PropTypes.func,
 };
 
 class ImagesLazyLoad extends React.Component {
@@ -87,6 +88,7 @@ class ImagesLazyLoad extends React.Component {
 
   render() {
     const { images, loadedImages, loadedCount } = this.state;
+    const { renderItem } = this.props;
 
     if (!Array.isArray(images) || images.length === 0) {
       return '';
@@ -99,9 +101,8 @@ class ImagesLazyLoad extends React.Component {
 
     return (
       loadedImages.map((image, index) => {
-        return (
+        const imgDom = (
           <img
-            key={index}
             className="image-item"
             src={image.src}
             onMouseDown={this.onMouseDown}
@@ -109,6 +110,8 @@ class ImagesLazyLoad extends React.Component {
             alt=""
           />
         );
+        if (renderItem) return (<Fragment key={index}>{renderItem(imgDom)}</Fragment>);
+        return (<Fragment key={index}>{imgDom}</Fragment>);
       })
     );
   }
