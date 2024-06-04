@@ -79,7 +79,7 @@ class DTableFiltersPopover extends Component {
       this.setState({ filters, isSubmitDisabled });
       return;
     }
-    this.setState({filters}, () => {
+    this.setState({ filters }, () => {
       const update = { filters, filter_conjunction: this.state.filterConjunction };
       this.props.update(update);
     });
@@ -103,11 +103,11 @@ class DTableFiltersPopover extends Component {
   updateFilterConjunction = (conjunction) => {
     if (this.isNeedSubmit()) {
       const isSubmitDisabled = false;
-      this.setState({filterConjunction: conjunction, isSubmitDisabled});
+      this.setState({ filterConjunction: conjunction, isSubmitDisabled });
       return;
     }
-    this.setState({filterConjunction: conjunction}, () => {
-      const update = {filters: this.state.filters, filter_conjunction: conjunction};
+    this.setState({ filterConjunction: conjunction }, () => {
+      const update = { filters: this.state.filters, filter_conjunction: conjunction };
       this.props.update(update);
     });
   };

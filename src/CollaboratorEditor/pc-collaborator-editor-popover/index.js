@@ -29,7 +29,7 @@ class PCCollaboratorEditorPopover extends React.Component {
 
   onValueChanged = (event) => {
     let value = event.target.value;
-    this.setState({searchValue: value});
+    this.setState({ searchValue: value });
   };
 
   onInputClick = (event) => {
@@ -56,7 +56,7 @@ class PCCollaboratorEditorPopover extends React.Component {
     let { searchValue } = this.state;
     let { selectedCollaborators, popoverPosition } = this.props;
     let collaborators = this.getFilterCollaborator();
-    let popoverStyle = Object.assign({}, {...popoverPosition}, {position: 'absolute'});
+    let popoverStyle = Object.assign({}, { ...popoverPosition }, { position: 'absolute' });
 
     return (
       <div className="dtable-ui-editor-popover dtable-ui-collaborator-editor-popover" style={popoverStyle} ref={this.props.setPopoverRef}>
@@ -68,11 +68,12 @@ class PCCollaboratorEditorPopover extends React.Component {
             onClick={this.onInputClick}
             placeholder={getLocale('Search_collaborator')}
             ref={this.editorInputRef}
-          ></input>
+          >
+          </input>
         </div>
         <div className="collaborator-list-container">
           {collaborators.length > 0 && (
-            collaborators.map((collaborator, index)=> {
+            collaborators.map((collaborator, index) => {
               const isSelect = selectedCollaborators.some((selectedCollaborator) => {
                 return selectedCollaborator.email === collaborator.email;
               });

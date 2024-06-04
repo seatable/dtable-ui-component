@@ -43,10 +43,11 @@ class CollaboratorFilter extends Component {
                   </span>
                   <span
                     className="collaborator-name text-truncate"
-                    style={{maxWidth: '200px'}}
+                    style={{ maxWidth: '200px' }}
                     title={collaborator.name}
                     aria-label={collaborator.name}
-                  >{collaborator.name}</span>
+                  >{collaborator.name}
+                  </span>
                 </div>
               </div>
               <div className='collaborator-check-icon'>
@@ -79,7 +80,8 @@ class CollaboratorFilter extends Component {
             className="collaborator-name text-truncate"
             title={collaborator.name}
             aria-label={collaborator.name}
-          >{collaborator.name}</span>
+          >{collaborator.name}
+          </span>
           <span className="remove-container">
             <span className="remove-icon" onClick={(e) => {this.onClick(e, collaborator);}}>
               <i className="dtable-font dtable-icon-fork-number"></i>
@@ -88,7 +90,7 @@ class CollaboratorFilter extends Component {
         </div>
       );
     });
-    let value = selectedCollaborators ? {label: (<>{selectedCollaborators}</>)} : {};
+    let value = selectedCollaborators ? { label: (<>{selectedCollaborators}</>) } : {};
     let options = Array.isArray(filterTerm) ? this.createCollaboratorOptions(filterIndex, collaborators, filterTerm) : [];
     return (
       <DTableCustomizeSelect

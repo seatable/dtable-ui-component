@@ -55,18 +55,18 @@ class DateEditorPopover extends React.PureComponent {
     if (showHourAndMinute) {
       const { datePickerValue } = this.state;
       const HM = datePickerValue.format('HH:mm');
-      const format = dateFormat.split(' ')[0];  // 'YYYY-MM-DD HH:mm'
+      const format = dateFormat.split(' ')[0]; // 'YYYY-MM-DD HH:mm'
       const newDate = dayjs(date).format(format) + ' ' + HM;
       newValue = dayjs(newDate);
     }
-    this.setState({datePickerValue: dayjs(date)});
+    this.setState({ datePickerValue: dayjs(date) });
     this.props.onValueChanged(newValue.format(dateFormat));
   };
 
   handleTimeChange = (time) => {
     const { datePickerValue } = this.state;
     const { dateFormat } = this.props;
-    const format = dateFormat.split(' ')[0];  // 'YYYY-MM-DD HH:mm'
+    const format = dateFormat.split(' ')[0]; // 'YYYY-MM-DD HH:mm'
     const YMD = datePickerValue.format(format);
     const newDate = YMD + ' ' + dayjs(time).format('HH:mm');
     const newValue = dayjs(newDate);
@@ -87,7 +87,7 @@ class DateEditorPopover extends React.PureComponent {
   onChange = (value) => {
     if (!value) return;
     let { dateFormat } = this.props;
-    this.setState({datePickerValue: value,});
+    this.setState({ datePickerValue: value, });
     this.props.onValueChanged(value.format(dateFormat));
   };
 
@@ -112,7 +112,7 @@ class DateEditorPopover extends React.PureComponent {
     let defaultValue = dayjs().clone();
     return (
       <Calendar
-      className={classnames('dtable-rc-calendar', className)}
+        className={classnames('dtable-rc-calendar', className)}
         locale={initDateEditorLanguage(lang)}
         format={dateFormat}
         defaultValue={defaultValue}
@@ -121,7 +121,7 @@ class DateEditorPopover extends React.PureComponent {
         focusablePanel={false}
         showToday={false}
         showTime={false}
-        style={{width: '100%', fontSize: '14px'}}
+        style={{ width: '100%', fontSize: '14px' }}
       />
     );
   };
@@ -134,7 +134,7 @@ class DateEditorPopover extends React.PureComponent {
     return (
       <SeaDatePicker
         open={true}
-        style={{width: '100%'}}
+        style={{ width: '100%' }}
         calendar={calendar}
         value={datePickerValue}
         getCalendarContainer={this.getCalendarContainer}
@@ -151,7 +151,7 @@ class DateEditorPopover extends React.PureComponent {
                 className="form-control"
                 value={value || ''}
               />
-              <div ref={this.calendarContainerRef} style={{height: '22rem'}}/>
+              <div ref={this.calendarContainerRef} style={{ height: '22rem' }}/>
             </div>
           );
         }}

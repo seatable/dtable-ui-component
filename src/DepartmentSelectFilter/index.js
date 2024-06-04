@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DepartmentSingleSelectFilter from "../DTableFiltersPopover/widgets/department-select-filter/department-single-select-filter";
-import DepartmentMultipleSelectFilter from "../DTableFiltersPopover/widgets/department-select-filter/department-multiple-select-filter";
+import DepartmentSingleSelectFilter from '../DTableFiltersPopover/widgets/department-select-filter/department-single-select-filter';
+import DepartmentMultipleSelectFilter from '../DTableFiltersPopover/widgets/department-select-filter/department-multiple-select-filter';
 
 const propTypes = {
   isMultiple: PropTypes.bool,
@@ -25,7 +25,7 @@ function DepartmentSelectFilter(props) {
       )}
     </>
   );
-};
+}
 
 DepartmentSelectFilter.propTypes = propTypes;
 

@@ -108,7 +108,7 @@ class FilterItem extends React.Component {
   };
 
   resetState = (filter) => {
-    this.setState({filterTerm: filter.filter_term});
+    this.setState({ filterTerm: filter.filter_term });
   };
 
   onSelectConjunction = (value) => {
@@ -159,7 +159,7 @@ class FilterItem extends React.Component {
     if (inputRangeLabel.indexOf(filter.filter_term_modifier) > -1) {
       filter_term = '';
     }
-    let newFilter = Object.assign({}, filter, {filter_term_modifier: filterTermModifier, filter_term});
+    let newFilter = Object.assign({}, filter, { filter_term_modifier: filterTermModifier, filter_term });
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
   };
@@ -217,18 +217,18 @@ class FilterItem extends React.Component {
     const { index, filter } = this.props;
     const { filterTerm } = this.state;
     if (newFilterTerm !== filterTerm) {
-      this.setState({filterTerm: newFilterTerm});
-      let newFilter = Object.assign({}, filter, {filter_term: newFilterTerm});
+      this.setState({ filterTerm: newFilterTerm });
+      let newFilter = Object.assign({}, filter, { filter_term: newFilterTerm });
       this.props.updateFilter(index, newFilter);
     }
   };
 
   onMouseEnterRateItem = (index) => {
-    this.setState({enterRateItemIndex: index});
+    this.setState({ enterRateItemIndex: index });
   };
 
   onMouseLeaveRateItem = () => {
-    this.setState({enterRateItemIndex: 0});
+    this.setState({ enterRateItemIndex: 0 });
   };
 
   onChangeRateNumber = (index) => {
@@ -282,7 +282,7 @@ class FilterItem extends React.Component {
     const { filter } = this.props;
     const { filter_predicate } = filter;
     let isSupportMultipleSelect = false;
-    //The first two options are used for single selection, and the last four options are used for multiple selection
+    // The first two options are used for single selection, and the last four options are used for multiple selection
     const supportMultipleSelectOptions = [
       FILTER_PREDICATE_TYPE.IS_ANY_OF,
       FILTER_PREDICATE_TYPE.IS_NONE_OF,
@@ -313,7 +313,7 @@ class FilterItem extends React.Component {
         }
       });
     }
-    const selectedOptionNames = labelArray.length > 0 ? {label: (<Fragment>{labelArray}</Fragment>)} : {};
+    const selectedOptionNames = labelArray.length > 0 ? { label: (<Fragment>{labelArray}</Fragment>) } : {};
 
     const dataOptions = options.map(option => {
       return FilterItemUtils.generatorMultipleSelectOption(option, filterTerm);
@@ -379,7 +379,7 @@ class FilterItem extends React.Component {
       case CellType.AUTO_NUMBER:
       case CellType.DURATION:
       case CellType.EMAIL:
-      case CellType.URL: {  // The data in the formula column is a date type that has been excluded
+      case CellType.URL: { // The data in the formula column is a date type that has been excluded
         if (filter_predicate === FILTER_PREDICATE_TYPE.IS_CURRENT_USER_ID) {
           return null;
         }
@@ -399,7 +399,7 @@ class FilterItem extends React.Component {
         if (selectedOption) {
           const className = 'select-option-name single-select-option';
           const style = { background: selectedOption.color, color: selectedOption.textColor || null };
-          selectedOptionName = {label: <span className={className} style={style} title={selectedOption.name} aria-label={selectedOption.name}>{selectedOption.name}</span>};
+          selectedOptionName = { label: <span className={className} style={style} title={selectedOption.name} aria-label={selectedOption.name}>{selectedOption.name}</span> };
         }
 
         let dataOptions = options.map(option => {
@@ -462,7 +462,7 @@ class FilterItem extends React.Component {
         if (filter_predicate === FILTER_PREDICATE_TYPE.INCLUDE_ME) {
           return null;
         }
-        const creators = collaborators.concat([ generateDefaultUser('anonymous') ]);
+        const creators = collaborators.concat([generateDefaultUser('anonymous')]);
         return (
           <CollaboratorFilter
             filterIndex={index}

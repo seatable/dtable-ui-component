@@ -24,7 +24,7 @@ class DTableCustomizeSelect extends Component {
     if (this.state.isShowSelectOptions) event.stopPropagation();
     let eventClassName = event.target.className;
     if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'option-group-search') return;
-    //Prevent closing by pressing the spacebar in the search input
+    // Prevent closing by pressing the spacebar in the search input
     if (event.target.value === '') return;
     this.setState({
       isShowSelectOptions: !this.state.isShowSelectOptions
@@ -41,7 +41,7 @@ class DTableCustomizeSelect extends Component {
   };
 
   closeSelect = () => {
-    this.setState({isShowSelectOptions: false});
+    this.setState({ isShowSelectOptions: false });
   };
 
   getSelectedOptionTop = () => {
@@ -80,8 +80,8 @@ class DTableCustomizeSelect extends Component {
       <div
         ref={(node) => this.selector = node}
         className={classnames('dtable-select custom-select',
-          {'focus': this.state.isShowSelectOptions},
-          {'disabled': isLocked},
+          { 'focus': this.state.isShowSelectOptions },
+          { 'disabled': isLocked },
           className
         )}
         onClick={this.onSelectToggle}>

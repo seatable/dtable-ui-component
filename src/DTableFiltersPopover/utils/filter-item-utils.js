@@ -8,7 +8,7 @@ class FilterItemUtils {
     if (!column) return null;
     const { type, name } = column;
     return {
-      value: {column},
+      value: { column },
       label: (
         <Fragment>
           <span className="filter-header-icon"><i className={COLUMNS_ICON_CONFIG[type]}></i></span>
@@ -50,17 +50,17 @@ class FilterItemUtils {
       'this_year': getLocale('this_year')
     };
     return {
-      value: {filterTermModifier},
+      value: { filterTermModifier },
       label: <span className='select-option-name'>{FILTER_TERM_MODIFIER_SHOW[filterTermModifier]}</span>
     };
   }
 
   static generatorSingleSelectOption(option) {
     return {
-      value: {columnOption: option},
+      value: { columnOption: option },
       label: (
         <div className='select-option-name'>
-          <div className="single-select-option" style={{background: option.color, color: option.textColor || null}} title={option.name} aria-label={option.name}>{option.name}</div>
+          <div className="single-select-option" style={{ background: option.color, color: option.textColor || null }} title={option.name} aria-label={option.name}>{option.name}</div>
         </div>
       )
     };
@@ -68,10 +68,10 @@ class FilterItemUtils {
 
   static generatorMultipleSelectOption(option, filterTerm) {
     return {
-      value: {columnOption: option},
+      value: { columnOption: option },
       label: (
         <div className='select-option-name multiple-option-name'>
-          <div className="multiple-select-option" style={{background: option.color, color: option.textColor}} title={option.name} aria-label={option.name}>{option.name}</div>
+          <div className="multiple-select-option" style={{ background: option.color, color: option.textColor }} title={option.name} aria-label={option.name}>{option.name}</div>
           <div className='multiple-check-icon'>
             {filterTerm.indexOf(option.id) > -1 && <i className="option-edit dtable-font dtable-icon-check-mark"></i>}
           </div>
@@ -83,11 +83,11 @@ class FilterItemUtils {
   static generatorConjunctionOptions() {
     return [
       {
-        value: {filterConjunction: 'And'},
+        value: { filterConjunction: 'And' },
         label: (<span className='select-option-name'>{getLocale('And')}</span>)
       },
       {
-        value: {filterConjunction: 'Or'},
+        value: { filterConjunction: 'Or' },
         label: (<span className='select-option-name'>{getLocale('Or')}</span>)
       }
     ];
@@ -96,12 +96,12 @@ class FilterItemUtils {
   static getActiveConjunctionOption(conjunction) {
     if (conjunction === 'And') {
       return {
-        value: {filterConjunction: 'And'},
+        value: { filterConjunction: 'And' },
         label: (<span className='select-option-name'>{getLocale('And')}</span>)
       };
     }
     return {
-      value: {filterConjunction: 'Or'},
+      value: { filterConjunction: 'Or' },
       label: (<span className='select-option-name'>{getLocale('Or')}</span>)
     };
   }

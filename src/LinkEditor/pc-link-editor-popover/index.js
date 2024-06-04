@@ -27,7 +27,7 @@ class PCLinkEditorPopover extends React.Component {
 
   onValueChanged = (event) => {
     let value = event.target.value;
-    this.setState({searchValue: value});
+    this.setState({ searchValue: value });
   };
 
   onInputClick = (event) => {
@@ -54,7 +54,7 @@ class PCLinkEditorPopover extends React.Component {
     let options = this.getFilterOptions();
     let { popoverPosition, selectedOptions } = this.props;
     let { searchValue } = this.state;
-    let popoverStyle = Object.assign({}, {...popoverPosition}, {position: 'absolute'});
+    let popoverStyle = Object.assign({}, { ...popoverPosition }, { position: 'absolute' });
     return (
       <div className="dtable-ui-editor-popover dtable-ui-link-editor-popover" style={popoverStyle}>
         <div className="link-options-search">

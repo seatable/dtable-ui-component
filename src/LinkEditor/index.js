@@ -82,7 +82,7 @@ class LinkEditor extends React.Component {
         let { display_column_key: displayColumnKey } = column.data;
         // format value to display
         let displayValue = this.getDisplayValue(linkedTable, linkedRow, displayColumnKey);
-        return { id: linkedRow._id, name: displayValue};
+        return { id: linkedRow._id, name: displayValue };
       });
     }
     return [];
@@ -92,7 +92,7 @@ class LinkEditor extends React.Component {
     let value = linkedRow[displayColumnKey];
     let linkedColumn = linkedTable.columns.find(column => column.key === displayColumnKey);
     let { type, data } = linkedColumn;
-    switch(type) {
+    switch (type) {
       case CellType.NUMBER: {
         return getNumberDisplayString(value, data);
       }
@@ -137,9 +137,9 @@ class LinkEditor extends React.Component {
     let isPopoverShow = !this.state.isPopoverShow;
     if (isPopoverShow) {
       let popoverPosition = this.caculatePopoverPosition();
-      this.setState({isPopoverShow, popoverPosition});
+      this.setState({ isPopoverShow, popoverPosition });
     } else {
-      this.setState({isPopoverShow});
+      this.setState({ isPopoverShow });
     }
   };
 
@@ -155,7 +155,7 @@ class LinkEditor extends React.Component {
       linkMetaData.addLink(this.linkId, this.tableId, this.otherTableId, row._id, option.id);
     }
 
-    this.setState({newValue});
+    this.setState({ newValue });
   };
 
   onDeleteOption = (option) => {
@@ -163,7 +163,7 @@ class LinkEditor extends React.Component {
     let newValue = this.state.newValue.slice();
     let optionIndex = newValue.findIndex(option_id => option_id === option.id);
     newValue.splice(optionIndex, 1);
-    this.setState({newValue}, () => {
+    this.setState({ newValue }, () => {
       linkMetaData.removeLink(this.linkId, this.tableId, this.otherTableId, row._id, option.id);
     });
   };
@@ -173,7 +173,7 @@ class LinkEditor extends React.Component {
     let innerHeight = window.innerHeight;
     let { top, height } = this.editor.getClientRects()[0];
     let isBelow = (innerHeight - (top + height)) > POPOVER_MAX_HEIGHT;
-    let position = { top : (height + 1), left: 0};
+    let position = { top: (height + 1), left: 0 };
     if (!isBelow) {
       let bottom = height + 1;
       position = { bottom: bottom, left: 0 };
@@ -182,7 +182,7 @@ class LinkEditor extends React.Component {
   };
 
   onClosePopover = () => {
-    this.setState({isPopoverShow: false});
+    this.setState({ isPopoverShow: false });
   };
 
   setEditorContainerRef = (editorContainer) => {

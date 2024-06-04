@@ -123,7 +123,7 @@ class SelectOptionGroup extends Component {
   onChangeSearch = (searchVal) => {
     let value = searchVal || '';
     if (value !== this.state.searchVal) {
-      this.setState({searchVal: value, activeIndex: -1,});
+      this.setState({ searchVal: value, activeIndex: -1, });
     }
   };
 
@@ -160,9 +160,9 @@ class SelectOptionGroup extends Component {
       className, addOptionAble, component } = this.props;
     const { AddOption } = component || {};
     let { searchVal } = this.state;
-    let style = {top: top || 0, left: left || 0 };
+    let style = { top: top || 0, left: left || 0 };
     if (minWidth) {
-      style = {top: top || 0, left: left || 0, minWidth};
+      style = { top: top || 0, left: left || 0, minWidth };
     }
     if (isInModal) {
       style = {

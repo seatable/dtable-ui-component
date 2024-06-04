@@ -46,7 +46,7 @@ class LinkFormatter extends React.Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     const { row: nextRow } = nextProps;
     if (nextRow._id !== this.props.row._id) {
-      this.setState({value: this.getLinkedCellValue(nextRow)});
+      this.setState({ value: this.getLinkedCellValue(nextRow) });
     }
   }
 
@@ -94,7 +94,7 @@ class LinkFormatter extends React.Component {
     let linkedColumn = linkedTable.columns.find(column => column.key === displayColumnKey);
     let { type, data } = linkedColumn;
     // todo: improve
-    switch(type) {
+    switch (type) {
       case CellType.NUMBER: {
         return getNumberDisplayString(value, data);
       }

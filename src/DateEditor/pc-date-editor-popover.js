@@ -42,16 +42,16 @@ class PCDateEditorPopover extends React.Component {
   };
 
   onOpenChange = (open) => {
-    this.setState({open: open});
+    this.setState({ open: open });
     return;
   };
 
   onClear = () => {
-    this.setState({datePickerValue: null});
+    this.setState({ datePickerValue: null });
   };
 
   onFocusDatePicker = () => {
-    this.setState({open: true});
+    this.setState({ open: true });
   };
 
   handleMouseDown = (event) => {
@@ -70,7 +70,7 @@ class PCDateEditorPopover extends React.Component {
       <Calendar
         className={classnames('dtable-rc-calendar', className)}
         locale={initDateEditorLanguage(lang)}
-        style={{zIndex: 1001}}
+        style={{ zIndex: 1001 }}
         format={dateFormat}
         defaultValue={defaultValue}
         showHourAndMinute={showHourAndMinute}
@@ -92,13 +92,13 @@ class PCDateEditorPopover extends React.Component {
         open={open}
         value={datePickerValue}
         animation="slide-up"
-        style={{zIndex: 1001}}
+        style={{ zIndex: 1001 }}
         calendar={calendar}
         getCalendarContainer={this.getCalendarContainer}
         onChange={this.onChange}
         onOpenChange={this.onOpenChange}
       >
-        {({value}) => {
+        {({ value }) => {
           value = value && value.format(dateFormat);
           return (
             <span className="dtable-ui-date-editor-container" tabIndex="0" onFocus={this.onFocusDatePicker}>

@@ -33,9 +33,9 @@ function FieldDisplaySetting({ fields, textProperties, fieldAllShown, onClickFie
   };
   const transitionStyles = {
     entering: { opacity: 1, height: `${fields.length * FIELD_ITEM_HEIGHT + BANNER_HEIGHT}px` },
-    entered:  { opacity: 1, height: `${fields.length * FIELD_ITEM_HEIGHT + BANNER_HEIGHT}px` },
-    exiting:  { opacity: 0, height: 0 },
-    exited:  { opacity: 0, height: 0 },
+    entered: { opacity: 1, height: `${fields.length * FIELD_ITEM_HEIGHT + BANNER_HEIGHT}px` },
+    exiting: { opacity: 0, height: 0 },
+    exited: { opacity: 0, height: 0 },
   };
 
   return (
@@ -54,7 +54,7 @@ function FieldDisplaySetting({ fields, textProperties, fieldAllShown, onClickFie
               </span>
             </div>
             <div className="field-setting-body">
-              {fields.map((field, index)  => {
+              {fields.map((field, index) => {
                 return (
                   <FieldItem
                     key={`${field.key}-${index}`}

@@ -39,7 +39,7 @@ class CollaboratorSelect extends Component {
     if (this.state.isShowSelectOptions) event.nativeEvent.stopImmediatePropagation();
     let eventClassName = event.target.className;
     if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'option-group-search') return;
-    //Prevent closing by pressing the spacebar in the search input
+    // Prevent closing by pressing the spacebar in the search input
     if (event.target.value === '') return;
     this.selectedOptionWidth = this.selectedOptionRef.clientWidth;
     this.setState({
@@ -58,7 +58,7 @@ class CollaboratorSelect extends Component {
   };
 
   closeSelect = () => {
-    this.setState({isShowSelectOptions: false});
+    this.setState({ isShowSelectOptions: false });
   };
 
   getFilterOptions = (searchValue) => {
@@ -121,12 +121,12 @@ class CollaboratorSelect extends Component {
 
   render() {
     let { className, value, placeholder, isLocked } = this.props;
-    return(
+    return (
       <button
         ref={(node) => this.selector = node}
         className={classnames('dtable-select custom-select collaborator-select',
-          {'focus': this.state.isShowSelectOptions},
-          {'disabled': isLocked},
+          { 'focus': this.state.isShowSelectOptions },
+          { 'disabled': isLocked },
           className
         )}
         id={this.id}

@@ -154,7 +154,8 @@ class DepartmentSingleSelect extends Component {
               <span
                 className={`dtable-font expand dtable-icon-${isExpanded ? 'drop-down' : 'right-slide'} pr-1`}
                 onClick={(event) => this.onExpand(event, id, isExpanded)}
-              ></span>
+              >
+              </span>
             }
             <span style={nameStyle} title={name} className="text-truncate department-name">{name}</span>
             {isChecked &&

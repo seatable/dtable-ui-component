@@ -23,7 +23,7 @@ const propTypes = {
 class FormulaFormatter extends React.Component {
 
   getGridCellClassName = (resultType) => {
-    switch(resultType) {
+    switch (resultType) {
       case FORMULA_RESULT_TYPE.NUMBER: {
         return 'text-right';
       }
@@ -70,7 +70,7 @@ class FormulaFormatter extends React.Component {
 
   createColumnFormatter(Formatter, formatterProps) {
     if (React.isValidElement(Formatter)) {
-      return React.cloneElement(Formatter, {...formatterProps});
+      return React.cloneElement(Formatter, { ...formatterProps });
     } else if (isFunction(Formatter)) {
       return <Formatter {...formatterProps} />;
     }
@@ -121,7 +121,8 @@ class FormulaFormatter extends React.Component {
         className={`dtable-ui cell-formatter-container formula-formatter ${containerClassName} ${gridCellClassName}`}
         title={formattedValue}
         aria-label={formattedValue}
-      >{formattedValue}</div>
+      >{formattedValue}
+      </div>
     );
   }
 }

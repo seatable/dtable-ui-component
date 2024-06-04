@@ -67,7 +67,7 @@ function DepartmentSingleSelectFilter(props) {
     <div
       ref={selectorRef}
       className={classnames('dtable-select custom-select',
-        {'focus': isShowSelector}
+        { 'focus': isShowSelector }
       )}
       onClick={onSelectToggle}
       id='filter-department-editor'

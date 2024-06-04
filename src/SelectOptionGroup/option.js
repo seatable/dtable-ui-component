@@ -23,13 +23,14 @@ class Option extends Component {
   };
 
   render() {
-    return(
+    return (
       <div
         className={this.props.isActive ? 'option option-active' : 'option'}
         onClick={this.onSelectOption.bind(this, this.props.value)}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-      >{this.props.children}</div>
+      >{this.props.children}
+      </div>
     );
   }
 }
