@@ -16,9 +16,9 @@ class DTableRadioGroup extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.btn || !this.slider) return;
-    const { width } = this.btn.getBoundingClientRect();
-    this.slider.style.width = `${width}px`;
+    const { options } = this.props;
+    if (!this.btn || !this.slider || !Array.isArray(options)) return;
+    this.slider.style.width = `${100 / options.length}%`;
     this.setSliderTransition();
   }
 
