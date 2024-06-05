@@ -63,7 +63,7 @@ class DigitalSignFormatter extends Component {
   };
 
   render() {
-    const { containerClassName, readOnly, config, isSample } = this.props;
+    const { containerClassName, readOnly, config, isSample, renderItem } = this.props;
     const className = classnames('dtable-ui cell-formatter-container digital-sign-formatter', containerClassName);
     const signImages = this.getSignImages();
     if (signImages.length === 0) return null;
@@ -72,7 +72,7 @@ class DigitalSignFormatter extends Component {
     return (
       <>
         <div className={className}>
-          <ImagesLazyLoad images={signImages} server={config.server} onImageClick={this.onClickSignImage}/>
+          <ImagesLazyLoad images={signImages} server={config.server} onImageClick={this.onClickSignImage} renderItem={renderItem} />
         </div>
         {isPreviewSignImage && (
           <ImagePreviewerLightbox
@@ -105,6 +105,7 @@ DigitalSignFormatter.propTypes = {
   }),
   containerClassName: PropTypes.string,
   onCloseCallback: PropTypes.func,
+  renderItem: PropTypes.func,
 };
 
 export default DigitalSignFormatter;

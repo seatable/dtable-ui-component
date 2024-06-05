@@ -90,7 +90,7 @@ class ImageFormatter extends React.Component {
     return (
       <Fragment>
         <div className={className}>
-          <ImagesLazyLoad images={value} server={server} onImageClick={this.onImageClick}/>
+          <ImagesLazyLoad images={value} server={server} onImageClick={this.onImageClick} renderItem={this.props.renderItem}/>
         </div>
         {isPreviewImage && (
           <ImagePreviewerLightbox
@@ -126,6 +126,7 @@ ImageFormatter.propTypes = {
   moveToPrevRowImage: PropTypes.func,
   moveToNextRowImage: PropTypes.func,
   onCloseCallback: PropTypes.func,
+  renderItem: PropTypes.func,
 };
 
 
