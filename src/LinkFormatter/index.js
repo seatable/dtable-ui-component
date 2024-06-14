@@ -7,6 +7,8 @@ import {
   getDateDisplayString,
 } from 'dtable-utils';
 
+import './index.css';
+
 const propTypes = {
   containerClassName: PropTypes.string,
   row: PropTypes.object.isRequired,

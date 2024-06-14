@@ -1,10 +1,11 @@
 @import url('../css/cell-formatter.css');
 
-.dtable-ui.link-formmatter {
+.dtable-ui.link-formatter {
   display: inline-flex;
   align-items: center;
   overflow: hidden;
   flex-wrap: nowrap;
+  line-height: initial;
 }
 
 .dtable-ui.link-formatter .link-item {
