@@ -35,6 +35,7 @@ const en = {
   "Search_column": "Search column",
   "No_results": "No results",
   "Select_option(s)": "Select option(s)",
+  'Select_department': 'Select department',
   "contains": "contains",
   "does_not_contain": "does not contain",
   "is": "is",

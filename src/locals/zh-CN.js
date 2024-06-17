@@ -35,6 +35,7 @@ const zh_CN = {
   "Search_column": "查找列",
   "No_results": "没有结果",
   "Select_option(s)": "选择标签",
+  'Select_department': '选择部门',
   "contains": "包含",
   "does_not_contain": "不包含",
   "is": "是",
