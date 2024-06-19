@@ -89,6 +89,7 @@ const en = {
   "last_month": "last month",
   "last_year": "last year",
   "URL_is_invalid": "URL is invalid",
+  "Select_department": "Select department",
 };
 
 export default en;

@@ -89,6 +89,7 @@ const fr = {
   "last_month": "le mois dernier",
   "last_year": "l'année dernière",
   "URL_is_invalid": "L'URL est invalide.",
+  "Select_department": "Sélectionner un département",
 };
 
 export default fr;

@@ -89,6 +89,7 @@ const pt = {
   "last_month": "mês passado",
   "last_year": "ano passado",
   "URL_is_invalid": "URL é inválido",
+  "Select_department": "Select department",
 };
 
 export default pt;
