@@ -30,9 +30,22 @@
   color: #c2c2c2;
 }
 
+.am-list-item .am-list-line .am-list-brief,
+.am-list-header {
+  color: #666;
+}
+
+.am-list-item .am-input-control input::placeholder {
+  color: #868E96;
+}
+
 /* 3 seatable common style */
+.seatable-text-orange {
+  color: #ED7109 !important;
+}
+
 .seatable-bg-orange {
-  background-color: #ff8000 !important;
+  background-color: #ED7109 !important;
 }
 
 .seatable-input-subtitle {
@@ -98,9 +111,11 @@
 }
 
 .dtable-dropdown-menu .dropdown-item {
+  padding: 0.25rem 1rem;
   line-height: 1.5;
   cursor: pointer;
-  min-height: 28px;
+  height: 32px;
+  min-width: 200px;
 }
 
 .dtable-dropdown-menu .dropdown-item .item-icon {
@@ -124,15 +139,6 @@
 
 .dtable-dropdown-menu .dropdown-toggle:hover::after {
   color: #fff;
-}
-
-.dtable-dropdown-menu.large {
-  margin: 0;
-}
-
-.dtable-dropdown-menu.large .dropdown-item {
-  min-height: 32px;
-  padding: 3px 12px;
 }
 
 .dtable-dropdown-menu .dropdown-item.disabled,
