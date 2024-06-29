@@ -21,6 +21,7 @@ class SelectOptionGroup extends Component {
     };
     this.filterOptions = null;
     this.timer = null;
+    this.searchInputRef = React.createRef();
   }
 
   componentDidMount() {
@@ -44,6 +45,7 @@ class SelectOptionGroup extends Component {
         this.optionGroupRef.style.top = (position.y - height) + 'px';
       }
       this.optionGroupRef.style.opacity = 1;
+      this.searchInputRef.current && this.searchInputRef.current.inputRef.focus();
     }
     else {
       if (height + top > window.innerHeight) {
@@ -194,6 +196,7 @@ class SelectOptionGroup extends Component {
                 placeholder={searchPlaceholder}
                 onChange={this.onChangeSearch}
                 autoFocus={true}
+                ref={this.searchInputRef}
               />
             </div>
           )}
