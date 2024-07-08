@@ -90,6 +90,9 @@ const ru = {
   "last_year": "last year",
   "URL_is_invalid": "URL-адрес недействителен",
   "Select_department": "Select department",
+  "Default": "Нарушение обязательств",
+  "Custom": "Обычаи",
+  "Recently_used": "Недавно использованный",
 };
 
 export default ru;

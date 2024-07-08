@@ -1,0 +1,149 @@
+.dtable-color-picker {
+  width: 240px;
+  height: 370px;
+  background-color: #fff;
+  border-radius: 2px;
+  z-index: 100;
+  padding: 0.75rem;
+  line-height: normal;
+  position: absolute;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 2px, rgba(0, 0, 0, 0.3) 0px 4px 8px;
+}
+
+.dtable-color-picker .chrome-picker {
+  width: 100% !important;
+  box-shadow: unset !important;
+}
+
+.dtable-color-picker .colorinput-color {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.dtable-color-picker .colorinput-color .dtable-icon-color-check {
+  color: #666;
+  font-size: 12px;
+}
+
+.dtable-color-picker .dark .colorinput-color .dtable-icon-color-check {
+  color: #fff;
+}
+
+.dtable-color-picker .blank-placeholder {
+  width: 20px;
+  height: 20px;
+  border: 2px #eee solid;
+  border-radius: 4px;
+}
+
+.dtable-color-picker .blank-placeholder span {
+  color: red;
+  transform: rotate(120deg) translate(0px, -2px);
+  font-size: 16px;
+}
+
+.dtable-color-picker .chrome-picker > div:first-of-type {
+  height: 140px;
+  border-radius: 2px !important;
+}
+
+.dtable-color-picker .chrome-picker > div:nth-child(2) {
+  padding: 0.75rem 0 !important;
+}
+
+.dtable-color-picker .color-setting {
+  font-size: 13px;
+}
+
+.dtable-color-picker .color-setting .mode-btn {
+  cursor: pointer;
+}
+
+.dtable-color-picker .color-setting .mode-btn:hover,
+.dtable-color-picker .color-setting .mode-btn:hover .dtable-font {
+  color: #555;
+}
+
+.dtable-color-picker .color-setting input {
+  height: 24px;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.dtable-color-picker .color-setting .hex-container {
+  position: relative;
+}
+
+.dtable-color-picker .color-setting .hex-container span {
+  position: absolute;
+  top: 4.8px;
+  left: 10px;
+  color: #999;
+}
+
+.dtable-color-picker .color-setting .hex-input {
+  padding-left: 20px;
+  width: 100px;
+}
+
+.dtable-color-picker .color-setting .rgb-container span {
+  margin: 0 2px 0 4px;
+  color: #999;
+}
+
+.dtable-color-picker .color-setting .rgb-input {
+  width: 28px;
+  display: inline-block;
+  padding: 0 0 0 2px;
+}
+
+.dtable-color-picker .color-setting .alpha-input {
+  width: 60px;
+  margin-left: 0.5rem;
+}
+
+.dtable-color-picker .color-setting.rgba .alpha-input {
+  width: 40px;
+  padding: 0 0 0 2px;
+  margin-left: 4px;
+}
+
+.dtable-color-picker .color-setting .dtable-font {
+  font-size: 12px;
+  margin-left: 2px;
+  color: #ccc;
+  display: inline-block;
+  transform: rotate(90deg);
+  cursor: pointer;
+}
+
+.dtable-color-picker .saturation-black {
+  cursor: pointer;
+}
+
+.dtable-color-picker .chrome-picker .color-bar .hue-horizontal,
+.dtable-color-picker .chrome-picker .color-bar > div:last-of-type > div:last-of-type > div > div:first-of-type,
+.dtable-color-picker .chrome-picker .color-bar > div:last-of-type > div:last-of-type > div > div:nth-child(2) {
+  border-radius: 10px;
+}
+
+.dtable-color-picker .chrome-picker .color-bar .hue-horizontal,
+.dtable-color-picker .chrome-picker > div:nth-child(2) > div > div > div:nth-child(2) {
+  cursor: pointer;
+}
+
+.dtable-color-picker .chrome-picker .color-bar > div:first-of-type > div {
+  margin-top: 4px !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 2px !important;
+}
+
+.dtable-color-picker .chrome-picker .color-bar > div:first-of-type > div > div:first-of-type {
+  border-radius: 2px !important;
+}
+
+.dtable-color-picker .chrome-picker > div:nth-child(2) > div:nth-child(2) {
+  display: none !important;
+}

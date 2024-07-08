@@ -90,6 +90,9 @@ const pt = {
   "last_year": "ano passado",
   "URL_is_invalid": "URL é inválido",
   "Select_department": "Select department",
+  "Default": "por omissão",
+  "Custom": "personalizado",
+  "Recently_used": "usado recentemente",
 };
 
 export default pt;

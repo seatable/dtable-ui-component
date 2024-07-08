@@ -90,6 +90,9 @@ const es = {
   "last_year": "el año pasado",
   "URL_is_invalid": "URL no válida",
   "Select_department": "Select department",
+  "Default": "Incumplimiento de contrato",
+  "Custom": "Costumbres",
+  "Recently_used": "Recientemente usado",
 };
 
 export default es;

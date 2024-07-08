@@ -90,6 +90,9 @@ const zh_CN = {
   "last_year": "去年",
   "URL_is_invalid": "URL 无效",
   "Select_department": "选择部门",
+  "Default": "默认",
+  "Custom": "自定义",
+  "Recently_used": "最近使用",
 };
 
 export default zh_CN;
