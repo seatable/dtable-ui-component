@@ -90,6 +90,9 @@ const fr = {
   "last_year": "l'année dernière",
   "URL_is_invalid": "L'URL est invalide.",
   "Select_department": "Sélectionner un département",
+  "Default": "Violation",
+  "Custom": "Les coutumes",
+  "Recently_used": "Utilisé récemment",
 };
 
 export default fr;

@@ -90,6 +90,9 @@ const de = {
   "last_year": "letztes Jahr",
   "URL_is_invalid": "Die URL ist ungültig.",
   "Select_department": "Bereich auswählen",
+  "Default": "Standard",
+  "Custom": "Benutzerdefiniert",
+  "Recently_used": "Kürzlich benutzt",
 };
 
 export default de;

@@ -90,6 +90,9 @@ const en = {
   "last_year": "last year",
   "URL_is_invalid": "URL is invalid",
   "Select_department": "Select department",
+  "Default": "Default",
+  "Custom": "Custom",
+  "Recently_used": "Recently used",
 };
 
 export default en;
