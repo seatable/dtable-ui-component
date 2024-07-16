@@ -330,8 +330,10 @@ const DTableColorPicker = forwardRef((props, ref) => {
                     onClick={() => onSelectDefaultColor(color)}
                     key={`default-color-${index}`}
                   >
-                    <span className="colorinput-color d-flex align-items-center justify-content-center" style={{ backgroundColor: color }}>
-                      {color === `${rgbaToHex(value)}` && <i className="dtable-icon-color-check dtable-font dtable-icon-check-mark"></i>}
+                    <span 
+                      className="colorinput-color d-flex align-items-center justify-content-center" 
+                      style={{ backgroundColor: color }}
+                    >
                     </span>
                   </div>
                 );
