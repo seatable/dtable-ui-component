@@ -330,8 +330,8 @@ const DTableColorPicker = forwardRef((props, ref) => {
                     onClick={() => onSelectDefaultColor(color)}
                     key={`default-color-${index}`}
                   >
-                    <span 
-                      className="colorinput-color d-flex align-items-center justify-content-center" 
+                    <span
+                      className="colorinput-color d-flex align-items-center justify-content-center"
                       style={{ backgroundColor: color }}
                     >
                     </span>
