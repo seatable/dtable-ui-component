@@ -2,6 +2,71 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { components } from 'react-select';
 
+const UserSelectStyle = {
+  option: (provided, state) => {
+    const { isDisabled, isFocused } = state;
+    return ({
+      ...provided,
+      cursor: isDisabled ? 'default' : 'pointer',
+      backgroundColor: isFocused ? '#f5f5f5' : '#fff',
+    });
+  },
+  control: (provided) => ({
+    ...provided,
+    fontSize: '14px',
+    cursor: 'pointer',
+    lineHeight: '1.5',
+  }),
+  indicatorSeparator: () => ({
+    display: 'none',
+  }),
+  dropdownIndicator: () => ({
+    display: 'none',
+  }),
+  clearIndicator: () => ({
+    display: 'none',
+  }),
+  multiValue: (provided) => {
+    return {
+      ...provided,
+      display: 'inline-flex',
+      alignItems: 'center',
+      background: '#eaeaea',
+      borderRadius: '10px',
+      margin: '0 10px 0 0',
+      padding: '0 0 0 2px',
+    };
+  },
+  multiValueLabel: (provided) => {
+    return {
+      ...provided,
+      padding: '0px',
+    };
+  },
+  multiValueRemove: (provided) => {
+    return {
+      ...provided,
+      color: '#666',
+      ':hover': {
+        backgroundColor: 'transparent',
+        color: '#555555',
+      }
+    };
+  },
+  singleValue: (provided) => {
+    return {
+      ...provided,
+      display: 'inline-flex',
+      alignItems: 'center',
+      background: '#eaeaea',
+      borderRadius: '10px',
+      margin: '0',
+      padding: '0 2px',
+      width: 'fit-content',
+    };
+  },
+};
+
 const MenuSelectStyle = {
   option: (provided, state) => {
     const { isDisabled, isFocused } = state;
@@ -73,4 +138,4 @@ Option.propTypes = {
   }),
 };
 
-export { MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option };
+export { UserSelectStyle, MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option };

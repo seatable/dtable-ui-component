@@ -1,0 +1,51 @@
+.user-select .select-module-container {
+  display: flex;
+  align-items: center;
+}
+
+.user-select .select-module.select-module-avatar {
+  height: 24px;
+  width: 24px;
+  border-radius: 50%;
+}
+
+.user-select .select-module.select-module-name {
+  color: #212529;
+  font-size: 14px;
+}
+
+.user-select .true__value-container .select-module-container {
+  display: block;
+}
+
+.user-select .true__value-container .select-module.select-module-avatar {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+}
+
+.user-select .true__value-container .true__multi-value__label {
+  padding: 0px;
+}
+
+.user-select .true__value-container .true__multi-value__label .select-module.select-module-avatar {
+  transform: translateY(-2px);
+}
+
+.user-select .true__value-container .select-module.select-module-name {
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1 1;
+  line-height: 20px;
+  margin-left: 5px;
+}
+
+.user-select .true__control.true__control--is-focused,
+.user-select .true__control.true__control--is-focused:hover {
+  background-color: #ffffff;
+  border-color: #1991eb;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25);
+}
