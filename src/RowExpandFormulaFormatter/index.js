@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString, getColumnType } from 'dtable-utils';
+import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString, getColumnType, DISPLAY_INTERNAL_ERRORS } from 'dtable-utils';
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
-import { isArrayFormatColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
-  convertValueToDtableLongTextValue, isValidUrl, openUrlLink } from '../FormulaFormatter/utils';
+import {
+  isArrayFormatColumn, isSimpleCellFormatter, isFunction,
+  convertValueToDtableLongTextValue, isValidUrl, openUrlLink,
+} from '../FormulaFormatter/utils';
 import cellValueValidator from '../FormulaFormatter/cell-value-validator';
 import toaster from '../toaster';
 import { getLocale } from '../lang';
@@ -19,6 +21,18 @@ export default class RowExpandFormulaFormatter extends React.Component {
     column: PropTypes.object,
     containerClassName: PropTypes.string,
     collaborators: PropTypes.array,
+  };
+
+  getGridCellClassName = (resultType) => {
+    switch (resultType) {
+      case FORMULA_RESULT_TYPE.NUMBER:
+      case FORMULA_RESULT_TYPE.DATE: {
+        return 'text-right';
+      }
+      default: {
+        return '';
+      }
+    }
   };
 
   onOpenUrlLink = (url) => {
@@ -50,6 +64,19 @@ export default class RowExpandFormulaFormatter extends React.Component {
     return (
       <div className="d-flex align-items-center form-control disabled h-auto" style={style}>{dom}</div>
     );
+  };
+
+  renderCellValue = (cellValue, resultType) => {
+    const { containerClassName } = this.props;
+    const customClassName = this.getGridCellClassName(resultType);
+    const className = `dtable-ui cell-formatter-container formula-formatter ${containerClassName} ${customClassName}`;
+    return this.renderBorder(
+      <div className={className} title={cellValue} aria-label={cellValue}>{cellValue}</div>
+    );
+  }
+
+  renderInternalErrorValue = (errorValue, resultType) => {
+    return this.renderCellValue(errorValue, resultType);
   };
 
   renderOtherColumnFormatter = () => {
@@ -137,16 +164,16 @@ export default class RowExpandFormulaFormatter extends React.Component {
   };
 
   render() {
-    let { containerClassName, column, collaborators, value } = this.props;
+    let { column, collaborators, value } = this.props;
     const { data } = column;
     const { array_type, result_type } = data;
 
-    if (!value) return null;
-    if (Array.isArray(value)) {
-      value = getFormulaArrayValue(value);
-      if (array_type === CellType.LONG_TEXT) {
-        value = value.map(item => convertValueToDtableLongTextValue(item));
-      }
+    if (DISPLAY_INTERNAL_ERRORS.includes(value)) {
+      return this.renderInternalErrorValue(value, result_type);
+    }
+
+    if (array_type === CellType.LONG_TEXT && Array.isArray(value)) {
+      value = value.map(item => convertValueToDtableLongTextValue(item));
     }
 
     if (result_type === FORMULA_RESULT_TYPE.ARRAY) {
@@ -158,14 +185,6 @@ export default class RowExpandFormulaFormatter extends React.Component {
     }
 
     const formattedValue = getFormulaDisplayString(value, data, { collaborators });
-
-    let className = `dtable-ui cell-formatter-container formula-formatter ${containerClassName}`;
-    if (result_type === FORMULA_RESULT_TYPE.NUMBER) {
-      className = className + ' text-right';
-    }
-
-    return this.renderBorder(
-      <div className={className} title={formattedValue} aria-label={formattedValue}>{formattedValue}</div>
-    );
+    return this.renderCellValue(formattedValue, result_type);
   }
 }
