@@ -123,7 +123,8 @@ export default class EditorFormatter extends React.Component {
 
     const { collaborators } = this.state;
     const containerClassName = `dtable-${columnType}-formatter ${className || ''}`;
-    let cellValue = row[column.key] || row[column.name];
+
+    let cellValue = (row[column.key] !== null && row[column.key] !== undefined) ? row[column.key] : row[column.name];
 
     switch (columnType) {
       case CellType.TEXT: {
