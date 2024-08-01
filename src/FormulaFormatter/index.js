@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {
   CellType,
+  DISPLAY_INTERNAL_ERRORS,
   FORMULA_RESULT_TYPE,
   getFormulaDisplayString,
 } from 'dtable-utils';
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
-import { isArrayFormatColumn, isSimpleCellFormatter, isFunction, getFormulaArrayValue,
-  convertValueToDtableLongTextValue } from './utils';
+import {
+  isArrayFormatColumn, isSimpleCellFormatter, isFunction, convertValueToDtableLongTextValue,
+} from './utils';
 import cellValueValidator from './cell-value-validator';
 
 import './index.css';
@@ -24,13 +26,32 @@ class FormulaFormatter extends React.Component {
 
   getGridCellClassName = (resultType) => {
     switch (resultType) {
-      case FORMULA_RESULT_TYPE.NUMBER: {
+      case FORMULA_RESULT_TYPE.NUMBER:
+      case FORMULA_RESULT_TYPE.DATE: {
         return 'text-right';
       }
       default: {
         return '';
       }
     }
+  };
+
+  renderCellValue = (cellValue, resultType) => {
+    const { containerClassName } = this.props;
+    const gridCellClassName = this.getGridCellClassName(resultType);
+    return (
+      <div
+        className={`dtable-ui cell-formatter-container formula-formatter ${containerClassName} ${gridCellClassName}`}
+        title={cellValue}
+        aria-label={cellValue}
+      >
+        {cellValue}
+      </div>
+    );
+  }
+
+  renderInternalErrorValue = (errorValue, resultType) => {
+    return this.renderCellValue(errorValue, resultType);
   };
 
   renderOtherColumnFormatter = () => {
@@ -95,16 +116,18 @@ class FormulaFormatter extends React.Component {
   };
 
   render() {
-    const { containerClassName, column, collaborators } = this.props;
+    const { column, collaborators } = this.props;
     const { data } = column;
-    const { array_type, result_type: resultType } = data;
-
     let value = this.props.value;
-    if (Array.isArray(value)) {
-      value = getFormulaArrayValue(value);
-      if (array_type === CellType.LONG_TEXT) {
-        value = value.map(item => convertValueToDtableLongTextValue(item));
-      }
+    if (!data || (!value && value !== 0 && value !== false)) return null;
+
+    const { array_type, result_type: resultType } = data;
+    if (DISPLAY_INTERNAL_ERRORS.includes(value)) {
+      return this.renderInternalErrorValue(value, resultType);
+    }
+
+    if (array_type && array_type === CellType.LONG_TEXT && Array.isArray(value)) {
+      value = value.map(item => convertValueToDtableLongTextValue(item));
     }
 
     if (resultType === FORMULA_RESULT_TYPE.ARRAY) {
@@ -114,16 +137,8 @@ class FormulaFormatter extends React.Component {
       return null;
     }
 
-    const gridCellClassName = this.getGridCellClassName(resultType);
     const formattedValue = getFormulaDisplayString(value, data, { collaborators });
-    return (
-      <div
-        className={`dtable-ui cell-formatter-container formula-formatter ${containerClassName} ${gridCellClassName}`}
-        title={formattedValue}
-        aria-label={formattedValue}
-      >{formattedValue}
-      </div>
-    );
+    return this.renderCellValue(formattedValue, resultType)
   }
 }
 
