@@ -62,12 +62,12 @@ class DTableRadioGroup extends React.Component {
   };
 
   render() {
-    const { options, optionsDisplay } = this.props;
+    const { options, optionsDisplay, readOnly } = this.props;
     const { activeOption } = this.state;
 
     return (
       <div className="radio-group-wrapper">
-        <div className="radio-group-options">
+        <div className={`radio-group-options ${readOnly ? 'read-only' : ''}`}>
           {options.map(option => {
             const isActive = activeOption === option ? true : false;
             const displayOption = (optionsDisplay && optionsDisplay[option]) || '';
@@ -91,6 +91,7 @@ class DTableRadioGroup extends React.Component {
 }
 
 DTableRadioGroup.propTypes = {
+  readOnly: PropTypes.bool,
   activeOption: PropTypes.string,
   options: PropTypes.array.isRequired,
   optionsDisplay: PropTypes.object,

@@ -17,6 +17,10 @@
   position: relative;
 }
 
+.radio-group-options.read-only {
+  pointer-events: none;
+}
+
 .radio-group-options .radio-group-button {
   display: inline-flex;
   align-items: center;
