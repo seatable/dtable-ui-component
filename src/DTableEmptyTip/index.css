@@ -1,0 +1,20 @@
+.empty-tip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.empty-tip .empty-tip-title {
+  font-size: 18px;
+  font-weight: 500;
+  color: #212529;
+}
+
+.empty-tip .empty-tip-text {
+  font-size: 14px;
+  font-weight: normal;
+  color: #666;
+  margin-top: 10px;
+}
