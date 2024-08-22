@@ -58,3 +58,11 @@ export const Demo3 = Object.assign({}, Demo, {
     ),
   }
 });
+
+export const Demo4 = Object.assign({}, Demo, {
+  args: {
+    src: 'https://dev.seatable.cn/media/img/no-items-tip.png',
+    title: 'Email sent',
+    text: 'Check your mail box and change password. Send an email to SeaTable later.',
+  }
+});
