@@ -5,6 +5,6 @@ import Loading from '../../src/Loading';
 describe('components/loading', () => {
   it('basic test', () => {
     let wrapper = shallow(<Loading />);
-    expect(wrapper.find('.loading-icon').hasClass('loading-tip'));
+    expect(wrapper.find('.dtable-ui-loading-icon').hasClass('dtable-ui-loading-tip'));
   })
 })

@@ -36,7 +36,7 @@
   }
 }
 
-.loading-icon {
+.dtable-ui-loading-icon {
   display: inline-block;
   width: 20px;
   height: 20px;
@@ -48,7 +48,7 @@
   animation: loading 0.9s infinite linear;
 }
 
-.loading-tip {
+.dtable-ui-loading-tip {
   display: block;
   margin: 0 auto;
 }
