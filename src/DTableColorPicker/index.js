@@ -13,11 +13,11 @@ const DEFAULT_COLORS = [
   '#ffffff',
   '#f5f5f5',
   '#eef6f9',
-  '#deffe6',
-  '#def7c4',
-  '#fefdb5',
-  '#feebb6',
-  '#ffdde5'
+  '#333333',
+  '#ff0000',
+  '#ffff00',
+  '#0000ff',
+  '#00ff00'
 ];
 
 const COLOR_PICKER_MODE = {
