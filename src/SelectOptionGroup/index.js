@@ -142,7 +142,7 @@ class SelectOptionGroup extends Component {
       let isActive = this.state.activeIndex === i;
       return (
         <Option
-          key={key}
+          key={`${key}-${i}`}
           index={i}
           isActive={isActive}
           value={opt.value}
