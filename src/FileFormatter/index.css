@@ -12,6 +12,10 @@
   border: 1px solid #f0f0f0;
 }
 
+.dtable-ui.file-formatter .file-item-icon.img {
+  width: fit-content;
+}
+
 .dtable-ui.file-formatter .file-item-count {
   display: inline-block;
   padding: 0 3px;

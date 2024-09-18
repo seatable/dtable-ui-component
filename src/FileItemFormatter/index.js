@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getFileIconUrl } from './utils';
+import { getFileThumbnailInfo } from './utils';
 
 export default class FileItemFormatter extends Component {
 
@@ -8,16 +8,11 @@ export default class FileItemFormatter extends Component {
     file: PropTypes.object.isRequired,
   };
 
-  getFileIconData = (item) => {
-    let fileIconUrl = getFileIconUrl(item.name, item.type);
-    let fileIconData = require('./' + fileIconUrl);
-    return fileIconData;
-  };
-
   render() {
     const { file } = this.props;
+    const { fileIconUrl, isImage } = getFileThumbnailInfo(file);
     return (
-      <img className="file-item-icon" src={this.getFileIconData(file)} alt={file.name} />
+      <img className={`file-item-icon ${isImage ? 'img' : ''}`} src={fileIconUrl} alt={file?.name || ''} />
     );
   }
 }
