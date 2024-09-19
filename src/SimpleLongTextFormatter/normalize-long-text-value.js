@@ -25,7 +25,7 @@ const getLinks = (hrefList) => {
   return hrefObj;
 };
 
-const getPreviewContent = (markdownContent) => {
+const getPreviewContent = (markdownContent, isShowAll = false) => {
   let preview = '';
   let newMarkdownContent = markdownContent.replace(hrefReg, '');
   for (let index = 0; index < newMarkdownContent.length; index++) {
@@ -36,7 +36,7 @@ const getPreviewContent = (markdownContent) => {
     } else {
       preview += newMarkdownContent[index];
     }
-    if (preview.length === 150) {
+    if (preview.length === 150 && !isShowAll) {
       break;
     }
   }

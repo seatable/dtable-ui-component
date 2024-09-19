@@ -69,11 +69,11 @@ class SimpleLongTextFormatter extends React.Component {
   };
 
   translateValue = () => {
-    const { value } = this.props;
+    const { value, isShowAll } = this.props;
     if (!value) return {};
     const valueType = Object.prototype.toString.call(value);
     if (valueType === '[object String]') {
-      return getPreviewContent(value);
+      return getPreviewContent(value, isShowAll);
     }
     if (valueType === '[object Object]') {
       return value;
@@ -164,6 +164,7 @@ class SimpleLongTextFormatter extends React.Component {
 }
 
 SimpleLongTextFormatter.propTypes = {
+  isShowAll: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   containerClassName: PropTypes.string,
   previewClassName: PropTypes.string,
