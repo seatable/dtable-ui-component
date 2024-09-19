@@ -1,3 +1,5 @@
+import { getImageThumbnailUrl } from "../ImageFormatter/utils";
+
 const FILEEXT_ICON_MAP = {
   // text file
   md: 'txt.png',
@@ -56,6 +58,23 @@ const FILEEXT_ICON_MAP = {
   default: 'file.png',
 };
 
+export const getFileThumbnailInfo = (fileItem) => {
+  let fileIconUrl;
+  let isImage;
+  if (!fileItem.name) {
+    fileIconUrl = FILEEXT_ICON_MAP['default'];
+    isImage = false;
+  } else {
+    isImage = imageCheck(fileItem.name);
+    if (isImage) {
+      fileIconUrl = getImageThumbnailUrl(fileItem.url);
+    } else {
+      fileIconUrl = require('./' + getFileIconUrl(fileItem.name, fileItem.type));
+    }
+  }
+  return { fileIconUrl, isImage };
+};
+
 export const getFileIconUrl = (filename, direntType) => {
   if (typeof direntType === 'string' && direntType === 'dir') {
     return 'assets/folder/' + FILEEXT_ICON_MAP['folder'];
@@ -69,4 +88,15 @@ export const getFileIconUrl = (filename, direntType) => {
   const file_ext = (typeof filename === 'string' && filename.slice(identifierIndex + 1).toLowerCase()) || 'default';
   const iconUrl = FILEEXT_ICON_MAP[file_ext] ? 'assets/file/192/' + FILEEXT_ICON_MAP[file_ext] : 'assets/file/192/' + FILEEXT_ICON_MAP['default'];
   return iconUrl;
+};
+
+export const imageCheck = filename => {
+  // no file ext
+  if (!filename || typeof filename !== 'string') return false;
+  if (filename.lastIndexOf('.') === -1) {
+    return false;
+  }
+  const file_ext = filename.substr(filename.lastIndexOf('.') + 1).toLowerCase();
+  const image_exts = ['gif', 'jpeg', 'jpg', 'png', 'ico', 'bmp', 'tif', 'tiff', 'webp'];
+  return image_exts.includes(file_ext);
 };
