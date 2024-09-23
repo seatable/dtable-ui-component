@@ -11,7 +11,7 @@ class DTableEmptyTip extends React.Component {
       <div className="empty-tip">
         <img src={this.props.src} alt="" width="100" height="100" className="no-items-img-tip" />
         {title && <span className="empty-tip-title">{title}</span>}
-        {text && <span className="empty-tip-text" style={{color: type === 'error' ? 'red' : '#666'}}>{text}</span>}
+        {text && <span className="empty-tip-text" style={{ color: type === 'error' ? 'red' : '#666' }}>{text}</span>}
         {this.props.children && this.props.children}
       </div>
     );

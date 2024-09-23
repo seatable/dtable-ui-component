@@ -73,7 +73,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
     return this.renderBorder(
       <div className={className} title={cellValue} aria-label={cellValue}>{cellValue}</div>
     );
-  }
+  };
 
   renderInternalErrorValue = (errorValue, resultType) => {
     return this.renderCellValue(errorValue, resultType);

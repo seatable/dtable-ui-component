@@ -48,7 +48,7 @@ class FormulaFormatter extends React.Component {
         {cellValue}
       </div>
     );
-  }
+  };
 
   renderInternalErrorValue = (errorValue, resultType) => {
     return this.renderCellValue(errorValue, resultType);
@@ -138,7 +138,7 @@ class FormulaFormatter extends React.Component {
     }
 
     const formattedValue = getFormulaDisplayString(value, data, { collaborators });
-    return this.renderCellValue(formattedValue, resultType)
+    return this.renderCellValue(formattedValue, resultType);
   }
 }
 
