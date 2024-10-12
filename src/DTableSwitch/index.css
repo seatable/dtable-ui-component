@@ -1,0 +1,56 @@
+.dtable-switch {
+  display: flex;
+}
+
+.dtable-switch.sm {
+  flex: 1;
+}
+
+.dtable-switch .custom-switch {
+  cursor: pointer;
+  justify-content: space-between;
+}
+
+.dtable-switch.disabled .custom-switch {
+  cursor: default;
+}
+
+.dtable-switch.sm .custom-switch {
+  width: 100%;
+}
+
+.dtable-switch.sm .custom-switch .custom-switch-description {
+  width: 192px;
+  margin: 0;
+  padding-right: 5px;
+  color: #212529;
+}
+
+.dtable-switch.sm .custom-switch .dtable-font {
+  -webkit-transform: scale(.8);
+  transform: scale(.8);
+  display: inline-block;
+  line-height: 24px;
+  margin-right: 8px;
+  color: #666;
+}
+
+.dtable-switch.sm .custom-switch .dtable-font.dtable-icon-use-help {
+  transform: none;
+}
+
+.dtable-switch.sm .custom-switch-indicator {
+  width: 22px;
+  height: 12px;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+
+.dtable-switch.sm .custom-switch-input:checked~.custom-switch-indicator:before {
+  left: 12px;
+}
+
+.dtable-switch.sm .custom-switch-indicator:before {
+  height: 8px;
+  width: 8px;
+}
