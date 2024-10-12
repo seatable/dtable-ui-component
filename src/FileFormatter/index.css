@@ -13,7 +13,7 @@
 }
 
 .dtable-ui.file-formatter .file-item-icon.img {
-  width: fit-content;
+  width: auto;
 }
 
 .dtable-ui.file-formatter .file-item-count {
