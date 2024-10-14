@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import getPreviewContent from './normalize-long-text-value';
+import { getPreviewContent } from '@seafile/seafile-editor';
 import LongTextPreview from './widgets/LongTextPreview';
 import ModalPortal from '../ModalPortal';
 
@@ -73,7 +73,9 @@ class SimpleLongTextFormatter extends React.Component {
     if (!value) return {};
     const valueType = Object.prototype.toString.call(value);
     if (valueType === '[object String]') {
-      return getPreviewContent(value);
+      const { previewText, images, links, checklist } = getPreviewContent(value);
+      const newValue = Object.assign({}, { text: value, preview: previewText, images, links, checklist });
+      return newValue;
     }
     if (valueType === '[object Object]') {
       return value;
