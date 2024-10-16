@@ -1,9 +1,9 @@
 import React from 'react';
-import DtableSwitch from '../../../src/DTableSwitch';
+import DTableSwitch from '../../../src/DTableSwitch';
 
 const meta = {
-  title: 'Common/DtableSwitch',
-  component: DtableSwitch,
+  title: 'Common/DTableSwitch',
+  component: DTableSwitch,
   tags: ['autodocs'],
   decorators: [
     (Story, context) => {

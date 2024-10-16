@@ -38,37 +38,6 @@
   cursor: grab;
 }
 
-.field-item-container .dtable-switch .custom-switch {
-  width: 100%;
-  justify-content: space-between;
+.field-setting .field-item-container .dtable-switch .custom-switch .custom-switch-description {
+  white-space: nowrap;
 }
-
-.field-item-container .dtable-switch .custom-switch .dtable-font {
-  -webkit-transform: scale(.8);
-  transform: scale(.8);
-  display: inline-block;
-  line-height: 24px;
-  margin-right: 8px;
-  color: #666;
-}
-
-.field-item-container .dtable-switch .custom-switch .custom-switch-description {
-  width: 192px;
-}
-
-.field-item-container .dtable-switch .custom-switch .custom-switch-indicator {
-  width: 22px;
-  height: 12px;
-  border-radius: 6px;
-  margin-right: .25rem;
-}
-
-.field-item-container .dtable-switch .custom-switch .custom-switch-indicator::before {
-  height: 8px;
-  width: 8px;
-}
-
-.field-item-container .dtable-switch .custom-switch-input:checked~.custom-switch-indicator:before {
-  left: 12px;
-}
-
