@@ -73,7 +73,9 @@ class SimpleLongTextFormatter extends React.Component {
     if (!value) return {};
     const valueType = Object.prototype.toString.call(value);
     if (valueType === '[object String]') {
-      const { previewText, images, links, checklist } = getPreviewContent(value);
+      const isMarkdown = true;
+      const previewTextNeedSlice = false;
+      const { previewText, images, links, checklist } = getPreviewContent(value, isMarkdown, previewTextNeedSlice);
       const newValue = Object.assign({}, { text: value, preview: previewText, images, links, checklist });
       return newValue;
     }
