@@ -10,10 +10,10 @@ function DTableSwitch(props) {
   const switchNode = <span className="custom-switch-indicator"></span>;
   const textNode = <span className="custom-switch-description text-truncate">{placeholder}</span>;
   return (
-    <div 
+    <div
       className={classnames('dtable-switch position-relative',
         { 'disabled': disabled },
-        { [size]: size }, 
+        { [size]: size },
         { [switchClassName]: switchClassName })
       }
     >

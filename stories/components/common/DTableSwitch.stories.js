@@ -33,9 +33,47 @@ const Demo = {
   }
 };
 
-export const Demo1 = Object.assign({}, Demo, { args: { isChecked: true, onCheckedChange: () => {}, placeholder: 'Default Switch' } });
+export const Demo1 = Object.assign({}, Demo, { args: {
+  checked: true,
+  onCheckedChange: () => {},
+  placeholder: 'Default Switch'
+} });
 
-export const Demo2 = Object.assign({}, Demo, { args: { isChecked: true, disabled: true, placeholder: 'Disabled Switch' } });
+export const Demo2 = Object.assign({}, Demo, { args: {
+  checked: true,
+  disabled: true,
+  placeholder: 'Disabled Switch'
+} });
 
-export const Demo3 = Object.assign({}, Demo, { args: { isChecked: false, onCheckedChange: () => {}, placeholder: 'Unchecked Switch' } });
+export const Demo3 = Object.assign({}, Demo, { args: {
+  checked: false,
+  onCheckedChange: () => {},
+  placeholder: 'Unchecked Switch'
+} });
 
+export const Demo4 = Object.assign({}, Demo, { args: {
+  checked: true,
+  size: 'lg',
+  onCheckedChange: () => {},
+  placeholder: 'Large Switch'
+} });
+
+export const Demo5 = Object.assign({}, Demo, { args: {
+  checked: true,
+  switchPosition: 'left',
+  onCheckedChange: () => {},
+  placeholder: 'Left Switch'
+} });
+
+export const Demo6 = Object.assign({}, Demo, { args: {
+  checked: true,
+  onCheckedChange: () => {},
+  placeholder: (<div><code>Switch with custom placeholder</code></div>)
+} });
+
+export const Demo7 = Object.assign({}, Demo, { args: {
+  checked: true,
+  switchClassName: 'dtable-ui-switch-custom',
+  onCheckedChange: () => {},
+  placeholder: 'Custom className'
+} });
