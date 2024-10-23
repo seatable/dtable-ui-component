@@ -16,6 +16,7 @@ export default class RowExpandImageFormatter extends React.Component {
     deleteFile: PropTypes.func,
     downloadImage: PropTypes.func,
     rotateImage: PropTypes.func,
+    onViewOriginal: PropTypes.func,
     moveToPrevRowImage: PropTypes.func,
     moveToNextRowImage: PropTypes.func,
     onCloseCallback: PropTypes.func,
@@ -63,7 +64,7 @@ export default class RowExpandImageFormatter extends React.Component {
   };
 
   render() {
-    const { value, server, containerClassName, readOnly, column, downloadImage } = this.props;
+    const { value, server, containerClassName, readOnly, column } = this.props;
     const { isPreviewImage, previewImageIndex } = this.state;
     if (!Array.isArray(value) || value.length === 0) {
       return null;
@@ -78,7 +79,7 @@ export default class RowExpandImageFormatter extends React.Component {
                 key={index}
                 index={index}
                 column={column}
-                downloadFile={downloadImage}
+                downloadFile={this.props.downloadImage}
                 deleteFile={this.props.deleteFile}
                 readOnly={readOnly}
                 onImageClick={this.onImageClick}
@@ -94,8 +95,9 @@ export default class RowExpandImageFormatter extends React.Component {
             moveToPrevImage={this.movePrev}
             moveToNextImage={this.moveNext}
             deleteImage={this.props.deleteFile}
-            downloadImage={downloadImage}
+            downloadImage={this.props.downloadImage}
             onRotateImage={this.props.rotateImage}
+            onViewOriginal={this.props.onViewOriginal}
             readOnly={readOnly}
             server={server}
             moveToPrevRowImage={this.props.moveToPrevRowImage}

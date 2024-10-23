@@ -106,6 +106,7 @@ class ImageFormatter extends React.Component {
             server={server}
             moveToPrevRowImage={this.props.moveToPrevRowImage}
             moveToNextRowImage={this.props.moveToNextRowImage}
+            onViewOriginal={this.props.onViewOriginal}
           />
         )}
       </Fragment>
@@ -123,6 +124,7 @@ ImageFormatter.propTypes = {
   deleteImage: PropTypes.func,
   downloadImage: PropTypes.func,
   rotateImage: PropTypes.func,
+  onViewOriginal: PropTypes.func,
   moveToPrevRowImage: PropTypes.func,
   moveToNextRowImage: PropTypes.func,
   onCloseCallback: PropTypes.func,

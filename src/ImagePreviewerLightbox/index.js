@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Lightbox from '@seafile/react-image-lightbox';
 import { checkSVGImage, isInternalImg } from './utils';
+import { getLocale } from '../lang';
 
 import '@seafile/react-image-lightbox/style.css';
 
@@ -35,6 +36,10 @@ function ImagePreviewerLightbox(props) {
       onRotateImage={canRotateImage ? (deg) => {onRotateImage(imageIndex, deg);} : null}
       onClickDelete={(!readOnly && deleteImage) ? () => {deleteImage(imageIndex, 'previewer');} : null}
       onClickDownload={downloadImage ? () => {downloadImage(URL);} : null}
+      imagePadding={70}
+      onViewOriginal={props.onViewOriginal}
+      viewOriginalImageLabel={getLocale('View_original_image')}
+      enableRotate={true}
     />
   );
 }
@@ -53,6 +58,7 @@ ImagePreviewerLightbox.propTypes = {
   server: PropTypes.string,
   moveToPrevRowImage: PropTypes.func,
   moveToNextRowImage: PropTypes.func,
+  onViewOriginal: PropTypes.func,
 };
 
 export default ImagePreviewerLightbox;

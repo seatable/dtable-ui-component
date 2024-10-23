@@ -24,6 +24,7 @@ const en = {
   "Current_user_department_and_sub": "Current user\"s department and sub-departments",
   "Specific_departments": "Specific departments",
   "Deleted_department": "Deleted department",
+  "View_original_image": "View original image",
   "Add_filter": "Add filter",
   "Submit": "Submit",
   "No_filters": "No filters",

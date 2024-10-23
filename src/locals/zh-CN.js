@@ -24,6 +24,7 @@ const zh_CN = {
   "Current_user_department_and_sub": "当前用户的部门和子部门",
   "Specific_departments": "具体部门",
   "Deleted_department": "已经删除的部门",
+  "View_original_image": "查看原图",
   "Add_filter": "添加过滤",
   "Submit": "提交",
   "No_filters": "没有过滤条件",
