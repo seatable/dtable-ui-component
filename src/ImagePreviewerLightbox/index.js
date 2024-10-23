@@ -39,7 +39,7 @@ function ImagePreviewerLightbox(props) {
       imagePadding={70}
       onViewOriginal={props.onViewOriginal}
       viewOriginalImageLabel={getLocale('View_original_image')}
-      enableRotate={true}
+      enableRotate={canRotateImage}
     />
   );
 }
