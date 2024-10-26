@@ -83,6 +83,7 @@ class DigitalSignFormatter extends Component {
             imageIndex={largeSignImageIndex}
             closeImagePopup={this.hideLargeSignImage}
             downloadImage={this.downloadImage}
+            onViewOriginal={this.props.onViewOriginal}
             moveToPrevImage={() => {}}
             moveToNextImage={() => {}}
           />
@@ -105,6 +106,7 @@ DigitalSignFormatter.propTypes = {
   }),
   containerClassName: PropTypes.string,
   onCloseCallback: PropTypes.func,
+  onViewOriginal: PropTypes.func,
   renderItem: PropTypes.func,
 };
 

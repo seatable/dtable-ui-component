@@ -1,11 +1,11 @@
 {
   "name": "dtable-ui-component",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "main": "./lib/index.js",
   "dependencies": {
-    "@seafile/react-image-lightbox": "2.0.5",
+    "@seafile/react-image-lightbox": "3.0.1",
     "@seafile/seafile-calendar": "0.0.24",
-    "@seafile/seafile-editor": "~1.0.122",
+    "@seafile/seafile-editor": "~1.0.123",
     "antd-mobile": "2.3.1",
     "classnames": "2.3.2",
     "dayjs": "1.10.7",
