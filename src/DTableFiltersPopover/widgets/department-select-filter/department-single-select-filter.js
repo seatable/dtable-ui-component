@@ -34,7 +34,7 @@ function DepartmentSingleSelectFilter(props) {
       const { type, name } = option;
       return (
         <div
-          className="dropdown-item department-item d-flex align-items-center"
+          className="department-item"
           key={index}
           onClick={(event) => onSelect(event, type)}
         >

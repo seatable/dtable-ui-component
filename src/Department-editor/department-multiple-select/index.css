@@ -1,4 +1,10 @@
 .departments-container.dtable-ui {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 3px;
+  min-width: 12rem;
+  height: 285px;
+  box-shadow: 0 0 5px #ccc;
   top: -4px;
   left: -3px;
   width: calc(100% + 8px);
@@ -52,12 +58,14 @@
   cursor: pointer;
 }
 
-.departments-container.dtable-ui .dropdown-item {
-  padding-left: 10px;
+.departments-container.dtable-ui .department-item {
+  padding: 4px 15px 4px 10px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.departments-container.dtable-ui .dropdown-item:hover {
+.departments-container.dtable-ui .department-item:hover {
   background: #f5f5f5;
   color: #212529;
 }

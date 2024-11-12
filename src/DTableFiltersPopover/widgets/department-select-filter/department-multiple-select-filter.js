@@ -29,7 +29,7 @@ function DepartmentMultipleSelectFilter(props) {
       const { type, name } = option;
       return (
         <div
-          className="dropdown-item d-flex align-items-center"
+          className="department-item"
           key={index}
           onClick={(event) => selectDepartment(event, type)}
         >

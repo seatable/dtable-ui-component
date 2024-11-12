@@ -80,7 +80,7 @@ function DepartmentMultipleSelect(props) {
 
     return (
       <Fragment key={id}>
-        <div className="dropdown-item d-flex align-items-center" onClick={(event) => onSelectDepartment(event, id)}>
+        <div className="department-item" onClick={(event) => onSelectDepartment(event, id)}>
           <input
             type="checkbox"
             className="vam department-select-input"
@@ -119,7 +119,7 @@ function DepartmentMultipleSelect(props) {
         ref={departmentContainerRef}
         onClick={onStopPropagation}
         onMouseDown={onStopPropagation}
-        className={`dropdown-menu show departments-container dtable-ui ${classNamePrefix}`}
+        className={`departments-container dtable-ui ${classNamePrefix}`}
       >
         {isShowSelectedDepartments &&
           <div className="selected-departments dtable-ui" onClick={onClick}>
