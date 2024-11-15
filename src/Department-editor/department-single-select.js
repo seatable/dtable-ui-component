@@ -145,7 +145,7 @@ class DepartmentSingleSelect extends Component {
     return (
       <Fragment key={id}>
         <div
-          className="dropdown-item department-item d-flex align-items-center"
+          className="department-item"
           onClick={(event) => this.onSelectDepartment(event, id)}
           style={itemStyle}
         >
@@ -245,7 +245,7 @@ class DepartmentSingleSelect extends Component {
   render() {
     return (
       <div
-        className="dropdown-menu department-editor-list dtable-ui show m-0 p-0"
+        className="department-editor-list dtable-ui"
         style={this.props.menuStyle || {}}
         ref={ref => this.departmentsRef = ref}
         onClick={this.onStopPropagation}

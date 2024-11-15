@@ -1,6 +1,14 @@
 .dtable-ui.department-editor-list {
+  position: absolute;
+  left: 0;
+  z-index: 1000;
+  text-align: left;
+  background-color: #fff;
+  border-radius: 3px;
+  min-width: 12rem;
   width: 300px;
   height: 285px;
+  box-shadow: 0 0 5px #ccc;
 }
 
 .dtable-ui.department-editor-list .editor-department-container {
@@ -44,13 +52,14 @@
   display: initial !important;
 }
 
-.dtable-ui.department-editor-list .editor-department-container .dropdown-item {
-  padding-left: 10px;
-  padding-right: 15px;
+.dtable-ui.department-editor-list .editor-department-container .department-item {
+  padding: 4px 15px 4px 10px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
-.dtable-ui.department-editor-list .editor-department-container .dropdown-item:hover {
+.dtable-ui.department-editor-list .editor-department-container .department-item:hover {
   background: #f5f5f5;
   color: #212529;
 }
