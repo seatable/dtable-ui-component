@@ -158,6 +158,9 @@ export default class RowExpandFormulaFormatter extends React.Component {
         return { data: array_data };
       }
       default: {
+        if (array_type === CellType.CHECKBOX) {
+          array_data.checkboxStyle = array_data.checkbox_style;
+        }
         return { ...array_data, collaborators };
       }
     }

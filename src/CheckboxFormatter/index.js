@@ -29,7 +29,7 @@ class CheckboxFormatter extends React.PureComponent {
       <div className={classname}>
         {checkboxStyle.type.startsWith('dtable-icon') ?
           <span className={`dtable-font ${checkboxStyle.type} checkbox-checked-mark`} style={{ color: checkboxStyle.color }}></span> :
-          <svg style={{ width: '16px', height: '16px', color: checkboxStyle.color }}>
+          <svg style={{ width: '16px', height: '16px', fill: checkboxStyle.color }}>
             <use xlinkHref={`#${checkboxStyle.type}`} />
           </svg>}
       </div>
