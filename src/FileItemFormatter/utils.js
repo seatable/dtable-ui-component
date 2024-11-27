@@ -1,4 +1,4 @@
-import { getImageThumbnailUrl } from '../ImageFormatter/utils';
+import { getImageThumbnailUrl } from '../utils/url';
 
 const FILEEXT_ICON_MAP = {
   // text file

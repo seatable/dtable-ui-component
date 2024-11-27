@@ -2,44 +2,77 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Lightbox from '@seafile/react-image-lightbox';
-import { checkSVGImage, isInternalImg } from './utils';
+import { checkSVGImage, generateCurrentBaseImageUrl, getImageThumbnailUrl, isCustomAssetUrl, isDigitalSignsUrl, isInternalImg, needUseThumbnailImage } from '../utils/url';
 import { getLocale } from '../lang';
 
 import '@seafile/react-image-lightbox/style.css';
+import './index.css';
 
 function ImagePreviewerLightbox(props) {
-  const { imageItems, imageIndex, deleteImage, downloadImage, onRotateImage, readOnly, server,
-    moveToPrevRowImage, moveToNextRowImage, className } = props;
-  const imageItemsLength = imageItems.length;
-  const URL = imageItems[imageIndex];
-  const imageTitle = URL ? decodeURI(URL.slice(URL.lastIndexOf('/') + 1)) : '';
+  const {
+    imageItems, imageIndex, readOnly, className, server, workspaceID, dtableUuid,
+    deleteImage, downloadImage, onRotateImage,
+  } = props;
+  const imageSrcList = imageItems.map((src) => {
+    if (server && dtableUuid && isCustomAssetUrl(src)) {
+      const assetUuid = src.slice(src.lastIndexOf('/') + 1, src.lastIndexOf('.'));
+      return server + '/dtable/' + dtableUuid + '/custom-asset/' + assetUuid;
+    }
+    if (server && dtableUuid && workspaceID && isDigitalSignsUrl(src)) {
+      return generateCurrentBaseImageUrl({
+        server, workspaceID, dtableUuid, partUrl: src
+      });
+    }
+    return src;
+  });
+
+  const imagesLength = imageSrcList.length;
+  const URL = imageSrcList[imageIndex];
+
+
+  // Handle URL has special symbol %$
+  let imageName = '';
+  try {
+    imageName = URL ? decodeURI(URL.slice(URL.lastIndexOf('/') + 1)) : '';
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+
   // svg image is vectorgraph and can't rotate, external image can't rotate
   const canRotateImage = onRotateImage && !readOnly && !checkSVGImage(URL) && isInternalImg(URL, server);
-  const imageTitleEl = (
+
+  let mainSrc = URL;
+  if (needUseThumbnailImage(URL)) {
+    mainSrc = getImageThumbnailUrl(URL, { server, dtableUuid, workspaceID, size: 512 });
+  }
+
+  const imageTitleDOM = props.imageTitle || (
     <span className="d-flex">
-      <span className="text-truncate">{imageTitle}</span>
-      <span className="flex-shrink-0">({imageIndex + 1}/{imageItemsLength})</span>
+      <span className="text-truncate">{imageName}</span>
+      <span className="flex-shrink-0 pl-1">({imageIndex + 1}/{imagesLength})</span>
     </span>
   );
+
   return (
     <Lightbox
       wrapperClassName={classnames('dtable-ui-component', className)}
-      imageTitle={imageTitleEl}
-      mainSrc={imageItems[imageIndex]}
-      nextSrc={imageItems[(imageIndex + 1) % imageItemsLength]}
-      prevSrc={imageItems[(imageIndex + imageItemsLength - 1) % imageItemsLength]}
+      imageTitle={imageTitleDOM}
+      mainSrc={mainSrc}
+      nextSrc={imageSrcList[(imageIndex + 1) % imagesLength]}
+      prevSrc={imageSrcList[(imageIndex + imagesLength - 1) % imagesLength]}
+      imagePadding={70}
+      viewOriginalImageLabel={getLocale('View_original_image')}
+      enableRotate={canRotateImage}
       onCloseRequest={props.closeImagePopup}
       onMovePrevRequest={props.moveToPrevImage}
       onMoveNextRequest={props.moveToNextImage}
-      onClickMoveUp={moveToPrevRowImage}
-      onClickMoveDown={moveToNextRowImage}
+      onClickMoveUp={props.moveToPrevRowImage}
+      onClickMoveDown={props.moveToNextRowImage}
+      onViewOriginal={props.onViewOriginal}
       onRotateImage={canRotateImage ? (deg) => {onRotateImage(imageIndex, deg);} : null}
       onClickDelete={(!readOnly && deleteImage) ? () => {deleteImage(imageIndex, 'previewer');} : null}
       onClickDownload={downloadImage ? () => {downloadImage(URL);} : null}
-      imagePadding={70}
-      onViewOriginal={props.onViewOriginal}
-      viewOriginalImageLabel={getLocale('View_original_image')}
-      enableRotate={canRotateImage}
     />
   );
 }
@@ -48,17 +81,20 @@ ImagePreviewerLightbox.propTypes = {
   className: PropTypes.string,
   imageItems: PropTypes.array.isRequired,
   imageIndex: PropTypes.number.isRequired,
+  imageTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  readOnly: PropTypes.bool,
+  server: PropTypes.string,
+  workspaceID: PropTypes.string,
+  dtableUuid: PropTypes.string,
+  moveToPrevRowImage: PropTypes.func,
+  moveToNextRowImage: PropTypes.func,
+  onViewOriginal: PropTypes.func,
   closeImagePopup: PropTypes.func.isRequired,
   moveToPrevImage: PropTypes.func.isRequired,
   moveToNextImage: PropTypes.func.isRequired,
   downloadImage: PropTypes.func,
   deleteImage: PropTypes.func,
   onRotateImage: PropTypes.func,
-  readOnly: PropTypes.bool,
-  server: PropTypes.string,
-  moveToPrevRowImage: PropTypes.func,
-  moveToNextRowImage: PropTypes.func,
-  onViewOriginal: PropTypes.func,
 };
 
 export default ImagePreviewerLightbox;

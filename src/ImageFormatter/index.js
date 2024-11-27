@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ImagesLazyLoad from './images-lazy-load';
-import { getImageThumbnailUrl } from './utils';
 import ImagePreviewerLightbox from '../ImagePreviewerLightbox';
+import { getImageThumbnailUrl } from '../utils/url';
 
 import './index.css';
 

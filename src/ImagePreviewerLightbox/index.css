@@ -1,0 +1,8 @@
+.ril__outer .ril__navButtons:focus,
+.ril__outer .ril__builtinButton:focus {
+  outline: none;
+}
+
+.ril-caption .ril__builtinButton {
+  width: 24px;
+}
