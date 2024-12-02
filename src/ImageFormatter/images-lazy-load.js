@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../Loading';
-import { getImageThumbnailUrl } from './utils';
+import { getImageThumbnailUrl } from '../utils/url';
 
 const propTypes = {
   images: PropTypes.array.isRequired,
@@ -48,7 +48,7 @@ class ImagesLazyLoad extends React.Component {
     }, () => {
       let { server } = this.props;
       images.forEach((item, index) => {
-        let url = getImageThumbnailUrl(item, server);
+        let url = getImageThumbnailUrl(item, { server });
         this.lazyLoadImage(
           url,
           (image) => {
