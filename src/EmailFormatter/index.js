@@ -12,10 +12,20 @@ const propTypes = {
 class EmailFormatter extends React.Component {
 
   render() {
-    const { containerClassName, value } = this.props;
-    let classname = classnames('dtable-ui cell-formatter-container email-formatter', containerClassName);
+    const { containerClassName, value, onClick } = this.props;
+    let classname = classnames(
+      'dtable-ui cell-formatter-container email-formatter',
+      { 'is-formatter-clickable': onClick },
+      containerClassName,
+    );
+    const props = {
+      className: classname,
+    };
+    if (onClick) {
+      props.onClick = onClick;
+    }
     return (
-      <div className={classname}>{value}</div>
+      <div {...props} >{value}</div>
     );
   }
 }

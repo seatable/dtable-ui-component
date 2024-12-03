@@ -12,10 +12,20 @@ const propTypes = {
 class UrlFormatter extends React.Component {
 
   render() {
-    const { containerClassName, value } = this.props;
-    let classname = classnames('dtable-ui cell-formatter-container url-formatter', containerClassName);
+    const { containerClassName, value, onClick } = this.props;
+    let classname = classnames(
+      'dtable-ui cell-formatter-container url-formatter',
+      { 'is-formatter-clickable': onClick },
+      containerClassName,
+    );
+    const props = {
+      className: classname,
+    };
+    if (onClick) {
+      props.onClick = onClick;
+    }
     return (
-      <div className={classname}>{value}</div>
+      <div {...props} >{value}</div>
     );
   }
 }

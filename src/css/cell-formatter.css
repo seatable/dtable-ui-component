@@ -3,3 +3,7 @@
   line-height: 1;
   width: 100%;
 }
+
+.dtable-ui.is-formatter-clickable {
+  cursor: pointer;
+}
