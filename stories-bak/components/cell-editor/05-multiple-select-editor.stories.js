@@ -106,9 +106,3 @@ storiesOf('Editors|multiple-select-editor', module)
       </div>
     )
   }, {info})
-
-
-
-
-
-

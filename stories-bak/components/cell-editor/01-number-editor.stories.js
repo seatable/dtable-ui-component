@@ -241,9 +241,3 @@ storiesOf('Editors|number-editor', module)
       </div>
     )
   }, {info})
-
-
-
-
-
-

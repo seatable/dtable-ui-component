@@ -72,9 +72,3 @@ storiesOf('Editors|checkbox-editor', module)
       </div>
     )
   }, {info})
-
-
-
-
-
-

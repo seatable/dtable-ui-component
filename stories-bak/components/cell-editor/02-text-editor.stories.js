@@ -62,9 +62,3 @@ storiesOf('Editors|text-editor', module)
       </div>
     )
   }, {info})
-
-
-
-
-
-
