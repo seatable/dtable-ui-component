@@ -237,7 +237,10 @@ export default class EditorFormatter extends React.Component {
       case CellType.CHECKBOX: {
         return (
           <div className="checkbox-formatter-container">
-            <CheckboxFormatter value={cellValue} />
+            <CheckboxFormatter
+              value={cellValue}
+              checkboxStyle={column.data?.checkbox_style || {}}
+            />
           </div>
         );
       }
