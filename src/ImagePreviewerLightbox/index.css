@@ -3,6 +3,19 @@
   outline: none;
 }
 
+.ril__outer .ril__toolbarItem {
+  height: 50px;
+  color: #fff;
+  display: inline-block;
+  font-size: 120%;
+  line-height: 50px;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .ril-caption .ril__builtinButton {
   width: 24px;
 }
