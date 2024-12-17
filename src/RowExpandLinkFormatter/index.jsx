@@ -35,7 +35,10 @@ export default class RowExpandLinkFormatter extends Component {
       return props.renderEmpty();
     }
 
-    const { type: displayColumnType, data: displayColumnData } = displayColumn;
+    let { type: displayColumnType, data: displayColumnData } = displayColumn;
+    if (displayColumnType === 'string') {
+      displayColumnType = CellType.TEXT;
+    }
     const cellValue = getFormulaArrayValue(value, !isArrayFormatColumn(displayColumnType));
 
     if (!Array.isArray(cellValue) || cellValue.length === 0) {
