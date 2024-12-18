@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
 import { MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option } from './utils';
-import './index.css';
 
 export default class DTableSelect extends React.Component {
 
@@ -36,7 +35,6 @@ export default class DTableSelect extends React.Component {
     isMulti: false,
     autoFocus: false,
     menuPortalTarget: '.modal',
-    classNamePrefix: '',
     noOptionsMessage: () => {
       return null;
     },
@@ -51,7 +49,7 @@ export default class DTableSelect extends React.Component {
         onChange={onChange}
         options={options}
         isMulti={isMulti}
-        classNamePrefix={'dtable-select' + classNamePrefix}
+        classNamePrefix={classNamePrefix}
         styles={style || MenuSelectStyle}
         components={{ Option, DropdownIndicator, MenuList, ClearIndicator }}
         placeholder={placeholder}

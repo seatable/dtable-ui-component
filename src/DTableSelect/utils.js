@@ -95,7 +95,7 @@ const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <span className="dtable-font dtable-icon-drop-down" style={{ fontSize: '12px' }}></span>
+        <span className="dtable-font dtable-icon-drop-down" style={{ fontSize: '12px', marginLeft: '-2px' }}></span>
       </components.DropdownIndicator>
     )
   );
@@ -109,7 +109,7 @@ const ClearIndicator = ({ innerProps, ...props }) => {
   props.innerProps = { ...innerProps, onMouseDown };
   return (
     <components.ClearIndicator {...props} >
-      <span className="dtable-font dtable-icon-fork-number" style={{ fontSize: '12px' }}></span>
+      <span className="dtable-font dtable-icon-fork-number" style={{ fontSize: '12px', marginRight: '-2px' }}></span>
     </components.ClearIndicator>
   );
 };
