@@ -107,7 +107,11 @@ const ClearIndicator = ({ innerProps, ...props }) => {
     innerProps.onMouseDown(e);
   };
   props.innerProps = { ...innerProps, onMouseDown };
-  return <components.ClearIndicator {...props} />;
+  return (
+    <components.ClearIndicator {...props} >
+      <span className="dtable-font dtable-icon-fork-number" style={{ fontSize: '12px' }}></span>
+    </components.ClearIndicator>
+  );
 };
 
 ClearIndicator.propTypes = {
