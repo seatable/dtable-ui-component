@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "5.2.7",
+  "version": "5.2.8",
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "3.0.1",
@@ -9,7 +9,7 @@
     "antd-mobile": "2.3.1",
     "classnames": "2.3.2",
     "dayjs": "1.10.7",
-    "dtable-utils": "5.0.11",
+    "dtable-utils": "5.0.12",
     "is-hotkey": "0.2.0",
     "prop-types": "^15.8.1",
     "react": "17.0.2",
