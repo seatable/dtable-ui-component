@@ -38,6 +38,7 @@ class SelectOptionGroup extends Component {
   }
 
   resetMenuStyle = () => {
+    if (!this.optionGroupRef) return;
     const { isInModal, position } = this.props;
     const { top, height } = this.optionGroupRef.getBoundingClientRect();
     if (isInModal) {
