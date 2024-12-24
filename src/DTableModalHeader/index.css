@@ -1,0 +1,24 @@
+.modal-header .dtable-modal-close.close {
+  padding: 14px 16px;
+  opacity: 1;
+}
+
+.modal-header .dtable-modal-close.close:not(:disabled):not(.disabled):hover {
+  opacity: 1;
+}
+
+.modal-header .dtable-modal-close .dtable-modal-close-inner {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 3px;
+  font-size: 22.5px; /* same with Seafile close icon */
+}
+
+.modal-header .dtable-modal-close .dtable-modal-close-inner:hover {
+  background-color: #efefef;
+}
+
+.modal-header .dtable-modal-close .dtable-modal-close-inner .dtable-font {
+  color: #666;
+}
