@@ -26,7 +26,7 @@ class NumberFormatter extends React.Component {
     }
 
     return (
-      <div className={classname}>{number}</div>
+      <div title={number} className={classname}>{number}</div>
     );
   }
 }

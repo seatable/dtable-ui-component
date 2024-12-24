@@ -18,7 +18,7 @@ function DepartmentSingleSelectFormatter(props) {
   const department = departments.find(department => department.id === value);
   const name = department ? department.name : deletedTip;
   return (
-    <div className={classnames('dtable-ui cell-formatter-container department-single-select-formatter text-truncate',
+    <div title={name} className={classnames('dtable-ui cell-formatter-container department-single-select-formatter text-truncate',
       containerClassName)}>
       <div className="department-avatar-container d-flex align-items-center justify-content-center">
         <span className="dtable-font dtable-icon-department-single-selection"></span>

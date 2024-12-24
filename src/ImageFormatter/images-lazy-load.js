@@ -101,8 +101,10 @@ class ImagesLazyLoad extends React.Component {
 
     return (
       loadedImages.map((image, index) => {
+        let imageName = image.slice(image.src.lastIndexOf('/') + 1);
         const imgDom = (
           <img
+            title={imageName}
             className="image-item"
             src={image.src}
             onMouseDown={this.onMouseDown}

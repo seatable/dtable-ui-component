@@ -15,7 +15,7 @@ class UrlFormatter extends React.Component {
     const { containerClassName, value } = this.props;
     let classname = classnames('dtable-ui cell-formatter-container url-formatter', containerClassName);
     return (
-      <div className={classname}>{value}</div>
+      <div title={value} className={classname}>{value}</div>
     );
   }
 }

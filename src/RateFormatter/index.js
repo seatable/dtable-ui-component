@@ -42,7 +42,7 @@ class RateFormatter extends React.Component {
 
     const rateList = this.getRateList();
     return (
-      <div className={className}>{rateList}</div>
+      <div title={number} className={className}>{rateList}</div>
     );
   }
 }
