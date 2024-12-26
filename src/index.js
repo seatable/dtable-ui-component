@@ -63,6 +63,7 @@ export { default as DTableRadio } from './DTableRadio';
 export { default as DTableCommonAddTool } from './DTableCommonAddTool';
 export { default as NotificationPopover } from './NotificationPopover';
 export { default as DTableSelect } from './DTableSelect';
+export { default as DTableGroupSelect } from './DTableGroupSelect/index';
 export { default as DTableSelectLabel } from './DTableSelect/dtable-select-label';
 export { default as DTableSwitch } from './DTableSwitch';
 export { default as DTableCustomizeSelect } from './DTableCustomizeSelect';
