@@ -29,7 +29,7 @@ class MTimeFormatter extends React.Component {
     }
 
     return (
-      <div className={classname}>{date}</div>
+      <div title={date} className={classname}>{date}</div>
     );
   }
 }

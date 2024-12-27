@@ -15,7 +15,7 @@ class EmailFormatter extends React.Component {
     const { containerClassName, value } = this.props;
     let classname = classnames('dtable-ui cell-formatter-container email-formatter', containerClassName);
     return (
-      <div className={classname}>{value}</div>
+      <div title={value} className={classname}>{value}</div>
     );
   }
 }

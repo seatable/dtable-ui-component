@@ -34,9 +34,11 @@ class GeolocationFormatter extends React.Component {
       return null;
     }
 
+    const geolocationDisplayString = getGeolocationDisplayString(value, data, { isBaiduMap, hyphen: ' ' });
+
     return (
-      <div className={className}>
-        {getGeolocationDisplayString(value, data, { isBaiduMap, hyphen: ' ' })}
+      <div title={geolocationDisplayString} className={className}>
+        {geolocationDisplayString}
       </div>
     );
   }
