@@ -101,7 +101,16 @@ class ImagesLazyLoad extends React.Component {
 
     return (
       loadedImages.map((image, index) => {
-        let imageName = image.slice(image.src.lastIndexOf('/') + 1);
+        let imageName = '';
+        const imageSrc = image?.src;
+
+        try {
+          imageName = imageSrc ? decodeURI(imageSrc.slice(imageSrc.lastIndexOf('/') + 1)) : '';
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        }
+
         const imgDom = (
           <img
             title={imageName}
