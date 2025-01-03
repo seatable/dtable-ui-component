@@ -147,7 +147,7 @@ class SelectOptionGroup extends Component {
           changeIndex={this.changeIndex}
           disableHover={this.state.disableHover}
         >
-          <div className='option-label'>{option.label}</div>
+          <div className='option-label text-truncate' title={option.label}>{option.label}</div>
           {isSelected && <i className="dtable-font dtable-icon-check-mark"></i>}
         </Option>
       );
