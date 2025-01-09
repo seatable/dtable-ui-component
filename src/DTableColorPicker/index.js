@@ -6,6 +6,7 @@ import { isEmpty } from 'dtable-utils';
 import { getLocale } from '../lang';
 import ClickOutside from '../ClickOutside';
 import { hexToRgba, rgbaToHex, getInitialHexVal, toPercentage, isLightColor } from './utils';
+import ColorPickerPortal from './color-picker-portal';
 
 import './index.css';
 
@@ -34,7 +35,7 @@ const RGB_COLORS_MAP = {
 const LOCAL_STORAGE_KEY = 'dtable-color-picker';
 
 const DTableColorPicker = forwardRef((props, ref) => {
-  const { onToggle, popoverStyle, color, defaultColors } = props;
+  const { onToggle, popoverStyle, color, defaultColors, useProtal, target, scrollContainerId, throttleDelay = 20 } = props;
   const initialRgbaColor = hexToRgba(color);
   const [value, setValue] = useState(initialRgbaColor);
   const [hexVal, setHexVal] = useState(getInitialHexVal(color));
@@ -348,7 +349,7 @@ const DTableColorPicker = forwardRef((props, ref) => {
     );
   };
 
-  return (
+  const colorPicker = (
     <ClickOutside onClickOutside={onClosePopover}>
       <div style={popoverStyle} ref={colorPickerRef} className="dtable-color-picker">
         {renderDefaultContainer()}
@@ -356,6 +357,24 @@ const DTableColorPicker = forwardRef((props, ref) => {
         {renderUsedContainer()}
       </div>
     </ClickOutside>
+  );
+
+  if (useProtal && target && scrollContainerId) {
+    return (
+      <ColorPickerPortal
+        target={target}
+        scrollContainerId={scrollContainerId}
+        throttleDelay={throttleDelay}
+      >
+        {colorPicker}
+      </ColorPickerPortal>
+    );
+  }
+
+  return (
+    <>
+      {colorPicker}
+    </>
   );
 });
 
@@ -365,6 +384,9 @@ DTableColorPicker.propTypes = {
   popoverStyle: PropTypes.object,
   onToggle: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
+  useProtal: PropTypes.bool,
+  target: PropTypes.object,
+  scrollContainerId: PropTypes.string,
 };
 
 DTableColorPicker.defaultProps = {
