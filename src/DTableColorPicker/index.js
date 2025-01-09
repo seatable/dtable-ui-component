@@ -387,6 +387,7 @@ DTableColorPicker.propTypes = {
   useProtal: PropTypes.bool,
   target: PropTypes.object,
   scrollContainerId: PropTypes.string,
+  throttleDelay: PropTypes.number,
 };
 
 DTableColorPicker.defaultProps = {
