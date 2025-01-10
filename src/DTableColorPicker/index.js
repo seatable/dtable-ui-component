@@ -6,7 +6,7 @@ import { isEmpty } from 'dtable-utils';
 import { getLocale } from '../lang';
 import ClickOutside from '../ClickOutside';
 import { hexToRgba, rgbaToHex, getInitialHexVal, toPercentage, isLightColor } from './utils';
-import ColorPickerPortal from './color-picker-portal';
+import ColorPickerPortal from './ColorPickerPortal';
 
 import './index.css';
 
