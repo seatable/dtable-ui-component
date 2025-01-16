@@ -93,3 +93,5 @@ export { default as CollapsibleSettingLayout } from './CollapsibleSettingLayout'
 export { default as DTableRadioGroup } from './DTableRadioGroup';
 
 export { default as DTableEmptyTip } from './DTableEmptyTip';
+
+export { default as IconButton } from './IconButton';
