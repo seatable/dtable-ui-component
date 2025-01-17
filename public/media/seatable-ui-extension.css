@@ -17,10 +17,6 @@
   padding-left: 0;
 }
 
-.text-muted {
-  color: #666666 !important;
-}
-
 /* 2 reset ant-design-mobile.css common style */
 .am-action-sheet-button-list {
   color: #212529;
@@ -33,7 +29,7 @@
 
 .am-list-item .am-list-line .am-list-brief,
 .am-list-header {
-  color: #666;
+  color: #666 !important;
 }
 
 .am-list-item .am-input-control input::placeholder {
@@ -47,6 +43,15 @@
 
 .seatable-bg-orange {
   background-color: #ED7109 !important;
+}
+
+.seatable-border-color-orange {
+  border: #ED7109 !important;
+}
+
+.seatable-icon-orange {
+  color: #ED7109 !important;
+  fill: #ED7109 !important;
 }
 
 .seatable-input-subtitle {
@@ -70,21 +75,37 @@
   color: #f25041;
 }
 
-.seatable-table-header-sm {
-  font-size: 13px;
+.seatable-icon-btn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  color: #666;
+  font-size: 14px;
 }
 
-.seatable-log-new-value {
-  background-color: #cef5d2;
-}
-
-.seatable-log-old-value {
-  background-color: #ffd4df;
-  text-decoration: line-through 0.5px;
-}
-
-.dtable-dropdown-menu {
+.seatable-icon-btn:not(.disabled):hover {
   cursor: pointer;
+  background-color: #EFEFEF;
+}
+
+.seatable-icon-btn.bg-color-deep.bg-color-deep-keep,
+.seatable-icon-btn.bg-color-deep:not(.disabled):hover {
+  background-color: #E5E5E5;
+}
+
+.seatable-icon-btn .seatable-icon,
+.seatable-icon-btn .seatable-icon-svg {
+  color: #666;
+  fill: #666;
+}
+
+.seatable-icon-btn.disabled .seatable-icon,
+.seatable-icon-btn.disabled .seatable-icon-svg {
+  color: #BDBDBD;
+  fill: #BDBDBD;
 }
 
 .dtable-dropdown-menu .toggle-icon {
@@ -125,7 +146,8 @@
   color: #8c8c8c;
 }
 
-.dtable-dropdown-menu .dropdown-item:hover .item-icon {
+.dtable-dropdown-menu .dropdown-item:hover .item-icon,
+.dtable-dropdown-menu .dropdown-item:focus .item-icon {
   color: #fff;
 }
 
