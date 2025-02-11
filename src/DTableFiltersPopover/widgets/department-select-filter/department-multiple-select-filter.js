@@ -82,7 +82,7 @@ function DepartmentMultipleSelectFilter(props) {
           :
           <span className="select-placeholder">{getLocale('Select_department')}</span>
         }
-        <span className="dtable-font dtable-icon-drop-down"></span>
+        <span className="dtable-font dtable-icon-down3"></span>
       </div>
       {isShowSelector &&
         <DepartmentMultipleSelect

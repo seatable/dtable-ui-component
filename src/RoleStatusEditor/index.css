@@ -1,15 +1,15 @@
-.role-status-editor .dropdown-toggle-button .dtable-icon-drop-down {
+.role-status-editor .dropdown-toggle-button .dtable-icon-down3 {
   font-size: 12px;
   color: #b5b5b5;
   transform: scale(0.8);
   cursor: pointer;
 }
 
-.role-status-editor .dropdown-toggle-button .dtable-icon-drop-down.hide {
+.role-status-editor .dropdown-toggle-button .dtable-icon-down3.hide {
   display: none;
 }
 
-.role-status-editor .dropdown-toggle-button .dtable-icon-drop-down:hover {
+.role-status-editor .dropdown-toggle-button .dtable-icon-down3:hover {
   color: #555;
 }
 

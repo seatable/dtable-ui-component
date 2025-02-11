@@ -120,7 +120,7 @@ const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <span className="dtable-font dtable-icon-drop-down" style={{ fontSize: '12px', marginLeft: '-2px' }}></span>
+        <span className="dtable-font dtable-icon-down3" style={{ fontSize: '12px', marginLeft: '-2px' }}></span>
       </components.DropdownIndicator>
     )
   );
