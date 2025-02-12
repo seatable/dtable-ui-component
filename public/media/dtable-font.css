@@ -1,11 +1,11 @@
 @font-face {
   font-family: "dtable-font"; /* Project id 1206632 */
-  src: url('./dtable-fonts/dtable-font.eot?t=1691034193364'); /* IE9 */
-  src: url('./dtable-fonts/dtable-font.eot?t=1691034193364#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('./dtable-fonts/dtable-font.woff2?t=1691034193364') format('woff2'),
-       url('./dtable-fonts/dtable-font.woff?t=1691034193364') format('woff'),
-       url('./dtable-fonts/dtable-font.ttf?t=1691034193364') format('truetype'),
-       url('./dtable-fonts/dtable-font.svg?t=1691034193364#dtable-font') format('svg');
+  src: url('./dtable-fonts/dtable-font.eot?t=1739159081120'); /* IE9 */
+  src: url('./dtable-fonts/dtable-font.eot?t=1739159081120#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./dtable-fonts/dtable-font.woff2?t=1739159081120') format('woff2'),
+       url('./dtable-fonts/dtable-font.woff?t=1739159081120') format('woff'),
+       url('./dtable-fonts/dtable-font.ttf?t=1739159081120') format('truetype'),
+       url('./dtable-fonts/dtable-font.svg?t=1739159081120#dtable-font') format('svg');
 }
 
 .dtable-font {
@@ -14,6 +14,154 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dtable-icon-down3:before {
+  content: "\e602";
+}
+
+.dtable-icon-check:before {
+  content: "\e839";
+}
+
+.dtable-icon-dot:before {
+  content: "\e838";
+}
+
+.dtable-icon-x-check-box:before {
+  content: "\e837";
+}
+
+.dtable-icon-show-table:before {
+  content: "\e835";
+}
+
+.dtable-icon-hide-table:before {
+  content: "\e836";
+}
+
+.dtable-icon-auto-add-link:before {
+  content: "\e828";
+}
+
+.dtable-icon-field-set:before {
+  content: "\e81d";
+}
+
+.dtable-icon-set-as-read:before {
+  content: "\e81c";
+}
+
+.dtable-icon-set-default-values:before {
+  content: "\e81b";
+}
+
+.dtable-icon-text-style:before {
+  content: "\e819";
+}
+
+.dtable-icon-leave-app:before {
+  content: "\e81a";
+}
+
+.dtable-icon-app-card:before {
+  content: "\e818";
+}
+
+.dtable-icon-ai-assistant1:before {
+  content: "\e817";
+}
+
+.dtable-icon-sort1:before {
+  content: "\e815";
+}
+
+.dtable-icon-app-preview1:before {
+  content: "\e816";
+}
+
+.dtable-icon-nodes:before {
+  content: "\e812";
+}
+
+.dtable-icon-app-settings1:before {
+  content: "\e813";
+}
+
+.dtable-icon-app-user-management1:before {
+  content: "\e814";
+}
+
+.dtable-icon-app-data-source-management1:before {
+  content: "\e811";
+}
+
+.dtable-icon-app-versioning1:before {
+  content: "\e810";
+}
+
+.dtable-icon-app-data-source-management:before {
+  content: "\e80e";
+}
+
+.dtable-icon-app-versioning:before {
+  content: "\e80f";
+}
+
+.dtable-icon-descending-order1:before {
+  content: "\e808";
+}
+
+.dtable-icon-resubmit:before {
+  content: "\e809";
+}
+
+.dtable-icon-promoter:before {
+  content: "\e80a";
+}
+
+.dtable-icon-process-nodes:before {
+  content: "\e80b";
+}
+
+.dtable-icon-initiation-time:before {
+  content: "\e80c";
+}
+
+.dtable-icon-ascending-order1:before {
+  content: "\e80d";
+}
+
+.dtable-icon-column-read-only:before {
+  content: "\e807";
+}
+
+.dtable-icon-common-instruction:before {
+  content: "\e806";
+}
+
+.dtable-icon-send:before {
+  content: "\e805";
+}
+
+.dtable-icon-down2:before {
+  content: "\e804";
+}
+
+.dtable-icon-using-templates1:before {
+  content: "\e802";
+}
+
+.dtable-icon-up2:before {
+  content: "\e803";
+}
+
+.dtable-icon-department-single-selection1:before {
+  content: "\e801";
+}
+
+.dtable-icon-department-single-selection-sync:before {
+  content: "\e601";
 }
 
 .dtable-icon-recycle-bin1:before {

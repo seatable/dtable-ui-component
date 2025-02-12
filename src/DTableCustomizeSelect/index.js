@@ -91,7 +91,7 @@ class DTableCustomizeSelect extends Component {
             :
             <span className="select-placeholder">{placeholder}</span>
           }
-          {!isLocked && <i className="dtable-font dtable-icon-drop-down"></i>}
+          {!isLocked && <i className="dtable-font dtable-icon-down3"></i>}
         </div>
         {this.state.isShowSelectOptions && !isInModal && (
           <SelectOptionGroup

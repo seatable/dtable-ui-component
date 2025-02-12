@@ -36,7 +36,7 @@
   border-color: rgb(179, 179, 179);
 }
 
-.dtable-select .dtable-icon-drop-down {
+.dtable-select .dtable-icon-down3 {
   display: inline-block;
   font-size: 12px;
   color: #999;
@@ -44,7 +44,7 @@
   transition: all 0.1s;
 }
 
-.dtable-select .dtable-icon-drop-down:hover {
+.dtable-select .dtable-icon-down3:hover {
   color: #000;
 }
 
