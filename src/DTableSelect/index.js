@@ -13,6 +13,7 @@ export default class DTableSelect extends React.Component {
     isClearable: PropTypes.bool,
     placeholder: PropTypes.string,
     classNamePrefix: PropTypes.string,
+    className: PropTypes.string,
     style: PropTypes.object,
     onChange: PropTypes.func.isRequired,
     menuPortalTarget: PropTypes.string,
@@ -42,13 +43,14 @@ export default class DTableSelect extends React.Component {
 
   render() {
     const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage,
-      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus } = this.props;
+      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus, className } = this.props;
     return (
       <Select
         value={value}
         onChange={onChange}
         options={options}
         isMulti={isMulti}
+        className={className}
         classNamePrefix={classNamePrefix}
         styles={style || MenuSelectStyle}
         components={{ Option, DropdownIndicator, MenuList, ClearIndicator }}

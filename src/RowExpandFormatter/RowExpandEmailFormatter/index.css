@@ -1,0 +1,30 @@
+@import url('../../css/cell-formatter.css');
+
+.dtable-row-expand-formatter .dtable-ui.email-formatter .email-formatter-value,
+.dtable-row-expand-formatter .dtable-ui.url-formatter .url-formatter-value {
+  text-decoration: underline;
+  width: 95%;
+  display: inline-flex;
+}
+
+.dtable-row-expand-formatter .dtable-ui .row-expand-jump-link {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  height: 22px;
+  position: absolute;
+  top: 8px;
+  right: 22px;
+  border: 1px solid #eee;
+  padding: 0 4px;
+  color: #999;
+  border-radius: 2px;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 1px;
+}
+
+.dtable-row-expand-formatter .dtable-ui .row-expand-jump-link:hover {
+  background: #eee;
+  border: 1px solid #c9c9c9;
+}

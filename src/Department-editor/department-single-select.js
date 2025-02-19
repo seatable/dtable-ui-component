@@ -214,7 +214,7 @@ class DepartmentSingleSelect extends Component {
 
   renderEmptyTip = () => {
     return (
-      <span className="none-search-result d-flex justify-content-center">
+      <span className="dtable-ui-editor-no-search-result">
         {getLocale('No_departments_available')}
       </span>
     );

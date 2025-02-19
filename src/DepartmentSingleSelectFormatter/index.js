@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
+import { getLocale } from '../lang';
 
 import './index.css';
 
@@ -14,12 +15,14 @@ const propTypes = {
 function DepartmentSingleSelectFormatter(props) {
   const { value, departments, containerClassName, tip } = props;
   if (!value) return null;
-  const deletedTip = tip || 'Deleted department';
+  const deletedTip = tip || getLocale('Deleted_department');
   const department = departments.find(department => department.id === value);
   const name = department ? department.name : deletedTip;
   return (
-    <div title={name} className={classnames('dtable-ui cell-formatter-container department-single-select-formatter text-truncate',
-      containerClassName)}>
+    <div
+      title={name}
+      className={classnames('dtable-ui cell-formatter-container department-single-select-formatter text-truncate', containerClassName)}
+    >
       <div className="department-avatar-container d-flex align-items-center justify-content-center">
         <span className="dtable-font dtable-icon-department-single-selection"></span>
       </div>

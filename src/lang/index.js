@@ -35,14 +35,6 @@ export function setLocale(args) {
   LANGUAGE_MAP = langData[LANGUAGE];
 }
 
-export function getLocale(key, def) {
-  if (!key) return def;
-  if (!LANGUAGE_MAP[key]) {
-    return def || key;
-  }
-  return LANGUAGE_MAP[key];
-}
-
 export function substitute(str, obj) {
   if (typeof str === 'string') {
     if (str.indexOf('{') < 0) {
@@ -64,6 +56,15 @@ export function substitute(str, obj) {
   }
 
   return '';
+}
+
+export function getLocale(key, obj = {}) {
+  if (!key) return '';
+  let str = LANGUAGE_MAP[key];
+  if (!str) return key;
+  const paramKeys = Object.keys(obj);
+  if (paramKeys.length === 0) return str;
+  return substitute(str, obj);
 }
 
 export function translateCalendar() {

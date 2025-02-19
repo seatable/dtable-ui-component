@@ -10,7 +10,6 @@ import {
   COLLABORATOR_COLUMN_TYPES,
   DATE_COLUMN_OPTIONS,
   FORMULA_COLUMN_TYPES_MAP,
-  DEFAULT_DATE_FORMAT,
 } from 'dtable-utils';
 import FilterItemUtils from './filter-item-utils';
 import {
@@ -386,12 +385,6 @@ export const isCheckboxColumn = (column) => {
     return false;
   }
   return type === CellType.CHECKBOX;
-};
-
-export const getDateColumnFormat = (column) => {
-  const format = (column && column.data && column.data.format) ? column.data.format : DEFAULT_DATE_FORMAT;
-  // Old Europe format is D/M/YYYY new format is DD/MM/YYYY
-  return format;
 };
 
 const getMediaUrl = () => {
