@@ -1,0 +1,31 @@
+.dtable-ui-row-expand-header .dtable-ui-row-expand-header-right-btns {
+  display: flex;
+}
+
+.dtable-ui-row-expand-header .dtable-ui-row-expand-header-right-btns .header-close-btn {
+  height: 24px;
+  width: 24px;
+  padding: 0 5px;
+  margin: 0 2px;
+  color: #000;
+  opacity: 0.5;
+  font-weight: 700;
+}
+
+.dtable-ui-row-expand-header .dtable-ui-row-expand-header-right-btns .header-close-btn:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+.dtable-ui-row-expand-header .dtable-ui-row-expand-header-left-btns {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dtable-ui-row-expand-header .dtable-ui-row-expand-header-left-btns .dtable-ui-row-expand-header-title {
+  max-width: 400px;
+  font-weight: normal;
+}
+

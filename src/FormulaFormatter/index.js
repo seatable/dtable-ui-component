@@ -9,8 +9,9 @@ import {
 import BaseFormatterConfig from '../formatterConfig/base-formatter-config';
 import TextFormatter from '../TextFormatter';
 import {
-  isArrayFormatColumn, isSimpleCellFormatter, isFunction, convertValueToDtableLongTextValue,
+  isArrayFormatColumn, isSimpleCellFormatter, convertValueToDtableLongTextValue,
 } from './utils';
+import { isFunction } from '../utils/utils';
 import cellValueValidator from './cell-value-validator';
 
 import './index.css';

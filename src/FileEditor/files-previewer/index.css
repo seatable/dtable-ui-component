@@ -1,0 +1,56 @@
+.dtable-ui-file-editor-previewer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-wrapper {
+  height: 390px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-add-btn {
+  width: 100%;
+}
+
+/* header */
+.dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-header {
+  height: 40px;
+  margin: 0 3% 0 3%;
+  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-header .dtable-ui-file-editor-count-content {
+  font-weight: 450;
+}
+
+.dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-header .dtable-ui-file-editor-operation-content {
+  color: #FF8000;
+}
+
+.dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-header .dtable-ui-file-editor-operation-content:hover {
+  cursor: pointer;
+}
+
+/* content */
+.dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-content {
+  margin-top: 10px;
+  height: 336px;
+  overflow-y: auto;
+}
+
+.dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-content::after {
+  content: '';
+  width: 94%;
+  height: 1px;
+  position: absolute;
+  left: 3%;
+  top: 40px;
+  background-color: #e9ecef;
+}

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 import './index.css';
 
@@ -9,6 +10,7 @@ const propTypes = {
     avatar_url: PropTypes.string.isRequired,
     email: PropTypes.string,
   }),
+  className: PropTypes.string,
   enableDeleteCollaborator: PropTypes.bool,
   onDeleteCollaborator: PropTypes.func,
 };
@@ -19,14 +21,16 @@ class CollaboratorItem extends React.Component {
     enableDelete: false
   };
 
-  onDeleteCollaborator = () => {
+  onDeleteCollaborator = (event) => {
+    event.stopPropagation();
+    event && event.nativeEvent.stopImmediatePropagation();
     this.props.onDeleteCollaborator(this.props.collaborator);
   };
 
   render() {
-    const { collaborator, enableDeleteCollaborator } = this.props;
+    const { className, collaborator, enableDeleteCollaborator } = this.props;
     return (
-      <div title={collaborator.name} className="dtable-ui collaborator-item">
+      <div title={collaborator.name} className={classnames('dtable-ui collaborator-item', className)}>
         <span className="collaborator-avatar">
           <img className="collaborator-avatar-icon" alt={collaborator.name} src={collaborator.avatar_url} />
         </span>

@@ -1,0 +1,6 @@
+.sf-long-text-inline-editor-container:not(.preview) {
+  height: 300px;
+  border-color: #1991eb;
+  outline: 0;
+  box-shadow: 0 0 0 2px rgba(70, 127, 207, .25);
+}

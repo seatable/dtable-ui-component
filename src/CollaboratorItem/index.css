@@ -20,7 +20,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 5px 0 2px;
+  margin: 0 5px 0 1px;
 }
 
 .dtable-ui.collaborator-item .collaborator-avatar img {

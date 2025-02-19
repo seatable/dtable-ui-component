@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Calendar from '@seafile/seafile-calendar';
 import DatePicker from '@seafile/seafile-calendar/lib/Picker';
 import { translateCalendar } from '../../lang';
-import { getDateColumnFormat } from '../utils';
+import { getDateColumnFormat } from '../../utils/column-utils';
 
 import '@seafile/seafile-calendar/assets/index.css';
 

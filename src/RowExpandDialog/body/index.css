@@ -1,0 +1,21 @@
+.dtable-ui-row-expand-body {
+  flex: 1;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.dtable-ui-row-expand-body .dtable-ui-row-expand-body-content {
+  flex: 1 1;
+  overflow-y: scroll;
+  padding: 30px;
+}
+
+.dtable-ui-row-expand-body .dtable-ui-row-expand-item {
+  min-height: 56px;
+}
+
+.dtable-ui-row-expand-body .dtable-ui-row-expand-item:first-child {
+  margin-top: 2px;
+}
