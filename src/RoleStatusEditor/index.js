@@ -37,7 +37,7 @@ const RoleStatusEditor = ({ isShowDropdownIcon, currentOption, menuOptions, onCh
       </DropdownToggle>
       <DropdownMenu
         positionFixed={true}
-        modifiers={{ preventOverflow: { boundariesElement: document.body } }}
+        modifiers={[{ name: 'preventOverflow', options: { boundary: document.body } }]}
       >
         {menuOptions.map(option => {
           const { value, label } = option;
