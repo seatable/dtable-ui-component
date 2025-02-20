@@ -8,7 +8,7 @@ import './index.css';
 export default class RowExpandFileFormatter extends React.PureComponent {
 
   static propTypes = {
-    value: PropTypes.array,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
     containerClassName: PropTypes.string,
     column: PropTypes.object,
     downloadFile: PropTypes.func,

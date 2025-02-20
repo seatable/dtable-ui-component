@@ -349,7 +349,7 @@ module.exports = function (webpackEnv) {
       ],
       fallback: {
         path: require.resolve('path-browserify'),
-        'process/browser' : require.resolve('process/browser'),
+        'process/browser': require.resolve('process/browser'),
       }
     },
     module: {
@@ -568,9 +568,9 @@ module.exports = function (webpackEnv) {
             },
             {
               test: /\.less$/,
-              use:  [
-                {loader: 'style-loader'},
-                {loader: 'css-loader'},
+              use: [
+                { loader: 'style-loader' },
+                { loader: 'css-loader' },
                 {
                   loader: 'less-loader',
                   options: {
