@@ -10,7 +10,6 @@ import RowExpandEditor from '../../RowExpandEditor';
 import RowExpandFormatter from '../../RowExpandFormatter';
 
 import './index.css';
-import context from '../../../../context';
 
 class Body extends React.Component {
 
@@ -169,10 +168,9 @@ class Body extends React.Component {
 
   renderColumnValue = (row, column, columnIndex, isEditorFocus) => {
     const { eventBus, departments, userDepartmentIdsMap, columns, component, valueKey, collaborators, getCollaborators, queryCollaborators,
-      onChange, uploadFile, longTextEditorAPI, config } = this.props;
+      onChange, uploadFile, longTextEditorAPI, config, lang, seafileEditorI18n } = this.props;
     const { editable } = column;
     const { editor, formatter } = component || {};
-    const lang = context.getSetting('lang');
     if (editable) {
       return (
         <RowExpandEditor
@@ -187,7 +185,6 @@ class Body extends React.Component {
           columnIndex={columnIndex}
           valueKey={valueKey}
           isInModal={true}
-          longTextEditorI18n={context.seafileEditorI18n}
           lang={lang}
           collaborators={collaborators}
           config={config}
@@ -198,6 +195,7 @@ class Body extends React.Component {
           onEditorOpen={this.onEditorOpen}
           onEditorClose={this.onEditorClose}
           uploadFile={uploadFile}
+          longTextEditorI18n={seafileEditorI18n}
           longTextEditorAPI={longTextEditorAPI}
         />
       );

@@ -26,7 +26,9 @@ const RowExpandDialog = forwardRef(({
   departments,
   userDepartmentIdsMap,
   config,
+  lang,
   layout = 'horizontal', // horizontal or vertical
+  longTextEditorI18n,
   longTextEditorAPI,
   getRow,
   modifyRow,
@@ -195,6 +197,7 @@ const RowExpandDialog = forwardRef(({
         <Body
           isInsertingRow={isInsertingRow}
           row={row}
+          lang={lang}
           columns={columns}
           placeholder={placeholder}
           collaborators={collaborators}
@@ -208,6 +211,7 @@ const RowExpandDialog = forwardRef(({
           getCollaborators={getCollaborators}
           queryCollaborators={queryCollaborators}
           uploadFile={uploadFile}
+          longTextEditorI18n={longTextEditorI18n}
           longTextEditorAPI={longTextEditorAPI}
         />
         {(!saveImmediately || isInsertingRow) && (
@@ -240,6 +244,7 @@ const RowExpandDialog = forwardRef(({
     getCollaborators,
     queryCollaborators,
     uploadFile,
+    longTextEditorI18n,
     longTextEditorAPI,
     config,
     onSubmit,

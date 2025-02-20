@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { toaster } from 'dtable-ui-component';
+import toaster from '../../toaster';
 import { isValidUrl, openUrlLink } from '../../utils/utils';
 import { KeyCodes } from '../../constants';
 import { getLocale } from '../../lang';

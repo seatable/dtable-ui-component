@@ -100,7 +100,7 @@
   background-color: #fff;
 }
 
-.dtable-ui.dtable-row-expand-formatter .geolocation-formatter-container {
+.dtable-ui.dtable-row-expand-formatter .dtable-ui-geolocation-formatter-container {
   margin-top: 0.5rem;
   display: flex;
   align-items: center;

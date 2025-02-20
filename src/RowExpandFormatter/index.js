@@ -129,9 +129,10 @@ class RowExpandFormatter extends React.Component {
         );
       }
       case CellType.GEOLOCATION : {
-        if (typeof cellValue !== 'object') return (<div className="geolocation-formatter-container"></div>);
+        if (!cellValue) return null;
+        if (typeof cellValue !== 'object') return null;
         return (
-          <div className="geolocation-formatter-container">
+          <div className="dtable-ui-geolocation-formatter-container">
             <Formatter value={cellValue} data={column.data} containerClassName={containerClassName} />
           </div>
         );

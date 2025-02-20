@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getDateDisplayString } from 'dtable-store';
+import { getDateDisplayString } from 'dtable-utils';
 import { getEventClassName } from '../../utils/utils';
 import { getDateColumnFormat } from '../../utils/column-utils';
 import { KeyCodes, ROW_EXPAND_FOCUS_STYLE } from '../../constants';
@@ -49,38 +49,32 @@ class RowExpandDateEditor extends React.Component {
       if (getEventClassName(e).includes('rc-calendar')) return;
       this.setState({ isShowEditor: true });
     }
-  }
+  };
 
   hideCalendar = () => {
     this.setState({ isShowEditor: false }, () => {
       this.dateContainerRef && this.dateContainerRef.focus();
     });
-  }
+  };
 
   onFocus = () => {
     this.props.updateTabIndex(this.props.columnIndex);
-  }
+  };
 
   toggleEditor = () => {
     this.props.updateTabIndex(this.props.columnIndex);
     this.setState({ isShowEditor: !this.state.isShowEditor });
-  }
-
-  hideCalendar = () => {
-    this.setState({ isShowEditor: false }, () => {
-      this.dateContainerRef && this.dateContainerRef.focus();
-    });
-  }
+  };
 
   onCommit = (value) => {
     this.props.onCommit(value);
     this.setState({ value });
-  }
+  };
 
   onClear = () => {
     this.setState({ value: null });
     this.props.onCommit(null);
-  }
+  };
 
   render() {
     let { column, isInModal, isEditorFocus, lang } = this.props;

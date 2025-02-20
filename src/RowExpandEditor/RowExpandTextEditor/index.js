@@ -9,7 +9,7 @@ import { getLocale } from '../../lang';
 
 import './index.css';
 
-class RowDetailSimpleText extends React.Component {
+class RowExpandSimpleText extends React.Component {
 
   constructor(props) {
     super(props);
@@ -71,8 +71,7 @@ class RowDetailSimpleText extends React.Component {
 
   checkField = () => {
     const { column } = this.props;
-    const updated = this.editor.getValue();
-    const text = updated[column.key];
+    const text = this.editor.getValue();
     this.validValue = checkValueConformityFormat(column.data, text);
     this.setState({
       inconformityFormat: !this.validValue,
@@ -125,7 +124,7 @@ class RowDetailSimpleText extends React.Component {
   }
 }
 
-RowDetailSimpleText.propTypes = {
+RowExpandSimpleText.propTypes = {
   readOnly: PropTypes.bool,
   columnIndex: PropTypes.number,
   isEditorFocus: PropTypes.bool,
@@ -136,4 +135,4 @@ RowDetailSimpleText.propTypes = {
   onCommit: PropTypes.func.isRequired,
 };
 
-export default RowDetailSimpleText;
+export default RowExpandSimpleText;

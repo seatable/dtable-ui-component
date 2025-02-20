@@ -1,6 +1,7 @@
 import React, { createRef, Suspense } from 'react';
 import PropTypes from 'prop-types';
-import { toaster, Loading } from 'dtable-ui-component';
+import toaster from '../../toaster';
+import Loading from '../../Loading';
 import { I18nextProvider } from 'react-i18next';
 import { LongTextInlineEditor } from '@seafile/seafile-editor';
 import { LONG_TEXT_EXCEED_LIMIT_MESSAGE } from '../../constants';
