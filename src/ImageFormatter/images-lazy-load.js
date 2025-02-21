@@ -8,6 +8,7 @@ const propTypes = {
   server: PropTypes.string,
   onImageClick: PropTypes.func,
   renderItem: PropTypes.func,
+  dtableUuid: PropTypes.string,
 };
 
 class ImagesLazyLoad extends React.Component {
@@ -46,9 +47,9 @@ class ImagesLazyLoad extends React.Component {
       loadedImages: [],
       loadedCount: 0
     }, () => {
-      let { server } = this.props;
+      let { server, dtableUuid } = this.props;
       images.forEach((item, index) => {
-        let url = getImageThumbnailUrl(item, { server });
+        let url = getImageThumbnailUrl(item, { server, dtableUuid });
         this.lazyLoadImage(
           url,
           (image) => {
