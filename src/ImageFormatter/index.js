@@ -69,7 +69,7 @@ class ImageFormatter extends React.Component {
   };
 
   render() {
-    const { isSample, value, server, containerClassName, readOnly } = this.props;
+    const { isSample, value, server, containerClassName, readOnly, dtableUuid } = this.props;
     const className = classnames('dtable-ui cell-formatter-container image-formatter', containerClassName);
     const { isPreviewImage, previewImageIndex } = this.state;
     if (!Array.isArray(value) || value.length === 0) {
@@ -90,7 +90,7 @@ class ImageFormatter extends React.Component {
     return (
       <Fragment>
         <div className={className}>
-          <ImagesLazyLoad images={value} server={server} onImageClick={this.onImageClick} renderItem={this.props.renderItem}/>
+          <ImagesLazyLoad images={value} server={server} onImageClick={this.onImageClick} renderItem={this.props.renderItem} dtableUuid={dtableUuid} />
         </div>
         {isPreviewImage && (
           <ImagePreviewerLightbox
@@ -107,6 +107,7 @@ class ImageFormatter extends React.Component {
             moveToPrevRowImage={this.props.moveToPrevRowImage}
             moveToNextRowImage={this.props.moveToNextRowImage}
             onViewOriginal={this.props.onViewOriginal}
+            dtableUuid={dtableUuid}
           />
         )}
       </Fragment>
@@ -129,6 +130,7 @@ ImageFormatter.propTypes = {
   moveToNextRowImage: PropTypes.func,
   onCloseCallback: PropTypes.func,
   renderItem: PropTypes.func,
+  dtableUuid: PropTypes.string,
 };
 
 
