@@ -1,3 +1,4 @@
+import { ARRAY_FORMAT_COLUMNS } from '../constants';
 import { isInternalURL, imageCheck } from './url';
 
 export const debounce = (fn, wait) => {
@@ -137,4 +138,53 @@ export const getErrorMsg = (error) => {
     console.log(error);
   }
   return errorMsg;
+};
+
+export function isArrayFormatColumn(columnType) {
+  return ARRAY_FORMAT_COLUMNS.includes(columnType);
+}
+
+export const getFormulaArrayValue = (value, isFlat = true) => {
+  if (!Array.isArray(value)) return [];
+  if (!isFlat) return getTwoDimensionArrayValue(value);
+  return value
+    .map(item => {
+      if (Object.prototype.toString.call(item) !== '[object Object]') {
+        return item;
+      }
+      if (!Object.prototype.hasOwnProperty.call(item, 'display_value')) return item;
+      const { display_value } = item;
+      if (!Array.isArray(display_value) || display_value.length === 0) return display_value;
+      return display_value.map(i => {
+        if (Object.prototype.toString.call(i) === '[object Object]') {
+          if (!Object.prototype.hasOwnProperty.call(i, 'display_value')) return i;
+          const { display_value } = i;
+          return display_value;
+        }
+        return i;
+      });
+    })
+    .flat()
+    .filter(item => isValidCellValue(item));
+};
+
+export const getTwoDimensionArrayValue = (value) => {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map(item => {
+      if (Object.prototype.toString.call(item) !== '[object Object]') {
+        return item;
+      }
+      if (!Object.prototype.hasOwnProperty.call(item, 'display_value')) return item;
+      const { display_value } = item;
+      if (!Array.isArray(display_value) || display_value.length === 0) return display_value;
+      return display_value.map(i => {
+        if (Object.prototype.toString.call(i) === '[object Object]') {
+          if (!Object.prototype.hasOwnProperty.call(i, 'display_value')) return i;
+          const { display_value } = i;
+          return display_value;
+        }
+        return i;
+      });
+    });
 };

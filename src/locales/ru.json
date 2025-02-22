@@ -159,5 +159,9 @@
   "Long_text_exceed_limit_message": "Содержимое документа превысило лимит в 100000 символов, и сохранить его невозможно",
   "Long_text_exceed_limit_suggest": "Содержание документа превысило лимит в 100000 символов, поэтому сохранятся только первые 100000 символов",
   "Deleted_option": "удаленный параметр",
-  "Input_does_not_meet_specifications": "Input does not meet specifications"
+  "Input_does_not_meet_specifications": "Input does not meet specifications",
+  "Mark_as_resolved": "Пометить как разрешенный",
+  "No_comment_yet": "Пока без комментариев",
+  "Add_comment": "Добавить комментарий",
+  "Add_participants": "Добавить участников"
 }

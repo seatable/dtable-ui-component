@@ -159,5 +159,9 @@
   "Long_text_exceed_limit_message": "文档内容已超过 100000 字符限制，内容无法保存",
   "Long_text_exceed_limit_suggest": "文档内容已超过 100000 个字符的限制，仅保存前 100000 个字符",
   "Deleted_option": "已删除的标签",
-  "Input_does_not_meet_specifications": "输入不符合规范"
+  "Input_does_not_meet_specifications": "输入不符合规范",
+  "Mark_as_resolved": "标记为已解决",
+  "No_comment_yet": "暂无评论",
+  "Add_comment": "增加评论",
+  "Add_participants": "添加参与人"
 }

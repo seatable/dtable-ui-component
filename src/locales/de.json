@@ -159,5 +159,9 @@
   "Long_text_exceed_limit_message": "Das Dokument hat eine Länge von mehr als 100.000 Zeichen und kann daher nicht gespeichert werden.",
   "Long_text_exceed_limit_suggest": "Die Länge dieses Dokuments überschreitet das Maximum von 100.000 Zeichen. Nur 100.000 Zeichen werden gespeichert.",
   "Deleted_option": "Die Option wurde gelöscht.",
-  "Input_does_not_meet_specifications": "Die Eingabe entspricht nicht der Vorgabe."
+  "Input_does_not_meet_specifications": "Die Eingabe entspricht nicht der Vorgabe.",
+  "Mark_as_resolved": "Als erledigt markieren",
+  "No_comment_yet": "Es sind keine Kommentare vorhanden.",
+  "Add_comment": "Kommentar hinzufügen",
+  "Add_participants": "Teilnehmer hinzufügen"
 }

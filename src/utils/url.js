@@ -42,7 +42,7 @@ export const checkSVGImage = (url) => {
 
 export const isAIUrl = (url) => {
   if (!url || typeof url !== 'string') return false;
-  return isTargetUrl('/ai/asset/', url) && !url.includes('http');
+  return isTargetUrl('/ai/asset/', url) && url.includes('http');
 };
 
 export const isDigitalSignsUrl = (url) => {
@@ -63,7 +63,9 @@ export const needUseThumbnailImage = (url) => {
 export const generateCurrentBaseImageThumbnailUrl = ({ server, workspaceID, dtableUuid, partUrl, size }) => {
   const validServer = server || (window?.dtable && window.dtable.server) || '';
   if (!partUrl || typeof partUrl !== 'string') return '';
-  return `${validServer}/thumbnail/workspace/${workspaceID}/asset/${dtableUuid}${partUrl}?size=${size}`;
+  let url = `${validServer}/thumbnail/workspace/${workspaceID}/asset/${dtableUuid}${partUrl}`;
+  if (url.indexOf('?') > -1) return `${url}&size=${size}`;
+  return `${url}?size=${size}`;
 };
 
 export const generateCurrentBaseImageUrl = ({ server, workspaceID, dtableUuid, partUrl }) => {

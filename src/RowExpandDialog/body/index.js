@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { ModalBody } from 'reactstrap';
 import classnames from 'classnames';
 import { CellType } from 'dtable-utils';
-import { keyCodes } from '../constants';
-import { getFormulaArrayValue, isArrayFormalColumn, downloadFile } from '../utils';
+import { keyCodes } from '../../constants';
+import { getFormulaArrayValue, isArrayFormatColumn, downloadFile, isFunction } from '../../utils/utils';
 import ColumnContent from '../column-content';
 import RowExpandEditor from '../../RowExpandEditor';
 import RowExpandFormatter from '../../RowExpandFormatter';
@@ -21,7 +21,6 @@ class Body extends React.Component {
     this.fieldEditorOpen = false;
     this.focusDom = React.createRef();
     this.editors = [];
-    this.commentInputFocus = false;
     this.contentRef = null;
   }
 
@@ -32,9 +31,6 @@ class Body extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.tabIndex !== this.state.tabIndex) {
       this.scrollToFocus();
-    }
-    if (prevState.isShowComment !== this.state.isShowComment) {
-      this.commentInputFocus = false;
     }
   }
 
@@ -92,7 +88,7 @@ class Body extends React.Component {
   };
 
   onHotKey = (event) => {
-    const { columns } = this.props;
+    const { columns, onKeyDown } = this.props;
     const readonly = Array.isArray(columns) && columns.length > 0 ? !columns.some(c => c.editable) : true;
     const keyCode = event.keyCode;
     // When opening field editor, all shortcuts in row expand dialog do not work
@@ -104,6 +100,8 @@ class Body extends React.Component {
       this.props.onRowExpandCancel();
       return;
     }
+
+    onKeyDown && onKeyDown(event);
 
     if (keyCode === keyCodes.UpArrow) {
       this.onPressUpKey();
@@ -117,6 +115,7 @@ class Body extends React.Component {
 
     if (keyCode === keyCodes.Tab && !readonly) {
       this.onPressTab(event);
+      return;
     }
   };
 
@@ -151,13 +150,12 @@ class Body extends React.Component {
   };
 
   downloadImage = (imageItemUrl) => {
-    let rotateIndex = imageItemUrl.indexOf('?a=');
-    if (rotateIndex > -1) {
-      imageItemUrl = imageItemUrl.slice(0, rotateIndex);
-    }
-    let imageUrlSuffix = imageItemUrl.indexOf('?dl=1');
-    let downloadUrl = imageUrlSuffix !== -1 ? imageItemUrl : imageItemUrl + '?dl=1';
-    downloadFile(downloadUrl);
+    this.props.getDownLoadFiles([{ url: imageItemUrl }]).then(res => {
+      const [downloadUrl] = res.data.urls;
+      downloadFile(downloadUrl);
+    }).catch(error => {
+      // todo
+    });
   };
 
   getCellValue = ({ row, column }) => {
@@ -167,52 +165,34 @@ class Body extends React.Component {
   };
 
   renderColumnValue = (row, column, columnIndex, isEditorFocus) => {
-    const { eventBus, departments, userDepartmentIdsMap, columns, component, valueKey, collaborators, getCollaborators, queryCollaborators,
-      onChange, uploadFile, longTextEditorAPI, config, lang, seafileEditorI18n } = this.props;
+    const { component, onChange, ...props } = this.props;
+    const { getDownLoadFiles } = props;
     const { editable } = column;
     const { editor, formatter } = component || {};
     if (editable) {
       return (
         <RowExpandEditor
+          { ...props }
           column={column}
           row={row}
-          columns={columns}
-          eventBus={eventBus}
-          departments={departments}
-          userDepartmentIdsMap={userDepartmentIdsMap}
           component={editor}
           isEditorFocus={isEditorFocus}
           columnIndex={columnIndex}
-          valueKey={valueKey}
           isInModal={true}
-          lang={lang}
-          collaborators={collaborators}
-          config={config}
-          getCollaborators={getCollaborators}
-          queryCollaborators={queryCollaborators}
           updateTabIndex={this.updateTabIndex}
           onCommit={(value) => onChange(column, value)}
           onEditorOpen={this.onEditorOpen}
           onEditorClose={this.onEditorClose}
-          uploadFile={uploadFile}
-          longTextEditorI18n={seafileEditorI18n}
-          longTextEditorAPI={longTextEditorAPI}
         />
       );
     }
     return (
       <RowExpandFormatter
+        { ...props }
         column={column}
         row={row}
-        collaborators={collaborators}
-        config={config}
-        eventBus={eventBus}
-        departments={departments}
         component={formatter}
-        valueKey={valueKey}
-        downloadImage={this.downloadImage}
-        getCollaborators={getCollaborators}
-        queryCollaborators={queryCollaborators}
+        downloadImage={getDownLoadFiles ? this.downloadImage : null}
       />
     );
   };
@@ -228,22 +208,28 @@ class Body extends React.Component {
     );
   };
 
+  renderChildren = () => {
+    const { columns, row, children } = this.props;
+    const props = { columns, row };
+    const CustomChildren = children;
+    if (React.isValidElement(CustomChildren)) return React.cloneElement(CustomChildren, props);
+    if (isFunction(CustomChildren)) return (<CustomChildren { ...props } />);
+    return children;
+  };
+
   render() {
-    const { isInsertingRow, columns, row, placeholder } = this.props;
+    const { columns, row, placeholder } = this.props;
     return (
       <ModalBody className="dtable-ui-row-expand-body">
         <div className="dtable-ui-row-expand-body-content" ref={ref => this.contentRef = ref}>
           {columns.length === 0 && placeholder && (<>{placeholder}</>)}
           {columns.map((column, index) => {
-            // Do not display creator, last_modifier, ctime, mtime when inserting row
-            if (isInsertingRow && !column.editable) return null;
-
             const { type, data } = column;
             let isHasMore = false;
             if (type === CellType.LINK_FORMULA) {
               let { array_type } = data || {};
               const value = this.getCellValue({ row, column });
-              const cellValue = getFormulaArrayValue(value, !isArrayFormalColumn(array_type));
+              const cellValue = getFormulaArrayValue(value, !isArrayFormatColumn(array_type));
               if (cellValue.length >= 10) {
                 isHasMore = true;
               }
@@ -255,6 +241,7 @@ class Body extends React.Component {
             );
           })}
         </div>
+        {this.renderChildren()}
       </ModalBody>
     );
   }

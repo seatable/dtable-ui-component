@@ -7,6 +7,8 @@ import { FILE_EDITOR_STATUS } from '../constants';
 import DTableModalHeader from '../DTableModalHeader';
 import { getLocale } from '../lang';
 import { FILES_FOLDER } from './constants';
+import { getErrorMsg } from '../utils/utils';
+import toaster from '../toaster';
 
 import './index.css';
 
@@ -190,15 +192,21 @@ class FileEditor extends React.Component {
       newValue[index] = fileItem;
       this.setState({ value: newValue });
     }).catch(error => {
-
+      const errorMessage = getErrorMsg(error);
+      if (!error.response || error.response.status !== 403) {
+        toaster.danger(getLocale(errorMessage));
+      }
     });
   };
 
   onRotateImage = (url, degree) => {
     this.props.rotateImage(url, degree).then(res => {
-
+      // todo
     }).catch(error => {
-
+      const errorMessage = getErrorMsg(error);
+      if (!error.response || error.response.status !== 403) {
+        toaster.danger(getLocale(errorMessage));
+      }
     });
   };
 

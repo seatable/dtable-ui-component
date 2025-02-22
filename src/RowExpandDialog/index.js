@@ -1,4 +1,5 @@
 import React, { forwardRef, useMemo, useImperativeHandle, useCallback, useEffect, useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Modal, ModalFooter, Button } from 'reactstrap';
 import { CellType, NOT_SUPPORT_EDIT_COLUMN_TYPE_MAP } from 'dtable-utils';
@@ -8,9 +9,9 @@ import Body from './body';
 import Loading from '../Loading';
 import { getErrorMsg } from '../utils/utils';
 import { isCellValueChanged } from '../utils/cell-comparer';
+import toaster from '../toaster';
 
 import './index.css';
-import toaster from '../toaster';
 
 const RowExpandDialog = forwardRef(({
   saveImmediately = true,
@@ -18,25 +19,16 @@ const RowExpandDialog = forwardRef(({
   zIndex,
   title,
   className,
-  placeholder,
-  collaborators,
-  component,
-  eventBus,
   valueKey = 'name', // name or key
-  departments,
-  userDepartmentIdsMap,
-  config,
-  lang,
   layout = 'horizontal', // horizontal or vertical
-  longTextEditorI18n,
-  longTextEditorAPI,
   getRow,
   modifyRow,
-  getCollaborators,
-  queryCollaborators,
   checkEditable = (c) => c.editable && !NOT_SUPPORT_EDIT_COLUMN_TYPE_MAP[c.type],
   onToggle,
   uploadFile,
+  copyURL,
+  children = [],
+  ...otherProps
 }, ref) => {
   const [isAnimationEnd, setAnimationEnd] = useState(false);
   const [isLoading, setLoading] = useState(true);
@@ -64,14 +56,14 @@ const RowExpandDialog = forwardRef(({
   }, []);
 
   const style = useMemo(() => {
-    const width = 800;
+    const width = children[1] ? 1100 : 800;
     return {
       width,
       maxWidth: width,
       marginLeft: (window.innerWidth - width) / 2,
       height: 'calc(100% - 56px)', // Dialog margin is 3.5rem (56px)
     };
-  }, []);
+  }, [children]);
 
   const _checkEditable = useCallback((column, row) => {
     if (isSaving) return false;
@@ -87,13 +79,11 @@ const RowExpandDialog = forwardRef(({
     getRow().then(res => {
       const { row, columns } = res.data;
       setRow(row);
-      const validColumns = columns.map(c => (
-        {
-          ...c,
-          editable: _checkEditable(c, row),
-          width: 320,
-        }
-      ));
+      let validColumns = columns.map(c => ({ ...c, editable: _checkEditable(c, row), width: 320 }));
+      if (isInsertingRow) {
+        validColumns = validColumns.filter(c => c.editable);
+      }
+
       isChangedRef.current = isInsertingRow && Object.keys(row).length > 0;
       setColumns(validColumns);
       setLoading(false);
@@ -186,70 +176,6 @@ const RowExpandDialog = forwardRef(({
     },
   }), [row, columns]);
 
-  const renderContent = useCallback(() => {
-    if (!isAnimationEnd) return null;
-    if (isLoading) return (<div className="w-100 -h-100 d-flex align-items-center justify-content-center"><Loading/></div>);
-    if (errorMessage) return (<div>{errorMessage}</div>);
-
-    return (
-      <div className="dtable-ui-row-expand-details">
-        <Header onToggle={toggle} title={title} />
-        <Body
-          isInsertingRow={isInsertingRow}
-          row={row}
-          lang={lang}
-          columns={columns}
-          placeholder={placeholder}
-          collaborators={collaborators}
-          eventBus={eventBus}
-          component={component}
-          valueKey={valueKey}
-          departments={departments}
-          userDepartmentIdsMap={userDepartmentIdsMap}
-          config={config}
-          onChange={onChange}
-          getCollaborators={getCollaborators}
-          queryCollaborators={queryCollaborators}
-          uploadFile={uploadFile}
-          longTextEditorI18n={longTextEditorI18n}
-          longTextEditorAPI={longTextEditorAPI}
-        />
-        {(!saveImmediately || isInsertingRow) && (
-          <ModalFooter>
-            <Button onClick={toggle} color="secondary">{getLocale('Cancel')}</Button>
-            <Button onClick={onSubmit} disabled={isSaving || !isChangedRef.current} color='primary'>{getLocale('Submit')}</Button>
-          </ModalFooter>
-        )}
-      </div>
-    );
-  }, [
-    isSaving,
-    saveImmediately,
-    isAnimationEnd,
-    isLoading,
-    isInsertingRow,
-    errorMessage,
-    title,
-    row,
-    columns,
-    placeholder,
-    collaborators,
-    component,
-    valueKey,
-    departments,
-    userDepartmentIdsMap,
-    eventBus,
-    onChange,
-    toggle,
-    getCollaborators,
-    queryCollaborators,
-    uploadFile,
-    longTextEditorI18n,
-    longTextEditorAPI,
-    config,
-    onSubmit,
-  ]);
-
   return (
     <Modal
       isOpen={true}
@@ -263,9 +189,59 @@ const RowExpandDialog = forwardRef(({
       innerRef={modalRef}
       keyboard={false}
     >
-      {renderContent()}
+      {isAnimationEnd && (
+        <>
+          {isLoading ? (
+            <div className="w-100 -h-100 d-flex align-items-center justify-content-center"><Loading/></div>
+          ) : (
+            <>
+              {errorMessage ? (
+                <div className="w-100 -h-100 d-flex align-items-center justify-content-center error">{errorMessage}</div>
+              ) : (
+                <div className="dtable-ui-row-expand-details">
+                  <Header title={title} row={row} columns={columns} copyURL={copyURL} onToggle={toggle}>
+                    {children[0]}
+                  </Header>
+                  <Body
+                    { ...otherProps }
+                    row={row}
+                    columns={columns}
+                    valueKey={valueKey}
+                    onChange={onChange}
+                    uploadFile={uploadFile}
+                  >
+                    {children[1]}
+                  </Body>
+                  {(!saveImmediately || isInsertingRow) && (
+                    <ModalFooter>
+                      <Button onClick={toggle} color="secondary">{getLocale('Cancel')}</Button>
+                      <Button onClick={onSubmit} disabled={isSaving || !isChangedRef.current} color='primary'>{getLocale('Submit')}</Button>
+                    </ModalFooter>
+                  )}
+                </div>
+              )}
+            </>
+          )}
+        </>
+      )}
     </Modal>
   );
 });
+
+RowExpandDialog.propTypes = {
+  saveImmediately: PropTypes.bool,
+  isInsertingRow: PropTypes.bool,
+  zIndex: PropTypes.number,
+  title: PropTypes.any,
+  className: PropTypes.string,
+  valueKey: PropTypes.oneOf(['key', 'name']),
+  layout: PropTypes.oneOf(['horizontal', 'vertical']), // horizontal or vertical
+  getRow: PropTypes.func.isRequired,
+  modifyRow: PropTypes.func.isRequired,
+  checkEditable: PropTypes.func,
+  onToggle: PropTypes.func.isRequired,
+  uploadFile: PropTypes.func,
+  copyURL: PropTypes.func,
+};
 
 export default RowExpandDialog;

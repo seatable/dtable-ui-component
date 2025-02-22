@@ -6,7 +6,7 @@ import CTimeFormatter from '../../CTimeFormatter';
 import MTimeFormatter from '../../MTimeFormatter';
 import DateFormatter from '../../DateFormatter';
 import CollaboratorItemFormatter from './collaborator-item-formatter';
-import { getFormulaArrayValue, isArrayFormatColumn } from './utils';
+import { getFormulaArrayValue, isArrayFormatColumn } from '../../utils/utils';
 import { getCellDisplayValue } from './value-display-utils';
 
 import './index.css';

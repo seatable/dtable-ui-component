@@ -6,7 +6,7 @@ import { I18nextProvider } from 'react-i18next';
 import { LongTextInlineEditor } from '@seafile/seafile-editor';
 import { LONG_TEXT_EXCEED_LIMIT_MESSAGE } from '../../constants';
 import { isLongTextValueExceedLimit } from '../../utils/cell';
-import { getLocale } from '../../lang';
+import { getLocale, LANGUAGE } from '../../lang';
 
 import './index.css';
 
@@ -78,7 +78,7 @@ class RowExpandLongTextEditor extends React.Component {
   };
 
   render() {
-    const { column, longTextEditorAPI, lang, longTextEditorI18n } = this.props;
+    const { column, longTextEditorAPI, longTextEditorI18n } = this.props;
     const { isLoading, value } = this.state;
     if (isLoading) return null;
 
@@ -87,7 +87,7 @@ class RowExpandLongTextEditor extends React.Component {
         <I18nextProvider i18n={longTextEditorI18n}>
           <LongTextInlineEditor
             ref={this.editorRef}
-            lang={lang}
+            lang={LANGUAGE}
             headerName={column.name}
             value={value || ''}
             autoSave={true}
@@ -106,9 +106,7 @@ class RowExpandLongTextEditor extends React.Component {
 RowExpandLongTextEditor.propTypes = {
   onCommit: PropTypes.func,
   column: PropTypes.object,
-  expandedRow: PropTypes.object,
-  t: PropTypes.func,
-  readOnly: PropTypes.bool,
+  row: PropTypes.object,
   isEditorFocus: PropTypes.bool,
   columnIndex: PropTypes.number,
   updateTabIndex: PropTypes.func,

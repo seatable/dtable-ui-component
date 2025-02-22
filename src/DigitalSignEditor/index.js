@@ -96,7 +96,7 @@ class DigitalSignEditor extends Component {
         failedCallback: (error) => {
           const errMsg = getErrorMsg(error, true);
           if (!error.response || error.response.status !== 403) {
-            toaster.danger(this.props.t(errMsg));
+            toaster.danger(getLocale(errMsg));
           }
           this.setState({ saving: false });
         },

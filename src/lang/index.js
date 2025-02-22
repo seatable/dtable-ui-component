@@ -123,3 +123,7 @@ export function getMobileDatePickerLocale() {
     dismissText: getLocale('Cancel')
   };
 }
+
+export {
+  LANGUAGE,
+};

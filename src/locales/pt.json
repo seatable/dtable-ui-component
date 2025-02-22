@@ -159,5 +159,9 @@
   "Long_text_exceed_limit_message": "O conteúdo do documento excedeu o limite de 100000 caracteres e o conteúdo não pode ser salvo",
   "Long_text_exceed_limit_suggest": "O conteúdo do documento excedeu o limite de 100000 caracteres e apenas os primeiros 100000 caracteres são salvos",
   "Deleted_option": "opção excluída",
-  "Input_does_not_meet_specifications": "Input does not meet specifications"
+  "Input_does_not_meet_specifications": "Input does not meet specifications",
+  "Mark_as_resolved": "Marca conforme resolvido",
+  "No_comment_yet": "No comment yet",
+  "Add_comment": "Adicionar comentário",
+  "Add_participants": "Adicione participantes"
 }

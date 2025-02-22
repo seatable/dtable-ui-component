@@ -159,5 +159,9 @@
   "Long_text_exceed_limit_message": "Le document a une longueur de plus de 100.000 caractères et ne peut donc pas être enregistré.",
   "Long_text_exceed_limit_suggest": "La longueur de ce document dépasse le maximum de 100.000 caractères. Seuls 100.000 sont enregistrés.",
   "Deleted_option": "L'option a été supprimée.",
-  "Input_does_not_meet_specifications": "L'entrée n'est pas conforme à la spécification."
+  "Input_does_not_meet_specifications": "L'entrée n'est pas conforme à la spécification.",
+  "Mark_as_resolved": "Marquer comme résolu",
+  "No_comment_yet": "Aucun commentaire n'est disponible.",
+  "Add_comment": "Ajouter un commentaire",
+  "Add_participants": "Ajouter des participants"
 }

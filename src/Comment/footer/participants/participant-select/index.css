@@ -1,0 +1,104 @@
+.dtable-ui-participants-editor {
+  min-height: 160px;
+  width: 280px;
+  left: -140px;
+}
+
+/* header */
+.dtable-ui-participants-editor .dtable-ui-participants-editor-header {
+  background-color: #f6f6f6;
+  padding: 5px 10px 3px;
+  border-bottom: 1px solid #dde2ea;
+  border-radius: 3px 3px 0 0;
+  min-height: 34px;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-header .dtable-ui-participant {
+  display: inline-flex;
+  height: 20px;
+  margin-right: 10px;
+  padding: 0 8px 0 2px;
+  font-size: 13px;
+  border-radius: 10px;
+  background: #eaeaea;
+}
+
+/* search */
+.dtable-ui-participants-editor .dtable-ui-participants-editor-search {
+  padding: 10px;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-search input {
+  height: 28px;
+}
+
+
+/* container */
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container {
+  max-height: 200px;
+  padding: 0 0 10px;
+  overflow: auto;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant-item {
+  display: flex;
+  align-items: center;
+  padding: 0 8px 0 0;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant-item:hover {
+  background: none;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 30px;
+  border-radius: 2px;
+  font-size: 14px;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant-container:hover {
+  background: #f5f5f5;
+  cursor: pointer;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  max-width: calc(100% - 20px);
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant-avatar {
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  margin-left: 10px;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant-name {
+  margin-left: 4px;
+  flex: 1;
+  color: #16181b;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant-check-icon {
+  width: 20px;
+  text-align: center;
+}
+
+.dtable-ui-participants-editor .dtable-ui-participants-editor-participants-container .dtable-ui-participant-check-icon .dtable-font {
+  font-size: 12px;
+  color: #798d99;
+}
+
+/* none */
+.dtable-ui-participants-editor .none-search-result {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  opacity: 0.5;
+  display: inline-block;
+}
