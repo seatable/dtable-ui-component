@@ -56,7 +56,7 @@ class PCLinkEditorPopover extends React.Component {
     let { searchValue } = this.state;
     let popoverStyle = Object.assign({}, { ...popoverPosition }, { position: 'absolute' });
     return (
-      <div className="dtable-ui-editor-popover dtable-ui-link-editor-popover" style={popoverStyle}>
+      <div className="dtable-ui-editor-container dtable-ui-link-editor-popover" style={popoverStyle}>
         <div className="link-options-search">
           <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Search_option')}></input>
         </div>

@@ -1,0 +1,22 @@
+.dtable-ui-comments-participants {
+  min-height: 28px;
+}
+
+.dtable-ui-comments-participants .dtable-ui-participants-add {
+  position: absolute;
+  cursor: pointer;
+  bottom: -3px;
+}
+
+.dtable-ui-comments-participants .dtable-ui-participants-add i {
+  background-color: #fff;
+  font-size: 16px;
+  color: #FF8000;
+  border: 2px solid #fff;
+  border-radius: 50%;
+}
+
+.dtable-ui-comments-participants .dtable-ui-participant-avatar,
+.dtable-ui-comments-participants .dtable-ui-participants-add {
+  margin-right: -0.5rem;
+}

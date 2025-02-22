@@ -1,36 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import TextFormatter from '../TextFormatter';
-import NumberFormatter from '../NumberFormatter';
-import CheckboxFormatter from '../CheckboxFormatter';
-import DateFormatter from '../DateFormatter';
-import SingleSelectFormatter from '../SingleSelectFormatter';
-import MultipleSelectFormatter from '../MultipleSelectFormatter';
-import CollaboratorFormatter from '../CollaboratorFormatter';
-import LongTextFormatter from '../LongTextFormatter';
-import GeolocationFormatter from '../GeolocationFormatter';
-import CTimeFormatter from '../CTimeFormatter';
-import CreatorFormatter from '../CreatorFormatter';
-import LastModifierFormatter from '../LastModifierFormatter';
-import MTimeFormatter from '../MTimeFormatter';
-import AutoNumberFormatter from '../AutoNumberFormatter';
-import DurationFormatter from '../DurationFormatter';
-import ButtonFormatter from '../ButtonFormatter';
-import RowExpandUrlFormatter from '../RowExpandUrlFormatter';
-import RowExpandEmailFormatter from '../RowExpandEmailFormatter';
-import RowExpandRateFormatter from '../RowExpandRateFormatter';
-import RowExpandImageFormatter from '../RowExpandImageFormatter';
-import RowExpandFileFormatter from '../RowExpandFileFormatter';
-import RowExpandLinkFormatter from '../RowExpandLinkFormatter';
-import RowExpandFormulaFormatter from '../RowExpandFormulaFormatter';
-import DigitalSignFormatter from '../DigitalSignFormatter';
-import DepartmentSingleSelectFormatter from '../DepartmentSingleSelectFormatter';
 import { CellType } from '../constants';
+import { DEFAULT_FORMATTER } from './constants';
 
 import './index.css';
 
-export default class EditorFormatter extends React.Component {
+class RowExpandFormatter extends React.Component {
 
   static defaultProps = {
     className: '',
@@ -47,22 +23,29 @@ export default class EditorFormatter extends React.Component {
     deleteFile: PropTypes.func,
     downloadImage: PropTypes.func,
     onRotateImage: PropTypes.func,
-    context: PropTypes.object,
     eventBus: PropTypes.object,
-    config: PropTypes.object, // for digital sign formatter
+    config: PropTypes.object,
+    component: PropTypes.object,
+    getCollaborators: PropTypes.func,
+    queryCollaborators: PropTypes.func,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      collaborators: this.getCollaborator(),
+      collaborators: this.getCollaborators(),
+    };
+    this.component = {
+      ...DEFAULT_FORMATTER,
+      ...this.props.component,
     };
   }
 
   componentDidMount() {
     this.calculateCollaboratorData(this.props);
-    if (this.props.eventBus) {
-      this.unsubscribeCollaboratorsUpdated = this.props.eventBus.subscribe('collaborators-updated', this.updateCollaborators);
+    const eventBus = this.props.eventBus;
+    if (eventBus) {
+      this.unsubscribeCollaboratorsUpdated = eventBus.subscribe('collaborators-updated', this.updateCollaborators);
     }
   }
 
@@ -77,38 +60,29 @@ export default class EditorFormatter extends React.Component {
   }
 
   updateCollaborators = () => {
-    this.setState({ collaborators: this.getCollaborator() });
+    const { column } = this.props;
+    if (![CellType.CREATOR, CellType.LAST_MODIFIER, CellType.COLLABORATOR].includes(column.type)) return;
+    const collaborators = this.getCollaborators();
+    this.setState({ collaborators });
   };
 
   calculateCollaboratorData = (props) => {
-    const { row, column } = props;
+    const { row, column, queryCollaborators } = props;
     if (column.type === CellType.CREATOR || column.type === CellType.LAST_MODIFIER) {
       const email = row[column.name];
-      this.loadCollaborator(email);
-    }
-    else if (column.type === CellType.COLLABORATOR) {
+      queryCollaborators && queryCollaborators(email);
+    } else if (column.type === CellType.COLLABORATOR) {
       const emails = row[column.name];
       if (Array.isArray(emails)) {
-        emails.forEach(email => {
-          this.loadCollaborator(email);
-        });
+        queryCollaborators && queryCollaborators(emails);
       }
     }
   };
 
-  getCollaborator = () => {
-    const { context, collaborators } = this.props;
-    if (context && context.getCollaboratorsFromCache) {
-      return context.getCollaboratorsFromCache();
-    }
+  getCollaborators = () => {
+    const { getCollaborators, collaborators } = this.props;
+    if (getCollaborators) return getCollaborators();
     return collaborators || [];
-  };
-
-  loadCollaborator = (email) => {
-    const { context } = this.props;
-    if (context && context.loadCollaborator) {
-      context.loadCollaborator(email);
-    }
   };
 
   renderEmpty = () => {
@@ -118,26 +92,27 @@ export default class EditorFormatter extends React.Component {
   };
 
   renderFormatter = () => {
-    let { column, row, className } = this.props;
+    let { column, row, valueKey } = this.props;
     let { type: columnType } = column;
 
     const { collaborators } = this.state;
-    const containerClassName = `dtable-${columnType}-formatter ${className || ''}`;
+    const containerClassName = `dtable-ui-row-expand-${columnType}-formatter`;
 
-    let cellValue = (row[column.key] !== null && row[column.key] !== undefined) ? row[column.key] : row[column.name];
+    let cellValue = row[column[valueKey]];
+    const Formatter = this.component[columnType];
 
     switch (columnType) {
       case CellType.TEXT: {
         return (
           <div className="form-control d-flex align-items-center w-100">
-            <TextFormatter value={cellValue} containerClassName={containerClassName} />
+            <Formatter value={cellValue} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.COLLABORATOR: {
         return (
           <div className="form-control d-flex align-items-center w-100 h-auto">
-            <CollaboratorFormatter
+            <Formatter
               value={cellValue}
               collaborators={collaborators}
               containerClassName={containerClassName}
@@ -146,54 +121,55 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.LONG_TEXT: {
-        if (!cellValue) return null;
+        if (!cellValue) return (<div className="form-control d-flex align-items-center w-100"></div>);
         return (
           <div className="longtext-formatter-container">
-            <LongTextFormatter value={cellValue} containerClassName={containerClassName} isSample={false} />
+            <Formatter value={cellValue} containerClassName={containerClassName} isSample={false} />
           </div>
         );
       }
       case CellType.GEOLOCATION : {
+        if (!cellValue) return null;
         if (typeof cellValue !== 'object') return null;
         return (
-          <div className="geolocation-formatter-container">
-            <GeolocationFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
+          <div className="dtable-ui-geolocation-formatter-container">
+            <Formatter value={cellValue} data={column.data} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.NUMBER: {
         return (
           <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
-            <NumberFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
+            <Formatter value={cellValue} data={column.data} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.DATE: {
         return (
           <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
-            <DateFormatter value={cellValue} format={column.data.format} containerClassName={containerClassName} />
+            <Formatter value={cellValue} format={column.data.format} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.CTIME: {
         return (
           <div className="form-control d-flex align-items-center ctime-formatter-container" style={{ width: 320 }}>
-            <CTimeFormatter value={row._ctime} containerClassName={containerClassName} />
+            <Formatter value={cellValue} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.MTIME: {
         return (
           <div className="form-control d-flex align-items-center mtime-formatter-container" style={{ width: 320 }}>
-            <MTimeFormatter value={row._mtime} containerClassName={containerClassName} />
+            <Formatter value={cellValue} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.MULTIPLE_SELECT: {
-        const options = column.data ? column.data.options : [];
+        const options = column?.data?.options || [];
         return (
           <div className="form-control d-flex align-items-center w-100 h-auto">
-            <MultipleSelectFormatter
+            <Formatter
               value={cellValue}
               options={options}
               containerClassName={containerClassName}
@@ -202,10 +178,10 @@ export default class EditorFormatter extends React.Component {
         );
       }
       case CellType.SINGLE_SELECT: {
-        const options = column.data ? column.data.options : [];
+        const options = column?.data?.options || [];
         return (
           <div className="form-control d-flex align-items-center w-100">
-            <SingleSelectFormatter
+            <Formatter
               value={cellValue}
               options={options}
               containerClassName={containerClassName}
@@ -215,49 +191,44 @@ export default class EditorFormatter extends React.Component {
       }
       case CellType.FILE: {
         return (
-          <RowExpandFileFormatter
+          <Formatter
             value={cellValue}
             column={column}
             downloadFile={this.props.downloadFile}
             deleteFile={this.props.deleteFile}
+            config={this.props.config}
           />
         );
       }
       case CellType.IMAGE: {
         return (
-          <RowExpandImageFormatter
+          <Formatter
             value={cellValue}
             column={column}
             downloadImage={this.props.downloadImage}
             deleteFile={this.props.deleteFile}
             onRotateImage={this.props.onRotateImage}
+            config={this.props.config}
           />
         );
       }
       case CellType.CHECKBOX: {
         return (
           <div className="checkbox-formatter-container">
-            <CheckboxFormatter
-              value={cellValue}
-              checkboxStyle={column.data?.checkbox_style || {}}
-            />
+            <Formatter value={cellValue} checkboxStyle={column.data?.checkbox_style || {}} />
           </div>
         );
       }
-      case CellType.CREATOR: {
-        return (
-          <CreatorFormatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />
-        );
-      }
+      case CellType.CREATOR:
       case CellType.LAST_MODIFIER: {
         return (
-          <LastModifierFormatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />
+          <Formatter collaborators={collaborators} value={cellValue} containerClassName={containerClassName} />
         );
       }
       case CellType.FORMULA:
       case CellType.LINK_FORMULA: {
         return (
-          <RowExpandFormulaFormatter
+          <Formatter
             value={cellValue}
             column={column}
             collaborators={collaborators}
@@ -283,72 +254,72 @@ export default class EditorFormatter extends React.Component {
           };
         }
         return (
-          <RowExpandLinkFormatter
+          <Formatter
             value={cellValue}
             column={column}
             collaborators={collaborators}
             containerClassName={containerClassName}
-            renderEmpty={this.renderEmpty}
+            renderEmpty={() => null}
           />
         );
       }
       case CellType.AUTO_NUMBER: {
-        return <AutoNumberFormatter value={cellValue} containerClassName={containerClassName} />;
+        return <Formatter value={cellValue} containerClassName={containerClassName} />;
       }
       case CellType.URL: {
         return (
           <div className="form-control d-flex align-items-center w-100">
-            <RowExpandUrlFormatter value={cellValue} containerClassName={containerClassName} />
+            <Formatter value={cellValue} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.EMAIL: {
         return (
           <div className="form-control d-flex align-items-center w-100">
-            <RowExpandEmailFormatter value={cellValue} containerClassName={containerClassName} />
+            <Formatter value={cellValue} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.DURATION: {
         return (
           <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
-            <DurationFormatter value={cellValue} format={column.data.duration_format} containerClassName={containerClassName} />
+            <Formatter value={cellValue} format={column.data.duration_format} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.RATE: {
         return (
           <div className="form-control d-flex align-items-center" style={{ width: 320 }}>
-            <RowExpandRateFormatter value={cellValue} data={column.data} containerClassName={containerClassName} />
+            <Formatter value={cellValue} data={column.data} containerClassName={containerClassName} />
           </div>
         );
       }
       case CellType.BUTTON: {
-        return (
-          <ButtonFormatter data={column.data} containerClassName={containerClassName} onClickButton={this.props.onClickButton}/>
-        );
+        return (<Formatter data={column.data} containerClassName={containerClassName} onClickButton={this.props.onClickButton}/>);
       }
       case CellType.DIGITAL_SIGN: {
-        return (
-          <DigitalSignFormatter value={cellValue} containerClassName={containerClassName} config={this.props.config}/>
-        );
+        return (<Formatter value={cellValue} containerClassName={containerClassName} config={this.props.config}/>);
       }
       case CellType.DEPARTMENT_SINGLE_SELECT: {
-        return (
-          <DepartmentSingleSelectFormatter value={cellValue} departments={this.props.departments}/>
-        );
+        return (<Formatter value={cellValue} departments={this.props.departments}/>);
       }
-      default:
+      default: {
+        if (Formatter) {
+          return (<Formatter value={cellValue} containerClassName={containerClassName} config={this.props.config} />);
+        }
         return null;
+      }
     }
   };
 
   render() {
     const { className } = this.props;
     return (
-      <div className={classnames('dtable-ui dtable-row-expand-formatter', { [className]: className })}>
+      <div className={classnames('dtable-ui dtable-row-expand-formatter', className)}>
         {this.renderFormatter()}
       </div>
     );
   }
 }
+
+export default RowExpandFormatter;

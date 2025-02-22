@@ -1,10 +1,10 @@
-import de from '../locals/de';
-import en from '../locals/en';
-import fr from '../locals/fr';
-import pt from '../locals/pt';
-import ru from '../locals/ru';
-import es from '../locals/es';
-import zh_CN from '../locals/zh-CN';
+import de from '../locales/de.json';
+import en from '../locales/en.json';
+import fr from '../locales/fr.json';
+import pt from '../locales/pt.json';
+import ru from '../locales/ru.json';
+import es from '../locales/es.json';
+import zh_CN from '../locales/zh-CN.json';
 
 const zhCN = require('@seafile/seafile-calendar/lib/locale/zh_CN');
 const zhTW = require('@seafile/seafile-calendar/lib/locale/zh_TW');
@@ -35,14 +35,6 @@ export function setLocale(args) {
   LANGUAGE_MAP = langData[LANGUAGE];
 }
 
-export function getLocale(key, def) {
-  if (!key) return def;
-  if (!LANGUAGE_MAP[key]) {
-    return def || key;
-  }
-  return LANGUAGE_MAP[key];
-}
-
 export function substitute(str, obj) {
   if (typeof str === 'string') {
     if (str.indexOf('{') < 0) {
@@ -64,6 +56,15 @@ export function substitute(str, obj) {
   }
 
   return '';
+}
+
+export function getLocale(key, obj = {}) {
+  if (!key) return '';
+  let str = LANGUAGE_MAP[key];
+  if (!str) return key;
+  const paramKeys = Object.keys(obj);
+  if (paramKeys.length === 0) return str;
+  return substitute(str, obj);
 }
 
 export function translateCalendar() {
@@ -122,3 +123,7 @@ export function getMobileDatePickerLocale() {
     dismissText: getLocale('Cancel')
   };
 }
+
+export {
+  LANGUAGE,
+};

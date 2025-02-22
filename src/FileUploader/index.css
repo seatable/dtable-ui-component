@@ -1,0 +1,9 @@
+.dtable-ui-upload-image {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  font-size: 0;
+  cursor: pointer;
+}

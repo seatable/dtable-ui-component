@@ -1,0 +1,40 @@
+.dtable-ui-comment-input-btns {
+  padding: 5px;
+  border: 1px solid #e6e6dd;
+  border-top: none;
+  background: #fff;
+  border-radius: 0 0 5px 5px;
+}
+
+.dtable-ui-comment-input-btns .dtable-ui-comment-input-btns-container {
+  border-top: 1px solid #e6e6dd;
+}
+
+.dtable-ui-comment-input-btns .dtable-ui-comment-input-btns-container .dtable-ui-comment-input-btns-content {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.dtable-ui-comment-input-btns .dtable-ui-comment-input-btns-container .dtable-ui-comment-collaborator-tip {
+  cursor: pointer;
+  position: relative;
+  margin-left: 10px;
+  color: #666;
+}
+
+.dtable-ui-comment-input-btns .dtable-ui-comment-input-btns-container .dtable-ui-comment-image-upload:hover,
+.dtable-ui-comment-input-btns .dtable-ui-comment-input-btns-container .dtable-ui-comment-collaborator-tip:hover {
+  color: #FF8000;
+}
+
+.dtable-ui-comment-input-btns .dtable-ui-comment-input-btns-container .dtable-ui-comment-image-upload {
+  margin-top: 3px;
+  font-size: 15px;
+  color: #666;
+  cursor: pointer;
+}
+
+.dtable-ui-comment-input-btns .dtable-ui-comment-input-btns-container .dtable-ui-comment-image-upload .dtable-icon-picture-linear {
+  font-size: 15px;
+}
