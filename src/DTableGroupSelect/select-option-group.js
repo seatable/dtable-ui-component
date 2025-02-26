@@ -173,7 +173,7 @@ class SelectOptionGroup extends Component {
     return (
       <ClickOutside onClickOutside={this.props.onClickOutside}>
         <div
-          className={classnames('option-group', className ? 'option-group-' + className : '')}
+          className={classnames('option-group group-selector', className ? 'option-group-' + className : '')}
           ref={(ref) => this.optionGroupRef = ref}
           style={style}
           onMouseDown={this.onMouseDown}
