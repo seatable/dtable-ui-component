@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import dayjs from 'dayjs';
-import { getDateDisplayString } from 'dtable-utils';
+import dayjs from '../utils/dayjs';
 import PCDateEditorPopover from './pc-date-editor-popover';
 import MBDateEditorPopover from './mb-date-editor-popover';
 
@@ -13,11 +12,13 @@ import './index.css';
 
 const propTypes = {
   isReadOnly: PropTypes.bool,
+  isInModal: PropTypes.bool,
   value: PropTypes.string,
   lang: PropTypes.string,
   className: PropTypes.string,
   column: PropTypes.object.isRequired,
   onCommit: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
 };
 
 class DateEditor extends React.Component {
@@ -33,7 +34,7 @@ class DateEditor extends React.Component {
     this.state = {
       isDateInit: false,
       newValue: '',
-      isPopoverShow: false,
+      dateFormat: '',
       showHourAndMinute: false,
       defaultCalendarValue: null,
     };
@@ -46,7 +47,7 @@ class DateEditor extends React.Component {
     this.setState({
       isDateInit: true,
       newValue: value,
-      dateFormat: dateFormat,
+      dateFormat,
       showHourAndMinute: dateFormat.indexOf('HH:mm') > -1,
     });
   }
@@ -58,84 +59,53 @@ class DateEditor extends React.Component {
     return dateFormat || defaultDateFormat;
   };
 
-  onDateEditorToggle = () => {
-    const { isReadOnly } = this.props;
-    if (isReadOnly) {
-      return;
-    }
-    this.setState({ isPopoverShow: !this.state.isPopoverShow });
-  };
-
   onValueChanged = (value) => {
     if (value !== this.state.newValue) {
       this.setState({ newValue: value });
       this.onCommit(value);
-      if (!this.state.showHourAndMinute) {
-        this.onClosePopover();
-      }
     }
   };
 
   onCommit = (newValue) => {
-    let updated = {};
-    let { column } = this.props;
-    updated[column.key] = newValue;
-    this.props.onCommit(updated);
-  };
-
-  onClosePopover = () => {
-    this.setState({ isPopoverShow: false });
+    this.props.onCommit(newValue);
   };
 
   render() {
     if (!this.state.isDateInit) {
-      return (
-        <div className="cell-editor date-editor">
-          <div className="date-editor-container">
-            <div className="control-form"></div>
-          </div>
-        </div>
-      );
+      return null;
     }
 
-    let { lang, column, className } = this.props;
-    let { newValue, isPopoverShow, dateFormat, showHourAndMinute } = this.state;
+    let { lang, column, className, isInModal } = this.props;
+    let { newValue, dateFormat, showHourAndMinute } = this.state;
 
     return (
-      <div className="cell-editor dtable-ui-date-editor">
-        {!isPopoverShow && (
-          <div className="dtable-ui-date-editor-container">
-            <div className="form-control" onClick={this.onDateEditorToggle}>{getDateDisplayString(newValue, dateFormat)}</div>
-          </div>
-        )}
-        {isPopoverShow && (
-          <Fragment>
-            <MediaQuery query={'(min-width: 768px)'}>
-              <PCDateEditorPopover
-                className={className}
-                lang={lang}
-                value={newValue}
-                dateFormat={dateFormat}
-                showHourAndMinute={showHourAndMinute}
-                onValueChanged={this.onValueChanged}
-              />
-            </MediaQuery>
-            <MediaQuery query={'(max-width: 767.8px)'}>
-              <MBDateEditorPopover
-                className={className}
-                isReadOnly={this.props.isReadOnly}
-                lang={lang}
-                value={newValue}
-                dateFormat={dateFormat}
-                showHourAndMinute={showHourAndMinute}
-                column={column}
-                onValueChanged={this.onValueChanged}
-                onClosePopover={this.onClosePopover}
-              />
-            </MediaQuery>
-          </Fragment>
-        )}
-      </div>
+      <>
+        <MediaQuery query={'(min-width: 768px)'}>
+          <PCDateEditorPopover
+            className={className}
+            lang={lang}
+            isInModal={isInModal}
+            value={newValue}
+            dateFormat={dateFormat}
+            showHourAndMinute={showHourAndMinute}
+            onValueChanged={this.onValueChanged}
+            hideCalendar={this.props.hideCalendar}
+          />
+        </MediaQuery>
+        <MediaQuery query={'(max-width: 767.8px)'}>
+          <MBDateEditorPopover
+            className={className}
+            isReadOnly={this.props.isReadOnly}
+            lang={lang}
+            value={newValue}
+            dateFormat={dateFormat}
+            showHourAndMinute={showHourAndMinute}
+            column={column}
+            onValueChanged={this.onValueChanged}
+            onClosePopover={this.props.hideCalendar}
+          />
+        </MediaQuery>
+      </>
     );
   }
 }

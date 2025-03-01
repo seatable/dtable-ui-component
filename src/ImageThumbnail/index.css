@@ -1,0 +1,20 @@
+.dtable-ui-image-thumbnail {
+  height: 100px;
+  width: 100px;
+  border: 2px solid #ededed;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  position: relative;
+}
+
+.dtable-ui-image-thumbnail .dtable-ui-image-icons-choice {
+  display: none;
+}
+
+.dtable-ui-image-thumbnail:hover .dtable-ui-image-icons-choice {
+  display: flex;
+}

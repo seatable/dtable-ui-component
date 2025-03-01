@@ -1,0 +1,24 @@
+.dtable-ui-row-expand-dialog {
+  margin: 28px 0 0 0;
+  transform: translate(0, 0) !important;
+}
+
+.dtable-ui-row-expand-dialog .modal-header {
+  padding: 6px 14px 6px 20px;
+}
+
+.dtable-ui-row-expand-dialog .modal-content {
+  height: 100%;
+}
+
+.dtable-ui-row-expand-dialog .dtable-ui-row-expand-content {
+  display: flex;
+  flex-direction: row;
+}
+
+.dtable-ui-row-expand-dialog .dtable-ui-row-expand-details {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
