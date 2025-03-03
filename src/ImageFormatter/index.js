@@ -69,7 +69,7 @@ class ImageFormatter extends React.Component {
   };
 
   render() {
-    const { isSample, value, server, containerClassName, readOnly, dtableUuid } = this.props;
+    const { isSample, value, server, containerClassName, lightboxClassName, readOnly, dtableUuid } = this.props;
     const className = classnames('dtable-ui cell-formatter-container image-formatter', containerClassName);
     const { isPreviewImage, previewImageIndex } = this.state;
     if (!Array.isArray(value) || value.length === 0) {
@@ -95,6 +95,7 @@ class ImageFormatter extends React.Component {
         {isPreviewImage && (
           <ImagePreviewerLightbox
             imageItems={value}
+            className={lightboxClassName}
             imageIndex={previewImageIndex}
             closeImagePopup={this.closeImagePopup}
             moveToPrevImage={this.movePrev}
@@ -122,6 +123,7 @@ ImageFormatter.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
   server: PropTypes.string,
   containerClassName: PropTypes.string,
+  lightboxClassName: PropTypes.string,
   deleteImage: PropTypes.func,
   downloadImage: PropTypes.func,
   rotateImage: PropTypes.func,
@@ -132,6 +134,5 @@ ImageFormatter.propTypes = {
   renderItem: PropTypes.func,
   dtableUuid: PropTypes.string,
 };
-
 
 export default ImageFormatter;
