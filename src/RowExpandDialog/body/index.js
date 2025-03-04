@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { ModalBody } from 'reactstrap';
 import classnames from 'classnames';
 import { CellType } from 'dtable-utils';
-import { keyCodes } from '../../constants';
-import { getFormulaArrayValue, isArrayFormatColumn, downloadFile, isFunction } from '../../utils/utils';
 import ColumnContent from '../column-content';
 import RowExpandEditor from '../../RowExpandEditor';
 import RowExpandFormatter from '../../RowExpandFormatter';
+import { KeyCodes } from '../../constants';
+import { getFormulaArrayValue, isArrayFormatColumn, downloadFile, isFunction } from '../../utils/utils';
 
 import './index.css';
 
@@ -96,24 +96,24 @@ class Body extends React.Component {
       return;
     }
 
-    if (keyCode === keyCodes.Esc) {
+    if (keyCode === KeyCodes.Esc) {
       this.props.onRowExpandCancel();
       return;
     }
 
     onKeyDown && onKeyDown(event);
 
-    if (keyCode === keyCodes.UpArrow) {
+    if (keyCode === KeyCodes.UpArrow) {
       this.onPressUpKey();
       return;
     }
 
-    if (keyCode === keyCodes.DownArrow) {
+    if (keyCode === KeyCodes.DownArrow) {
       this.onPressDownKey();
       return;
     }
 
-    if (keyCode === keyCodes.Tab && !readonly) {
+    if (keyCode === KeyCodes.Tab && !readonly) {
       this.onPressTab(event);
       return;
     }
@@ -172,7 +172,7 @@ class Body extends React.Component {
     if (editable) {
       return (
         <RowExpandEditor
-          { ...props }
+          {...props}
           column={column}
           row={row}
           component={editor}
@@ -188,7 +188,7 @@ class Body extends React.Component {
     }
     return (
       <RowExpandFormatter
-        { ...props }
+        {...props}
         column={column}
         row={row}
         component={formatter}
@@ -213,7 +213,7 @@ class Body extends React.Component {
     const props = { columns, row };
     const CustomChildren = children;
     if (React.isValidElement(CustomChildren)) return React.cloneElement(CustomChildren, props);
-    if (isFunction(CustomChildren)) return (<CustomChildren { ...props } />);
+    if (isFunction(CustomChildren)) return (<CustomChildren {...props} />);
     return children;
   };
 

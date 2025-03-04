@@ -76,7 +76,6 @@ class Comment extends React.Component {
   initComments = (row, page = 1, perPage = 10) => {
     const { api } = this.props;
     api.get(row, page, perPage).then((res) => {
-      console.log(res);
       let comments = res.data.comment_list || [];
       let newComments = [];
       comments.forEach(item => {

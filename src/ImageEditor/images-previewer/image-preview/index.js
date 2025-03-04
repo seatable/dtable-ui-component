@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'reactstrap';
-import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../../../utils/url';
 import DeleteTip from '../../../DeleteTip';
+import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../../../utils/url';
 import { FILE_EDITOR_STATUS } from '../../../constants';
 import { getLocale } from '../../../lang';
 
@@ -18,7 +18,7 @@ class ImagePreviewer extends React.Component {
     };
     this.canDownLoad = props.canDownLoad;
     const offsetWidth = document.body.offsetWidth;
-    this.containerSize = offsetWidth < 767.8 ? ((offsetWidth - 55 ) / 2) + 'px' : ((offsetWidth - 80 ) / 3) + 'px';
+    this.containerSize = offsetWidth < 767.8 ? ((offsetWidth - 55) / 2) + 'px' : ((offsetWidth - 80) / 3) + 'px';
     this.position = {};
     const { mediaUrl } = props.config || {};
     this.imageLoadingFailedUrl = `${mediaUrl}img/image-loading-failed.png`;
@@ -110,7 +110,7 @@ class ImagePreviewer extends React.Component {
           onMouseLeave={this.hideImageToolbar}
           ref={ref => this.ref = ref}
         >
-          <img src={this.state.imageThumbnailUrl} alt=""/>
+          <img src={this.state.imageThumbnailUrl} alt="" />
           {enterImageItemIndex === itemIndex &&
             this.renderImageIcons()
           }
@@ -131,7 +131,7 @@ class ImagePreviewer extends React.Component {
           <DeleteTip
             position={this.position}
             toggle={this.closeTip}
-            deleteImage={this.deleteImage}
+            handleDelete={this.deleteImage}
             deleteTip={getLocale('Are_you_sure_you_want_to_delete_this_image')}
           />
         }

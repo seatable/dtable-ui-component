@@ -26,10 +26,11 @@ class ButtonFormatter extends React.Component {
     const { button_color, button_name } = data || {};
     const colorObj = SELECT_OPTION_COLORS.find(item => item.COLOR === button_color) || SELECT_OPTION_COLORS[0];
 
+    const color = colorObj.TEXT_COLOR === WHITE ? WHITE : '#666666';
     const btnStyle = {
       backgroundColor: colorObj.COLOR,
       borderColor: colorObj.BORDER_COLOR,
-      color: colorObj.TEXT_COLOR === WHITE ? WHITE : '#666666'
+      color,
     };
     return (
       <div>
@@ -38,7 +39,7 @@ class ButtonFormatter extends React.Component {
           style={btnStyle}
           onClick={this.handleClick}
         >
-          {button_name}
+          <span className="text-truncate" style={{ color }}>{button_name}</span>
         </button>
       </div>
     );

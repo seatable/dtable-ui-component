@@ -3,27 +3,27 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Modal, ModalFooter, Button } from 'reactstrap';
 import { CellType, NOT_SUPPORT_EDIT_COLUMN_TYPE_MAP } from 'dtable-utils';
-import { getLocale } from '../lang';
+import toaster from '../toaster';
+import Loading from '../Loading';
 import Header from './header';
 import Body from './body';
-import Loading from '../Loading';
-import { getErrorMsg } from '../utils/utils';
+import { getLocale } from '../lang';
 import { isCellValueChanged } from '../utils/cell-comparer';
-import toaster from '../toaster';
 
 import './index.css';
 
 const RowExpandDialog = forwardRef(({
   saveImmediately = true,
-  isInsertingRow,
+  readonly = false,
+  isInsertingRow = false,
   zIndex,
   title,
   className,
   valueKey = 'name', // name or key
   layout = 'horizontal', // horizontal or vertical
-  getRow,
-  modifyRow,
-  checkEditable = (c) => c.editable && !NOT_SUPPORT_EDIT_COLUMN_TYPE_MAP[c.type],
+  row: defaultRow,
+  columns: defaultColumns,
+  commit,
   onToggle,
   uploadFile,
   copyURL,
@@ -33,7 +33,6 @@ const RowExpandDialog = forwardRef(({
   const [isAnimationEnd, setAnimationEnd] = useState(false);
   const [isLoading, setLoading] = useState(true);
   const [isSaving, setSaving] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
   const [row, setRow] = useState({});
   const [columns, setColumns] = useState([]);
 
@@ -65,34 +64,25 @@ const RowExpandDialog = forwardRef(({
     };
   }, [children]);
 
-  const _checkEditable = useCallback((column, row) => {
+  const checkEditable = useCallback((column) => {
     if (isSaving) return false;
-    if (!column) return false;
-    if (!checkEditable) return false;
-    if (!checkEditable(column, row)) return false;
+    if (readonly || !column || !column.editable || NOT_SUPPORT_EDIT_COLUMN_TYPE_MAP[column.type]) return false;
     if (column.type === CellType.IMAGE || column.type === CellType.FILE) return Boolean(uploadFile);
     return true;
-  }, [isSaving, checkEditable, uploadFile]);
+  }, [isSaving, uploadFile]);
 
   const initRowData = useCallback(() => {
     setLoading(true);
-    getRow().then(res => {
-      const { row, columns } = res.data;
-      setRow(row);
-      let validColumns = columns.map(c => ({ ...c, editable: _checkEditable(c, row), width: 320 }));
-      if (isInsertingRow) {
-        validColumns = validColumns.filter(c => c.editable);
-      }
+    setRow(defaultRow);
+    let validColumns = defaultColumns.map(c => ({ ...c, editable: checkEditable(c, defaultRow), width: 320 }));
+    if (isInsertingRow) {
+      validColumns = validColumns.filter(c => c.editable);
+    }
 
-      isChangedRef.current = isInsertingRow && Object.keys(row).length > 0;
-      setColumns(validColumns);
-      setLoading(false);
-    }).catch(error => {
-      const errorMsg = getErrorMsg(error);
-      setErrorMessage(getLocale(errorMsg));
-      setLoading(false);
-    });
-  }, [isInsertingRow, getRow, _checkEditable]);
+    isChangedRef.current = isInsertingRow && Object.keys(defaultRow).length > 0;
+    setColumns(validColumns);
+    setLoading(false);
+  }, [isInsertingRow, checkEditable]);
 
   const toggle = useCallback(() => {
     if (isSaving) return;
@@ -100,8 +90,8 @@ const RowExpandDialog = forwardRef(({
   }, [isSaving, onToggle]);
 
   const onSave = useCallback((updated, { successCallback, failCallback } = {}) => {
-    modifyRow(updated, columns, { successCallback, failCallback });
-  }, [columns, modifyRow]);
+    commit(updated, columns, { successCallback, failCallback });
+  }, [columns, commit]);
 
   const onChange = useCallback((column, value) => {
     const key = column[valueKey];
@@ -159,7 +149,7 @@ const RowExpandDialog = forwardRef(({
         initRowData();
       }, 280);
     }, 1);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useImperativeHandle(ref, () => ({
@@ -192,35 +182,29 @@ const RowExpandDialog = forwardRef(({
       {isAnimationEnd && (
         <>
           {isLoading ? (
-            <div className="w-100 -h-100 d-flex align-items-center justify-content-center"><Loading/></div>
+            <div className="w-100 -h-100 d-flex align-items-center justify-content-center"><Loading /></div>
           ) : (
-            <>
-              {errorMessage ? (
-                <div className="w-100 -h-100 d-flex align-items-center justify-content-center error">{errorMessage}</div>
-              ) : (
-                <div className="dtable-ui-row-expand-details">
-                  <Header title={title} row={row} columns={columns} copyURL={copyURL} onToggle={toggle}>
-                    {children[0]}
-                  </Header>
-                  <Body
-                    { ...otherProps }
-                    row={row}
-                    columns={columns}
-                    valueKey={valueKey}
-                    onChange={onChange}
-                    uploadFile={uploadFile}
-                  >
-                    {children[1]}
-                  </Body>
-                  {(!saveImmediately || isInsertingRow) && (
-                    <ModalFooter>
-                      <Button onClick={toggle} color="secondary">{getLocale('Cancel')}</Button>
-                      <Button onClick={onSubmit} disabled={isSaving || !isChangedRef.current} color='primary'>{getLocale('Submit')}</Button>
-                    </ModalFooter>
-                  )}
-                </div>
+            <div className="dtable-ui-row-expand-details">
+              <Header title={title} row={row} columns={columns} copyURL={copyURL} onToggle={toggle}>
+                {children[0]}
+              </Header>
+              <Body
+                {...otherProps}
+                row={row}
+                columns={columns}
+                valueKey={valueKey}
+                onChange={onChange}
+                uploadFile={uploadFile}
+              >
+                {children[1]}
+              </Body>
+              {(!saveImmediately || isInsertingRow) && (
+                <ModalFooter>
+                  <Button onClick={toggle} color="secondary">{getLocale('Cancel')}</Button>
+                  <Button onClick={onSubmit} disabled={isSaving || !isChangedRef.current} color='primary'>{getLocale('Submit')}</Button>
+                </ModalFooter>
               )}
-            </>
+            </div>
           )}
         </>
       )}
@@ -236,9 +220,7 @@ RowExpandDialog.propTypes = {
   className: PropTypes.string,
   valueKey: PropTypes.oneOf(['key', 'name']),
   layout: PropTypes.oneOf(['horizontal', 'vertical']), // horizontal or vertical
-  getRow: PropTypes.func.isRequired,
-  modifyRow: PropTypes.func.isRequired,
-  checkEditable: PropTypes.func,
+  commit: PropTypes.func.isRequired,
   onToggle: PropTypes.func.isRequired,
   uploadFile: PropTypes.func,
   copyURL: PropTypes.func,

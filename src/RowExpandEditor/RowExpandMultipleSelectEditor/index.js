@@ -157,7 +157,7 @@ class RowExpandMultipleSelectEditor extends React.Component {
         onFocus={this.onFocus}
         onClick={this.onToggleSelect}
         ref={ref => this.multipleSelectOptionsRef = ref}
-        className={classnames('dtable-ui-row-expand-select-editor custom-select', { 'focus': isEditorFocus })}
+        className={classnames('dtable-ui dtable-ui-row-expand-select-editor custom-select', { 'focus': isEditorFocus })}
       >
         <div className="dtable-ui-row-expand-select-editor-inner">
           <div>

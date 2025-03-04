@@ -31,7 +31,6 @@ class Footer extends React.Component {
 
   initParticipants = (props) => {
     const { row, collaborators } = props;
-    console.log(props);
     if (row._participants && Array.isArray(row._participants)) {
       let rowParticipants = row._participants.filter(Boolean);
       rowParticipants = rowParticipants.filter(participant => {

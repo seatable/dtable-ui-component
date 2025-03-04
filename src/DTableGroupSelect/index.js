@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import ModalPortal from '../common/modal-portal.js';
-import SelectOptionGroup from './select-option-group.js';
+import ModalPortal from '../ModalPortal';
+import SelectOptionGroup from './select-option-group';
 
 import './index.css';
 
@@ -77,7 +77,7 @@ class DTableGroupSelect extends Component {
               {selectedOptions.map(item =>
                 <span key={item.id} className="selected-option-item mr-1 pr-1 pl-2">
                   <span className='selected-option-item-name'>{item.name}</span>
-                  <i className="dtable-font dtable-icon-x ml-1" onClick={() => {this.props.onDeleteOption(item);}}></i>
+                  <i className="dtable-font dtable-icon-x ml-1" onClick={() => { this.props.onDeleteOption(item); }}></i>
                 </span>
               )}
             </span>

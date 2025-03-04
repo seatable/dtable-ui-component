@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { searchCollaborators } from 'dtable-utils';
-import { getLocale } from '../../lang';
 import MBEditorHeader from '../../MBEditorHeader';
 import DTableSearchInput from '../../DTableSearchInput';
+import { getLocale } from '../../lang';
 
 import './index.css';
 

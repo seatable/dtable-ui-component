@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import SvgIcon from '../SvgIcon';
 import { isMobile } from '../utils/utils';
-import { keyCodes, DEFAULT_CHECKBOX_MARK_STYLE } from '../constants';
+import { KeyCodes, DEFAULT_CHECKBOX_MARK_STYLE } from '../constants';
 
 import './index.css';
 
@@ -32,7 +33,7 @@ class CheckboxEditor extends Component {
 
   onKeyDown = (event) => {
     const { isEditorShow, readOnly } = this.props;
-    if (event.keyCode === keyCodes.Enter && isEditorShow && !readOnly) {
+    if (event.keyCode === KeyCodes.Enter && isEditorShow && !readOnly) {
       this.setState({ value: !this.state.value });
     }
   };
@@ -67,9 +68,9 @@ class CheckboxEditor extends Component {
   renderIcon = (symbol, color) => {
     const className = classnames('dtable-ui-checkbox-check-mark', { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon') });
     if (symbol.startsWith('dtable-icon')) {
-      return (<span className={`dtable-font ${symbol} ${className || ''}`} style={{ color }}/>);
+      return (<span className={`dtable-font ${symbol} ${className || ''}`} style={{ color }} />);
     }
-    return (<span className={`dtable-font dtable-icon-${symbol} ${className || ''}`} style={{ color }}/>);
+    return (<SvgIcon className={className} symbol={symbol} color={color} />);
   };
 
   render() {

@@ -264,7 +264,7 @@ class PCSelectEditor extends React.Component {
             target={target}
             hideArrow={true}
             fade={false}
-            className="dtable-ui-row-expand-select-editor-popover"
+            className="dtable-ui dtable-ui-row-expand-select-editor-popover"
           >
             {dom}
           </Popover>

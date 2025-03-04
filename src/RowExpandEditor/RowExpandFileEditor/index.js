@@ -71,9 +71,9 @@ class RowExpandFileEditor extends React.Component {
   };
 
   deleteFile = (index) => {
-    const { column, expandedRow, onCommit } = this.props;
+    const { column, row, onCommit } = this.props;
     let { fileContainer } = this.state;
-    let value = fileContainer || expandedRow[column.key];
+    let value = fileContainer || row[column.key];
     let updatedValue = value.slice(0);
     updatedValue.splice(index, 1);
     this.setState({ fileContainer: updatedValue });
@@ -98,6 +98,7 @@ class RowExpandFileEditor extends React.Component {
             src={fileIconUrl}
             index={index}
             config={config}
+            deleteTip={getLocale('Are_you_sure_you_want_to_delete_this_file')}
             deleteImage={this.deleteFile}
             onClick={this.onClickFile}
           />

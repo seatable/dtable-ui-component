@@ -4,6 +4,8 @@ import ClickOutside from '../ClickOutside';
 import ModalPortal from '../ModalPortal';
 import { getLocale } from '../lang';
 
+import './index.css';
+
 class DeleteTip extends React.Component {
 
   handleOutsideClick = (e) => {
@@ -13,7 +15,7 @@ class DeleteTip extends React.Component {
   };
 
   render() {
-    const { toggle, deleteImage, position, deleteTip } = this.props;
+    const { toggle, handleDelete, position, deleteTip } = this.props;
     return (
       <ModalPortal>
         <ClickOutside onClickOutside={this.handleOutsideClick}>
@@ -25,7 +27,7 @@ class DeleteTip extends React.Component {
             <b className="mb-4">{deleteTip}</b>
             <div className="d-flex justify-content-end">
               <button className="btn btn-secondary mr-2" onClick={toggle}>{getLocale('Cancel')}</button>
-              <button className="btn btn-primary" onClick={deleteImage}>{getLocale('Delete')}</button>
+              <button className="btn btn-primary" onClick={handleDelete}>{getLocale('Delete')}</button>
             </div>
           </div>
         </ClickOutside>
@@ -36,7 +38,7 @@ class DeleteTip extends React.Component {
 
 DeleteTip.propTypes = {
   position: PropTypes.object.isRequired,
-  deleteImage: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
   toggle: PropTypes.func.isRequired,
   deleteTip: PropTypes.string.isRequired,
 };

@@ -1,4 +1,4 @@
-import { CellType } from '../constants';
+import { CellType } from 'dtable-utils';
 import TextFormatter from '../TextFormatter';
 import NumberFormatter from '../NumberFormatter';
 import CheckboxFormatter from '../CheckboxFormatter';
@@ -49,6 +49,7 @@ export const DEFAULT_FORMATTER = {
   [CellType.FILE]: RowExpandFileFormatter,
   [CellType.LINK]: RowExpandLinkFormatter,
   [CellType.FORMULA]: RowExpandFormulaFormatter,
+  [CellType.LINK_FORMULA]: RowExpandFormulaFormatter,
   [CellType.DIGITAL_SIGN]: DigitalSignFormatter,
   [CellType.DEPARTMENT_SINGLE_SELECT]: RowExpandDepartmentFormatter,
 };

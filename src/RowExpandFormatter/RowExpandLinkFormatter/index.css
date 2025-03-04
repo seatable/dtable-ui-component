@@ -1,4 +1,4 @@
-.dtable-link-formatter {
+.dtable-ui-row-expand-link-formatter {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -7,7 +7,7 @@
   height: auto;
 }
 
-.dtable-link-formatter .row-expand-link-item {
+.dtable-ui-row-expand-link-formatter .row-expand-link-item {
   flex-shrink: 0;
   margin: 2px 4px 2px 0;
   padding: 0 6px;

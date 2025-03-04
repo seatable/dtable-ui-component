@@ -111,7 +111,7 @@ class RowExpandRateEditor extends React.Component {
         onKeyDown={this.onKeyDown}
         onFocus={this.props.updateTabIndex.bind(this, this.props.columnIndex)}
         aria-label={`${this.state.value}, ${getLocale('Press_the_number_keys_to_enter_the_corresponding_value')}`}
-        className={classnames('form-control dtable-ui-row-expand-rate-editor', { 'disabled': !this.canEdit })}
+        className={classnames('form-control dtable-ui dtable-ui-row-expand-rate-editor', { 'disabled': !this.canEdit })}
       >
         {rateList}
       </div>

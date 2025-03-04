@@ -101,3 +101,5 @@ export { default as IconButton } from './IconButton';
 
 // upload
 export { default as UploadProgress } from './UploadProgress';
+
+export { default as SvgIcon } from './SvgIcon';

@@ -2,11 +2,9 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
 import {
-  getNumberDisplayString,
-  getDateDisplayString,
+  CellType, getNumberDisplayString, getDateDisplayString,
 } from 'dtable-utils';
 import { getLocale } from '../lang';
-import { CellType } from '../constants';
 import EditEditorButton from '../EditEditorButton';
 import LinkEditorOption from './link-editor-option';
 import PCLinkEditorPopover from './pc-link-editor-popover';
@@ -206,7 +204,7 @@ class LinkEditor extends React.Component {
           {selectedOptions.length === 0 && <EditEditorButton text={getLocale('Add_an_option')} />}
           {selectedOptions.length !== 0 && (
             selectedOptions.map(option => {
-              return <LinkEditorOption key={option.id} option={option} isShowRemoveIcon={isShowRemoveIcon} onDeleteLinkOption={this.onDeleteOption}/>;
+              return <LinkEditorOption key={option.id} option={option} isShowRemoveIcon={isShowRemoveIcon} onDeleteLinkOption={this.onDeleteOption} />;
             })
           )}
         </div>

@@ -64,7 +64,7 @@ class RowExpandGeolocationEditor extends React.Component {
       || !event.target || event.target.tagName.toUpperCase() === 'INPUT'
       || this.editorContainer.contains(event.target)
     ) return;
-    if (this.state.isShowEditor && this.editor.getLargeEditorState()) return;
+    if (this.state.isShowEditor && this.geoEditor.getLargeEditorState()) return;
     this.setState({ isShowEditor: false });
   };
 
@@ -137,7 +137,7 @@ class RowExpandGeolocationEditor extends React.Component {
         {this.renderGeoLocation()}
         {this.state.isShowEditor && (
           <GeolocationEditor
-            getInstance={ref => this.editor = ref}
+            ref={ref => this.geoEditor = ref}
             isInModal={true}
             column={column}
             row={row}

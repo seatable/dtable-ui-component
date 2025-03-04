@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import EditorBase from '../common/editor-base';
 import { KeyCodes } from '../constants';
 
@@ -18,11 +17,11 @@ class UrlEditor extends EditorBase {
   }
 
   getInputNode() {
-    const domNode = ReactDOM.findDOMNode(this.input);
-    if (domNode.tagName === 'INPUT') {
-      return domNode;
+    if (!this.input) return null;
+    if (this.input.tagName === 'INPUT') {
+      return this.input;
     }
-    return domNode.querySelector('input:not([type=hidden])');
+    return this.input.querySelector('input:not([type=hidden])');
   }
 
   onBlur = () => {

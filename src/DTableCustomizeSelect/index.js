@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import SelectOptionGroup from '../SelectOptionGroup';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import ModalPortal from '../common/modal-portal';
+import ModalPortal from '../ModalPortal';
 
 import './index.css';
 

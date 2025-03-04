@@ -13,6 +13,7 @@ class DigitalService {
   }
 
   uploadSignImage(signBlob, { successCallback, failedCallback }) {
+    if (!this.uploadFile) return;
     const name = `${this.username}-${Date.now().toString()}.png`;
     const file = new File([signBlob], name, { type: 'image/png' });
     this.uploadFile(file, DIGITAL_SIGNS_FOLDER).then(data => {

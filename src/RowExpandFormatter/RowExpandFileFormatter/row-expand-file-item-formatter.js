@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tooltip } from 'reactstrap';
 import { getLocale } from '../../lang';
 import { getFileThumbnailInfo } from '../../utils/url';
-import DeleteTip from '../../common/delete-tip';
+import DeleteTip from '../../DeleteTip'
 
 export default class RowExpandFileItemFormatter extends Component {
 
@@ -72,7 +72,7 @@ export default class RowExpandFileItemFormatter extends Component {
           <DeleteTip
             position={this.position}
             toggle={this.closeDeleteTip}
-            onDelete={this.onDelete}
+            handleDelete={this.onDelete}
             deleteTip={getLocale('Are_you_sure_you_want_to_delete_this_file')}
           />
         }

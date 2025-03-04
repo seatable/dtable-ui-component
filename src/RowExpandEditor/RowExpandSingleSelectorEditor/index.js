@@ -112,6 +112,7 @@ class RowExpandSingleSelectEditor extends React.Component {
     if (this.state.value === newValue) newValue = null;
     this.setState({ value: newValue });
     this.props.onCommit(newValue);
+    this.toggleSingleSelect(false);
   };
 
   renderOption = () => {
@@ -129,7 +130,7 @@ class RowExpandSingleSelectEditor extends React.Component {
         onFocus={this.onFocus}
         onClick={this.onToggleSelect}
         ref={ref => this.selectRef = ref}
-        className={classnames('dtable-ui-row-expand-select-editor custom-select', { 'focus': isEditorFocus })}
+        className={classnames('dtable-ui dtable-ui-row-expand-select-editor custom-select', { 'focus': isEditorFocus })}
       >
         <div className="dtable-ui-row-expand-select-editor-inner">
           <div>

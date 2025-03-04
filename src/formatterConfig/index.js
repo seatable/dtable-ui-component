@@ -1,5 +1,5 @@
 import React from 'react';
-import { CellType } from '../constants';
+import { CellType } from 'dtable-utils';
 import BaseFormatterConfig from './base-formatter-config';
 import LinkFormatter from '../LinkFormatter';
 import FormulaFormatter from '../FormulaFormatter';

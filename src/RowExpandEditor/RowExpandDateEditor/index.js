@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getDateDisplayString } from 'dtable-utils';
+import DateEditor from '../../DateEditor';
 import { getEventClassName } from '../../utils/utils';
 import { getDateColumnFormat } from '../../utils/column-utils';
 import { KeyCodes, ROW_EXPAND_FOCUS_STYLE } from '../../constants';
-import DateEditor from '../../DateEditor';
 
 class RowExpandDateEditor extends React.Component {
 

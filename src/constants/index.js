@@ -1,7 +1,4 @@
-import {
-  CellType,
-  FORMULA_RESULT_TYPE,
-} from 'dtable-utils';
+import { CellType, FORMULA_RESULT_TYPE } from 'dtable-utils';
 import keyCodes from './key-codes';
 
 export const NUMBER_TYPES = {
@@ -84,10 +81,4 @@ export const LONG_TEXT_LENGTH_LIMIT = 10 * 10000;
 export const FILE_EDITOR_STATUS = {
   PREVIEWER: 'previewer',
   ADDITION: 'addition',
-};
-
-export {
-  CellType,
-  FORMULA_RESULT_TYPE,
-  keyCodes,
 };

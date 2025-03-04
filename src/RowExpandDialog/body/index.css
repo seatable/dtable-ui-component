@@ -1,4 +1,4 @@
-.dtable-ui-row-expand-body {
+.dtable-ui-row-expand-body.modal-body {
   flex: 1;
   padding: 0;
   display: flex;

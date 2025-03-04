@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import dayjs from 'dayjs';
 import classnames from 'classnames';
 import DatePicker from '@seafile/seafile-calendar/lib/Picker';
@@ -50,6 +49,10 @@ class PCDateEditorPopover extends React.Component {
     this.props.onValueChanged(value.format(dateFormat));
   };
 
+  onBlur = () => {
+    this.props.onValueChanged(this.getValue());
+  };
+
   getValue = () => {
     let { dateFormat } = this.props;
     let value = this.state.value ? this.state.value.format(dateFormat) : null;
@@ -57,11 +60,11 @@ class PCDateEditorPopover extends React.Component {
   };
 
   getInputNode = () => {
-    const domNode = ReactDOM.findDOMNode(this);
-    if (domNode.tagName === 'INPUT') {
-      return domNode;
+    if (!this.datePickerRef) return null;
+    if (this.datePickerRef.tagName === 'INPUT') {
+      return this.datePickerRef;
     }
-    return domNode.querySelector('input:not([type=hidden])');
+    return this.datePickerRef.querySelector('input:not([type=hidden])');
   };
 
   onOpenChange = (open) => {
@@ -80,6 +83,7 @@ class PCDateEditorPopover extends React.Component {
 
   onClear = () => {
     this.setState({ value: null });
+    this.props.onValueChanged(null);
   };
 
   onFocusDatePicker = () => {
@@ -216,6 +220,7 @@ class PCDateEditorPopover extends React.Component {
     return (
       <div
         className={`date-picker-container ${isInModal ? 'modal-date-picker-container' : ''}`}
+        ref={ref => this.datePickerRef = ref}
         onKeyDown={this.handleKeyDown}
         onClick={this.onClick}
       >

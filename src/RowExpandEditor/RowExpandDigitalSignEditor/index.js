@@ -190,7 +190,7 @@ class RowExpandDigitalSignEditor extends React.Component {
 RowExpandDigitalSignEditor.propTypes = {
   onCommit: PropTypes.func,
   column: PropTypes.object,
-  expandedRow: PropTypes.object,
+  row: PropTypes.object,
   readOnly: PropTypes.bool,
   isEditorFocus: PropTypes.bool,
   columnIndex: PropTypes.number,

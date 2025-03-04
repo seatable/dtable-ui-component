@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Tooltip } from 'reactstrap';
 import classnames from 'classnames';
-import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../utils/url';
 import DeleteTip from '../DeleteTip';
+import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../utils/url';
 import { getLocale } from '../lang';
 
 import './index.css';
@@ -98,8 +98,8 @@ class ImageThumbnail extends React.Component {
           <DeleteTip
             position={this.position}
             toggle={this.closeTip}
-            deleteImage={this.deleteImage}
-            deleteTip={getLocale('Are_you_sure_you_want_to_delete_this_image')}
+            handleDelete={this.deleteImage}
+            deleteTip={this.props.deleteTip || getLocale('Are_you_sure_you_want_to_delete_this_image')}
           />
         }
         {this.ref && (
@@ -124,6 +124,7 @@ ImageThumbnail.propTypes = {
   src: PropTypes.string.isRequired,
   className: PropTypes.string,
   config: PropTypes.object,
+  deleteTip: PropTypes.string,
   onClick: PropTypes.func,
   downloadImage: PropTypes.func,
   deleteImage: PropTypes.func.isRequired,

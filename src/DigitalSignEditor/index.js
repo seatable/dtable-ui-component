@@ -11,7 +11,6 @@ import { getErrorMsg } from '../utils/utils';
 
 import './index.css';
 
-
 class DigitalSignEditor extends Component {
 
   constructor(props) {
@@ -156,4 +155,3 @@ DigitalSignEditor.propTypes = {
 };
 
 export default DigitalSignEditor;
-

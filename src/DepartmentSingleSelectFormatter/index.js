@@ -14,7 +14,7 @@ const propTypes = {
 
 function DepartmentSingleSelectFormatter(props) {
   const { value, departments, containerClassName, tip } = props;
-  if (!value) return null;
+  if (!value || !Array.isArray(departments)) return null;
   const deletedTip = tip || getLocale('Deleted_department');
   const department = departments.find(department => department.id === value);
   const name = department ? department.name : deletedTip;

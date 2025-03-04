@@ -1,4 +1,4 @@
-.dtable-ui-row-expand-select-editor {
+.dtable-ui.dtable-ui-row-expand-select-editor {
   display: flex;
   padding: 0 10px;
   border-radius: 3px;
@@ -12,12 +12,12 @@
   min-height: 2.375rem;
 }
 
-.dtable-ui-row-expand-select-editor.focus {
+.dtable-ui.dtable-ui-row-expand-select-editor.focus {
   border-color: #1991eb !important;
   box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25);
 }
 
-.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner {
+.dtable-ui.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner {
   display: flex;
   flex: 1 1;
   overflow: hidden;
@@ -26,15 +26,15 @@
   justify-content: space-between;
 }
 
-.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner .dtable-icon-down3 {
+.dtable-ui.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner .dtable-icon-down3 {
   display: inline-block;
   font-size: 12px;
   color: #999;
-  transform: scale(0.8) translateY(2px);
+  transform: translateY(2px);
   transition: all 0.1s;
 }
 
-.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner .dtable-ui-select-option {
+.dtable-ui.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner .dtable-ui-select-option {
   border-radius: 10px;
   font-size: 13px;
   line-height: 20px;
@@ -49,7 +49,7 @@
   width: min-content;
 }
 
-.dtable-ui-row-expand-select-editor-popover .dtable-ui-editor-container {
+.dtable-ui.dtable-ui-row-expand-select-editor-popover .dtable-ui-editor-container {
   height: fit-content;
   overflow: hidden;
   position: absolute;

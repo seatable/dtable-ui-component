@@ -42,3 +42,7 @@
   max-height: 300px;
   overflow: auto;
 }
+
+.dtable-ui-row-expand-column-content-value {
+  min-height: 38px;
+}

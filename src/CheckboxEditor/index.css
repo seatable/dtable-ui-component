@@ -12,3 +12,8 @@
   font-weight: 600;
   color: #20c933;
 }
+
+.dtable-ui-checkbox-check-svg {
+  width: 16px;
+  height: 16px;
+}

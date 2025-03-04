@@ -4,7 +4,7 @@ import { FormFeedback } from 'reactstrap';
 import SimpleTextEditor from '../../TextEditor';
 import { isEnableCheckFormat } from '../../utils/column-utils';
 import { checkValueConformityFormat } from '../../utils/cell';
-import { keyCodes } from '../../constants';
+import { KeyCodes } from '../../constants';
 import { getLocale } from '../../lang';
 
 import './index.css';
@@ -80,7 +80,7 @@ class RowExpandSimpleText extends React.Component {
   };
 
   onKeyDown = (event) => {
-    if (event.keyCode === keyCodes.Esc) {
+    if (event.keyCode === KeyCodes.Esc) {
       event.preventDefault();
       this.blurInput();
     }

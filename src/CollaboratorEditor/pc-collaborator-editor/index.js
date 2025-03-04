@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { searchCollaborators } from 'dtable-utils';
 import classnames from 'classnames';
 import { Popover } from 'reactstrap';
-import { getLocale } from '../../lang';
 import CollaboratorItem from '../../CollaboratorItem';
 import DTableSearchInput from '../../DTableSearchInput';
+import { getLocale } from '../../lang';
 import { KeyCodes } from '../../constants';
 import ObjectUtils from '../../utils/object-utils';
 
@@ -218,7 +218,7 @@ class PCCollaboratorEditor extends React.Component {
             target={target}
             hideArrow={true}
             fade={false}
-            className="dtable-ui-row-expand-select-editor-popover"
+            className="dtable-ui dtable-ui-row-expand-select-editor-popover"
           >
             {dom}
           </Popover>

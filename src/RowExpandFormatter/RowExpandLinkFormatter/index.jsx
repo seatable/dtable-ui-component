@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import { CellType } from '../../constants';
+import { CellType } from 'dtable-utils';
 import MultipleSelectFormatter from '../../MultipleSelectFormatter';
 import CTimeFormatter from '../../CTimeFormatter';
 import MTimeFormatter from '../../MTimeFormatter';

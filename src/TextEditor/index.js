@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 import { getTrimmedString } from '../utils/utils';
-import { keyCodes } from '../constants';
+import { KeyCodes } from '../constants';
 import { isCellValueChanged } from '../utils/cell-comparer';
 
 class TextEditor extends Component {
@@ -70,14 +69,14 @@ class TextEditor extends Component {
 
   onInputKeyDown = (e) => {
     const { selectionStart, selectionEnd, value } = e.currentTarget;
-    if (e.keyCode === keyCodes.Enter) {
+    if (e.keyCode === KeyCodes.Enter) {
       e.preventDefault();
       this.onBlur();
       if (this.props.selectDownCell) this.props.selectDownCell();
     } else if (
-      (e.keyCode === keyCodes.ChineseInputMethod) ||
-      (e.keyCode === keyCodes.LeftArrow && selectionStart === 0) ||
-      (e.keyCode === keyCodes.RightArrow && selectionEnd === value.length)
+      (e.keyCode === KeyCodes.ChineseInputMethod) ||
+      (e.keyCode === KeyCodes.LeftArrow && selectionStart === 0) ||
+      (e.keyCode === KeyCodes.RightArrow && selectionEnd === value.length)
     ) {
       e.stopPropagation();
     }
@@ -106,12 +105,11 @@ class TextEditor extends Component {
   };
 
   getInputNode = () => {
-    const domNode = ReactDOM.findDOMNode(this.input);
-    if (domNode.tagName === 'INPUT') {
-      return domNode;
+    if (!this.input) return null;
+    if (this.input.tagName === 'INPUT') {
+      return this.input;
     }
-
-    return domNode.querySelector('input:not([type=hidden])');
+    return this.input.querySelector('input:not([type=hidden])');
   };
 
   setInputRef = (input) => {

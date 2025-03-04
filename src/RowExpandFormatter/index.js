@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { CellType } from '../constants';
+import { CellType } from 'dtable-utils';
 import { DEFAULT_FORMATTER } from './constants';
 
 import './index.css';
@@ -100,6 +100,7 @@ class RowExpandFormatter extends React.Component {
 
     let cellValue = row[column[valueKey]];
     const Formatter = this.component[columnType];
+    if (!Formatter) return null;
 
     switch (columnType) {
       case CellType.TEXT: {
@@ -128,7 +129,7 @@ class RowExpandFormatter extends React.Component {
           </div>
         );
       }
-      case CellType.GEOLOCATION : {
+      case CellType.GEOLOCATION: {
         if (!cellValue) return null;
         if (typeof cellValue !== 'object') return null;
         return (
@@ -295,19 +296,16 @@ class RowExpandFormatter extends React.Component {
         );
       }
       case CellType.BUTTON: {
-        return (<Formatter data={column.data} containerClassName={containerClassName} onClickButton={this.props.onClickButton}/>);
+        return (<Formatter data={column.data} containerClassName={containerClassName} onClickButton={this.props.onClickButton} />);
       }
       case CellType.DIGITAL_SIGN: {
-        return (<Formatter value={cellValue} containerClassName={containerClassName} config={this.props.config}/>);
+        return (<Formatter value={cellValue} containerClassName={containerClassName} config={this.props.config} />);
       }
       case CellType.DEPARTMENT_SINGLE_SELECT: {
-        return (<Formatter value={cellValue} departments={this.props.departments}/>);
+        return (<Formatter value={cellValue} departments={this.props.departments} />);
       }
       default: {
-        if (Formatter) {
-          return (<Formatter value={cellValue} containerClassName={containerClassName} config={this.props.config} />);
-        }
-        return null;
+        return (<Formatter value={cellValue} containerClassName={containerClassName} config={this.props.config} />);
       }
     }
   };

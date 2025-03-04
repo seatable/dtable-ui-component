@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { GEOLOCATION_FORMAT, DEFAULT_GEOLOCATION_FORMAT } from 'dtable-utils';
 import { KeyCodes } from '../constants';
-import withRef from './with-ref';
 import ObjectUtils from '../utils/object-utils';
 import LocationEditor from './location-editor';
 import MapEditor from './map-editor';
@@ -168,25 +167,25 @@ class GeolocationEditor extends React.Component {
 
     switch (geoFormat) {
       case GEOLOCATION_FORMAT.LNG_LAT: {
-        return (<MapEditor { ...props } ref={ref => this.editor = ref} />);
+        return (<MapEditor {...props} ref={ref => this.editor = ref} />);
       }
       case GEOLOCATION_FORMAT.MAP_SELECTION: {
-        return (<MapSelectionEditor { ...props } ref={ref => this.editor = ref} />);
+        return (<MapSelectionEditor {...props} ref={ref => this.editor = ref} />);
       }
       case GEOLOCATION_FORMAT.COUNTRY_REGION: {
-        return (<CountryEditor { ...props } ref={ref => this.editor = ref} />);
+        return (<CountryEditor {...props} ref={ref => this.editor = ref} />);
       }
       case GEOLOCATION_FORMAT.PROVINCE: {
-        return (<ProvinceEditor { ...props } onPressTab={this.props.onPressTab} ref={ref => this.editor = ref} />);
+        return (<ProvinceEditor {...props} onPressTab={this.props.onPressTab} ref={ref => this.editor = ref} />);
       }
       case GEOLOCATION_FORMAT.PROVINCE_CITY: {
-        return (<ProvinceCityEditor { ...props } ref={ref => this.editor = ref} />);
+        return (<ProvinceCityEditor {...props} ref={ref => this.editor = ref} />);
       }
       case GEOLOCATION_FORMAT.PROVINCE_CITY_DISTRICT: {
-        return (<LocationEditor { ...props } ref={ref => this.editor = ref} />);
+        return (<LocationEditor {...props} ref={ref => this.editor = ref} />);
       }
       default: {
-        return (<LocationEditor { ...props } isShowAddressDetail={true} ref={ref => this.editor = ref} />);
+        return (<LocationEditor {...props} isShowAddressDetail={true} ref={ref => this.editor = ref} />);
       }
     }
   };
@@ -203,4 +202,4 @@ class GeolocationEditor extends React.Component {
 
 GeolocationEditor.propTypes = GeolocationEditorPropTypes;
 
-export default withRef(GeolocationEditor);
+export default GeolocationEditor;

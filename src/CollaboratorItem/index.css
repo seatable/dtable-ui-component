@@ -20,7 +20,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 5px 0 1px;
+  transform: translateY(0);
+}
+
+.dtable-ui.collaborator-item .collaborator-name {
+  margin-left: 5px;
 }
 
 .dtable-ui.collaborator-item .collaborator-avatar img {

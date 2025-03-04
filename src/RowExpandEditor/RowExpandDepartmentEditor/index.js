@@ -71,29 +71,6 @@ function RowExpandDepartmentEditor(props) {
     props.onCommit(newValue);
   }
 
-  function renderUserDepartmentOptions(onSelect) {
-    if (Array.isArray(departments) && departments.length > 0) return [];
-    return DEPARTMENT_SELECT_RANGE_OPTIONS.slice(0, 2).map((option, index) => {
-      const { type, name } = option;
-      return (
-        <div
-          className="department-item"
-          key={index}
-          onClick={(event) => onSelect(event, type)}
-        >
-          <div className="department-item-left-content d-flex align-items-center">
-            <span className="text-truncate department-name">{getLocale(name)}</span>
-            {value === type && (
-              <span className="department-check-icon">
-                <i className="dtable-font dtable-icon-check-mark"></i>
-              </span>
-            )}
-          </div>
-        </div>
-      );
-    });
-  }
-
   return (
     <div className="position-relative w-100" ref={departmentSelectContainer}>
       <div
@@ -101,7 +78,7 @@ function RowExpandDepartmentEditor(props) {
         onFocus={onFocus}
         onClick={onToggleSelect}
         ref={departmentSelectContent}
-        className={classnames('dtable-ui-row-expand-select-editor', 'custom-select', { 'focus': isEditorFocus })}
+        className={classnames('dtable-ui dtable-ui-row-expand-select-editor', 'custom-select', { 'focus': isEditorFocus })}
       >
         <div className="dtable-ui-row-expand-select-editor-inner">
           <div><DepartmentSingleSelectFormatter value={value} departments={departments} /></div>
@@ -116,7 +93,6 @@ function RowExpandDepartmentEditor(props) {
           onCommit={onCommit}
           userDepartmentIdsMap={userDepartmentIdsMap}
           departments={departments}
-          renderUserDepartmentOptions={renderUserDepartmentOptions}
         />
       )}
     </div>

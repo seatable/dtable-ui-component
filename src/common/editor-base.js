@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { CellType, isNumber } from 'dtable-utils';
 
@@ -29,12 +28,11 @@ class EditorBase extends React.Component {
   }
 
   getInputNode() {
-    const domNode = ReactDOM.findDOMNode(this.input);
-    if (domNode.tagName === 'INPUT') {
-      return domNode;
+    if (!this.input) return null;
+    if (this.input.tagName === 'INPUT') {
+      return this.input;
     }
-
-    return domNode.querySelector('input:not([type=hidden])');
+    return this.input.querySelector('input:not([type=hidden])');
   }
 
   inheritContainerStyles() {
@@ -53,4 +51,3 @@ EditorBase.propTypes = {
 };
 
 export default EditorBase;
-

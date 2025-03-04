@@ -1,13 +1,13 @@
-.dtable-ui-row-expand-rate-editor {
+.dtable-ui.dtable-ui-row-expand-rate-editor {
   display: flex;
 }
 
-.dtable-ui-row-expand-rate-editor > div {
+.dtable-ui.dtable-ui-row-expand-rate-editor > div {
   padding-right: 5px;
   cursor: pointer;
   line-height: 1.5;
 }
 
-.dtable-ui-row-expand-rate-editor .rate-item-active {
+.dtable-ui.dtable-ui-row-expand-rate-editor .rate-item-active {
   opacity: 1 !important;
 }
