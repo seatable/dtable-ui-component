@@ -210,14 +210,14 @@
   display: flex;
 }
 
-.longtext-modal-dialog-header  .longtext-browser-warning {
+.longtext-modal-dialog-header .longtext-browser-warning {
   margin-right: 4px; 
   display: inline-block;
   line-height: 12px;
   transform: scale(0.8);
 }
 
-.longtext-modal-dialog-header  .browser-warning-content {
+.longtext-modal-dialog-header .browser-warning-content {
   line-height: 12px;
 }
 
