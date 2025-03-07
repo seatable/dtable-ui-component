@@ -7,6 +7,7 @@
   font-size: 13px;
   border-radius: 10px;
   background: #eaeaea;
+  overflow: hidden;
 }
 
 .dtable-ui.collaborator-item .collaborator-avatar,
@@ -21,6 +22,7 @@
   align-items: center;
   justify-content: center;
   transform: translateY(0);
+  flex-shrink: 0;
 }
 
 .dtable-ui.collaborator-item .collaborator-name {

@@ -10,6 +10,7 @@ class RowExpandFormatter extends React.Component {
 
   static defaultProps = {
     className: '',
+    valueKey: 'name',
   };
 
   static propTypes = {
