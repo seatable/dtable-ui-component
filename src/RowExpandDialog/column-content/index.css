@@ -1,0 +1,48 @@
+.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info {
+  padding-top: 9px;
+  height: fit-content;
+}
+
+.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info .dtable-ui-header-icon {
+  display: inline-block;
+  padding: 0 0.3125rem;
+  margin-left: -0.3125rem;
+  width: 24px;
+}
+
+.dtable-ui-header-icon .dtable-font {
+  font-size: 14px;
+  color: #aaa;
+  cursor: default;
+}
+
+.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info .dtable-ui-header-icon .dtable-font {
+  color: #212529a6;
+}
+
+.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info .dtable-ui-row-expand-column-name {
+  color: #212529b3;
+}
+
+.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info .cell-is-required {
+  color: #ff1920;
+  padding-left: 0.3125rem;
+  display: inline-block;
+  height: 21px;
+}
+
+.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info .dtable-ui-column-tip-icon {
+  color: #bdbdbd;
+  position: relative;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.dtable-ui-column-description-tip {
+  max-height: 300px;
+  overflow: auto;
+}
+
+.dtable-ui-row-expand-column-content-value {
+  min-height: 38px;
+}

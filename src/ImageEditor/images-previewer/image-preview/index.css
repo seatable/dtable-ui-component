@@ -1,0 +1,59 @@
+.dtable-ui-image-previewer-box:nth-child(5n) {
+  margin-right: 0;
+}
+
+.dtable-ui-image-previewer-box {
+  margin-right: 19px;
+  width: 100px;
+  height: 100px;
+  margin-top: 15px;
+  border: 2px solid #ededed;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.dtable-ui-image-previewer-box:hover {
+  border-color: #c9c9c9;
+}
+
+.dtable-ui-image-previewer-box img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.dtable-ui-image-icons-choice {
+  height: 20px;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  color: #fff;
+  display: flex;
+  padding: 0 3px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dtable-ui-image-icons-choice .image-icon {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dtable-ui-image-icons-choice .image-icon:nth-child(2) {
+  margin-left: 5px;
+}
+
+.dtable-ui-image-icons-choice .image-icon .dtable-font {
+  font-size: 12px;
+  transform: scale(0.7);
+}

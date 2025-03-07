@@ -1,0 +1,18 @@
+.dtable-ui-row-expand-checkbox-editor {
+  width: 24px;
+  height: 24px;
+  border: 2px solid #e0e0e0;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6px;
+}
+
+.dtable-ui-checkbox-editor.dtable-ui-row-expand-checkbox-editor {
+  cursor: pointer;
+}
+
+.dtable-ui-checkbox-editor.dtable-ui-row-expand-checkbox-editor.focus {
+  box-shadow: 0 0 0 2px #66afe9;
+}

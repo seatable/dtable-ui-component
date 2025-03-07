@@ -1,4 +1,4 @@
-import { FORMULA_RESULT_TYPE, CellType } from '../constants';
+import { FORMULA_RESULT_TYPE, CellType } from 'dtable-utils';
 
 const numberValidator = (value) => {
   return (value || value === 0) && Object.prototype.toString.call(value) === '[object Number]';

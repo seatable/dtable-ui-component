@@ -71,7 +71,6 @@
 }
 
 .dtable-ui.dtable-row-expand-formatter .button-formatter {
-  margin-top: 6px;
   text-align: center;
   height: 26px;
   line-height: 14px;
@@ -79,8 +78,8 @@
   max-width: 100%;
   width: fit-content;
   display: inline-flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   border-radius: 3px;
@@ -100,7 +99,7 @@
   background-color: #fff;
 }
 
-.dtable-ui.dtable-row-expand-formatter .geolocation-formatter-container {
+.dtable-ui.dtable-row-expand-formatter .dtable-ui-geolocation-formatter-container {
   margin-top: 0.5rem;
   display: flex;
   align-items: center;
@@ -108,4 +107,30 @@
 
 .dtable-ui.dtable-row-expand-formatter .dtable-link-formatter {
   padding-top: 8px;
+}
+
+.dtable-ui-row-expand-select-formatter.custom-select {
+  display: flex;
+  padding: 0 10px;
+  border-radius: 3px;
+  align-items: center;
+  justify-content: space-between;
+  -webkit-user-select: none;
+  user-select: none;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+  height: fit-content;
+  min-height: 2.375rem;
+  background-color: #f8f9fa !important;
+  cursor: default;
+}
+
+.dtable-ui-row-expand-select-formatter .dtable-ui-row-expand-select-formatter-inner {
+  display: flex;
+  flex: 1 1;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
 }

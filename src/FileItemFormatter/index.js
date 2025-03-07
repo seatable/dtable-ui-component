@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { getFileThumbnailInfo } from './utils';
+import { getFileThumbnailInfo } from '../utils/url';
 
-export default class FileItemFormatter extends Component {
+const FileItemFormatter = ({ file, config }) => {
+  const { fileIconUrl, isImage } = getFileThumbnailInfo(file, config);
+  return (
+    <img className={`file-item-icon ${isImage ? 'img' : ''}`} src={fileIconUrl} alt={file?.name || ''} />
+  );
+};
 
-  static propTypes = {
-    file: PropTypes.object.isRequired,
-  };
+FileItemFormatter.propTypes = {
+  file: PropTypes.object.isRequired,
+  config: PropTypes.object,
+};
 
-  render() {
-    const { file } = this.props;
-    const { fileIconUrl, isImage } = getFileThumbnailInfo(file);
-    return (
-      <img className={`file-item-icon ${isImage ? 'img' : ''}`} src={fileIconUrl} alt={file?.name || ''} />
-    );
-  }
-}
+export default FileItemFormatter;

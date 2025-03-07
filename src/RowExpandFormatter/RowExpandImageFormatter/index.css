@@ -1,0 +1,79 @@
+@import url('../../css/cell-formatter.css');
+
+.dtable-ui.row-expand-image-formatter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 550px;
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image {
+  height: 100px;
+  width: 100px;
+  border: 2px solid #ededed;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  position: relative;
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image:nth-child(5n + 1) {
+  margin-left: 0;
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image:hover {
+  border-color: #c9c9c9;
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image .dtable-ui-image-icons-choice {
+  height: 20px;
+  width: 100%;
+  top: 0;
+  position: absolute;
+  color: #fff;
+  display: none;
+  padding: 0 3px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image:hover .dtable-ui-image-icons-choice {
+  display: flex;
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image .dtable-ui-image-icons-choice .image-icon {
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image .dtable-ui-image-icons-choice .image-icon:nth-child(2) {
+  margin-left: 5px;
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image .dtable-ui-image-icons-choice .image-icon .dtable-font {
+  font-size: 12px;
+  transform: scale(.7);
+}
+
+.dtable-ui.row-expand-image-formatter .row-expand-item-image img {
+  display: block;
+  max-width: 96px;
+  max-height: 96px;
+  border-radius: 4px;
+}
+
+.tooltip-inner {
+  font-weight: lighter;
+  text-align: justify;
+  background-color: #303133;
+}

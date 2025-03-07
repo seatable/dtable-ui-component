@@ -1,5 +1,5 @@
 import React from 'react';
-import { CellType } from '../constants';
+import { CellType } from 'dtable-utils';
 import CheckboxFormatter from '../CheckboxFormatter';
 import ImageFormatter from '../ImageFormatter';
 import SimpleLongTextFormatter from '../SimpleLongTextFormatter';

@@ -1,67 +1,108 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import SvgIcon from '../SvgIcon';
+import { isMobile } from '../utils/utils';
+import { KeyCodes, DEFAULT_CHECKBOX_MARK_STYLE } from '../constants';
 
 import './index.css';
 
-const propTypes = {
-  isReadOnly: PropTypes.bool,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  column: PropTypes.object,
-  onCommit: PropTypes.func,
-};
-
-class CheckboxEditor extends React.Component {
-
-  static defaultProps = {
-    isReadOnly: false,
-    value: false
-  };
+class CheckboxEditor extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      value: props.value ? props.value : false
+      value: props.value || false,
     };
   }
 
-  onCommit = () => {
-    let updated = {};
-    let { column } = this.props;
-    updated[column.name] = this.state.value;
-    this.props.onCommit(updated);
+  componentDidMount() {
+    document.addEventListener('keydown', this.onKeyDown);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKeyDown);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { value } = this.props;
+    if (value !== prevProps.value) {
+      this.setState({ value });
+    }
+  }
+
+  onKeyDown = (event) => {
+    const { isEditorShow, readOnly } = this.props;
+    if (event.keyCode === KeyCodes.Enter && isEditorShow && !readOnly) {
+      this.setState({ value: !this.state.value });
+    }
   };
 
-  onChange = (event) => {
-    if (this.props.isReadOnly) {
+  getValue = () => {
+    const { value } = this.state;
+    return value;
+  };
+
+  updateValue = (value) => {
+    if (value === this.state.value) {
       return;
     }
-    this.setState({ value: !this.state.value }, () => {
-      this.onCommit();
+    this.setState({ value });
+  };
+
+  onChangeCheckboxValue = (event) => {
+    if (event) {
+      event.stopPropagation();
+      event.nativeEvent.stopImmediatePropagation();
+      event.persist();
+    }
+    const { value } = this.state;
+    const newValue = !value;
+    this.setState({ value: newValue }, () => {
+      if (this.props.onCommit) {
+        this.props.onCommit(event);
+      }
     });
   };
 
-  render() {
-    const { value } = this.state;
-    const { isReadOnly } = this.props;
-    let style = {
-      cursor: isReadOnly ? 'default' : 'pointer'
-    };
+  renderIcon = (symbol, color) => {
+    const className = classnames('dtable-ui-checkbox-check-mark', { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon') });
+    if (symbol.startsWith('dtable-icon')) {
+      return (<span className={`dtable-font ${symbol} ${className || ''}`} style={{ color }} />);
+    }
+    return (<SvgIcon className={className} symbol={symbol} color={color} />);
+  };
 
+  render() {
+    const { className, style, column } = this.props;
+    const { value } = this.state;
+    const checkboxProps = {
+      ...(!isMobile && { onClick: this.onChangeCheckboxValue }),
+      ...(isMobile && { onTouchStart: this.onChangeCheckboxValue }),
+    };
+    let checkboxStyle = column?.data?.checkbox_style;
+    if (!checkboxStyle || Object.keys(checkboxStyle).length < 2) {
+      checkboxStyle = DEFAULT_CHECKBOX_MARK_STYLE;
+    }
     return (
-      <div className="dtable-ui-checkbox-editor" style={style}>
-        <input type="checkbox"
-          className="raw-checkbox"
-          checked={value}
-          onChange={this.onChange}
-        />
-        <div className="shown-checkbox">
-          {value && <span className="dtable-font dtable-icon-check-mark"></span>}
-        </div>
+      <div
+        className={classnames('dtable-ui-checkbox-editor', className)}
+        style={style || {}}
+        {...checkboxProps}
+      >
+        {value && this.renderIcon(checkboxStyle.type, checkboxStyle.color)}
       </div>
     );
   }
 }
 
-CheckboxEditor.propTypes = propTypes;
+CheckboxEditor.propTypes = {
+  isEditorShow: PropTypes.bool,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  column: PropTypes.object,
+  onCommit: PropTypes.func,
+};
 
 export default CheckboxEditor;

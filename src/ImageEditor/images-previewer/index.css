@@ -1,0 +1,18 @@
+.dtable-ui-image-editor-container .dtable-ui-image-previewer-container {
+  position: relative;
+  width: 100%;
+  min-height: 30px;
+}
+
+.dtable-ui-image-previewer-wrapper {
+  padding: 0 20px 20px;
+  flex-direction: row;
+  height: 350px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dtable-ui-image-previewer-content {
+  display: flex;
+  flex-wrap: wrap;
+}

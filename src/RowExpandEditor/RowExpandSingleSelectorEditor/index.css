@@ -1,0 +1,58 @@
+.dtable-ui.dtable-ui-row-expand-select-editor {
+  display: flex;
+  padding: 0 10px;
+  border-radius: 3px;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  text-align: left;
+  position: relative;
+  cursor: pointer;
+  height: fit-content;
+  min-height: 2.375rem;
+}
+
+.dtable-ui.dtable-ui-row-expand-select-editor.focus {
+  border-color: #1991eb !important;
+  box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25);
+}
+
+.dtable-ui.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner {
+  display: flex;
+  flex: 1 1;
+  overflow: hidden;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dtable-ui.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner .dtable-icon-down3 {
+  display: inline-block;
+  font-size: 12px;
+  color: #999;
+  transform: translateY(2px);
+  transition: all 0.1s;
+}
+
+.dtable-ui.dtable-ui-row-expand-select-editor .dtable-ui-row-expand-select-editor-inner .dtable-ui-select-option {
+  border-radius: 10px;
+  font-size: 13px;
+  line-height: 20px;
+  margin: 6px 0;
+  max-width: 250px;
+  overflow: hidden;
+  padding: 0 10px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: -webkit-min-content;
+  width: min-content;
+}
+
+.dtable-ui.dtable-ui-row-expand-select-editor-popover .dtable-ui-editor-container {
+  height: fit-content;
+  overflow: hidden;
+  position: absolute;
+  z-index: 1000;
+  width: 320px;
+}

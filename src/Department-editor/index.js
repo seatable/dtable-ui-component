@@ -24,16 +24,15 @@ class DepartmentSingleSelectEditor extends Component {
 
   constructor(props) {
     super(props);
-    const { column, mode, value, height } = props;
+    const { column, isInModal, value, height } = props;
     const editorWidth = column.width > 300 ? column.width : 300;
-    const isRowExpand = mode === 'row_expand';
     const data = column.data || {};
     this.state = {
       value: value || '',
-      menuStyle: isRowExpand ? {} : { width: editorWidth, top: height - 2 }
+      menuStyle: isInModal ? {} : { width: editorWidth, top: height - 2 }
     };
     this.enableSelectRange = data.enable_select_range || false;
-    this.isRowExpand = isRowExpand;
+    this.isRowExpand = isInModal;
   }
 
   componentDidMount() {
