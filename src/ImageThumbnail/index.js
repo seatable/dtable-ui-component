@@ -77,7 +77,7 @@ class ImageThumbnail extends React.Component {
   };
 
   render() {
-    const { index, downloadImage, src, className } = this.props;
+    const { index, downloadImage, src, className, name } = this.props;
     const { imageThumbnailUrl } = this.state;
     return (
       <>
@@ -111,7 +111,7 @@ class ImageThumbnail extends React.Component {
             delay={{ show: 0, hide: 0 }}
             fade={false}
           >
-            {getFileName(src)}
+            {name || getFileName(src)}
           </Tooltip>
         )}
       </>
@@ -121,6 +121,7 @@ class ImageThumbnail extends React.Component {
 
 ImageThumbnail.propTypes = {
   index: PropTypes.number.isRequired,
+  name: PropTypes.string,
   src: PropTypes.string.isRequired,
   className: PropTypes.string,
   config: PropTypes.object,

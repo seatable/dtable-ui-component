@@ -98,8 +98,13 @@ export const getImageThumbnailUrl = (url, { server, dtableUuid, workspaceID, siz
 
 export const getFileName = (url) => {
   if (!url) return null;
-  let lastIndex = url.lastIndexOf('/');
-  return url.slice(lastIndex + 1);
+  let validUrl = url;
+  let qIndex = url.indexOf('/?');
+  if (qIndex !== -1) {
+    validUrl = validUrl.slice(0, qIndex);
+  }
+  const lastIndex = validUrl.lastIndexOf('/');
+  return url.slice(lastIndex + 1, qIndex);
 };
 
 export const imageCheck = (filename) => {
@@ -154,7 +159,7 @@ export const getFileThumbnailInfo = (file, { server } = {}) => {
   const defaultIconUrl = FILEEXT_ICON_URL_MAP[defaultIcon];
   if (!file || !file.name) return { isImage: false, fileIconUrl: defaultIconUrl['192'] };
   const isImage = imageCheck(file.name);
-  if (isImage) return { isImage, fileIconUrl: getImageThumbnailUrl(file.url, { server }) };
+  if (isImage && server) return { isImage, fileIconUrl: getImageThumbnailUrl(file.url, { server }) };
   const iconUrl = getFileIconUrl(file.name, file.type);
   return { fileIconUrl: iconUrl, isImage: false };
 };
