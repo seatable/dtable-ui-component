@@ -104,7 +104,8 @@ export const getFileName = (url) => {
     validUrl = validUrl.slice(0, qIndex);
   }
   const lastIndex = validUrl.lastIndexOf('/');
-  return url.slice(lastIndex + 1, qIndex);
+  const name = url.slice(lastIndex + 1, qIndex);
+  return decodeURI(name);
 };
 
 export const imageCheck = (filename) => {
