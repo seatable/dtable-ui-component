@@ -4,3 +4,8 @@
   margin-left: -5px;
   margin-right: -5px;
 }
+
+.dtable-ui-row-expand-image-editor .dtable-ui-row-expand-image-container img {
+  max-width: 96px;
+  max-height: 96px;
+}

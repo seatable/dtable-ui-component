@@ -91,11 +91,12 @@ class RowExpandFileEditor extends React.Component {
     let value = this.state.fileContainer !== null ? this.state.fileContainer : row[column[valueKey]];
     if (value && value.length > 0) {
       fileArr = value.map((file, index) => {
-        const { fileIconUrl } = getFileThumbnailInfo(file, config);
+        const { fileIconUrl } = getFileThumbnailInfo(file);
         return (
           <ImageThumbnail
             key={'file-' + index}
             src={fileIconUrl}
+            name={file.name}
             index={index}
             config={config}
             deleteTip={getLocale('Are_you_sure_you_want_to_delete_this_file')}
