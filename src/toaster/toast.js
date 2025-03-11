@@ -6,6 +6,8 @@ import Alert from './alert';
 const ANIMATION_DURATION = 240;
 
 export default class Toast extends React.PureComponent {
+  _isMounted = false;
+
   static propTypes = {
     /**
      * The z-index of the toast.
@@ -54,8 +56,9 @@ export default class Toast extends React.PureComponent {
 
   state = {
     isShown: true,
-    height: 0
   };
+
+  containerRef = React.createRef();
 
   componentDidUpdate(prevProps) {
     if (prevProps.isShown !== this.props.isShown) {
@@ -67,10 +70,12 @@ export default class Toast extends React.PureComponent {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     this.startCloseTimer();
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     this.clearCloseTimer();
   }
 
@@ -80,9 +85,11 @@ export default class Toast extends React.PureComponent {
       event.stopPropagation();
     }
     this.clearCloseTimer();
-    this.setState({
-      isShown: false
-    });
+    if (this._isMounted) {
+      this.setState({
+        isShown: false
+      });
+    }
   };
 
   startCloseTimer = () => {
@@ -110,12 +117,10 @@ export default class Toast extends React.PureComponent {
 
   onRef = ref => {
     if (ref === null) return;
-
-    const { height } = ref.getBoundingClientRect();
-
-    this.setState({
-      height
-    });
+    setTimeout(() => {
+      const { height } = ref.getBoundingClientRect();
+      this.containerRef.current.style.height = height + 'px';
+    }, 1);
   };
 
   render() {
@@ -134,10 +139,9 @@ export default class Toast extends React.PureComponent {
             onMouseEnter={this.handleMouseEnter}
             onMouseLeave={this.handleMouseLeave}
             style={{
-              height: this.state.height,
               zIndex: this.props.zIndex,
-              marginBottom: this.state.isShown ? 0 : -this.state.height
             }}
+            ref={this.containerRef}
           >
             <div ref={this.onRef} style={{ padding: 8 }}>
               <Alert
