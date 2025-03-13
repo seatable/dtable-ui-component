@@ -36,6 +36,7 @@ export { default as FileItemFormatter } from './FileItemFormatter';
 export { default as DigitalSignFormatter } from './DigitalSignFormatter';
 export { default as DepartmentSingleSelectFormatter } from './DepartmentSingleSelectFormatter';
 export { default as SimpleLongTextFormatter } from './SimpleLongTextFormatter';
+export { default as cellFormatterFactory } from './cellFormatterFactory';
 
 // row expand
 export { default as RowExpandFormatter } from './RowExpandFormatter';
