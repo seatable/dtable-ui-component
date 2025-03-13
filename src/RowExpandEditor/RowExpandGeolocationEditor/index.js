@@ -61,7 +61,7 @@ class RowExpandGeolocationEditor extends React.Component {
   hideEditor = (event) => {
     if (
       !this.state.isShowEditor
-      || !event.target || event.target.tagName.toUpperCase() === 'INPUT'
+      || !event.target
       || this.editorContainer.contains(event.target)
     ) return;
     if (this.state.isShowEditor && this.geoEditor.getLargeEditorState()) return;

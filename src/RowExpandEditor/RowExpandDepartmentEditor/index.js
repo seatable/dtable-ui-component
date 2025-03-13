@@ -4,9 +4,7 @@ import classnames from 'classnames';
 import { useClickOutside } from '../../hooks';
 import DepartmentSingleSelectFormatter from '../../DepartmentSingleSelectFormatter';
 import { KeyCodes } from '../../constants';
-import { getLocale } from '../../lang';
 import DepartmentSingleSelect from '../../Department-editor/department-single-select';
-import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../Department-editor/constants';
 
 function RowExpandDepartmentEditor(props) {
   const { row, column, valueKey, departments, userDepartmentIdsMap, isEditorFocus, columnIndex } = props;
@@ -35,7 +33,7 @@ function RowExpandDepartmentEditor(props) {
   }, [row]);
 
   function hideDropDownMenu(event) {
-    if (!event.target || event.target.tagName.toUpperCase() === 'INPUT') return;
+    if (!event.target) return;
     toggleDepartmentSelect(false);
   }
 

@@ -92,7 +92,7 @@ class RowExpandCollaboratorEditor extends React.Component {
   };
 
   hideSelect = (event) => {
-    if (!this.state.showCollaboratorSelect || !event.target || event.target.tagName.toUpperCase() === 'INPUT') {
+    if (!this.state.showCollaboratorSelect || !event.target) {
       return;
     }
     const editor = document.querySelector('.dtable-ui-collaborator-editor-container');
