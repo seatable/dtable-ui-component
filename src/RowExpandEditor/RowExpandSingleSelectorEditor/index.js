@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getColumnOptions } from 'dtable-utils';
 import { KeyCodes, DELETED_OPTION_BACKGROUND_COLOR, DELETED_OPTION_TIPS } from '../../constants';
 import classnames from 'classnames';
 import SingleSelectEditor from '../../SingleSelectEditor';
 import { getLocale } from '../../lang';
+import ObjectUtils from '../../utils/object-utils';
 
 import './index.css';
 
@@ -27,8 +29,8 @@ class RowExpandSingleSelectEditor extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { value } = nextProps;
-    if (value !== this.props.value) {
+    const { value, column } = nextProps;
+    if (value !== this.props.value || !ObjectUtils.isSameObject(column, this.props.column)) {
       this.options = this.getOptions(nextProps);
       this.setState({ value, showSelectPopover: false });
     }
@@ -87,8 +89,8 @@ class RowExpandSingleSelectEditor extends React.Component {
   };
 
   hideDropDownMenu = (event) => {
-    if (!event.target || event.target.tagName.toUpperCase() === 'INPUT') return;
-    if (!this.singleSelectContainer.contains(event.target) && this.state.showSelectPopover) {
+    if (!event.target) return;
+    if (!this.ref.contains(event.target) && this.state.showSelectPopover) {
       const singleSelectEditor = document.getElementsByClassName('dtable-ui-select-editor-container')[0];
       if (singleSelectEditor && singleSelectEditor.contains(event.target)) return;
       this.toggleSingleSelect(false);
@@ -116,7 +118,7 @@ class RowExpandSingleSelectEditor extends React.Component {
   };
 
   renderOption = () => {
-    const { isEditorFocus } = this.props;
+    const { isEditorFocus, classNamePrefix, placeholder } = this.props;
     const { value } = this.state;
     const option = this.options.find(o => o[this.key] === value);
     const optionStyle = option ?
@@ -130,15 +132,16 @@ class RowExpandSingleSelectEditor extends React.Component {
         onFocus={this.onFocus}
         onClick={this.onToggleSelect}
         ref={ref => this.selectRef = ref}
-        className={classnames('dtable-ui dtable-ui-row-expand-select-editor custom-select', { 'focus': isEditorFocus })}
+        className={classnames('dtable-ui dtable-ui-row-expand-select-editor custom-select', { 'focus': isEditorFocus, [`${classNamePrefix}-select-editor`]: classNamePrefix })}
       >
-        <div className="dtable-ui-row-expand-select-editor-inner">
-          <div>
+        <div className={classnames('dtable-ui-row-expand-select-editor-inner', { [`${classNamePrefix}-select-editor-inner`]: classNamePrefix })}>
+          <div className={classnames('', { [`${classNamePrefix}-select-editor-inner-container`]: classNamePrefix })}>
             {value && (
               <div className="dtable-ui-select-option" style={optionStyle} title={optionName}>
                 {optionName}
               </div>
             )}
+            {!value && placeholder && (<>{placeholder}</>)}
           </div>
           <i aria-hidden="true" className="dtable-font dtable-icon-down3"></i>
         </div>
@@ -147,10 +150,10 @@ class RowExpandSingleSelectEditor extends React.Component {
   };
 
   render() {
-    const { isSupportNewOption, onAddNewOption, column } = this.props;
+    const { isSupportNewOption, onAddNewOption, column, classNamePrefix } = this.props;
     const { showSelectPopover, value } = this.state;
     return (
-      <div className="position-relative w-100" ref={ref => this.singleSelectContainer = ref}>
+      <div className="position-relative w-100" ref={ref => this.ref = ref}>
         {this.renderOption()}
         <span ref={ref => this.targetRef = ref}></span>
         {showSelectPopover && (
@@ -161,6 +164,7 @@ class RowExpandSingleSelectEditor extends React.Component {
             value={value}
             valueKey={this.key}
             target={this.targetRef}
+            classNamePrefix={classNamePrefix}
             onCommit={this.onChange}
             isSupportNewOption={isSupportNewOption}
             onAddNewOption={onAddNewOption}
@@ -172,5 +176,20 @@ class RowExpandSingleSelectEditor extends React.Component {
   }
 
 }
+
+RowExpandSingleSelectEditor.propTypes = {
+  column: PropTypes.object,
+  value: PropTypes.array,
+  valueKey: PropTypes.string,
+  isSupportNewOption: PropTypes.bool,
+  onAddNewOption: PropTypes.func,
+  isEditorFocus: PropTypes.bool,
+  classNamePrefix: PropTypes.string,
+  placeholder: PropTypes.any,
+  columnIndex: PropTypes.number,
+  updateTabIndex: PropTypes.func,
+  onEditorOpen: PropTypes.func,
+  onEditorClose: PropTypes.func,
+};
 
 export default RowExpandSingleSelectEditor;

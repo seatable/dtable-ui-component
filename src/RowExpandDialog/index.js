@@ -69,7 +69,7 @@ const RowExpandDialog = forwardRef(({
     if (readonly || !column || !column.editable || NOT_SUPPORT_EDIT_COLUMN_TYPE_MAP[column.type]) return false;
     if (column.type === CellType.IMAGE || column.type === CellType.FILE) return Boolean(uploadFile);
     return true;
-  }, [isSaving, uploadFile]);
+  }, [readonly, isSaving, uploadFile]);
 
   const initRowData = useCallback(() => {
     setLoading(true);
@@ -82,7 +82,7 @@ const RowExpandDialog = forwardRef(({
     isChangedRef.current = isInsertingRow && Object.keys(defaultRow).length > 0;
     setColumns(validColumns);
     setLoading(false);
-  }, [isInsertingRow, checkEditable]);
+  }, [isInsertingRow, defaultColumns, defaultRow, checkEditable]);
 
   const toggle = useCallback(() => {
     if (isSaving) return;

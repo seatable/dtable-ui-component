@@ -204,7 +204,7 @@ class PCSelectEditor extends React.Component {
   };
 
   render() {
-    const { isInModal, className, value, column, valueKey, isSupportNewOption, target } = this.props;
+    const { isInModal, className, value, column, valueKey, isSupportNewOption, target, classNamePrefix } = this.props;
     const { searchValue, highlightIndex } = this.state;
 
     // maxWidth = single-selects-container's width - single-selects-container's padding-left and padding-right - single-select-container's padding-left - single-select-check-icon's width - The gap between the single-select-check-icon and single-select-name or scroll's width
@@ -213,7 +213,7 @@ class PCSelectEditor extends React.Component {
     let maxWidth = isInModal ? 250 : column?.width > 200 ? column.width - 62 : 138;
 
     const dom = (
-      <div className={classnames('dtable-ui-editor-container dtable-ui-select-editor-container', className)} ref={ref => this.ref = ref}>
+      <div className={classnames('dtable-ui-editor-container dtable-ui-select-editor-container', className, { [`${classNamePrefix}-select-editor-container`]: classNamePrefix })} ref={ref => this.ref = ref}>
         <div className="select-options-search">
           <DtableSearchInput
             placeholder={getLocale('Search_option')}
@@ -264,7 +264,7 @@ class PCSelectEditor extends React.Component {
             target={target}
             hideArrow={true}
             fade={false}
-            className="dtable-ui dtable-ui-row-expand-select-editor-popover"
+            className={classnames('dtable-ui dtable-ui-row-expand-select-editor-popover', { [`${classNamePrefix}-select-editor-popover`]: classNamePrefix })}
           >
             {dom}
           </Popover>

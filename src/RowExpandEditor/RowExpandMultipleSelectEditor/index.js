@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { getColumnOptions } from 'dtable-utils';
 import classnames from 'classnames';
 import { KeyCodes, DELETED_OPTION_BACKGROUND_COLOR, DELETED_OPTION_TIPS } from '../../constants';
 import MultipleSelectEditor from '../../MultipleSelectEditor';
 import { getLocale } from '../../lang';
+import ObjectUtils from '../../utils/object-utils';
 
 import './index.css';
 
@@ -26,8 +28,8 @@ class RowExpandMultipleSelectEditor extends React.Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { value } = nextProps;
-    if (value !== this.props.value) {
+    const { value, column } = nextProps;
+    if (value !== this.props.value || !ObjectUtils.isSameObject(column, this.props.column)) {
       this.options = this.getOptions(nextProps);
       this.setState({ value });
     }
@@ -69,7 +71,7 @@ class RowExpandMultipleSelectEditor extends React.Component {
   };
 
   hideDropDownMenu = (event) => {
-    if (!event.target || event.target.tagName.toUpperCase() === 'INPUT') return;
+    if (!event.target) return;
     if (!this.ref.contains(event.target) && this.state.showSelectPopover) {
       const singleSelectEditor = document.getElementsByClassName('dtable-ui-select-editor-container')[0];
       if (singleSelectEditor && singleSelectEditor.contains(event.target)) return;
@@ -80,7 +82,8 @@ class RowExpandMultipleSelectEditor extends React.Component {
   onToggleSelect = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    this.props.updateTabIndex(this.props.columnIndex);
+    const { updateTabIndex, columnIndex } = this.props;
+    updateTabIndex && updateTabIndex(columnIndex);
     this.toggleSingleSelect(true);
   };
 
@@ -89,7 +92,8 @@ class RowExpandMultipleSelectEditor extends React.Component {
   };
 
   onFocus = () => {
-    this.props.updateTabIndex(this.props.columnIndex);
+    const { updateTabIndex, columnIndex } = this.props;
+    updateTabIndex && updateTabIndex(columnIndex);
   };
 
   onChange = (option) => {
@@ -148,7 +152,7 @@ class RowExpandMultipleSelectEditor extends React.Component {
   };
 
   renderOptions = () => {
-    const { isEditorFocus } = this.props;
+    const { isEditorFocus, classNamePrefix, placeholder } = this.props;
     const options = this.getMultipleSelectList();
 
     return (
@@ -157,15 +161,16 @@ class RowExpandMultipleSelectEditor extends React.Component {
         onFocus={this.onFocus}
         onClick={this.onToggleSelect}
         ref={ref => this.multipleSelectOptionsRef = ref}
-        className={classnames('dtable-ui dtable-ui-row-expand-select-editor custom-select', { 'focus': isEditorFocus })}
+        className={classnames('dtable-ui dtable-ui-row-expand-select-editor custom-select', { 'focus': isEditorFocus, [`${classNamePrefix}-select-editor`]: classNamePrefix })}
       >
-        <div className="dtable-ui-row-expand-select-editor-inner">
-          <div>
+        <div className={classnames('dtable-ui-row-expand-select-editor-inner', { [`${classNamePrefix}-select-editor-inner`]: classNamePrefix })}>
+          <div className={classnames('', { [`${classNamePrefix}-select-editor-inner-container`]: classNamePrefix })}>
             {options.length > 0 &&
-              <div className="dtable-ui-row-expand-select-options">
+              <div className={classnames('dtable-ui-row-expand-select-options', { [`${classNamePrefix}-select-editor-options`]: classNamePrefix })}>
                 {options}
               </div>
             }
+            {options.length === 0 && placeholder && (<>{placeholder}</>)}
           </div>
           <i aria-hidden="true" className="dtable-font dtable-icon-down3"></i>
         </div>
@@ -174,7 +179,7 @@ class RowExpandMultipleSelectEditor extends React.Component {
   };
 
   render() {
-    const { column, isSupportNewOption, onAddNewOption } = this.props;
+    const { column, isSupportNewOption, onAddNewOption, classNamePrefix } = this.props;
     const { showSelectPopover, value } = this.state;
     return (
       <div className="position-relative w-100" ref={ref => this.ref = ref}>
@@ -188,6 +193,7 @@ class RowExpandMultipleSelectEditor extends React.Component {
             value={value}
             valueKey={this.key}
             target={this.targetRef}
+            classNamePrefix={classNamePrefix}
             onCommit={this.onChange}
             isSupportNewOption={isSupportNewOption}
             onAddNewOption={onAddNewOption}
@@ -199,5 +205,20 @@ class RowExpandMultipleSelectEditor extends React.Component {
   }
 
 }
+
+RowExpandMultipleSelectEditor.propTypes = {
+  column: PropTypes.object,
+  value: PropTypes.array,
+  valueKey: PropTypes.string,
+  isSupportNewOption: PropTypes.bool,
+  onAddNewOption: PropTypes.func,
+  isEditorFocus: PropTypes.bool,
+  classNamePrefix: PropTypes.string,
+  placeholder: PropTypes.any,
+  columnIndex: PropTypes.number,
+  updateTabIndex: PropTypes.func,
+  onEditorOpen: PropTypes.func,
+  onEditorClose: PropTypes.func,
+};
 
 export default RowExpandMultipleSelectEditor;
