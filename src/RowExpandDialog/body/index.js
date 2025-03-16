@@ -88,7 +88,7 @@ class Body extends React.Component {
   };
 
   onHotKey = (event) => {
-    const { columns, onKeyDown } = this.props;
+    const { columns, onKeyDown, onToggle } = this.props;
     const readonly = Array.isArray(columns) && columns.length > 0 ? !columns.some(c => c.editable) : true;
     const keyCode = event.keyCode;
     // When opening field editor, all shortcuts in row expand dialog do not work
@@ -97,7 +97,7 @@ class Body extends React.Component {
     }
 
     if (keyCode === KeyCodes.Esc) {
-      this.props.onRowExpandCancel();
+      onToggle && onToggle();
       return;
     }
 
@@ -252,6 +252,7 @@ Body.propTypes = {
   row: PropTypes.object,
   placeholder: PropTypes.any,
   onChange: PropTypes.func,
+  onToggle: PropTypes.func,
 };
 
 export default Body;
