@@ -157,7 +157,7 @@ class DTableFiltersPopover extends Component {
         className="dtable-filter-popover"
         boundariesElement={document.body}
       >
-        {({ scheduleUpdate }) => (
+        {({ update: scheduleUpdate }) => (
           <div ref={ref => this.dtablePopoverRef = ref} onClick={this.onPopoverInsideClick} className={className}>
             <FiltersList
               filterConjunction={filterConjunction}
