@@ -24,7 +24,7 @@ function RowExpandDepartmentEditor(props) {
       document.removeEventListener('keydown', onKeyDown);
     };
     // eslint-disable-next-line
-  }, [isEditorFocus]);
+  }, [isEditorFocus, showEditor]);
 
   useEffect(() => {
     setValue(row[column[valueKey]] || '');
@@ -40,7 +40,7 @@ function RowExpandDepartmentEditor(props) {
   function onKeyDown(e) {
     if (e.keyCode === KeyCodes.Enter && props.isEditorFocus && !showEditor) {
       setShowEditor(true);
-    } else if (e.keyCode === KeyCodes.Escape) {
+    } else if (e.keyCode === KeyCodes.Escape && showEditor) {
       e.stopPropagation();
       setShowEditor(false);
       departmentSelectContent.current.focus();
