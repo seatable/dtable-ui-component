@@ -5,6 +5,12 @@ import { getEventClassName } from '../utils/utils';
 
 class DTablePopover extends React.Component {
 
+  static defaultProps = {
+    placement: 'bottom-start',
+    hideArrow: true,
+    canHideDTablePopover: true
+  };
+
   dtablePopoverRef = null;
 
   componentDidMount() {
@@ -68,12 +74,6 @@ class DTablePopover extends React.Component {
     );
   }
 }
-
-DTablePopover.defaultProps = {
-  placement: 'bottom-start',
-  hideArrow: true,
-  canHideDTablePopover: true
-};
 
 DTablePopover.propTypes = {
   target: PropTypes.string.isRequired,

@@ -5,8 +5,7 @@ import { generatorBase64Code } from 'dtable-utils';
 
 import './index.css';
 
-function DTableSwitch(props) {
-  const { onChange, checked, placeholder, disabled, size, switchPosition, switchClassName } = props;
+function DTableSwitch({ onChange, checked = false, placeholder, disabled, size = 'sm', switchPosition = 'right', switchClassName }) {
   const switchNode = <span className="custom-switch-indicator"></span>;
   const textNode = <span className="custom-switch-description text-truncate">{placeholder}</span>;
   return (
@@ -34,12 +33,6 @@ function DTableSwitch(props) {
     </div>
   );
 }
-
-DTableSwitch.defaultProps = {
-  checked: false,
-  size: 'sm',
-  switchPosition: 'right',
-};
 
 DTableSwitch.propTypes = {
   checked: PropTypes.bool,

@@ -34,8 +34,7 @@ const RGB_COLORS_MAP = {
 
 const LOCAL_STORAGE_KEY = 'dtable-color-picker';
 
-const DTableColorPicker = forwardRef((props, ref) => {
-  const { onToggle, popoverStyle, color, defaultColors, useProtal, target, scrollContainerId, throttleDelay = 20 } = props;
+const DTableColorPicker = forwardRef(({ onToggle, popoverStyle, color = '#ffffff', defaultColors, useProtal, target, scrollContainerId, throttleDelay = 20, onSubmit }, ref) => {
   const initialRgbaColor = hexToRgba(color);
   const [value, setValue] = useState(initialRgbaColor);
   const [hexVal, setHexVal] = useState(getInitialHexVal(color));
@@ -170,7 +169,7 @@ const DTableColorPicker = forwardRef((props, ref) => {
   const updateValue = (newValue) => {
     setValue(newValue);
     const submitHex = rgbaToHex(newValue);
-    props.onSubmit(submitHex);
+    onSubmit(submitHex);
   };
 
   const onAlphaInputBlur = () => {
@@ -388,10 +387,6 @@ DTableColorPicker.propTypes = {
   target: PropTypes.object,
   scrollContainerId: PropTypes.string,
   throttleDelay: PropTypes.number,
-};
-
-DTableColorPicker.defaultProps = {
-  color: '#ffffff',
 };
 
 export default DTableColorPicker;

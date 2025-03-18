@@ -6,8 +6,7 @@ import { getLocale } from '../../lang';
 
 import './index.css';
 
-function SelectedDepartments(props) {
-  const { value, removeDepartment, isShowRemoveIcon, departments } = props;
+function SelectedDepartments({ value, removeDepartment, isShowRemoveIcon = false, departments = [] }) {
 
   const idDepartmentMap = useMemo(() => {
     let idDepartmentMap = {};
@@ -64,11 +63,6 @@ function SelectedDepartments(props) {
 
   return dom;
 }
-
-SelectedDepartments.defaultProps = {
-  isShowRemoveIcon: false,
-  departments: [],
-};
 
 SelectedDepartments.propTypes = {
   isShowRemoveIcon: PropTypes.bool,

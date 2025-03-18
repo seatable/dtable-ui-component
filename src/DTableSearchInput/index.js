@@ -15,6 +15,12 @@ class DtableSearchInput extends Component {
     this.inputRef = null;
   }
 
+  static defaultProps = {
+    wait: 100,
+    disabled: false,
+    value: '',
+  };
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
       this.setState({ searchValue: nextProps.value });
@@ -119,12 +125,6 @@ DtableSearchInput.propTypes = {
   clearClassName: PropTypes.string,
   components: PropTypes.object,
   value: PropTypes.string,
-};
-
-DtableSearchInput.defaultProps = {
-  wait: 100,
-  disabled: false,
-  value: '',
 };
 
 export default DtableSearchInput;
