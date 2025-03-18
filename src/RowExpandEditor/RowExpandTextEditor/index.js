@@ -81,8 +81,17 @@ class RowExpandSimpleText extends React.Component {
 
   onKeyDown = (event) => {
     if (event.keyCode === KeyCodes.Esc) {
-      event.preventDefault();
+      event.stopPropagation();
       this.blurInput();
+      return;
+    }
+    const { selectionStart, selectionEnd, value } = event.currentTarget;
+    if (
+      (event.keyCode === KeyCodes.ChineseInputMethod) ||
+      (event.keyCode === KeyCodes.LeftArrow && selectionStart === 0) ||
+      (event.keyCode === KeyCodes.RightArrow && selectionEnd === value.length)
+    ) {
+      event.stopPropagation();
     }
   };
 

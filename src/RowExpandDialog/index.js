@@ -195,6 +195,7 @@ const RowExpandDialog = forwardRef(({
                 valueKey={valueKey}
                 onChange={onChange}
                 uploadFile={uploadFile}
+                onToggle={onToggle}
               >
                 {children[1]}
               </Body>

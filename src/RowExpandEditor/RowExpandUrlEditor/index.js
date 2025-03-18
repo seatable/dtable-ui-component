@@ -72,19 +72,19 @@ class RowExpandUrlEditor extends React.Component {
     e.stopPropagation();
   };
 
-  onKeyDown = (e) => {
-    if (e.keyCode === KeyCodes.Esc) {
-      e.stopPropagation();
+  onKeyDown = (event) => {
+    if (event.keyCode === KeyCodes.Esc) {
+      event.preventDefault();
       this.blurInput();
       return;
     }
-    let { selectionStart, selectionEnd, value } = e.currentTarget;
+    const { selectionStart, selectionEnd, value } = event.currentTarget;
     if (
-      (e.keyCode === KeyCodes.ChineseInputMethod) ||
-      (e.keyCode === KeyCodes.LeftArrow && selectionStart === 0) ||
-      (e.keyCode === KeyCodes.RightArrow && selectionEnd === value.length)
+      (event.keyCode === KeyCodes.ChineseInputMethod) ||
+      (event.keyCode === KeyCodes.LeftArrow && selectionStart === 0) ||
+      (event.keyCode === KeyCodes.RightArrow && selectionEnd === value.length)
     ) {
-      e.stopPropagation();
+      event.stopPropagation();
     }
   };
 
