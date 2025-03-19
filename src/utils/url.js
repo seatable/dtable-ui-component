@@ -34,6 +34,11 @@ export const checkImgExists = (url) => {
   });
 };
 
+export const getFileSuffix = (filename) => {
+  if (!filename || typeof filename !== 'string') return '';
+  return filename.substring(filename.lastIndexOf('.') + 1).toLowerCase();
+};
+
 export const checkSVGImage = (url) => {
   if (!url || typeof url !== 'string') return false;
   const isSVGImage = url.substring(url.lastIndexOf('.')).toLowerCase() === '.svg';
