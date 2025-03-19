@@ -7,7 +7,7 @@ import TextFormatter from '../../TextFormatter';
 import {
   isArrayFormatColumn, isSimpleCellFormatter, convertValueToDtableLongTextValue,
 } from '../../FormulaFormatter/utils';
-import { isValidUrl, openUrlLink, isFunction  } from '../../utils/utils';
+import { isValidUrl, openUrlLink, isFunction } from '../../utils/utils';
 import cellValueValidator from '../../FormulaFormatter/cell-value-validator';
 import toaster from '../../toaster';
 import { getLocale } from '../../lang';
