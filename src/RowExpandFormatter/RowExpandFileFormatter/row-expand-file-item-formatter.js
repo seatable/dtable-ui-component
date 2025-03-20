@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tooltip } from 'reactstrap';
 import { getLocale } from '../../lang';
 import { getFileThumbnailInfo } from '../../utils/url';
-import DeleteTip from '../../DeleteTip'
+import DeleteTip from '../../DeleteTip';
 
 export default class RowExpandFileItemFormatter extends Component {
 
