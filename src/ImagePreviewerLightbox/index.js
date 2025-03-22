@@ -39,8 +39,11 @@ function ImagePreviewerLightbox(props) {
     console.log(error);
   }
 
+  // TODO: GIF HEIC image can not rotate
   // svg image is vectorgraph and can't rotate, external image can't rotate
   const canRotateImage = onRotateImage && !readOnly && !checkSVGImage(URL) && isInternalImg(URL, server);
+
+  // getFileSuffix
 
   let mainSrc = URL;
   if (needUseThumbnailImage(URL)) {
