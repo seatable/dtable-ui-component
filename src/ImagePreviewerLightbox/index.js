@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Lightbox from '@seafile/react-image-lightbox';
-import { checkSVGImage, generateCurrentBaseImageUrl, getImageThumbnailUrl, isCustomAssetUrl, isDigitalSignsUrl, isInternalImg, needUseThumbnailImage } from '../utils/url';
+import { getFileSuffix, generateCurrentBaseImageUrl, getImageThumbnailUrl, isCustomAssetUrl, isDigitalSignsUrl, isInternalImg, needUseThumbnailImage } from '../utils/url';
 import { getLocale } from '../lang';
 
 import '@seafile/react-image-lightbox/style.css';
@@ -39,8 +39,7 @@ function ImagePreviewerLightbox(props) {
     console.log(error);
   }
 
-  // svg image is vectorgraph and can't rotate, external image can't rotate
-  const canRotateImage = onRotateImage && !readOnly && !checkSVGImage(URL) && isInternalImg(URL, server);
+  const canRotateImage = onRotateImage && !readOnly && ['gif', 'heic', 'heif'].includes(getFileSuffix(URL)) && isInternalImg(URL, server);
 
   let mainSrc = URL;
   if (needUseThumbnailImage(URL)) {
