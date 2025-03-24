@@ -25,4 +25,5 @@
 
 .dtable-ui-row-expand-dialog .form-control {
   color: #212529;
+  min-height: 38px;
 }
