@@ -83,7 +83,7 @@ class DTableRadioGroup extends React.Component {
               </div>
             );
           })}
-          <span className='radio-group-slider btn-primary' ref={ref => this.slider = ref}></span>
+          <span className='radio-group-slider btn btn-primary' ref={ref => this.slider = ref}></span>
         </div>
       </div>
     );
