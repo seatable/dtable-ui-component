@@ -49,18 +49,21 @@ const ImagesLazyLoad = ({ images, server, onImageClick, renderItem, dtableUuid }
 
   useEffect(() => {
     lazyLoadImages();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (images.toString() !== currentImages.toString()) {
       setCurrentImages(images);
     }
+    // eslint-disable-next-line
   }, [images]);
 
   useEffect(() => {
     if (currentImages !== images) {
       lazyLoadImages();
     }
+    // eslint-disable-next-line
   }, [currentImages]);
 
   const handleMouseDown = (event) => {
@@ -105,7 +108,7 @@ const ImagesLazyLoad = ({ images, server, onImageClick, renderItem, dtableUuid }
           alt=""
         />
       );
-      
+
       if (renderItem) return (<Fragment key={index}>{renderItem(imgDom)}</Fragment>);
       return (<Fragment key={index}>{imgDom}</Fragment>);
     })
