@@ -26,6 +26,7 @@ class App extends React.Component {
             <RowExpandFormatter
               row={rows[rowIndex]}
               column={column}
+              valueKey={'key'}
               collaborators={COLLABORATORS}
               departments={DEPARTMENTS}
               config={SIGN_CONFIG}
