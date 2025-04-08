@@ -8,3 +8,7 @@
   border-bottom-right-radius: 2px;
   border-bottom-left-radius: 2px;
 }
+
+.dtable-custom-footer>* {
+  margin: 0.25rem;
+}
