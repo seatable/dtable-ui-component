@@ -81,12 +81,12 @@ export const generateCurrentBaseImageUrl = ({ server, workspaceID, dtableUuid, p
 export const getImageThumbnailUrl = (url, { server, dtableUuid, workspaceID, size = 256 } = {}) => {
   if (!url || typeof url !== 'string') return '';
 
-  if (isAIUrl(url) || checkSVGImage(url) || !isInternalImg(url) || isBase64(url)) return url;
-
   if (server && dtableUuid && isCustomAssetUrl(url)) {
     const assetUuid = url.slice(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
     return server + '/dtable/' + dtableUuid + '/custom-asset-thumbnail/' + assetUuid + '?size=' + size;
   }
+
+  if (isAIUrl(url) || checkSVGImage(url) || !isInternalImg(url) || isBase64(url)) return url;
 
   if (server && workspaceID && dtableUuid && isDigitalSignsUrl(url)) {
     return generateCurrentBaseImageThumbnailUrl({
