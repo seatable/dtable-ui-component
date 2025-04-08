@@ -76,6 +76,7 @@ export { default as DTableColorPicker } from './DTableColorPicker';
 export { default as ModalPortal } from './ModalPortal';
 export { default as RoleStatusEditor } from './RoleStatusEditor';
 export { default as DTableModalHeader } from './DTableModalHeader';
+export { default as DTableCustomFooter } from './DTableCustomFooter';
 
 // filter widgets
 export { default as DepartmentSelectFilter } from './DepartmentSelectFilter';

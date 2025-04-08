@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ModalFooter as Footer, Button, Alert } from 'reactstrap';
+import { Button, Alert } from 'reactstrap';
+import DTableCustomFooter from '../DTableCustomFooter';
 import GeolocationSelectorList from './selector-list';
 import SelectorHeaderItem from './selector-header-item';
 import { KeyCodes } from '../constants';
@@ -219,19 +220,6 @@ class LocationEditor extends Component {
     this.props.onSubmit();
   };
 
-  createFooter = () => {
-    return (
-      <Footer className='dtable-ui-geolocation-editor-footer'>
-        <Button onClick={this.props.onCancel} color='secondary'>
-          {getLocale('Cancel')}
-        </Button>
-        <Button onClick={this.onSubmit} color='primary'>
-          {getLocale('Submit')}
-        </Button>
-      </Footer>
-    );
-  };
-
   render() {
     const { selectedItem, selectedCity, selectedProvince, selectedCounty, isShowSelector, isLoadingData, location } = this.state;
     return (
@@ -344,13 +332,20 @@ class LocationEditor extends Component {
           :
           <>
             <Loading />
-            <div style={{ textAlign: 'center' }}>
+            <div className="align-items-center">
               {getLocale('Loading_geolocation_data')}
             </div>
           </>
         }
         {this.state.errMessage && <Alert color="danger" className="mt-2">{this.state.errMessage}</Alert>}
-        {this.createFooter()}
+        <DTableCustomFooter>
+          <Button onClick={this.props.onCancel} color='secondary'>
+            {getLocale('Cancel')}
+          </Button>
+          <Button onClick={this.onSubmit} color='primary'>
+            {getLocale('Submit')}
+          </Button>
+        </DTableCustomFooter>
       </>
     );
   }

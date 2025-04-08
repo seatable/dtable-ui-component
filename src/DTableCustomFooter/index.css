@@ -1,0 +1,10 @@
+.dtable-custom-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0.75rem;
+  border-top: 1px solid rgba(0, 40, 100, 0.12);
+  border-bottom-right-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
