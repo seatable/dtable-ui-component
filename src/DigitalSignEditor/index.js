@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ModalFooter, Button } from 'reactstrap';
+import { Button } from 'reactstrap';
+import DTableCustomFooter from '../DTableCustomFooter';
 import SignatureBoard from './signature-board';
 import DigitalService from './service';
 import DigitalSignUtils from './utils';
@@ -132,14 +133,14 @@ class DigitalSignEditor extends Component {
         <div className="dtable-ui-digital-sign-panel">
           <SignatureBoard ref={ref => this.signatureBoard = ref} signImageUrl={signImageUrl} />
         </div>
-        <ModalFooter className='dtable-ui-geolocation-editor-footer'>
+        <DTableCustomFooter>
           <Button onClick={this.props.onCommitCancel} color='secondary'>
             {getLocale('Cancel')}
           </Button>
           <Button onClick={this.saveSignature} color='primary' disabled={saving}>
             {getLocale(saving ? 'Saving' : 'Save')}
           </Button>
-        </ModalFooter>
+        </DTableCustomFooter>
       </div>
     );
   }
