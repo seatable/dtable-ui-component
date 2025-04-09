@@ -68,12 +68,12 @@ class RowExpandFormatter extends React.Component {
   };
 
   calculateCollaboratorData = (props) => {
-    const { row, column, queryCollaborators } = props;
+    const { row, column, valueKey, queryCollaborators } = props;
     if (column.type === CellType.CREATOR || column.type === CellType.LAST_MODIFIER) {
-      const email = row[column.name];
+      const email = row[column[valueKey]];
       queryCollaborators && queryCollaborators(email);
     } else if (column.type === CellType.COLLABORATOR) {
-      const emails = row[column.name];
+      const emails = row[column[valueKey]];
       if (Array.isArray(emails)) {
         queryCollaborators && queryCollaborators(emails);
       }
