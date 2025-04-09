@@ -19,6 +19,7 @@ const propTypes = {
   column: PropTypes.object.isRequired,
   onCommit: PropTypes.func.isRequired,
   onClose: PropTypes.func,
+  firstDayOfWeek: PropTypes.string,
 };
 
 class DateEditor extends React.Component {
@@ -75,7 +76,7 @@ class DateEditor extends React.Component {
       return null;
     }
 
-    let { lang, column, className, isInModal } = this.props;
+    let { lang, column, className, isInModal, firstDayOfWeek } = this.props;
     let { newValue, dateFormat, showHourAndMinute } = this.state;
 
     return (
@@ -90,6 +91,7 @@ class DateEditor extends React.Component {
             showHourAndMinute={showHourAndMinute}
             onValueChanged={this.onValueChanged}
             hideCalendar={this.props.hideCalendar}
+            firstDayOfWeek={firstDayOfWeek}
           />
         </MediaQuery>
         <MediaQuery query={'(max-width: 767.8px)'}>
@@ -103,6 +105,7 @@ class DateEditor extends React.Component {
             column={column}
             onValueChanged={this.onValueChanged}
             onClosePopover={this.props.hideCalendar}
+            firstDayOfWeek={firstDayOfWeek}
           />
         </MediaQuery>
       </>
