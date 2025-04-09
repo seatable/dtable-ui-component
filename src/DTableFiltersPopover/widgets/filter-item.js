@@ -40,6 +40,7 @@ const propTypes = {
   updateConjunction: PropTypes.func.isRequired,
   collaborators: PropTypes.array,
   errMsg: PropTypes.bool,
+  firstDayOfWeek: PropTypes.string,
 };
 
 const EMPTY_PREDICATE = [FILTER_PREDICATE_TYPE.EMPTY, FILTER_PREDICATE_TYPE.NOT_EMPTY];
@@ -334,7 +335,7 @@ class FilterItem extends React.Component {
   };
 
   renderFilterTerm = (filterColumn) => {
-    const { index, filter, collaborators, userDepartmentIdsMap, departments, lang } = this.props;
+    const { index, filter, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek } = this.props;
     const { type } = filterColumn;
     const { filter_term, filter_predicate, filter_term_modifier } = filter;
     // predicate is empty or not empty
@@ -363,6 +364,7 @@ class FilterItem extends React.Component {
               value={this.state.filterTerm}
               filterColumn={filterColumn}
               onChange={this.onFilterTermTextChanged}
+              firstDayOfWeek={firstDayOfWeek}
             />
           );
         }

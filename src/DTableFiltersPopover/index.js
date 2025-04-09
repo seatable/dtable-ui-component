@@ -144,7 +144,7 @@ class DTableFiltersPopover extends Component {
   };
 
   render() {
-    const { target, columns, className, userDepartmentIdsMap, departments, lang, readOnly } = this.props;
+    const { target, columns, className, userDepartmentIdsMap, departments, lang, readOnly, firstDayOfWeek } = this.props;
     const { filters, filterConjunction } = this.state;
     const canAddFilter = columns.length > 0;
     return (
@@ -173,6 +173,7 @@ class DTableFiltersPopover extends Component {
               updateFilter={this.updateFilter}
               deleteFilter={this.deleteFilter}
               updateFilterConjunction={this.updateFilterConjunction}
+              firstDayOfWeek={firstDayOfWeek}
             />
             <CommonAddTool
               className={`popover-add-tool ${canAddFilter ? '' : 'disabled'}`}
@@ -207,6 +208,7 @@ DTableFiltersPopover.propTypes = {
   collaborators: PropTypes.array,
   hidePopover: PropTypes.func,
   update: PropTypes.func,
+  firstDayOfWeek: PropTypes.string,
 };
 
 export default DTableFiltersPopover;

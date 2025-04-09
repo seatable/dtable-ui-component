@@ -22,6 +22,7 @@ const propTypes = {
   column: PropTypes.object.isRequired,
   onValueChanged: PropTypes.func.isRequired,
   onClosePopover: PropTypes.func,
+  firstDayOfWeek: PropTypes.string,
 };
 
 class DateEditorPopover extends React.PureComponent {
@@ -108,7 +109,7 @@ class DateEditorPopover extends React.PureComponent {
   };
 
   getCalender = () => {
-    let { dateFormat, lang, className } = this.props;
+    let { dateFormat, lang, className, firstDayOfWeek } = this.props;
     let defaultValue = dayjs().clone();
     return (
       <Calendar
@@ -122,6 +123,7 @@ class DateEditorPopover extends React.PureComponent {
         showToday={false}
         showTime={false}
         style={{ width: '100%', fontSize: '14px' }}
+        firstDayOfWeek={firstDayOfWeek}
       />
     );
   };

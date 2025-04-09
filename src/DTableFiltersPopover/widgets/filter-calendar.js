@@ -18,6 +18,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   filterColumn: PropTypes.object.isRequired,
   isReadOnly: PropTypes.bool,
+  firstDayOfWeek: PropTypes.string,
 };
 
 class FilterCalendar extends Component {
@@ -115,7 +116,7 @@ class FilterCalendar extends Component {
   };
 
   render() {
-    const { isReadOnly } = this.props;
+    const { isReadOnly, firstDayOfWeek } = this.props;
     const state = this.state;
     if (isReadOnly) return (
       <input
@@ -145,6 +146,7 @@ class FilterCalendar extends Component {
         focusablePanel={false}
         onClear={this.onClear}
         clearIcon={clearIcon}
+        firstDayOfWeek={firstDayOfWeek}
       />
     );
     return (

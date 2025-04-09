@@ -20,6 +20,7 @@ const propTypes = {
   className: PropTypes.string,
   showHourAndMinute: PropTypes.bool.isRequired,
   onValueChanged: PropTypes.func.isRequired,
+  firstDayOfWeek: PropTypes.string,
 };
 
 class PCDateEditorPopover extends React.Component {
@@ -192,7 +193,7 @@ class PCDateEditorPopover extends React.Component {
   };
 
   getCalender = () => {
-    let { dateFormat, showHourAndMinute, lang, className } = this.props;
+    let { dateFormat, showHourAndMinute, lang, className, firstDayOfWeek } = this.props;
     let defaultValue = dayjs().clone();
     const defaultTime = this.getDefaultTime();
     return (
@@ -208,6 +209,7 @@ class PCDateEditorPopover extends React.Component {
         showDateInput={true}
         focusablePanel={false}
         onClear={this.onClear}
+        firstDayOfWeek={firstDayOfWeek}
       />
     );
   };

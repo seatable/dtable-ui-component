@@ -29,6 +29,7 @@ const propTypes = {
   value: PropTypes.object,
   collaborators: PropTypes.array,
   scheduleUpdate: PropTypes.func,
+  firstDayOfWeek: PropTypes.string,
 };
 
 class FiltersList extends Component {
@@ -91,7 +92,7 @@ class FiltersList extends Component {
   };
 
   renderFilterItem = (filter, index, errMsg, filterColumn) => {
-    const { filterConjunction, value, isLocked, collaborators, userDepartmentIdsMap, departments, lang } = this.props;
+    const { filterConjunction, value, isLocked, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek } = this.props;
     const conjunctionOptions = this.getConjunctionOptions();
     const columnOptions = this.getColumnOptions();
     return (
@@ -113,6 +114,7 @@ class FiltersList extends Component {
         deleteFilter={this.deleteFilter}
         updateFilter={this.updateFilter}
         updateConjunction={this.updateConjunction}
+        firstDayOfWeek={firstDayOfWeek}
       />
     );
   };
