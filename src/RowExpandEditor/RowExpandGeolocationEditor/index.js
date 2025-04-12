@@ -124,9 +124,7 @@ class RowExpandGeolocationEditor extends React.Component {
 
   getLocationInfo = (value) => {
     const { column } = this.props;
-    const { dtableBaiduMapKey, dtableMineMapKey } = window.dtable;
-    const isBaiduMap = !!(dtableBaiduMapKey || dtableMineMapKey);
-    return getGeolocationDisplayString(value, column.data, { isBaiduMap, hyphen: ' ' });
+    return getGeolocationDisplayString(value, column.data, { hyphen: ' ' });
   };
 
   render() {
