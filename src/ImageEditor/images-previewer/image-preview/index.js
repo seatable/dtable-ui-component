@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Tooltip } from 'reactstrap';
 import DeleteTip from '../../../DeleteTip';
 import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../../../utils/url';
-import { FILE_EDITOR_STATUS } from '../../../constants';
+import { FILE_EDITOR_STATUS, isMobile } from '../../../constants';
 import { getLocale } from '../../../lang';
 
 import './index.css';
@@ -100,10 +100,11 @@ class ImagePreviewer extends React.Component {
 
   render() {
     const { enterImageItemIndex, itemIndex, imageItemUrl } = this.props;
+
     return (
       <Fragment>
         <div
-          style={window.isMobile ? { width: this.containerSize, height: this.containerSize } : {}}
+          style={isMobile ? { width: this.containerSize, height: this.containerSize } : {}}
           onClick={this.showLargeImage}
           className="dtable-ui-image-previewer-box"
           onMouseEnter={this.showImageToolbar}
@@ -115,7 +116,7 @@ class ImagePreviewer extends React.Component {
             this.renderImageIcons()
           }
         </div>
-        {enterImageItemIndex === itemIndex &&
+        {!isMobile && enterImageItemIndex === itemIndex &&
           <Tooltip
             placement='bottom'
             isOpen={this.state.isTooltipOpen}

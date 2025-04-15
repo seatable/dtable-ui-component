@@ -1,33 +1,32 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import PCCollaboratorEditor from './pc-collaborator-editor';
-import MBCollaboratorEditor from './mb-collaborator-editor';
+import Large from './lg';
+import Small from './sm';
 
 import './index.css';
 
-const CollaboratorEditor = ({ value: oldValue, ...props }) => {
+const CollaboratorEditor = forwardRef(({ value: oldValue, size, ...props }, ref) => {
   const value = Array.isArray(oldValue) ? oldValue : [];
+
+  if (size === 'lg') return (<Large { ...props } value={value} />);
+  if (size === 'sm') return (<Small { ...props } value={value} />);
 
   return (
     <>
       <MediaQuery query={'(min-width: 768px)'}>
-        <PCCollaboratorEditor { ...props} value={value} />
+        <Large { ...props} value={value} ref={ref} />
       </MediaQuery>
       <MediaQuery query={'(max-width: 767.8px)'}>
-        <MBCollaboratorEditor { ...props} value={value} />
+        <Small { ...props} value={value} ref={ref} />
       </MediaQuery>
     </>
   );
-};
+});
 
 CollaboratorEditor.propTypes = {
-  isReadOnly: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  column: PropTypes.object,
-  collaborators: PropTypes.array.isRequired,
-  onCommit: PropTypes.func,
-  isShowEditButton: PropTypes.bool,
+  size: PropTypes.oneOf(['lg', 'sm']),
 };
 
 export default CollaboratorEditor;

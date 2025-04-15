@@ -163,5 +163,7 @@
   "Mark_as_resolved": "Пометить как разрешенный",
   "No_comment_yet": "Пока без комментариев",
   "Add_comment": "Добавить комментарий",
-  "Add_participants": "Добавить участников"
+  "Add_participants": "Добавить участников",
+  "Edit_long_text": "Редактировать длинный текст",
+  "Choose_a_department": "Выберите отдел"
 }
