@@ -1,31 +1,19 @@
-import React, { forwardRef } from 'react';
-import PropTypes from 'prop-types';
-import { ROW_EXPAND_BTN_FOCUS_STYLE } from '../../constants';
+import React from 'react';
+import MediaQuery from 'react-responsive';
+import Large from './lg';
+import Small from './sm';
 
-import './index.css';
-
-const RowExpandAddBtn = forwardRef((props, ref) => {
+const RowExpandAddBtn = (props) => {
   return (
-    <div
-      ref={ref}
-      tabIndex={0}
-      onClick={props.onClick}
-      onFocus={props.onFocus}
-      role="button"
-      className="dtable-ui-row-expand-add-btn d-print-none"
-      style={props.isFocus ? ROW_EXPAND_BTN_FOCUS_STYLE : {}}
-    >
-      <span className="d-print-none">{props.text}</span>
-    </div>
+    <>
+      <MediaQuery query="(min-width: 768px)">
+        <Large { ...props } />
+      </MediaQuery>
+      <MediaQuery query="(max-width: 768px)">
+        <Small { ...props } />
+      </MediaQuery>
+    </>
   );
-});
-
-RowExpandAddBtn.propTypes = {
-  isFocus: PropTypes.bool,
-  text: PropTypes.string,
-  onFocus: PropTypes.func,
-  onClick: PropTypes.func,
-  t: PropTypes.func,
 };
 
 export default RowExpandAddBtn;

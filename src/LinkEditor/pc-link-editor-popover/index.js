@@ -60,7 +60,7 @@ class PCLinkEditorPopover extends React.Component {
         <div className="link-options-search">
           <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Search_option')}></input>
         </div>
-        <div className="link-options-container">
+        <div className="link-mobile-dtable-ui-selector-editor-options-container">
           {options.length > 0 && options.map((option, index) => {
             let isSelect = selectedOptions.some(selectedOption => {
               return selectedOption.id === option.id;

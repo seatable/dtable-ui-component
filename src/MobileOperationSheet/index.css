@@ -1,0 +1,27 @@
+.mobile-dtable-ui-action-sheet .am-action-sheet-button-list {
+  text-align: left;
+  color: #212529;
+}
+
+.mobile-dtable-ui-action-sheet .am-action-sheet-button-list .am-action-sheet-button-list-item {
+  padding: 0;
+  height: 44px;
+  line-height: 44px;
+  font-size: 16px;
+  overflow-y: hidden;
+}
+
+html:not([data-scale]) .mobile-dtable-ui-action-sheet .am-action-sheet-button-list .am-action-sheet-button-list-item::before {
+  background-color: #fff;
+}
+
+.mobile-dtable-ui-action-sheet .my-am-action {
+  padding: 0 16px;
+  align-items: center;
+}
+
+.mobile-dtable-ui-action-sheet .am-action-sheet-button-list .am-action-sheet-button-list-item .dtable-font {
+  color: #888;
+  font-size: 20px;
+  margin-right: 16px;
+}

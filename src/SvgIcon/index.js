@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { isMobile } from '../constants';
 
 import './index.css';
 
@@ -8,7 +9,7 @@ const needScaleIcons = ['check', 'dot', 'cross'];
 const SvgIcon = (props) => {
   const { className, symbol, color } = props;
   let iconClass = `dtable-ui-multicolor-icon multicolor-icon-${symbol} ${className || ''}`;
-  if (needScaleIcons.includes(symbol) && window.isMobile) {
+  if (needScaleIcons.includes(symbol) && isMobile) {
     iconClass += ' scale-icon';
   }
   return (

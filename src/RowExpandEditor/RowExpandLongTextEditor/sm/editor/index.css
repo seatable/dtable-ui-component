@@ -1,0 +1,10 @@
+.mobile-dtable-ui-long-text-editor .mobile-dtable-ui-long-text-editor-container {
+  margin-top: 20px;
+  border-top: 1px solid #e9e9e9;
+}
+
+.mobile-dtable-ui-long-text-editor .mobile-dtable-ui-long-text-editor-container .am-textarea-item {
+  padding: 0 1rem;
+  border-bottom: 1px solid #e9e9e9;
+  height: unset;
+}

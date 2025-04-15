@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import SelectedDepartments from '../../../Department-editor/selected-departments';
-import DepartmentMultipleSelect from '../../../Department-editor/department-multiple-select';
-import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../Department-editor/constants';
+import SelectedDepartments from '../../../DepartmentEditor/selected-departments';
+import DepartmentMultipleSelect from '../../../DepartmentEditor/department-multiple-select';
+import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../DepartmentEditor/constants';
 import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
 
