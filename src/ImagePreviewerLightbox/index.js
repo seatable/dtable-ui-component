@@ -39,7 +39,7 @@ function ImagePreviewerLightbox(props) {
     console.log(error);
   }
 
-  const canRotateImage = onRotateImage && !readOnly && ['gif', 'heic', 'heif'].includes(getFileSuffix(URL)) && isInternalImg(URL, server);
+  const canRotateImage = onRotateImage && !readOnly && !['gif', 'heic', 'heif'].includes(getFileSuffix(URL)) && isInternalImg(URL, server);
 
   let mainSrc = URL;
   if (needUseThumbnailImage(URL)) {
