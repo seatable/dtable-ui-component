@@ -16,7 +16,7 @@ function DTableRadio({
 
   return (
     <label
-      className={classnames('dtable-radio w-100 align-items-center', {
+      className={classnames('dtable-radio w-100 align-items-center position-relative', {
         'dtable-radio-disable': disabled,
         [className]: className
       })}
