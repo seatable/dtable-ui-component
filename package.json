@@ -6,7 +6,6 @@
     "@seafile/react-image-lightbox": "4.0.2",
     "@seafile/seafile-calendar": "0.0.24",
     "@seafile/seafile-editor": "~2.0.6",
-    "antd-mobile": "2.3.1",
     "classnames": "2.3.2",
     "dayjs": "1.10.7",
     "dtable-utils": "~5.0.19",
@@ -16,7 +15,8 @@
     "react-select": "5.10.0",
     "react-sweet-progress": "^1.1.2",
     "react-transition-group": "4.4.5",
-    "reactstrap": "9.2.3"
+    "reactstrap": "9.2.3",
+    "rmc-date-picker": "6.0.10"
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./src/ --fix",
