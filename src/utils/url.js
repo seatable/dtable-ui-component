@@ -107,7 +107,7 @@ export const getFileName = (url) => {
     validUrl = validUrl.slice(0, qIndex);
   }
   const lastIndex = validUrl.lastIndexOf('/');
-  const name = url.slice(lastIndex + 1, qIndex);
+  const name = validUrl.slice(lastIndex + 1);
   return decodeURI(name);
 };
 
