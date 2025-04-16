@@ -6,6 +6,7 @@ import Header from './header';
 import Body from './body';
 
 import './index.css';
+import { isFunction } from '../utils/utils';
 
 const SmallFullScreenPage = ({
   classNamePrefix,
@@ -15,6 +16,7 @@ const SmallFullScreenPage = ({
   children,
   onLeftClick,
   onRightClick,
+  historyCallback,
 }) => {
   const [isMount, setMount] = useState(false);
   const element = useMemo(() => {
@@ -24,6 +26,15 @@ const SmallFullScreenPage = ({
     _element.style.zIndex = zIndex;
     return _element;
   }, [zIndex]);
+
+  useEffect(() => {
+    history.pushState(null, null, '#');
+    if (!historyCallback || !isFunction(historyCallback)) return;
+    window.addEventListener('popstate', historyCallback, false);
+    return () => {
+      window.removeEventListener('popstate', historyCallback, false);
+    };
+  }, [historyCallback]);
 
   useEffect(() => {
     document.body.appendChild(element);
@@ -56,7 +67,8 @@ SmallFullScreenPage.propTypes = {
   style: PropTypes.object,
   children: PropTypes.any,
   onLeftClick: PropTypes.func,
-  onRightClick: PropTypes.func
+  onRightClick: PropTypes.func,
+  historyCallback: PropTypes.func,
 };
 
 export default SmallFullScreenPage;
