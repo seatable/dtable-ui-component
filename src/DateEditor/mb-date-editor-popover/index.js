@@ -4,7 +4,7 @@ import classnames from 'classnames';
 import dayjs from 'dayjs';
 import Calendar from '@seafile/seafile-calendar';
 import * as SeaDatePicker from '@seafile/seafile-calendar/lib/Picker';
-import DatePicker from '../../date-picker';
+import DatePicker from '../../DatePicker';
 import { getLocale } from '../../lang';
 import { initDateEditorLanguage } from '../../utils/editor-utils';
 import MBEditorHeader from '../../MBEditorHeader';

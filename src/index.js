@@ -104,4 +104,4 @@ export { default as IconButton } from './IconButton';
 export { default as UploadProgress } from './UploadProgress';
 
 export { default as SvgIcon } from './SvgIcon';
-export { default as DatePicker } from './date-picker';
+export { default as DatePicker } from './DatePicker';
