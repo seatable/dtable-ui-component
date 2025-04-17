@@ -1,6 +1,6 @@
 import classnames from 'classnames';
 import * as React from 'react';
-import Item from './ListItem';
+import Item from './list-item';
 
 import './index.css';
 
