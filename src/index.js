@@ -106,3 +106,4 @@ export { default as UploadProgress } from './UploadProgress';
 export { default as SvgIcon } from './SvgIcon';
 export { default as DatePicker } from './DatePicker';
 export { default as List } from './List';
+export { default as TextareaItem } from './TextareaItem';
