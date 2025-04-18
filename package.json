@@ -16,8 +16,14 @@
     "react-sweet-progress": "^1.1.2",
     "react-transition-group": "4.4.5",
     "reactstrap": "9.2.3",
+    "rmc-cascader": "5.0.3",
     "rmc-date-picker": "6.0.10",
-    "rmc-feedback": "2.0.0"
+    "rmc-dialog": "1.1.1",
+    "rmc-drawer": "0.4.11",
+    "rmc-feedback": "2.0.0",
+    "rmc-picker": "5.0.10",
+    "rmc-tabs": "1.2.29",
+    "rmc-tooltip": "1.0.1"
   },
   "scripts": {
     "lint": "./node_modules/.bin/eslint ./src/ --fix",

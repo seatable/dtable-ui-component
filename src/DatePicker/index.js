@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import RCDatePicker from 'rmc-date-picker/lib/DatePicker';
 import PopupDatePicker from 'rmc-date-picker/lib/Popup';
-import { getComponentLocale } from './_util/getLocale';
+import { getComponentLocale } from '../_util/getLocale';
 import { formatFn } from './utils';
 import './style/index.css';
 

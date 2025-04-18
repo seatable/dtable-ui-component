@@ -104,6 +104,19 @@ export { default as IconButton } from './IconButton';
 export { default as UploadProgress } from './UploadProgress';
 
 export { default as SvgIcon } from './SvgIcon';
+
+// antd-mobile
+export { default as ActionSheet } from './ActionSheet';
+export { default as ActivityIndicator } from './ActivityIndicator';
 export { default as DatePicker } from './DatePicker';
+export { default as Drawer } from './Drawer';
+export { default as Icon } from './Icon';
+export { default as InputItem } from './InputItem';
 export { default as List } from './List';
+export { default as Modal } from './Modal';
+export { default as Picker } from './Picker';
+export { default as Popover } from './Popover';
+export { default as Progress } from './Progress';
+export { default as TabBar } from './TabBar';
 export { default as TextareaItem } from './TextareaItem';
+export { default as Toast } from './Toast';

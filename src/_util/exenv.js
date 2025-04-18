@@ -4,4 +4,5 @@ export const canUseDOM = !!(
   window.document.createElement
 );
 
-export const IS_IOS = canUseDOM && /iphone|ipad|ipod/i.test(window.navigator.userAgent);
+export const IS_IOS =
+  canUseDOM && /iphone|ipad|ipod/i.test(window.navigator.userAgent);

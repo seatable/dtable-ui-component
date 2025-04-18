@@ -1,23 +1,37 @@
-export function getComponentLocale(props, context, componentName, getDefaultLocale) {
+export function getComponentLocale(
+  props,
+  context,
+  componentName,
+  getDefaultLocale
+) {
   let locale = {};
   if (context && context.antLocale && context.antLocale[componentName]) {
     locale = context.antLocale[componentName];
-  }
-  else {
+  } else {
     const defaultLocale = getDefaultLocale();
     // TODO: make default lang of antd be English
     // https://github.com/ant-design/ant-design/issues/6334
     locale = defaultLocale.default || defaultLocale;
   }
-  let result = Object.assign({}, locale);
+
+  let result = {
+    ...locale
+  };
   if (props.locale) {
-    result = Object.assign(Object.assign({}, result), props.locale);
+    result = {
+      ...result,
+      ...props.locale
+    };
     if (props.locale.lang) {
-      result.lang = Object.assign(Object.assign({}, locale.lang), props.locale.lang);
+      result.lang = {
+        ...locale.lang,
+        ...props.locale.lang
+      };
     }
   }
   return result;
 }
+
 export function getLocaleCode(context) {
   const localeCode = context.antLocale && context.antLocale.locale;
   // Had use LocaleProvide but didn't set locale
