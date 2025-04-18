@@ -21,6 +21,7 @@
     "rmc-dialog": "1.1.1",
     "rmc-drawer": "0.4.11",
     "rmc-feedback": "2.0.0",
+    "rmc-notification": "1.0.0",
     "rmc-picker": "5.0.10",
     "rmc-tabs": "1.2.29",
     "rmc-tooltip": "1.0.1"
