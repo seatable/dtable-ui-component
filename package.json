@@ -10,6 +10,7 @@
     "dayjs": "1.10.7",
     "dtable-utils": "~5.0.19",
     "is-hotkey": "0.2.0",
+    "rc-checkbox": "3.5.0",
     "react-color": "2.19.3",
     "react-responsive": "10.0.0",
     "react-select": "5.10.0",

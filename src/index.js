@@ -117,6 +117,7 @@ export { default as Modal } from './Modal';
 export { default as Picker } from './Picker';
 export { default as Popover } from './Popover';
 export { default as Progress } from './Progress';
+export { default as Radio } from './Radio';
 export { default as TabBar } from './TabBar';
 export { default as TextareaItem } from './TextareaItem';
 export { default as Toast } from './Toast';
