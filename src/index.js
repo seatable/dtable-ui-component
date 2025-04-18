@@ -106,4 +106,3 @@ export { default as UploadProgress } from './UploadProgress';
 export { default as SvgIcon } from './SvgIcon';
 
 export { default as BodyPortal } from './BodyPortal';
-export { default as SmallFullScreenPage } from './SmallFullScreenPage';
