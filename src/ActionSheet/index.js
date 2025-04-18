@@ -5,7 +5,7 @@ import * as ReactDOM from 'react-dom';
 import Dialog from 'rmc-dialog';
 import TouchFeedback from 'rmc-feedback';
 import getDataAttr from '../_util/getDataAttr';
-import Badge from './badge';
+import Badge from '../Badge';
 
 import './style/index.css';
 

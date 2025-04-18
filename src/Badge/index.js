@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 
-import './style/badge.css';
+import './index.css';
 
 export default class Badge extends React.Component {
   static defaultProps = {
