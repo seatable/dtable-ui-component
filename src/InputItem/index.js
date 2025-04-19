@@ -7,6 +7,8 @@ import { getComponentLocale } from '../_util/getLocale';
 import CustomInput from './custom-input';
 import Input from './input';
 
+import './style/index.css';
+
 function noop() {}
 
 function normalizeValue(value) {

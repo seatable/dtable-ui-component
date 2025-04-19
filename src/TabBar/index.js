@@ -3,6 +3,8 @@ import getDataAttr from '../_util/getDataAttr';
 import Tabs from '../Tabs';
 import Tab from './Tab';
 
+import './index.css';
+
 export class Item extends React.Component {
   static defaultProps = {
     prefixCls: 'am-tab-bar-item',

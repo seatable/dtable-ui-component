@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { DefaultTabBar as RMCDefaultTabBar, Tabs as RMCTabs } from 'rmc-tabs';
 
+import './index.css';
+
 export class DefaultTabBar extends RMCDefaultTabBar {
   static defaultProps = {
     ...RMCDefaultTabBar.defaultProps,

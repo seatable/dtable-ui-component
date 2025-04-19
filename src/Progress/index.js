@@ -1,6 +1,8 @@
 import classnames from 'classnames';
 import * as React from 'react';
 
+import './index.css';
+
 export default class Progress extends React.Component {
   static defaultProps = {
     prefixCls: 'am-progress',

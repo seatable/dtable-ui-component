@@ -2,6 +2,8 @@ import * as React from 'react';
 import Tooltip from 'rmc-tooltip';
 import Item from './item';
 
+import './style/index.css';
+
 function recursiveCloneChildren(children, cb = (ch, _) => ch) {
   return React.Children.map(children, (child, index) => {
     const newChild = cb(child, index);
