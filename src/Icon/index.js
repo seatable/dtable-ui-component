@@ -2,6 +2,8 @@ import classnames from 'classnames';
 import * as React from 'react';
 import loadSprite from './load-sprite';
 
+import './index.css';
+
 export default class Icon extends React.Component {
   static defaultProps = {
     size: 'md'
