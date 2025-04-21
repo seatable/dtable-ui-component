@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { DatePicker } from 'antd-mobile';
 import classnames from 'classnames';
 import dayjs from 'dayjs';
 import Calendar from '@seafile/seafile-calendar';
 import * as SeaDatePicker from '@seafile/seafile-calendar/lib/Picker';
+import DatePicker from '../../DatePicker';
 import { getLocale } from '../../lang';
 import { initDateEditorLanguage } from '../../utils/editor-utils';
 import MBEditorHeader from '../../MBEditorHeader';
