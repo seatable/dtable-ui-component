@@ -151,11 +151,10 @@ class DepartmentSingleSelect extends Component {
         >
           <div className="department-item-left-content d-flex align-items-center">
             {hasChild &&
-              <span
-                className={`dtable-font expand dtable-icon-${isExpanded ? 'drop-down' : 'right-slide'} pr-1`}
-                onClick={(event) => this.onExpand(event, id, isExpanded)}
-              >
-              </span>
+              <div onClick={(event) => this.onExpand(event, id, isExpanded)} role="button" className='department-item-fold-btn'>
+                <span className={`dtable-font expand dtable-icon-down3 ${isExpanded ? '' : 'rotate-270'}`} >
+                </span>
+              </div>
             }
             <span style={nameStyle} title={name} className="text-truncate department-name">{name}</span>
             {isChecked &&

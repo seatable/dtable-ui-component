@@ -89,11 +89,10 @@ function DepartmentMultipleSelect(props) {
             onChange={() => {}}
           />
           {hasChild && !searchVal &&
-            <span
-              className={`dtable-font expand dtable-icon-${isExpanded ? 'drop-down' : 'right-slide'} pr-1`}
-              onClick={(event) => onExpand(event, id, isExpanded)}
-            >
-            </span>
+            <div onClick={(event) => onExpand(event, id, isExpanded)} role="button" className='department-item-fold-btn'>
+              <span className={`dtable-font expand dtable-icon-down3 ${isExpanded ? '' : 'rotate-270'}`} >
+              </span>
+            </div>
           }
           <span style={searchVal ? {} : nameStyle} title={name} className="text-truncate">{name}</span>
         </div>
