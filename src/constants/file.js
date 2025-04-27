@@ -48,6 +48,7 @@ export const FILEEXT_ICON_MAP = {
   gif: 'pic',
   bmp: 'pic',
   ico: 'pic',
+  webp: 'pic',
 
   // folder dir
   folder: 'folder',
