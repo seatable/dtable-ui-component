@@ -38,6 +38,10 @@
   margin-left: 4px;
 }
 
+.dtable-ui.department-editor-list .department-item-left-content .department-item-fold-btn {
+  margin-right: 2px;
+}
+
 .dtable-ui.department-editor-list .department-check-icon .dtable-icon-check-mark {
   font-size: 12px;
   color: #798d99;

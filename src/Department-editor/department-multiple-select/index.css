@@ -42,7 +42,6 @@
 .departments-container.dtable-ui .expand {
   color: #b5b5b5;
   font-size: 12px;
-  transform: scale(0.8);
   cursor: pointer;
   margin-left: 0px !important;
 }
@@ -63,6 +62,10 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+}
+
+.departments-container.dtable-ui .department-item .department-item-fold-btn {
+  margin-right: 2px;
 }
 
 .departments-container.dtable-ui .department-item:hover {
