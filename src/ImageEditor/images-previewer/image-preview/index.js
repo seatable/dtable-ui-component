@@ -18,7 +18,7 @@ class ImagePreviewer extends React.Component {
     };
     this.canDownLoad = props.canDownLoad;
     const offsetWidth = document.body.offsetWidth;
-    this.containerSize = offsetWidth < 767.8 ? ((offsetWidth - 55) / 2) + 'px' : ((offsetWidth - 80) / 3) + 'px';
+    this.containerSize = offsetWidth < 768 ? ((offsetWidth - 55) / 2) + 'px' : ((offsetWidth - 80) / 3) + 'px';
     this.position = {};
     const { mediaUrl } = props.config || {};
     this.imageLoadingFailedUrl = `${mediaUrl}img/image-loading-failed.png`;

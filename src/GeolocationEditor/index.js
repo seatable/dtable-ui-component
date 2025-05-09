@@ -1,10 +1,10 @@
 import React, { forwardRef, useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import Large from './lg';
-import Small from './sm';
+import PCGeolocationEditor from './pc-editor';
+import MBGeolocationEditor from './mb-editor';
 
-const GeolocationEditor = forwardRef(({ size, config: propsConfig, ...props }, ref) => {
+const GeolocationEditor = forwardRef(({ isMobile, config: propsConfig, ...props }, ref) => {
 
   const config = useMemo(() => ({ ...window?.dtable, ...propsConfig, }), [propsConfig]);
 
@@ -52,23 +52,24 @@ const GeolocationEditor = forwardRef(({ size, config: propsConfig, ...props }, r
       });
   }, [config]);
 
-  if (size === 'lg') return (<Large { ...props } config={config} getLocationData={getLocationData} getCountryData={getCountryData} ref={ref} />);
-  if (size === 'sm') return (<Small { ...props } config={config} getLocationData={getLocationData} getCountryData={getCountryData} ref={ref} />);
+  if (isMobile === false) return (<PCGeolocationEditor { ...props } config={config} getLocationData={getLocationData} getCountryData={getCountryData} ref={ref} />);
+  if (isMobile === true) return (<MBGeolocationEditor { ...props } config={config} getLocationData={getLocationData} getCountryData={getCountryData} ref={ref} />);
 
   return (
     <>
       <MediaQuery query="(min-width: 768px)">
-        <Large { ...props } config={config} getLocationData={getLocationData} getCountryData={getCountryData} ref={ref} />
+        <PCGeolocationEditor { ...props } config={config} getLocationData={getLocationData} getCountryData={getCountryData} ref={ref} />
       </MediaQuery>
       <MediaQuery query="(max-width: 768px)">
-        <Small { ...props } config={config} getLocationData={getLocationData} getCountryData={getCountryData} ref={ref} />
+        <MBGeolocationEditor { ...props } config={config} getLocationData={getLocationData} getCountryData={getCountryData} ref={ref} />
       </MediaQuery>
     </>
   );
 });
 
 GeolocationEditor.propTypes = {
-  size: PropTypes.oneOf(['lg', 'sm']),
+  isMobile: PropTypes.bool,
+  config: PropTypes.object,
 };
 
 export default GeolocationEditor;

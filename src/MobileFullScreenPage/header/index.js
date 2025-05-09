@@ -6,18 +6,18 @@ import './index.css';
 
 const Header = ({ classNamePrefix, children, onLeftClick, onRightClick }) => {
   return (
-    <div className={classnames('mobile-dtable-ui-full-screen-page-header p-0', { [`${classNamePrefix}-full-screen-page-header`]: classNamePrefix })}>
+    <div className={classnames('dtable-ui-mobile-full-screen-page-header p-0', { [`${classNamePrefix}-mobile-full-screen-page-header`]: classNamePrefix })}>
       <div
-        className={classnames('mobile-dtable-ui-full-screen-page-header-btn', { [`${classNamePrefix}-full-screen-page-header-btn`]: classNamePrefix })}
+        className={classnames('dtable-ui-mobile-full-screen-page-header-btn', { [`${classNamePrefix}-mobile-full-screen-page-header-btn`]: classNamePrefix })}
         onClick={onLeftClick}
       >
         {children[0]}
       </div>
-      <h4 className={classnames('mobile-dtable-ui-full-screen-page-header-title', { [`${classNamePrefix}-full-screen-page-header-title`]: classNamePrefix })}>
+      <h4 className={classnames('dtable-ui-mobile-full-screen-page-header-title', { [`${classNamePrefix}-mobile-full-screen-page-header-title`]: classNamePrefix })}>
         {children[1]}
       </h4>
       <div
-        className={classnames('mobile-dtable-ui-full-screen-page-header-btn', { [`${classNamePrefix}-full-screen-page-header-btn`]: classNamePrefix })}
+        className={classnames('dtable-ui-mobile-full-screen-page-header-btn', { [`${classNamePrefix}-mobile-full-screen-page-header-btn`]: classNamePrefix })}
         onClick={onRightClick}
       >
         {children[2]}

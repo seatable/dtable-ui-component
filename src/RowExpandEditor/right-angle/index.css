@@ -1,0 +1,6 @@
+.dtable-ui-mobile-row-expand-angle-right {
+  color: #999;
+  position: absolute;
+  right: 0;
+  top: calc(50% - 12px);
+}

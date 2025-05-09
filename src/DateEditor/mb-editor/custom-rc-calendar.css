@@ -1,0 +1,118 @@
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-date {
+  width: 28px;
+  height: 30px;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 30px;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-date-panel {
+  width: 100%;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-selected-day .rc-calendar-date {
+  background-color: #FcEcD9;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-date:hover,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-year-panel-year:hover,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-month-panel-cell .rc-calendar-month-panel-month:hover {
+  background-color: #FcEcD9;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-selected-date .rc-calendar-date,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-selected-date .rc-calendar-date:hover,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-year-panel-selected-cell .rc-calendar-year-panel-year,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-month-panel-selected-cell .rc-calendar-month-panel-month {
+  background-color: #f09f3f;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-next-year-btn:not([href]):not([tabindex]),
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-prev-year-btn:not([href]):not([tabindex]),
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-next-month-btn:not([href]):not([tabindex]),
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-prev-month-btn:not([href]):not([tabindex]) {
+  color: #999;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-next-year-btn:not([href]):not([tabindex]):hover,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-prev-year-btn:not([href]):not([tabindex]):hover,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-next-month-btn:not([href]):not([tabindex]):hover,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-prev-month-btn:not([href]):not([tabindex]):hover {
+  color: #666;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-today .rc-calendar-date {
+  border: none;
+  position: relative;  
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rc-calendar-today .rc-calendar-date::after {
+  content: '';
+  background: #f09f3f;
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  left: 45%;
+  bottom: 0%;
+  display: inline-block;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar .rdg-editor-container input.editor-main[readonly] {
+  background-color: #fff;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-time-picker {
+  z-index: 1;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-right-panel-body ul li.highlight {
+  margin: 0;
+  border: none;
+  background-color: #fff;
+  font-size: 12px;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar {
+  box-shadow: none;
+  border-radius: 0px;
+  border: 1px solid #e9e9e9;
+  border-left: none;
+  border-right: none;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-date {
+  font-size: 14px;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-date-panel {
+  width: 100%;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-body {
+  height: 22rem;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-table tr {
+  height: 3rem;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-prev-month-btn,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-next-month-btn,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-prev-year-btn,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-next-year-btn {
+  font-size: 30px;
+  width: 50px;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-header {
+  border-bottom: none;
+  margin-top: 0.5rem;
+}
+
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-year-select,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-month-select,
+.dtable-ui.dtable-ui-mobile-date-editor-picker .rc-calendar-day-select {
+  font-size: 16px;
+  padding: 5px;
+}

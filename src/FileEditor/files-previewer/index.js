@@ -1,29 +1,29 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import Large from './lg';
-import Small from './sm';
+import PCFilesPreviewer from './pc-previewer';
+import MBFilesPreviewer from './mb-previewer';
 
 import './index.css';
 
-const FilesPreviewer = ({ size, ...props }) => {
-  if (size === 'lg') return (<Large { ...props } />);
-  if (size === 'sm') return (<Small { ...props } />);
+const FilesPreviewer = forwardRef(({ isMobile, ...props }, ref) => {
+  if (isMobile === false) return (<PCFilesPreviewer { ...props } ref={ref} />);
+  if (isMobile === true) return (<MBFilesPreviewer { ...props } ref={ref} />);
 
   return (
     <>
       <MediaQuery query="(min-width: 768px)">
-        <Large { ...props } />
+        <PCFilesPreviewer { ...props } ref={ref} />
       </MediaQuery>
       <MediaQuery query="(max-width: 768px)">
-        <Small { ...props } />
+        <MBFilesPreviewer { ...props } ref={ref} />
       </MediaQuery>
     </>
   );
-};
+});
 
 FilesPreviewer.propTypes = {
-  size: PropTypes.oneOf(['lg', 'sm']),
+  isMobile: PropTypes.bool,
 };
 
 export default FilesPreviewer;

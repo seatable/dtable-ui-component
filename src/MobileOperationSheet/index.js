@@ -62,7 +62,7 @@ const MobileOperationSheet = ({ onChange, onClose, operations = OPERATION_TYPES 
     actionSheet.current.showActionSheetWithOptions({
       options: _btns,
       maskClosable: true,
-      className: 'mobile-dtable-ui-action-sheet'
+      className: 'dtable-ui-mobile-action-sheet'
     }, (index) => {
       const { value = 'close' } = btns[index] || {};
       if (value === 'close') {

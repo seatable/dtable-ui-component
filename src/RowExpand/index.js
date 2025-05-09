@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import MediaQuery from 'react-responsive';
-import Large from './lg';
-import Small from './sm';
+import RowExpandDialog from '../RowExpandDialog';
+import RowExpandView from '../RowExpandView';
 
-const RowExpand = (props) => {
+const RowExpand = forwardRef((props, ref) => {
 
   return (
     <>
       <MediaQuery query={'(min-width: 768px)'}>
-        <Large { ...props} />
+        <RowExpandDialog { ...props} ref={ref} />
       </MediaQuery>
-      <MediaQuery query={'(max-width: 767.8px)'}>
-        <Small { ...props} />
+      <MediaQuery query={'(max-width: 768px)'}>
+        <RowExpandView { ...props} ref={ref} />
       </MediaQuery>
     </>
   );
-};
+});
 
 export default RowExpand;

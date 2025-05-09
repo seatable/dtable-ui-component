@@ -1,0 +1,41 @@
+@import url('../../css/mb-cell-editor.css');
+
+.dtable-ui-mobile-collaborator-editor .dtable-ui-mobile-selector-option .dtable-ui-mobile-selector-option-name {
+  height: 36px !important;
+  line-height: 36px !important;
+  margin-top: 0px !important;
+}
+
+.dtable-ui-mobile-selector.dtable-ui-mobile-collaborator-editor .dtable-ui-mobile-selector-option {
+  font-size: 16px;
+}
+
+.dtable-ui-mobile-collaborator-editor .dtable-ui-mobile-selector-option .dtable-ui.collaborator-item {
+  background-color: inherit;
+  border-radius: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.dtable-ui-mobile-collaborator-editor .dtable-ui-mobile-selector-option .dtable-ui.collaborator-item .collaborator-avatar {
+  height: 2rem;
+  margin: 2px 0;
+  vertical-align: middle;
+  width: 2rem;
+}
+
+.dtable-ui-mobile-collaborator-editor .dtable-ui-mobile-selector-option .dtable-ui.collaborator-item .collaborator-avatar-icon {
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+}
+
+.dtable-ui-mobile-collaborator-editor .dtable-ui-mobile-selector-option .dtable-ui.collaborator-item .collaborator-name {
+  height: 100%;
+  font-size: 16px;
+  line-height: 36px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

@@ -1,0 +1,8 @@
+.dtable-ui-mobile-row-expand-options-editor {
+  min-height: 50px;
+}
+
+.dtable-ui-mobile-row-expand-options-editor .dtable-ui-mobile-row-expand-add-btn {
+  height: 100%;
+  line-height: 50px;
+}

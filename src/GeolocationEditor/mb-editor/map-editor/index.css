@@ -1,0 +1,11 @@
+.dtable-ui-mobile-geolocation-map-editor .dtable-ui-mobile-geolocation-map-editor-input-container {
+  height: 60px;
+  padding-top: 16px;
+  width: 100%;
+}
+
+.dtable-ui-mobile-geolocation-map-editor .dtable-ui-mobile-geolocation-map-editor-map {
+  flex: 1;
+  overflow: hidden;
+  width: 100%;
+}

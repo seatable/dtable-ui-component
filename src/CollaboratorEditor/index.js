@@ -1,32 +1,31 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import Large from './lg';
-import Small from './sm';
+import PCCollaboratorEditor from './pc-editor';
+import MBCollaboratorEditor from './mb-editor';
 
 import './index.css';
 
-const CollaboratorEditor = forwardRef(({ value: oldValue, size, ...props }, ref) => {
+const CollaboratorEditor = forwardRef(({ isMobile, value: oldValue, ...props }, ref) => {
   const value = Array.isArray(oldValue) ? oldValue : [];
-
-  if (size === 'lg') return (<Large { ...props } value={value} />);
-  if (size === 'sm') return (<Small { ...props } value={value} />);
+  if (isMobile === false) return (<PCCollaboratorEditor { ...props } value={value} ref={ref} />);
+  if (isMobile === true) return (<MBCollaboratorEditor { ...props } value={value} ref={ref} />);
 
   return (
     <>
-      <MediaQuery query={'(min-width: 768px)'}>
-        <Large { ...props} value={value} ref={ref} />
+      <MediaQuery query="(min-width: 768px)">
+        <PCCollaboratorEditor { ...props } value={value} ref={ref} />
       </MediaQuery>
-      <MediaQuery query={'(max-width: 767.8px)'}>
-        <Small { ...props} value={value} ref={ref} />
+      <MediaQuery query="(max-width: 768px)">
+        <MBCollaboratorEditor { ...props } value={value} ref={ref} />
       </MediaQuery>
     </>
   );
 });
 
 CollaboratorEditor.propTypes = {
+  isMobile: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  size: PropTypes.oneOf(['lg', 'sm']),
 };
 
 export default CollaboratorEditor;

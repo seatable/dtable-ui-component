@@ -44,7 +44,7 @@ const MobileUpload = ({ type = 'file', onChange, onClose }) => {
         options: btns,
         cancelButtonIndex: 3,
         maskClosable: true,
-        className: 'mobile-dtable-ui-action-sheet'
+        className: 'dtable-ui-mobile-action-sheet'
       }, (index) => {
         if (index === 0) {
           imageRef.current.click();
@@ -60,7 +60,7 @@ const MobileUpload = ({ type = 'file', onChange, onClose }) => {
       options: btns,
       cancelButtonIndex: 4,
       maskClosable: true,
-      className: 'mobile-dtable-ui-action-sheet'
+      className: 'dtable-ui-mobile-action-sheet'
     }, (index) => {
       if (index === 0) {
         fileRef.current.click();

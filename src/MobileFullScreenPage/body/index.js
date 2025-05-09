@@ -6,7 +6,7 @@ import './index.css';
 
 const Body = ({ classNamePrefix, className, children }) => {
   return (
-    <div className={classnames('mobile-dtable-ui-full-screen-page-body', className, { [`${classNamePrefix}-full-screen-page-body`]: classNamePrefix })}>
+    <div className={classnames('dtable-ui-mobile-full-screen-page-body', className, { [`${classNamePrefix}-mobile-full-screen-page-body`]: classNamePrefix })}>
       {children}
     </div>
   );
