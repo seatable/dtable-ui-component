@@ -7,8 +7,8 @@ import {
 import { getLocale } from '../lang';
 import EditEditorButton from '../EditEditorButton';
 import LinkEditorOption from './link-editor-option';
-import PCLinkEditorPopover from './pc-link-editor-popover';
-import MBLinkEditorPopover from './mb-link-editor-popover';
+import PCLinkEditorPopover from './pc-popover';
+import MBLinkEditorPopover from './mb-popover';
 
 import './index.css';
 
@@ -218,7 +218,7 @@ class LinkEditor extends React.Component {
                 onOptionItemToggle={this.onOptionItemToggle}
               />
             </MediaQuery>
-            <MediaQuery query="(max-width: 767.8px)">
+            <MediaQuery query="(max-width: 768px)">
               <MBLinkEditorPopover
                 isReadOnly={this.props.isReadOnly}
                 value={this.state.newValue}

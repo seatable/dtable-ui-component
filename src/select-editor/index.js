@@ -1,27 +1,27 @@
 import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import Large from './lg';
-import Small from './sm';
+import PCSelectEditor from './pc-editor';
+import MBSelectEditor from './mb-editor';
 
-const SelectEditor = forwardRef(({ size, ...props }, ref) => {
-  if (size === 'lg') return (<Large { ...props } ref={ref} />);
-  if (size === 'sm') return (<Small { ...props } ref={ref} />);
+const SelectEditor = forwardRef(({ isMobile, ...props }, ref) => {
+  if (isMobile === false) return (<PCSelectEditor { ...props } ref={ref} />);
+  if (isMobile === true) return (<MBSelectEditor { ...props } ref={ref} />);
 
   return (
     <>
       <MediaQuery query="(min-width: 768px)">
-        <Large { ...props } ref={ref} />
+        <PCSelectEditor { ...props } ref={ref} />
       </MediaQuery>
       <MediaQuery query="(max-width: 768px)">
-        <Small { ...props } ref={ref} />
+        <MBSelectEditor { ...props } ref={ref} />
       </MediaQuery>
     </>
   );
 });
 
 SelectEditor.propTypes = {
-  size: PropTypes.oneOf(['lg', 'sm']),
+  isMobile: PropTypes.bool,
 };
 
 export default SelectEditor;

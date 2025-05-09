@@ -44,7 +44,7 @@ html, body, #root {
   color: #666;
 }
 
-@media screen and (max-width: 767.8px) {
+@media screen and (max-width: 768px) {
   .app .app-body {
     border: none;
   }
