@@ -5,7 +5,7 @@ import { COLUMNS_ICON_CONFIG } from 'dtable-utils';
 
 import './index.css';
 
-const RowContent = ({ column, children }) => {
+const ColumnContent = ({ column, children }) => {
   const descriptionRef = useRef(null);
   const { name, type, key, description } = column;
   return (
@@ -41,9 +41,9 @@ const RowContent = ({ column, children }) => {
   );
 };
 
-RowContent.propTypes = {
+ColumnContent.propTypes = {
   column: PropTypes.object,
   children: PropTypes.any,
 };
 
-export default RowContent;
+export default ColumnContent;

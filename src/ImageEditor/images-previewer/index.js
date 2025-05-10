@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 import ImagePreviewerLightbox from '../../ImagePreviewerLightbox';
 import ImagePreviewer from './image-preview';
 import DTableCommonAddTool from '../../DTableCommonAddTool';
 import { downloadFile } from '../../utils/utils';
-import { FILE_EDITOR_STATUS } from '../../constants';
+import { FILE_EDITOR_STATUS, isMobile } from '../../constants';
 import { getLocale } from '../../lang';
 
 import './index.css';
@@ -21,14 +22,14 @@ class ImagesPreviewer extends React.Component {
   }
 
   componentDidMount() {
-    if (window.isMobile) {
+    if (isMobile) {
       window.history.pushState(null, null, '#');
       window.addEventListener('popstate', this.handleHistoryBack, false);
     }
   }
 
   componentWillUnmount() {
-    if (window.isMobile) {
+    if (isMobile) {
       window.removeEventListener('popstate', this.handleHistoryBack, false);
     }
   }
@@ -104,8 +105,8 @@ class ImagesPreviewer extends React.Component {
   render() {
     let { value } = this.props;
     return (
-      <div className="dtable-ui-image-previewer-container">
-        <div className={`dtable-ui-image-previewer-wrapper ${(value.length === 0 && window.isMobile) ? 'd-none' : ''}`}>
+      <div className={classnames('dtable-ui-image-previewer-container', { 'mt-0': value.length === 0 && isMobile })}>
+        <div className={classnames('dtable-ui-image-previewer-wrapper', { 'd-none': value.length === 0 && isMobile })}>
           <div className="dtable-ui-image-previewer-content">
             {value.length > 0 && value.map((imageItemUrl, index) => {
               return (

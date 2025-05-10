@@ -1,0 +1,10 @@
+
+.dtable-ui-mobile-file-editor .dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-add-btn {
+  margin-top: 20px;
+  border-bottom: 1px solid #dedede;
+}
+  
+.dtable-ui-mobile-file-editor .dtable-ui-file-editor-previewer .dtable-ui-file-editor-previewer-add-btn:hover {
+  background-color: #fff;
+}
+
