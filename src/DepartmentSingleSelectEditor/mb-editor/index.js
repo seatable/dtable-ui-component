@@ -171,7 +171,6 @@ const MBDepartmentSingleSelectEditor = ({
     const { enableSelectRange, selectedRange, specificDepartments } = initColumnData;
     if (enableSelectRange && !isFilterEditor) {
       const { current_user_department_ids = [], current_user_department_and_sub_ids = [] } = userDepartmentIdsMap;
-      const { departments: initialDepartments } = window.app.state;
       let targetDepartments = [];
       let topParentIds = [];
       let canExpand = true;
