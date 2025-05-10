@@ -64,7 +64,7 @@ class MBCheckboxEditor extends Component {
       <div
         className={classnames('dtable-ui-checkbox-editor', className)}
         style={style || {}}
-        onTouchStart={this.onChangeCheckboxValue}
+        onClick={this.onChangeCheckboxValue}
       >
         {value && this.renderIcon(checkboxStyle.type, checkboxStyle.color)}
       </div>
