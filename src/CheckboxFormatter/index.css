@@ -1,6 +1,6 @@
 @import url('../css/cell-formatter.css');
 
-.dtable-ui.checkbox-formatter .checkbox-checked-mark {
+.dtable-ui.checkbox-formatter .dtable-ui-checkbox-check-mark {
   color: #20c933;
   display: flex;
   align-items: center;

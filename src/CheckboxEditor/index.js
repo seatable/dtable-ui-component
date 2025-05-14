@@ -66,10 +66,11 @@ class CheckboxEditor extends Component {
   };
 
   renderIcon = (symbol, color) => {
-    const className = classnames('dtable-ui-checkbox-check-mark', { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon') });
+    let className = 'dtable-ui-checkbox-check-mark';
     if (symbol.startsWith('dtable-icon')) {
       return (<span className={`dtable-font ${symbol} ${className || ''}`} style={{ color }} />);
     }
+    className = classnames(className, { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon'), 'scale-icon': isMobile });
     return (<SvgIcon className={className} symbol={symbol} color={color} />);
   };
 

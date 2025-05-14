@@ -177,7 +177,7 @@ class CountryEditor extends Component {
 
   getLocationData = () => {
     const { config } = this.props;
-    const { mediaUrl } = { ...window.dtable, ...config };
+    const { mediaUrl } = { ...window?.dtable, ...config };
     let geoFileName = 'en-region-location';
     if (this.lang === 'cn') {
       geoFileName = 'cn-region-location';
