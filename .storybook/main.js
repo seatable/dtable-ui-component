@@ -4,7 +4,8 @@ module.exports = {
   addons: [
     '@storybook/addon-actions', 
     '@storybook/addon-links',
-    '@storybook/addon-knobs',
+    '@storybook/addon-controls',
+    '@storybook/preset-create-react-app',
     {
       name: '@storybook/addon-docs',
       options: {
@@ -19,5 +20,18 @@ module.exports = {
         useSWC: true,
       },
     },
+  },
+  webpackFinal: async (config) => {
+    config.module.rules.push({
+      test: /\.(js|jsx)$/,
+      exclude: /node_modules/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-react']
+        }
+      }
+    });
+    return config;
   }
 };
