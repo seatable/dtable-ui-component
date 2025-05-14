@@ -177,12 +177,12 @@ class CountryEditor extends Component {
 
   getLocationData = () => {
     const { config } = this.props;
-    const { mediaUrl } = { ...window.dtable, ...config };
+    const { mediaUrl, server } = { ...window?.dtable, ...config };
     let geoFileName = 'en-region-location';
     if (this.lang === 'cn') {
       geoFileName = 'cn-region-location';
     }
-    return fetch(`${mediaUrl}geo-data/${geoFileName}.json`)
+    return fetch(`${server}${mediaUrl}geo-data/${geoFileName}.json`.replaceAll('//', '/'))
       .then(res => {
         return res.json();
       })

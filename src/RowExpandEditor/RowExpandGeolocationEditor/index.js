@@ -123,14 +123,14 @@ class RowExpandGeolocationEditor extends React.Component {
   };
 
   getLocationInfo = (value) => {
-    const { column } = this.props;
-    const { dtableBaiduMapKey, dtableMineMapKey } = window.dtable;
+    const { column, config } = this.props;
+    const { dtableBaiduMapKey, dtableMineMapKey } = { ...window?.dtable, ...config };
     const isBaiduMap = !!(dtableBaiduMapKey || dtableMineMapKey);
     return getGeolocationDisplayString(value, column.data, { isBaiduMap, hyphen: ' ' });
   };
 
   render() {
-    const { column, row } = this.props;
+    const { column, row, config } = this.props;
     const { value } = this.state;
     return (
       <div ref={ref => this.editorContainer = ref} className="mt-2">
@@ -140,6 +140,7 @@ class RowExpandGeolocationEditor extends React.Component {
             ref={ref => this.geoEditor = ref}
             isInModal={true}
             column={column}
+            config={config}
             row={row}
             value={value}
             onCommit={this.onCommit}

@@ -31,6 +31,9 @@ class GeolocationEditor extends React.Component {
     this.state = {
       editorPosition: null,
     };
+    if (!window.app) {
+      window.app = {};
+    }
     this.editor = null;
   }
 
