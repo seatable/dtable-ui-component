@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import DeleteTip from '../DeleteTip';
 import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../utils/url';
 import { getLocale } from '../lang';
+import { isMobile } from '../constants';
 
 import './index.css';
 
@@ -102,7 +103,7 @@ class ImageThumbnail extends React.Component {
             deleteTip={this.props.deleteTip || getLocale('Are_you_sure_you_want_to_delete_this_image')}
           />
         }
-        {this.ref && (
+        {!isMobile && this.ref && (
           <Tooltip
             placement="bottom"
             isOpen={this.state.isTooltipOpen}

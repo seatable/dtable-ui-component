@@ -1,3 +1,8 @@
+export const INPUT_MODE_MAP = {
+  ANY_LOCATION: 'any_location',
+  ONLY_MOBILE_POSITIONING: 'only_mobile_positioning'
+};
+
 export const MAP_TYPES = {
   B_MAP: 'b_map', // baidu
   G_MAP: 'g_map', // google
@@ -16,7 +21,7 @@ const MINE_MAP_ONLINE_SERVICE = {
 };
 
 export const getMineMapUrl = (config = {}) => {
-  const { dtableMineMapCustomConfig = {} } = { ...window.dtable, ...config };
+  const { dtableMineMapCustomConfig = {} } = { ...window?.dtable, ...config };
   const { domain_url = '', data_domain_url = '', server_domain_url = '',
     sprite_url = '', service_url = '' } = dtableMineMapCustomConfig;
   return {
@@ -44,7 +49,7 @@ export const getInitCenter = (isSelectionEditor = false) => {
 };
 
 export const getMapInfo = (config = {}) => {
-  const { dtableBaiduMapKey: baiduMapKey, dtableGoogleMapKey: googleMapKey, dtableMineMapKey: mineMapKey } = { ...window.dtable, ...config };
+  const { dtableBaiduMapKey: baiduMapKey, dtableGoogleMapKey: googleMapKey, dtableMineMapKey: mineMapKey } = { ...window?.dtable, ...config };
   let mapType;
   let mapKey;
   if (baiduMapKey) {
@@ -66,7 +71,7 @@ export const loadMapSource = (mapType, mapKey, callback) => {
   let script = document.createElement('script');
   script.type = 'text/javascript';
   if (mapType === MAP_TYPES.B_MAP) {
-    scriptUrl = `https://api.map.baidu.com/api?v=3.0&ak=${mapKey}}&callback=renderBaiduMap`;
+    scriptUrl = `https://api.map.baidu.com/api?v=3.0&ak=${mapKey}&callback=renderBaiduMap`;
   } else if (mapType === MAP_TYPES.G_MAP) {
     scriptUrl = `https://maps.googleapis.com/maps/api/js?key=${mapKey}&callback=renderGoogleMap&libraries=&v=weekly`;
   } else {

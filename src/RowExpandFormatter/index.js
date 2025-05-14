@@ -314,7 +314,7 @@ class RowExpandFormatter extends React.Component {
   render() {
     const { className } = this.props;
     return (
-      <div className={classnames('dtable-ui dtable-row-expand-formatter', className)}>
+      <div className={classnames('dtable-ui dtable-ui-row-expand-formatter', className)}>
         {this.renderFormatter()}
       </div>
     );

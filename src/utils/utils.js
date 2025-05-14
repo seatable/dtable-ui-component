@@ -27,13 +27,20 @@ export const throttle = (func, delay) => {
   };
 };
 
-export const isMobile = (typeof (window) !== 'undefined') && (window.innerWidth < 768 ||
-  navigator.userAgent.toLowerCase().match(/(ipod|ipad|iphone|android|coolpad|mmp|smartphone|midp|wap|xoom|symbian|j2me|blackberry|wince)/i) != null);
-
 export const isMac = () => {
   const platform = navigator.platform;
   // eslint-disable-next-line eqeqeq
   return (platform == 'Mac68K') || (platform == 'MacPPC') || (platform == 'Macintosh') || (platform == 'MacIntel');
+};
+
+export const isQQBuiltInBrowser = () => {
+  const userAgent = navigator.userAgent.toLowerCase();
+  return userAgent.indexOf(' qq') > -1 && userAgent.indexOf('mqqbrowser') < 0;
+};
+
+export const isIPhone = () => {
+  const userAgent = navigator.userAgent.toLowerCase();
+  return /iphone/gi.test(userAgent);
 };
 
 export const downloadFile = (downloadUrl) => {

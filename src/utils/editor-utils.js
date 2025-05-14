@@ -61,3 +61,7 @@ export const getSelectOptionItem = (options, optionId) => {
 export const getTrimmedString = (value) => {
   return (typeof value === 'string') ? value.trim() : '';
 };
+
+// min date and max date for mobile date picker
+export const minDate = new Date('1900/01/01');
+export const maxDate = new Date('2100/12/31');

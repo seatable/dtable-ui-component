@@ -1,0 +1,32 @@
+.dtable-ui-mobile-selector .am-list-header {
+  color: #212529;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.dtable-ui-mobile-selector .am-list-header .mobile-selector-editor-close-btn {
+  width: 20px;
+  font-size: 16px;
+  color: #798d99;
+  right: 0px;
+  position: absolute;
+  bottom: 0px;
+}
+
+html:not([data-scale]) .dtable-ui-mobile-selector .am-list-body:before,
+html:not([data-scale]) .dtable-ui-mobile-selector .am-list-body:after {
+  background-color: #e9e9e9;
+  transform: scaleY(1) !important;
+}
+
+.dtable-ui-mobile-selector .am-list-body .dtable-ui-mobile-selector-search + .dtable-ui-mobile-selector-options {
+  border-top: 1px solid #e9e9e9;
+}
+
+.dtable-ui-mobile-selector .am-list-body .add-item-btn {
+  color: #212529;
+}
+
+.dtable-ui-mobile-selector .am-list-body .am-list-item {
+  min-height: 50px;
+}

@@ -1,0 +1,39 @@
+.dtable-ui-mobile-full-screen-page-header {
+  width: 100%;
+  height: 51px;
+  background-color: #fff;
+  border-bottom: 1px solid #e9e9e9;
+  padding: 0;
+  color: #666;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.dtable-ui-mobile-full-screen-page-header .dtable-ui-mobile-full-screen-page-header-btn {
+  line-height: 24px;
+  min-width: 75px;
+  padding: 13px 16px;
+}
+
+.dtable-ui-mobile-full-screen-page-header .dtable-ui-mobile-full-screen-page-header-btn:hover {
+  cursor: pointer;
+}
+
+.dtable-ui-mobile-full-screen-page-header .dtable-ui-mobile-full-screen-page-header-title {
+  color: #212529;
+  line-height: 50px;
+  margin-bottom: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dtable-ui-mobile-full-screen-page-header .dtable-ui-mobile-full-screen-page-header-btn:first-child {
+  text-align: left;
+}
+
+.dtable-ui-mobile-full-screen-page-header .dtable-ui-mobile-full-screen-page-header-btn:last-child {
+  text-align: right;
+}

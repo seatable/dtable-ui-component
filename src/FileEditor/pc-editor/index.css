@@ -1,0 +1,5 @@
+@import url('../../ImageEditor/pc-editor/index.css');
+
+.dtable-ui-file-editor-container {
+  min-height: 300px;
+}

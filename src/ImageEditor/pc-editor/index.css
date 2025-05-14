@@ -1,0 +1,24 @@
+.dtable-ui-image-editor-dialog {
+  max-width: 620px;
+}
+
+.dtable-ui-image-editor-modal {
+  width: 620px;
+  max-height: 620px;
+  overflow: hidden;
+}
+
+.dtable-ui-image-editor-container {
+  width: 100%;
+  background-color: #fff;
+}
+
+.dtable-ui-image-addition-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.dtable-ui-image-editor-dialog .dtable-icon-return {
+  color: #666666;
+  font-size: 14px;
+}
