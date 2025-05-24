@@ -32,12 +32,13 @@ function createActionSheet(flag, config, callback) {
 
   const div = document.createElement('div');
   document.body.appendChild(div);
+  const root = createRoot(div);
 
   queue.push(close);
 
   function close() {
     if (div) {
-      ReactDOM.unmountComponentAtNode(div);
+      root.unmount();
       if (div.parentNode) {
         div.parentNode.removeChild(div);
       }
@@ -207,7 +208,6 @@ function createActionSheet(flag, config, callback) {
   }
 
   const rootCls = classnames(`${prefixCls}-${mode}`, className);
-  const root = createRoot(div);
   root.render(
     <Dialog
       visible

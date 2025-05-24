@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import closest from '../_util/closest';
 import Modal from './modal';
 
@@ -24,7 +25,7 @@ export default function prompt(
   if (!callbackOrActions) {
     // console.log('Must specify callbackOrActions');
     return {
-      close: () => {}
+      close: () => { }
     };
   }
 
@@ -147,11 +148,14 @@ export default function prompt(
 
   const div = document.createElement('div');
   document.body.appendChild(div);
+  const root = createRoot(div);
 
   function close() {
-    ReactDOM.unmountComponentAtNode(div);
-    if (div && div.parentNode) {
-      div.parentNode.removeChild(div);
+    if (div) {
+      root.unmount();
+      if (div.parentNode) {
+        div.parentNode.removeChild(div);
+      }
     }
   }
 
@@ -175,7 +179,7 @@ export default function prompt(
     actions = [
       {
         text: '取消',
-        onPress: () => {}
+        onPress: () => { }
       },
       {
         text: '确定',
@@ -197,7 +201,7 @@ export default function prompt(
 
   const footer = actions.map(button => {
     // tslint:disable-next-line:only-arrow-functions
-    const orginPress = button.onPress || function () {};
+    const orginPress = button.onPress || function () { };
     button.onPress = () => {
       if (closed) {
         return;
@@ -210,7 +214,7 @@ export default function prompt(
             closed = true;
             close();
           })
-          .catch(() => {});
+          .catch(() => { });
       } else {
         closed = true;
         close();
@@ -230,7 +234,7 @@ export default function prompt(
     }
   }
 
-  ReactDOM.render(
+  root.render(
     <Modal
       visible
       transparent
@@ -245,8 +249,7 @@ export default function prompt(
       wrapProps={{ onTouchStart: onWrapTouchStart }}
     >
       <div className={`${prefixCls}-propmt-content`}>{content}</div>
-    </Modal>,
-    div
+    </Modal>
   );
 
   return {

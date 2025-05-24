@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import closest from '../_util/closest';
 import Modal from './modal';
 
@@ -14,23 +15,26 @@ export default function alert(
   if (!title && !message) {
     // console.log('Must specify either an alert title, or message, or both');
     return {
-      close: () => {}
+      close: () => { }
     };
   }
 
   const div = document.createElement('div');
   document.body.appendChild(div);
+  const root = createRoot(div);
 
   function close() {
-    ReactDOM.unmountComponentAtNode(div);
-    if (div && div.parentNode) {
-      div.parentNode.removeChild(div);
+    if (div) {
+      root.unmount();
+      if (div.parentNode) {
+        div.parentNode.removeChild(div);
+      }
     }
   }
 
   const footer = actions.map(button => {
     // tslint:disable-next-line:only-arrow-functions
-    const orginPress = button.onPress || function () {};
+    const orginPress = button.onPress || function () { };
     button.onPress = () => {
       if (closed) {
         return;
@@ -43,7 +47,7 @@ export default function alert(
             closed = true;
             close();
           })
-          .catch(() => {});
+          .catch(() => { });
       } else {
         closed = true;
         close();
@@ -64,7 +68,7 @@ export default function alert(
     }
   }
 
-  ReactDOM.render(
+  root.render(
     <Modal
       visible
       transparent
@@ -78,8 +82,7 @@ export default function alert(
       wrapProps={{ onTouchStart: onWrapTouchStart }}
     >
       <div className={`${prefixCls}-alert-content`}>{message}</div>
-    </Modal>,
-    div
+    </Modal>
   );
 
   return {
