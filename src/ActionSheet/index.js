@@ -2,6 +2,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import Dialog from 'rmc-dialog';
 import TouchFeedback from 'rmc-feedback';
 import getDataAttr from '../_util/getDataAttr';
@@ -12,7 +13,7 @@ import './style/index.css';
 const NORMAL = 'NORMAL';
 const SHARE = 'SHARE';
 // tslint:disable-next-line:no-empty
-function noop() {}
+function noop() { }
 const queue = [];
 
 function createActionSheet(flag, config, callback) {
@@ -206,8 +207,8 @@ function createActionSheet(flag, config, callback) {
   }
 
   const rootCls = classnames(`${prefixCls}-${mode}`, className);
-
-  ReactDOM.render(
+  const root = createRoot(div);
+  root.render(
     <Dialog
       visible
       title=""
@@ -221,8 +222,7 @@ function createActionSheet(flag, config, callback) {
       wrapProps={props.wrapProps || {}}
     >
       {children}
-    </Dialog>,
-    div
+    </Dialog>
   );
 
   return {
