@@ -90,7 +90,7 @@ class LargeMapEditorDialog extends React.Component {
   loadMineMapCallBack = () => {
     if (!this.timer) {
       this.timer = setTimeout(() => {
-        const { domainUrl, dataDomainUrl, serverDomainUrl, spriteUrl, serviceUrl } = getMineMapUrl();
+        const { domainUrl, dataDomainUrl, serverDomainUrl, spriteUrl, serviceUrl } = getMineMapUrl(this.props.config);
         window.minemap.domainUrl = domainUrl;
         window.minemap.dataDomainUrl = dataDomainUrl;
         window.minemap.serverDomainUrl = serverDomainUrl;
