@@ -1,3 +1,5 @@
+@import url('../../css/am.css');
+
 .am-popover {
   position: absolute;
   z-index: 1999;
@@ -156,7 +158,8 @@
   border-top: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-popover .am-popover-item:not(:first-child) .am-popover-item-container {
     border-top: none;
   }
@@ -182,7 +185,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-popover .am-popover-item:not(:first-child) .am-popover-item-container::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);

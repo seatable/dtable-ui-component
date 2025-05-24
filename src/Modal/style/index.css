@@ -1,3 +1,5 @@
+@import url('../../css/am.css');
+
 .am-modal {
   position: relative;
 }
@@ -144,7 +146,8 @@
   display: flex;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-modal-button-group-h {
     border-top: none;
   }
@@ -170,7 +173,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-modal-button-group-h::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -209,7 +213,8 @@
   border-left: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-modal-button-group-h .am-modal-button:last-child {
     border-left: none;
   }
@@ -235,7 +240,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-modal-button-group-h .am-modal-button:last-child::before {
     -webkit-transform: scaleX(0.33);
     -ms-transform: scaleX(0.33);
@@ -263,7 +269,8 @@
   white-space: nowrap;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-modal-button-group-v .am-modal-button {
     border-top: none;
   }
@@ -289,7 +296,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-modal-button-group-v .am-modal-button::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -307,7 +315,8 @@
   border-radius: 3px;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-modal-input-container {
     position: relative;
     border: none;
@@ -344,7 +353,8 @@
   border-top: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-modal-input:nth-child(2) {
     border-top: none;
   }
@@ -370,7 +380,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-modal-input:nth-child(2)::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -442,7 +453,8 @@
   display: none !important;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-modal.am-modal-transparent.am-modal-android .am-modal-content .am-modal-body .am-modal-input-container {
     border-bottom: none;
   }
@@ -468,7 +480,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-modal.am-modal-transparent.am-modal-android .am-modal-content .am-modal-body .am-modal-input-container::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);

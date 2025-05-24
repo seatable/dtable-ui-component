@@ -1,3 +1,5 @@
+@import url('../../css/am.css');
+
 .am-list-item .am-input-control .fake-input-container {
   height: 30px;
   line-height: 30px;
@@ -95,7 +97,8 @@
   border-top: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-number-keyboard-wrapper table {
     border-top: none;
   }
@@ -121,7 +124,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-number-keyboard-wrapper table::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -151,7 +155,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-number-keyboard-wrapper table tr .am-number-keyboard-item:not(.keyboard-confirm) {
     border-left: none;
   }
@@ -177,7 +182,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-number-keyboard-wrapper table tr .am-number-keyboard-item:not(.keyboard-confirm)::before {
     -webkit-transform: scaleX(0.33);
     -ms-transform: scaleX(0.33);
@@ -185,7 +191,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-number-keyboard-wrapper table tr .am-number-keyboard-item:not(.keyboard-confirm) {
     border-bottom: none;
   }
@@ -211,7 +218,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-number-keyboard-wrapper table tr .am-number-keyboard-item:not(.keyboard-confirm)::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -230,7 +238,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-number-keyboard-wrapper table tr .am-number-keyboard-item.keyboard-confirm {
     border-bottom: none;
   }
@@ -256,7 +265,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-number-keyboard-wrapper table tr .am-number-keyboard-item.keyboard-confirm::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -328,7 +338,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-list-item:not(:last-child) .am-list-line {
     border-bottom: none;
   }
@@ -354,7 +365,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-list-item:not(:last-child) .am-list-line::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);

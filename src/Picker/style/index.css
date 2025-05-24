@@ -1,3 +1,5 @@
+@import url('../../css/am.css');
+
 .am-picker-popup {
   left: 0;
   bottom: 0;
@@ -57,7 +59,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-picker-popup-header {
     border-bottom: none;
   }
@@ -83,7 +86,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-picker-popup-header::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);

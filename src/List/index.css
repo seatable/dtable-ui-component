@@ -1,3 +1,5 @@
+@import url('../css/am.css');
+
 .am-list-header {
   padding: 15px 15px 9px 15px;
   font-size: 14px;
@@ -20,7 +22,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-list-body {
     border-top: none;
   }
@@ -46,7 +49,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-list-body::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -54,7 +58,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-list-body {
     border-bottom: none;
   }
@@ -80,7 +85,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-list-body::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -92,7 +98,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-list-body div:not(:last-child) .am-list-line {
     border-bottom: none;
   }
@@ -118,7 +125,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-list-body div:not(:last-child) .am-list-line::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);

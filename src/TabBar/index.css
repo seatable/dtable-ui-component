@@ -1,3 +1,5 @@
+@import url('../css/am.css');
+
 .am-tab-bar {
   height: 100%;
   overflow: hidden;
@@ -29,7 +31,8 @@
   bottom: 0;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-tab-bar-bar {
     border-top: none;
   }
@@ -55,7 +58,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-tab-bar-bar::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);

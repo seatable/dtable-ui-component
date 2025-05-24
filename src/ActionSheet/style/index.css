@@ -1,3 +1,5 @@
+@import url('../../css/am.css');
+
 .am-action-sheet-wrap {
   position: fixed;
   overflow: auto;
@@ -78,7 +80,8 @@
   border-top: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-action-sheet-button-list-item {
     border-top: none;
   }
@@ -104,7 +107,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-action-sheet-button-list-item::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -161,7 +165,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-action-sheet-button-list .am-action-sheet-cancel-button-mask {
     border-top: none;
   }
@@ -187,7 +192,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-action-sheet-button-list .am-action-sheet-cancel-button-mask::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -195,7 +201,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-action-sheet-button-list .am-action-sheet-cancel-button-mask {
     border-bottom: none;
   }
@@ -221,7 +228,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-action-sheet-button-list .am-action-sheet-cancel-button-mask::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -245,7 +253,8 @@
   -webkit-overflow-scrolling: touch;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-action-sheet-share-list {
     border-top: none;
   }
@@ -271,7 +280,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-action-sheet-share-list::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -326,7 +336,8 @@
   box-sizing: border-box;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-action-sheet-share-cancel-button {
     border-top: none;
   }
@@ -352,7 +363,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-action-sheet-share-cancel-button::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);

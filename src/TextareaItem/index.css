@@ -1,3 +1,5 @@
+@import url('../css/am.css');
+
 .am-list .am-list-item.am-textarea-item {
   display: -webkit-box;
   display: -webkit-flex;
@@ -15,7 +17,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-list .am-list-item.am-textarea-item {
     border-bottom: none;
   }
@@ -41,7 +44,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-list .am-list-item.am-textarea-item::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);

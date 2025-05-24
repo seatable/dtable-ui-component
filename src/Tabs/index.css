@@ -1,3 +1,5 @@
+@import url('../css/am.css');
+
 .am-tabs {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -257,7 +259,8 @@
   border-bottom: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-tabs-default-bar-top .am-tabs-default-bar-tab {
     border-bottom: none;
   }
@@ -283,7 +286,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-tabs-default-bar-top .am-tabs-default-bar-tab::after {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -295,7 +299,8 @@
   border-top: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-tabs-default-bar-bottom .am-tabs-default-bar-tab {
     border-top: none;
   }
@@ -321,7 +326,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-tabs-default-bar-bottom .am-tabs-default-bar-tab::before {
     -webkit-transform: scaleY(0.33);
     -ms-transform: scaleY(0.33);
@@ -365,7 +371,8 @@
   border-right: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-tabs-default-bar-left .am-tabs-default-bar-tab {
     border-right: none;
   }
@@ -392,7 +399,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-tabs-default-bar-left .am-tabs-default-bar-tab::after {
     -webkit-transform: scaleX(0.33);
     -ms-transform: scaleX(0.33);
@@ -408,7 +416,8 @@
   border-left: 1PX solid #ddd;
 }
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 2dppx) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 2dppx) {
   html:not([data-scale]) .am-tabs-default-bar-right .am-tabs-default-bar-tab {
     border-left: none;
   }
@@ -434,7 +443,8 @@
   }
 }
 
-@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3), (min-resolution: 2dppx) and (min-resolution: 3dppx) {
+@media (-webkit-min-device-pixel-ratio: 2) and (-webkit-min-device-pixel-ratio: 3),
+(min-resolution: 2dppx) and (min-resolution: 3dppx) {
   html:not([data-scale]) .am-tabs-default-bar-right .am-tabs-default-bar-tab::before {
     -webkit-transform: scaleX(0.33);
     -ms-transform: scaleX(0.33);
