@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { getPreviewContent } from '@seafile/seafile-editor';
 import TextareaItem from '../../../../TextareaItem';
@@ -12,7 +12,6 @@ const { Header, Body } = MobileFullScreenPage;
 const Editor = ({ value: oldValue, title, onToggle, onChange }) => {
   const [value, setValue] = useState(oldValue || '');
   const hasUnSaved = useRef(false);
-  const timer = useRef(null);
 
   const rowCounts = useMemo(() => document.body.offsetWidth < 768 ? 10 : 20, []);
 
@@ -35,21 +34,10 @@ const Editor = ({ value: oldValue, title, onToggle, onChange }) => {
     onToggle();
   }, [onSave, onToggle]);
 
-  useEffect(() => {
-    timer.current = setInterval(() => {
-      onSave();
-    }, 60000);
-    return () => {
-      onSave();
-      clearInterval(timer.current);
-      timer.current = null;
-    };
-  }, [onSave]);
-
   return (
     <MobileFullScreenPage className="dtable-ui-mobile-long-text-editor" onClose={onToggle}>
       <Header onLeftClick={onToggle} onRightClick={handleSave}>
-        <>{getLocale('Cancel')}</>
+        <>{getLocale('Close')}</>
         <>{title}</>
         <span style={{ color: '#f09f3f' }}>{getLocale('Submit')}</span>
       </Header>
