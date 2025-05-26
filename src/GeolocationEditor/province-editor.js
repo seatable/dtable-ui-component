@@ -61,9 +61,10 @@ class ProvinceEditor extends Component {
 
   getLocationData = () => {
     // mediaUrl
-    const { mediaUrl } = window.dtable;
+    const { config } = this.props;
+    const { mediaUrl, server } = { ...window?.dtable, ...config };
     // get locations from server
-    return fetch(`${mediaUrl}geo-data/cn-location.json`).then((res) => {
+    return fetch(`${server}${mediaUrl}geo-data/cn-location.json`.replaceAll('//', '/')).then((res) => {
       return res.json();
     }).catch(() => {
       // get locations from local

@@ -53,7 +53,7 @@ class LargeMapSelectionEditorDialog extends React.Component {
   }
 
   componentWillUnmount() {
-    if (this.mapType === MAP_TYPES.B_MAP) {
+    if (this.map && this.mapType === MAP_TYPES.B_MAP) {
       let center = {};
       center.zoom = this.map.getZoom();
       let coordinate = this.map.getCenter();

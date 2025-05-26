@@ -16,7 +16,7 @@ const MINE_MAP_ONLINE_SERVICE = {
 };
 
 export const getMineMapUrl = (config = {}) => {
-  const { dtableMineMapCustomConfig = {} } = { ...window.dtable, ...config };
+  const { dtableMineMapCustomConfig = {} } = { ...window?.dtable, ...config };
   const { domain_url = '', data_domain_url = '', server_domain_url = '',
     sprite_url = '', service_url = '' } = dtableMineMapCustomConfig;
   return {
@@ -44,7 +44,7 @@ export const getInitCenter = (isSelectionEditor = false) => {
 };
 
 export const getMapInfo = (config = {}) => {
-  const { dtableBaiduMapKey: baiduMapKey, dtableGoogleMapKey: googleMapKey, dtableMineMapKey: mineMapKey } = { ...window.dtable, ...config };
+  const { dtableBaiduMapKey: baiduMapKey, dtableGoogleMapKey: googleMapKey, dtableMineMapKey: mineMapKey } = { ...window?.dtable, ...config };
   let mapType;
   let mapKey;
   if (baiduMapKey) {
