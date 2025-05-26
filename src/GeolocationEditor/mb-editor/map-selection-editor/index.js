@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
-import { InputItem } from 'antd-mobile';
 import { isEmptyObject } from 'dtable-utils';
+import InputItem from '../../../InputItem';
 import toaster from '../../../toaster';
 import MobileFullScreenPage from '../../../MobileFullScreenPage';
 import { MAP_TYPES, INPUT_MODE_MAP, getInitCenter, loadMapSource, getMapInfo, locateCurrentPosition } from '../../map-editor-utils';

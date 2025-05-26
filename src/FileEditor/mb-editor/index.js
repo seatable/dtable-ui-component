@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator } from 'antd-mobile';
+import ActivityIndicator from '../../ActivityIndicator';
 import MobileFullScreenPage from '../../MobileFullScreenPage';
 import FilesPreviewer from '../files-previewer';
 import MobileUpload from '../../MobileUpload';

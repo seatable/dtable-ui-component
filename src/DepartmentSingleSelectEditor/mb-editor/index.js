@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'antd-mobile';
 import { DEPARTMENT_SELECT_RANGE_MAP } from 'dtable-utils';
+import List from '../../List';
 import DTableRadio from '../../DTableRadio';
 import MobileFullScreenPage from '../../MobileFullScreenPage';
 import { getNormalizedDepartments } from '../../utils/departments';

@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Picker, List } from 'antd-mobile';
+import Picker from '../../Picker';
+import List from '../../List';
 import MobileFullScreenPage from '../../MobileFullScreenPage';
 import { getLocale } from '../../lang';
 

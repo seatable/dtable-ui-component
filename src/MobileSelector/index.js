@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { List } from 'antd-mobile';
 import classnames from 'classnames';
+import List from '../List';
 import MobileModal from '../MobileModal';
 import Search from './search';
 import Options from './options';

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import { TextareaItem } from 'antd-mobile';
 import { getPreviewContent } from '@seafile/seafile-editor';
+import TextareaItem from '../../../../TextareaItem';
 import MobileFullScreenPage from '../../../../MobileFullScreenPage';
 import { getLocale } from '../../../../lang';
 

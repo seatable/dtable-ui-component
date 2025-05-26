@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { InputItem } from 'antd-mobile';
+import InputItem from '../../../InputItem';
 import toaster from '../../../toaster';
 import MobileFullScreenPage from '../../../MobileFullScreenPage';
 import { DOMESTIC_MAP_TYPE, MAP_TYPES, getInitCenter, loadMapSource, getMapInfo, locateCurrentPosition, getMineMapUrl } from '../../map-editor-utils';

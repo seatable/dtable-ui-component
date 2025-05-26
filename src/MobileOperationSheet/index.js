@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { ActionSheet } from 'antd-mobile';
+import ActionSheet from '../ActionSheet';
 import { getLocale } from '../lang';
 
 import './index.css';

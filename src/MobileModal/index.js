@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Modal } from 'antd-mobile';
+import Modal from '../Modal';
 
 class MobileModal extends React.PureComponent {
 
