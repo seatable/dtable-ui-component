@@ -1,8 +1,10 @@
 import DatePickerLocale from 'rmc-date-picker/lib/locale/en_US';
 
-export default {
+const svSE = {
   okText: 'Ok',
   dismissText: 'Avbryt',
   extra: 'vänligen välj',
   DatePickerLocale,
 };
+
+export default svSE;

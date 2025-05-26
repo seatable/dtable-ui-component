@@ -1,7 +1,6 @@
 /* tslint:disable:jsx-no-multiline-js */
 import classnames from 'classnames';
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import { createRoot } from 'react-dom/client';
 import Dialog from 'rmc-dialog';
 import TouchFeedback from 'rmc-feedback';

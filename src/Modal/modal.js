@@ -42,14 +42,14 @@ export default class Modal extends ModalComponent {
 
     return (
       <TouchFeedback activeClassName={`${prefixCls}-button-active`} key={i}>
-        <a
+        <span
           className={`${prefixCls}-button`}
           role="button"
           style={buttonStyle}
           onClick={onClickFn}
         >
           {button.text || 'Button'}
-        </a>
+        </span>
       </TouchFeedback>
     );
   }

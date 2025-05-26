@@ -1,8 +1,10 @@
 import DatePickerLocale from 'rmc-date-picker/lib/locale/en_US';
 
-export default {
+const ruRU = {
   okText: 'Ок',
   dismissText: 'Отмена',
   extra: '',
   DatePickerLocale,
 };
+
+export default ruRU;
