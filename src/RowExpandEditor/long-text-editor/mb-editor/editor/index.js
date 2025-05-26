@@ -7,6 +7,8 @@ import { getLocale } from '../../../../lang';
 
 import './index.css';
 
+const { Header, Body } = MobileFullScreenPage;
+
 const Editor = ({ value: oldValue, title, onToggle, onChange }) => {
   const [value, setValue] = useState(oldValue || '');
   const hasUnSaved = useRef(false);
@@ -45,20 +47,17 @@ const Editor = ({ value: oldValue, title, onToggle, onChange }) => {
   }, [onSave]);
 
   return (
-    <MobileFullScreenPage
-      className="dtable-ui-mobile-long-text-editor"
-      onLeftClick={onToggle}
-      onClose={onToggle}
-      onRightClick={handleSave}
-    >
-      <>{getLocale('Cancel')}</>
-      <>{title}</>
-      <span style={{ color: '#f09f3f' }}>{getLocale('Submit')}</span>
-      <>
+    <MobileFullScreenPage className="dtable-ui-mobile-long-text-editor" onClose={onToggle}>
+      <Header onLeftClick={onToggle} onRightClick={handleSave}>
+        <>{getLocale('Cancel')}</>
+        <>{title}</>
+        <span style={{ color: '#f09f3f' }}>{getLocale('Submit')}</span>
+      </Header>
+      <Body>
         <div className="dtable-ui-mobile-long-text-editor-container">
           <TextareaItem rows={rowCounts} value={value} onChange={handleTextChange} />
         </div>
-      </>
+      </Body>
     </MobileFullScreenPage>
   );
 };
