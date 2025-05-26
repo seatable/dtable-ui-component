@@ -1,24 +1,25 @@
-.dtable-ui-image-editor-dialog {
-  max-width: 620px;
-}
-
-.dtable-ui-image-editor-modal {
-  width: 620px;
-  max-height: 620px;
+.dtable-ui-file-open-external-browser {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 0;
   overflow: hidden;
 }
 
-.dtable-ui-image-editor-container {
-  width: 100%;
-  background-color: #fff;
+.dtable-ui-file-open-external-browser .seatable-tip-danger {
+  margin: 16px;
+  text-align: center;
 }
 
-.dtable-ui-image-addition-container {
+.dtable-ui-file-open-external-browser .image-container {
+  flex: 1;
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0 10px;
 }
 
-.dtable-ui-image-editor-dialog .dtable-icon-return {
-  color: #666666;
-  font-size: 14px;
+.dtable-ui-file-open-external-browser img {
+  width: 75%;
 }

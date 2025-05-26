@@ -1,16 +1,68 @@
-import React from 'react';
+import React, { forwardRef, useCallback, useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
+import { DEFAULT_DATE_FORMAT } from 'dtable-utils';
 import dayjs from '../utils/dayjs';
-import PCDateEditorPopover from './pc-date-editor-popover';
-import MBDateEditorPopover from './mb-date-editor-popover';
+import PCDateEditor from './pc-editor';
+import MBDateEditor from './mb-editor';
 
 import 'dayjs/locale/zh-cn';
 import 'dayjs/locale/en-gb';
 
 import './index.css';
 
-const propTypes = {
+const DateEditor = forwardRef(({ isMobile, lang, isReadOnly, column, className, isInModal, firstDayOfWeek, size, value: oldValue, hideCalendar, onCommit }, ref) => {
+  const [isDateInit, setDateInit] = useState(false);
+  const [value, setValue] = useState(oldValue || '');
+
+  const format = useMemo(() => {
+    return (column?.data && column?.data?.format) || DEFAULT_DATE_FORMAT;
+  }, [column]);
+  const showHourAndMinute = useMemo(() => format.indexOf('HH:mm') > -1, [format]);
+
+  const handelCommit = useCallback((newValue) => {
+    if (value !== newValue) {
+      setValue(newValue);
+      onCommit(newValue);
+    }
+  }, [value, onCommit]);
+
+  useEffect(() => {
+    dayjs.locale(lang);
+    setDateInit(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  if (!isDateInit) return null;
+
+  const props = {
+    lang,
+    value,
+    dateFormat: format,
+    showHourAndMinute,
+    firstDayOfWeek,
+    className,
+    onCommit: handelCommit,
+    onClose: hideCalendar,
+  };
+
+  if (isMobile === false) return (<PCDateEditor { ...props } isInModal={isInModal} ref={ref} />);
+  if (isMobile === true) return (<MBDateEditor { ...props } isReadOnly={isReadOnly} column={column} ref={ref} />);
+
+  return (
+    <>
+      <MediaQuery query={'(min-width: 768px)'}>
+        <PCDateEditor { ...props } isInModal={isInModal} ref={ref} />
+      </MediaQuery>
+      <MediaQuery query={'(max-width: 768px)'}>
+        <MBDateEditor { ...props } isReadOnly={isReadOnly} column={column} ref={ref} />
+      </MediaQuery>
+    </>
+  );
+});
+
+DateEditor.propTypes = {
+  isMobile: PropTypes.bool,
   isReadOnly: PropTypes.bool,
   isInModal: PropTypes.bool,
   value: PropTypes.string,
@@ -21,98 +73,5 @@ const propTypes = {
   onClose: PropTypes.func,
   firstDayOfWeek: PropTypes.string,
 };
-
-class DateEditor extends React.Component {
-
-  static defaultProps = {
-    isReadOnly: false,
-    value: '',
-    lang: 'en'
-  };
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      isDateInit: false,
-      newValue: '',
-      dateFormat: '',
-      showHourAndMinute: false,
-      defaultCalendarValue: null,
-    };
-  }
-
-  componentDidMount() {
-    const { value, lang } = this.props;
-    dayjs.locale(lang);
-    let dateFormat = this.getDateFormat();
-    this.setState({
-      isDateInit: true,
-      newValue: value,
-      dateFormat,
-      showHourAndMinute: dateFormat.indexOf('HH:mm') > -1,
-    });
-  }
-
-  getDateFormat = () => {
-    let { column } = this.props;
-    let defaultDateFormat = 'YYYY-MM-DD';
-    let dateFormat = column.data && column.data.format;
-    return dateFormat || defaultDateFormat;
-  };
-
-  onValueChanged = (value) => {
-    if (value !== this.state.newValue) {
-      this.setState({ newValue: value });
-      this.onCommit(value);
-    }
-  };
-
-  onCommit = (newValue) => {
-    this.props.onCommit(newValue);
-  };
-
-  render() {
-    if (!this.state.isDateInit) {
-      return null;
-    }
-
-    let { lang, column, className, isInModal, firstDayOfWeek } = this.props;
-    let { newValue, dateFormat, showHourAndMinute } = this.state;
-
-    return (
-      <>
-        <MediaQuery query={'(min-width: 768px)'}>
-          <PCDateEditorPopover
-            className={className}
-            lang={lang}
-            isInModal={isInModal}
-            value={newValue}
-            dateFormat={dateFormat}
-            showHourAndMinute={showHourAndMinute}
-            onValueChanged={this.onValueChanged}
-            hideCalendar={this.props.hideCalendar}
-            firstDayOfWeek={firstDayOfWeek}
-          />
-        </MediaQuery>
-        <MediaQuery query={'(max-width: 767.8px)'}>
-          <MBDateEditorPopover
-            className={className}
-            isReadOnly={this.props.isReadOnly}
-            lang={lang}
-            value={newValue}
-            dateFormat={dateFormat}
-            showHourAndMinute={showHourAndMinute}
-            column={column}
-            onValueChanged={this.onValueChanged}
-            onClosePopover={this.props.hideCalendar}
-            firstDayOfWeek={firstDayOfWeek}
-          />
-        </MediaQuery>
-      </>
-    );
-  }
-}
-
-DateEditor.propTypes = propTypes;
 
 export default DateEditor;

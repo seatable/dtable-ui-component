@@ -1,0 +1,30 @@
+.dtable-ui-mobile-row-expand-image {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  min-height: 50px;
+}
+
+.dtable-ui-mobile-row-expand-image .dtable-ui-mobile-row-expand-add-btn {
+  height: 100%;
+  line-height: 50px;
+}
+
+.dtable-ui-mobile-row-expand-image .dtable-ui-mobile-row-expand-img-item {
+  height: auto;
+  max-height: 150px;
+  width: calc(50% - 10px);
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.dtable-ui-mobile-row-expand-image .dtable-ui-mobile-row-expand-img-item img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.dtable-ui-mobile-row-expand-image .dtable-ui-mobile-row-expand-img-item:nth-child(even) {
+  margin-left: 20px;
+}

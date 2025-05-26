@@ -1,0 +1,86 @@
+.dtable-ui-file-editor-previewer-box {
+  display: flex;
+  height: 48px;
+  width: 100%;
+  padding: 0px 16px;
+  justify-content: space-between;
+}
+
+.dtable-ui-file-editor-previewer-box.dtable-ui-file-editor-previewer-box-highlight {
+  background-color: #f5f5f5;
+}
+
+.dtable-ui-file-editor-previewer-box .dtable-ui-file-editor-previewer-item {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 56px);
+}
+
+.dtable-ui-file-editor-previewer-box .dtable-ui-file-editor-previewer-item .dtable-ui-file-editor-previewer-icon {
+  height: 100%;
+  line-height: 48px;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+
+.dtable-ui-file-editor-previewer-box .dtable-ui-file-editor-previewer-item .dtable-ui-file-editor-previewer-icon img {
+  width: 36px;
+  height: 36px;
+}
+
+.dtable-ui-file-editor-previewer-box .dtable-ui-file-editor-previewer-item .dtable-ui-file-editor-previewer-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.dtable-ui-file-editor-previewer-box .dtable-ui-file-editor-previewer-item .dtable-ui-file-editor-previewer-item-name {
+  max-width: 480px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dtable-ui-file-editor-previewer-box .dtable-ui-file-editor-previewer-item .dtable-ui-file-editor-preview-item-detail {
+  color: #c0c0c0;
+}
+
+.dtable-ui-file-editor-previewer-box .dtable-ui-file-editor-preview-item-detail .file-upload-time {
+  white-space: pre-wrap;
+}
+
+.dtable-ui-file-editor-previewer-operation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dtable-ui-file-editor-previewer-operation .file-dropdown-menu .file-dropdown-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+  width: 24px;
+}
+
+.file-dropdown-menu .file-dropdown-icon .dtable-icon-more-vertical {
+  font-size: 14px;
+  color: #999;
+}
+
+.dtable-ui-file-editor-previewer-operation .file-download-icon,
+.file-dropdown-menu .file-dropdown-icon .file-dropdown-more {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: #999;
+  cursor: pointer;
+}
+
+.file-dropdown-menu .file-dropdown-icon:hover .file-dropdown-more,
+.dtable-ui-file-editor-previewer-operation .file-download-icon:hover {
+  color: #000;
+  opacity: 0.75;
+}

@@ -15,15 +15,15 @@ import MTimeFormatter from '../MTimeFormatter';
 import AutoNumberFormatter from '../AutoNumberFormatter';
 import DurationFormatter from '../DurationFormatter';
 import ButtonFormatter from '../ButtonFormatter';
-import RowExpandUrlFormatter from './RowExpandUrlFormatter';
-import RowExpandEmailFormatter from './RowExpandEmailFormatter';
-import RowExpandRateFormatter from './RowExpandRateFormatter';
-import RowExpandImageFormatter from './RowExpandImageFormatter';
-import RowExpandFileFormatter from './RowExpandFileFormatter';
-import RowExpandLinkFormatter from './RowExpandLinkFormatter';
-import RowExpandFormulaFormatter from './RowExpandFormulaFormatter';
 import DigitalSignFormatter from '../DigitalSignFormatter';
-import RowExpandDepartmentFormatter from './RowExpandDepartmentFormatter';
+import RowExpandUrlFormatter from './url-formatter';
+import RowExpandEmailFormatter from './email-formatter';
+import RowExpandRateFormatter from './rate-formatter';
+import RowExpandImageFormatter from './image-formatter';
+import RowExpandFileFormatter from './file-formatter';
+import RowExpandLinkFormatter from './link-formatter';
+import RowExpandFormulaFormatter from './formula-formatter';
+import RowExpandDepartmentFormatter from './department-formatter';
 
 export const DEFAULT_FORMATTER = {
   [CellType.TEXT]: TextFormatter,

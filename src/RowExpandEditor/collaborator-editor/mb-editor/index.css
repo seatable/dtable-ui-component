@@ -1,0 +1,9 @@
+.dtable-ui-mobile-row-expand-collaborators {
+  min-height: 50px;
+  padding: 1rem 0;
+}
+
+.dtable-ui-mobile-row-expand-collaborators .dtable-ui.collaborator-item {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}

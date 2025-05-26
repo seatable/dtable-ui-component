@@ -1,33 +1,31 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import MediaQuery from 'react-responsive';
-import PCCollaboratorEditor from './pc-collaborator-editor';
-import MBCollaboratorEditor from './mb-collaborator-editor';
+import PCCollaboratorEditor from './pc-editor';
+import MBCollaboratorEditor from './mb-editor';
 
 import './index.css';
 
-const CollaboratorEditor = ({ value: oldValue, ...props }) => {
+const CollaboratorEditor = forwardRef(({ isMobile, value: oldValue, ...props }, ref) => {
   const value = Array.isArray(oldValue) ? oldValue : [];
+  if (isMobile === false) return (<PCCollaboratorEditor { ...props } value={value} ref={ref} />);
+  if (isMobile === true) return (<MBCollaboratorEditor { ...props } value={value} ref={ref} />);
 
   return (
     <>
-      <MediaQuery query={'(min-width: 768px)'}>
-        <PCCollaboratorEditor { ...props} value={value} />
+      <MediaQuery query="(min-width: 768px)">
+        <PCCollaboratorEditor { ...props } value={value} ref={ref} />
       </MediaQuery>
-      <MediaQuery query={'(max-width: 767.8px)'}>
-        <MBCollaboratorEditor { ...props} value={value} />
+      <MediaQuery query="(max-width: 768px)">
+        <MBCollaboratorEditor { ...props } value={value} ref={ref} />
       </MediaQuery>
     </>
   );
-};
+});
 
 CollaboratorEditor.propTypes = {
-  isReadOnly: PropTypes.bool,
+  isMobile: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-  column: PropTypes.object,
-  collaborators: PropTypes.array.isRequired,
-  onCommit: PropTypes.func,
-  isShowEditButton: PropTypes.bool,
 };
 
 export default CollaboratorEditor;

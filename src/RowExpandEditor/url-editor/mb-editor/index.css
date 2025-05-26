@@ -1,0 +1,17 @@
+.dtable-ui-mobile-row-expand-url-editor-container .dtable-ui-mobile-row-expand-url-input {
+  text-decoration: underline;
+  padding-right: 40px;
+}
+
+.dtable-ui-mobile-row-expand-url-editor-container .dtable-ui-mobile-row-expand-jump-link {
+  height: 22px;
+  line-height: 22px;
+  position: absolute;
+  right: 0;
+  top: 14px;
+  background: #fff;
+  color: #999;
+  border: 1px solid #eee;
+  box-shadow: 0 0 1px;
+  padding: 0 3px;
+}

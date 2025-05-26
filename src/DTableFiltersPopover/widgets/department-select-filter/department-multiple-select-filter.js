@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import SelectedDepartments from '../../../Department-editor/selected-departments';
-import DepartmentMultipleSelect from '../../../Department-editor/department-multiple-select';
-import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../Department-editor/constants';
+import SelectedDepartments from '../../../SelectedDepartments';
+import DepartmentMultipleSelectEditor from '../../../DepartmentMultipleSelectEditor';
+import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../constants/departments';
 import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
 
@@ -85,7 +85,7 @@ function DepartmentMultipleSelectFilter(props) {
         <span className="dtable-font dtable-icon-down3"></span>
       </div>
       {isShowSelector &&
-        <DepartmentMultipleSelect
+        <DepartmentMultipleSelectEditor
           isShowSelectedDepartments={false}
           classNamePrefix="filter"
           value={selectedDepartments}

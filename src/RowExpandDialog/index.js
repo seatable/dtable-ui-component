@@ -227,4 +227,7 @@ RowExpandDialog.propTypes = {
   copyURL: PropTypes.func,
 };
 
+RowExpandDialog.Header = Header;
+RowExpandDialog.Body = Body;
+
 export default RowExpandDialog;

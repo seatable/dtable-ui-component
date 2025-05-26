@@ -1,9 +1,9 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import SelectedDepartments from '../../../Department-editor/selected-departments';
-import DepartmentSingleSelect from '../../../Department-editor/department-single-select';
-import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../Department-editor/constants';
+import SelectedDepartments from '../../../SelectedDepartments';
+import DepartmentSingleSelectEditor from '../../../DepartmentSingleSelectEditor';
+import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../constants/departments';
 import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
 
@@ -83,7 +83,7 @@ function DepartmentSingleSelectFilter(props) {
         <span className="dtable-font dtable-icon-down3"></span>
       </div>
       {isShowSelector &&
-        <DepartmentSingleSelect
+        <DepartmentSingleSelectEditor
           enableSelectRange={false}
           column={column}
           value={value}

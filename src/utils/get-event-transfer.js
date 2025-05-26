@@ -1,3 +1,5 @@
+import { isMobile } from '../constants';
+
 const HTML = 'text/html';
 const TEXT = 'text/plain';
 // const FILES = 'files';
@@ -35,7 +37,7 @@ function getEventTransfer(event) {
   let html;
   let text;
   let files;
-  if (window.isMobile) {
+  if (isMobile) {
     if (window.dtableTransfer) {
       text = window.dtableTransfer['TEXT'];
     }

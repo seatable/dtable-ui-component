@@ -1,0 +1,8 @@
+.dtable-ui-mobile-selector .am-list-body .dtable-ui-mobile-selector-options {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dtable-ui-mobile-selector .am-list-body .dtable-ui-mobile-selector-options::-webkit-scrollbar {
+  width: 0;
+}
