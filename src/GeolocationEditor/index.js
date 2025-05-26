@@ -12,8 +12,8 @@ const GeolocationEditor = forwardRef(({ isMobile, config: propsConfig, ...props 
     if (window?.app?.location) return new Promise((resolve, reject) => {
       resolve(window.app.location);
     });
-    const { mediaUrl } = config || {};
-    return fetch(`${mediaUrl}geo-data/cn-location.json`).then((res) => { // get locations from server
+    const { server = '', mediaUrl = '' } = config || {};
+    return fetch(`${server}${mediaUrl}geo-data/cn-location.json`.replaceAll('//', '/')).then((res) => { // get locations from server
       return res.json();
     }).catch(() => {
       // get locations from local
@@ -31,9 +31,9 @@ const GeolocationEditor = forwardRef(({ isMobile, config: propsConfig, ...props 
       resolve(window.app.countryListEn);
     });
 
-    const { mediaUrl } = config;
+    const { mediaUrl = '', server = '' } = config;
     const geoFileName = lang === 'cn' ? 'cn-region-location' : 'en-region-location';
-    return fetch(`${mediaUrl}geo-data/${geoFileName}.json`)
+    return fetch(`${server}${mediaUrl}geo-data/${geoFileName}.json`.replaceAll('//', '/'))
       .then(res => {
         return res.json();
       }).catch(() => {
