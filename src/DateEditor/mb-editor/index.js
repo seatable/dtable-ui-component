@@ -93,7 +93,6 @@ class MBDateEditor extends React.PureComponent {
       <Calendar
         className={classnames('dtable-rc-calendar', className)}
         locale={initDateEditorLanguage(lang)}
-        dateInputPlaceholder={getLocale('Please_input')}
         format={this.format}
         defaultValue={this.defaultCalendarValue}
         showDateInput={false}
@@ -124,7 +123,7 @@ class MBDateEditor extends React.PureComponent {
                 className="ant-calendar-picker-input ant-input form-control"
                 value={time ? dayjs(time).format(this.getFormat()) : ''}
               />
-              <div ref={this.calendarContainerRef} style={{ height: '22rem' }}/>
+              <div ref={this.calendarContainerRef} style={{ height: '22rem' }} />
             </div>
           );
         }}

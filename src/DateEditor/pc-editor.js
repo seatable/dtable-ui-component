@@ -193,7 +193,6 @@ class PCDateEditor extends React.Component {
         format={dateFormat}
         defaultValue={defaultValue}
         showHourAndMinute={showHourAndMinute}
-        dateInputPlaceholder={getLocale('Please_input')}
         defaultMinutesTime={defaultTime}
         showDateInput={true}
         focusablePanel={false}
