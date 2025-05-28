@@ -139,7 +139,6 @@ class FilterCalendar extends Component {
         className="dtable-rc-calendar"
         locale={translateCalendar()}
         style={{ zIndex: 1001 }}
-        dateInputPlaceholder={('please enter date')}
         format={calendarFormat}
         defaultValue={this.defaultCalendarValue}
         showDateInput={true}
