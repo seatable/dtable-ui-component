@@ -8,7 +8,7 @@
 
 .dtable-ui-row-expand-body .dtable-ui-row-expand-body-content {
   flex: 1 1;
-  overflow-y: scroll;
+  overflow-y: auto;
   padding: 30px;
 }
 
