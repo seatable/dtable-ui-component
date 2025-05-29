@@ -1,5 +1,5 @@
 import * as React from 'react';
-import getDataAttr from '../_util/getDataAttr';
+import getDataAttr from '../utils/getDataAttr';
 import Tabs from '../Tabs';
 import Tab from './Tab';
 

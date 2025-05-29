@@ -137,9 +137,6 @@ class DepartmentSingleSelect extends Component {
     const { value } = this.props;
     const newLevel = level + 1;
     const { hasChild, isExpanded, name, id } = department;
-    const noChildStyle = hasNextLevel ? '16px' : '12px';
-    const nameStyle = { paddingLeft: hasChild ? '' : noChildStyle };
-    const itemStyle = { paddingLeft: `${(newLevel) * 15 + 10}px` };
     const isChecked = value === id;
 
     return (
@@ -147,7 +144,7 @@ class DepartmentSingleSelect extends Component {
         <div
           className="department-item"
           onClick={(event) => this.onSelectDepartment(event, id)}
-          style={itemStyle}
+          style={{ paddingLeft: `${(newLevel) * 15 + 10}px` }}
         >
           <div className="department-item-left-content d-flex align-items-center">
             {hasChild &&
@@ -156,7 +153,12 @@ class DepartmentSingleSelect extends Component {
                 </span>
               </div>
             }
-            <span style={nameStyle} title={name} className="text-truncate department-name">{name}</span>
+            <span
+              style={{ paddingLeft: hasChild ? '' : (hasNextLevel ? '16px' : '12px') }}
+              title={name}
+              className="text-truncate department-name"
+            >{name}
+            </span>
             {isChecked &&
               <span className="department-check-icon">
                 <i className="dtable-font dtable-icon-check-mark"></i>

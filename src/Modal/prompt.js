@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import closest from '../_util/closest';
+import closest from '../utils/closest';
 import Modal from './modal';
 
 export default function prompt(

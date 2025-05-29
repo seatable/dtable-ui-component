@@ -74,8 +74,6 @@ function DepartmentMultipleSelect(props) {
   function renderDepartment(department, subDepartments, level) {
     const { hasChild, isExpanded, name, id } = department;
     const newLevel = level + 1;
-    const inputStyle = { marginRight: `${(newLevel) * 15 + 5}px` };
-    const nameStyle = { paddingLeft: hasChild ? '' : '16px' };
     const inputChecked = value.includes(id);
 
     return (
@@ -85,7 +83,7 @@ function DepartmentMultipleSelect(props) {
             type="checkbox"
             className="vam department-select-input"
             checked={inputChecked}
-            style={inputStyle}
+            style={{ marginRight: `${(newLevel) * 15 + 5}px` }}
             onChange={() => {}}
           />
           {hasChild && !searchVal &&
@@ -94,7 +92,7 @@ function DepartmentMultipleSelect(props) {
               </span>
             </div>
           }
-          <span style={searchVal ? {} : nameStyle} title={name} className="text-truncate">{name}</span>
+          <span style={searchVal ? {} : { paddingLeft: hasChild ? '' : '16px' }} title={name} className="text-truncate">{name}</span>
         </div>
         {(isExpanded && hasChild) && renderSubDepartments(id, subDepartments, newLevel)}
       </Fragment>

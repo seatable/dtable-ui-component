@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import TouchFeedback from 'rmc-feedback';
-import { IS_IOS } from '../_util/exenv';
+import { IS_IOS } from '../utils/exenv';
 /**
  * determines whether an array includes a certain value among its entries, returning true or false as appropriate.
  * @param {array} arr The array to search in

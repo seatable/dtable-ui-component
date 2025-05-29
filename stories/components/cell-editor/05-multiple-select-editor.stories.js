@@ -16,6 +16,11 @@ const column1_1 = {
     ]
   },
 };
+const options1 = [
+  {id: '1111', name: '未开始', color: 'red'},
+  {id: '2222', name: '开始', color: 'blue'},
+  {id: '3333', name: '结束', color: 'green'}
+];
 
 const value2_1 = [];
 const value2_2 = ['1111'];
@@ -33,6 +38,13 @@ const column2_1 = {
     ]
   },
 };
+const options2 = [
+  {id: '256713', name: '待开始', color: '#EED5FF'},
+  {name: '进行中', color: '#D7E8FF', textColor: '#212529', id: '839569'},
+  {name: '评审', color: '#FFFDCF', id: '954270'},
+  {name: '已完成', color: '#DDFFE6', textColor: '#212529', id: '686249'},
+  {id: '669117', name: '需要设计稿', color: '#FFFDCF'},
+];
 
 const meta = {
   title: 'Editors/multiple-select-editor',
@@ -62,6 +74,8 @@ export const Demo1 = {
     isReadOnly: false,
     value: value1_1,
     column: column1_1,
+    options: options1,
+    isMobile: false,
     onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
@@ -74,6 +88,8 @@ export const Demo2 = {
     isReadOnly: false,
     value: value2_1,
     column: column2_1,
+    options: options2,
+    isMobile: false,
     onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
@@ -86,6 +102,8 @@ export const Demo3 = {
     isReadOnly: false,
     value: value1_2,
     column: column1_1,
+    options: options1,
+    isMobile: false,
     onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
@@ -98,6 +116,8 @@ export const Demo4 = {
     isReadOnly: false,
     value: value2_2,
     column: column2_1,
+    options: options2,
+    isMobile: false,
     onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {

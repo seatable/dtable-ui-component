@@ -68,6 +68,30 @@ const column2_1 = {
   },
 };
 
+const options = [
+  {
+    'name': '低',
+    'color': '#D8FAFF',
+    'textColor': '#212529',
+    'borderColor': '#B4E4E9',
+    'id': '66905'
+  },
+  {
+    'name': '中',
+    'color': '#46A1FD',
+    'textColor': '#FFFFFF',
+    'borderColor': '#3C8FE4',
+    'id': '193'
+  },
+  {
+    'name': '高',
+    'color': '#DC82D2',
+    'textColor': '#FFFFFF',
+    'borderColor': '#D166C5',
+    'id': '20948'
+  }
+];
+
 const meta = {
   title: 'Editors/single-select-editor',
   component: SingleSelectEditor,
@@ -93,9 +117,11 @@ export default meta;
 
 export const Demo1 = {
   args: {
+    options,
     isReadOnly: false,
     value: value1_1,
     column: column1_1,
+    isMobile: false,
     onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
@@ -105,9 +131,11 @@ export const Demo1 = {
 
 export const Demo2 = {
   args: {
+    options,
     isReadOnly: false,
     value: value2_1,
     column: column2_1,
+    isMobile: false,
     onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
@@ -117,9 +145,11 @@ export const Demo2 = {
 
 export const Demo3 = {
   args: {
+    options,
     isReadOnly: false,
     value: value1_2,
     column: column1_1,
+    isMobile: false,
     onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
@@ -129,9 +159,11 @@ export const Demo3 = {
 
 export const Demo4 = {
   args: {
+    options,
     isReadOnly: false,
     value: value2_2,
     column: column2_1,
+    isMobile: false,
     onCommit: (updated) => { action('onCommit')(updated); },
   },
   parameters: {
