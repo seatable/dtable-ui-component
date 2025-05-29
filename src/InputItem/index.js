@@ -3,7 +3,7 @@ import classnames from 'classnames';
 import * as PropTypes from 'prop-types';
 import * as React from 'react';
 import TouchFeedback from 'rmc-feedback';
-import { getComponentLocale } from '../_util/getLocale';
+import { getComponentLocale } from '../utils/getLocale';
 import CustomInput from './custom-input';
 import Input from './input';
 

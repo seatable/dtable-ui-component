@@ -4,7 +4,7 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import Dialog from 'rmc-dialog';
 import TouchFeedback from 'rmc-feedback';
-import getDataAttr from '../_util/getDataAttr';
+import getDataAttr from '../utils/getDataAttr';
 import Badge from '../Badge';
 
 import './style/index.css';

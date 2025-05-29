@@ -5,7 +5,7 @@ import RMCCascader from 'rmc-cascader/lib/Cascader';
 import RMCPopupCascader from 'rmc-cascader/lib/Popup';
 import RMCMultiPicker from 'rmc-picker/lib/MultiPicker';
 import RMCPicker from 'rmc-picker/lib/Picker';
-import { getComponentLocale } from '../_util/getLocale';
+import { getComponentLocale } from '../utils/getLocale';
 
 export function getDefaultProps() {
   const defaultFormat = values => {

@@ -46,6 +46,7 @@ export default meta;
 export const Demo1 = {
   args: {
     isReadOnly: false,
+    isMobile: false,
     value: '2024-03-05',
     column: column1,
     onCommit: (updated) => { action('onCommit')(updated); },
@@ -58,6 +59,7 @@ export const Demo1 = {
 export const Demo2 = {
   args: {
     isReadOnly: false,
+    isMobile: false,
     value: '2024-03-05 08:00',
     column: column2,
     onCommit: (updated) => { action('onCommit')(updated); },

@@ -22,6 +22,10 @@ const SelectEditor = forwardRef(({ isMobile, ...props }, ref) => {
 
 SelectEditor.propTypes = {
   isMobile: PropTypes.bool,
+  value: PropTypes.array.isRequired,
+  options: PropTypes.array.isRequired,
+  isSupportNewOption: PropTypes.bool,
+  onAddNewOption: PropTypes.func,
 };
 
 export default SelectEditor;

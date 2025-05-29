@@ -10,6 +10,7 @@ const MultipleSelectEditor = forwardRef(({ value: oldValue, ...props }, ref) => 
 
 MultipleSelectEditor.propTypes = {
   value: PropTypes.array,
+  options: PropTypes.array.isRequired,
 };
 
 export default MultipleSelectEditor;

@@ -1,8 +1,8 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { addClass, removeClass } from '../_util/class';
-import { canUseDOM } from '../_util/exenv';
+import { addClass, removeClass } from '../utils/class';
+import { canUseDOM } from '../utils/exenv';
 import CustomKeyboard from './custom-keyboard';
 import Portal from './portal';
 

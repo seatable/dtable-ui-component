@@ -2,7 +2,7 @@
 import classnames from 'classnames';
 import * as React from 'react';
 import TouchFeedback from 'rmc-feedback';
-import { IS_IOS } from '../_util/exenv';
+import { IS_IOS } from '../utils/exenv';
 import './index.css';
 
 function noop() {}

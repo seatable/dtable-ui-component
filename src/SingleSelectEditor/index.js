@@ -10,6 +10,7 @@ const SingleSelectEditor = forwardRef(({ value: oldValue, ...props }, ref) => {
 
 SingleSelectEditor.propTypes = {
   value: PropTypes.string,
+  options: PropTypes.array.isRequired,
 };
 
 export default SingleSelectEditor;

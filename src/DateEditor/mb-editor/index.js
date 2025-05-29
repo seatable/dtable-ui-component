@@ -28,7 +28,6 @@ class MBDateEditor extends React.PureComponent {
     this.calendarContainerRef = React.createRef();
     this.leftFormat = dateFormat ? (dateFormat.indexOf(' ') === -1 ? dateFormat : dateFormat.slice(0, dateFormat.indexOf(' '))) : 'YYYY-MM-DD';
     this.rightFormat = 'HH:mm';
-    this.showTime = showHourAndMinute;
     this.format = showHourAndMinute ? 'YYYY-MM-DD HH:mm' : 'YYYY-MM-DD';
   }
 
@@ -48,7 +47,7 @@ class MBDateEditor extends React.PureComponent {
   }
 
   handleDateChange = (date) => {
-    if (this.showTime) {
+    if (this.props.showHourAndMinute) {
       const HM = dayjs(this.state.time).format('HH:mm');
       // In iOS, the time standard is ISO-8601, new Date("YYYY-MM-DD") will be wrong, new Date("YYYY/MM/DD") will be OK.
       const newTime = dayjs(date).format('YYYY/MM/DD') + ' ' + HM;
@@ -132,7 +131,7 @@ class MBDateEditor extends React.PureComponent {
   };
 
   render() {
-    const { lang, column } = this.props;
+    const { lang, column, showHourAndMinute } = this.props;
     const { time } = this.state;
 
     return (
@@ -144,12 +143,12 @@ class MBDateEditor extends React.PureComponent {
         </Header>
         <Body>
           <div className="dtable-ui-mobile-date-editor-input">
-            <div className="date-input" style={this.showTime ? { width: '50%' } : { width: '100%' }}>
+            <div className="date-input" style={showHourAndMinute ? { width: '50%' } : { width: '100%' }}>
               <DatePicker mode="date" minDate={minDate} maxDate={maxDate} locale={initDateEditorLanguage(lang)} value={null} onChange={this.handleDateChange}>
                 <div className="date-input-day">{dayjs(time).format(this.leftFormat)}</div>
               </DatePicker>
             </div>
-            {this.showTime &&
+            {showHourAndMinute &&
               <div className="date-input" style={{ width: '50%' }}>
                 <DatePicker mode="time" locale={initDateEditorLanguage(lang)} value={null} onChange={this.handleTimeChange}>
                   <div className="date-input-day">{dayjs(time).format(this.rightFormat)}</div>
