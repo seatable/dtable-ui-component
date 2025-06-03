@@ -64,7 +64,6 @@
 
 .filters-list .dtable-select .selected-option-show {
   width: calc(100% - 20px);
-  height: 20px;
 }
 
 .filters-list .dtable-select .selected-option {
@@ -130,7 +129,6 @@
 
 .filters-list .selected-option .multiple-select-option,
 .filters-list .selected-option .single-select-option {
-  margin: 0;
   display: inline-block;
 }
 
