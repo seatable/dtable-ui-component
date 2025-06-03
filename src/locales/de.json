@@ -132,8 +132,6 @@
   "Select_location": "Auswählen",
   "Positioning_failed": "Die Positionierung ist gescheitert.",
   "Address": "Adresse",
-  "Enter_longitude_and_latitude": "Längengrad und Breitengrad eingeben",
-  "Enter_latitude_and_longitude": "Längen- und Breitengrad eingeben",
   "The_map_plugin_is_not_properly_configured_contact_the_administrator": "Das Karten-Plugin ist nicht richtig konfiguriert. Kontaktieren Sie den Administrator.",
   "Fill_in": "Ausfüllen",
   "Search_failed_please_enter_detailed_address": "Die Suche ist fehlgeschlagen. Geben Sie die Adresse mit mehr Details ein.",
@@ -165,5 +163,9 @@
   "Add_participants": "Teilnehmer hinzufügen",
   "Edit_long_text": "Langtext bearbeiten",
   "Choose_a_department": "Bereich wählen",
-  "Close": "Schließen"
+  "Close": "Schließen",
+  "Latitude_abbr": "Breite",
+  "Longitude_abbr": "Länge",
+  "Enter_latitude": "Breitengrad eingeben",
+  "Enter_longitude": "Längengrad eingeben"
 }

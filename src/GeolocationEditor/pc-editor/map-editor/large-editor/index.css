@@ -12,10 +12,13 @@
   width: 100%;
   flex: 1;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .dtable-ui-large-map-editor-dialog .geolocation-map-container-large {
-  height: 100%;
+  flex: 1;
+  overflow: hidden;
   display: flex;
   align-items: center;
   text-align: center;
@@ -50,14 +53,19 @@
   position: relative;
 }
 
-.dtable-ui-large-map-editor-dialog .dtable-ui-geolocation-map-editor-large .search-tables-input {
-  line-height: 38px;
+.dtable-ui-large-map-editor-dialog .selection-input-large {
   padding-right: 30px;
   border-bottom: 0;
   background: #fff;
-  border-radius: 3px;
   border: 1px solid #dedede;
-  box-shadow: 0 -0 12px rgb(0 0 0 / 30%);
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+  box-shadow: 0 -0 2px rgb(0 0 0 / 30%);
+  width: 415px;
+}
+
+.dtable-ui-large-map-editor-dialog .selection-input-large:focus {
+  box-shadow: 0 0 3px #0000004d;
 }
 
 .clear-search-numerical {
@@ -75,12 +83,6 @@
 .dtable-ui-large-map-editor-dialog .dtable-ui-geolocation-map-editor-large .dtable-ui-geolocation-submit-map-editor {
   margin-left: 16px;
   box-shadow: 0 -0 12px rgb(0 0 0 / 30%);
-}
-
-.dtable-ui-geolocation-map-editor-large .search-tables-input.selection-input-large {
-  width: 415px;
-  box-shadow: 0 -0 2px rgb(0 0 0 / 30%);
-  border-radius: 2px 0px 0px 2px;
 }
 
 .dtable-ui-geolocation-map-editor-large .selection-input-large:focus {

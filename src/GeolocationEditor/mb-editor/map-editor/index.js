@@ -17,17 +17,15 @@ class MapEditor extends React.Component {
 
   constructor(props) {
     super(props);
-    const value = props.value || {};
+    const value = props.value || { lng: '', lat: '' };
     const { mapType, mapKey } = getMapInfo(props.config);
     this.mapType = mapType;
     this.mapKey = mapKey;
-    const { lng, lat } = value;
     this.map = null;
     this.state = {
       mode: 'preview',
       isLoading: true,
       value: value,
-      inputValue: isValidPosition(lng, lat) ? (DOMESTIC_MAP_TYPE.includes(this.mapType) ? `${lng}, ${lat}` : `${lat}, ${lng}`) : '',
     };
   }
 
@@ -203,8 +201,7 @@ class MapEditor extends React.Component {
       value: {
         lng: point.lng,
         lat: point.lat
-      },
-      inputValue: DOMESTIC_MAP_TYPE.includes(this.mapType) ? `${point.lng}, ${point.lat}` : `${point.lat}, ${point.lng}`
+      }
     });
   };
 
@@ -326,7 +323,7 @@ class MapEditor extends React.Component {
   };
 
   renderMap = () => {
-    const { isLoading, inputValue, mode } = this.state;
+    const { isLoading, mode, value } = this.state;
     if (isLoading) return (<div className="w-100 h-100 d-flex align-items-center justify-content-center"><Loading /></div>);
     if (!this.mapType) {
       return (
@@ -336,17 +333,33 @@ class MapEditor extends React.Component {
       );
     }
     const isEdit = mode === 'edit';
+    const { lat, lng } = value;
     return (
       <>
         <div className="dtable-ui-mobile-geolocation-map-editor-input-container">
+          <div className="view-subtitle">
+            <span>{getLocale('Latitude_abbr')}</span>
+          </div>
           <InputItem
             type="text"
             className="dtable-ui-mobile-geolocation-map-editor-input"
             style={{ marginTop: 0 }}
-            value={inputValue}
+            value={lat}
             editable={isEdit}
-            onChange={this.onChange}
-            placeholder={DOMESTIC_MAP_TYPE.includes(this.mapType) ? getLocale('Enter_longitude_and_latitude') : getLocale('Enter_latitude_and_longitude')}
+            onChange={this.handleLatitudeChange}
+            placeholder={getLocale('Enter_latitude')}
+          />
+          <div className="view-subtitle">
+            <span>{getLocale('Longitude_abbr')}</span>
+          </div>
+          <InputItem
+            type="text"
+            className="dtable-ui-mobile-geolocation-map-editor-input"
+            style={{ marginTop: 0 }}
+            value={lng}
+            editable={isEdit}
+            onChange={this.handleLongitudeChange}
+            placeholder={getLocale('Enter_longitude')}
           />
         </div>
         <div className="dtable-ui-mobile-geolocation-map-editor-map">

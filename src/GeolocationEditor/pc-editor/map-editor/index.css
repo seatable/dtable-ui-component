@@ -1,0 +1,33 @@
+.dtable-ui-geolocation-map-lng-lat-editor-header {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 1rem;
+  flex-shrink: 0;
+}
+
+.dtable-ui-geolocation-map-lng-lat-editor-header .dtable-ui-geolocation-map-lng-lat-input-container {
+  display: flex;
+  flex: 1 1;
+}
+
+.dtable-ui-geolocation-map-lng-lat-input-label {
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #0028641f;
+  border-bottom-left-radius: 3px;
+  border-right: none;
+  border-top-left-radius: 3px;
+  display: flex;
+  justify-content: center;
+  padding: .375rem .75rem;
+}
+
+.dtable-ui-geolocation-map-lng-lat-input-container input {
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  flex: 1 1;
+  position: relative;
+  z-index: 0;
+}
+
