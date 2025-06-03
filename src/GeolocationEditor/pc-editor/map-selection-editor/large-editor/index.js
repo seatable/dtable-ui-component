@@ -256,7 +256,7 @@ class LargeMapSelectionEditorDialog extends React.Component {
     event.nativeEvent.stopImmediatePropagation();
     const { value } = this.state;
     this.props.setValue(value);
-    this.props.toggleFullScreen();
+    this.props.toggleFullScreen(event);
   };
 
   renderSearchResults = () => {
@@ -348,7 +348,7 @@ class LargeMapSelectionEditorDialog extends React.Component {
                   value={inputValue}
                   onChange={this.onChange}
                   onKeyDown={this.onKeyDown}
-                  className='form-control search-tables-input selection-input-large'
+                  className='form-control selection-input-large'
                   placeholder={getLocale('Please_enter_the_address')}
                   autoFocus
                 />

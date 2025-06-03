@@ -132,8 +132,6 @@
   "Select_location": "Elegir",
   "Positioning_failed": "El posicionamiento ha fallado",
   "Address": "Dirección",
-  "Enter_longitude_and_latitude": "Introduce longitud y latitud",
-  "Enter_latitude_and_longitude": "Introduce latitud y longitud",
   "The_map_plugin_is_not_properly_configured_contact_the_administrator": "El plugin de mapas no está bien configurado. Contacta con el administrador.",
   "Fill_in": "Rellenar",
   "Search_failed_please_enter_detailed_address": "La búsqueda ha fallado, por favor introduce la dirección completa",
@@ -165,5 +163,9 @@
   "Add_participants": "Añadir participantes",
   "Edit_long_text": "Edit long text",
   "Choose_a_department": "Choose a department",
-  "Close": "Cerrar"
+  "Close": "Cerrar",
+  "Latitude_abbr": "Lat",
+  "Longitude_abbr": "Lng",
+  "Enter_latitude": "Enter latitude",
+  "Enter_longitude": "Enter longitude"
 }
