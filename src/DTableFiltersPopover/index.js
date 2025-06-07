@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import isHotkey from 'is-hotkey';
-import { Button, UncontrolledPopover } from 'reactstrap';
-import { FILTER_COLUMN_OPTIONS, getValidFilters } from 'dtable-utils';
+import { Button } from 'reactstrap';
+import { FILTER_CONJUNCTION_TYPE, getValidFilters } from 'dtable-utils';
 import CommonAddTool from '../DTableCommonAddTool';
-import { getEventClassName } from '../utils/utils';
-import { getFilterByColumn } from './utils';
+import { getDefaultFilter, getDefaultFilterGroup } from './utils';
 import FiltersList from './widgets/filter-list';
-import eventBus from '../utils/event-bus';
-import { EVENT_BUS_TYPE } from '../constants';
+import DTablePopover from '../DTablePopover';
+import { SUPPORT_CONJUNCTIONS } from './constants';
 import { getLocale } from '../lang';
 
 import './index.css';
 
 /**
- * filter = {
+ * filter data structure
+ * let filter = {
  *  column_key: '',
  *  filter_predicate: '',
  *  filter_term: '',
@@ -25,107 +24,51 @@ class DTableFiltersPopover extends Component {
 
   static defaultProps = {
     className: '',
-    readOnly: false,
+    placement: 'auto-start',
+    isSupportAdvanced: false,
   };
 
   constructor(props) {
     super(props);
+    const { filterConjunction, filters, columns, isNeedSubmit } = props;
     this.state = {
-      filters: getValidFilters(props.filters, props.columns),
-      filterConjunction: props.filterConjunction || 'And',
+      filters: getValidFilters(filters, columns),
+      filterConjunction: SUPPORT_CONJUNCTIONS.includes(filterConjunction) ? filterConjunction : FILTER_CONJUNCTION_TYPE.AND,
+      isSubmitDisabled: true,
     };
-    this.isSelectOpen = false;
+    this.isNeedSubmit = isNeedSubmit;
   }
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.hideDTablePopover, true);
-    document.addEventListener('keydown', this.onHotKey);
-    this.unsubscribeOpenSelect = eventBus.subscribe(EVENT_BUS_TYPE.OPEN_SELECT, this.setSelectStatus);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.hideDTablePopover, true);
-    document.removeEventListener('keydown', this.onHotKey);
-    this.unsubscribeOpenSelect();
-  }
-
-  onHotKey = (e) => {
-    if (isHotkey('esc', e) && !this.isSelectOpen) {
-      e.preventDefault();
-      this.props.hidePopover();
-    }
-  };
-
-  setSelectStatus = (status) => {
-    this.isSelectOpen = status;
-  };
-
-  hideDTablePopover = (e) => {
-    if (this.dtablePopoverRef && !getEventClassName(e).includes('popover') && !this.dtablePopoverRef.contains(e.target)) {
-      this.props.hidePopover(e);
-      e.preventDefault();
-      e.stopPropagation();
-      return false;
-    }
-  };
-
-  isNeedSubmit = () => {
-    return this.props.isNeedSubmit;
-  };
-
-  update = (filters) => {
-    if (this.isNeedSubmit()) {
+  updateFilters = ({ filter_conjunction, filters }) => {
+    const filterConjunction = filter_conjunction || this.state.filterConjunction;
+    if (this.isNeedSubmit) {
       const isSubmitDisabled = false;
-      this.setState({ filters, isSubmitDisabled });
+      this.setState({ filters, filterConjunction, isSubmitDisabled });
       return;
     }
-    this.setState({ filters }, () => {
-      const update = { filters, filter_conjunction: this.state.filterConjunction };
-      this.props.update(update);
+    this.setState({ filters, filterConjunction }, () => {
+      this.props.update({ filters, filter_conjunction: filterConjunction });
     });
   };
 
-  deleteFilter = (filterIndex, scheduleUpdate) => {
-    const filters = this.state.filters.slice(0);
-    filters.splice(filterIndex, 1);
-    if (filters.length === 0) {
-      scheduleUpdate();
-    }
-    this.update(filters);
-  };
-
-  updateFilter = (filterIndex, updated) => {
-    const filters = this.state.filters.slice(0);
-    filters[filterIndex] = updated;
-    this.update(filters);
-  };
-
-  updateFilterConjunction = (conjunction) => {
-    if (this.isNeedSubmit()) {
-      const isSubmitDisabled = false;
-      this.setState({ filterConjunction: conjunction, isSubmitDisabled });
+  addFilter = () => {
+    const { columns } = this.props;
+    const { filters } = this.state;
+    const newFilter = getDefaultFilter(columns);
+    if (!newFilter) {
       return;
     }
-    this.setState({ filterConjunction: conjunction }, () => {
-      const update = { filters: this.state.filters, filter_conjunction: conjunction };
-      this.props.update(update);
-    });
+    this.updateFilters({ filters: [...filters, newFilter] });
   };
 
-  addFilter = (scheduleUpdate) => {
-    let { columns } = this.props;
-    let defaultColumn = columns[0];
-    if (!FILTER_COLUMN_OPTIONS[defaultColumn.type]) {
-      defaultColumn = columns.find((c) => FILTER_COLUMN_OPTIONS[c.type]);
+  addFilterGroup = () => {
+    const { columns } = this.props;
+    const { filters } = this.state;
+    const newFilterGroup = getDefaultFilterGroup(columns);
+    if (!newFilterGroup) {
+      return;
     }
-    if (!defaultColumn) return;
-    let filter = getFilterByColumn(defaultColumn);
-    const filters = this.state.filters.slice(0);
-    if (filters.length === 0) {
-      scheduleUpdate();
-    }
-    filters.push(filter);
-    this.update(filters);
+    this.updateFilters({ filters: [...filters, newFilterGroup] });
   };
 
   onClosePopover = () => {
@@ -144,59 +87,77 @@ class DTableFiltersPopover extends Component {
   };
 
   render() {
-    const { target, columns, className, userDepartmentIdsMap, departments, lang, readOnly, firstDayOfWeek } = this.props;
+    const { target, columns, placement, isSupportAdvanced, departments, lang, readonly, userDepartmentIdsMap, firstDayOfWeek } = this.props;
     const { filters, filterConjunction } = this.state;
     const canAddFilter = columns.length > 0;
     return (
-      <UncontrolledPopover
-        placement="auto-start"
-        isOpen={true}
+      <DTablePopover
         target={target}
-        fade={false}
-        hideArrow={true}
-        className="dtable-filter-popover"
+        placement={placement}
+        popoverClassName="dtable-filter-popover"
+        hideDTablePopover={this.props.hidePopover}
+        hideDTablePopoverWithEsc={this.props.hidePopover}
         boundariesElement={document.body}
       >
-        {({ update: scheduleUpdate }) => (
-          <div ref={ref => this.dtablePopoverRef = ref} onClick={this.onPopoverInsideClick} className={className}>
-            <FiltersList
-              filterConjunction={filterConjunction}
-              filters={filters}
-              columns={columns}
-              emptyPlaceholder={getLocale('No_filters')}
-              collaborators={this.props.collaborators}
-              readOnly={readOnly}
-              scheduleUpdate={scheduleUpdate}
-              userDepartmentIdsMap={userDepartmentIdsMap}
-              departments={departments}
-              lang={lang}
-              updateFilter={this.updateFilter}
-              deleteFilter={this.deleteFilter}
-              updateFilterConjunction={this.updateFilterConjunction}
-              firstDayOfWeek={firstDayOfWeek}
-            />
-            <CommonAddTool
-              className={`popover-add-tool ${canAddFilter ? '' : 'disabled'}`}
-              callBack={canAddFilter ? () => this.addFilter(scheduleUpdate) : () => {}}
-              footerName={getLocale('Add_filter')}
-              addIconClassName="popover-add-icon"
-            />
-            {this.isNeedSubmit() && (
-              <div className='dtable-filter-popover-footer'>
-                <Button className='mr-2' onClick={this.onClosePopover}>{getLocale('Cancel')}</Button>
-                <Button color="primary" disabled={this.state.isSubmitDisabled} onClick={this.onSubmitFilters}>{getLocale('Submit')}</Button>
-              </div>
-            )}
+        <div ref={ref => this.dtablePopoverRef = ref} onClick={this.onPopoverInsideClick} className={this.props.className}>
+          <FiltersList
+            isInModal
+            filterConjunction={filterConjunction}
+            filters={filters}
+            columns={columns}
+            emptyPlaceholder={getLocale('No_filters')}
+            collaborators={this.props.collaborators}
+            readonly={readonly}
+            userDepartmentIdsMap={userDepartmentIdsMap}
+            departments={departments}
+            lang={lang}
+            firstDayOfWeek={firstDayOfWeek}
+            updateFilters={this.updateFilters}
+          />
+          {!isSupportAdvanced && !readonly && <CommonAddTool
+            className={`popover-add-tool ${canAddFilter ? '' : 'disabled'}`}
+            callBack={canAddFilter ? () => this.addFilter() : () => {}}
+            footerName={getLocale('Add_filter')}
+            addIconClassName="popover-add-icon"
+          />}
+          {isSupportAdvanced && !readonly &&
+          <div className="add-buttons">
+            <div
+              className="btn-add-filter mr-4"
+              onClick={canAddFilter ? () => this.addFilter() : () => {}}
+              role="button"
+              tabIndex={0}
+              aria-label={getLocale('Add_filter')}
+            >
+              <i aria-hidden="true" className="dtable-font dtable-icon-add-table popover-add-icon"></i>
+              <span className="add-new-option">{getLocale('Add_filter')}</span>
+            </div>
+            <div
+              className="btn-add-filter-group"
+              onClick={canAddFilter ? () => this.addFilterGroup() : () => {}}
+              role="button"
+              tabIndex={0}
+              aria-label={getLocale('Add_filter_group')}
+            >
+              <i aria-hidden="true" className="dtable-font dtable-icon-add-table popover-add-icon"></i>
+              <span className="add-new-option">{getLocale('Add_filter_group')}</span>
+            </div>
           </div>
-        )}
-      </UncontrolledPopover>
+          }
+          {this.isNeedSubmit && (
+            <div className='filter-popover-footer'>
+              <Button disabled={readonly} className='mr-2' onClick={this.onClosePopover}>{getLocale('Cancel')}</Button>
+              <Button disabled={this.state.isSubmitDisabled || readonly} color="primary" onClick={this.onSubmitFilters}>{getLocale('Submit')}</Button>
+            </div>
+          )}
+        </div>
+      </DTablePopover>
     );
   }
 }
 
 DTableFiltersPopover.propTypes = {
   isNeedSubmit: PropTypes.bool,
-  readOnly: PropTypes.bool,
   className: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
@@ -209,6 +170,8 @@ DTableFiltersPopover.propTypes = {
   hidePopover: PropTypes.func,
   update: PropTypes.func,
   firstDayOfWeek: PropTypes.string,
+  placement: PropTypes.string,
+  isSupportAdvanced: PropTypes.bool,
 };
 
 export default DTableFiltersPopover;

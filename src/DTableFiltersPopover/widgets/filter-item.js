@@ -11,6 +11,7 @@ import {
   FILTER_TERM_MODIFIER_TYPE,
   filterTermModifierIsWithin,
   isDateColumn,
+  FILTER_ERR_MSG,
 } from 'dtable-utils';
 import DTableCustomizeSelect from '../../DTableCustomizeSelect';
 import DtableSearchInput from '../../DTableSearchInput';
@@ -19,13 +20,20 @@ import DepartmentSingleSelectFilter from './department-select-filter/department-
 import DepartmentMultipleSelectFilter from './department-select-filter/department-multiple-select-filter';
 import RateItem from './rate-item';
 import FilterCalendar from './filter-calendar';
-import { FilterItemUtils, getFilterByColumn, getUpdatedFilterBySelectSingle, getUpdatedFilterBySelectMultiple,
-  getUpdatedFilterByCreator, getUpdatedFilterByCollaborator, getColumnOptions, getUpdatedFilterByPredicate, isCheckboxColumn,
-  generateDefaultUser, } from '../utils';
+import FilterItemUtils from '../utils/filter-item-utils';
+import {
+  getFilterByColumn, getUpdatedFilterBySelectSingle, getUpdatedFilterBySelectMultiple,
+  getUpdatedFilterByCreator, getUpdatedFilterByCollaborator, getColumnOptions, getUpdatedFilterByPredicate, generateDefaultUser
+} from '../utils';
+import { isCheckboxColumn } from '../../utils/column-utils';
+import CheckboxEditor from '../../CheckboxEditor';
+import NumberEditor from '../../NumberEditor';
+import { DELETED_OPTION_BACKGROUND_COLOR, DELETED_OPTION_TIPS, EMPTY_PREDICATE, INPUT_CMP_TYPE_MAP } from '../constants';
 import { getLocale } from '../../lang';
 
 const propTypes = {
   index: PropTypes.number.isRequired,
+  isInModal: PropTypes.bool,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
   lang: PropTypes.string,
@@ -34,16 +42,14 @@ const propTypes = {
   filterConjunction: PropTypes.string.isRequired,
   conjunctionOptions: PropTypes.array.isRequired,
   filterColumnOptions: PropTypes.array.isRequired,
-  value: PropTypes.object,
   deleteFilter: PropTypes.func.isRequired,
   updateFilter: PropTypes.func.isRequired,
   updateConjunction: PropTypes.func.isRequired,
   collaborators: PropTypes.array,
-  errMsg: PropTypes.bool,
+  errMsg: PropTypes.string,
   firstDayOfWeek: PropTypes.string,
 };
 
-const EMPTY_PREDICATE = [FILTER_PREDICATE_TYPE.EMPTY, FILTER_PREDICATE_TYPE.NOT_EMPTY];
 
 class FilterItem extends React.Component {
 
@@ -55,6 +61,7 @@ class FilterItem extends React.Component {
     };
     this.filterPredicateOptions = null;
     this.filterTermModifierOptions = null;
+    this.filterToolTip = React.createRef();
     this.invalidFilterTip = React.createRef();
 
     this.initSelectOptions(props);
@@ -84,8 +91,8 @@ class FilterItem extends React.Component {
   }
 
   initSelectOptions = (props) => {
-    const { filter, filterColumn, value } = props;
-    let { filterPredicateList, filterTermModifierList } = getColumnOptions(filterColumn, value);
+    const { filter, filterColumn } = props;
+    let { filterPredicateList, filterTermModifierList } = getColumnOptions(filterColumn);
     // The value of the calculation formula column does not exist in the shared view
     this.filterPredicateOptions = filterPredicateList ? filterPredicateList.map(predicate => {
       return FilterItemUtils.generatorPredicateOption(predicate);
@@ -206,12 +213,20 @@ class FilterItem extends React.Component {
 
   };
 
-  onFilterTermCheckboxChanged = (e) => {
-    this.onFilterTermChanged(e.target.checked);
+  onFilterTermCheckboxChanged = () => {
+    const { filterColumn } = this.props;
+    const value = this.checkboxEditor.getValue();
+    const checked = value[filterColumn.key];
+    this.onFilterTermChanged(checked);
   };
 
   onFilterTermTextChanged = (value) => {
     this.onFilterTermChanged(value);
+  };
+
+  onFilterTermNumberChanged = () => {
+    const value = this.numberEditor.getValue();
+    this.onFilterTermChanged(Object.values(value)[0]);
   };
 
   onFilterTermChanged = (newFilterTerm) => {
@@ -237,8 +252,9 @@ class FilterItem extends React.Component {
   };
 
   getInputComponent = (type) => {
+    const { filterColumn } = this.props;
     const { filterTerm } = this.state;
-    if (type === 'text') {
+    if (type === INPUT_CMP_TYPE_MAP.TEXT) {
       return (
         <DtableSearchInput
           value={filterTerm}
@@ -249,8 +265,24 @@ class FilterItem extends React.Component {
       );
     } else if (type === 'checkbox') {
       return (
-        <input type="checkbox" checked={filterTerm} onChange={this.onFilterTermCheckboxChanged} />
+        <div className="checkbox-filter-term">
+          <CheckboxEditor
+            ref={ref => this.checkboxEditor = ref}
+            column={filterColumn}
+            value={filterTerm}
+            extraClassName='filter-item-checkbox'
+            onChange={this.onFilterTermCheckboxChanged}
+            readOnly={false}
+          />
+        </div>
       );
+    } else if (type === 'number') {
+      return <NumberEditor
+        ref={ref => this.numberEditor = ref}
+        column={filterColumn}
+        value={filterTerm}
+        onCommit={this.onFilterTermNumberChanged}
+      />;
     }
   };
 
@@ -267,6 +299,7 @@ class FilterItem extends React.Component {
             value={activeConjunction}
             options={conjunctionOptions}
             onSelectOption={this.onSelectConjunction}
+            isInModal={this.props.isInModal}
           />
         );
       }
@@ -300,18 +333,21 @@ class FilterItem extends React.Component {
     if (Array.isArray(options) && Array.isArray(filterTerm)) {
       filterTerm.forEach((item) => {
         let inOption = options.find(option => option.id === item);
+        let optionStyle = { margin: '0 10px 0 0' };
+        let optionName = null;
         if (inOption) {
-          let optionStyle = {
-            margin: '0 10px 0 0',
-            background: inOption.color,
-            color: inOption.textColor || null,
-          };
-          labelArray.push(
-            <span className={className} style={optionStyle} key={'option_' + item} title={inOption.name} aria-label={inOption.name}>
-              {inOption.name}
-            </span>
-          );
+          optionName = inOption.name;
+          optionStyle.background = inOption.color;
+          optionStyle.color = inOption.textColor || null;
+        } else {
+          optionStyle.background = DELETED_OPTION_BACKGROUND_COLOR;
+          optionName = getLocale(DELETED_OPTION_TIPS);
         }
+        labelArray.push(
+          <span className={className} style={optionStyle} key={'option_' + item} title={optionName} aria-label={optionName}>
+            {optionName}
+          </span>
+        );
       });
     }
     const selectedOptionNames = labelArray.length > 0 ? { label: (<Fragment>{labelArray}</Fragment>) } : {};
@@ -330,6 +366,7 @@ class FilterItem extends React.Component {
         searchPlaceholder={getLocale('Search_option')}
         noOptionsPlaceholder={getLocale('No_options_available')}
         supportMultipleSelect={isSupportMultipleSelect}
+        isInModal={this.props.isInModal}
       />
     );
   };
@@ -377,7 +414,6 @@ class FilterItem extends React.Component {
       case CellType.TEXT:
       case CellType.LONG_TEXT:
       case CellType.GEOLOCATION:
-      case CellType.NUMBER:
       case CellType.AUTO_NUMBER:
       case CellType.DURATION:
       case CellType.EMAIL:
@@ -385,10 +421,13 @@ class FilterItem extends React.Component {
         if (filter_predicate === FILTER_PREDICATE_TYPE.IS_CURRENT_USER_ID) {
           return null;
         }
-        return this.getInputComponent('text');
+        return this.getInputComponent(INPUT_CMP_TYPE_MAP.TEXT);
+      }
+      case CellType.NUMBER:{
+        return this.getInputComponent(INPUT_CMP_TYPE_MAP.NUMBER);
       }
       case CellType.CHECKBOX: {
-        return this.getInputComponent('checkbox');
+        return this.getInputComponent(INPUT_CMP_TYPE_MAP.CHECKBOX);
       }
       case CellType.SINGLE_SELECT: {
         // get options
@@ -417,6 +456,7 @@ class FilterItem extends React.Component {
             searchable={true}
             searchPlaceholder={getLocale('Search_option')}
             noOptionsPlaceholder={getLocale('No_options_available')}
+            isInModal={this.props.isInModal}
           />
         );
       }
@@ -432,6 +472,7 @@ class FilterItem extends React.Component {
               userDepartmentIdsMap={userDepartmentIdsMap}
               departments={departments}
               onCommit={this.onSelectMultiple}
+              isInModal={this.props.isInModal}
             />
           );
         }
@@ -442,6 +483,7 @@ class FilterItem extends React.Component {
             userDepartmentIdsMap={userDepartmentIdsMap}
             departments={departments}
             onCommit={this.onSelectSingle}
+            isInModal={this.props.isInModal}
           />
         );
       }
@@ -456,6 +498,7 @@ class FilterItem extends React.Component {
             filter_predicate={filter_predicate}
             collaborators={collaborators}
             onSelectCollaborator={this.onSelectCollaborator}
+            isInModal={this.props.isInModal}
           />
         );
       }
@@ -471,6 +514,7 @@ class FilterItem extends React.Component {
             filterTerm={filter_term || []}
             collaborators={creators}
             onSelectCollaborator={this.onSelectCreator}
+            isInModal={this.props.isInModal}
           />
         );
       }
@@ -519,10 +563,17 @@ class FilterItem extends React.Component {
     if (filterPredicate === FILTER_PREDICATE_TYPE.IS_CURRENT_USER_ID) {
       return null;
     }
+    if (result_type === FORMULA_RESULT_TYPE.NUMBER) {
+      const { format } = filterColumn.data || {};
+      if (format === CellType.DURATION) {
+        return this.getInputComponent(INPUT_CMP_TYPE_MAP.DURATION, filterColumn);
+      }
+      return this.getInputComponent(INPUT_CMP_TYPE_MAP.NUMBER, filterColumn);
+    }
     if (result_type === FORMULA_RESULT_TYPE.ARRAY) {
       return this.renderFilterTermByArrayType(filterPredicate, filterTerm, index, filterColumn);
     }
-    return this.getInputComponent('text');
+    return this.getInputComponent(INPUT_CMP_TYPE_MAP.TEXT);
   };
 
   renderLinkFilterTerm = (filterPredicate, filterTerm, index, filterColumn) => {
@@ -550,6 +601,7 @@ class FilterItem extends React.Component {
           value={filterTerm || []}
           departments={departments}
           onCommit={this.onSelectMultiple}
+          isInModal={this.props.isInModal}
         />
       );
     }
@@ -570,13 +622,22 @@ class FilterItem extends React.Component {
           collaborators={collaborators}
           onSelectCollaborator={this.onSelectCollaborator}
           placeholder={getLocale('Add_collaborator')}
+          isInModal={this.props.isInModal}
         />
       );
     }
     return this.getInputComponent('text');
   };
 
+  isRenderErrorTips = () => {
+    const { errMsg } = this.props;
+    return errMsg && errMsg !== FILTER_ERR_MSG.INCOMPLETE_FILTER;
+  };
+
   renderErrorMessage = () => {
+    if (!this.isRenderErrorTips()) {
+      return null;
+    }
     return (
       <div className="ml-2">
         <span ref={this.invalidFilterTip} className="dtable-font dtable-icon-exclamation-triangle invalid-filter"></span>
@@ -593,7 +654,7 @@ class FilterItem extends React.Component {
 
   render() {
     const { filterPredicateOptions, filterTermModifierOptions } = this;
-    const { filter, filterColumn, filterColumnOptions, errMsg } = this.props;
+    const { filter, filterColumn, filterColumnOptions } = this.props;
     const { filter_predicate, filter_term_modifier } = filter;
     const activeColumn = FilterItemUtils.generatorColumnOption(filterColumn);
     const activePredicate = FilterItemUtils.generatorPredicateOption(filter_predicate);
@@ -604,6 +665,12 @@ class FilterItem extends React.Component {
     } else if (isCheckboxColumn(filterColumn)) {
       _isCheckboxColumn = true;
     }
+
+    const { type } = filterColumn;
+    const computedColumnTypes = [CellType.FORMULA, CellType.LINK_FORMULA, CellType.LINK];
+    const isContainPredicate = [FILTER_PREDICATE_TYPE.CONTAINS, FILTER_PREDICATE_TYPE.NOT_CONTAIN].includes(filter_predicate);
+    const isRenderErrorTips = this.isRenderErrorTips();
+    const showToolTip = (computedColumnTypes.includes(type) && isContainPredicate) && !isRenderErrorTips;
 
     // current predicate is not empty
     const isNeedShowTermModifier = !EMPTY_PREDICATE.includes(filter_predicate);
@@ -626,6 +693,7 @@ class FilterItem extends React.Component {
                 searchable={true}
                 searchPlaceholder={getLocale('Search_column')}
                 noOptionsPlaceholder={getLocale('No_results')}
+                isInModal={this.props.isInModal}
               />
             </div>
             <div className={`filter-predicate ml-2 ${_isCheckboxColumn ? 'filter-checkbox-predicate' : ''}`}>
@@ -633,6 +701,7 @@ class FilterItem extends React.Component {
                 value={activePredicate}
                 options={filterPredicateOptions}
                 onSelectOption={this.onSelectPredicate}
+                isInModal={this.props.isInModal}
               />
             </div>
             {isDateColumn(filterColumn) && isNeedShowTermModifier && (
@@ -641,13 +710,22 @@ class FilterItem extends React.Component {
                   value={activeTermModifier}
                   options={filterTermModifierOptions}
                   onSelectOption={this.onSelectTermModifier}
+                  isInModal={this.props.isInModal}
                 />
               </div>
             )}
             <div className="filter-term ml-2">
               {this.renderFilterTerm(filterColumn)}
             </div>
-            {errMsg && this.renderErrorMessage()}
+            {showToolTip &&
+              <div className="ml-2">
+                <span ref={this.filterToolTip} id="filter_tool_tip" aria-hidden="true" className="dtable-font dtable-icon-exclamation-triangle" style={{ color: '#FFC92C' }}></span>
+                <UncontrolledTooltip placement="bottom" target={this.filterToolTip} >
+                  {getLocale('filter_tip_message')}
+                </UncontrolledTooltip>
+              </div>
+            }
+            {this.renderErrorMessage()}
           </div>
         </div>
       </div>

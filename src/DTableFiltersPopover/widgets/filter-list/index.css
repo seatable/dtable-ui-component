@@ -19,6 +19,87 @@
   color: #666666;
 }
 
+/* ---- filter group start ---- */
+.filters-list .filter-group {
+  display: flex;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.filters-list .filter-group .filter-group-wrapper {
+  flex: 1;
+  display: flex;
+}
+
+.filters-list .filter-group .delete-filter,
+.filters-list .filter-group .filter-conjunction {
+  align-self: flex-start;
+}
+
+.filters-list .filter-group .delete-filter,
+.filters-list .filter-group .filter-conjunction.conjunction-text {
+  margin-top: 8px;
+}
+
+.filters-list .filter-group .filter-group-container {
+  width: calc(100% - 72px);
+  min-height: 38px;
+  margin-left: .5rem;
+  padding: 4px 10px;
+  border: 1px solid rgba(0, 40, 100, .12);
+  border-radius: 3px;
+}
+
+.filters-list .filter-group.draggable .filter-group-container {
+  /* 94: conjunction width(72) + drag icon width(16) + drag icon margin left(8) */
+  width: calc(100% - 96px);
+}
+
+.filters-list .filter-group.readonly .filter-group-container {
+  width: calc(100% - 52px);
+}
+
+.filters-list .filter-group.level-1 .filter-group-container {
+  background-color: #f7f7f7;
+}
+
+.filters-list .filter-group-container .group-filter-add-tool {
+  border-top: unset;
+  background-color: #f7f7f7;
+  margin-top: 2px;
+  padding: 0;
+  height: 30px;
+  line-height: 30px;
+  font-weight: 400;
+}
+
+.filters-list .filter-group-container .group-filter-add-tool .dtable-icon-add-table,
+.filters-list .filter-group-container .group-filter-add-tool .add-new-option {
+  color: #999;
+}
+
+.filters-list .filter-group-container .group-filter-add-tool:hover .dtable-icon-add-table,
+.filters-list .filter-group-container .group-filter-add-tool:hover .add-new-option {
+  color: #555;
+}
+
+.filters-list .dtable-filter-group-drag {
+  display: flex;
+  margin-left: .5rem;
+}
+
+.filters-list .drag-filter-handle,
+.filters-list .drag-filter-group-handle {
+  color: #949494;
+  cursor: grab;
+}
+
+.filters-list .dragging-filter-wrapper .group-filter-add-tool,
+.filters-list .dragging-filter-wrapper .delete-filter {
+  display: none;
+}
+/* ---- filter group end ---- */
+
 .filters-list .filter-item {
   display: flex;
   align-items: center;
@@ -40,7 +121,7 @@
   margin-left: 0;
 }
 
-.filters-list .filter-item .filter-term .selector-collaborator {
+.filters-list .filter-item .filter-term {
   max-width: 300px;
   min-width: 70px;
 }
@@ -66,6 +147,10 @@
   width: calc(100% - 20px);
 }
 
+.filters-list .dtable-select.collaborator-select .selected-option-show {
+  height: auto;
+}
+
 .filters-list .dtable-select .selected-option {
   width: auto;
   overflow-x: auto;
@@ -77,7 +162,7 @@
 
 .filters-list .selected-conjunction-show {
   padding: 0 10px;
-  color: #666;
+  color: #666666;
 }
 
 .filters-list .filter-column {
@@ -116,14 +201,14 @@
 
 .filters-list .selector-multiple-select .option:hover,
 .filters-list .selector-multiple-select .option.option-active,
-.filters-list .selector-collaborator .option:hover,
-.filters-list .selector-collaborator .option.option-active {
+.option-group-selector-collaborator .option:hover,
+.option-group-selector-collaborator .option.option-active {
   color: #212529;
   background-color: #f7f7f7;
 }
 
 .filters-list .selector-multiple-select .option.option-active .select-option-name,
-.filters-list .selector-collaborator .option.option-active .select-option-name {
+.option-group-selector-collaborator .option.option-active .select-option-name {
   color: #212529;
 }
 
@@ -171,6 +256,17 @@
   outline: 0;
 }
 
+.filters-list .filter-term .rc-calendar-input {
+  border: 1px solid transparent;
+  color: #666;
+  cursor: text;
+  height: 22px;
+  font-size: 12px;
+  line-height: 1.5;
+  outline: 0;
+  width: 100%;
+}
+
 .filters-list .filter-term .date-picker-container table tr {
   height: 30px;
 }
@@ -214,7 +310,8 @@
 }
 
 .filters-list .multiple-check-icon,
-.filters-list .collaborator-check-icon {
+.filters-list .collaborator-check-icon 
+.option-group-selector-collaborator .collaborator-check-icon {
   display: inline-flex;
   width: 20px;
   height: 20px;
@@ -223,7 +320,8 @@
 }
 
 .filters-list .multiple-check-icon .dtable-icon-check-mark,
-.filters-list .collaborator-check-icon .dtable-icon-check-mark {
+.filters-list .collaborator-check-icon .dtable-icon-check-mark,
+.option-group-selector-collaborator .collaborator-check-icon .dtable-icon-check-mark {
   font-size: 12px;
   color: #798d99;
 }
@@ -240,14 +338,17 @@
   background: #eaeaea;
 }
 
+.option-group-selector-collaborator .collaborator-show
 .filters-list .collaborator-show {
   flex: 1;
 }
 
+.option-group-selector-collaborator .collaborator-avatar-container,
 .filters-list .collaborator-avatar-container {
   width: 16px;
 }
 
+.option-group-selector-collaborator .collaborator-avatar,
 .filters-list .collaborator-avatar {
   width: 16px;
   height: 16px;
@@ -255,19 +356,23 @@
   border-radius: 50%;
 }
 
+.option-group-selector-collaborator .option .collaborator-avatar,
 .filters-list .option .collaborator-avatar {
   transform: translateY(-2px);
 }
 
+.option-group-selector-collaborator .collaborator-name,
 .filters-list .collaborator-name {
   margin-left: 5px;
   max-width: 200px;
 }
 
+.option-group-selector-collaborator .option-collaborator,
 .filters-list .option-collaborator {
   display: flex;
 }
 
+.option-group-selector-collaborator .collaborator-container,
 .filters-list .collaborator-container {
   flex: 1;
 }
@@ -287,7 +392,7 @@
 }
 
 .filters-list .filter-item .dtable-icon-fork-number:hover {
-  color: #555;
+  color: #555555;
 }
 
 .filters-list .filter-container-readonly .dtable-select .selected-option-show,
@@ -299,7 +404,9 @@
   width: 100%;
 }
 
-.filters-list .option-group .option-group-content .collaborator {
+.dropdown-item .collaborator,
+.filters-list .option-group-content .collaborator,
+.option-group-selector-collaborator .option-group-content .collaborator {
   background-color: unset;
 }
 
@@ -324,7 +431,9 @@
 }
 
 .filters-list .single-select-option,
-.filters-list .multiple-select-option {
+.filters-list .multiple-select-option,
+.option-group-selector-single-select .single-select-option,
+.option-group-selector-multiple-select .multiple-select-option {
   display: block;
   text-align: left;
   width: min-content;
