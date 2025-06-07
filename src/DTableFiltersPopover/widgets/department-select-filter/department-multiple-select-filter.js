@@ -6,15 +6,17 @@ import DepartmentMultipleSelectEditor from '../../../DepartmentMultipleSelectEdi
 import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../constants/departments';
 import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
+import ModalPortal from '../../../ModalPortal';
 
 const propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
   departments: PropTypes.object,
   onCommit: PropTypes.func,
+  isInModal: PropTypes.bool,
 };
 
 function DepartmentMultipleSelectFilter(props) {
-  const { value, departments } = props;
+  const { value, isInModal, departments } = props;
   const [isShowSelector, setIsShowSelector] = useState(false);
   const [selectedDepartments, setSelectedDepartments] = useState(value || []);
   const selectorRef = useRef(null);
@@ -37,6 +39,7 @@ function DepartmentMultipleSelectFilter(props) {
             type="checkbox"
             className="vam department-select-input"
             checked={selectedDepartments.includes(type)}
+            onClick={(event) => event.stopPropagation()}
             onChange={(event) => selectDepartment(event, type)}
           />
           <span className="text-truncate department-name">{getLocale(name)}</span>
@@ -84,7 +87,7 @@ function DepartmentMultipleSelectFilter(props) {
         }
         <span className="dtable-font dtable-icon-down3"></span>
       </div>
-      {isShowSelector &&
+      {isShowSelector && !isInModal &&
         <DepartmentMultipleSelectEditor
           isShowSelectedDepartments={false}
           classNamePrefix="filter"
@@ -93,6 +96,19 @@ function DepartmentMultipleSelectFilter(props) {
           renderUserDepartmentOptions={renderUserDepartmentOptions}
           departments={departments}
         />
+      }
+      {isShowSelector && isInModal &&
+        <ModalPortal>
+          <DepartmentMultipleSelectEditor
+            isInModal={isInModal}
+            isShowSelectedDepartments={false}
+            classNamePrefix="filter"
+            value={selectedDepartments}
+            position={selectorRef.current.getBoundingClientRect()}
+            onCommit={selectDepartment}
+            renderUserDepartmentOptions={renderUserDepartmentOptions}
+          />
+        </ModalPortal>
       }
     </div>
   );

@@ -4,16 +4,15 @@ import { FILTER_PREDICATE_TYPE } from 'dtable-utils';
 import DTableCustomizeSelect from '../../../DTableCustomizeSelect';
 import { getLocale } from '../../../lang';
 
-import './index.css';
-
 const propTypes = {
   filterIndex: PropTypes.number,
   filterTerm: PropTypes.oneOfType([PropTypes.array, PropTypes.string]), // Make the current bug execution the correct code, this can restore in this Component
   filter_predicate: PropTypes.string,
   collaborators: PropTypes.array,
   onSelectCollaborator: PropTypes.func,
-  isLocked: PropTypes.bool,
+  readonly: PropTypes.bool,
   placeholder: PropTypes.string,
+  isInModal: PropTypes.bool,
 };
 
 class CollaboratorFilter extends Component {
@@ -66,7 +65,7 @@ class CollaboratorFilter extends Component {
   };
 
   render() {
-    let { filterIndex, filterTerm, collaborators, placeholder, filter_predicate } = this.props;
+    let { filterIndex, filterTerm, collaborators, placeholder, filter_predicate, isInModal, readonly } = this.props;
     let isSupportMultipleSelect = this.supportMultipleSelectOptions.indexOf(filter_predicate) > -1 ? true : false;
     let selectedCollaborators = Array.isArray(filterTerm) && filterTerm.length > 0 && filterTerm.map((item) => {
       let collaborator = collaborators.find(c => c.email === item);
@@ -83,7 +82,7 @@ class CollaboratorFilter extends Component {
           >{collaborator.name}
           </span>
           <span className="remove-container">
-            <span className="remove-icon" onClick={(e) => {this.onClick(e, collaborator);}}>
+            <span className="remove-icon" onClick={(e) => { this.onClick(e, collaborator); }}>
               <i className="dtable-font dtable-icon-fork-number"></i>
             </span>
           </span>
@@ -99,11 +98,12 @@ class CollaboratorFilter extends Component {
         onSelectOption={this.props.onSelectCollaborator}
         options={options}
         placeholder={placeholder}
-        isLocked={this.props.isLocked}
+        isLocked={readonly}
         supportMultipleSelect={isSupportMultipleSelect}
         searchable={true}
         searchPlaceholder={getLocale('Search_collaborator')}
         isShowSelected={false}
+        isInModal={isInModal}
       />
     );
   }

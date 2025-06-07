@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import {
-  CellType,
-  FILTER_COLUMN_OPTIONS,
-  FORMULA_COLUMN_TYPES_MAP,
-  FORMULA_RESULT_TYPE,
+  checkIsFilterGroup,
   ValidateFilter,
 } from 'dtable-utils';
+import FilterItemUtils from '../../utils/filter-item-utils';
 import FilterItem from '../filter-item';
-import { getColumnByKey, FilterItemUtils } from '../../utils';
+import { applyFilterOperation, getColumnByKey, getFilterColumns } from '../../utils';
+import { FILTER_OPERATION_TYPE } from '../../constants';
+import FilterGroup from '../filter-group';
 
 import './index.css';
 
 const propTypes = {
-  isLocked: PropTypes.bool,
   className: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
@@ -22,13 +21,10 @@ const propTypes = {
   filters: PropTypes.array,
   columns: PropTypes.array.isRequired,
   filterConjunction: PropTypes.string.isRequired,
-  updateFilter: PropTypes.func.isRequired,
-  deleteFilter: PropTypes.func.isRequired,
-  updateFilterConjunction: PropTypes.func,
+  updateFilters: PropTypes.func.isRequired,
   emptyPlaceholder: PropTypes.string,
-  value: PropTypes.object,
   collaborators: PropTypes.array,
-  scheduleUpdate: PropTypes.func,
+  isInModal: PropTypes.bool,
   firstDayOfWeek: PropTypes.string,
 };
 
@@ -46,18 +42,123 @@ class FiltersList extends Component {
     }
   }
 
-  updateFilter = (filterIndex, updatedFilter) => {
-    if (!updatedFilter) return;
-    this.props.updateFilter(filterIndex, updatedFilter);
+  modifyFilterConjunction = (new_filter_conjunction) => {
+    const { filterConjunction: filter_conjunction, filters } = this.props;
+    const { filter_conjunction: next_filter_conjunction, filters: next_filters } = applyFilterOperation({
+      type: FILTER_OPERATION_TYPE.MODIFY_CONJUNCTION,
+      filter_conjunction,
+      filters,
+      payload: {
+        new_filter_conjunction,
+      }
+    });
+    this.props.updateFilters({ filter_conjunction: next_filter_conjunction, filters: next_filters });
   };
 
-  deleteFilter = (index) => {
-    const { scheduleUpdate } = this.props;
-    this.props.deleteFilter(index, scheduleUpdate);
+  updateFilter = (filter_index, new_filter) => {
+    if (!new_filter) return;
+    const { filterConjunction: filter_conjunction, filters } = this.props;
+    const { filter_conjunction: next_filter_conjunction, filters: next_filters } = applyFilterOperation({
+      type: FILTER_OPERATION_TYPE.UPDATE_FILTER,
+      filter_conjunction,
+      filters,
+      payload: {
+        filter_index,
+        new_filter,
+      }
+    });
+    this.props.updateFilters({ filter_conjunction: next_filter_conjunction, filters: next_filters });
   };
 
-  updateConjunction = (filterConjunction) => {
-    this.props.updateFilterConjunction(filterConjunction);
+  deleteFilter = (filter_index) => {
+    const { filterConjunction: filter_conjunction, filters } = this.props;
+    const { filter_conjunction: next_filter_conjunction, filters: next_filters } = applyFilterOperation({
+      type: FILTER_OPERATION_TYPE.DELETE_FILTER,
+      filter_conjunction,
+      filters,
+      payload: {
+        filter_index,
+      }
+    });
+    this.props.updateFilters({ filter_conjunction: next_filter_conjunction, filters: next_filters });
+  };
+
+  moveFilter = ({ source_filter_index, target_filter_index, source_group_index, target_group_index }) => {
+    if (source_filter_index === target_filter_index && source_group_index === target_group_index) {
+      return;
+    }
+    const { filterConjunction: filter_conjunction, filters } = this.props;
+    const { filter_conjunction: next_filter_conjunction, filters: next_filters } = applyFilterOperation({
+      type: FILTER_OPERATION_TYPE.MOVE_FILTER,
+      filter_conjunction,
+      filters,
+      payload: {
+        source_filter_index,
+        target_filter_index,
+        source_group_index,
+        target_group_index,
+      }
+    });
+    this.props.updateFilters({ filter_conjunction: next_filter_conjunction, filters: next_filters });
+  };
+
+  modifyConjunctionInGroup = (group_index, new_filter_conjunction) => {
+    const { filterConjunction: filter_conjunction, filters } = this.props;
+    const { filter_conjunction: next_filter_conjunction, filters: next_filters } = applyFilterOperation({
+      type: FILTER_OPERATION_TYPE.MODIFY_CONJUNCTION_IN_GROUP,
+      filter_conjunction,
+      filters,
+      payload: {
+        group_index,
+        new_filter_conjunction,
+      }
+    });
+    this.props.updateFilters({ filter_conjunction: next_filter_conjunction, filters: next_filters });
+  };
+
+  addFilterIntoGroup = (group_index, filter) => {
+    if (!filter) return;
+    const { filterConjunction: filter_conjunction, filters } = this.props;
+    const { filter_conjunction: next_filter_conjunction, filters: next_filters } = applyFilterOperation({
+      type: FILTER_OPERATION_TYPE.ADD_FILTER_INTO_GROUP,
+      filter_conjunction,
+      filters,
+      payload: {
+        group_index,
+        filter,
+      }
+    });
+    this.props.updateFilters({ filter_conjunction: next_filter_conjunction, filters: next_filters });
+  };
+
+  deleteFilterInGroup = (group_index, filter_index) => {
+    const { filterConjunction: filter_conjunction, filters } = this.props;
+    const { filter_conjunction: next_filter_conjunction, filters: next_filters } = applyFilterOperation({
+      type: FILTER_OPERATION_TYPE.DELETE_FILTER_IN_GROUP,
+      filter_conjunction,
+      filters,
+      payload: {
+        group_index,
+        filter_index,
+      }
+    });
+    this.props.updateFilters({ filter_conjunction: next_filter_conjunction, filters: next_filters });
+  };
+
+  updateFilterInGroup = (group_index, filter_index, new_filter) => {
+    if (!new_filter) return;
+    const { filterConjunction: filter_conjunction, filters } = this.props;
+    const { filter_conjunction: next_filter_conjunction, filters: next_filters } = applyFilterOperation({
+      type: FILTER_OPERATION_TYPE.UPDATE_FILTER_IN_GROUP,
+      filter_conjunction,
+      filters,
+      payload: {
+        group_index,
+        filter_index,
+        new_filter,
+      }
+    });
+    this.props.updateFilters({ filter_conjunction: next_filter_conjunction, filters: next_filters });
   };
 
   getConjunctionOptions = () => {
@@ -67,23 +168,10 @@ class FiltersList extends Component {
     return this.conjunctionOptions;
   };
 
-  getFilterColumns = () => {
-    const { columns } = this.props;
-    return columns.filter(column => {
-      const { data } = column;
-      let { type } = column;
-      if (data && (type === CellType.LINK ||
-        (FORMULA_COLUMN_TYPES_MAP[type] && data.result_type === FORMULA_RESULT_TYPE.ARRAY))
-      ) {
-        type = data.array_type;
-      }
-      return Object.prototype.hasOwnProperty.call(FILTER_COLUMN_OPTIONS, type);
-    });
-  };
-
   getColumnOptions = () => {
+    const { columns } = this.props;
     if (!this.columnOptions) {
-      const filterColumns = this.getFilterColumns();
+      const filterColumns = getFilterColumns(columns);
       this.columnOptions = filterColumns.map(column => {
         return FilterItemUtils.generatorColumnOption(column);
       });
@@ -91,29 +179,56 @@ class FiltersList extends Component {
     return this.columnOptions;
   };
 
-  renderFilterItem = (filter, index, errMsg, filterColumn) => {
-    const { filterConjunction, value, isLocked, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek } = this.props;
+  renderFilter = (filter, index, filterColumn) => {
+    const { filterConjunction, isInModal, columns, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek } = this.props;
     const conjunctionOptions = this.getConjunctionOptions();
     const columnOptions = this.getColumnOptions();
+
+    if (checkIsFilterGroup(filter)) {
+      return (
+        <FilterGroup
+          key={`filter-group-${index}`}
+          isInModal={isInModal}
+          lang={lang}
+          columns={columns}
+          index={index}
+          filterConjunction={filterConjunction}
+          filter={filter}
+          conjunctionOptions={conjunctionOptions}
+          columnOptions={columnOptions}
+          collaborators={collaborators}
+          userDepartmentIdsMap={userDepartmentIdsMap}
+          departments={departments}
+          firstDayOfWeek={firstDayOfWeek}
+          modifyFilterConjunction={this.modifyFilterConjunction}
+          deleteFilterGroup={this.deleteFilter}
+          addFilterIntoGroup={this.addFilterIntoGroup}
+          modifyConjunctionInGroup={this.modifyConjunctionInGroup}
+          deleteFilterInGroup={this.deleteFilterInGroup}
+          updateFilterInGroup={this.updateFilterInGroup}
+        />
+      );
+    }
+
+    const { error_message } = ValidateFilter.validate(filter, columns);
     return (
       <FilterItem
         key={index}
-        isLocked={isLocked}
+        isInModal={isInModal}
+        lang={lang}
         index={index}
         filter={filter}
-        errMsg={errMsg}
+        errMsg={error_message}
         filterColumn={filterColumn}
         filterConjunction={filterConjunction}
         conjunctionOptions={conjunctionOptions}
         filterColumnOptions={columnOptions}
-        value={value}
         collaborators={collaborators}
         userDepartmentIdsMap={userDepartmentIdsMap}
         departments={departments}
-        lang={lang}
         deleteFilter={this.deleteFilter}
         updateFilter={this.updateFilter}
-        updateConjunction={this.updateConjunction}
+        updateConjunction={this.modifyFilterConjunction}
         firstDayOfWeek={firstDayOfWeek}
       />
     );
@@ -128,9 +243,8 @@ class FiltersList extends Component {
         {!isEmpty &&
           filters.map((filter, index) => {
             const { column_key } = filter;
-            const { error_message } = ValidateFilter.validateColumn(column_key, columns);
-            const filterColumn = getColumnByKey(columns, column_key) || {};
-            return this.renderFilterItem(filter, index, error_message, filterColumn);
+            const filterColumn = getColumnByKey(column_key, columns) || {};
+            return this.renderFilter(filter, index, filterColumn);
           })
         }
       </div>
