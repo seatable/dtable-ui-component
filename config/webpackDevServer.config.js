@@ -1,4 +1,4 @@
-'use strict';
+
 
 const fs = require('fs');
 const evalSourceMapMiddleware = require('react-dev-utils/evalSourceMapMiddleware');
@@ -91,7 +91,7 @@ module.exports = function (proxy, allowedHost) {
       publicPath: paths.publicUrlOrPath.slice(0, -1),
     },
 
-    https: getHttpsConfig(),
+    server: getHttpsConfig(),
     host,
     historyApiFallback: {
       // Paths with dots should still use the history fallback.
@@ -121,7 +121,7 @@ module.exports = function (proxy, allowedHost) {
         // it used the same host and port.
         // https://github.com/facebook/create-react-app/issues/2272#issuecomment-302832432
         noopServiceWorkerMiddleware(paths.publicUrlOrPath)
-      )
+      );
       return middlewares;
     },
   };
