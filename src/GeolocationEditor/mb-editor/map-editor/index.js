@@ -58,6 +58,7 @@ class MapEditor extends React.Component {
       }
       return;
     }
+    this.setState({ isLoading: false });
   }
 
   componentWillUnmount() {
