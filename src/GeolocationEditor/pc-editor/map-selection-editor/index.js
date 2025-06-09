@@ -39,16 +39,7 @@ class MapSelectionEditor extends Component {
   }
 
   componentDidMount() {
-    if (this.mapType === MAP_TYPES.B_MAP) {
-      if (!window.BMap) {
-        window.renderBaiduMap = () => this.renderBaiduMap();
-        loadMapSource(this.mapType, this.mapKey);
-      } else {
-        this.renderBaiduMap();
-      }
-      window.onSubmitSelection = this.onSubmitSelection;
-      return;
-    }
+    this.initMap();
   }
 
   componentWillUnmount() {
@@ -64,6 +55,19 @@ class MapSelectionEditor extends Component {
       window.onSubmitSelection = null;
     }
   }
+
+  initMap = () => {
+    if (this.mapType === MAP_TYPES.B_MAP) {
+      if (!window.BMap) {
+        window.renderBaiduMap = () => this.renderBaiduMap();
+        loadMapSource(this.mapType, this.mapKey);
+      } else {
+        this.renderBaiduMap();
+      }
+      window.onSubmitSelection = this.onSubmitSelection;
+      return;
+    }
+  };
 
   renderBaiduMap = () => {
     this.setState({ isLoading: false }, () => {
@@ -252,7 +256,13 @@ class MapSelectionEditor extends Component {
     event.nativeEvent.stopImmediatePropagation();
     const { value } = this.state;
     this.props.setValue(value);
-    this.setState({ isShowLargeEditor: !this.state.isShowLargeEditor });
+    this.setState({ isShowLargeEditor: !this.state.isShowLargeEditor }, () => {
+      const nextState = this.state.isShowLargeEditor;
+      if (!nextState) {
+        this.initMap();
+      }
+      this.props.toggleLargeMap && this.props.toggleLargeMap(nextState);
+    });
   };
 
   clearSearchNumerical = () => {
@@ -359,7 +369,7 @@ class MapSelectionEditor extends Component {
                   value={inputValue}
                   onKeyDown={this.onKeyDown}
                   onChange={this.onChange}
-                  className='form-control search-tables-input selection-input'
+                  className='form-control selection-input'
                   placeholder={getLocale('Please_enter_the_address')}
                   autoFocus
                 />

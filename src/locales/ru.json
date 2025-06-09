@@ -132,8 +132,6 @@
   "Select_location": "Выбирать",
   "Positioning_failed": "Позиционирование не удалось",
   "Address": "Адрес",
-  "Enter_longitude_and_latitude": "Введите долготу и широту",
-  "Enter_latitude_and_longitude": "Введите широту и долготу",
   "The_map_plugin_is_not_properly_configured_contact_the_administrator": "Плагин Карты не настроен должным образом. Обратитесь к администратору.",
   "Fill_in": "Заполнить",
   "Search_failed_please_enter_detailed_address": "Поиск не удался, пожалуйста, введите подробный адрес",
@@ -165,5 +163,9 @@
   "Add_participants": "Добавить участников",
   "Edit_long_text": "Редактировать длинный текст",
   "Choose_a_department": "Выберите отдел",
-  "Close": "Закрыть"
+  "Close": "Закрыть",
+  "Latitude_abbr": "Lat",
+  "Longitude_abbr": "Lng",
+  "Enter_latitude": "Enter latitude",
+  "Enter_longitude": "Enter longitude"
 }

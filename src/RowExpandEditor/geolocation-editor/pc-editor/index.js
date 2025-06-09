@@ -18,7 +18,7 @@ class RowExpandPCGeolocationEditor extends React.Component {
       value: row[column[valueKey]] || {}
     };
     this.addBtnRef = React.createRef();
-    this.isGeolocationLargeMapOpen = false;
+    this.isLargeMapOpen = false;
   }
 
   componentDidMount() {
@@ -61,14 +61,20 @@ class RowExpandPCGeolocationEditor extends React.Component {
   hideEditor = (event) => {
     if (
       !this.state.isShowEditor
+      || this.isLargeMapOpen
       || !event.target
       || this.editorContainer.contains(event.target)
     ) return;
     this.setState({ isShowEditor: false });
   };
 
+  toggleLargeMap = (open) => {
+    this.isLargeMapOpen = open;
+  };
+
   toggleEditor = () => {
     this.props.updateTabIndex(this.props.columnIndex);
+    this.isLargeMapOpen = false;
     this.setState({ isShowEditor: !this.state.isShowEditor }, () => {
       if (!this.state.isShowEditor) {
         if (isEmptyObject(this.state.value)) {
@@ -85,10 +91,16 @@ class RowExpandPCGeolocationEditor extends React.Component {
     this.props.updateTabIndex(this.props.columnIndex);
   };
 
+  closeEditor = () => {
+    this.isLargeMapOpen = false;
+    this.setState({ isShowEditor: false });
+  };
+
   onCommit = (value) => {
     this.props.onCommit(value);
     this.setState({ value });
-    this.toggleEditor();
+    this.isLargeMapOpen = false;
+    this.setState({ isShowEditor: false });
   };
 
   renderGeoLocation = () => {
@@ -140,8 +152,9 @@ class RowExpandPCGeolocationEditor extends React.Component {
             value={value}
             config={config}
             onCommit={this.onCommit}
-            onToggle={this.toggleEditor}
+            onToggle={this.closeEditor}
             onPressTab={this.props.onPressTab}
+            toggleLargeMap={this.toggleLargeMap}
           />
         )}
       </div>

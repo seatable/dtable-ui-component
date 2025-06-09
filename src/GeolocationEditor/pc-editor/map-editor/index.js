@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { isNumber } from 'dtable-utils';
 import toaster from '../../../toaster';
 import Loading from '../../../Loading';
 import { KeyCodes } from '../../../constants';
 import { isValidPosition } from '../../../utils/cell';
-import { DOMESTIC_MAP_TYPE, MAP_TYPES, getInitCenter, loadMapSource, getMapInfo, locateCurrentPosition, getMineMapUrl } from '../../map-editor-utils';
+import {
+  DOMESTIC_MAP_TYPE, MAP_TYPES, getInitCenter, loadMapSource,
+  getMapInfo, locateCurrentPosition, getMineMapUrl,
+} from '../../map-editor-utils';
 import LargeMapEditorDialog from './large-editor';
 import { getLocale } from '../../../lang';
+
+import './index.css';
 
 const propTypes = {
   config: PropTypes.object,
@@ -15,29 +21,53 @@ const propTypes = {
   setValue: PropTypes.func,
   onSubmit: PropTypes.func,
   onCancel: PropTypes.func,
+  toggleLargeMap: PropTypes.func,
 };
 
 class MapEditor extends Component {
 
   constructor(props) {
     super(props);
-    const value = props.value || {};
+    const value = props.value || { lng: '', lat: '' };
     const { mapType, mapKey } = getMapInfo(props.config);
     this.mapType = mapType;
     this.mapKey = mapKey;
     this.readOnly = props.readOnly;
-    const { lng, lat } = value;
-    const inputValue = isValidPosition(lng, lat) ? (DOMESTIC_MAP_TYPE.includes(this.mapType) ? `${lng}, ${lat}` : `${lat}, ${lng}`) : '';
     this.map = null;
     this.state = {
       isLoading: true,
-      value: props.value,
-      inputValue,
+      value: value,
       isShowLargeEditor: false,
     };
   }
 
   componentDidMount() {
+    this.initMap();
+  }
+
+  componentWillUnmount() {
+    let center = {};
+    if (this.map && DOMESTIC_MAP_TYPE.includes(this.mapType)) {
+      center.zoom = this.map.getZoom();
+      let coordinate = this.map.getCenter();
+      center.lng = coordinate.lng;
+      center.lat = coordinate.lat;
+      this.mineMapMarker = null;
+    } else if (this.map && this.mapType === MAP_TYPES.G_MAP) {
+      let zoom = this.map.getZoom();
+      let coordinate = this.map.getCenter();
+      center.zoom = zoom;
+      center.lat = coordinate.lat();
+      center.lng = coordinate.lng();
+      this.googleMarker = null;
+    }
+    localStorage.setItem('geolocation-map-center', JSON.stringify(center));
+    this.map = null;
+    this.props.toggleLargeMap && this.props.toggleLargeMap(false);
+    this.onSubmit();
+  }
+
+  initMap = () => {
     if (this.mapType === MAP_TYPES.B_MAP) {
       if (!window.BMap) {
         window.renderBaiduMap = () => this.renderBaiduMap();
@@ -62,28 +92,7 @@ class MapEditor extends Component {
       }
       return;
     }
-  }
-
-  componentWillUnmount() {
-    let center = {};
-    if (this.map && DOMESTIC_MAP_TYPE.includes(this.mapType)) {
-      center.zoom = this.map.getZoom();
-      let coordinate = this.map.getCenter();
-      center.lng = coordinate.lng;
-      center.lat = coordinate.lat;
-      this.mineMapMarker = null;
-    } else if (this.map && this.mapType === MAP_TYPES.G_MAP) {
-      let zoom = this.map.getZoom();
-      let coordinate = this.map.getCenter();
-      center.zoom = zoom;
-      center.lat = coordinate.lat();
-      center.lng = coordinate.lng();
-      this.googleMarker = null;
-    }
-    localStorage.setItem('geolocation-map-center', JSON.stringify(center));
-    this.map = null;
-    this.props.toggleLargeMap && this.props.toggleLargeMap(false);
-  }
+  };
 
   loadMineMapCallBack = () => {
     if (!this.timer) {
@@ -198,15 +207,32 @@ class MapEditor extends Component {
   };
 
   setValue = (point) => {
-    this.setState({
-      value: {
-        lng: point.lng,
-        lat: point.lat
-      },
-      inputValue: DOMESTIC_MAP_TYPE.includes(this.mapType) ? `${point.lng}, ${point.lat}` : `${point.lat}, ${point.lng}`
-    }, () => {
-      this.props.setValue(this.state.value);
+    const value = point ? {
+      lng: point.lng,
+      lat: point.lat
+    } : null;
+    this.setState({ value }, () => {
+      const numericValue = this.getNumericValue(this.state.value);
+      this.setPropsValue(numericValue);
     });
+  };
+
+  getNumericValue = (value) => {
+    const { lng, lat } = value || {};
+    const numLng = typeof lng === 'string' ? parseFloat(lng.trim()) : lng;
+    const numLat = typeof lat === 'string' ? parseFloat(lat.trim()) : lat;
+    return { lng: numLng, lat: numLat };
+  };
+
+  setPropsValue = ({ lng, lat }) => {
+    if (!isNumber(lng) || !isNumber(lat)) {
+      this.props.setValue(null);
+      return;
+    }
+    const newValue = { lng, lat };
+    this.setState({ value: newValue });
+    this.props.setValue(newValue);
+    this.rerenderMapMarker(newValue);
   };
 
   addMarkerByPosition = (lng, lat) => {
@@ -246,50 +272,55 @@ class MapEditor extends Component {
     event.stopPropagation();
     event.nativeEvent.stopImmediatePropagation();
     const { value } = this.state;
-    this.props.setValue(value);
-    this.setState({ isShowLargeEditor: !this.state.isShowLargeEditor });
-  };
-
-  clearSearchNumerical = () => {
-    this.setState({ inputValue: '', value: {} });
+    const numericValue = this.getNumericValue(value);
+    this.setPropsValue(numericValue);
+    this.setState({ isShowLargeEditor: !this.state.isShowLargeEditor }, () => {
+      const nextState = this.state.isShowLargeEditor;
+      if (!nextState) {
+        this.initMap();
+      }
+      this.props.toggleLargeMap && this.props.toggleLargeMap(nextState);
+    });
   };
 
   onSubmit = () => {
-    const { value } = this.state;
-    this.props.setValue(value);
     this.props.onSubmit();
   };
 
-  onChange = (e) => {
-    const inputValue = e.target.value;
-    this.setState({ inputValue });
-    const enSplitCodeIndex = inputValue.indexOf(',');
-    const cnSplitCodeIndex = inputValue.indexOf('，');
-    if (enSplitCodeIndex > 0 || cnSplitCodeIndex > 0) {
-      let lng;
-      let lat;
-      const splitCodeIndex = enSplitCodeIndex > 0 ? enSplitCodeIndex : cnSplitCodeIndex;
-      if (this.mapType === MAP_TYPES.G_MAP) {
-        lat = parseFloat(inputValue.slice(0, splitCodeIndex).trim());
-        lng = parseFloat(inputValue.slice(splitCodeIndex + 1).trim());
+  rerenderMapMarker = ({ lng, lat }) => {
+    if (!isNumber(lng) || !isNumber(lat)) return;
+    if (this.map) {
+      if (this.mapType === MAP_TYPES.G_MAP || this.mapType === MAP_TYPES.M_MAP) {
+        this.map.setCenter({ lng, lat });
       } else {
-        lng = parseFloat(inputValue.slice(0, splitCodeIndex).trim());
-        lat = parseFloat(inputValue.slice(splitCodeIndex + 1).trim());
-      }
-      if (!Number.isNaN(lng) && !Number.isNaN(lat)) {
-        this.setState({
-          value: { lng, lat }
-        });
-        if (this.map) {
-          if (this.mapType === MAP_TYPES.G_MAP || this.mapType === MAP_TYPES.M_MAP) {
-            this.map.setCenter({ lng, lat });
-          } else {
-            this.map.setCenter(new window.BMap.Point(lng, lat));
-          }
-        }
-        this.addMarkerByPosition(lng, lat);
+        this.map.setCenter(new window.BMap.Point(lng, lat));
       }
     }
+    this.addMarkerByPosition(lng, lat);
+  };
+
+  onChangeLatitude = (event) => {
+    this.setState({
+      value: {
+        ...this.state.value,
+        lat: event.target.value,
+      }
+    }, () => {
+      const numericValue = this.getNumericValue(this.state.value);
+      this.setPropsValue(numericValue);
+    });
+  };
+
+  onChangeLongitude = (event) => {
+    this.setState({
+      value: {
+        ...this.state.value,
+        lng: event.target.value,
+      }
+    }, () => {
+      const numericValue = this.getNumericValue(this.state.value);
+      this.setPropsValue(numericValue);
+    });
   };
 
   onKeyDown = (event) => {
@@ -317,7 +348,9 @@ class MapEditor extends Component {
   };
 
   render() {
-    const { isLoading, inputValue, isShowLargeEditor } = this.state;
+    const { isLoading, value, isShowLargeEditor } = this.state;
+    const lat = value ? value.lat : '';
+    const lng = value ? value.lng : '';
 
     if (!isShowLargeEditor) {
       return (
@@ -330,23 +363,37 @@ class MapEditor extends Component {
             <span className="dtable-ui-geolocation-map-editor-screen dtable-font dtable-icon-full-screen" onClick={this.toggleFullScreen}></span>
           </div>
           <div className="dtable-ui-geolocation-map-editor">
-            {!this.readOnly &&
-              <div className="map-editor-header">
-                <div className="search-tables-container">
+            {!this.readOnly && (
+              <div className="dtable-ui-geolocation-map-lng-lat-editor-header">
+                <div className="dtable-ui-geolocation-map-lng-lat-input-container map-lat-input-container">
+                  <div className="dtable-ui-geolocation-map-lng-lat-input-label">
+                    <span>{getLocale('Latitude_abbr')}</span>
+                  </div>
                   <input
                     type="text"
-                    value={inputValue}
+                    value={lat}
+                    onChange={this.onChangeLatitude}
                     onKeyDown={this.onKeyDown}
-                    onChange={this.onChange}
-                    className="form-control search-tables-input"
-                    placeholder={DOMESTIC_MAP_TYPE.includes(this.mapType) ? getLocale('Enter_longitude_and_latitude') : getLocale('Enter_latitude_and_longitude')}
+                    className="form-control"
+                    placeholder={getLocale('Enter_latitude')}
                     autoFocus
                   />
-                  {inputValue && <span className="clear-search-numerical dtable-font dtable-icon-x-" onClick={this.clearSearchNumerical}></span>}
                 </div>
-                <span className="dtable-ui-geolocation-submit-map-editor" onClick={this.onSubmit}>{getLocale('Submit')}</span>
+                <div className="dtable-ui-geolocation-map-lng-lat-input-container map-lng-input-container">
+                  <div className="dtable-ui-geolocation-map-lng-lat-input-label">
+                    <span>{getLocale('Longitude_abbr')}</span>
+                  </div>
+                  <input
+                    type="text"
+                    value={lng}
+                    onChange={this.onChangeLongitude}
+                    onKeyDown={this.onKeyDown}
+                    className="form-control"
+                    placeholder={getLocale('Enter_longitude')}
+                  />
+                </div>
               </div>
-            }
+            )}
             <div className={this.readOnly ? 'geolocation-map-read-only-container' : 'geolocation-map-container'}>
               {(this.mapType && isLoading) && <Loading />}
               {(!this.mapType) && (
@@ -374,7 +421,7 @@ class MapEditor extends Component {
       );
     }
 
-    return (<LargeMapEditorDialog { ...this.props } toggleFullScreen={this.toggleFullScreen} />);
+    return (<LargeMapEditorDialog { ...this.props } value={value} setValue={this.setValue} toggleFullScreen={this.toggleFullScreen} />);
   }
 }
 

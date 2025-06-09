@@ -132,8 +132,6 @@
   "Select_location": "选择",
   "Positioning_failed": "定位失败",
   "Address": "地址",
-  "Enter_longitude_and_latitude": "输入经度和纬度",
-  "Enter_latitude_and_longitude": "输入经度和纬度",
   "The_map_plugin_is_not_properly_configured_contact_the_administrator": "地图插件未正确配置。请与管理员联系。",
   "Fill_in": "填入",
   "Search_failed_please_enter_detailed_address": "搜索失败，请输入详细地址",
@@ -165,5 +163,9 @@
   "Add_participants": "添加参与人",
   "Edit_long_text": "编辑长文本",
   "Choose_a_department": "选择一个部门",
-  "Close": "关闭"
+  "Close": "关闭",
+  "Latitude_abbr": "纬度",
+  "Longitude_abbr": "经度",
+  "Enter_latitude": "输入纬度",
+  "Enter_longitude": "输入经度"
 }

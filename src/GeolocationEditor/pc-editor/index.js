@@ -145,7 +145,7 @@ class PCGeolocationEditor extends React.Component {
 
   createEditor = () => {
     const geoFormat = this.getGeoFormat();
-    const { config, column, getCountryData, getLocationData } = this.props;
+    const { config, column, getCountryData, getLocationData, toggleLargeMap } = this.props;
     const props = {
       column,
       config,
@@ -157,10 +157,10 @@ class PCGeolocationEditor extends React.Component {
 
     switch (geoFormat) {
       case GEOLOCATION_FORMAT.LNG_LAT: {
-        return (<MapEditor {...props} ref={ref => this.editor = ref} />);
+        return (<MapEditor {...props} toggleLargeMap={toggleLargeMap} ref={ref => this.editor = ref} />);
       }
       case GEOLOCATION_FORMAT.MAP_SELECTION: {
-        return (<MapSelectionEditor {...props} ref={ref => this.editor = ref} />);
+        return (<MapSelectionEditor {...props} toggleLargeMap={toggleLargeMap} ref={ref => this.editor = ref} />);
       }
       case GEOLOCATION_FORMAT.COUNTRY_REGION: {
         return (<CountryEditor {...props} getData={getCountryData} ref={ref => this.editor = ref} />);

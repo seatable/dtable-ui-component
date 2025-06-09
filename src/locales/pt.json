@@ -132,8 +132,6 @@
   "Select_location": "Selecione",
   "Positioning_failed": "Posicionamento falhou",
   "Address": "Endereço",
-  "Enter_longitude_and_latitude": "Entre longitude e latitude",
-  "Enter_latitude_and_longitude": "Entre na latitude e longitude",
   "The_map_plugin_is_not_properly_configured_contact_the_administrator": "O plug -in de mapa não está configurado corretamente. Entre em contato com o administrador.",
   "Fill_in": "Fill in",
   "Search_failed_please_enter_detailed_address": "Search failed, please enter detailed address",
@@ -165,5 +163,9 @@
   "Add_participants": "Adicione participantes",
   "Edit_long_text": "Editar texto longo",
   "Choose_a_department": "Choose a department",
-  "Close": "Fechar"
+  "Close": "Fechar",
+  "Latitude_abbr": "Lat",
+  "Longitude_abbr": "Lng",
+  "Enter_latitude": "Enter latitude",
+  "Enter_longitude": "Enter longitude"
 }
