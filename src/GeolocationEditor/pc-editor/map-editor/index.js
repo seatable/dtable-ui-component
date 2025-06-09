@@ -207,12 +207,11 @@ class MapEditor extends Component {
   };
 
   setValue = (point) => {
-    this.setState({
-      value: {
-        lng: point.lng,
-        lat: point.lat
-      },
-    }, () => {
+    const value = point ? {
+      lng: point.lng,
+      lat: point.lat
+    } : null;
+    this.setState({ value }, () => {
       const numericValue = this.getNumericValue(this.state.value);
       this.setPropsValue(numericValue);
     });
@@ -227,7 +226,7 @@ class MapEditor extends Component {
 
   setPropsValue = ({ lng, lat }) => {
     if (!isNumber(lng) || !isNumber(lat)) {
-      this.props.setValue(this.props.value);
+      this.props.setValue(null);
       return;
     }
     const newValue = { lng, lat };

@@ -209,17 +209,17 @@ class LargeMapEditorDialog extends React.Component {
 
   setPropsValue = ({ lng, lat }) => {
     if (!isNumber(lng) || !isNumber(lat)) {
-      this.props.setValue(this.props.value);
+      this.props.setValue(null);
       return;
     }
     this.props.setValue({ lng, lat });
   };
 
   setValue = (point) => {
-    const value = {
+    const value = point ? {
       lng: point.lng,
       lat: point.lat
-    };
+    } : null;
     this.setState({ value }, () => {
       const numericValue = this.getNumericValue(this.state.value);
       this.setPropsValue(numericValue);
