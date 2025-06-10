@@ -88,11 +88,12 @@ class MBDateEditor extends React.PureComponent {
   renderCalender = () => {
     const { lang, className, firstDayOfWeek } = this.props;
     const { time } = this.state;
+    const calanderFormat = Array.of(this.format)
     const calendar = (
       <Calendar
         className={classnames('dtable-rc-calendar', className)}
         locale={initDateEditorLanguage(lang)}
-        format={this.format}
+        format={calanderFormat}
         defaultValue={this.defaultCalendarValue}
         showDateInput={false}
         focusablePanel={false}
