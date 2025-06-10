@@ -20,10 +20,10 @@ function setBodyScrollTop(scrollTop) {
 
 class NumberInput extends React.Component {
   static defaultProps = {
-    onChange: () => {},
-    onFocus: () => {},
-    onBlur: () => {},
-    onVirtualKeyboardConfirm: () => {},
+    onChange: () => { },
+    onFocus: () => { },
+    onBlur: () => { },
+    onVirtualKeyboardConfirm: () => { },
     placeholder: '',
     disabled: false,
     editable: true,
@@ -126,11 +126,9 @@ class NumberInput extends React.Component {
         </Portal>
       );
     } else {
-      customNumberKeyboard = ReactDOM.unstable_renderSubtreeIntoContainer(
-        this,
-        this.getComponent(),
-        this.getContainer()
-      );
+      const container = this.getContainer();
+      const root = ReactDOM.createRoot(container);
+      root.render(this.getComponent());
     }
   }
 
@@ -328,7 +326,7 @@ class NumberInput extends React.Component {
           aria-label={value || placeholder}
           className={fakeInputCls}
           ref={el => (this.inputRef = el)}
-          onClick={preventKeyboard ? () => {} : this.onFakeInputClick}
+          onClick={preventKeyboard ? () => { } : this.onFakeInputClick}
         >
           {value}
         </div>
