@@ -64,7 +64,9 @@ class RowExpandMBSingleSelectEditor extends React.Component {
 
   onChange = (option) => {
     let newValue = option[this.key];
-    if (this.state.value === newValue) newValue = null;
+    if (this.state.value === newValue) {
+      newValue = null;
+    }
     this.setState({ value: newValue });
     this.props.onCommit(newValue);
     this.toggleEditor(false);

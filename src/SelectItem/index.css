@@ -1,0 +1,24 @@
+.dtable-ui.dtable-ui-select-item {
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 10px;
+  width: min-content;
+  max-width: 300px;
+  margin: 5px 10px 5px 0;
+}
+
+.dtable-ui.dtable-ui-select-item .dtable-ui-select-item-remove-btn {
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.dtable-ui.dtable-ui-select-item .dtable-ui-select-item-remove-btn .dtable-icon-fork-number {
+  font-size: 12px;
+  transform: scale(0.8);
+  display: inline-block;
+  line-height: 12px;
+}
