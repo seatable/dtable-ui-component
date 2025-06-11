@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isNumber } from 'dtable-utils';
+import { isNumber, getGeolocationFormattedPoint } from 'dtable-utils';
 import InputItem from '../../../InputItem';
 import toaster from '../../../toaster';
 import MobileFullScreenPage from '../../../MobileFullScreenPage';
@@ -122,7 +122,7 @@ class MapEditor extends React.Component {
         this.map.setZoom(zoom);
         if (this.readOnly) return;
         this.map.on('mousedown', (event) => {
-          const point = event.lngLat;
+          const point = getGeolocationFormattedPoint(event.lngLat);
           this.setValue(point);
           this.addMarkerByPosition(point.lng, point.lat);
         });
@@ -147,7 +147,7 @@ class MapEditor extends React.Component {
         this.map.enableScrollWheelZoom(true);
         this.map.addEventListener('click', (event) => {
           if (this.state.mode === 'preview') return;
-          const point = event.point;
+          const point = getGeolocationFormattedPoint(event.point);
           this.setValue(point);
           this.addMarkerByPosition(point.lng, point.lat);
         });
@@ -191,7 +191,7 @@ class MapEditor extends React.Component {
         this.map.addListener('mousedown', (event) => {
           const lng = event.latLng.lng();
           const lat = event.latLng.lat();
-          const point = { lng, lat };
+          const point = getGeolocationFormattedPoint({ lng, lat });
           this.setValue(point);
           this.addMarkerByPosition(lng, lat);
         });
@@ -256,7 +256,7 @@ class MapEditor extends React.Component {
       this.props.onCommit(value);
     }
 
-    const { lng, lat } = this.getNumericValue(value);
+    const { lng, lat } = getGeolocationFormattedPoint(value);
     const newValue = !isNumber(lng) || !isNumber(lat) ? null : value;
     this.props.onCommit(newValue);
     this.onClose();
@@ -298,13 +298,6 @@ class MapEditor extends React.Component {
     this.props.onToggle();
   };
 
-  getNumericValue = (value) => {
-    const { lng, lat } = value || {};
-    const numLng = typeof lng === 'string' ? parseFloat(lng.trim()) : lng;
-    const numLat = typeof lat === 'string' ? parseFloat(lat.trim()) : lat;
-    return { lng: numLng, lat: numLat };
-  };
-
   handleLatitudeChange = (value) => {
     this.setState({
       value: {
@@ -312,7 +305,7 @@ class MapEditor extends React.Component {
         lat: value,
       }
     }, () => {
-      const numericValue = this.getNumericValue(this.state.value);
+      const numericValue = getGeolocationFormattedPoint(this.state.value);
       this.rerenderMapMarker(numericValue);
     });
   };
@@ -324,7 +317,7 @@ class MapEditor extends React.Component {
         lng: value,
       }
     }, () => {
-      const numericValue = this.getNumericValue(this.state.value);
+      const numericValue = getGeolocationFormattedPoint(this.state.value);
       this.rerenderMapMarker(numericValue);
     });
   };
