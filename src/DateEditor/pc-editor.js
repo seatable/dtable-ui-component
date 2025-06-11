@@ -185,7 +185,7 @@ class PCDateEditor extends React.Component {
     let { dateFormat, showHourAndMinute, lang, className, firstDayOfWeek } = this.props;
     let defaultValue = dayjs().clone();
     const defaultTime = this.getDefaultTime();
-    const calanderFormat = Array.isArray(dateFormat) ? dateFormat : Array.of(dateFormat)
+    const calanderFormat = Array.isArray(dateFormat) ? dateFormat : Array.of(dateFormat);
     return (
       <Calendar
         className={classnames('dtable-rc-calendar', className)}

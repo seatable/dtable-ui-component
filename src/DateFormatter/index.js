@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { renderDisplayContent, delimate } from '../utils/dateFormat.js'
+import { renderDisplayContent, delimate } from '../utils/dateFormat.js';
 
 import './index.css';
 
@@ -25,7 +25,6 @@ class DateFormatter extends React.Component {
     if (date !== '') {
       date = renderDisplayContent(date, format, delimate(format));
     }
-
     return (
       <div title={date} className={classname}>{date}</div>
     );

@@ -153,6 +153,37 @@ export function renderFilterInputFormat(str, localeFormat, delimiter){
   }
 }
 
+
+export function filterChangeValue(str, localeFormat){
+  const format = String(localeFormat).toLowerCase();
+  const parts = formatDateLocal(str, format);
+  if (parts.length < 3) {
+    return '';
+  }
+  let day;
+  let month;
+  let year;
+  if (format === DATE_FORMATS.ISO || format === DATE_FORMATS.ISOAndTime) {
+    day = parts[2];
+    month = parts[1];
+    year = fullValidYear(parts[0]);
+  }
+  if (format === DATE_FORMATS.US || format === DATE_FORMATS.USAndTime) {
+    day = parts[1];
+    month = parts[0];
+    year = fullValidYear(parts[2]);
+  }
+  if (format === DATE_FORMATS.European ||
+    format === DATE_FORMATS.Germany_Russia_etc ||
+    format === DATE_FORMATS.EuropeanAndTime ||
+    format === DATE_FORMATS.Germany_Russia_etcAndTime) {
+    day = parts[0];
+    month = parts[1];
+    year = fullValidYear(parts[2]);
+  }
+  return `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+}
+
 export function getDay(str, localeFormat, mode) {
   const format = String(localeFormat).toLowerCase();
   const parts = formatDateLocal(str, format);

@@ -7,7 +7,7 @@ import Calendar from '@seafile/seafile-calendar';
 import DatePicker from '@seafile/seafile-calendar/lib/Picker';
 import { translateCalendar } from '../../lang';
 import { getDateColumnFormat } from '../../utils/column-utils';
-
+import { delimate, renderFilterInputFormat, filterChangeValue, getDay, getMonth, getYear } from '../../utils/dateFormat.js';
 import '@seafile/seafile-calendar/assets/index.css';
 
 let now = dayjs();
@@ -34,6 +34,9 @@ class FilterCalendar extends Component {
     this.columnDataFormat = DataFormat.split(' ')[0];
     this.calendarContainerRef = React.createRef();
     this.defaultCalendarValue = null;
+    this.formatDay = this.props.value ? getDay(this.props.value, this.getCalendarFormat()[0]) : null;
+    this.formatMonth = this.props.value ? getMonth(this.props.value, this.getCalendarFormat()[0]) : null;
+    this.formatYear = this.props.value ? getYear(this.props.value, this.getCalendarFormat()[0]) : null;
   }
 
   componentDidMount() {
@@ -48,7 +51,9 @@ class FilterCalendar extends Component {
     if (value && dayjs(value).isValid()) {
       let validValue = dayjs(value).isValid() ? dayjs(value) : dayjs(this.defaultCalendarValue);
       this.setState({
-        value: iszhcn ? dayjs(validValue).locale('zh-cn') : dayjs(validValue).locale('en-gb')
+        value: iszhcn
+          ? dayjs(validValue).year(this.formatYear).month(this.formatMonth).date(this.formatDay).locale('zh-cn')
+          : dayjs(validValue).year(this.formatYear).month(this.formatMonth).date(this.formatDay).locale('en-gb')
       });
     }
   }
@@ -59,12 +64,16 @@ class FilterCalendar extends Component {
 
   onChange = (value) => {
     const { onChange } = this.props;
-    const searchFormat = 'YYYY-MM-DD';
+    const searchFormat = this.columnDataFormat;
     this.setState({
       value
     }, () => {
       if (this.state.value) {
-        onChange(this.state.value.format(searchFormat));
+        const filterStr = this.state.value.format(this.getCalendarFormat()[0]);
+        if (typeof filterStr === 'string') {
+          const changeVal = filterChangeValue(filterStr, searchFormat);
+          onChange(changeVal);
+        }
       }
     });
   };
@@ -118,10 +127,12 @@ class FilterCalendar extends Component {
   render() {
     const { isReadOnly, firstDayOfWeek } = this.props;
     const state = this.state;
+    const inputStr = state.value ? state.value.format(this.columnDataFormat) : '';
+    const displayContentValue = renderFilterInputFormat(inputStr, this.columnDataFormat, delimate(this.columnDataFormat));
     if (isReadOnly) return (
       <input
         className="ant-calendar-picker-input ant-input form-control"
-        value={state.value ? state.value.format(this.columnDataFormat) : ''}
+        value={displayContentValue}
         disabled={true}
       />
     );
@@ -167,7 +178,7 @@ class FilterCalendar extends Component {
                     tabIndex="-1"
                     readOnly
                     className="ant-calendar-picker-input ant-input form-control"
-                    value={value ? value.format(this.columnDataFormat) : ''}
+                    value={displayContentValue}
                     onMouseDown={this.handleMouseDown}
                   />
                   <div ref={this.calendarContainerRef} />
