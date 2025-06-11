@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'reactstrap';
-import { isNumber } from 'dtable-utils';
+import { isNumber, getGeolocationFormattedPoint } from 'dtable-utils';
 import toaster from '../../../../toaster';
 import Loading from '../../../../Loading';
 import { KeyCodes } from '../../../../constants';
@@ -128,7 +128,7 @@ class LargeMapEditorDialog extends React.Component {
       this.map.setZoom(zoom);
       if (this.readOnly) return;
       this.map.on('click', (event) => {
-        const point = event.lngLat;
+        const point = getGeolocationFormattedPoint(event.lngLat);
         this.setValue(point);
         this.addMarkerByPosition(point.lng, point.lat);
       });
@@ -151,7 +151,7 @@ class LargeMapEditorDialog extends React.Component {
       this.map.enableScrollWheelZoom(true);
       if (this.readOnly) return;
       this.map.addEventListener('click', (event) => {
-        const point = event.point;
+        const point = getGeolocationFormattedPoint(event.point);
         this.setValue(point);
         this.addMarkerByPosition(point.lng, point.lat);
       });
@@ -181,7 +181,7 @@ class LargeMapEditorDialog extends React.Component {
       this.map.addListener('click', (event) => {
         const lng = event.latLng.lng();
         const lat = event.latLng.lat();
-        const point = { lng, lat };
+        const point = getGeolocationFormattedPoint({ lng, lat });
         this.setValue(point);
         this.addMarkerByPosition(lng, lat);
       });
@@ -200,13 +200,6 @@ class LargeMapEditorDialog extends React.Component {
     }
   };
 
-  getNumericValue = (value) => {
-    const { lng, lat } = value || {};
-    const numLng = typeof lng === 'string' ? parseFloat(lng.trim()) : lng;
-    const numLat = typeof lat === 'string' ? parseFloat(lat.trim()) : lat;
-    return { lng: numLng, lat: numLat };
-  };
-
   setPropsValue = ({ lng, lat }) => {
     if (!isNumber(lng) || !isNumber(lat)) {
       this.props.setValue(null);
@@ -221,7 +214,7 @@ class LargeMapEditorDialog extends React.Component {
       lat: point.lat
     } : null;
     this.setState({ value }, () => {
-      const numericValue = this.getNumericValue(this.state.value);
+      const numericValue = getGeolocationFormattedPoint(this.state.value);
       this.setPropsValue(numericValue);
     });
   };
@@ -277,7 +270,7 @@ class LargeMapEditorDialog extends React.Component {
         lat: event.target.value,
       }
     }, () => {
-      const numericValue = this.getNumericValue(this.state.value);
+      const numericValue = getGeolocationFormattedPoint(this.state.value);
       this.setPropsValue(numericValue);
       this.rerenderMapMarker(numericValue);
     });
@@ -290,7 +283,7 @@ class LargeMapEditorDialog extends React.Component {
         lng: event.target.value,
       }
     }, () => {
-      const numericValue = this.getNumericValue(this.state.value);
+      const numericValue = getGeolocationFormattedPoint(this.state.value);
       this.setPropsValue(numericValue);
       this.rerenderMapMarker(numericValue);
     });
