@@ -11,8 +11,12 @@ class FilterItemUtils {
       value: { column },
       label: (
         <Fragment>
-          <span className="filter-header-icon"><i className={COLUMNS_ICON_CONFIG[type]}></i></span>
-          <span className='select-option-name'>{name}</span>
+          <span className="filter-header-icon">
+            <i className={COLUMNS_ICON_CONFIG[type]}></i>
+          </span>
+          <span className='select-option-name' title={name} aria-label={name} >
+            {name}
+          </span>
         </Fragment>
       )
     };
@@ -55,12 +59,15 @@ class FilterItemUtils {
     };
   }
 
-  static generatorSingleSelectOption(option) {
+  static generatorSingleSelectOption(option, selectedOption) {
     return {
       value: { columnOption: option },
       label: (
-        <div className='select-option-name'>
+        <div className='select-option-name single-select-option-name'>
           <div className="single-select-option" style={{ background: option.color, color: option.textColor || null }} title={option.name} aria-label={option.name}>{option.name}</div>
+          <div className='single-select-check-icon'>
+            {selectedOption?.id === option.id && <i className="option-edit dtable-font dtable-icon-check-mark"></i>}
+          </div>
         </div>
       )
     };

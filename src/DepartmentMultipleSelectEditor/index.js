@@ -8,7 +8,7 @@ import './index.css';
 
 function DepartmentMultipleSelect(props) {
   const { value, onCommit, classNamePrefix, isShowSelectedDepartments, renderUserDepartmentOptions,
-    departments: initialDepartments } = props;
+    departments: initialDepartments, isInModal, position } = props;
   const [searchVal, setSearchVal] = useState('');
   const [departments, setDepartments] = useState(getNormalizedDepartments(initialDepartments));
   const departmentContainerRef = useRef(null);
@@ -23,10 +23,26 @@ function DepartmentMultipleSelect(props) {
 
   function resetContainerPosition() {
     const { top, height } = departmentContainerRef.current.getBoundingClientRect();
-    if (height + top > window.innerHeight) {
-      const borderWidth = 1;
-      departmentContainerRef.current.style.top = -1 * (height + borderWidth - 38) + 'px';
+    if (isInModal) {
+      if (position.y + position.height + height > window.innerHeight) {
+        departmentContainerRef.current.style.top = (position.y - height) + 'px';
+      }
+    } else {
+      if (height + top > window.innerHeight) {
+        const borderWidth = 1;
+        departmentContainerRef.current.style.top = -1 * (height + borderWidth - 38) + 'px';
+      }
     }
+  }
+
+  function getStyle() {
+    if (!isInModal) return {};
+    return {
+      position: 'fixed',
+      left: position.x,
+      top: position.y + position.height,
+      zIndex: 10001,
+    };
   }
 
   function onExpand(event, id, isExpanded) {
@@ -114,6 +130,7 @@ function DepartmentMultipleSelect(props) {
     return (
       <div
         ref={departmentContainerRef}
+        style={getStyle()}
         onClick={onStopPropagation}
         onMouseDown={onStopPropagation}
         className={`departments-container dtable-ui ${classNamePrefix}`}
@@ -152,13 +169,14 @@ function DepartmentMultipleSelect(props) {
 }
 
 DepartmentMultipleSelect.propTypes = {
-  isLocked: PropTypes.bool,
+  isInModal: PropTypes.bool,
   isShowSelectedDepartments: PropTypes.bool,
   classNamePrefix: PropTypes.string,
   value: PropTypes.array,
   departments: PropTypes.array,
   renderUserDepartmentOptions: PropTypes.func,
   onCommit: PropTypes.func,
+  position: PropTypes.object,
 };
 
 export default DepartmentMultipleSelect;

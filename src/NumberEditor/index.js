@@ -86,7 +86,7 @@ class NumberEditor extends React.Component {
   }
 
   render() {
-    const { isInModal } = this.props;
+    const { isInModal, readOnly } = this.props;
     let style = isInModal ? { textAlign: 'left', width: '320px' } : { textAlign: 'right' };
     return (
       <input
@@ -100,6 +100,7 @@ class NumberEditor extends React.Component {
         onKeyDown={this.onKeyDown}
         onChange={this.onChange}
         style={style}
+        disabled={readOnly}
       />
     );
   }
@@ -112,6 +113,7 @@ NumberEditor.propTypes = {
   onBlur: PropTypes.func,
   onCommit: PropTypes.func,
   selectDownCell: PropTypes.func,
+  readOnly: PropTypes.bool,
 };
 
 export default NumberEditor;
