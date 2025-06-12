@@ -146,9 +146,7 @@ class MBDateEditor extends React.PureComponent {
           <div className="dtable-ui-mobile-date-editor-input">
             <div className="date-input" style={showHourAndMinute ? { width: '50%' } : { width: '100%' }}>
               <DatePicker mode="date" minDate={minDate} maxDate={maxDate} locale={initDateEditorLanguage(lang)} value={null} onChange={this.handleDateChange}>
-                {/* <div className="date-input-day">{dayjs(time).format(this.leftFormat)}</div> */}
-                <div className="date-input-day">{'gzc'}</div>
-
+                <div className="date-input-day">{dayjs(time).format(this.leftFormat)}</div>
               </DatePicker>
             </div>
             {showHourAndMinute &&
