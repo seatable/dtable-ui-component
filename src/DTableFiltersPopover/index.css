@@ -4,8 +4,12 @@
 }
 
 .dtable-filter-popover .popover .filters-list {
-  max-height: calc(100vh - 170px);
+  max-height: calc(100vh - 470px);
   overflow: auto;
+}
+
+.dtable-filter-popover .filters-list .filter-container .filter-term .filter-popover-duration-editor {
+  width: 100% !important;
 }
 
 .dtable-filter-popover .filter-popover-footer {
@@ -61,7 +65,7 @@
   align-items: center;
 }
 
-.dtable-filter-popover .filter-term .filter-item-checkbox {
+.dtable-filter-popover .filter-term .dtable-ui-filter-item-checkbox {
   width: 22px;
   height: 22px;
   display: flex;

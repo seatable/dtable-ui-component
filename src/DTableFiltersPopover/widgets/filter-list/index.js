@@ -180,7 +180,7 @@ class FiltersList extends Component {
   };
 
   renderFilter = (filter, index, filterColumn) => {
-    const { filterConjunction, isInModal, columns, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek } = this.props;
+    const { filterConjunction, isInModal, columns, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek, readOnly } = this.props;
     const conjunctionOptions = this.getConjunctionOptions();
     const columnOptions = this.getColumnOptions();
 
@@ -200,6 +200,7 @@ class FiltersList extends Component {
           userDepartmentIdsMap={userDepartmentIdsMap}
           departments={departments}
           firstDayOfWeek={firstDayOfWeek}
+          readOnly={readOnly}
           modifyFilterConjunction={this.modifyFilterConjunction}
           deleteFilterGroup={this.deleteFilter}
           addFilterIntoGroup={this.addFilterIntoGroup}
@@ -230,6 +231,7 @@ class FiltersList extends Component {
         updateFilter={this.updateFilter}
         updateConjunction={this.modifyFilterConjunction}
         firstDayOfWeek={firstDayOfWeek}
+        readOnly={readOnly}
       />
     );
   };

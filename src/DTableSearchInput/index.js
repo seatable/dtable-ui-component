@@ -92,6 +92,7 @@ class DtableSearchInput extends Component {
     return (
       <Fragment>
         <input
+          ref={ref => this.inputRef = ref}
           type="text"
           value={searchValue}
           className={classnames('form-control', className)}
@@ -103,7 +104,6 @@ class DtableSearchInput extends Component {
           onKeyDown={onKeyDown}
           disabled={disabled}
           style={style}
-          ref={ref => this.inputRef = ref}
         />
         {this.renderClear()}
       </Fragment>

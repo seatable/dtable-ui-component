@@ -81,7 +81,7 @@ class FilterGroup extends Component {
 
   renderGroupFilters = () => {
     const {
-      columns, conjunctionOptions, columnOptions, filter, index: groupIndex, collaborators, lang, userDepartmentIdsMap, departments, firstDayOfWeek
+      columns, conjunctionOptions, columnOptions, filter, index: groupIndex, collaborators, lang, userDepartmentIdsMap, departments, firstDayOfWeek, readOnly
     } = this.props;
     const { filters: subFilters, filter_conjunction } = filter;
     const subFilterConjunction = SUPPORT_CONJUNCTIONS.includes(filter_conjunction) ? filter_conjunction : FILTER_CONJUNCTION_TYPE.AND;
@@ -109,6 +109,7 @@ class FilterGroup extends Component {
           userDepartmentIdsMap={userDepartmentIdsMap}
           departments={departments}
           firstDayOfWeek={firstDayOfWeek}
+          readOnly={readOnly}
           updateConjunction={this.modifyConjunctionInGroup}
           deleteFilter={this.deleteFilterInGroup}
           updateFilter={this.updateFilterInGroup}
@@ -118,7 +119,7 @@ class FilterGroup extends Component {
   };
 
   render() {
-    const { level, index } = this.props;
+    const { level, index, readOnly } = this.props;
 
     return (
       <div
@@ -128,21 +129,25 @@ class FilterGroup extends Component {
           `level-${level}`,
         )}
       >
-        <div className="delete-filter" onClick={this.deleteFilterGroup} role="button" tabIndex={0} aria-label={getLocale('Delete')}>
-          <i aria-hidden="true" className="dtable-font dtable-icon-fork-number"></i>
-        </div>
+        {!readOnly && (
+          <div className="delete-filter" onClick={this.deleteFilterGroup} role="button" tabIndex={0} aria-label={getLocale('Delete')}>
+            <i aria-hidden="true" className="dtable-font dtable-icon-fork-number"></i>
+          </div>
+        )}
         <div className="filter-group-wrapper">
           <div className={classnames('filter-conjunction', { 'conjunction-text': index > 1 })}>
             {this.renderConjunction()}
           </div>
           <div className="filter-group-container">
             {this.renderGroupFilters()}
-            <CommonAddTool
-              className="group-filter-add-tool"
-              callBack={this.addFilterIntoGroup}
-              footerName={getLocale('Add_filter')}
-              addIconClassName="popover-add-icon"
-            />
+            {!readOnly && (
+              <CommonAddTool
+                className="group-filter-add-tool"
+                callBack={this.addFilterIntoGroup}
+                footerName={getLocale('Add_filter')}
+                addIconClassName="popover-add-icon"
+              />
+            )}
           </div>
         </div>
       </div>

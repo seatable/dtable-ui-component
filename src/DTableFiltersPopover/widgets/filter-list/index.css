@@ -1,5 +1,5 @@
 .filters-list {
-  min-height: 120px;
+  min-height: 180px;
   max-height: 100%;
   padding: 15px;
 }
@@ -201,14 +201,14 @@
 
 .filters-list .selector-multiple-select .option:hover,
 .filters-list .selector-multiple-select .option.option-active,
-.option-group-selector-collaborator .option:hover,
-.option-group-selector-collaborator .option.option-active {
+.option-group-dtable-ui-selector-collaborator .option:hover,
+.option-group-dtable-ui-selector-collaborator .option.option-active {
   color: #212529;
   background-color: #f7f7f7;
 }
 
 .filters-list .selector-multiple-select .option.option-active .select-option-name,
-.option-group-selector-collaborator .option.option-active .select-option-name {
+.option-group-dtable-ui-selector-collaborator .option.option-active .select-option-name {
   color: #212529;
 }
 
@@ -310,8 +310,8 @@
 }
 
 .filters-list .multiple-check-icon,
-.filters-list .collaborator-check-icon 
-.option-group-selector-collaborator .collaborator-check-icon {
+.filters-list .collaborator-check-icon,
+.option-group-dtable-ui-selector-collaborator .collaborator-check-icon {
   display: inline-flex;
   width: 20px;
   height: 20px;
@@ -321,7 +321,7 @@
 
 .filters-list .multiple-check-icon .dtable-icon-check-mark,
 .filters-list .collaborator-check-icon .dtable-icon-check-mark,
-.option-group-selector-collaborator .collaborator-check-icon .dtable-icon-check-mark {
+.option-group-dtable-ui-selector-collaborator .collaborator-check-icon .dtable-icon-check-mark {
   font-size: 12px;
   color: #798d99;
 }
@@ -338,17 +338,17 @@
   background: #eaeaea;
 }
 
-.option-group-selector-collaborator .collaborator-show
+.option-group-dtable-ui-selector-collaborator .collaborator-show
 .filters-list .collaborator-show {
   flex: 1;
 }
 
-.option-group-selector-collaborator .collaborator-avatar-container,
+.option-group-dtable-ui-selector-collaborator .collaborator-avatar-container,
 .filters-list .collaborator-avatar-container {
   width: 16px;
 }
 
-.option-group-selector-collaborator .collaborator-avatar,
+.option-group-dtable-ui-selector-collaborator .collaborator-avatar,
 .filters-list .collaborator-avatar {
   width: 16px;
   height: 16px;
@@ -356,23 +356,23 @@
   border-radius: 50%;
 }
 
-.option-group-selector-collaborator .option .collaborator-avatar,
+.option-group-dtable-ui-selector-collaborator .option .collaborator-avatar,
 .filters-list .option .collaborator-avatar {
   transform: translateY(-2px);
 }
 
-.option-group-selector-collaborator .collaborator-name,
+.option-group-dtable-ui-selector-collaborator .collaborator-name,
 .filters-list .collaborator-name {
   margin-left: 5px;
   max-width: 200px;
 }
 
-.option-group-selector-collaborator .option-collaborator,
+.option-group-dtable-ui-selector-collaborator .option-collaborator,
 .filters-list .option-collaborator {
   display: flex;
 }
 
-.option-group-selector-collaborator .collaborator-container,
+.option-group-dtable-ui-selector-collaborator .collaborator-container,
 .filters-list .collaborator-container {
   flex: 1;
 }
@@ -406,7 +406,7 @@
 
 .dropdown-item .collaborator,
 .filters-list .option-group-content .collaborator,
-.option-group-selector-collaborator .option-group-content .collaborator {
+.option-group-dtable-ui-selector-collaborator .option-group-content .collaborator {
   background-color: unset;
 }
 

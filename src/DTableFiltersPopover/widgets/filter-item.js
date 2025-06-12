@@ -20,15 +20,16 @@ import DepartmentSingleSelectFilter from './department-select-filter/department-
 import DepartmentMultipleSelectFilter from './department-select-filter/department-multiple-select-filter';
 import RateItem from './rate-item';
 import FilterCalendar from './filter-calendar';
+import CheckboxEditor from '../../CheckboxEditor';
+import NumberEditor from '../../NumberEditor';
+import DurationEditor from '../../DurationEditor';
 import FilterItemUtils from '../utils/filter-item-utils';
 import {
   getFilterByColumn, getUpdatedFilterBySelectSingle, getUpdatedFilterBySelectMultiple,
   getUpdatedFilterByCreator, getUpdatedFilterByCollaborator, getColumnOptions, getUpdatedFilterByPredicate, generateDefaultUser
 } from '../utils';
-import { isCheckboxColumn } from '../../utils/column-utils';
-import CheckboxEditor from '../../CheckboxEditor';
-import NumberEditor from '../../NumberEditor';
 import { DELETED_OPTION_BACKGROUND_COLOR, DELETED_OPTION_TIPS, EMPTY_PREDICATE, INPUT_CMP_TYPE_MAP } from '../constants';
+import { isCheckboxColumn } from '../../utils/column-utils';
 import { getLocale } from '../../lang';
 
 const propTypes = {
@@ -229,6 +230,11 @@ class FilterItem extends React.Component {
     this.onFilterTermChanged(Object.values(value)[0]);
   };
 
+  onFilterTermDurationChanged = () => {
+    const value = this.durationEditor.getValue();
+    this.onFilterTermChanged(value);
+  };
+
   onFilterTermChanged = (newFilterTerm) => {
     const { index, filter } = this.props;
     const { filterTerm } = this.state;
@@ -252,7 +258,7 @@ class FilterItem extends React.Component {
   };
 
   getInputComponent = (type) => {
-    const { filterColumn } = this.props;
+    const { filterColumn, readOnly, isInModal } = this.props;
     const { filterTerm } = this.state;
     if (type === INPUT_CMP_TYPE_MAP.TEXT) {
       return (
@@ -261,33 +267,49 @@ class FilterItem extends React.Component {
           onChange={this.onFilterTermTextChanged}
           autoFocus={false}
           className={classnames('text-truncate')}
+          disabled={readOnly}
         />
       );
-    } else if (type === 'checkbox') {
+    } else if (type === INPUT_CMP_TYPE_MAP.CHECKBOX) {
       return (
         <div className="checkbox-filter-term">
           <CheckboxEditor
             ref={ref => this.checkboxEditor = ref}
             column={filterColumn}
             value={filterTerm}
-            extraClassName='filter-item-checkbox'
+            className='dtable-ui-filter-item-checkbox'
             onChange={this.onFilterTermCheckboxChanged}
-            readOnly={false}
+            readOnly={readOnly}
           />
         </div>
       );
-    } else if (type === 'number') {
-      return <NumberEditor
-        ref={ref => this.numberEditor = ref}
-        column={filterColumn}
-        value={filterTerm}
-        onCommit={this.onFilterTermNumberChanged}
-      />;
+    } else if (type === INPUT_CMP_TYPE_MAP.NUMBER) {
+      return (
+        <NumberEditor
+          ref={ref => this.numberEditor = ref}
+          column={filterColumn}
+          value={filterTerm}
+          onCommit={this.onFilterTermNumberChanged}
+          readOnly={readOnly}
+        />
+      );
+    } else if (type === INPUT_CMP_TYPE_MAP.DURATION) {
+      return (
+        <DurationEditor
+          ref={ref => this.durationEditor = ref}
+          className="filter-popover-duration-editor"
+          isInModal={isInModal}
+          column={filterColumn}
+          value={filterTerm}
+          onCommit={this.onFilterTermDurationChanged}
+          disabled={readOnly}
+        />
+      );
     }
   };
 
   renderConjunction = () => {
-    const { index, filterConjunction, conjunctionOptions } = this.props;
+    const { index, filterConjunction, conjunctionOptions, readOnly, isInModal } = this.props;
     switch (index) {
       case 0: {
         return null;
@@ -299,7 +321,8 @@ class FilterItem extends React.Component {
             value={activeConjunction}
             options={conjunctionOptions}
             onSelectOption={this.onSelectConjunction}
-            isInModal={this.props.isInModal}
+            isInModal={isInModal}
+            isLocked={readOnly}
           />
         );
       }
@@ -313,7 +336,7 @@ class FilterItem extends React.Component {
   };
 
   renderMultipleSelectOption = (options = [], filterTerm) => {
-    const { filter } = this.props;
+    const { filter, readOnly } = this.props;
     const { filter_predicate } = filter;
     let isSupportMultipleSelect = false;
     // The first two options are used for single selection, and the last four options are used for multiple selection
@@ -367,12 +390,13 @@ class FilterItem extends React.Component {
         noOptionsPlaceholder={getLocale('No_options_available')}
         supportMultipleSelect={isSupportMultipleSelect}
         isInModal={this.props.isInModal}
+        isLocked={readOnly}
       />
     );
   };
 
   renderFilterTerm = (filterColumn) => {
-    const { index, filter, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek } = this.props;
+    const { index, filter, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek, readOnly } = this.props;
     const { type } = filterColumn;
     const { filter_term, filter_predicate, filter_term_modifier } = filter;
     // predicate is empty or not empty
@@ -402,10 +426,11 @@ class FilterItem extends React.Component {
               filterColumn={filterColumn}
               onChange={this.onFilterTermTextChanged}
               firstDayOfWeek={firstDayOfWeek}
+              isReadOnly={readOnly}
             />
           );
         }
-        return this.getInputComponent('text');
+        return this.getInputComponent(INPUT_CMP_TYPE_MAP.TEXT);
       }
       return null;
     }
@@ -415,13 +440,15 @@ class FilterItem extends React.Component {
       case CellType.LONG_TEXT:
       case CellType.GEOLOCATION:
       case CellType.AUTO_NUMBER:
-      case CellType.DURATION:
       case CellType.EMAIL:
       case CellType.URL: { // The data in the formula column is a date type that has been excluded
         if (filter_predicate === FILTER_PREDICATE_TYPE.IS_CURRENT_USER_ID) {
           return null;
         }
         return this.getInputComponent(INPUT_CMP_TYPE_MAP.TEXT);
+      }
+      case CellType.DURATION: {
+        return this.getInputComponent(INPUT_CMP_TYPE_MAP.DURATION);
       }
       case CellType.NUMBER:{
         return this.getInputComponent(INPUT_CMP_TYPE_MAP.NUMBER);
@@ -457,6 +484,7 @@ class FilterItem extends React.Component {
             searchPlaceholder={getLocale('Search_option')}
             noOptionsPlaceholder={getLocale('No_options_available')}
             isInModal={this.props.isInModal}
+            isLocked={readOnly}
           />
         );
       }
@@ -473,6 +501,7 @@ class FilterItem extends React.Component {
               departments={departments}
               onCommit={this.onSelectMultiple}
               isInModal={this.props.isInModal}
+              readOnly={readOnly}
             />
           );
         }
@@ -484,6 +513,7 @@ class FilterItem extends React.Component {
             departments={departments}
             onCommit={this.onSelectSingle}
             isInModal={this.props.isInModal}
+            readOnly={readOnly}
           />
         );
       }
@@ -499,6 +529,7 @@ class FilterItem extends React.Component {
             collaborators={collaborators}
             onSelectCollaborator={this.onSelectCollaborator}
             isInModal={this.props.isInModal}
+            readOnly={readOnly}
           />
         );
       }
@@ -515,6 +546,7 @@ class FilterItem extends React.Component {
             collaborators={creators}
             onSelectCollaborator={this.onSelectCreator}
             isInModal={this.props.isInModal}
+            readOnly={readOnly}
           />
         );
       }
@@ -533,7 +565,7 @@ class FilterItem extends React.Component {
               column={filterColumn}
               isShowRateItem={true}
               onChangeRateNumber={this.onChangeRateNumber}
-              editable={true}
+              editable={!readOnly}
             />
           );
           rateList.push(rateItem);
@@ -584,7 +616,7 @@ class FilterItem extends React.Component {
   };
 
   renderFilterTermByArrayType = (filterPredicate, filterTerm, index, filterColumn) => {
-    const { collaborators, departments } = this.props;
+    const { collaborators, departments, readOnly } = this.props;
     const { data } = filterColumn || {};
     const { array_type, array_data } = data || {};
     if (!array_type) {
@@ -602,6 +634,7 @@ class FilterItem extends React.Component {
           departments={departments}
           onCommit={this.onSelectMultiple}
           isInModal={this.props.isInModal}
+          readOnly={readOnly}
         />
       );
     }
@@ -623,10 +656,11 @@ class FilterItem extends React.Component {
           onSelectCollaborator={this.onSelectCollaborator}
           placeholder={getLocale('Add_collaborator')}
           isInModal={this.props.isInModal}
+          readOnly={readOnly}
         />
       );
     }
-    return this.getInputComponent('text');
+    return this.getInputComponent(INPUT_CMP_TYPE_MAP.TEXT);
   };
 
   isRenderErrorTips = () => {
@@ -654,7 +688,7 @@ class FilterItem extends React.Component {
 
   render() {
     const { filterPredicateOptions, filterTermModifierOptions } = this;
-    const { filter, filterColumn, filterColumnOptions } = this.props;
+    const { filter, filterColumn, filterColumnOptions, readOnly } = this.props;
     const { filter_predicate, filter_term_modifier } = filter;
     const activeColumn = FilterItemUtils.generatorColumnOption(filterColumn);
     const activePredicate = FilterItemUtils.generatorPredicateOption(filter_predicate);
@@ -677,9 +711,11 @@ class FilterItem extends React.Component {
 
     return (
       <div className="filter-item">
-        <div className="delete-filter" onClick={this.onDeleteFilter}>
-          <i className="dtable-font dtable-icon-fork-number"></i>
-        </div>
+        {!readOnly && (
+          <div className="delete-filter" onClick={this.onDeleteFilter}>
+            <i className="dtable-font dtable-icon-fork-number"></i>
+          </div>
+        )}
         <div className="condition">
           <div className="filter-conjunction">
             {this.renderConjunction()}
@@ -694,6 +730,7 @@ class FilterItem extends React.Component {
                 searchPlaceholder={getLocale('Search_column')}
                 noOptionsPlaceholder={getLocale('No_results')}
                 isInModal={this.props.isInModal}
+                isLocked={readOnly}
               />
             </div>
             <div className={`filter-predicate ml-2 ${_isCheckboxColumn ? 'filter-checkbox-predicate' : ''}`}>
@@ -702,6 +739,7 @@ class FilterItem extends React.Component {
                 options={filterPredicateOptions}
                 onSelectOption={this.onSelectPredicate}
                 isInModal={this.props.isInModal}
+                isLocked={readOnly}
               />
             </div>
             {isDateColumn(filterColumn) && isNeedShowTermModifier && (
@@ -711,6 +749,7 @@ class FilterItem extends React.Component {
                   options={filterTermModifierOptions}
                   onSelectOption={this.onSelectTermModifier}
                   isInModal={this.props.isInModal}
+                  isLocked={readOnly}
                 />
               </div>
             )}

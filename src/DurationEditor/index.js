@@ -16,7 +16,8 @@ class DurationEditor extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.isInModal) {
+    const { isInModal, className, readOnly } = this.props;
+    if (isInModal && !className.includes('filter') && !readOnly) {
       this.input.focus();
     }
   }
@@ -57,7 +58,13 @@ class DurationEditor extends React.Component {
   };
 
   onBlur = () => {
-    this.props.isInModal ? this.props.onCommit(this.getValue()) : this.props.onBlur();
+    const { column, isInModal, onBlur, onCommit } = this.props;
+    const columnData = column.data;
+    const newDuration = formatDurationToNumber(this.getInputNode().value, columnData);
+    this.setState({
+      value: getDurationDisplayString(newDuration, columnData)
+    });
+    isInModal ? onCommit(this.getValue()) : onBlur();
   };
 
   setInputRef = (input) => {
@@ -74,7 +81,7 @@ class DurationEditor extends React.Component {
   };
 
   render() {
-    const { column, isInModal, className } = this.props;
+    const { column, isInModal, className, readOnly } = this.props;
     const data = column.data || {};
     const { duration_format } = data;
     const style = isInModal ? { textAlign: 'left', width: '320px' } : { textAlign: 'right' };
@@ -92,6 +99,7 @@ class DurationEditor extends React.Component {
         onChange={this.onChange}
         style={style}
         placeholder={duration_format}
+        disabled={readOnly}
       />
     );
   }
@@ -105,6 +113,7 @@ DurationEditor.propTypes = {
   className: PropTypes.string,
   onCommit: PropTypes.func,
   selectDownCell: PropTypes.func,
+  readOnly: PropTypes.bool,
 };
 
 export default DurationEditor;

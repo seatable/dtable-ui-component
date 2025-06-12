@@ -1,12 +1,16 @@
 .dtable-ui-checkbox-editor {
+  position: relative;
   width: 24px;
   height: 24px;
-  border: 2px solid #e0e0e0;
-  border-radius: 3px;
+}
+
+.dtable-ui-checkbox-editor .dtable-ui-checkbox-check-mark {
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #20c933;
 }
 
 .dtable-ui-checkbox-check-svg {

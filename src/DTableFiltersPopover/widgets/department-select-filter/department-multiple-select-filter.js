@@ -1,22 +1,23 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import ModalPortal from '../../../ModalPortal';
 import SelectedDepartments from '../../../SelectedDepartments';
 import DepartmentMultipleSelectEditor from '../../../DepartmentMultipleSelectEditor';
-import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../constants/departments';
 import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
-import ModalPortal from '../../../ModalPortal';
+import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../constants/departments';
 
 const propTypes = {
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
-  departments: PropTypes.object,
-  onCommit: PropTypes.func,
   isInModal: PropTypes.bool,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
+  onCommit: PropTypes.func,
+  departments: PropTypes.object,
+  readOnly: PropTypes.bool,
 };
 
 function DepartmentMultipleSelectFilter(props) {
-  const { value, isInModal, departments } = props;
+  const { value, isInModal, readOnly, departments } = props;
   const [isShowSelector, setIsShowSelector] = useState(false);
   const [selectedDepartments, setSelectedDepartments] = useState(value || []);
   const selectorRef = useRef(null);
@@ -39,8 +40,7 @@ function DepartmentMultipleSelectFilter(props) {
             type="checkbox"
             className="vam department-select-input"
             checked={selectedDepartments.includes(type)}
-            onClick={(event) => event.stopPropagation()}
-            onChange={(event) => selectDepartment(event, type)}
+            onChange={() => {}}
           />
           <span className="text-truncate department-name">{getLocale(name)}</span>
         </div>
@@ -49,6 +49,7 @@ function DepartmentMultipleSelectFilter(props) {
   }
 
   function onSelectToggle(event) {
+    if (readOnly) return;
     event.preventDefault();
     setIsShowSelector(!isShowSelector);
   }
@@ -85,16 +86,16 @@ function DepartmentMultipleSelectFilter(props) {
           :
           <span className="select-placeholder">{getLocale('Select_department')}</span>
         }
-        <span className="dtable-font dtable-icon-down3"></span>
+        {!readOnly && <span className="dtable-font dtable-icon-down3"></span>}
       </div>
       {isShowSelector && !isInModal &&
         <DepartmentMultipleSelectEditor
           isShowSelectedDepartments={false}
           classNamePrefix="filter"
           value={selectedDepartments}
+          departments={departments}
           onCommit={selectDepartment}
           renderUserDepartmentOptions={renderUserDepartmentOptions}
-          departments={departments}
         />
       }
       {isShowSelector && isInModal &&
@@ -104,6 +105,7 @@ function DepartmentMultipleSelectFilter(props) {
             isShowSelectedDepartments={false}
             classNamePrefix="filter"
             value={selectedDepartments}
+            departments={departments}
             position={selectorRef.current.getBoundingClientRect()}
             onCommit={selectDepartment}
             renderUserDepartmentOptions={renderUserDepartmentOptions}

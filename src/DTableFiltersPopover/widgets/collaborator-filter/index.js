@@ -13,6 +13,7 @@ const propTypes = {
   readonly: PropTypes.bool,
   placeholder: PropTypes.string,
   isInModal: PropTypes.bool,
+  readOnly: PropTypes.bool,
 };
 
 class CollaboratorFilter extends Component {
@@ -65,7 +66,7 @@ class CollaboratorFilter extends Component {
   };
 
   render() {
-    let { filterIndex, filterTerm, collaborators, placeholder, filter_predicate, isInModal, readonly } = this.props;
+    let { filterIndex, filterTerm, collaborators, placeholder, filter_predicate, isInModal, readOnly } = this.props;
     let isSupportMultipleSelect = this.supportMultipleSelectOptions.indexOf(filter_predicate) > -1 ? true : false;
     let selectedCollaborators = Array.isArray(filterTerm) && filterTerm.length > 0 && filterTerm.map((item) => {
       let collaborator = collaborators.find(c => c.email === item);
@@ -93,12 +94,12 @@ class CollaboratorFilter extends Component {
     let options = Array.isArray(filterTerm) ? this.createCollaboratorOptions(filterIndex, collaborators, filterTerm) : [];
     return (
       <DTableCustomizeSelect
-        className="selector-collaborator"
+        className="dtable-ui-selector-collaborator"
         value={value}
         onSelectOption={this.props.onSelectCollaborator}
         options={options}
         placeholder={placeholder}
-        isLocked={readonly}
+        isLocked={readOnly}
         supportMultipleSelect={isSupportMultipleSelect}
         searchable={true}
         searchPlaceholder={getLocale('Search_collaborator')}

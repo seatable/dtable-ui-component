@@ -87,7 +87,7 @@ class DTableFiltersPopover extends Component {
   };
 
   render() {
-    const { target, columns, placement, isSupportAdvanced, departments, lang, readonly, userDepartmentIdsMap, firstDayOfWeek } = this.props;
+    const { target, columns, placement, isSupportAdvanced, departments, lang, readOnly, userDepartmentIdsMap, firstDayOfWeek } = this.props;
     const { filters, filterConjunction } = this.state;
     const canAddFilter = columns.length > 0;
     return (
@@ -107,49 +107,51 @@ class DTableFiltersPopover extends Component {
             columns={columns}
             emptyPlaceholder={getLocale('No_filters')}
             collaborators={this.props.collaborators}
-            readonly={readonly}
+            readOnly={readOnly}
             userDepartmentIdsMap={userDepartmentIdsMap}
             departments={departments}
             lang={lang}
             firstDayOfWeek={firstDayOfWeek}
             updateFilters={this.updateFilters}
           />
-          {!isSupportAdvanced && !readonly && <CommonAddTool
-            className={`popover-add-tool ${canAddFilter ? '' : 'disabled'}`}
-            callBack={canAddFilter ? () => this.addFilter() : () => {}}
-            footerName={getLocale('Add_filter')}
-            addIconClassName="popover-add-icon"
-          />}
-          {isSupportAdvanced && !readonly &&
-          <div className="add-buttons">
-            <div
-              className="btn-add-filter mr-4"
-              onClick={canAddFilter ? () => this.addFilter() : () => {}}
-              role="button"
-              tabIndex={0}
-              aria-label={getLocale('Add_filter')}
-            >
-              <i aria-hidden="true" className="dtable-font dtable-icon-add-table popover-add-icon"></i>
-              <span className="add-new-option">{getLocale('Add_filter')}</span>
-            </div>
-            <div
-              className="btn-add-filter-group"
-              onClick={canAddFilter ? () => this.addFilterGroup() : () => {}}
-              role="button"
-              tabIndex={0}
-              aria-label={getLocale('Add_filter_group')}
-            >
-              <i aria-hidden="true" className="dtable-font dtable-icon-add-table popover-add-icon"></i>
-              <span className="add-new-option">{getLocale('Add_filter_group')}</span>
-            </div>
-          </div>
+          {!isSupportAdvanced && !readOnly &&
+            <CommonAddTool
+              className={`popover-add-tool ${canAddFilter ? '' : 'disabled'}`}
+              callBack={canAddFilter ? () => this.addFilter() : () => {}}
+              footerName={getLocale('Add_filter')}
+              addIconClassName="popover-add-icon"
+            />
           }
-          {this.isNeedSubmit && (
-            <div className='filter-popover-footer'>
-              <Button disabled={readonly} className='mr-2' onClick={this.onClosePopover}>{getLocale('Cancel')}</Button>
-              <Button disabled={this.state.isSubmitDisabled || readonly} color="primary" onClick={this.onSubmitFilters}>{getLocale('Submit')}</Button>
+          {isSupportAdvanced && !readOnly &&
+            <div className="add-buttons">
+              <div
+                className="btn-add-filter mr-4"
+                onClick={canAddFilter ? () => this.addFilter() : () => {}}
+                role="button"
+                tabIndex={0}
+                aria-label={getLocale('Add_filter')}
+              >
+                <i aria-hidden="true" className="dtable-font dtable-icon-add-table popover-add-icon"></i>
+                <span className="add-new-option">{getLocale('Add_filter')}</span>
+              </div>
+              <div
+                className="btn-add-filter-group"
+                onClick={canAddFilter ? () => this.addFilterGroup() : () => {}}
+                role="button"
+                tabIndex={0}
+                aria-label={getLocale('Add_filter_group')}
+              >
+                <i aria-hidden="true" className="dtable-font dtable-icon-add-table popover-add-icon"></i>
+                <span className="add-new-option">{getLocale('Add_filter_group')}</span>
+              </div>
             </div>
-          )}
+          }
+          {this.isNeedSubmit &&
+            <div className='filter-popover-footer'>
+              <Button disabled={readOnly} className='mr-2' onClick={this.onClosePopover}>{getLocale('Cancel')}</Button>
+              <Button disabled={this.state.isSubmitDisabled || readOnly} color="primary" onClick={this.onSubmitFilters}>{getLocale('Submit')}</Button>
+            </div>
+          }
         </div>
       </DTablePopover>
     );
@@ -172,6 +174,7 @@ DTableFiltersPopover.propTypes = {
   firstDayOfWeek: PropTypes.string,
   placement: PropTypes.string,
   isSupportAdvanced: PropTypes.bool,
+  readOnly: PropTypes.bool,
 };
 
 export default DTableFiltersPopover;

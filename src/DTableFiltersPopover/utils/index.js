@@ -10,7 +10,6 @@ import {
   FILTER_CONJUNCTION_TYPE,
   COLLABORATOR_COLUMN_TYPES,
   DATE_COLUMN_OPTIONS,
-  FORMULA_COLUMN_TYPES,
   FORMULA_COLUMN_TYPES_MAP,
 } from 'dtable-utils';
 import FilterItemUtils from './filter-item-utils';
@@ -36,7 +35,7 @@ export const isFilterTermArray = (column, filterPredicate) => {
   if (type === CellType.SINGLE_SELECT && [FILTER_PREDICATE_TYPE.IS_ANY_OF, FILTER_PREDICATE_TYPE.IS_NONE_OF].includes(filterPredicate)) {
     return true;
   }
-  if (FORMULA_COLUMN_TYPES.includes(type)) {
+  if (FORMULA_COLUMN_TYPES_MAP[type]) {
     const { result_type, array_type } = data || {};
     if (result_type !== FORMULA_RESULT_TYPE.ARRAY) return false;
     return isArrayFilterTermByArrayType(array_type);
@@ -111,14 +110,14 @@ export const getUpdatedFilterByCollaborator = (filter, collaborator) => {
 
 export const getUpdatedFilterByRate = (filter, value) => {
   if (filter.filter_term === value) {
-    return Object.assign({}, filter, { filter_term: 0 });
+    return null;
   }
   return Object.assign({}, filter, { filter_term: value });
 };
 
 export const getColumnOptions = (column) => {
   const { type, data } = column;
-  if (FORMULA_COLUMN_TYPES.includes(type)) {
+  if (FORMULA_COLUMN_TYPES_MAP[type]) {
     return getFormulaColumnFilterOptions(column);
   }
   if (type === CellType.LINK) {
@@ -580,7 +579,7 @@ export const getCreatorUpdatedFilterTerm = (filterTerm, filterPredicate, collabo
 
 export const getFilterConfigOptions = (column) => {
   const { type, data } = column;
-  if (FORMULA_COLUMN_TYPES.includes(type)) {
+  if (FORMULA_COLUMN_TYPES_MAP[type]) {
     return getFormulaColumnFilterOptions(column);
   }
   if (type === CellType.LINK) {
@@ -626,5 +625,5 @@ export const getSingleSelectUpdatedFilterTerm = (filterTerm, filterPredicate, op
 };
 
 export {
-  FilterItemUtils
+  FilterItemUtils,
 };
