@@ -105,7 +105,6 @@ export function renderDisplayContent(str, localeFormat, delimiter) {
 export function renderFilterInputFormat(str, localeFormat, delimiter){
   const format = String(localeFormat).toLowerCase();
   const parts = formatDateLocal(str, localeFormat);
-  // console.log('parts', str, parts);
   if (parts.length < 3) {
     return '';
   }
