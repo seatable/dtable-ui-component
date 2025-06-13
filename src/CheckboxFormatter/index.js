@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import SvgIcon from '../SvgIcon';
-import { DEFAULT_CHECKBOX_MARK_STYLE } from '../constants';
-import { isMobile } from '../utils/utils';
+import { DEFAULT_CHECKBOX_MARK_STYLE, isMobile } from '../constants';
 
 import './index.css';
 
