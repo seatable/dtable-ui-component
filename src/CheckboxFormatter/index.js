@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import SvgIcon from '../SvgIcon';
 import { DEFAULT_CHECKBOX_MARK_STYLE } from '../constants';
+import { isMobile } from '../utils/utils';
 
 import './index.css';
 
@@ -17,6 +18,15 @@ class CheckboxFormatter extends React.PureComponent {
     value: false
   };
 
+  renderIcon = (symbol, color) => {
+    let className = 'dtable-ui-checkbox-check-mark';
+    if (symbol.startsWith('dtable-icon')) {
+      return (<span className={`dtable-font ${symbol} ${className || ''}`} style={{ color }} />);
+    }
+    className = classnames(className, { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon'), 'scale-icon': isMobile });
+    return (<SvgIcon className={className} symbol={symbol} color={color} />);
+  };
+
   render() {
     let { value, containerClassName, checkboxStyle } = this.props;
     if (!checkboxStyle || !('type' in checkboxStyle && 'color' in checkboxStyle)) {
@@ -28,10 +38,7 @@ class CheckboxFormatter extends React.PureComponent {
     const classname = classnames('dtable-ui cell-formatter-container checkbox-formatter d-flex align-items-center justify-content-center', containerClassName);
     return (
       <div className={classname}>
-        {checkboxStyle.type.startsWith('dtable-icon') ?
-          <span className={`dtable-font ${checkboxStyle.type} checkbox-checked-mark`} style={{ color: checkboxStyle.color }}></span> :
-          <SvgIcon className="dtable-ui-checkbox-check-svg" symbol={checkboxStyle.type} color={checkboxStyle.color} />
-        }
+        {this.renderIcon(checkboxStyle.type, checkboxStyle.color)}
       </div>
     );
   }

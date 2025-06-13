@@ -4,19 +4,22 @@ import { isMobile } from '../constants';
 
 import './index.css';
 
-const needScaleIcons = ['check', 'dot', 'cross'];
+const iconComponents = {};
+const requireContext = require.context('../assets/icons', false, /\.svg$/);
 
-const SvgIcon = (props) => {
-  const { className, symbol, color } = props;
-  let iconClass = `dtable-ui-multicolor-icon multicolor-icon-${symbol} ${className || ''}`;
-  if (needScaleIcons.includes(symbol) && isMobile) {
-    iconClass += ' scale-icon';
-  }
-  return (
-    <svg className={iconClass} aria-hidden="true">
-      <use fill={color} xlinkHref={`#${symbol}`} />
-    </svg>
-  );
+requireContext.keys().forEach(path => {
+  const iconName = path.replace(/^\.\/(.*?)\.svg$/, '$1').toLowerCase();
+  iconComponents[iconName] = requireContext(path).default;
+});
+
+const SvgIcon = ({ className, symbol, color }) => {
+  if (!symbol) return null;
+  const iconClass = `dtable-ui-multicolor-icon multicolor-icon-${symbol} ${className || ''}`;
+  const props = { className: iconClass, style: { fill: color }, ariaHidden: 'true' };
+
+  const IconComponent = iconComponents[symbol];
+  if (!IconComponent) return null;
+  return (<IconComponent { ...props } />);
 };
 
 SvgIcon.propTypes = {
