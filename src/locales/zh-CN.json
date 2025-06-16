@@ -166,6 +166,6 @@
   "Close": "关闭",
   "Latitude_abbr": "纬度",
   "Longitude_abbr": "经度",
-  "Enter_latitude": "输入纬度",
-  "Enter_longitude": "输入经度"
+  "Latitude": "纬度",
+  "Longitude": "经度"
 }

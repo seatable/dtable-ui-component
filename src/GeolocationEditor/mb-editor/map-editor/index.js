@@ -368,7 +368,7 @@ class MapEditor extends React.Component {
             value={lat}
             editable={isEdit}
             onChange={this.handleLatitudeChange}
-            placeholder={getLocale('Enter_latitude')}
+            placeholder={getLocale('Latitude')}
           />
           <div className="view-subtitle">
             <span>{getLocale('Longitude_abbr')}</span>
@@ -380,7 +380,7 @@ class MapEditor extends React.Component {
             value={lng}
             editable={isEdit}
             onChange={this.handleLongitudeChange}
-            placeholder={getLocale('Enter_longitude')}
+            placeholder={getLocale('Longitude')}
           />
         </div>
         <div className="dtable-ui-mobile-geolocation-map-editor-map">

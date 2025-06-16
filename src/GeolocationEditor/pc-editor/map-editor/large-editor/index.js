@@ -373,7 +373,7 @@ class LargeMapEditorDialog extends React.Component {
                   onChange={this.onChangeLatitude}
                   onKeyDown={this.onKeyDown}
                   className="form-control"
-                  placeholder={getLocale('Enter_latitude')}
+                  placeholder={getLocale('Latitude')}
                   autoFocus
                 />
               </div>
@@ -387,7 +387,7 @@ class LargeMapEditorDialog extends React.Component {
                   onChange={this.onChangeLongitude}
                   onKeyDown={this.onKeyDown}
                   className="form-control"
-                  placeholder={getLocale('Enter_longitude')}
+                  placeholder={getLocale('Longitude')}
                 />
               </div>
             </div>
