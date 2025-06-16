@@ -375,7 +375,7 @@ class MapEditor extends Component {
                     onChange={this.onChangeLatitude}
                     onKeyDown={this.onKeyDown}
                     className="form-control"
-                    placeholder={getLocale('Enter_latitude')}
+                    placeholder={getLocale('Latitude')}
                     autoFocus
                   />
                 </div>
@@ -389,7 +389,7 @@ class MapEditor extends Component {
                     onChange={this.onChangeLongitude}
                     onKeyDown={this.onKeyDown}
                     className="form-control"
-                    placeholder={getLocale('Enter_longitude')}
+                    placeholder={getLocale('Longitude')}
                   />
                 </div>
               </div>
@@ -421,7 +421,7 @@ class MapEditor extends Component {
       );
     }
 
-    return (<LargeMapEditorDialog { ...this.props } value={value} setValue={this.setValue} toggleFullScreen={this.toggleFullScreen} />);
+    return (<LargeMapEditorDialog {...this.props} value={value} setValue={this.setValue} toggleFullScreen={this.toggleFullScreen} />);
   }
 }
 

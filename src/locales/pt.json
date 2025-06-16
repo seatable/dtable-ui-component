@@ -166,6 +166,6 @@
   "Close": "Fechar",
   "Latitude_abbr": "Lat",
   "Longitude_abbr": "Lng",
-  "Enter_latitude": "Enter latitude",
-  "Enter_longitude": "Enter longitude"
+  "Latitude": "Latitude",
+  "Longitude": "Longitude"
 }

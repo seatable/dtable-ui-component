@@ -166,6 +166,6 @@
   "Close": "Schließen",
   "Latitude_abbr": "Breite",
   "Longitude_abbr": "Länge",
-  "Enter_latitude": "Breitengrad eingeben",
-  "Enter_longitude": "Längengrad eingeben"
+  "Latitude": "Breitengrad",
+  "Longitude": "Längengrad"
 }
