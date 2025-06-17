@@ -109,9 +109,6 @@ export const getUpdatedFilterByCollaborator = (filter, collaborator) => {
 };
 
 export const getUpdatedFilterByRate = (filter, value) => {
-  if (filter.filter_term === value) {
-    return null;
-  }
   return Object.assign({}, filter, { filter_term: value });
 };
 
