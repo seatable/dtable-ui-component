@@ -303,6 +303,7 @@ class FilterItem extends React.Component {
           value={filterTerm}
           onCommit={this.onFilterTermDurationChanged}
           disabled={readOnly}
+          autoFocus={false}
         />
       );
     }

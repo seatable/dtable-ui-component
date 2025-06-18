@@ -14,6 +14,7 @@ import FilterGroup from '../filter-group';
 import './index.css';
 
 const propTypes = {
+  readOnly: PropTypes.bool,
   className: PropTypes.string,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
@@ -240,7 +241,7 @@ class FiltersList extends Component {
     let { filters, className, emptyPlaceholder, columns } = this.props;
     const isEmpty = filters.length === 0;
     return (
-      <div className={classnames('filters-list', { 'empty-filters-container': isEmpty }, { [className]: className })}>
+      <div className={classnames('dtable-ui-filters-list', { 'empty-filters-container': isEmpty }, { [className]: className })}>
         {isEmpty && <div className="empty-filters-list">{emptyPlaceholder}</div>}
         {!isEmpty &&
           filters.map((filter, index) => {

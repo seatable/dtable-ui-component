@@ -1,18 +1,18 @@
-.dtable-filter-popover .popover {
+.dtable-ui-filter-popover .popover {
   max-width: none;
   min-width: 300px;
 }
 
-.dtable-filter-popover .popover .filters-list {
+.dtable-ui-filter-popover .popover .dtable-ui-filters-list {
   max-height: calc(100vh - 470px);
   overflow: auto;
 }
 
-.dtable-filter-popover .filters-list .filter-container .filter-term .filter-popover-duration-editor {
+.dtable-ui-filter-popover .dtable-ui-filters-list .filter-container .filter-term .filter-popover-duration-editor {
   width: 100% !important;
 }
 
-.dtable-filter-popover .filter-popover-footer {
+.dtable-ui-filter-popover .filter-popover-footer {
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -20,7 +20,7 @@
   border-top: 1px solid #e9ecef;
 }
 
-.dtable-filter-popover .add-buttons {
+.dtable-ui-filter-popover .add-buttons {
   display: flex;
   align-items: center;
   height: 40px;
@@ -34,8 +34,8 @@
   position: relative;
 }
 
-.dtable-filter-popover .add-buttons .btn-add-filter,
-.dtable-filter-popover .add-buttons .btn-add-filter-group {
+.dtable-ui-filter-popover .add-buttons .btn-add-filter,
+.dtable-ui-filter-popover .add-buttons .btn-add-filter-group {
   display: inline-flex;
   align-items: center;
   height: 28px;
@@ -48,24 +48,24 @@
   cursor: pointer;
 }
 
-.dtable-filter-popover .add-buttons .btn-add-filter:hover,
-.dtable-filter-popover .add-buttons .btn-add-filter-group:hover {
+.dtable-ui-filter-popover .add-buttons .btn-add-filter:hover,
+.dtable-ui-filter-popover .add-buttons .btn-add-filter-group:hover {
   background-color: #f5f5f5;
 }
 
-.dtable-filter-popover .add-buttons .popover-add-icon {
+.dtable-ui-filter-popover .add-buttons .popover-add-icon {
   font-size: 12px;
   font-weight: 600;
   margin-right: 14px;
 }
 
-.dtable-filter-popover .filter-term .checkbox-filter-term {
+.dtable-ui-filter-popover .filter-term .checkbox-filter-term {
   display: flex;
   height: 100%;
   align-items: center;
 }
 
-.dtable-filter-popover .filter-term .dtable-ui-filter-item-checkbox {
+.dtable-ui-filter-popover .filter-term .dtable-ui-filter-item-checkbox {
   width: 22px;
   height: 22px;
   display: flex;

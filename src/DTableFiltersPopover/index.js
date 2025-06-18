@@ -94,7 +94,7 @@ class DTableFiltersPopover extends Component {
       <DTablePopover
         target={target}
         placement={placement}
-        popoverClassName="dtable-filter-popover"
+        popoverClassName="dtable-ui-filter-popover"
         hideDTablePopover={this.props.hidePopover}
         hideDTablePopoverWithEsc={this.props.hidePopover}
         boundariesElement={document.body}
