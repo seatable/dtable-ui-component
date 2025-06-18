@@ -53,15 +53,15 @@
   background: #fff;
 }
 
-.group-select.selector-collaborator .option-group .option-group-content {
+.group-select.dtable-ui-collaborator-selector .option-group .option-group-content {
   padding: 10px;
 }
 
-.group-select.custom-select.selector-collaborator .option-group .option-group-content {
+.group-select.custom-select.dtable-ui-collaborator-selector .option-group .option-group-content {
   padding: 10px 0;
 }
 
-.group-select.custom-select.selector-collaborator .option {
+.group-select.custom-select.dtable-ui-collaborator-selector .option {
   padding: 5px 0 5px 10px !important;
   line-height: 20px;
 }

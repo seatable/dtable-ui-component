@@ -100,7 +100,7 @@ class FilterGroup extends Component {
           lang={lang}
           index={subFilterIndex}
           filter={currentFilter}
-          errorMessage={error_message}
+          errMsg={error_message}
           filterColumn={filterColumn}
           filterConjunction={subFilterConjunction}
           conjunctionOptions={conjunctionOptions}

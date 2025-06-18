@@ -98,6 +98,7 @@
 .dtable-ui-filters-list .dragging-filter-wrapper .delete-filter {
   display: none;
 }
+
 /* ---- filter group end ---- */
 
 .dtable-ui-filters-list .filter-item {
@@ -111,13 +112,13 @@
   flex: 1;
 }
 
-.dtable-ui-filters-list .filter-item .condition > div {
+.dtable-ui-filters-list .filter-item .condition>div {
   height: 38px;
   line-height: 38px;
   margin-left: 0.5rem;
 }
 
-.dtable-ui-filters-list .filter-item .condition > div:first-child {
+.dtable-ui-filters-list .filter-item .condition>div:first-child {
   margin-left: 0;
 }
 
@@ -169,46 +170,46 @@
   max-width: 150px;
 }
 
-.filter-term .selector-multiple-select .option,
-.filter-term .selector-single-select .option {
+.filter-term .dtable-ui-multiple-select-selector .option,
+.filter-term .dtable-ui-single-select-selector .option {
   height: 30px;
   padding: 0 10px;
 }
 
-.filter-term .selector-multiple-select .select-option-name,
-.filter-term .selector-single-select .select-option-name {
-  margin-top: 5px;
+.filter-term .dtable-ui-multiple-select-selector .select-option-name,
+.filter-term .dtable-ui-single-select-selector .select-option-name {
+  margin-top: 5px !important;
 }
 
-.filter-term .selector-single-select .option:hover {
+.filter-term .dtable-ui-single-select-selector .option:hover {
   color: #212529;
   background-color: #f7f7f7;
 }
 
-.filter-term .selector-single-select .option:hover .select-option-name,
-.filter-term .selector-multiple-select .option:hover .select-option-name,
-.filter-term .selector-collaborator .option:hover .select-option-name {
+.filter-term .dtable-ui-single-select-selector .option:hover .select-option-name,
+.filter-term .dtable-ui-multiple-select-selector .option:hover .select-option-name,
+.filter-term .dtable-ui-collaborator-selector .option:hover .select-option-name {
   color: unset;
 }
 
-.filter-term .selector-collaborator .dtable-icon-down3 {
+.filter-term .dtable-ui-collaborator-selector .dtable-icon-down3 {
   padding-left: 5px;
 }
 
-.dtable-ui-filters-list .selector-collaborator .selected-option-show {
+.dtable-ui-filters-list .dtable-ui-collaborator-selector .selected-option-show {
   text-overflow: unset;
 }
 
-.dtable-ui-filters-list .selector-multiple-select .option:hover,
-.dtable-ui-filters-list .selector-multiple-select .option.option-active,
-.option-group-dtable-ui-selector-collaborator .option:hover,
-.option-group-dtable-ui-selector-collaborator .option.option-active {
+.dtable-ui-filters-list .dtable-ui-multiple-select-selector .option:hover,
+.dtable-ui-filters-list .dtable-ui-multiple-select-selector .option.option-active,
+.option-group-dtable-ui-collaborator-selector .option:hover,
+.option-group-dtable-ui-collaborator-selector .option.option-active {
   color: #212529;
   background-color: #f7f7f7;
 }
 
-.dtable-ui-filters-list .selector-multiple-select .option.option-active .select-option-name,
-.option-group-dtable-ui-selector-collaborator .option.option-active .select-option-name {
+.dtable-ui-filters-list .dtable-ui-multiple-select-selector .option.option-active .select-option-name,
+.option-group-dtable-ui-collaborator-selector .option.option-active .select-option-name {
   color: #212529;
 }
 
@@ -311,7 +312,7 @@
 
 .dtable-ui-filters-list .multiple-check-icon,
 .dtable-ui-filters-list .collaborator-check-icon,
-.option-group-dtable-ui-selector-collaborator .collaborator-check-icon {
+.option-group-dtable-ui-collaborator-selector .collaborator-check-icon {
   display: inline-flex;
   width: 20px;
   height: 20px;
@@ -321,7 +322,7 @@
 
 .dtable-ui-filters-list .multiple-check-icon .dtable-icon-check-mark,
 .dtable-ui-filters-list .collaborator-check-icon .dtable-icon-check-mark,
-.option-group-dtable-ui-selector-collaborator .collaborator-check-icon .dtable-icon-check-mark {
+.option-group-dtable-ui-collaborator-selector .collaborator-check-icon .dtable-icon-check-mark {
   font-size: 12px;
   color: #798d99;
 }
@@ -338,17 +339,16 @@
   background: #eaeaea;
 }
 
-.option-group-dtable-ui-selector-collaborator .collaborator-show
-.dtable-ui-filters-list .collaborator-show {
+.option-group-dtable-ui-collaborator-selector .collaborator-show .dtable-ui-filters-list .collaborator-show {
   flex: 1;
 }
 
-.option-group-dtable-ui-selector-collaborator .collaborator-avatar-container,
+.option-group-dtable-ui-collaborator-selector .collaborator-avatar-container,
 .dtable-ui-filters-list .collaborator-avatar-container {
   width: 16px;
 }
 
-.option-group-dtable-ui-selector-collaborator .collaborator-avatar,
+.option-group-dtable-ui-collaborator-selector .collaborator-avatar,
 .dtable-ui-filters-list .collaborator-avatar {
   width: 16px;
   height: 16px;
@@ -356,23 +356,23 @@
   border-radius: 50%;
 }
 
-.option-group-dtable-ui-selector-collaborator .option .collaborator-avatar,
+.option-group-dtable-ui-collaborator-selector .option .collaborator-avatar,
 .dtable-ui-filters-list .option .collaborator-avatar {
   transform: translateY(-2px);
 }
 
-.option-group-dtable-ui-selector-collaborator .collaborator-name,
+.option-group-dtable-ui-collaborator-selector .collaborator-name,
 .dtable-ui-filters-list .collaborator-name {
   margin-left: 5px;
   max-width: 200px;
 }
 
-.option-group-dtable-ui-selector-collaborator .option-collaborator,
+.option-group-dtable-ui-collaborator-selector .option-collaborator,
 .dtable-ui-filters-list .option-collaborator {
   display: flex;
 }
 
-.option-group-dtable-ui-selector-collaborator .collaborator-container,
+.option-group-dtable-ui-collaborator-selector .collaborator-container,
 .dtable-ui-filters-list .collaborator-container {
   flex: 1;
 }
@@ -406,7 +406,7 @@
 
 .dropdown-item .collaborator,
 .dtable-ui-filters-list .option-group-content .collaborator,
-.option-group-dtable-ui-selector-collaborator .option-group-content .collaborator {
+.option-group-dtable-ui-collaborator-selector .option-group-content .collaborator {
   background-color: unset;
 }
 
@@ -432,8 +432,8 @@
 
 .dtable-ui-filters-list .single-select-option,
 .dtable-ui-filters-list .multiple-select-option,
-.option-group-selector-single-select .single-select-option,
-.option-group-selector-multiple-select .multiple-select-option {
+.option-group-dtable-ui-single-select-selector .single-select-option,
+.option-group-dtable-ui-multiple-select-selector .multiple-select-option {
   display: block;
   text-align: left;
   width: min-content;

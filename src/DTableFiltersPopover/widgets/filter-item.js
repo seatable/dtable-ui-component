@@ -381,7 +381,7 @@ class FilterItem extends React.Component {
     });
     return (
       <DTableCustomizeSelect
-        className="selector-multiple-select"
+        className="dtable-ui-multiple-select-selector"
         value={selectedOptionNames}
         options={dataOptions}
         onSelectOption={this.onSelectMultiple}
@@ -451,7 +451,7 @@ class FilterItem extends React.Component {
       case CellType.DURATION: {
         return this.getInputComponent(INPUT_CMP_TYPE_MAP.DURATION);
       }
-      case CellType.NUMBER:{
+      case CellType.NUMBER: {
         return this.getInputComponent(INPUT_CMP_TYPE_MAP.NUMBER);
       }
       case CellType.CHECKBOX: {
@@ -476,7 +476,7 @@ class FilterItem extends React.Component {
         });
         return (
           <DTableCustomizeSelect
-            className="selector-single-select"
+            className="dtable-ui-single-select-selector"
             value={selectedOptionName}
             options={dataOptions}
             onSelectOption={this.onSelectSingle}

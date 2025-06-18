@@ -94,7 +94,7 @@ class CollaboratorFilter extends Component {
     let options = Array.isArray(filterTerm) ? this.createCollaboratorOptions(filterIndex, collaborators, filterTerm) : [];
     return (
       <DTableCustomizeSelect
-        className="dtable-ui-selector-collaborator"
+        className="dtable-ui-collaborator-selector"
         value={value}
         onSelectOption={this.props.onSelectCollaborator}
         options={options}

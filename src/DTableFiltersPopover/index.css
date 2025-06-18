@@ -4,7 +4,7 @@
 }
 
 .dtable-ui-filter-popover .popover .dtable-ui-filters-list {
-  max-height: calc(100vh - 470px);
+  max-height: calc(100vh - 170px);
   overflow: auto;
 }
 
@@ -75,4 +75,3 @@
   border-radius: 3px;
   cursor: pointer;
 }
-

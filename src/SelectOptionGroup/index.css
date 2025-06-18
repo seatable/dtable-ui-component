@@ -77,27 +77,27 @@
   margin: 0;
 }
 
-.option-group-selector-single-select .select-option-name,
-.option-group-selector-multiple-select .multiple-option-name {
+.option-group-dtable-ui-single-select-selector .select-option-name,
+.option-group-dtable-ui-multiple-select-selector .multiple-option-name {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.option-group-selector-multiple-select .multiple-check-icon {
+.option-group-dtable-ui-multiple-select-selector .multiple-check-icon {
   display: inline-flex;
   width: 20px;
   text-align: center;
 }
 
-.option-group-selector-multiple-select .multiple-check-icon .dtable-icon-check-mark {
+.option-group-dtable-ui-multiple-select-selector .multiple-check-icon .dtable-icon-check-mark {
   font-size: 12px;
   color: #798d99;
 }
 
-.option-group-selector-single-select .option:hover,
-.option-group-selector-single-select .option.option-active,
-.option-group-selector-multiple-select .option:hover,
-.option-group-selector-multiple-select .option.option-active {
+.option-group-dtable-ui-single-select-selector .option:hover,
+.option-group-dtable-ui-single-select-selector .option.option-active,
+.option-group-dtable-ui-multiple-select-selector .option:hover,
+.option-group-dtable-ui-multiple-select-selector .option.option-active {
   background-color: #f5f5f5;
 }

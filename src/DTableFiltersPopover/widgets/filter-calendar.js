@@ -128,7 +128,7 @@ class FilterCalendar extends Component {
     const calendarFormat = this.getCalendarFormat();
     const clearStyle = {
       position: 'absolute',
-      top: '15px',
+      top: '8px',
       left: '225px',
       color: 'gray',
       fontSize: '12px'
