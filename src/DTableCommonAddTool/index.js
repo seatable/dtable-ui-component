@@ -7,7 +7,7 @@ function DTableCommonAddTool({ callBack, footerName, className, addIconClassName
   return (
     <div className={`dtable-ui add-item-btn ${className ? className : ''}`} style={style} onClick={(e) => callBack(e)}>
       {!hideIcon && <span className={`dtable-font dtable-icon-add-table ${addIconClassName || ''}`}></span>}
-      <span className="text-truncate">{footerName}</span>
+      <span className="add-new-option text-truncate">{footerName}</span>
     </div>
   );
 }

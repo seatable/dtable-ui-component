@@ -48,6 +48,8 @@ class PCCheckboxEditor extends Component {
   };
 
   onChangeCheckboxValue = (event) => {
+    const { readOnly } = this.props;
+    if (readOnly) return;
     if (event) {
       event.stopPropagation();
       event.nativeEvent.stopImmediatePropagation();
@@ -96,6 +98,7 @@ PCCheckboxEditor.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   column: PropTypes.object,
   onCommit: PropTypes.func,
+  readOnly: PropTypes.bool,
 };
 
 export default PCCheckboxEditor;

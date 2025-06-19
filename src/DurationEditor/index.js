@@ -6,6 +6,10 @@ import { KeyCodes } from '../constants';
 
 class DurationEditor extends React.Component {
 
+  static defaultProps = {
+    autoFocus: true,
+  };
+
   constructor(props) {
     super(props);
     let { value, column } = props;
@@ -16,7 +20,8 @@ class DurationEditor extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.isInModal) {
+    const { isInModal, autoFocus, readOnly } = this.props;
+    if (isInModal && autoFocus && !readOnly) {
       this.input.focus();
     }
   }
@@ -57,7 +62,8 @@ class DurationEditor extends React.Component {
   };
 
   onBlur = () => {
-    this.props.isInModal ? this.props.onCommit(this.getValue()) : this.props.onBlur();
+    const { isInModal, onBlur, onCommit } = this.props;
+    isInModal ? onCommit(this.getValue()) : onBlur();
   };
 
   setInputRef = (input) => {
@@ -74,7 +80,7 @@ class DurationEditor extends React.Component {
   };
 
   render() {
-    const { column, isInModal, className } = this.props;
+    const { column, isInModal, className, readOnly } = this.props;
     const data = column.data || {};
     const { duration_format } = data;
     const style = isInModal ? { textAlign: 'left', width: '320px' } : { textAlign: 'right' };
@@ -92,6 +98,7 @@ class DurationEditor extends React.Component {
         onChange={this.onChange}
         style={style}
         placeholder={duration_format}
+        disabled={readOnly}
       />
     );
   }
@@ -105,6 +112,8 @@ DurationEditor.propTypes = {
   className: PropTypes.string,
   onCommit: PropTypes.func,
   selectDownCell: PropTypes.func,
+  readOnly: PropTypes.bool,
+  autoFocus: PropTypes.bool,
 };
 
 export default DurationEditor;

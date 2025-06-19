@@ -77,15 +77,15 @@
   margin: 0;
 }
 
-.group-selector .option-group-selector-single-select .select-option-name {
+.group-selector .option-group-dtable-ui-single-select-selector .select-option-name {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.group-selector .option-group-selector-single-select .option:hover,
-.group-selector .option-group-selector-single-select .option.option-active,
-.group-selector .option-group-selector-multiple-select .option:hover,
-.group-selector .option-group-selector-multiple-select .option.option-active {
+.group-selector .option-group-dtable-ui-single-select-selector .option:hover,
+.group-selector .option-group-dtable-ui-single-select-selector .option.option-active,
+.group-selector .option-group-dtable-ui-multiple-select-selector .option:hover,
+.group-selector .option-group-dtable-ui-multiple-select-selector .option.option-active {
   background-color: #f5f5f5;
 }

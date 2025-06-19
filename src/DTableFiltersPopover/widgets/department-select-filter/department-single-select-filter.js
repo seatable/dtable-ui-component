@@ -4,19 +4,22 @@ import classnames from 'classnames';
 import SelectedDepartments from '../../../SelectedDepartments';
 import DepartmentSingleSelectEditor from '../../../DepartmentSingleSelectEditor';
 import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../constants/departments';
+import ModalPortal from '../../../ModalPortal';
 import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
 
 const propTypes = {
+  isInModal: PropTypes.bool,
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.array]),
   column: PropTypes.object,
   userDepartmentIdsMap: PropTypes.object,
   departments: PropTypes.array,
   onCommit: PropTypes.func,
+  readOnly: PropTypes.bool,
 };
 
 function DepartmentSingleSelectFilter(props) {
-  const { value, column, departments, userDepartmentIdsMap } = props;
+  const { value, column, isInModal, userDepartmentIdsMap, departments, readOnly } = props;
   const [isShowSelector, setIsShowSelector] = useState(false);
   const [selectedDepartment, setSelectedDepartment] = useState(value || '');
   const selectorRef = useRef(null);
@@ -52,6 +55,9 @@ function DepartmentSingleSelectFilter(props) {
   }
 
   function onSelectToggle(event) {
+    if (readOnly) {
+      return;
+    }
     event.preventDefault();
     setIsShowSelector(!isShowSelector);
   }
@@ -75,16 +81,18 @@ function DepartmentSingleSelectFilter(props) {
       <div className="selected-option">
         {value ?
           <span className="selected-option-show">
-            <SelectedDepartments value={selectedDepartmentIds} departments={departments} />
+            <SelectedDepartments departments={departments} value={selectedDepartmentIds} />
           </span>
           :
           <span className="select-placeholder">{getLocale('Select_department')}</span>
         }
-        <span className="dtable-font dtable-icon-down3"></span>
+        {!readOnly && <span className="dtable-font dtable-icon-down3"></span>}
       </div>
-      {isShowSelector &&
+      {isShowSelector && !isInModal &&
         <DepartmentSingleSelectEditor
+          target={selectorRef.current}
           enableSelectRange={false}
+          isInModal={isInModal}
           column={column}
           value={value}
           onCommit={onCommit}
@@ -92,6 +100,22 @@ function DepartmentSingleSelectFilter(props) {
           departments={departments}
           renderUserDepartmentOptions={renderUserDepartmentOptions}
         />
+      }
+      {isShowSelector && isInModal &&
+        <ModalPortal>
+          <DepartmentSingleSelectEditor
+            target={selectorRef.current}
+            enableSelectRange={false}
+            isInModal={isInModal}
+            column={column}
+            value={value}
+            position={selectorRef.current.getBoundingClientRect()}
+            onCommit={onCommit}
+            userDepartmentIdsMap={userDepartmentIdsMap}
+            departments={departments}
+            renderUserDepartmentOptions={renderUserDepartmentOptions}
+          />
+        </ModalPortal>
       }
     </div>
   );
