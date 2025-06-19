@@ -101,3 +101,8 @@
 .option-group-dtable-ui-multiple-select-selector .option.option-active {
   background-color: #f5f5f5;
 }
+
+.option-group-selector-single-select .option.option-active .select-option-name,
+.option-group-selector-multiple-select .option.option-active .select-option-name {
+  color: #212529;
+}
