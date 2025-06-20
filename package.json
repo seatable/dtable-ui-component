@@ -1,6 +1,6 @@
 {
   "name": "dtable-ui-component",
-  "version": "6.0.43",
+  "version": "6.0.44",
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "4.0.2",
@@ -8,7 +8,7 @@
     "@seafile/seafile-editor": "~2.0.6",
     "classnames": "2.3.2",
     "dayjs": "1.10.7",
-    "dtable-utils": "~5.0.21",
+    "dtable-utils": "~5.0.22",
     "is-hotkey": "0.2.0",
     "rc-checkbox": "3.5.0",
     "react-color": "2.19.3",
