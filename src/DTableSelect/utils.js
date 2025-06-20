@@ -106,6 +106,9 @@ const MenuSelectStyle = {
       color: '#212529',
       cursor: isDisabled ? 'default' : 'pointer',
       backgroundColor: isFocused ? '#f5f5f5' : '#fff',
+      ':active': {
+        backgroundColor: '#f5f5f5',
+      },
       '.header-icon .dtable-font': {
         color: '#aaa',
       },
