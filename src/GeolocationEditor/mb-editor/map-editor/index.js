@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isNumber, getGeolocationFormattedPoint } from 'dtable-utils';
+import { isNumber, isEmpty, normalizeMapPoint } from 'dtable-utils';
 import InputItem from '../../../InputItem';
 import toaster from '../../../toaster';
 import MobileFullScreenPage from '../../../MobileFullScreenPage';
@@ -122,7 +122,7 @@ class MapEditor extends React.Component {
         this.map.setZoom(zoom);
         if (this.readOnly) return;
         this.map.on('mousedown', (event) => {
-          const point = getGeolocationFormattedPoint(event.lngLat);
+          const point = event.lngLat;
           this.setValue(point);
           this.addMarkerByPosition(point.lng, point.lat);
         });
@@ -147,7 +147,7 @@ class MapEditor extends React.Component {
         this.map.enableScrollWheelZoom(true);
         this.map.addEventListener('click', (event) => {
           if (this.state.mode === 'preview') return;
-          const point = getGeolocationFormattedPoint(event.point);
+          const point = event.point;
           this.setValue(point);
           this.addMarkerByPosition(point.lng, point.lat);
         });
@@ -191,8 +191,7 @@ class MapEditor extends React.Component {
         this.map.addListener('mousedown', (event) => {
           const lng = event.latLng.lng();
           const lat = event.latLng.lat();
-          const point = getGeolocationFormattedPoint({ lng, lat });
-          this.setValue(point);
+          this.setValue({ lng, lat });
           this.addMarkerByPosition(lng, lat);
         });
       }, 1);
@@ -200,12 +199,8 @@ class MapEditor extends React.Component {
   };
 
   setValue = (point) => {
-    this.setState({
-      value: {
-        lng: point.lng,
-        lat: point.lat
-      }
-    });
+    const value = normalizeMapPoint(point);
+    this.setState({ value });
   };
 
   addMarkerByPosition = (lng, lat) => {
@@ -256,7 +251,7 @@ class MapEditor extends React.Component {
       this.props.onCommit(value);
     }
 
-    const { lng, lat } = getGeolocationFormattedPoint(value);
+    const { lng, lat } = normalizeMapPoint(value);
     const newValue = !isNumber(lng) || !isNumber(lat) ? null : value;
     this.props.onCommit(newValue);
     this.onClose();
@@ -298,26 +293,24 @@ class MapEditor extends React.Component {
     this.props.onToggle();
   };
 
+  onBlur = () => {
+    const { value } = this.state;
+    const numericValue = normalizeMapPoint(value);
+    this.setState({ value: numericValue });
+  }
+
   handleLatitudeChange = (value) => {
-    this.setState({
-      value: {
-        ...this.state.value,
-        lat: value,
-      }
-    }, () => {
-      const numericValue = getGeolocationFormattedPoint(this.state.value);
+    const newValue = { ...this.state.value, lat:value };
+    this.setState({ value: newValue }, () => {
+      const numericValue = normalizeMapPoint(newValue);
       this.rerenderMapMarker(numericValue);
     });
   };
 
   handleLongitudeChange = (value) => {
-    this.setState({
-      value: {
-        ...this.state.value,
-        lng: value,
-      }
-    }, () => {
-      const numericValue = getGeolocationFormattedPoint(this.state.value);
+    const newValue = { ...this.state.value, lng:value };
+    this.setState({ value: newValue }, () => {
+      const numericValue = normalizeMapPoint(newValue);
       this.rerenderMapMarker(numericValue);
     });
   };
@@ -337,7 +330,7 @@ class MapEditor extends React.Component {
   };
 
   renderMap = () => {
-    const { isLoading, mode, value } = this.state;
+    const { isLoading, mode, value: lng_lat } = this.state;
     if (isLoading) return (<div className="w-100 h-100 d-flex align-items-center justify-content-center"><Loading /></div>);
     if (!this.mapType) {
       return (
@@ -347,7 +340,9 @@ class MapEditor extends React.Component {
       );
     }
     const isEdit = mode === 'edit';
-    const { lat, lng } = value;
+    const lat = lng_lat && !isEmpty(lng_lat.lat) ? lng_lat.lat : '';
+    const lng = lng_lat && !isEmpty(lng_lat.lng) ? lng_lat.lng : '';
+
     return (
       <>
         <div className="dtable-ui-mobile-geolocation-map-editor-input-container">
@@ -360,6 +355,7 @@ class MapEditor extends React.Component {
             style={{ marginTop: 0 }}
             value={lat}
             editable={isEdit}
+            onBlur={this.onBlur}
             onChange={this.handleLatitudeChange}
             placeholder={getLocale('Enter_latitude')}
           />
@@ -372,6 +368,7 @@ class MapEditor extends React.Component {
             style={{ marginTop: 0 }}
             value={lng}
             editable={isEdit}
+            onBlur={this.onBlur}
             onChange={this.handleLongitudeChange}
             placeholder={getLocale('Enter_longitude')}
           />

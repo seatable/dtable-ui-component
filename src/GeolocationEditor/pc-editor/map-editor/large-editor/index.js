@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'reactstrap';
-import { isNumber, getGeolocationFormattedPoint } from 'dtable-utils';
+import { isNumber, isEmpty, normalizeMapPoint } from 'dtable-utils';
 import toaster from '../../../../toaster';
 import Loading from '../../../../Loading';
 import { KeyCodes } from '../../../../constants';
@@ -128,7 +128,7 @@ class LargeMapEditorDialog extends React.Component {
       this.map.setZoom(zoom);
       if (this.readOnly) return;
       this.map.on('click', (event) => {
-        const point = getGeolocationFormattedPoint(event.lngLat);
+        const point = event.lngLat;
         this.setValue(point);
         this.addMarkerByPosition(point.lng, point.lat);
       });
@@ -151,7 +151,7 @@ class LargeMapEditorDialog extends React.Component {
       this.map.enableScrollWheelZoom(true);
       if (this.readOnly) return;
       this.map.addEventListener('click', (event) => {
-        const point = getGeolocationFormattedPoint(event.point);
+        const point = event.point;
         this.setValue(point);
         this.addMarkerByPosition(point.lng, point.lat);
       });
@@ -181,7 +181,7 @@ class LargeMapEditorDialog extends React.Component {
       this.map.addListener('click', (event) => {
         const lng = event.latLng.lng();
         const lat = event.latLng.lat();
-        const point = getGeolocationFormattedPoint({ lng, lat });
+        const point = { lng, lat };
         this.setValue(point);
         this.addMarkerByPosition(lng, lat);
       });
@@ -214,7 +214,7 @@ class LargeMapEditorDialog extends React.Component {
       lat: point.lat
     } : null;
     this.setState({ value }, () => {
-      const numericValue = getGeolocationFormattedPoint(this.state.value);
+      const numericValue = normalizeMapPoint(this.state.value);
       this.setPropsValue(numericValue);
     });
   };
@@ -263,27 +263,25 @@ class LargeMapEditorDialog extends React.Component {
     this.addMarkerByPosition(lng, lat);
   };
 
+  onBlur = () => {
+    const { value } = this.state;
+    const numericValue = normalizeMapPoint(value);
+    this.setState({ value: numericValue });
+  };
+
   onChangeLatitude = (event) => {
-    this.setState({
-      value: {
-        ...this.state.value,
-        lat: event.target.value,
-      }
-    }, () => {
-      const numericValue = getGeolocationFormattedPoint(this.state.value);
+    const newValue = { ...this.state.value, lat: event.target.value };
+    this.setState({ value: newValue }, () => {
+      const numericValue = normalizeMapPoint(newValue);
       this.setPropsValue(numericValue);
       this.rerenderMapMarker(numericValue);
     });
   };
 
   onChangeLongitude = (event) => {
-    this.setState({
-      value: {
-        ...this.state.value,
-        lng: event.target.value,
-      }
-    }, () => {
-      const numericValue = getGeolocationFormattedPoint(this.state.value);
+    const newValue = { ...this.state.value, lng: event.target.value };
+    this.setState({ value: newValue }, () => {
+      const numericValue = normalizeMapPoint(newValue);
       this.setPropsValue(numericValue);
       this.rerenderMapMarker(numericValue);
     });
@@ -335,9 +333,9 @@ class LargeMapEditorDialog extends React.Component {
   };
 
   render() {
-    const { isLoading, value } = this.state;
-    const lat = value ? value.lat : '';
-    const lng = value ? value.lng : '';
+    const { isLoading, value: lng_lat } = this.state;
+    const lat = lng_lat && !isEmpty(lng_lat.lat) ? lng_lat.lat : '';
+    const lng = lng_lat && !isEmpty(lng_lat.lng) ? lng_lat.lng : '';
 
     return (
       <Modal
@@ -363,6 +361,7 @@ class LargeMapEditorDialog extends React.Component {
                 <input
                   type="text"
                   value={lat}
+                  onBlur={this.onBlur}
                   onChange={this.onChangeLatitude}
                   onKeyDown={this.onKeyDown}
                   className="form-control"
@@ -377,6 +376,7 @@ class LargeMapEditorDialog extends React.Component {
                 <input
                   type="text"
                   value={lng}
+                  onBlur={this.onBlur}
                   onChange={this.onChangeLongitude}
                   onKeyDown={this.onKeyDown}
                   className="form-control"
