@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { isNumber } from 'dtable-utils';
+import { isNumber, isEmpty, normalizeMapPoint } from 'dtable-utils';
 import toaster from '../../../toaster';
 import Loading from '../../../Loading';
 import { KeyCodes } from '../../../constants';
@@ -212,16 +212,9 @@ class MapEditor extends Component {
       lat: point.lat
     } : null;
     this.setState({ value }, () => {
-      const numericValue = this.getNumericValue(this.state.value);
+      const numericValue = normalizeMapPoint(this.state.value);
       this.setPropsValue(numericValue);
     });
-  };
-
-  getNumericValue = (value) => {
-    const { lng, lat } = value || {};
-    const numLng = typeof lng === 'string' ? parseFloat(lng.trim()) : lng;
-    const numLat = typeof lat === 'string' ? parseFloat(lat.trim()) : lat;
-    return { lng: numLng, lat: numLat };
   };
 
   setPropsValue = ({ lng, lat }) => {
@@ -272,7 +265,7 @@ class MapEditor extends Component {
     event.stopPropagation();
     event.nativeEvent.stopImmediatePropagation();
     const { value } = this.state;
-    const numericValue = this.getNumericValue(value);
+    const numericValue = normalizeMapPoint(value);
     this.setPropsValue(numericValue);
     this.setState({ isShowLargeEditor: !this.state.isShowLargeEditor }, () => {
       const nextState = this.state.isShowLargeEditor;
@@ -299,26 +292,24 @@ class MapEditor extends Component {
     this.addMarkerByPosition(lng, lat);
   };
 
+  onBlur = () => {
+    const { value } = this.state;
+    const numericValue = normalizeMapPoint(value);
+    this.setState({ value: numericValue });
+  };
+
   onChangeLatitude = (event) => {
-    this.setState({
-      value: {
-        ...this.state.value,
-        lat: event.target.value,
-      }
-    }, () => {
-      const numericValue = this.getNumericValue(this.state.value);
+    const newValue = { ...this.state.value, lat: event.target.value };
+    this.setState({ value: newValue }, () => {
+      const numericValue = normalizeMapPoint(newValue);
       this.setPropsValue(numericValue);
     });
   };
 
   onChangeLongitude = (event) => {
-    this.setState({
-      value: {
-        ...this.state.value,
-        lng: event.target.value,
-      }
-    }, () => {
-      const numericValue = this.getNumericValue(this.state.value);
+    const newValue = { ...this.state.value, lng: event.target.value };
+    this.setState({ value: newValue }, () => {
+      const numericValue = normalizeMapPoint(newValue);
       this.setPropsValue(numericValue);
     });
   };
@@ -348,9 +339,9 @@ class MapEditor extends Component {
   };
 
   render() {
-    const { isLoading, value, isShowLargeEditor } = this.state;
-    const lat = value ? value.lat : '';
-    const lng = value ? value.lng : '';
+    const { isLoading, value: lng_lat, isShowLargeEditor } = this.state;
+    const lat = lng_lat && !isEmpty(lng_lat.lat) ? lng_lat.lat : '';
+    const lng = lng_lat && !isEmpty(lng_lat.lng) ? lng_lat.lng : '';
 
     if (!isShowLargeEditor) {
       return (
@@ -372,6 +363,7 @@ class MapEditor extends Component {
                   <input
                     type="text"
                     value={lat}
+                    onBlur={this.onBlur}
                     onChange={this.onChangeLatitude}
                     onKeyDown={this.onKeyDown}
                     className="form-control"
@@ -386,6 +378,7 @@ class MapEditor extends Component {
                   <input
                     type="text"
                     value={lng}
+                    onBlur={this.onBlur}
                     onChange={this.onChangeLongitude}
                     onKeyDown={this.onKeyDown}
                     className="form-control"
