@@ -26,6 +26,7 @@
 .notification-container .notification-header .seatable-icon-btn {
   position: absolute;
   right: 14px;
+  font-weight: normal;
 }
 
 .notification-container .notification-body {
