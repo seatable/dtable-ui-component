@@ -50,7 +50,7 @@
     "lib",
     "es",
     "index.js",
-    "packagge.json"
+    "package.json"
   ],
   "browserslist": {
     "production": [
