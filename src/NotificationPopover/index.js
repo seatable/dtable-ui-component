@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Popover } from 'reactstrap';
+import IconButton from '../IconButton';
+
 import './index.css';
 
 export default class NotificationPopover extends React.Component {
@@ -72,7 +74,7 @@ export default class NotificationPopover extends React.Component {
         <div className="notification-container" ref={ref => this.notificationContainerRef = ref}>
           <div className="notification-header">
             {headerText}
-            <span className="dtable-font dtable-icon-x notification-close-icon" onClick={this.props.onNotificationListToggle}></span>
+            <IconButton icon="x" onClick={this.props.onNotificationListToggle} />
           </div>
           <div className="notification-body">
             {this.props.enableWeixin &&
