@@ -158,12 +158,12 @@ export const getFileIconUrl = (filename, direntType) => {
   return defaultIconUrl['192'];
 };
 
-export const getFileThumbnailInfo = (file, { server } = {}) => {
+export const getFileThumbnailInfo = (file, { server, dtableUuid, workspaceID } = {}) => {
   const defaultIcon = FILEEXT_ICON_MAP['default'];
   const defaultIconUrl = FILEEXT_ICON_URL_MAP[defaultIcon];
   if (!file || !file.name) return { isImage: false, fileIconUrl: defaultIconUrl['192'] };
   const isImage = imageCheck(file.name);
-  if (isImage && server) return { isImage, fileIconUrl: getImageThumbnailUrl(file.url, { server }) };
+  if (isImage && server) return { isImage, fileIconUrl: getImageThumbnailUrl(file.url, { server, dtableUuid, workspaceID }) };
   const iconUrl = getFileIconUrl(file.name, file.type);
   return { fileIconUrl: iconUrl, isImage: false };
 };
