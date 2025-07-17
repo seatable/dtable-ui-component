@@ -9,7 +9,6 @@
   font-weight: 700;
   line-height: 1;
   color: #000;
-  text-shadow: 0 1px 0 #fff;
 }
 
 .modal-header .dtable-modal-close.close:not(:disabled):not(.disabled):hover {
