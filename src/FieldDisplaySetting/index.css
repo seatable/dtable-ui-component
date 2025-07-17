@@ -1,5 +1,10 @@
+.field-setting .field-setting-header,
+.field-setting .field-setting-header .form-label {
+  cursor: pointer;
+}
+
 .field-setting .field-setting-header .expand-button {
-  color: #ccc;
+  color: #999;
   font-size: 10px;
   cursor: pointer;
   transition: transform .3s cubic-bezier(.645,.045,.355,1);
@@ -10,12 +15,12 @@
 }
 
 .field-setting .field-setting-header .expand-button:hover {
-  color: #3a2121;
+  color: #555;
   cursor: pointer;
 }
 
 .field-setting .field-setting-banner .show-all-button {
-  color: #FF8000;
+  color: #ed7109;
   cursor: pointer;
   font-size: 12px;
 }
