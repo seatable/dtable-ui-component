@@ -91,7 +91,7 @@ const FileFormatter = ({
   return (
     <div className={className}>
       {value.map((item, index) => {
-        const dom = (<FileItemFormatter openFile={openFile} file={item} />);
+        const dom = (<FileItemFormatter openFile={openFile} file={item} config={{ server, dtableUuid, workspaceID }} />);
         if (renderItem) return (<Fragment key={index}>{renderItem(dom)}</Fragment>);
         return (<Fragment key={index}>{dom}</Fragment>);
       })}
