@@ -10,11 +10,11 @@
 
 .collapsible-setting-layout-header .dtable-font {
   font-size: 10px;
-  color: #999;
+  color: #ccc;
 }
 
 .collapsible-setting-layout-header .dtable-font:hover {
-  color: #555;
+  color: #666;
 }
 
 .collapsible-setting-layout-header .dtable-font.dtable-icon-spin {
