@@ -297,10 +297,10 @@ class MapEditor extends React.Component {
     const { value } = this.state;
     const numericValue = normalizeMapPoint(value);
     this.setState({ value: numericValue });
-  }
+  };
 
   handleLatitudeChange = (value) => {
-    const newValue = { ...this.state.value, lat:value };
+    const newValue = { ...this.state.value, lat: value };
     this.setState({ value: newValue }, () => {
       const numericValue = normalizeMapPoint(newValue);
       this.rerenderMapMarker(numericValue);
@@ -308,7 +308,7 @@ class MapEditor extends React.Component {
   };
 
   handleLongitudeChange = (value) => {
-    const newValue = { ...this.state.value, lng:value };
+    const newValue = { ...this.state.value, lng: value };
     this.setState({ value: newValue }, () => {
       const numericValue = normalizeMapPoint(newValue);
       this.rerenderMapMarker(numericValue);

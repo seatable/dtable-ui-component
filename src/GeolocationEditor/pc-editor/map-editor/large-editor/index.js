@@ -392,7 +392,9 @@ class LargeMapEditorDialog extends React.Component {
                 <span className="alert-danger">{getLocale('The_map_plugin_is_not_properly_configured_contact_the_administrator')}</span>
               </div>
             )}
-            {(!isLoading && this.mapType) && <div className='w-100 h-100' ref={ref => this.ref = ref} id="geolocation-map-container-large"></div>}
+            {(!isLoading && this.mapType) &&
+              <div className='w-100 h-100' ref={ref => this.ref = ref} id="geolocation-map-container-large"></div>
+            }
           </div>
           <div className="geolocation-map-controller">
             <div className="dtable-ui-geolocation-locate-control" onClick={this.onLocateCurrentPosition}>

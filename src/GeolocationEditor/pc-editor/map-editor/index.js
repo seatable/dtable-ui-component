@@ -414,7 +414,14 @@ class MapEditor extends Component {
       );
     }
 
-    return (<LargeMapEditorDialog {...this.props} value={value} setValue={this.setValue} toggleFullScreen={this.toggleFullScreen} />);
+    return (
+      <LargeMapEditorDialog
+        {...this.props}
+        value={this.state.value}
+        setValue={this.setValue}
+        toggleFullScreen={this.toggleFullScreen} 
+      />
+    );
   }
 }
 
