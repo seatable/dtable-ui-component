@@ -11,7 +11,7 @@ const CollapsibleSettingLayout = (props) => {
   return (
     <div className={classnames('collapsible-setting-layout', className)}>
       <div
-        className="collapsible-setting-layout-header w-100 d-flex align-items-center"
+        className="collapsible-setting-layout-header seatable-collapse-header w-100 d-flex align-items-center"
         onClick={() => setIsShowSettings(!isShowSettings)}
       >
         <span className="collapsible-setting-layout-title">{title}</span>
