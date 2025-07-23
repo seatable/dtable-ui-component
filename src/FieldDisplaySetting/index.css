@@ -4,7 +4,6 @@
 }
 
 .field-setting .field-setting-header .expand-button {
-  color: #999;
   font-size: 10px;
   cursor: pointer;
   transition: transform .3s cubic-bezier(.645,.045,.355,1);
@@ -12,11 +11,6 @@
 
 .field-setting .field-setting-header .expand-button.revolving {
   transform: rotate(90deg);
-}
-
-.field-setting .field-setting-header .expand-button:hover {
-  color: #555;
-  cursor: pointer;
 }
 
 .field-setting .field-setting-banner .show-all-button {
