@@ -21,6 +21,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
     column: PropTypes.object,
     containerClassName: PropTypes.string,
     collaborators: PropTypes.array,
+    departments: PropTypes.array,
   };
 
   getGridCellClassName = (resultType) => {
@@ -80,13 +81,13 @@ export default class RowExpandFormulaFormatter extends React.Component {
   };
 
   renderOtherColumnFormatter = () => {
-    const { value, column, collaborators } = this.props;
+    const { value, column, collaborators, departments } = this.props;
     const { array_type, array_data } = column.data;
     if (!array_type || array_type === CellType.LINK) {
       return null;
     }
     const Formatter = BaseFormatterConfig[array_type];
-    let formatterProps = this.getFormatterProps(array_type, array_data, collaborators);
+    let formatterProps = this.getFormatterProps(array_type, array_data, collaborators, departments);
 
     if (isArrayFormatColumn(array_type)) {
       formatterProps.value = value;
@@ -146,7 +147,7 @@ export default class RowExpandFormulaFormatter extends React.Component {
     }
   }
 
-  getFormatterProps = (array_type, array_data, collaborators) => {
+  getFormatterProps = (array_type, array_data, collaborators, departments) => {
     switch (array_type) {
       case CellType.DURATION: {
         const { duration_format } = array_data;
@@ -154,6 +155,9 @@ export default class RowExpandFormulaFormatter extends React.Component {
       }
       case CellType.NUMBER:
       case CellType.RATE:
+      case CellType.DEPARTMENT_SINGLE_SELECT: {
+        return { column: { data: array_data }, readOnly: true, departments };
+      }
       case CellType.GEOLOCATION: {
         return { data: array_data };
       }
