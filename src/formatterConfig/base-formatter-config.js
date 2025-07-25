@@ -21,6 +21,7 @@ import EmailFormatter from '../EmailFormatter';
 import DurationFormatter from '../DurationFormatter';
 import RateFormatter from '../RateFormatter';
 import ButtonFormatter from '../ButtonFormatter';
+import DepartmentSingleSelectFormatter from '../DepartmentSingleSelectFormatter';
 
 const BaseFormatterConfig = {
   [CellType.DEFAULT]: <TextCellFormatter />,
@@ -45,6 +46,7 @@ const BaseFormatterConfig = {
   [CellType.DURATION]: <DurationFormatter />,
   [CellType.RATE]: <RateFormatter />,
   [CellType.BUTTON]: <ButtonFormatter />,
+  [CellType.DEPARTMENT_SINGLE_SELECT]: <DepartmentSingleSelectFormatter />,
 };
 
 export default BaseFormatterConfig;
