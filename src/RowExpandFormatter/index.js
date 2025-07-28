@@ -235,6 +235,7 @@ class RowExpandFormatter extends React.Component {
             column={column}
             collaborators={collaborators}
             containerClassName={containerClassName}
+            departments={this.props.departments}
           />
         );
       }
