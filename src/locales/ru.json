@@ -172,5 +172,9 @@
   "Latitude_abbr": "Lat",
   "Longitude_abbr": "Lng",
   "Latitude": "Latitude",
-  "Longitude": "Longitude"
+  "Longitude": "Longitude",
+  "Search_users": "Поиск пользователей",
+  "User_not_found": "Пользователь не найден",
+  "Enter_characters_to_start_searching": "Введите символы для начала поиска",
+  "Remove": "Удалять"
 }
