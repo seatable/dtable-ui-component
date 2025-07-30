@@ -1,13 +1,40 @@
 {
   "env": {
     "test": {
-      "presets": [["react-app", {"absoluteRuntime" : false, "BABEL_ENV" : "test"}]]
+      "presets": [
+        [
+          "react-app",
+          {
+            "absoluteRuntime": false,
+            "runtime": "automatic",
+            "BABEL_ENV": "test"
+          }
+        ]
+      ]
     },
     "development": {
-      "presets": [["react-app", {"absoluteRuntime" : false, "BABEL_ENV" : "development"}]]
+      "presets": [
+        [
+          "react-app",
+          {
+            "absoluteRuntime": false,
+            "runtime": "automatic",
+            "BABEL_ENV": "development"
+          }
+        ]
+      ]
     },
     "production": {
-      "presets": [["react-app", {"absoluteRuntime" : false, "BABEL_ENV" : "production"}]]
+      "presets": [
+        [
+          "react-app",
+          {
+            "absoluteRuntime": false,
+            "runtime": "automatic",
+            "BABEL_ENV": "production"
+          }
+        ]
+      ]
     },
     "node": {
       "presets": [

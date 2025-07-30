@@ -107,6 +107,8 @@ export { default as UploadProgress } from './UploadProgress';
 
 export { default as SvgIcon } from './SvgIcon';
 
+export { default as AsyncUserSelect } from './AsyncUserSelect';
+
 // antd-mobile
 export { default as ActionSheet } from './ActionSheet';
 export { default as ActivityIndicator } from './ActivityIndicator';

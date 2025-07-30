@@ -6,7 +6,7 @@
     "@seafile/react-image-lightbox": "4.0.2",
     "@seafile/seafile-calendar": "0.0.31",
     "@seafile/seafile-editor": "~2.0.14",
-    "classnames": "2.3.2",
+    "classnames": "~2.5.*",
     "dayjs": "1.10.7",
     "dtable-utils": "~5.0.22",
     "is-hotkey": "0.2.0",
