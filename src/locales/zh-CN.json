@@ -172,5 +172,9 @@
   "Latitude_abbr": "纬度",
   "Longitude_abbr": "经度",
   "Latitude": "纬度",
-  "Longitude": "经度"
+  "Longitude": "经度",
+  "Search_users": "搜索用户",
+  "User_not_found": "未找到用户",
+  "Enter_characters_to_start_searching": "输入字符以开始搜索",
+  "Remove": "删除"
 }

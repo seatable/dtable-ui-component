@@ -172,5 +172,9 @@
   "Latitude_abbr": "Breite",
   "Longitude_abbr": "Länge",
   "Latitude": "Breitengrad",
-  "Longitude": "Längengrad"
+  "Longitude": "Längengrad",
+  "Search_users": "Benutzer suchen",
+  "User_not_found": "Der Benutzer wurde nicht gefunden.",
+  "Enter_characters_to_start_searching": "Geben Sie Zeichen ein, um die Suche zu starten.",
+  "Remove": "Entfernen"
 }
