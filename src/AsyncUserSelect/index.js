@@ -10,7 +10,7 @@ import keyCodes from '../constants/key-codes';
 
 import './index.css';
 
-const AsyncUserSelect = ({ className, searchPlaceholder, isMulti = true, selectedUsers = [], loadOptions, modifySelectedUsers }) => {
+const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder = '', isMulti = true, enableShowIDInOrgWhenSearchUser = false, selectedUsers = [], loadOptions, modifySelectedUsers }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [searchedUsers, setSearchedUsers] = useState([]);
@@ -202,7 +202,7 @@ const AsyncUserSelect = ({ className, searchPlaceholder, isMulti = true, selecte
           })}
           {selectedUsers.length === 0 && (
             <div className="dtable-ui-user-select-placeholder">
-              {searchPlaceholder || getLocale('Search_users')}
+              {emptyPlaceholder || getLocale('Search_users')}
             </div>
           )}
         </div>
@@ -236,7 +236,7 @@ const AsyncUserSelect = ({ className, searchPlaceholder, isMulti = true, selecte
                         ref={userItemContainerRef}
                         onClick={() => onUserClick(user)}
                       >
-                        <UserItem key={`dtable-ui-user-selector-searched-user-${index}`} user={user} />
+                        <UserItem key={`dtable-ui-user-selector-searched-user-${index}`} user={user} enableShowIDInOrgWhenSearchUser={enableShowIDInOrgWhenSearchUser} />
                         {selectedUsers.find(u => u.email === user.email) && (
                           <div className='dtable-ui-collaborator-check-icon'>
                             <i className="dtable-font dtable-icon-check-mark" aria-hidden="true"></i>
@@ -262,8 +262,10 @@ const AsyncUserSelect = ({ className, searchPlaceholder, isMulti = true, selecte
 
 AsyncUserSelect.propTypes = {
   className: PropTypes.string,
+  emptyPlaceholder: PropTypes.string,
   searchPlaceholder: PropTypes.string,
   isMulti: PropTypes.bool,
+  enableShowIDInOrgWhenSearchUser: PropTypes.bool,
   selectedUsers: PropTypes.array,
   loadOptions: PropTypes.func,
   modifySelectedUsers: PropTypes.func,

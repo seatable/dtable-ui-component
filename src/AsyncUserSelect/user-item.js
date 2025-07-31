@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { getLocale } from '../lang';
 
-const UserItem = ({ className, user, deleteUser }) => {
+const UserItem = ({ className, user, deleteUser, enableShowIDInOrgWhenSearchUser = false }) => {
   const name = useMemo(() => user?.name || '', [user]);
   const avatarUrl = useMemo(() => user?.avatar_url || '', [user]);
+  const idInOrg = useMemo(() => user?.id_in_org || '', [user]);
 
   const onDeleteUser = (event) => {
     event.stopPropagation();
@@ -19,6 +20,7 @@ const UserItem = ({ className, user, deleteUser }) => {
         <img className="user-avatar-icon" alt={name} src={avatarUrl} />
       </span>
       <span className="user-name text-truncate">{name}</span>
+      {(enableShowIDInOrgWhenSearchUser && !deleteUser) && <span className="user-id-in-org text-truncate">({idInOrg})</span>}
       {deleteUser && (
         <span className="user-remove ml-2" onClick={onDeleteUser} title={getLocale('Remove')}>
           <i className="dtable-font dtable-icon-x" aria-hidden="true"></i>
@@ -31,6 +33,7 @@ const UserItem = ({ className, user, deleteUser }) => {
 UserItem.propTypes = {
   className: PropTypes.string,
   user: PropTypes.object,
+  enableShowIDInOrgWhenSearchUser: PropTypes.bool,
   deleteUser: PropTypes.func,
 };
 
