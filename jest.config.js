@@ -2,9 +2,10 @@ const path = require('path');
 
 module.exports = {
   rootDir: path.resolve(__dirname, './'),
-  roots: ["<rootDir>/tests/"],
-  setupFiles: ["<rootDir>/tests/setup.js"],
-  testMatch: [ "<rootDir>/tests/**/(*.)+(spec|test).[jt]s?(x)"],
+  roots: ['<rootDir>/tests/'],
+  testMatch: ['<rootDir>/tests/**/(*.)+(spec|test).[jt]s?(x)'],
+  testEnvironment: 'jsdom',
+  setupFilesAfterEnv: ['<rootDir>/tests/setupTests.js'],
   transform: {
     '^.+\\.(js|jsx|mjs)$': '<rootDir>/node_modules/babel-jest',
     '^.+\\.(css|less)$': '<rootDir>/config/jest/cssTransform.js',
@@ -13,4 +14,4 @@ module.exports = {
   transformIgnorePatterns: [
     '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$',
   ],
-}
+};
