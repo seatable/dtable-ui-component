@@ -1,10 +1,11 @@
-import React from 'react';
-import { Title, Subtitle, Description, Primary, Controls, Stories } from '@storybook/blocks';
+/** @type { import('@storybook/react-webpack5').Preview } */
 
-/** @type { import('@storybook/react').Preview } */
+import '../public/media/dtable-font.css';
+import '../public/media/seatable-ui.css';
+import '../stories/css/story-cover.css';
+
 const preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
     controls: {
       matchers: {
         color: /(background|color)$/i,
@@ -13,22 +14,14 @@ const preview = {
     },
     options: {
       storySort: {
-        method: '',
-        order: [],
-        locales: '',
-      }
+        order: [
+          'General',
+          'Formatter',
+          'Editor',
+          'Mobile',
+        ],
+      },
     },
-    docs: {
-      page: () => (
-        <>
-          <Title />
-          <Subtitle />
-          <Description />
-          <Primary />
-          <Controls />
-        </>
-      ),
-    }
   },
 };
 
