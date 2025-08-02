@@ -35,3 +35,7 @@ yarn-error.log*
 
 # Developer scripts for translation
 /translate.py
+
+# storybook
+*storybook.log
+storybook-static

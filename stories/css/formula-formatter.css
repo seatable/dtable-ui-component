@@ -1,0 +1,8 @@
+.formula-container {
+  width: 300px;
+  background-color: aliceblue;
+  height: 30px;
+  line-height: 30px;
+  border: 1px solid #000;
+  padding: 0 10px;
+}
