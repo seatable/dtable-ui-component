@@ -5,7 +5,7 @@ import { generatorBase64Code } from 'dtable-utils';
 
 import './index.css';
 
-function DTableSwitch({ onChange, checked = false, placeholder, disabled, size = 'sm', switchPosition = 'right', switchClassName, inputId }) {
+function DTableSwitch({ onChange, checked = false, placeholder, disabled, size = 'sm', switchPosition = 'right', switchClassName, innerClassName, inputId }) {
   const switchNode = <span className="custom-switch-indicator"></span>;
   const textNode = <span className="custom-switch-description text-truncate">{placeholder}</span>;
   return (
@@ -16,7 +16,7 @@ function DTableSwitch({ onChange, checked = false, placeholder, disabled, size =
         { [switchClassName]: switchClassName })
       }
     >
-      <label className="custom-switch">
+      <label className={classnames('custom-switch', { [innerClassName]: innerClassName })}>
         <input
           className="custom-switch-input"
           type="checkbox"
@@ -42,6 +42,7 @@ DTableSwitch.propTypes = {
   onChange: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
   switchClassName: PropTypes.string,
+  innerClassName: PropTypes.string,
   inputId: PropTypes.string
 };
 
