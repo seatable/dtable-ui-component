@@ -20,7 +20,7 @@
 }
 
 .dtable-switch.sm .custom-switch .custom-switch-description {
-  width: 192px;
+  width: auto;
   margin: 0;
   padding-right: 5px;
   color: #212529;
