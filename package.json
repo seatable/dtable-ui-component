@@ -37,7 +37,7 @@
     "test": "node scripts/test.js",
     "eslint": "eslint --ext .jsx,.js src --max-warnings=0",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-storybook": "storybook build -c .storybook -o docs",
     "pub:esm": "npm run clean:esm && export BABEL_ENV=node && ./node_modules/.bin/babel src --out-dir es --copy-files",
     "pub:lib": "npm run clean:lib && export BABEL_ENV=production && ./node_modules/.bin/babel src --out-dir lib --copy-files",
     "pub:umd": "npm run build",
