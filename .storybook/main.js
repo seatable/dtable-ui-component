@@ -1,37 +1,37 @@
-module.exports = {
-  stories: ['../stories/**/*.stories.js'],
-  staticDirs: ['../public'],
-  addons: [
-    '@storybook/addon-actions', 
-    '@storybook/addon-links',
-    '@storybook/addon-controls',
-    '@storybook/preset-create-react-app',
-    {
-      name: '@storybook/addon-docs',
-      options: {
-        configureJSX: true,
-      }
-    }
+
+
+/** @type { import('@storybook/react-webpack5').StorybookConfig } */
+const config = {
+  "stories": [
+    "../stories/**/*.mdx",
+    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
-  framework: {
-    name: "@storybook/react-webpack5",
-    options: {
-      builder: {
-        useSWC: true,
-      },
-    },
+  "addons": [
+    "@storybook/addon-webpack5-compiler-swc",
+    "@storybook/addon-docs",
+    "@storybook/addon-onboarding",
+  ],
+  "framework": {
+    "name": "@storybook/react-webpack5",
+    "options": {}
   },
   webpackFinal: async (config) => {
-    config.module.rules.push({
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-react']
-        }
+    config.module.rules = config.module.rules.map(rule => {
+      if (rule.test && rule.test.toString().includes('svg')) {
+        return {
+          ...rule,
+          test: new RegExp(rule.test.toString().replace('svg|', '').slice(1, -1))
+        };
       }
+      return rule;
     });
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack']
+    });
+
     return config;
   }
 };
+
+export default config;
