@@ -33,12 +33,12 @@ class UrlFormatter extends React.Component {
 
   render() {
     const { containerClassName, value } = this.props;
-    let classname = classnames('dtable-ui cell-formatter-container url-formatter', containerClassName);
+    const classname = classnames('dtable-ui cell-formatter-container url-formatter row-expand-jump-link-container', containerClassName);
     return (
       <div className={classname}>
-        <span className="url-formatter-value text-truncate">{value}</span>
+        <span className="url-formatter-value row-expand-jump-link-value text-truncate">{value}</span>
         {getTrimmedString(value) &&
-          <span className="dtable-font dtable-icon-url row-expand-jump-link" onClick={this.onOpenUrlLink}></span>
+          <span className="dtable-font dtable-icon-url row-expand-jump-link-btn" onClick={this.onOpenUrlLink}></span>
         }
       </div>
     );

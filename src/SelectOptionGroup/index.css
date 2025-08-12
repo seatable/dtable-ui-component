@@ -57,15 +57,18 @@
 }
 
 .option:hover .header-icon .dtable-font,
+.option:hover .header-icon .multicolor-icon,
 .option.option-active .select-option-name {
   color: #fff;
 }
 
-.option.option-active .header-icon .dtable-font {
+.option.option-active .header-icon .dtable-font,
+.option.option-active .header-icon .multicolor-icon {
   color: #fff;
 }
 
-.option:not(.option-active):hover .header-icon .dtable-font {
+.option:not(.option-active):hover .header-icon .dtable-font,
+.option:not(.option-active):hover .header-icon .multicolor-icon {
   color: #aaa;
 }
 

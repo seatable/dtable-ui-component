@@ -105,7 +105,8 @@ export { default as IconButton } from './IconButton';
 // upload
 export { default as UploadProgress } from './UploadProgress';
 
-export { default as SvgIcon } from './SvgIcon';
+export { default as DTableIcon } from './DTableIcon';
+export { default as DTableColumnIcon } from './DTableColumnIcon';
 
 export { default as AsyncUserSelect } from './AsyncUserSelect';
 
@@ -127,6 +128,8 @@ export { default as TextareaItem } from './TextareaItem';
 export { default as Toast } from './Toast';
 
 export { default as BodyPortal } from './BodyPortal';
+
+export { default as PhoneNumberLink } from './PhoneNumberLink';
 
 // mobile
 export { default as MobileModal } from './MobileModal';

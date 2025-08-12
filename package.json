@@ -4,11 +4,11 @@
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "4.0.2",
-    "@seafile/seafile-calendar": "0.0.31",
+    "@seafile/seafile-calendar": "~0.0.32",
     "@seafile/seafile-editor": "~2.0.14",
     "classnames": "~2.5.*",
     "dayjs": "1.10.7",
-    "dtable-utils": "~5.0.22",
+    "dtable-utils": "~5.0.26",
     "is-hotkey": "0.2.0",
     "rc-checkbox": "3.5.0",
     "react-color": "2.19.3",

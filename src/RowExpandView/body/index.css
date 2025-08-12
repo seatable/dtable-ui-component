@@ -151,6 +151,10 @@
   right: 0;
 }
 
+.dtable-ui-row-expand-formatter .dtable-ui .row-expand-jump-link .jump-link-icon {
+  color: #999;
+}
+
 .dtable-ui-mobile-row-expand-body .dtable-ui-row-expand-formatter .dtable-ui.url-formatter .url-formatter-value,
 .dtable-ui-mobile-row-expand-body .dtable-ui-row-expand-formatter .dtable-ui.email-formatter .email-formatter-value {
   width: calc(100% - 40px);
