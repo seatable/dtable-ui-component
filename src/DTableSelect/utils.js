@@ -112,6 +112,9 @@ const MenuSelectStyle = {
       '.header-icon .dtable-font': {
         color: '#aaa',
       },
+      '.header-icon .multicolor-icon': {
+        color: '#aaa',
+      },
     });
   },
   control: controlCallback,

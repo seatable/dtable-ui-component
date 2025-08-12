@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString, getColumnType, DISPLAY_INTERNAL_ERRORS } from 'dtable-utils';
+import { CellType, FORMULA_RESULT_TYPE, getFormulaDisplayString, getColumnType, DISPLAY_INTERNAL_ERRORS, checkIsDisplayAsPhoneNumberColumn } from 'dtable-utils';
 import BaseFormatterConfig from '../../formatterConfig/base-formatter-config';
 import TextFormatter from '../../TextFormatter';
+import PhoneNumberLink from '../../PhoneNumberLink';
 import {
   isArrayFormatColumn, isSimpleCellFormatter, convertValueToDtableLongTextValue,
 } from '../../FormulaFormatter/utils';
@@ -13,6 +14,7 @@ import toaster from '../../toaster';
 import { getLocale } from '../../lang';
 
 import '../../FormulaFormatter/index.css';
+import './index.css';
 
 export default class RowExpandFormulaFormatter extends React.Component {
 
@@ -57,10 +59,6 @@ export default class RowExpandFormulaFormatter extends React.Component {
     let style = { minHeight: '38px' };
     if (result_type === FORMULA_RESULT_TYPE.DATE || result_type === FORMULA_RESULT_TYPE.NUMBER) {
       style = { width: '320px' };
-    }
-    const columnType = getColumnType(column);
-    if ([CellType.URL, CellType.EMAIL].includes(columnType)) {
-      style = { ...style, position: 'relative' };
     }
     return (
       <div className="d-flex align-items-center form-control disabled h-auto" style={style}>{dom}</div>
@@ -109,6 +107,11 @@ export default class RowExpandFormulaFormatter extends React.Component {
       formulaEmail = cellValue[0];
       formulaEmail = formulaEmail ? formulaEmail.trim() : '';
     }
+    let formulaPhoneNumber = '';
+    if (checkIsDisplayAsPhoneNumberColumn(column)) {
+      formulaPhoneNumber = cellValue[0];
+      formulaPhoneNumber = formulaPhoneNumber ? formulaPhoneNumber.trim() : '';
+    }
     return this.renderBorder(
       <div className="dtable-ui formula-formatter multiple">
         {cellValue.map((v, index) => {
@@ -117,15 +120,18 @@ export default class RowExpandFormulaFormatter extends React.Component {
             <div
               className={classnames('formula-formatter-content-item',
                 { 'simple-cell-formatter': isSimpleCellFormatter(array_type) },
-                { 'formula-url-formatter-column': formulaUrl || formulaEmail }
+                { 'row-expand-jump-link-container': !!(formulaUrl || formulaEmail || formulaPhoneNumber) }
               )}
               key={`formula-formatter-content-item-${index}`}
             >
-              {formulaUrl &&
-                <span aria-hidden="true" className="dtable-font dtable-icon-url formula-url-link" onClick={this.onOpenUrlLink.bind(this, formulaUrl)}></span>
+              {!!formulaUrl &&
+                <span aria-hidden="true" className="dtable-font dtable-icon-url formula-url-link row-expand-jump-link-btn" onClick={this.onOpenUrlLink.bind(this, formulaUrl)}></span>
               }
-              {formulaEmail &&
-                <span aria-hidden="true" className="dtable-font dtable-icon-email formula-email-link" onClick={this.onOpenEmailLink.bind(this, formulaEmail)}></span>
+              {!!formulaEmail &&
+                <span aria-hidden="true" className="dtable-font dtable-icon-email formula-email-link row-expand-jump-link-btn" onClick={this.onOpenEmailLink.bind(this, formulaEmail)}></span>
+              }
+              {!!formulaPhoneNumber &&
+                <PhoneNumberLink phoneNumber={formulaPhoneNumber} className="row-expand-jump-link-btn" />
               }
               {this.createColumnFormatter(Formatter, formatterProps)}
             </div>

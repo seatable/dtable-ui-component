@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import SvgIcon from '../SvgIcon';
+import DTableIcon from '../DTableIcon';
 import { DEFAULT_CHECKBOX_MARK_STYLE, isMobile } from '../constants';
 
 import './index.css';
@@ -18,12 +18,14 @@ class CheckboxFormatter extends React.PureComponent {
   };
 
   renderIcon = (symbol, color) => {
-    let className = 'dtable-ui-checkbox-check-mark';
-    if (symbol.startsWith('dtable-icon')) {
-      return (<span className={`dtable-font ${symbol} ${className || ''}`} style={{ color }} />);
-    }
-    className = classnames(className, { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon'), 'scale-icon': isMobile });
-    return (<SvgIcon className={className} symbol={symbol} color={color} />);
+    const className = classnames('dtable-ui-checkbox-check-mark', { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon'), 'scale-icon-150': isMobile });
+    return (
+      <DTableIcon
+        className={className}
+        symbol={symbol}
+        color={color}
+      />
+    );
   };
 
   render() {

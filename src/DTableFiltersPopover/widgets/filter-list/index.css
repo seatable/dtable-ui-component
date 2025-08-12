@@ -420,13 +420,15 @@
   margin-left: -0.3125rem;
 }
 
-.filter-header-icon .dtable-font {
+.filter-header-icon .dtable-font,
+.filter-header-icon .multicolor-icon {
   font-size: 14px;
   color: #aaa;
   cursor: default;
 }
 
-.option.option-active .filter-header-icon .dtable-font {
+.option.option-active .filter-header-icon .dtable-font,
+.option.option-active .filter-header-icon .multicolor-icon {
   color: #fff;
 }
 

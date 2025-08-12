@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { COLUMNS_ICON_CONFIG } from 'dtable-utils';
 import DTableSwitch from '../DTableSwitch';
+import DTableColumnIcon from '../DTableColumnIcon';
 
 const propTypes = {
   field: PropTypes.object.isRequired,
@@ -64,9 +64,10 @@ function FieldItem({ field, isCollapsed, onClickField, onMoveField }) {
   };
 
   const placeholder = () => {
+    const { type, data } = field;
     return (
       <div className="field-switch">
-        <i className={`dtable-font ${COLUMNS_ICON_CONFIG[field.type]}`} />
+        <DTableColumnIcon column={{ type, data }} />
         <span>{field.name}</span>
       </div>
     );

@@ -25,6 +25,7 @@
   height: 2.375rem;
   line-height: 2.375rem;
   width: 100%;
+  text-decoration: none;
 }
 
 .dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.multiple-select-formatter .dtable-ui.select-item {
@@ -46,6 +47,7 @@
 }
 
 .dtable-ui.dtable-ui-row-expand-formatter .form-control {
+  position: relative;
   background-color: #f8f9fa;
   padding: 0 10px;
   height: fit-content;
