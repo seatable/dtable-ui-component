@@ -26,7 +26,8 @@
   color: #212529;
 }
 
-.dtable-switch.sm .custom-switch .dtable-font {
+.dtable-switch.sm .custom-switch .dtable-font,
+.dtable-switch.sm .custom-switch .multicolor-icon {
   -webkit-transform: scale(.8);
   transform: scale(.8);
   display: inline-block;

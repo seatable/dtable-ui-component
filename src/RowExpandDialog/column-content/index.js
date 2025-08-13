@@ -1,18 +1,18 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
-import { COLUMNS_ICON_CONFIG } from 'dtable-utils';
+import DTableColumnIcon from '../../DTableColumnIcon';
 
 import './index.css';
 
 const ColumnContent = ({ column, children }) => {
   const descriptionRef = useRef(null);
-  const { name, type, key, description } = column;
+  const { name, key, description } = column;
   return (
     <Row className="dtable-ui-row-expand-column-content pb-4">
       <Col md={3} className="dtable-ui-row-expand-column-content-info d-flex">
         <span className="dtable-ui-header-icon" id={`header-icon-${key}`}>
-          <i className={COLUMNS_ICON_CONFIG[type]}></i>
+          <DTableColumnIcon column={column} />
         </span>
         <span className="dtable-ui-row-expand-column-name">{name || ''}</span>
         {description &&

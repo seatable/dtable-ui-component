@@ -1,4 +1,6 @@
-html, body, #root {
+html,
+body,
+#root {
   width: 100%;
   height: 100%;
 }
@@ -29,7 +31,8 @@ html, body, #root {
   margin-left: -0.3125rem;
 }
 
-.app .app-body .header-icon .dtable-font {
+.app .app-body .header-icon .dtable-font,
+.app .app-body .header-icon .multicolor-icon {
   font-size: 14px;
   color: rgba(33, 37, 41, 0.65);
 }

@@ -1,6 +1,5 @@
 import {
   FILTER_PREDICATE_TYPE,
-  FILTER_COLUMN_OPTIONS,
   filterTermModifierNotWithin,
   filterTermModifierIsWithin,
   CellType,
@@ -11,6 +10,8 @@ import {
   COLLABORATOR_COLUMN_TYPES,
   DATE_COLUMN_OPTIONS,
   FORMULA_COLUMN_TYPES_MAP,
+  getColumnFilterOptions,
+  checkColumnHasFilterOptions,
 } from 'dtable-utils';
 import FilterItemUtils from './filter-item-utils';
 import {
@@ -118,37 +119,37 @@ export const getColumnOptions = (column) => {
     return getFormulaColumnFilterOptions(column);
   }
   if (type === CellType.LINK) {
-    const { array_type } = data || {};
+    const { array_type, array_data } = data || {};
     if (array_type === FORMULA_RESULT_TYPE.BOOL) {
-      return FILTER_COLUMN_OPTIONS[CellType.CHECKBOX];
+      return getColumnFilterOptions({ type: CellType.CHECKBOX });
     }
     if (array_type === FORMULA_RESULT_TYPE.STRING) {
-      return FILTER_COLUMN_OPTIONS[CellType.TEXT];
+      return getColumnFilterOptions({ type: CellType.TEXT });
     }
-    return getFilterOptionsByArrayType(array_type);
+    return getFilterOptionsByArrayType(array_type, array_data);
   }
-  return FILTER_COLUMN_OPTIONS[type] || {};
+  return getColumnFilterOptions(column);
 };
 
 const getFormulaColumnFilterOptions = (column) => {
   const { data } = column;
-  const { result_type, array_type } = data || {};
+  const { result_type, array_type, array_data } = data || {};
   if (result_type === FORMULA_RESULT_TYPE.BOOL) {
-    return FILTER_COLUMN_OPTIONS[CellType.CHECKBOX];
+    return getColumnFilterOptions({ type: CellType.CHECKBOX });
   }
   if (result_type === FORMULA_RESULT_TYPE.STRING) {
-    return FILTER_COLUMN_OPTIONS[CellType.TEXT];
+    return getColumnFilterOptions({ type: CellType.TEXT });
   }
   if ([FORMULA_RESULT_TYPE.NUMBER, FORMULA_RESULT_TYPE.DATE].includes(result_type)) {
-    return FILTER_COLUMN_OPTIONS[result_type];
+    return getColumnFilterOptions({ type: result_type });
   }
   if (result_type === FORMULA_RESULT_TYPE.ARRAY) {
-    return getFilterOptionsByArrayType(array_type);
+    return getFilterOptionsByArrayType(array_type, array_data);
   }
-  return FILTER_COLUMN_OPTIONS[CellType.TEXT];
+  return getColumnFilterOptions({ type: CellType.TEXT });
 };
 
-const getFilterOptionsByArrayType = (array_type) => {
+const getFilterOptionsByArrayType = (array_type, array_data) => {
   if (!array_type) {
     return {};
   }
@@ -165,11 +166,13 @@ const getFilterOptionsByArrayType = (array_type) => {
 
   // only support: is
   if (checkType === CellType.CHECKBOX || checkType === CellType.BOOL) {
-    return FILTER_COLUMN_OPTIONS[CellType.CHECKBOX];
+    return getColumnFilterOptions({ type: CellType.CHECKBOX });
   }
 
-  let filterOptions = FILTER_COLUMN_OPTIONS[checkType] || FILTER_COLUMN_OPTIONS[CellType.TEXT];
-  let { filterPredicateList } = filterOptions;
+  const filterOptions = checkColumnHasFilterOptions({ type: checkType, data: array_data }) ?
+    getColumnFilterOptions({ type: checkType, data: array_data }) :
+    getColumnFilterOptions({ type: CellType.TEXT, data: array_data });
+  const { filterPredicateList } = filterOptions;
   if (filterPredicateList && !filterPredicateList.includes(FILTER_PREDICATE_TYPE.EMPTY)) {
     filterPredicateList.push(FILTER_PREDICATE_TYPE.EMPTY);
   }
@@ -340,8 +343,8 @@ export const generateDefaultUser = (name) => {
 export const getDefaultFilter = (columns) => {
   if (!columns) return null;
   let defaultColumn = columns[0];
-  if (!FILTER_COLUMN_OPTIONS[defaultColumn.type]) {
-    defaultColumn = columns.find((c) => FILTER_COLUMN_OPTIONS[c.type]);
+  if (!checkColumnHasFilterOptions(defaultColumn)) {
+    defaultColumn = columns.find((c) => checkColumnHasFilterOptions(c));
   }
   if (!defaultColumn) return null;
   return getFilterByColumn(defaultColumn);
@@ -377,9 +380,9 @@ export const getFilterColumns = (columns) => {
     if (data && (type === CellType.LINK ||
       (FORMULA_COLUMN_TYPES_MAP[type] && data.result_type === FORMULA_RESULT_TYPE.ARRAY))
     ) {
-      return Object.prototype.hasOwnProperty.call(FILTER_COLUMN_OPTIONS, data.array_type);
+      return checkColumnHasFilterOptions({ type: data.array_type, data: data.array_data });
     }
-    return Object.prototype.hasOwnProperty.call(FILTER_COLUMN_OPTIONS, type);
+    return checkColumnHasFilterOptions(column);
   });
 };
 
@@ -580,16 +583,16 @@ export const getFilterConfigOptions = (column) => {
     return getFormulaColumnFilterOptions(column);
   }
   if (type === CellType.LINK) {
-    const { array_type } = data || {};
+    const { array_type, array_data } = data || {};
     if (array_type === FORMULA_RESULT_TYPE.BOOL) {
-      return FILTER_COLUMN_OPTIONS[CellType.CHECKBOX];
+      return getColumnFilterOptions({ type: CellType.CHECKBOX });
     }
     if (array_type === FORMULA_RESULT_TYPE.STRING) {
-      return FILTER_COLUMN_OPTIONS[CellType.TEXT];
+      return getColumnFilterOptions({ type: CellType.TEXT });
     }
-    return getFilterOptionsByArrayType(array_type);
+    return getFilterOptionsByArrayType(array_type, array_data);
   }
-  return FILTER_COLUMN_OPTIONS[type] || {};
+  return getColumnFilterOptions(column) || {};
 };
 
 export const getMultipleSelectUpdatedFilterTerm = (filterTerm, option) => {

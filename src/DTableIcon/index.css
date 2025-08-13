@@ -1,10 +1,10 @@
-.dtable-ui-multicolor-icon {
+.multicolor-icon {
   width: 1em;
   height: 1em;
   fill: currentColor;
   overflow: hidden;
 }
 
-.dtable-ui-multicolor-icon.scale-icon {
+.multicolor-icon.scale-icon-150 {
   transform: scale(1.5);
 }

@@ -1,5 +1,5 @@
 import { CellType } from 'dtable-utils';
-import TextFormatter from '../TextFormatter';
+import TextFormatter from './text';
 import NumberFormatter from '../NumberFormatter';
 import CheckboxFormatter from '../CheckboxFormatter';
 import DateFormatter from '../DateFormatter';

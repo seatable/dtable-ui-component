@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import SvgIcon from '../SvgIcon';
+import DTableIcon from '../DTableIcon';
 import { KeyCodes, DEFAULT_CHECKBOX_MARK_STYLE } from '../constants';
 
 class PCCheckboxEditor extends Component {
@@ -66,10 +66,13 @@ class PCCheckboxEditor extends Component {
 
   renderIcon = (symbol, color) => {
     const className = classnames('dtable-ui-checkbox-check-mark', { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon') });
-    if (symbol.startsWith('dtable-icon')) {
-      return (<span className={`dtable-font ${symbol} ${className || ''}`} style={{ color }} />);
-    }
-    return (<SvgIcon className={className} symbol={symbol} color={color} />);
+    return (
+      <DTableIcon
+        className={className}
+        symbol={symbol}
+        color={color}
+      />
+    );
   };
 
   render() {

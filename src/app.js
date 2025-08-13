@@ -1,8 +1,8 @@
 import React from 'react';
 import { Row, Col } from 'reactstrap';
-import { COLUMNS_ICON_CONFIG } from 'dtable-utils';
-import { DTABLE_VALUE, COLLABORATORS, DEPARTMENTS, SIGN_CONFIG } from './data/dtable-value';
+import DTableColumnIcon from './DTableColumnIcon';
 import RowExpandFormatter from './RowExpandFormatter';
+import { DTABLE_VALUE, COLLABORATORS, DEPARTMENTS, SIGN_CONFIG } from './data/dtable-value';
 
 import './app.css';
 
@@ -13,12 +13,12 @@ class App extends React.Component {
     const table = this.value.tables[0];
     const { rows, columns } = table;
     return columns.map(column => {
-      const { key, type, name } = column;
+      const { key, name } = column;
       return (
         <Row className="pb-4" key={key}>
           <Col md={3}>
             <span className="header-icon" id={`header-icon-${key}`}>
-              <i className={COLUMNS_ICON_CONFIG[type]}></i>
+              <DTableColumnIcon column={column} />
             </span>
             <span className="column-name">{name || ''}</span>
           </Col>
