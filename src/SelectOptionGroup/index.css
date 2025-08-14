@@ -1,8 +1,9 @@
 .option-group {
+  display: flex;
+  flex-direction: column;
   position: absolute;
   left: 0;
   min-height: 60px;
-  max-height: 300px;
   min-width: 100%;
   max-width: 15rem;
   padding: 0.5rem 0;
@@ -15,8 +16,8 @@
 
 .option-group .option-group-search {
   width: 100%;
-  padding: 0 10px 6px 10px;
   min-width: 170px;
+  padding: 0 10px 6px;
 }
 
 .option-group-search .form-control {
@@ -31,6 +32,7 @@
 }
 
 .option-group .option-group-content {
+  flex: 1;
   max-height: 252px;
   overflow-y: auto;
 }
