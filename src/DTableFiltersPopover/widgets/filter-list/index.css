@@ -216,6 +216,7 @@
 .dtable-ui-filters-list .selected-option .multiple-select-option,
 .dtable-ui-filters-list .selected-option .single-select-option {
   display: inline-block;
+  margin: 0;
 }
 
 .dtable-ui-filters-list .filter-term input {
@@ -384,11 +385,6 @@
 
 .dtable-ui-filters-list .popover-add-tool .popover-add-icon {
   margin-right: 14px;
-}
-
-.dtable-ui-filters-list .option-group {
-  max-height: 360px;
-  overflow: auto;
 }
 
 .dtable-ui-filters-list .filter-item .dtable-icon-fork-number:hover {
