@@ -15,12 +15,9 @@ export default class Toaster {
   constructor() {
     if (!isBrowser) return;
 
-    let container = document.querySelector('[data-evergreen-toaster-container]');
-    if (!container) {
-      container = document.createElement('div');
-      container.setAttribute('data-evergreen-toaster-container', '');
-      document.body.appendChild(container);
-    }
+    const container = document.createElement('div');
+    container.setAttribute('data-evergreen-toaster-container', '');
+    document.body.appendChild(container);
 
     const root = createRoot(container);
     root.render(
