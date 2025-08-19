@@ -20,12 +20,12 @@ class RowExpandEmailFormatter extends React.Component {
 
   render() {
     const { containerClassName, value } = this.props;
-    let classname = classnames('dtable-ui cell-formatter-container email-formatter', containerClassName);
+    let classname = classnames('dtable-ui cell-formatter-container email-formatter row-expand-jump-link-container', containerClassName);
     return (
       <div className={classname}>
-        <span className="email-formatter-value text-truncate">{value}</span>
+        <span className="email-formatter-value row-expand-jump-link-value text-truncate">{value}</span>
         {getTrimmedString(value) &&
-          <span className="dtable-font dtable-icon-email row-expand-jump-link" onClick={this.onOpenEmailLink}></span>
+          <span className="dtable-font dtable-icon-email row-expand-jump-link-btn" onClick={this.onOpenEmailLink}></span>
         }
       </div>
     );

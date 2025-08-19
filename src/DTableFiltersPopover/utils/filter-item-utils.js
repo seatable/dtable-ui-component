@@ -1,18 +1,18 @@
 import React, { Fragment } from 'react';
-import { COLUMNS_ICON_CONFIG } from 'dtable-utils';
+import DTableColumnIcon from '../../DTableColumnIcon';
 import { getLocale } from '../../lang';
 
 class FilterItemUtils {
 
   static generatorColumnOption(column) {
     if (!column) return null;
-    const { type, name } = column;
+    const { name } = column;
     return {
       value: { column },
       label: (
         <Fragment>
           <span className="filter-header-icon">
-            <i className={COLUMNS_ICON_CONFIG[type]}></i>
+            <DTableColumnIcon column={column} />
           </span>
           <span className='select-option-name' title={name} aria-label={name} >
             {name}

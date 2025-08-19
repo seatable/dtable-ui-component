@@ -1,0 +1,27 @@
+.dtable-ui-row-expand-formatter .dtable-ui .row-expand-jump-link-value {
+  text-decoration: underline;
+  width: 95%;
+  display: inline-flex;
+}
+
+.dtable-ui-row-expand-formatter .dtable-ui .row-expand-jump-link-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  height: 22px;
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  border: 1px solid #eee;
+  padding: 0 4px;
+  color: #999;
+  border-radius: 2px;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 1px;
+}
+
+.dtable-ui-row-expand-formatter .dtable-ui .row-expand-jump-link:hover {
+  background: #eee;
+  border: 1px solid #c9c9c9;
+}

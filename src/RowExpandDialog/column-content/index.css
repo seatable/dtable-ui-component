@@ -10,13 +10,15 @@
   width: 24px;
 }
 
-.dtable-ui-header-icon .dtable-font {
+.dtable-ui-header-icon .dtable-font,
+.dtable-ui-header-icon .multicolor-icon {
   font-size: 14px;
   color: #aaa;
   cursor: default;
 }
 
-.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info .dtable-ui-header-icon .dtable-font {
+.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info .dtable-ui-header-icon .dtable-font,
+.dtable-ui-row-expand-column-content .dtable-ui-row-expand-column-content-info .dtable-ui-header-icon .multicolor-icon {
   color: #212529a6;
 }
 

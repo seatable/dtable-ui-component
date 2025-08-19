@@ -107,7 +107,7 @@ class RowExpandFormatter extends React.Component {
       case CellType.TEXT: {
         return (
           <div className="form-control d-flex align-items-center w-100">
-            <Formatter value={cellValue} containerClassName={containerClassName} />
+            <Formatter value={cellValue} column={column} containerClassName={containerClassName} />
           </div>
         );
       }
