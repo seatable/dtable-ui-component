@@ -31,7 +31,7 @@ class TextFormatter extends React.Component {
     const formattedValue = this.getFormattedValue(value);
     return (
       <div className={classname}>
-        <span className="text-formatter-value row-expand-jump-link-value text-truncate">{formattedValue}</span>
+        <span className={classnames('text-formatter-value text-truncate', { 'row-expand-jump-link-value': isDisplayAsAsPhoneNumber })}>{formattedValue}</span>
         {(isDisplayAsAsPhoneNumber && !!getTrimmedString(value)) &&
           <PhoneNumberLink phoneNumber={value} className="row-expand-jump-link-btn" />
         }
