@@ -26,9 +26,9 @@ class TextFormatter extends React.Component {
 
   render() {
     const { containerClassName, value, column } = this.props;
-    const classname = classnames('dtable-ui cell-formatter-container row-expand-jump-link-container text-formatter', containerClassName);
-    const formattedValue = this.getFormattedValue(value);
     const isDisplayAsAsPhoneNumber = column ? checkIsDisplayAsPhoneNumberColumn(column) : false;
+    const classname = classnames('dtable-ui cell-formatter-container text-formatter', containerClassName, { 'row-expand-jump-link-container': isDisplayAsAsPhoneNumber });
+    const formattedValue = this.getFormattedValue(value);
     return (
       <div className={classname}>
         <span className="text-formatter-value row-expand-jump-link-value text-truncate">{formattedValue}</span>
