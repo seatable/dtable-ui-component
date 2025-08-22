@@ -97,6 +97,10 @@ class SelectOptionGroup extends Component {
     if (isInModal) {
       e.stopPropagation();
       e.nativeEvent.stopImmediatePropagation();
+
+      // ClickOutside set isClickedInside to true via mouse down capture first
+      // Set isClickedInside to false after mouse down
+      this.clickOutsideRef && this.clickOutsideRef.setClickedInsideStatus(false);
     }
   };
 
@@ -177,7 +181,7 @@ class SelectOptionGroup extends Component {
       };
     }
     return (
-      <ClickOutside onClickOutside={this.props.onClickOutside}>
+      <ClickOutside ref={ref => this.clickOutsideRef = ref} onClickOutside={this.props.onClickOutside}>
         <div
           className={classnames('option-group', className ? 'option-group-' + className : '', {
             'pt-0': isShowSelected,

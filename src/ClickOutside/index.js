@@ -62,9 +62,13 @@ class ClickOutside extends React.Component {
     document.removeEventListener('mousedown', this.handleDocumentClick);
   }
 
+  setClickedInsideStatus = (status) => {
+    this.isClickedInside = status || false;
+  }
+
   handleDocumentClick = (e) => {
     if (this.isClickedInside) {
-      this.isClickedInside = false;
+      this.setClickedInsideStatus(false);
       return;
     }
 
@@ -72,15 +76,13 @@ class ClickOutside extends React.Component {
   };
 
   handleMouseDown = () => {
-    this.isClickedInside = true;
+    this.setClickedInsideStatus(true);
   };
 
   render() {
-    return React.cloneElement(
-      React.Children.only(this.props.children), {
-        onMouseDownCapture: this.handleMouseDown
-      }
-    );
+    return React.cloneElement(React.Children.only(this.props.children), {
+      onMouseDownCapture: this.handleMouseDown
+    });
   }
 }
 
