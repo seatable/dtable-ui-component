@@ -133,30 +133,36 @@ class FileUploader extends React.Component {
         file = new File([file], newName, { type: file.type });
       }
       try {
-        let fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
+        let isImage = /image/i.test(uploadFile.type);
 
-        fileReader.addEventListener('load', function (event) {
-          let isImage = /image/i.test(file.type);
-          if (uploadType === 'file' || isImage) {
-            let uploadFileItem = {
-              name: file.name,
-              fileIconUrl: isImage ? event.target.result : getFileIconUrl(file.name, file.type),
-              isUploading: true,
-              isErrorTip: false,
-              file: file,
-              size: file.size,
-              url: '',
-              type: uploadType === 'file' ? 'file' : '',
-              percent: 0,
-            };
+        let uploadFileItem = {
+          name: uploadFile.name,
+          fileIconUrl: getFileIconUrl(uploadFile.name),
+          isUploading: true,
+          isErrorTip: false,
+          uploadFile: uploadFile,
+          size: uploadFile.size,
+          url: '',
+          type: uploadType === 'file' ? 'file' : '',
+          percent: 0,
+        };
+
+        // Provide preview when the image size is less than 100MB
+        if (isImage && uploadFile.size < 100 * 1024 * 1024) {
+          let fileReader = new FileReader();
+          fileReader.readAsDataURL(uploadFile);
+          fileReader.onload = function (event) {
+            uploadFileItem.fileIconUrl = event.target.result;
             uploadFileList.push(uploadFileItem);
-          }
+            checkLoadFinish();
+          };
+          fileReader.onerror = function () {
+            checkLoadFinish();
+          };
+        } else {
+          uploadFileList.push(uploadFileItem);
           checkLoadFinish();
-        }, false);
-        fileReader.addEventListener('error', function (e) {
-          checkLoadFinish();
-        }, false);
+        }
       } catch (event) {
         checkLoadFinish();
       }
