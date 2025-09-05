@@ -40,15 +40,17 @@ class SelectOptionGroup extends Component {
   resetMenuStyle = () => {
     if (!this.optionGroupRef) return;
     const { isInModal, position } = this.props;
-    const { top, height } = this.optionGroupRef.getBoundingClientRect();
+    const { top, height, width } = this.optionGroupRef.getBoundingClientRect();
     if (isInModal) {
       if (position.y + position.height + height > window.innerHeight) {
         this.optionGroupRef.style.top = (position.y - height) + 'px';
       }
+      if (position && position.x + width > window.innerWidth) {
+        this.optionGroupRef.style.left = (window.innerWidth - width - 10) + 'px';
+      }
       this.optionGroupRef.style.opacity = 1;
       this.searchInputRef.current && this.searchInputRef.current.inputRef.focus();
-    }
-    else {
+    } else {
       if (height + top > window.innerHeight) {
         const borderWidth = 2;
         this.optionGroupRef.style.top = -1 * (height + borderWidth) + 'px';
