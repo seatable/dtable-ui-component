@@ -215,10 +215,8 @@ class FilterItem extends React.Component {
   };
 
   onFilterTermCheckboxChanged = () => {
-    const { filterColumn } = this.props;
-    const value = this.checkboxEditor.getValue();
-    const checked = value[filterColumn.key];
-    this.onFilterTermChanged(checked);
+    const value = this.checkboxEditor?.getValue();
+    this.onFilterTermChanged(!!value);
   };
 
   onFilterTermTextChanged = (value) => {
@@ -226,8 +224,8 @@ class FilterItem extends React.Component {
   };
 
   onFilterTermNumberChanged = () => {
-    const value = this.numberEditor.getValue();
-    this.onFilterTermChanged(Object.values(value)[0]);
+    const value = this.numberEditor?.getValue();
+    this.onFilterTermChanged(value);
   };
 
   onFilterTermDurationChanged = () => {
@@ -278,7 +276,7 @@ class FilterItem extends React.Component {
             column={filterColumn}
             value={filterTerm}
             className='dtable-ui-filter-item-checkbox'
-            onChange={this.onFilterTermCheckboxChanged}
+            onCommit={this.onFilterTermCheckboxChanged}
             readOnly={readOnly}
           />
         </div>
@@ -289,7 +287,7 @@ class FilterItem extends React.Component {
           ref={ref => this.numberEditor = ref}
           column={filterColumn}
           value={filterTerm}
-          onCommit={this.onFilterTermNumberChanged}
+          onBlur={this.onFilterTermNumberChanged}
           readOnly={readOnly}
         />
       );
