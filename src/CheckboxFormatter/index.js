@@ -18,7 +18,7 @@ class CheckboxFormatter extends React.PureComponent {
   };
 
   renderIcon = (symbol, color) => {
-    const className = classnames('dtable-ui-checkbox-check-mark', { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon'), 'scale-icon-150': isMobile });
+    const className = classnames('dtable-ui-checkbox-check-mark', { 'dtable-ui-checkbox-check-svg': !symbol?.startsWith('dtable-icon')});
     return (
       <DTableIcon
         className={className}
