@@ -13,6 +13,7 @@ const FileFormatter = ({
   containerClassName = '',
   renderItem,
   isSupportOpenFile = false,
+  onOpenFile,
   server,
   workspaceID,
   dtableUuid,
@@ -56,7 +57,8 @@ const FileFormatter = ({
     let assetFileIndex = openFileUrl.indexOf('/asset');
     if (assetFileIndex > -1) {
       previewerUrl = openFileUrl.replace('/asset', '/asset-preview');
-      window.open(previewerUrl, '_blank');
+      if (!onOpenFile) window.open(previewerUrl, '_blank');
+      onOpenFile(previewerUrl);      
     }
   }, [fileImageUrlList, isSupportOpenFile, showLargeImage]);
 
@@ -117,6 +119,7 @@ FileFormatter.propTypes = {
   value: PropTypes.array,
   containerClassName: PropTypes.string,
   renderItem: PropTypes.func,
+  onOpenFile: PropTypes.func,
   isSupportOpenFile: PropTypes.bool,
   server: PropTypes.string,
   workspaceID: PropTypes.string,
