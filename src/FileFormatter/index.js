@@ -58,7 +58,7 @@ const FileFormatter = ({
     if (assetFileIndex > -1) {
       previewerUrl = openFileUrl.replace('/asset', '/asset-preview');
       if (!onOpenFile) window.open(previewerUrl, '_blank');
-      onOpenFile(previewerUrl);      
+      onOpenFile(previewerUrl);
     }
   }, [fileImageUrlList, isSupportOpenFile, showLargeImage]);
 

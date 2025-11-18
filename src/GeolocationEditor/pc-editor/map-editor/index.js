@@ -419,7 +419,7 @@ class MapEditor extends Component {
         {...this.props}
         value={this.state.value}
         setValue={this.setValue}
-        toggleFullScreen={this.toggleFullScreen} 
+        toggleFullScreen={this.toggleFullScreen}
       />
     );
   }

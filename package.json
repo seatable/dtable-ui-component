@@ -132,7 +132,6 @@
     "source-map-loader": "^3.0.0",
     "storybook": "^9.1.0",
     "style-loader": "^3.3.1",
-    "tailwindcss": "^3.0.2",
     "terser-webpack-plugin": "^5.2.5",
     "url-loader": "^4.1.1",
     "web-vitals": "2.1.4",
