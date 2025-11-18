@@ -127,10 +127,10 @@ class FileUploader extends React.Component {
       dealFileCnt++;
     }
     for (let i = 0; i < allFileLen; i++) {
-      let file = files[i];
-      if (isPasteUpload && file.name === 'image.png') {
+      let uploadFile = files[i];
+      if (isPasteUpload && uploadFile.name === 'image.png') {
         let newName = `image-${dayjs().format('YYYY-MM-DD-HH-mm')}.png`;
-        file = new File([file], newName, { type: file.type });
+        uploadFile = new File([uploadFile], newName, { type: uploadFile.type });
       }
       try {
         let isImage = /image/i.test(uploadFile.type);
