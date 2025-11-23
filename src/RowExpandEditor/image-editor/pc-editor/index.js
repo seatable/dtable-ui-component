@@ -158,6 +158,7 @@ class RowExpandPCImageEditor extends React.Component {
             closeImagePopup={this.hideLargeImage}
             moveToPrevImage={this.moveToPrevImage}
             moveToNextImage={this.moveToNextImage}
+            setImageIndex={this.setLargeImageIndex}
           />
         }
       </>

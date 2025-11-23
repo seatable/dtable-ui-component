@@ -55,6 +55,10 @@ class ImageFormatter extends React.Component {
     }));
   };
 
+  setImageIndex = (index) => {
+    this.setState({ previewImageIndex: index });
+  };
+
   downloadImage = (imageItemUrl) => {
     if (!this.props.downloadImage) return;
     this.props.downloadImage(imageItemUrl);
@@ -97,6 +101,7 @@ class ImageFormatter extends React.Component {
             imageItems={value}
             className={lightboxClassName}
             imageIndex={previewImageIndex}
+            setImageIndex={this.setImageIndex}
             closeImagePopup={this.closeImagePopup}
             moveToPrevImage={this.movePrev}
             moveToNextImage={this.moveNext}

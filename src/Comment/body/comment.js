@@ -81,6 +81,10 @@ class Comment extends PureComponent {
     });
   };
 
+  setImageIndex = (index) => {
+    this.setState({ largeImageIndex: index });
+  };
+
   isCommentUserExist = (commentItem) => {
     const { collaborators } = this.props;
     return !!collaborators.find(collaborator => collaborator.email === commentItem.author);
@@ -167,6 +171,7 @@ class Comment extends PureComponent {
             closeImagePopup={this.hideLargeImage}
             moveToPrevImage={this.movePrev}
             moveToNextImage={this.moveNext}
+            setImageIndex={this.setImageIndex}
           />
         )}
       </div>

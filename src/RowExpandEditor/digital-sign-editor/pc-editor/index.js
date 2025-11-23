@@ -180,6 +180,7 @@ class RowExpandPCDigitalSignEditor extends React.Component {
             deleteImage={(index) => {
               this.deleteImage(index); this.hideLargeImage();
             }}
+            setImageIndex={this.setLargeImageIndex}
           />
         }
       </div>

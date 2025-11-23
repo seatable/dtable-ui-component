@@ -70,6 +70,10 @@ class ImagesPreviewer extends React.Component {
     }));
   };
 
+  setImageIndex = (index) => {
+    this.setState({ largeImageIndex: index });
+  };
+
   togglePreviewer = () => {
     this.props.togglePreviewer(FILE_EDITOR_STATUS.ADDITION);
     this.props.resetAdditionImage();
@@ -134,6 +138,7 @@ class ImagesPreviewer extends React.Component {
             deleteImage={this.props.deleteImage ? this.deleteImage : null}
             downloadImage={this.downloadImage}
             onRotateImage={this.props.onRotateImage}
+            setImageIndex={this.setImageIndex}
           />
         )}
         <DTableCommonAddTool callBack={this.togglePreviewer} footerName={getLocale('Add_images')} />

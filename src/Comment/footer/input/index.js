@@ -376,6 +376,10 @@ class Input extends React.Component {
     this.onSelectCollaborator(filteredCollaborators[activeCollaboratorIndex]);
   };
 
+  setImageIndex = (index) => {
+    this.setState({ largeImageIndex: index });
+  };
+
   render() {
     const { api } = this.props;
     const { imageUrlList, largeImageIndex, filteredCollaborators, activeCollaboratorIndex } = this.state;
@@ -421,6 +425,7 @@ class Input extends React.Component {
             closeImagePopup={this.hideLargeImage}
             moveToPrevImage={this.movePrev}
             moveToNextImage={this.moveNext}
+            setImageIndex={this.setImageIndex}
           />
         }
         <FileUploader

@@ -63,6 +63,10 @@ export default class RowExpandImageFormatter extends React.Component {
     }));
   };
 
+  setImageIndex = (index) => {
+    this.setState({ previewImageIndex: index });
+  };
+
   render() {
     const { value, server, containerClassName, readOnly, column } = this.props;
     const { isPreviewImage, previewImageIndex } = this.state;
@@ -91,6 +95,7 @@ export default class RowExpandImageFormatter extends React.Component {
           <ImagePreviewerLightbox
             imageItems={value}
             imageIndex={previewImageIndex}
+            setImageIndex={this.setImageIndex}
             closeImagePopup={this.closeImagePopup}
             moveToPrevImage={this.movePrev}
             moveToNextImage={this.moveNext}

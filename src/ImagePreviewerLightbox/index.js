@@ -11,7 +11,7 @@ import './index.css';
 function ImagePreviewerLightbox(props) {
   const {
     imageItems, imageIndex, readOnly, className, server, workspaceID, dtableUuid,
-    deleteImage, downloadImage, onRotateImage,
+    deleteImage, downloadImage, onRotateImage, setImageIndex
   } = props;
   const imageSrcList = imageItems.map((src) => {
     if (server && dtableUuid && isCustomAssetUrl(src)) {
@@ -55,6 +55,9 @@ function ImagePreviewerLightbox(props) {
 
   return (
     <Lightbox
+      imageItems={imageSrcList}            
+      currentIndex={imageIndex}
+      setImageIndex={setImageIndex}
       wrapperClassName={classnames('dtable-ui-component', className)}
       imageTitle={imageTitleDOM}
       mainSrc={mainSrc}

@@ -165,6 +165,10 @@ class PCFilesPreviewer extends React.Component {
     this.onChangeSelectMultipleFiles(false);
   };
 
+  setImageIndex = (index) => {
+    this.setState({ largeImageIndex: index });
+  };
+
   renderFilesOperation = () => {
     const { value, deleteFiles, getDownLoadFiles } = this.props;
     const { isSelectMultipleFiles, selectedFilesList } = this.state;
@@ -238,6 +242,7 @@ class PCFilesPreviewer extends React.Component {
             deleteImage={this.deleteImage}
             downloadImage={this.downloadImage}
             onRotateImage={this.onRotateImage}
+            setImageIndex={this.setImageIndex}
           />
         }
         <DTableCommonAddTool className="dtable-ui-file-editor-previewer-add-btn" callBack={this.togglePreviewer} footerName={getLocale('Add_files')} />

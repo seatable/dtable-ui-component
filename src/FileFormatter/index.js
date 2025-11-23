@@ -108,6 +108,7 @@ const FileFormatter = ({
           closeImagePopup={hideLargeImage}
           moveToPrevImage={movePrev}
           moveToNextImage={moveNext}
+          setImageIndex={setLargeImageIndex}
         />
       )}
     </div>
