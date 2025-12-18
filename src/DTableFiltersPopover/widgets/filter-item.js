@@ -690,11 +690,11 @@ class FilterItem extends React.Component {
     const { filter, filterColumn, filterColumnOptions, readOnly } = this.props;
     const { filter_predicate, filter_term_modifier } = filter;
     const activeColumn = FilterItemUtils.generatorColumnOption(filterColumn);
-    const activePredicate = FilterItemUtils.generatorPredicateOption(filter_predicate);
+    const activePredicate = FilterItemUtils.generatorPredicateOption(filter_predicate, true);
     let activeTermModifier = null;
     let _isCheckboxColumn = false;
     if (isDateColumn(filterColumn)) {
-      activeTermModifier = FilterItemUtils.generatorTermModifierOption(filter_term_modifier);
+      activeTermModifier = FilterItemUtils.generatorTermModifierOption(filter_term_modifier, true);
     } else if (isCheckboxColumn(filterColumn)) {
       _isCheckboxColumn = true;
     }

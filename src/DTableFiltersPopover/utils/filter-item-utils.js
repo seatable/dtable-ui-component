@@ -22,14 +22,16 @@ class FilterItemUtils {
     };
   }
 
-  static generatorPredicateOption(filterPredicate) {
+  static generatorPredicateOption(filterPredicate, isActive = false) {
+    // When an option is selected and shown in the select component, the ellipsis at the end of the predicate text is not displayed.
+    const translatedPredicateText = isActive ? getLocale(filterPredicate).replace(/\s*\.{3}$/, '') : getLocale(filterPredicate);
     return {
       value: { filterPredicate },
-      label: <span className='select-option-name'>{getLocale(filterPredicate)}</span>
+      label: <span className='select-option-name'>{translatedPredicateText}</span>
     };
   }
 
-  static generatorTermModifierOption(filterTermModifier) {
+  static generatorTermModifierOption(filterTermModifier, isActive = false) {
     const FILTER_TERM_MODIFIER_SHOW = {
       'today': getLocale('today'),
       'tomorrow': getLocale('tomorrow'),
@@ -53,9 +55,13 @@ class FilterItemUtils {
       'this_month': getLocale('this_month'),
       'this_year': getLocale('this_year')
     };
+    const filterTermModifierText = FILTER_TERM_MODIFIER_SHOW[filterTermModifier];
+
+    // When an option is selected and shown in the select component, the ellipsis at the end of the term modifier text is not displayed.
+    const translatedTermModifierText = isActive ? getLocale(filterTermModifierText).replace(/\s*\.{3}$/, '') : getLocale(filterTermModifierText);
     return {
       value: { filterTermModifier },
-      label: <span className='select-option-name'>{FILTER_TERM_MODIFIER_SHOW[filterTermModifier]}</span>
+      label: <span className='select-option-name'>{translatedTermModifierText}</span>
     };
   }
 
