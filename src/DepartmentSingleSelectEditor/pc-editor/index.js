@@ -35,10 +35,15 @@ class PCDepartmentSingleSelectEditor extends Component {
 
   componentDidMount() {
     if (this.isRowExpand) {
-      if (this.outerRef.getBoundingClientRect().top > 330) {
-        const menuStyle = { top: -200 };
-        this.setState({ menuStyle });
+      let menuStyle = {};
+      const { top, left } = this.outerRef.getBoundingClientRect();
+      if (top > 330) {
+        menuStyle.top = -200;
       }
+      if (left > window.innerWidth - 300) {
+        menuStyle.left = left - window.innerWidth;
+      }
+      this.setState({ menuStyle });
     }
   }
 
