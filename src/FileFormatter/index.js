@@ -60,6 +60,7 @@ const FileFormatter = ({
       if (!onOpenFile) window.open(previewerUrl, '_blank');
       onOpenFile(previewerUrl);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fileImageUrlList, isSupportOpenFile, showLargeImage]);
 
   const moveNext = useCallback(() => {

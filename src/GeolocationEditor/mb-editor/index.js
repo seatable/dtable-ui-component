@@ -27,6 +27,7 @@ const transLocationData = (data) => {
 
 const transCountryData = (data) => {
   let _data = [];
+  // eslint-disable-next-line
   for (let key in data) {
     let obj = {};
     let children = [];

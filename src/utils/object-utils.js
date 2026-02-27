@@ -47,6 +47,7 @@ export const hasOwnProperty = (obj, propertyKey) => {
 
 export const shallowCloneObject = (obj) => {
   const result = {};
+  // eslint-disable-next-line
   for (const k in obj) {
     if (Object.prototype.hasOwnProperty.call(obj, k)) {
       result[k] = obj[k];

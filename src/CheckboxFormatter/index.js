@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import DTableIcon from '../DTableIcon';
-import { DEFAULT_CHECKBOX_MARK_STYLE, isMobile } from '../constants';
+import { DEFAULT_CHECKBOX_MARK_STYLE } from '../constants';
 
 import './index.css';
 
