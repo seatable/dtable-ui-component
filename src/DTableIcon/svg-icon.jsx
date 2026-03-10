@@ -24,7 +24,7 @@ const getSvgIconComponents = () => {
 const SvgIcon = ({ className, symbol, color, ariaHidden, getSvg }) => {
   if (!symbol) return null;
 
-  let props = { style: { color: color } };
+  let props = { style: { color } };
   if (ariaHidden) {
     props['aria-hidden'] = ariaHidden;
   }
