@@ -27,8 +27,12 @@ function ImagePreviewerLightbox(props) {
   });
 
   const imagesLength = imageSrcList.length;
-  const URL = imageSrcList[imageIndex];
+  const [currentImageIndex, setCurrentImageIndex] = React.useState(imageIndex || 0);
+  const URL = imageSrcList[currentImageIndex];
 
+  React.useEffect(() => {
+    setCurrentImageIndex(imageIndex);
+  }, [imageIndex]);
 
   // Handle URL has special symbol %$
   let imageName = '';
@@ -49,17 +53,20 @@ function ImagePreviewerLightbox(props) {
   const imageTitleDOM = props.imageTitle || (
     <span className="d-flex">
       <span className="text-truncate">{imageName}</span>
-      <span className="flex-shrink-0 pl-1">({imageIndex + 1}/{imagesLength})</span>
+      <span className="flex-shrink-0 pl-1">({currentImageIndex + 1}/{imagesLength})</span>
     </span>
   );
 
   return (
     <Lightbox
+      imageItems={imageSrcList}
+      currentIndex={currentImageIndex}
+      setImageIndex={index => setCurrentImageIndex(index)}
       wrapperClassName={classnames('dtable-ui-component', className)}
       imageTitle={imageTitleDOM}
       mainSrc={mainSrc}
-      nextSrc={imageSrcList[(imageIndex + 1) % imagesLength]}
-      prevSrc={imageSrcList[(imageIndex + imagesLength - 1) % imagesLength]}
+      nextSrc={imageSrcList[(currentImageIndex + 1) % imagesLength]}
+      prevSrc={imageSrcList[(currentImageIndex + imagesLength - 1) % imagesLength]}
       imagePadding={70}
       viewOriginalImageLabel={getLocale('View_original_image')}
       enableRotate={canRotateImage}
@@ -69,9 +76,14 @@ function ImagePreviewerLightbox(props) {
       onClickMoveUp={props.moveToPrevRowImage}
       onClickMoveDown={props.moveToNextRowImage}
       onViewOriginal={props.onViewOriginal}
-      onRotateImage={canRotateImage ? (deg) => {onRotateImage(imageIndex, deg);} : null}
-      onClickDelete={(!readOnly && deleteImage) ? () => {deleteImage(imageIndex, 'previewer');} : null}
+      onRotateImage={canRotateImage ? (deg) => {onRotateImage(currentImageIndex, deg);} : null}
+      onClickDelete={(!readOnly && deleteImage) ? () => {deleteImage(currentImageIndex, 'previewer');} : null}
       onClickDownload={downloadImage ? () => {downloadImage(URL);} : null}
+      zoomInTip={getLocale('Zoom_in')}
+      zoomOutTip={getLocale('Zoom_out')}
+      rotateTip={getLocale('Rotate_image')}
+      deleteTip={getLocale('Delete_image')}
+      downloadImageTip={getLocale('Download_image')}
     />
   );
 }
@@ -89,8 +101,6 @@ ImagePreviewerLightbox.propTypes = {
   moveToNextRowImage: PropTypes.func,
   onViewOriginal: PropTypes.func,
   closeImagePopup: PropTypes.func.isRequired,
-  moveToPrevImage: PropTypes.func.isRequired,
-  moveToNextImage: PropTypes.func.isRequired,
   downloadImage: PropTypes.func,
   deleteImage: PropTypes.func,
   onRotateImage: PropTypes.func,
