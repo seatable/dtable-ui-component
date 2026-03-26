@@ -27,17 +27,17 @@
 }
 
 .ril__viewOriginalButton {
-    height: 40px;
-    width: 178px!important;
-    -ms-flex-negative: 0;
-    background: #333;
-    border-radius: 8px;
-    color: #fff;
-    flex-shrink: 0;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal
+  height: 40px;
+  width: 178px!important;
+  -ms-flex-negative: 0;
+  background: #333;
+  border-radius: 8px;
+  color: #fff;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal
 }
 
 .mobile-image-footer-choice .ril__builtinButton {
