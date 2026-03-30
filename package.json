@@ -134,7 +134,7 @@
     "terser-webpack-plugin": "^5.2.5",
     "url-loader": "^4.1.1",
     "webpack": "^5.105.4",
-    "webpack-dev-server": "^5.2.2",
+    "webpack-dev-server": "^5.2.3",
     "worker-loader": "3.0.8"
   }
 }
