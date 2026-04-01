@@ -2,6 +2,9 @@
   "name": "dtable-ui-component",
   "version": "6.0.107",
   "main": "./lib/index.js",
+  "overrides": {
+    "@xmldom/xmldom": "^0.9.9"
+  },
   "dependencies": {
     "@seafile/react-image-lightbox": "4.0.2",
     "@seafile/seafile-calendar": "~0.0.32",
