@@ -17,6 +17,7 @@
 
 .ril__outer .ril__toolbarItem button {
   background-size: 20px;
+  opacity: 1 !important;
   width: 100%;
 }
 
