@@ -4,16 +4,60 @@
 }
 
 .ril__outer .ril__toolbarItem {
-  height: 50px;
-  color: #fff;
-  display: inline-block;
-  font-size: 120%;
-  line-height: 50px;
   max-width: 100%;
-  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 0;
+  color: #fff;
+  overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.ril__outer .ril__toolbarItem button {
+  background-size: 20px;
+  opacity: 1 !important;
+  width: 100%;
+}
+
+.ril__builtinButton:hover,
+.ril__builtinButton:focus {
+  background-color: #666;
+  opacity: 1 !important;
+}
+
+.ril__viewOriginalButton {
+  height: 40px;
+  width: 178px!important;
+  -ms-flex-negative: 0;
+  background: #333;
+  border-radius: 8px;
+  color: #fff;
+  flex-shrink: 0;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal
+}
+
+.mobile-image-footer-choice .ril__builtinButton {
+  opacity: 1 !important;
+}
+
+.ril__builtinButton:hover,
+.ril__builtinButton:focus {
+  background-color: #666 !important;
+  opacity: 1 !important;
+}
+
+.ril__builtinButtonDisabled {
+  cursor: default;
+  opacity: 0.5 !important;
+}
+
+.ril__builtinButtonDisabled:hover {
+  opacity: 0.5 !important;
 }
 
 .ril-caption .ril__builtinButton {
