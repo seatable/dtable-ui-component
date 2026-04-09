@@ -329,7 +329,7 @@ module.exports = function (webpackEnv) {
       ],
       fallback: {
         path: require.resolve('path-browserify'),
-        'process/browser': require.resolve('process/browser'),
+        process: require.resolve('process/browser'),
       }
     },
     module: {
