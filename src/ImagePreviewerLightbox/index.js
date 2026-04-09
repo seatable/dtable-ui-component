@@ -14,34 +14,44 @@ function ImagePreviewerLightbox(props) {
     deleteImage, downloadImage, onRotateImage,
   } = props;
   const imageSrcList = imageItems.map((src) => {
+    let name = '';
+    try {
+      name = src ? decodeURIComponent(src.slice(src.lastIndexOf('/') + 1)) : '';
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+
     if (server && dtableUuid && isCustomAssetUrl(src)) {
       const assetUuid = src.slice(src.lastIndexOf('/') + 1, src.lastIndexOf('.'));
-      return server + '/dtable/' + dtableUuid + '/custom-asset/' + assetUuid;
+      return {
+        name,
+        thumbnail: server + '/dtable/' + dtableUuid + '/custom-asset/' + assetUuid
+      };
     }
     if (server && dtableUuid && workspaceID && isDigitalSignsUrl(src)) {
-      return generateCurrentBaseImageUrl({
-        server, workspaceID, dtableUuid, partUrl: src
-      });
+      return {
+        name,
+        thumbnail: generateCurrentBaseImageUrl({
+          server, workspaceID, dtableUuid, partUrl: src
+        })
+      };
     }
-    return src;
+    return {
+      name: name || '',
+      thumbnail: src
+    };
   });
 
   const imagesLength = imageSrcList.length;
   const [currentImageIndex, setCurrentImageIndex] = React.useState(imageIndex || 0);
-  const URL = imageSrcList[currentImageIndex];
+  const imageItem = imageSrcList[currentImageIndex];
+  const URL = imageItem ? imageItem.thumbnail : '';
+  const imageName = imageItem ? imageItem.name : '';
 
   React.useEffect(() => {
     setCurrentImageIndex(imageIndex);
   }, [imageIndex]);
-
-  // Handle URL has special symbol %$
-  let imageName = '';
-  try {
-    imageName = URL ? decodeURI(URL.slice(URL.lastIndexOf('/') + 1)) : '';
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
-  }
 
   const canRotateImage = onRotateImage && !readOnly && !['gif', 'heic', 'heif'].includes(getFileSuffix(URL)) && isInternalImg(URL, server);
 
@@ -52,7 +62,7 @@ function ImagePreviewerLightbox(props) {
 
   const imageTitleDOM = props.imageTitle || (
     <span className="d-flex">
-      <span className="text-truncate">{imageName}</span>
+      <span className="text-truncate">{imageName || ''}</span>
       <span className="flex-shrink-0 pl-1">({currentImageIndex + 1}/{imagesLength})</span>
     </span>
   );
@@ -65,8 +75,8 @@ function ImagePreviewerLightbox(props) {
       wrapperClassName={classnames('dtable-ui-component', className)}
       imageTitle={imageTitleDOM}
       mainSrc={mainSrc}
-      nextSrc={imageSrcList[(currentImageIndex + 1) % imagesLength]}
-      prevSrc={imageSrcList[(currentImageIndex + imagesLength - 1) % imagesLength]}
+      nextSrc={imageSrcList[(currentImageIndex + 1) % imagesLength] ? imageSrcList[(currentImageIndex + 1) % imagesLength].thumbnail : ''}
+      prevSrc={imageSrcList[(currentImageIndex + imagesLength - 1) % imagesLength] ? imageSrcList[(currentImageIndex + imagesLength - 1) % imagesLength].thumbnail : ''}
       imagePadding={70}
       viewOriginalImageLabel={getLocale('View_original_image')}
       enableRotate={canRotateImage}
