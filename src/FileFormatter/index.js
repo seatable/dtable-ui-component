@@ -17,6 +17,7 @@ const FileFormatter = ({
   server,
   workspaceID,
   dtableUuid,
+  downloadImage,
 }) => {
   const [largeImageIndex, setLargeImageIndex] = useState(-1);
   const [fileImageUrlList, setFileImageUrlList] = useState([]);
@@ -109,6 +110,7 @@ const FileFormatter = ({
           closeImagePopup={hideLargeImage}
           moveToPrevImage={movePrev}
           moveToNextImage={moveNext}
+          downloadImage={downloadImage}
         />
       )}
     </div>
@@ -125,6 +127,8 @@ FileFormatter.propTypes = {
   server: PropTypes.string,
   workspaceID: PropTypes.string,
   dtableUuid: PropTypes.string,
+  downloadImage: PropTypes.func,
+  shownFile: PropTypes.bool
 };
 
 export default FileFormatter;
