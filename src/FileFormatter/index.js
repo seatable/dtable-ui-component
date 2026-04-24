@@ -127,8 +127,7 @@ FileFormatter.propTypes = {
   server: PropTypes.string,
   workspaceID: PropTypes.string,
   dtableUuid: PropTypes.string,
-  downloadImage: PropTypes.func,
-  shownFile: PropTypes.bool
+  downloadImage: PropTypes.func
 };
 
 export default FileFormatter;
