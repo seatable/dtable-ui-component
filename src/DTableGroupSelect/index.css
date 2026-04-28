@@ -4,7 +4,7 @@
 
 .group-select.custom-select {
   display: flex;
-  padding: 5px 10px;
+  padding: 7px 8px !important;
   border-radius: 3px;
   align-items: center;
   justify-content: space-between;
@@ -79,18 +79,81 @@
 }
 
 .group-select .selected-option-show .selected-option-item {
-  background-color: rgb(240, 240, 240);
-  border-radius: 16px;
+  background-color: #F7F7F5;
+  border-radius: 4px !important;
   display: flex;
   align-items: center;
+  height: 24px;
 }
 
 .group-select .selected-option-show .selected-option-item .selected-option-item-name {
-  font-size: 13px;
+  font-size: 14px !important;
   color: #212529;
+  margin-left: 6px;
+  margin-right: 8px
 }
 
 .group-select .selected-option-show .selected-option-item .dtable-icon-x {
   cursor: pointer;
-  color: rgb(103, 103, 103);
+  color: #666666;
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.seatable-group-select .option-group-search {
+  padding: 0 !important;
+}
+
+.seatable-group-select .form-control {
+  border: none;
+  border-bottom: 1px solid rgb(0 40 100 / 12%) !important;
+  border-radius: 4px 4px 0 0;
+  padding: .375rem 1rem !important;
+  height: 32px;
+}
+
+.seatable-group-select .form-control:focus {
+  border-color: transparent !important;
+  border-bottom: 1px solid rgb(0 40 100 / 12%) !important;
+  box-shadow: none !important;
+}
+
+.option-group-content .dtable-icon-check {
+  color: #666666;
+  font-size: 14px;
+  margin-left: 16px;
+}
+
+.option-group-content .label-check-icon {
+  width: 30px;
+}
+
+.seatable-group-select .clear-search-text {
+  position: absolute;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  line-height: 12px;
+  top: 10px !important;
+  right: 18px;
+}
+
+.seatable-group-select .seatable-icon-btn:not(.disabled):hover {
+  background-color:#FFFFFF;
+}
+
+.option-group-dtable-filter-select-column .seatable-icon-btn {
+  height: 12px !important;
+  width: 12px !important;
+  font-size: 12px !important;
+}
+
+.option-group-dtable-filter-select-column .clear-search-text {
+  position: absolute;
+  display: inline-block;
+  height: 12px;
+  width: 12px;
+  line-height: 12px;
+  top: 12px;
+  right: 18px;
 }

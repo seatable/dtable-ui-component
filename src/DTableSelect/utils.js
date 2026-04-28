@@ -102,31 +102,49 @@ const MenuSelectStyle = {
     const { isDisabled, isFocused } = state;
     return ({
       ...provided,
-      fontSize: '13px',
+      padding: '8px',
+      fontSize: '14px',
       color: '#212529',
       cursor: isDisabled ? 'default' : 'pointer',
       backgroundColor: isFocused ? '#f5f5f5' : '#fff',
+      borderRadius: '4px',
       ':active': {
         backgroundColor: '#f5f5f5',
       },
       '.header-icon .dtable-font': {
-        color: '#aaa',
+        color: '#999',
       },
       '.header-icon .multicolor-icon': {
-        color: '#aaa',
+        color: '#999',
+      },
+      '.seatable-ui-select-tip': {
+        fontSize: '12px',
+        color: '#666666'
       },
     });
   },
   control: controlCallback,
   menuPortal: base => ({ ...base, zIndex: 9999 }),
   indicatorSeparator: noneCallback,
+  menuList: (provided) => ({
+    ...provided,
+    padding: '8px',
+  }),
+  valueContainer: (provided, state) => ({
+    ...provided,
+    padding: '2px 8px 2px 16px',
+  }),
+  dropdownIndicator: (provided, state) => ({
+    ...provided,
+    padding: 0,
+  }),
 };
 
 const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <span className="dtable-font dtable-icon-down3" style={{ fontSize: '12px', marginLeft: '-2px' }}></span>
+        <span className="dtable-font dtable-icon-down3" style={{ fontSize: '12px', marginLeft: '-2px', color: '#666666', paddingRight: '16px' }}></span>
       </components.DropdownIndicator>
     )
   );
@@ -160,10 +178,14 @@ MenuList.propTypes = {
 };
 
 const Option = props => {
+  const { isSelected, label } = props;
   return (
-    <div style={props.data.style}>
-      <components.Option {...props} />
-    </div>
+    <components.Option {...props}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+        <span>{label}</span>
+        {isSelected && <span className="dtable-font dtable-icon-check" style={{ fontSize: '14px', color: '#666666', paddingLeft: '16px' }}></span>}
+      </div>
+    </components.Option>
   );
 };
 
@@ -173,4 +195,28 @@ Option.propTypes = {
   }),
 };
 
-export { UserSelectStyle, MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option };
+const processOptionsWithClear = (options, isClearable) => {
+  if (isClearable && options && options.length > 0) {
+    return [
+      { label: '--', value: '__clear__' },
+      ...options
+    ];
+  }
+  return options;
+};
+
+const handleSelectChange = (selectedOption, actionMeta, onChangeCallback) => {
+  if (selectedOption && selectedOption.value === '__clear__') {
+    onChangeCallback(null, { ...actionMeta, action: 'clear' });
+  } else {
+    onChangeCallback(selectedOption, actionMeta);
+  }
+};
+
+const createHandleChange = (onChange) => {
+  return (selectedOption, actionMeta) => {
+    handleSelectChange(selectedOption, actionMeta, onChange);
+  };
+};
+
+export { UserSelectStyle, MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option, processOptionsWithClear, handleSelectChange, createHandleChange };

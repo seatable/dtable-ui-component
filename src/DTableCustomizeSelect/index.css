@@ -4,7 +4,7 @@
 
 .dtable-select.custom-select {
   display: flex;
-  padding: 0 10px;
+  padding: 0 16px;
   border-radius: 3px;
   align-items: center;
   justify-content: space-between;
@@ -39,12 +39,8 @@
 .dtable-select .dtable-icon-down3 {
   display: inline-block;
   font-size: 12px;
-  color: #999;
+  color: #666666;
   transition: all 0.1s;
-}
-
-.dtable-select .dtable-icon-down3:hover {
-  color: #555;
 }
 
 .dtable-select .selected-option {
@@ -97,4 +93,25 @@
   line-height: 1;
   font-size: 14px;
   white-space: nowrap;
+}
+
+.option-group .option-group-selector-multiple-select .option-group-search,
+.option-group .option-group-selector-single-select .option-group-search {
+  padding: 0 0 8px 0 !important;
+}
+
+.option-group-selector-multiple-select .form-control,
+.option-group-selector-single-select .form-control {
+  border: none;
+  border-bottom: 1px solid rgb(0 40 100 / 12%) !important;
+  border-radius: 4px 4px 0 0;
+  padding: .375rem .5rem !important;
+  height: 32px;
+}
+
+.option-group-selector-multiple-select .form-control:focus,
+.option-group-selector-single-select .form-control:focus {
+  border-color: transparent !important;
+  border-bottom: 1px solid rgb(0 40 100 / 12%) !important;
+  box-shadow: none !important;
 }
