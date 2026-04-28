@@ -72,7 +72,7 @@ class FilterItemUtils {
         <div className='select-option-name single-select-option-name'>
           <div className="single-select-option" style={{ background: option.color, color: option.textColor || null }} title={option.name} aria-label={option.name}>{option.name}</div>
           <div className='single-select-check-icon'>
-            {selectedOption?.id === option.id && <i className="option-edit dtable-font dtable-icon-check-mark"></i>}
+            {selectedOption?.id === option.id && <i className="option-edit dtable-font dtable-icon-check"></i>}
           </div>
         </div>
       )
@@ -86,7 +86,7 @@ class FilterItemUtils {
         <div className='select-option-name multiple-option-name'>
           <div className="multiple-select-option" style={{ background: option.color, color: option.textColor }} title={option.name} aria-label={option.name}>{option.name}</div>
           <div className='multiple-check-icon'>
-            {filterTerm.indexOf(option.id) > -1 && <i className="option-edit dtable-font dtable-icon-check-mark"></i>}
+            {filterTerm.indexOf(option.id) > -1 && <i className="option-edit dtable-font dtable-icon-check"></i>}
           </div>
         </div>
       )

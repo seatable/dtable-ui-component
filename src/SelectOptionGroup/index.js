@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import DTableSearchInput from '../DTableSearchInput';
 import KeyCodes from './KeyCodes';
 import ClickOutside from '../ClickOutside';
+import IconButton from '../IconButton';
+import { getLocale } from '../lang';
 
 import './index.css';
 
@@ -136,8 +138,14 @@ class SelectOptionGroup extends Component {
     }
   };
 
+  isEqual = (obj1, obj2) => {
+    if (obj1 === obj2) return true;
+    if (!obj1 || !obj2) return false;
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
+  };
+
   renderOptGroup = (searchVal) => {
-    let { noOptionsPlaceholder, onSelectOption } = this.props;
+    let { noOptionsPlaceholder, onSelectOption, value, supportMultipleSelect } = this.props;
     this.filterOptions = this.props.getFilterOptions(searchVal);
     if (this.filterOptions.length === 0) {
       return (
@@ -147,6 +155,9 @@ class SelectOptionGroup extends Component {
     return this.filterOptions.map((opt, i) => {
       let key = opt.value.column ? opt.value.column.key : i;
       let isActive = this.state.activeIndex === i;
+      let isSelected = value && typeof value === 'object' && !supportMultipleSelect
+        ? this.isEqual(value.value, opt.value)
+        : (Array.isArray(value.value) ? value.value.includes(opt.value.column_key) : false);
       return (
         <Option
           key={`${key}-${i}`}
@@ -158,15 +169,22 @@ class SelectOptionGroup extends Component {
           supportMultipleSelect={this.props.supportMultipleSelect}
           disableHover={this.state.disableHover}
         >
-          {opt.label}
+          <div className='label-space'>
+            <div> {opt.label}</div>
+            <div className='label-check-icon'> {isSelected && <i className="dtable-font dtable-icon-check"/>}</div>
+          </div>
         </Option>
       );
     });
   };
 
+  clearValue = () => {
+    this.setState({ searchVal: '', activeIndex: -1, });
+  };
+
   render() {
     const { searchable, searchPlaceholder, top, left, minWidth, value, isShowSelected, isInModal, position,
-      className, addOptionAble, component } = this.props;
+      className, addOptionAble, component, supportMultipleSelect } = this.props;
     const { AddOption } = component || {};
     let { searchVal } = this.state;
     let style = { top: top || 0, left: left || 0 };
@@ -177,7 +195,7 @@ class SelectOptionGroup extends Component {
       style = {
         position: 'fixed',
         left: position.x,
-        top: position.y + position.height,
+        top: `${position.y + position.height + 4}px`,
         minWidth: position.width,
         opacity: 0,
       };
@@ -194,7 +212,7 @@ class SelectOptionGroup extends Component {
           onMouseDown={this.onMouseDown}
         >
           {isShowSelected &&
-            <div className="editor-list-delete mb-2" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>
+            <div className="editor-list-delete" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>
           }
           {searchable && (
             <div className="option-group-search">
@@ -204,10 +222,21 @@ class SelectOptionGroup extends Component {
                 onChange={this.onChangeSearch}
                 autoFocus={true}
                 ref={this.searchInputRef}
+                clearValue={this.clearValue}
+                isClearable={true}
+                components={{
+                  ClearIndicator: (props) => {
+                    return (
+                      <span className="clear-search-text" onClick={props.clearValue} title={getLocale('Clear_search_text')} aria-label={getLocale('Clear_search_text')}>
+                        <IconButton icon="x" />
+                      </span>
+                    );
+                  },
+                }}
               />
             </div>
           )}
-          <div className="option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
+          <div className={`option-group-content ${!searchable && !supportMultipleSelect ? 'option-group-top' : ''}`} ref={(ref) => this.optionGroupContentRef = ref}>
             {this.renderOptGroup(searchVal)}
           </div>
           {addOptionAble && AddOption}

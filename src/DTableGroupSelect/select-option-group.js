@@ -4,6 +4,8 @@ import classnames from 'classnames';
 import DTableSearchInput from '../DTableSearchInput';
 import Option from './option';
 import KeyCodes from '../SelectOptionGroup/KeyCodes';
+import IconButton from '../IconButton';
+import { getLocale } from '../lang';
 
 import './select-option-group.css';
 
@@ -153,7 +155,7 @@ class SelectOptionGroup extends Component {
           disableHover={this.state.disableHover}
         >
           <div className='option-label text-truncate' title={option.label}>{option.label}</div>
-          {isSelected && <i className="dtable-font dtable-icon-check-mark"></i>}
+          {isSelected && <i className="dtable-font dtable-icon-check"></i>}
         </Option>
       );
     });
@@ -170,24 +172,35 @@ class SelectOptionGroup extends Component {
       style = {
         position: 'fixed',
         left: position.x,
-        top: position.y + position.height,
+        top: position.y + position.height + 4,
         minWidth: position.width,
         opacity: 0,
       };
     }
     return (
       <div
-        className={classnames('option-group group-selector', className ? 'option-group-' + className : '')}
+        className={classnames('option-group group-selector seatable-group-select', className ? 'option-group-' + className : '')}
         ref={(ref) => this.optionGroupRef = ref}
         style={style}
         onMouseDown={this.onMouseDown}
       >
-        <div className="option-group-search position-relative">
+        <div className="position-relative">
           <DTableSearchInput
             className="option-search-control"
             placeholder={searchPlaceholder}
             onChange={this.onChangeSearch}
             ref={this.searchInputRef}
+            isClearable={true}
+            clearValue={this.clearValue}
+            components={{
+              ClearIndicator: (props) => {
+                return (
+                  <span className="clear-search-text" onClick={props.clearValue} title={getLocale('Clear_search_text')} aria-label={getLocale('Clear_search_text')}>
+                    <IconButton icon="x" />
+                  </span>
+                );
+              },
+            }}
           />
         </div>
         <div className="option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
