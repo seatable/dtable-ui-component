@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import DTableSearchInput from '../DTableSearchInput';
 import KeyCodes from './KeyCodes';
 import ClickOutside from '../ClickOutside';
-import IconButton from '../IconButton';
-import { getLocale } from '../lang';
 
 import './index.css';
 
@@ -226,11 +224,7 @@ class SelectOptionGroup extends Component {
                 isClearable={true}
                 components={{
                   ClearIndicator: (props) => {
-                    return (
-                      <span className="clear-search-text" onClick={props.clearValue} title={getLocale('Clear_search_text')} aria-label={getLocale('Clear_search_text')}>
-                        <IconButton icon="x" />
-                      </span>
-                    );
+                    return <i className={classnames('select-search-text-clear input-icon-addon seatable-icon dtable-font dtable-icon-x')} onClick={(e) => { e.stopPropagation(); e.nativeEvent.stopImmediatePropagation(); props.clearValue(); }}/>;
                   },
                 }}
               />

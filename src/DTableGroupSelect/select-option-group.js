@@ -194,11 +194,7 @@ class SelectOptionGroup extends Component {
             clearValue={this.clearValue}
             components={{
               ClearIndicator: (props) => {
-                return (
-                  <span className="clear-search-text" onClick={props.clearValue} title={getLocale('Clear_search_text')} aria-label={getLocale('Clear_search_text')}>
-                    <IconButton icon="x" />
-                  </span>
-                );
+                return <i className={classnames('select-search-text-clear input-icon-addon seatable-icon dtable-font dtable-icon-x')} onClick={(e) => { e.stopPropagation(); e.nativeEvent.stopImmediatePropagation(); props.clearValue(); }}/>;
               },
             }}
           />

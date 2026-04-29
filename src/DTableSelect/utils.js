@@ -205,17 +205,24 @@ const processOptionsWithClear = (options, isClearable) => {
   return options;
 };
 
-const handleSelectChange = (selectedOption, actionMeta, onChangeCallback) => {
-  if (selectedOption && selectedOption.value === '__clear__') {
+const handleSelectChange = (selectedOption, actionMeta, onChangeCallback, isMulti) => {
+  if (isMulti && Array.isArray(selectedOption)) {
+    const hasClear = selectedOption && selectedOption.some(opt => opt && opt.value === '__clear__');
+    if (hasClear) {
+      onChangeCallback([], { ...actionMeta, action: 'clear' });
+      return;
+    }
+  } else if (selectedOption && selectedOption.value === '__clear__') {
     onChangeCallback(null, { ...actionMeta, action: 'clear' });
-  } else {
-    onChangeCallback(selectedOption, actionMeta);
+    return;
   }
+
+  onChangeCallback(selectedOption, actionMeta);
 };
 
-const createHandleChange = (onChange) => {
+const createHandleChange = (onChange, isMulti) => {
   return (selectedOption, actionMeta) => {
-    handleSelectChange(selectedOption, actionMeta, onChange);
+    handleSelectChange(selectedOption, actionMeta, onChange, isMulti);
   };
 };
 

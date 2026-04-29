@@ -123,37 +123,3 @@
   font-size: 14px;
   margin-left: 16px;
 }
-
-.option-group-content .label-check-icon {
-  width: 30px;
-}
-
-.seatable-group-select .clear-search-text {
-  position: absolute;
-  display: inline-block;
-  height: 12px;
-  width: 12px;
-  line-height: 12px;
-  top: 10px !important;
-  right: 18px;
-}
-
-.seatable-group-select .seatable-icon-btn:not(.disabled):hover {
-  background-color:#FFFFFF;
-}
-
-.option-group-dtable-filter-select-column .seatable-icon-btn {
-  height: 12px !important;
-  width: 12px !important;
-  font-size: 12px !important;
-}
-
-.option-group-dtable-filter-select-column .clear-search-text {
-  position: absolute;
-  display: inline-block;
-  height: 12px;
-  width: 12px;
-  line-height: 12px;
-  top: 12px;
-  right: 18px;
-}
