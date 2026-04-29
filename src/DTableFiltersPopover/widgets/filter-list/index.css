@@ -412,20 +412,20 @@
 
 .filter-header-icon {
   display: inline-block;
-  padding: 0 0.3125rem;
+  padding-right: 0.5rem;
   margin-left: -0.3125rem;
 }
 
 .filter-header-icon .dtable-font,
 .filter-header-icon .multicolor-icon {
   font-size: 14px;
-  color: #aaa;
+  color: #999;
   cursor: default;
 }
 
 .option.option-active .filter-header-icon .dtable-font,
 .option.option-active .filter-header-icon .multicolor-icon {
-  color: #fff;
+  color: #999;
 }
 
 .dtable-ui-filters-list .single-select-option,
