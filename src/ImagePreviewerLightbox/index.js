@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Lightbox from '@seafile/react-image-lightbox';
-import { getFileSuffix, generateCurrentBaseImageUrl, getImageThumbnailUrl, isCustomAssetUrl, isDigitalSignsUrl, isInternalImg, needUseThumbnailImage } from '../utils/url';
+import { getFileSuffix, generateCurrentBaseImageUrl, getImageThumbnailUrl, isCustomAssetUrl, isDigitalSignsUrl, isInternalImg } from '../utils/url';
 import { getLocale } from '../lang';
 
 import '@seafile/react-image-lightbox/style.css';
@@ -39,7 +39,7 @@ function ImagePreviewerLightbox(props) {
     }
     return {
       name: name || '',
-      thumbnail: src
+      thumbnail: getImageThumbnailUrl(src, { server, dtableUuid, workspaceID, size: 1024 }),
     };
   });
 
@@ -55,11 +55,6 @@ function ImagePreviewerLightbox(props) {
 
   const canRotateImage = onRotateImage && !readOnly && !['gif', 'heic', 'heif'].includes(getFileSuffix(URL)) && isInternalImg(URL, server);
 
-  let mainSrc = URL;
-  if (needUseThumbnailImage(URL)) {
-    mainSrc = getImageThumbnailUrl(URL, { server, dtableUuid, workspaceID, size: 512 });
-  }
-
   const imageTitleDOM = props.imageTitle || (
     <span className="d-flex">
       <span className="text-truncate">{imageName || ''}</span>
@@ -74,7 +69,7 @@ function ImagePreviewerLightbox(props) {
       setImageIndex={index => setCurrentImageIndex(index)}
       wrapperClassName={classnames('dtable-ui-component', className)}
       imageTitle={imageTitleDOM}
-      mainSrc={mainSrc}
+      mainSrc={URL}
       nextSrc={imageSrcList[(currentImageIndex + 1) % imagesLength] ? imageSrcList[(currentImageIndex + 1) % imagesLength].thumbnail : ''}
       prevSrc={imageSrcList[(currentImageIndex + imagesLength - 1) % imagesLength] ? imageSrcList[(currentImageIndex + imagesLength - 1) % imagesLength].thumbnail : ''}
       imagePadding={70}
