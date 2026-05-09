@@ -15,7 +15,6 @@
   margin: 5px 10px 5px 0;
 }
 
-.dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.formula-formatter,
 .dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.text-formatter,
 .dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.url-formatter,
 .dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.email-formatter {
@@ -26,6 +25,16 @@
   line-height: 2.375rem;
   width: 100%;
   text-decoration: none;
+}
+
+.dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.formula-formatter {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.6;
+  width: 100%;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.multiple-select-formatter .dtable-ui.select-item {
