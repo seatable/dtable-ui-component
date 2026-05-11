@@ -27,16 +27,6 @@
   text-decoration: none;
 }
 
-.dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.formula-formatter {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  line-height: 1.6;
-  width: 100%;
-  text-decoration: none;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 .dtable-ui.dtable-ui-row-expand-formatter .dtable-ui.multiple-select-formatter .dtable-ui.select-item {
   margin: 5px 0;
 }

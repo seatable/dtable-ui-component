@@ -45,3 +45,14 @@
 .dtable-ui.formula-formatter.multiple .formula-formatter-content-item .collaborator {
   margin-right: 0;
 }
+
+.dtable-ui.formula-formatter {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5 !important;
+  width: 100%;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
