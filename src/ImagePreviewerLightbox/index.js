@@ -60,20 +60,13 @@ function ImagePreviewerLightbox(props) {
     mainSrc = getImageThumbnailUrl(URL, { server, dtableUuid, workspaceID, size: 512 });
   }
 
-  const imageTitleDOM = props.imageTitle || (
-    <span className="d-flex">
-      <span className="text-truncate">{imageName || ''}</span>
-      <span className="flex-shrink-0 pl-1">({currentImageIndex + 1}/{imagesLength})</span>
-    </span>
-  );
-
   return (
     <Lightbox
       imageItems={imageSrcList}
       currentIndex={currentImageIndex}
       setImageIndex={index => setCurrentImageIndex(index)}
       wrapperClassName={classnames('dtable-ui-component', className)}
-      imageTitle={imageTitleDOM}
+      imageTitle={`${imageName} (${imageIndex + 1}/${imagesLength})`}
       mainSrc={mainSrc}
       nextSrc={imageSrcList[(currentImageIndex + 1) % imagesLength] ? imageSrcList[(currentImageIndex + 1) % imagesLength].thumbnail : ''}
       prevSrc={imageSrcList[(currentImageIndex + imagesLength - 1) % imagesLength] ? imageSrcList[(currentImageIndex + imagesLength - 1) % imagesLength].thumbnail : ''}
