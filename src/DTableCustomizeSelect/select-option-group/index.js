@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import DTableCustomizeSearchInput from '../DTableCustomizeSearchInput';
+import ClickOutside from '../../ClickOutside';
+import DTableCustomizeSearchInput from '../../DTableCustomizeSearchInput';
 import Option from './option';
-import KeyCodes from '../SelectOptionGroup/KeyCodes';
+import KeyCodes from './KeyCodes';
 
-import './select-option-group.css';
+import './index.css';
 
 const OPTION_HEIGHT = 32;
 
@@ -20,12 +21,10 @@ class SelectOptionGroup extends Component {
     };
     this.filterOptions = null;
     this.timer = null;
-    this.searchInputRef = React.createRef();
   }
 
   componentDidMount() {
     window.addEventListener('keydown', this.onHotKey);
-    document.addEventListener('mousedown', this.handleDocumentClick);
     setTimeout(() => {
       this.resetMenuStyle();
     }, 1);
@@ -35,12 +34,7 @@ class SelectOptionGroup extends Component {
     this.filterOptions = null;
     this.timer && clearTimeout(this.timer);
     window.removeEventListener('keydown', this.onHotKey);
-    document.removeEventListener('mousedown', this.handleDocumentClick);
   }
-
-  handleDocumentClick = (e) => {
-    this.props.onClickOutside(e);
-  };
 
   resetMenuStyle = () => {
     const { isInModal, position } = this.props;
@@ -50,7 +44,6 @@ class SelectOptionGroup extends Component {
         this.optionGroupRef.style.top = (position.y - height) + 'px';
       }
       this.optionGroupRef.style.opacity = 1;
-      this.searchInputRef.current && this.searchInputRef.current.inputRef.focus();
     }
     else {
       if (height + top > window.innerHeight) {
@@ -69,7 +62,10 @@ class SelectOptionGroup extends Component {
     } else if (keyCode === KeyCodes.Enter) {
       let option = this.filterOptions && this.filterOptions[this.state.activeIndex];
       if (option) {
-        this.props.onSelectOption(option);
+        this.props.onSelectOption(option.value);
+        if (!this.props.supportMultipleSelect) {
+          this.props.closeSelect();
+        }
       }
     } else if (keyCode === KeyCodes.Tab || keyCode === KeyCodes.Escape) {
       this.props.closeSelect();
@@ -125,42 +121,57 @@ class SelectOptionGroup extends Component {
   };
 
   onChangeSearch = (searchVal) => {
-    this.setState({ searchVal: searchVal || '', activeIndex: -1, });
+    let value = searchVal || '';
+    if (value !== this.state.searchVal) {
+      this.setState({ searchVal: value, activeIndex: -1, });
+    }
   };
 
-  clearValue = () => {
+  clearSearch = () => {
     this.setState({ searchVal: '', activeIndex: -1, });
   };
 
   renderOptGroup = (searchVal) => {
-    let { noOptionsPlaceholder, onSelectOption, selectedOptions } = this.props;
+    let { noOptionsPlaceholder, onSelectOption, value } = this.props;
     this.filterOptions = this.props.getFilterOptions(searchVal);
     if (this.filterOptions.length === 0) {
       return (
         <div className="none-search-result">{noOptionsPlaceholder}</div>
       );
     }
-    return this.filterOptions.map((option, index) => {
-      const isSelected = selectedOptions.some(item => item.id === option.id);
+    return this.filterOptions.map((opt, i) => {
+      let key = opt.value.column ? opt.value.column.key : i;
+      let isActive = this.state.activeIndex === i;
+      let isSelected = false;
+      if (value) {
+        // Handle both single value and array of values
+        if (Array.isArray(value.value)) {
+          isSelected = value.value.includes(opt.value);
+        } else {
+          isSelected = opt.value === value.value || JSON.stringify(opt.value) === JSON.stringify(value.value);
+        }
+      }
       return (
         <Option
-          key={`${option.id}-${index}`}
-          index={index}
-          isActive={this.state.activeIndex === index}
-          option={option}
+          key={key}
+          index={i}
+          isActive={isActive}
+          value={opt.value}
           onSelectOption={onSelectOption}
           changeIndex={this.changeIndex}
+          supportMultipleSelect={this.props.supportMultipleSelect}
           disableHover={this.state.disableHover}
         >
-          <div className='option-label text-truncate' title={option.label}>{option.label}</div>
-          {isSelected && <i className="dtable-font dtable-icon-check"></i>}
+          <div className='select-label'>{opt.label}</div>
+          {isSelected && <i className="dtable-font dtable-icon-check seatable-check-color"/>}
         </Option>
       );
     });
   };
 
   render() {
-    const { searchPlaceholder, top, left, minWidth, isInModal, position, className } = this.props;
+    const { searchable, searchPlaceholder, top, left, minWidth, value, isShowSelected, isInModal, position,
+      className } = this.props;
     let { searchVal } = this.state;
     let style = { top: top || 0, left: left || 0 };
     if (minWidth) {
@@ -170,33 +181,40 @@ class SelectOptionGroup extends Component {
       style = {
         position: 'fixed',
         left: position.x,
-        top: position.y + position.height + 4,
+        top: position.y + position.height,
         minWidth: position.width,
         opacity: 0,
       };
     }
+    style.top = style.top + 4;
     return (
-      <div
-        className={classnames('option-group group-selector seatable-group-select', className ? 'option-group-' + className : '')}
-        ref={(ref) => this.optionGroupRef = ref}
-        style={style}
-        onMouseDown={this.onMouseDown}
-      >
-        <div className="seatable-search-input">
-          <DTableCustomizeSearchInput
-            placeholder={searchPlaceholder}
-            onChange={this.onChangeSearch}
-            autoFocus={true}
-            value={searchVal}
-            clearValue={this.clearValue}
-            isClearable={true}
-            isLeftIcon={true}
-          />
+      <ClickOutside onClickOutside={this.props.onClickOutside}>
+        <div
+          className={classnames('seatable-option-group', className ? 'seatable-option-group-' + className : '', { 'pt-0': isShowSelected, })}
+          ref={(ref) => this.optionGroupRef = ref}
+          style={style}
+          onMouseDown={this.onMouseDown}
+        >
+          {isShowSelected &&
+            <div className="editor-list-delete mb-2" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>
+          }
+          {searchable && (
+            <div className="seatable-option-group-search">
+              <DTableCustomizeSearchInput
+                className="option-search-control"
+                placeholder={searchPlaceholder}
+                onChange={this.onChangeSearch}
+                clearValue={this.clearSearch}
+                autoFocus={true}
+                isClearable={true}
+              />
+            </div>
+          )}
+          <div className="seatable-option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
+            {this.renderOptGroup(searchVal)}
+          </div>
         </div>
-        <div className="option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
-          {this.renderOptGroup(searchVal)}
-        </div>
-      </div>
+      </ClickOutside>
     );
   }
 }
@@ -207,12 +225,17 @@ SelectOptionGroup.propTypes = {
   minWidth: PropTypes.number,
   options: PropTypes.array,
   onSelectOption: PropTypes.func,
+  searchable: PropTypes.bool,
+  component: PropTypes.object,
   searchPlaceholder: PropTypes.string,
   noOptionsPlaceholder: PropTypes.string,
   onClickOutside: PropTypes.func.isRequired,
   closeSelect: PropTypes.func.isRequired,
   getFilterOptions: PropTypes.func.isRequired,
-  selectedOptions: PropTypes.array,
+  supportMultipleSelect: PropTypes.bool,
+  value: PropTypes.object,
+  isShowSelected: PropTypes.bool,
+  stopClickEvent: PropTypes.bool,
   isInModal: PropTypes.bool,
   position: PropTypes.object,
   className: PropTypes.string,

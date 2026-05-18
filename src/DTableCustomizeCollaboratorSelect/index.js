@@ -47,6 +47,20 @@ class CollaboratorSelect extends Component {
     });
   };
 
+  onClick = (event) => {
+    const target = event.target;
+    const name = target.className;
+    const { isShowSelectOptions } = this.state;
+    if (!isShowSelectOptions || name === 'select-placeholder' || name.includes('icon-fork-number') || this.selector.contains(target)) {
+      return;
+    }
+    const { isUsePopover } = this.props;
+    if ((isUsePopover && !this.collaboratorSelectPopoverRef.contains(target))
+|| (!isUsePopover && !this.selector.contains(target))) {
+      this.closeSelect();
+    }
+  }
+
   onMousedown = (event) => {
     const name = event.target.className;
     if (name === 'select-placeholder' || name.includes('icon-fork-number')) {
@@ -87,6 +101,7 @@ class CollaboratorSelect extends Component {
           supportMultipleSelect={this.props.supportMultipleSelect}
           stopClickEvent={true}
           isShowSelected={true}
+          onClickOutside={this.onClick}
         />
       );
     }
@@ -114,6 +129,7 @@ class CollaboratorSelect extends Component {
           supportMultipleSelect={this.props.supportMultipleSelect}
           stopClickEvent={true}
           isShowSelected={true}
+          onClickOutside={this.onClick}
         />
       </Popover>
     );
