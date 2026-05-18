@@ -198,7 +198,7 @@ class SelectOptionGroup extends Component {
           {isShowSelected &&
             <div className="editor-list-delete mb-2" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>
           }
-          {searchable && (
+          {searchable && this.props.options && this.props.options.length > 10 && (
             <div className="seatable-option-group-search">
               <DTableCustomizeSearchInput
                 className="option-search-control"
