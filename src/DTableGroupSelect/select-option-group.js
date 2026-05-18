@@ -182,6 +182,7 @@ class SelectOptionGroup extends Component {
         style={style}
         onMouseDown={this.onMouseDown}
       >
+        {this.props.options && this.props.options.length > 10 &&
         <div className="seatable-search-input">
           <DTableCustomizeSearchInput
             placeholder={searchPlaceholder}
@@ -192,7 +193,7 @@ class SelectOptionGroup extends Component {
             isClearable={true}
             isLeftIcon={true}
           />
-        </div>
+        </div>}
         <div className="option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
           {this.renderOptGroup(searchVal)}
         </div>
