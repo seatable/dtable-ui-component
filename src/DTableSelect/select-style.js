@@ -1,4 +1,3 @@
-// Seahub select is based on seafile-ui.css, so use the following content to override the default react-select style
 const DEFAULT_CONTROL_STYLE = {
   fontSize: '14px',
   padding: '0 1rem 0 .5rem',
@@ -64,14 +63,9 @@ const MenuSelectStyle = {
       boxShadow: '0px 6px 14px rgba(0, 0, 0, 0.1)',
       marginTop: '4px',
       marginBottom: 0,
-
     });
   },
-  // .react-select__menu-list）
-  // menuList: (provided) => ({
-  //   ...provided,
-  //   paddingRight: '8px',
-  // }),
+
   option: (provided, state) => {
     const { isDisabled, isFocused, isActive, isVisited } = state;
     let bgColor;
