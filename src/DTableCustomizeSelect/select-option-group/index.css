@@ -48,7 +48,7 @@
 .seatable-option-group .none-search-result {
   height: 100px;
   width: 100%;
-  padding: 10px;
+  padding: 8px;
   color: var(--bs-body-secondary-color);
 }
 
@@ -119,4 +119,10 @@
 .seatable-option-group-selector-multiple-select .seatable-select-option:hover,
 .seatable-option-group-selector-multiple-select .seatable-select-option.seatable-select-option-active {
   background-color: #f5f5f5;
+}
+
+.select-label .header-icon {
+  display: inline-block;
+  padding: 0 .5rem 0 0!important;
+  margin-left: 0 !important;
 }
