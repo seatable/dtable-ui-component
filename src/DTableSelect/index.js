@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { MenuSelectStyle, DropdownIndicator, MenuList, Option, processOptionsWithClear, createHandleChange } from './utils';
+import { MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option, processOptionsWithClear, createHandleChange } from './utils';
 
 export default class DTableSelect extends React.Component {
 
@@ -53,10 +53,9 @@ export default class DTableSelect extends React.Component {
     return (
       <Select
         value={value}
-        onChange={createHandleChange(onChange, isMulti)}
+        onChange={createHandleChange(onChange)}
         options={processedOptions}
         isMulti={isMulti}
-        isClearable={false}
         className={className}
         classNamePrefix={classNamePrefix}
         styles={style || MenuSelectStyle}
