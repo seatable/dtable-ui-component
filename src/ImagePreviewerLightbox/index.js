@@ -67,6 +67,16 @@ function ImagePreviewerLightbox(props) {
     </span>
   );
 
+  const moveToPrevRowImage = () => {
+    setCurrentImageIndex(0);
+    props.moveToPrevRowImage && props.moveToPrevRowImage();
+  };
+
+  const moveToNextRowImage = () => {
+    setCurrentImageIndex(0);
+    props.moveToNextRowImage && props.moveToNextRowImage();
+  };
+
   return (
     <Lightbox
       imageItems={imageSrcList}
@@ -83,8 +93,8 @@ function ImagePreviewerLightbox(props) {
       onCloseRequest={props.closeImagePopup}
       onMovePrevRequest={props.moveToPrevImage}
       onMoveNextRequest={props.moveToNextImage}
-      onClickMoveUp={props.moveToPrevRowImage}
-      onClickMoveDown={props.moveToNextRowImage}
+      onClickMoveUp={moveToPrevRowImage}
+      onClickMoveDown={moveToNextRowImage}
       onViewOriginal={props.onViewOriginal}
       onRotateImage={canRotateImage ? (deg) => {onRotateImage(currentImageIndex, deg);} : null}
       onClickDelete={(!readOnly && deleteImage) ? () => {deleteImage(currentImageIndex, 'previewer');} : null}
