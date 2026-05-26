@@ -24,6 +24,7 @@ export default class DTableSelect extends React.Component {
     customFilterOption: PropTypes.func,
     form: PropTypes.string,
     autoFocus: PropTypes.bool,
+    closeMenuOnSelect: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -35,6 +36,7 @@ export default class DTableSelect extends React.Component {
     placeholder: '',
     isMulti: false,
     autoFocus: false,
+    closeMenuOnSelect: true,
     menuPortalTarget: '.modal',
     noOptionsMessage: () => {
       return null;
@@ -43,7 +45,7 @@ export default class DTableSelect extends React.Component {
 
   render() {
     const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage,
-      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus, className } = this.props;
+      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus, className, closeMenuOnSelect } = this.props;
     return (
       <Select
         value={value}
@@ -61,6 +63,7 @@ export default class DTableSelect extends React.Component {
         menuShouldScrollIntoView
         menuPortalTarget={document.querySelector(this.props.menuPortalTarget)}
         captureMenuScroll={false}
+        closeMenuOnSelect={closeMenuOnSelect}
         hideSelectedOptions={false}
         noOptionsMessage={noOptionsMessage}
         isDisabled={isDisabled}
