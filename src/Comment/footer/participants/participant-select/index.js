@@ -94,7 +94,7 @@ class ParticipantSelect extends Component {
       return filteredParticipants.map((participant) => {
         let selectedIndex = participants.findIndex(item => item.email === participant.email);
         return (
-          <div key={participant.email} className="dropdown-item dtable-ui-participant-item" onClick={this.onSelectParticipant.bind(this, participant)}>
+          <div key={participant.email} className="dtable-ui-participant-item" onClick={this.onSelectParticipant.bind(this, participant)}>
             <div className="dtable-ui-participant-container">
               <div className="dtable-ui-participant">
                 <img className="dtable-ui-participant-avatar" alt={participant.name} src={participant.avatar_url} />

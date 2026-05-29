@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dropdown, DropdownToggle } from 'reactstrap';
 import classnames from 'classnames';
+import DTableDropdownMenu from '../DTableDropdownMenu';
+import DTableDropdownItem from '../DTableDropdownItem';
 
 import './index.css';
 
@@ -35,22 +37,20 @@ const RoleStatusEditor = ({ isShowDropdownIcon, currentOption, menuOptions, onCh
           <span className={classnames('dtable-font dtable-icon-down3', { 'hide': !isShowDropdownIcon })} />
         </div>
       </DropdownToggle>
-      <DropdownMenu
-        className="position-fixed"
-        modifiers={[{ name: 'preventOverflow', options: { boundary: document.body } }]}
-      >
+      <DTableDropdownMenu className="position-fixed" >
         {menuOptions.map(option => {
           const { value, label } = option;
           return (
-            <DropdownItem key={`item-${value}`} onClick={() => handleClickMenuOption(option)}>
-              {label}
-              {value === currentOption.value && (
-                <i className="dtable-font dtable-icon-check-mark ml-2" />
-              )}
-            </DropdownItem>
+            <DTableDropdownItem
+              key={`item-${value}`}
+              onClick={() => handleClickMenuOption(option)}
+              showChecked
+              checked={currentOption.value === value}
+              content={label}
+            />
           );
         })}
-      </DropdownMenu>
+      </DTableDropdownMenu>
     </Dropdown>
   );
 };
