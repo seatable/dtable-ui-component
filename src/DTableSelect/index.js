@@ -25,6 +25,7 @@ export default class DTableSelect extends React.Component {
     form: PropTypes.string,
     autoFocus: PropTypes.bool,
     closeMenuOnSelect: PropTypes.bool,
+    onMenuClose: PropTypes.func,
   };
 
   static defaultProps = {
@@ -45,7 +46,7 @@ export default class DTableSelect extends React.Component {
 
   render() {
     const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage,
-      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus, className, closeMenuOnSelect } = this.props;
+      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus, className, closeMenuOnSelect, onMenuClose } = this.props;
     return (
       <Select
         value={value}
@@ -64,6 +65,7 @@ export default class DTableSelect extends React.Component {
         menuPortalTarget={document.querySelector(this.props.menuPortalTarget)}
         captureMenuScroll={false}
         closeMenuOnSelect={closeMenuOnSelect}
+        onMenuClose={onMenuClose}
         hideSelectedOptions={false}
         noOptionsMessage={noOptionsMessage}
         isDisabled={isDisabled}
