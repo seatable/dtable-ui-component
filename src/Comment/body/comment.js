@@ -1,8 +1,10 @@
 import React, { Fragment, PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Dropdown, DropdownToggle } from 'reactstrap';
 import { processor } from '@seafile/seafile-editor';
 import ImagePreviewerLightbox from '../../ImagePreviewerLightbox';
+import DTableDropdownMenu from '../../DTableDropdownMenu';
+import DTableDropdownItem from '../../DTableDropdownItem';
 import { getLocale } from '../../lang';
 
 class Comment extends PureComponent {
@@ -134,20 +136,22 @@ class Comment extends PureComponent {
               >
                 <i className="dtable-font dtable-icon-more-level" title={moreOperationsText} aria-label={moreOperationsText}></i>
               </DropdownToggle>
-              <DropdownMenu className="dtable-dropdown-menu dropdown-menu dtable-ui-comment-dropdown-list">
-                {!comment.resolved && onResolve &&
-                  <DropdownItem onClick={(event) => onResolve(event, comment.id)}>
-                    <span className="comment-icon dtable-font dtable-icon-mark mr-2"></span>
-                    <span className="comment-text">{getLocale('Mark_as_resolved')}</span>
-                  </DropdownItem>
-                }
-                {(comment.author === username) && onDelete &&
-                  <DropdownItem onClick={(event) => onDelete(event, comment.id)}>
-                    <span className="comment-icon dtable-font dtable-icon-delete mr-2"></span>
-                    <span className="comment-text">{getLocale('Delete')}</span>
-                  </DropdownItem>
-                }
-              </DropdownMenu>
+              <DTableDropdownMenu className="dtable-ui-comment-dropdown-list">
+                {(!comment.resolved && onResolve) && (
+                  <DTableDropdownItem
+                    onClick={(event) => onResolve(event, comment.id)}
+                    icon={<span className="comment-icon dtable-font dtable-icon-mark"></span>}
+                    content={getLocale('Mark_as_resolved')}
+                  />
+                )}
+                {(comment.author === username && onDelete) && (
+                  <DTableDropdownItem
+                    onClick={(event) => onDelete(event, comment.id)}
+                    icon={<span className="comment-icon dtable-font dtable-icon-delete"></span>}
+                    content={getLocale('Delete')}
+                  />
+                )}
+              </DTableDropdownMenu>
             </Dropdown>
           }
         </div>

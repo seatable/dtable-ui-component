@@ -80,6 +80,13 @@ export { default as RoleStatusEditor } from './RoleStatusEditor';
 export { default as DTableModalHeader } from './DTableModalHeader';
 export { default as DTableCustomFooter } from './DTableCustomFooter';
 
+// dropdown
+export { default as DTableDropdownMenu } from './DTableDropdownMenu';
+export { default as DTableSubDropdownToggle } from './DTableSubDropdownToggle';
+export { default as DTableSubDropdownMenu } from './DTableSubDropdownMenu';
+export { default as DTableDropdownItem } from './DTableDropdownItem';
+
+
 // filter widgets
 export { default as DepartmentSelectFilter } from './DepartmentSelectFilter';
 
