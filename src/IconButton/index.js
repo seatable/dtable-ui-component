@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import DTableToolTip from '../DTableToolTip';
@@ -7,12 +7,17 @@ import { generatorBase64Code } from 'dtable-utils';
 import '../css/icon-button-styles.css';
 
 const IconButton = ({ disabled, className, icon, color, children, title, tooltipPlacement, outline, noBackground, ...otherProperties }) => {
-  const buttonIdRef = useRef(`dtable-icon-button-${generatorBase64Code(8)}`);
+  const buttonId = useMemo(() => `dtable-icon-button-${generatorBase64Code(8)}`, []);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <>
       <div
-        id={buttonIdRef.current}
+        id={buttonId}
         className={classnames('dtable-icon-btn', className, {
           'disabled': disabled,
           'outline': outline,
@@ -24,8 +29,8 @@ const IconButton = ({ disabled, className, icon, color, children, title, tooltip
         {icon && <i className={classnames('seatable-icon dtable-font', `dtable-icon-${icon}`)} aria-hidden="true" style={color ? { color } : undefined}></i>}
         {children}
       </div>
-      {title && (
-        <DTableToolTip placement={tooltipPlacement || 'bottom'} target={buttonIdRef.current}>
+      {title && mounted && (
+        <DTableToolTip placement={tooltipPlacement || 'bottom'} target={buttonId}>
           {title}
         </DTableToolTip>
       )}
