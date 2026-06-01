@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Popover } from 'reactstrap';
 import IconButton from '../IconButton';
+import { getLocale } from '../lang';
 
 import './index.css';
 
@@ -74,7 +75,7 @@ export default class NotificationPopover extends React.Component {
         <div className="notification-container" ref={ref => this.notificationContainerRef = ref}>
           <div className="notification-header">
             {headerText}
-            <IconButton icon="x" onClick={this.props.onNotificationListToggle} />
+            <IconButton title={getLocale('Close')} icon="x" onClick={this.props.onNotificationListToggle} />
           </div>
           <div className="notification-body">
             {this.props.enableWeixin &&
