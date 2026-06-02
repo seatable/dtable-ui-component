@@ -1,15 +1,15 @@
 .dtable-tooltip {
-  position: absolute;
+  position: relative;
   z-index: 99999;
 }
 
 .dtable-tooltip .tooltip {
-  max-width: 242px;
-  min-width: max-content;
   opacity: 1;
 }
 
 .dtable-tooltip .tooltip .tooltip-inner {
+  width: fit-content;
+  max-width: 242px;
   font-size: 14px;
   text-align: start;
   background-color: var(--bs-body-color);
