@@ -1,13 +1,14 @@
 import React from 'react';
 import { ModalHeader } from 'reactstrap';
 import IconButton from '../IconButton';
+import { getLocale } from '../lang';
 
 import './index.css';
 
 const DTableModalHeader = ({ children, ...props }) => {
   const customCloseBtn = (
     <button type="button" className="close dtable-modal-close" data-dismiss="modal" aria-label="Close" onClick={props.toggle}>
-      <IconButton icon="x" className="dtable-modal-close-inner" />
+      <IconButton icon="x" className="dtable-modal-close-inner" title={getLocale('Close')}/>
     </button>
   );
   return (
