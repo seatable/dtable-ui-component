@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Dropdown, DropdownToggle } from 'reactstrap';
 import classnames from 'classnames';
@@ -17,6 +17,18 @@ const propTypes = {
 
 const RoleStatusEditor = ({ isShowDropdownIcon, currentOption, menuOptions, onChangeOption, closeShowDropdownIcon }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [menuMaxHeight, setMenuMaxHeight] = useState(320);
+  const toggleRef = useRef(null);
+
+  useEffect(() => {
+    if (isOpen && toggleRef.current) {
+      const rect = toggleRef.current.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - rect.bottom - 8;
+      const spaceAbove = rect.top - 8;
+      const maxAvailable = Math.max(spaceBelow, spaceAbove);
+      setMenuMaxHeight(Math.min(maxAvailable, 320));
+    }
+  }, [isOpen]);
 
   const handleClickMenuOption = (menuOption) => {
     const { value } = menuOption;
@@ -31,13 +43,13 @@ const RoleStatusEditor = ({ isShowDropdownIcon, currentOption, menuOptions, onCh
       className="role-status-editor"
       toggle={() => setIsOpen(!isOpen)}
     >
-      <DropdownToggle className="dropdown-toggle-button d-flex align-items-center" tag="div">
+      <DropdownToggle innerRef={toggleRef} className="dropdown-toggle-button d-flex align-items-center" tag="div">
         {currentOption.label}
         <div className="dropdown-icon-container ml-1">
           <span className={classnames('dtable-font dtable-icon-down3', { 'hide': !isShowDropdownIcon })} />
         </div>
       </DropdownToggle>
-      <DTableDropdownMenu className="position-fixed" >
+      <DTableDropdownMenu className="position-fixed" style={{ maxHeight: menuMaxHeight, overflowY: 'auto' }}>
         {menuOptions.map(option => {
           const { value, label } = option;
           return (
