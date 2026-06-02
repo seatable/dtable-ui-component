@@ -24,6 +24,9 @@ export default class DTableSelect extends React.Component {
     customFilterOption: PropTypes.func,
     form: PropTypes.string,
     autoFocus: PropTypes.bool,
+    closeMenuOnSelect: PropTypes.bool,
+    onMenuClose: PropTypes.func,
+    components: PropTypes.object,
   };
 
   static defaultProps = {
@@ -35,6 +38,7 @@ export default class DTableSelect extends React.Component {
     placeholder: '',
     isMulti: false,
     autoFocus: false,
+    closeMenuOnSelect: true,
     menuPortalTarget: '.modal',
     noOptionsMessage: () => {
       return null;
@@ -43,7 +47,8 @@ export default class DTableSelect extends React.Component {
 
   render() {
     const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage,
-      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus, className } = this.props;
+      classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus, className, closeMenuOnSelect, onMenuClose, components: userComponents } = this.props;
+    const mergedComponents = { Option, DropdownIndicator, MenuList, ClearIndicator, ...userComponents };
     return (
       <Select
         value={value}
@@ -53,7 +58,7 @@ export default class DTableSelect extends React.Component {
         className={className}
         classNamePrefix={classNamePrefix}
         styles={style || MenuSelectStyle}
-        components={{ Option, DropdownIndicator, MenuList, ClearIndicator }}
+        components={mergedComponents}
         placeholder={placeholder}
         isSearchable={isSearchable}
         isClearable={isClearable}
@@ -61,6 +66,8 @@ export default class DTableSelect extends React.Component {
         menuShouldScrollIntoView
         menuPortalTarget={document.querySelector(this.props.menuPortalTarget)}
         captureMenuScroll={false}
+        closeMenuOnSelect={closeMenuOnSelect}
+        onMenuClose={onMenuClose}
         hideSelectedOptions={false}
         noOptionsMessage={noOptionsMessage}
         isDisabled={isDisabled}
