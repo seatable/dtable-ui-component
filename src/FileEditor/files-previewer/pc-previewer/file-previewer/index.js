@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { UncontrolledTooltip } from 'reactstrap';
+import DTableToolTip from '../../../../DTableToolTip';
 import DropDownMenu from './dropdown-menu';
 import FileNameEditor from './file-name-editor';
 import { getFileUploadTime, bytesToSize } from '../../../utils';
@@ -114,9 +114,9 @@ class FilePreviewer extends React.Component {
           </div>
         </div>
         {!isShowRename && isItemFreezed && (
-          <UncontrolledTooltip delay={{ show: 0, hide: 0 }} placement="bottom" target={this.renameRef}>
+          <DTableToolTip placement="bottom" target={this.renameRef}>
             {fileItem.name}
-          </UncontrolledTooltip>
+          </DTableToolTip>
         )}
         {isShowOperation &&
           <div className="dtable-ui-file-editor-previewer-operation">
@@ -128,9 +128,9 @@ class FilePreviewer extends React.Component {
                 {fileItem.type === 'file' && errorMessage &&
                   <>
                     <span aria-hidden="true" className="dtable-font dtable-icon-download disable file-download-icon" ref={ref => this.disabledDownloadRef = ref}></span>
-                    <UncontrolledTooltip delay={{ show: 0, hide: 0 }} placement="bottom" target={this.disabledDownloadRef}>
+                    <DTableToolTip placement="bottom" target={this.disabledDownloadRef}>
                       {errorMessage}
-                    </UncontrolledTooltip>
+                    </DTableToolTip>
                   </>
                 }
               </>

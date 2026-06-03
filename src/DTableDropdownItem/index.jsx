@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { DropdownItem, UncontrolledTooltip } from 'reactstrap';
+import { DropdownItem } from 'reactstrap';
+import DTableToolTip from '../DTableToolTip';
 import SvgIcon from '../DTableIcon/svg-icon';
 
 const DTableDropdownItem = ({ className, divider, id, toggle, disabled, tooltip, itemProps, showChecked, checked, leftSlotContent, rightSlotContent, icon, content, onClick, style, tabIndex }) => {
@@ -61,23 +62,9 @@ const DTableDropdownItem = ({ className, divider, id, toggle, disabled, tooltip,
         </span>
       )}
       {(tooltip && id) && (
-        <UncontrolledTooltip
-          target={id}
-          trigger="hover"
-          placement="right"
-          fade={false}
-          delay={{ show: 0, hide: 0 }}
-          modifiers={[
-            {
-              name: 'offset',
-              options: {
-                offset: [0, 8],
-              },
-            },
-          ]}
-        >
+        <DTableToolTip target={id} placement="right" >
           {tooltip}
-        </UncontrolledTooltip>
+        </DTableToolTip>
       )}
     </DropdownItem>
   );

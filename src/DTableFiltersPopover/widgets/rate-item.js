@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { UncontrolledTooltip } from 'reactstrap';
+import DTableToolTip from '../../DTableToolTip';
 
 const propTypes = {
   editable: PropTypes.bool,
@@ -68,12 +68,9 @@ class RateItem extends React.Component {
       >
         <span className={`dtable-font ${rateShowType}`} ref={this.tooltipRef}></span>
         {editable &&
-          <UncontrolledTooltip
-            placement='bottom'
-            target={this.tooltipRef}
-          >
+          <DTableToolTip placement='bottom' target={this.tooltipRef} >
             {rateItemIndex}
-          </UncontrolledTooltip>
+          </DTableToolTip>
         }
       </div>
     );

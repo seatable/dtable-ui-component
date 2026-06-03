@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { Row, Col, UncontrolledTooltip } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
+import DTableToolTip from '../../DTableToolTip';
 import DTableColumnIcon from '../../DTableColumnIcon';
 
 import './index.css';
@@ -23,15 +24,9 @@ const ColumnContent = ({ column, children }) => {
             >
             </span>
             {descriptionRef.current && (
-              <UncontrolledTooltip
-                innerClassName="dtable-ui-column-description-tip"
-                popperClassName="dtable-ui-row-expand-column-tip"
-                target={descriptionRef.current}
-                placement="bottom"
-                fade={false}
-              >
+              <DTableToolTip target={descriptionRef.current} placement="bottom" >
                 {description}
-              </UncontrolledTooltip>
+              </DTableToolTip>
             )}
           </>
         }
