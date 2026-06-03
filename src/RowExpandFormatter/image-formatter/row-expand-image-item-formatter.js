@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'reactstrap';
+import DTableToolTip from '../../DTableToolTip';
 import MediaQuery from 'react-responsive';
 import { getLocale } from '../../lang';
 import DeleteTip from '../../DeleteTip';
@@ -20,14 +20,9 @@ export default class RowExpandImageItemFormatter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isTooltipOpen: false,
       isDeleteTipOpen: false,
     };
   }
-
-  toggleTooltip = () => {
-    this.setState({ isTooltipOpen: !this.state.isTooltipOpen });
-  };
 
   closeDeleteTip = () => {
     this.setState({ isDeleteTipOpen: false });
@@ -89,16 +84,9 @@ export default class RowExpandImageItemFormatter extends Component {
           />
         }
         <MediaQuery query={'(min-width: 768px)'}>
-          <Tooltip
-            placement='bottom'
-            isOpen={this.state.isTooltipOpen}
-            toggle={this.toggleTooltip}
-            target={id}
-            delay={{ show: 0, hide: 0 }}
-            fade={false}
-          >
+          <DTableToolTip placement='bottom' target={id} >
             {name}
-          </Tooltip>
+          </DTableToolTip>
         </MediaQuery>
       </>
     );

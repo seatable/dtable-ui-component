@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'reactstrap';
+import DTableToolTip from '../../../DTableToolTip';
 import DeleteTip from '../../../DeleteTip';
 import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../../../utils/url';
 import { FILE_EDITOR_STATUS, isMobile } from '../../../constants';
@@ -13,7 +13,6 @@ class ImagePreviewer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isTooltipOpen: false,
       imageThumbnailUrl: ''
     };
     this.canDownLoad = props.canDownLoad;
@@ -117,16 +116,9 @@ class ImagePreviewer extends React.Component {
           }
         </div>
         {!isMobile && enterImageItemIndex === itemIndex &&
-          <Tooltip
-            placement='bottom'
-            isOpen={this.state.isTooltipOpen}
-            toggle={this.toggle}
-            target={this.ref}
-            delay={{ show: 0, hide: 0 }}
-            fade={false}
-          >
+          <DTableToolTip placement='bottom' target={this.ref} >
             {getFileName(imageItemUrl)}
-          </Tooltip>
+          </DTableToolTip>
         }
         {this.state.showTip &&
           <DeleteTip

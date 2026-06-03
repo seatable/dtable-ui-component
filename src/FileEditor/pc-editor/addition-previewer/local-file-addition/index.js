@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Tooltip } from 'reactstrap';
+import DTableToolTip from '../../../../DTableToolTip';
 import Progress from '../../../../UploadProgress';
 import { getFileThumbnailInfo } from '../../../../utils/url';
 import FileUploader from '../../../../FileUploader';
@@ -17,7 +17,6 @@ class LocalFileAddition extends React.Component {
       isFileTipShow: false,
       isShowDeleteIcon: false,
       enterFileIndex: -1,
-      tooltipOpen: false,
       uploadMessageList: [],
       thumbnailSrcList: [],
       reUploadFile: null,
@@ -167,15 +166,9 @@ class LocalFileAddition extends React.Component {
             </div>
           }
           {this.state.isShowDeleteIcon && this.state.enterFileIndex === index && (
-            <Tooltip
-              toggle={this.tooltipToggle}
-              delay={{ show: 0, hide: 0 }}
-              target={`file-content-tip-${index}`}
-              placement="bottom"
-              isOpen={this.state.tooltipOpen}
-            >
+            <DTableToolTip target={`file-content-tip-${index}`} placement="bottom" >
               {fileItem.name}
-            </Tooltip>
+            </DTableToolTip>
           )}
         </div>
       );
