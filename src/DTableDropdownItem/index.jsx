@@ -62,7 +62,18 @@ const DTableDropdownItem = ({ className, divider, id, toggle, disabled, tooltip,
         </span>
       )}
       {(tooltip && id) && (
-        <DTableToolTip target={id} placement="right" >
+        <DTableToolTip
+          target={id}
+          placement="right"
+          modifiers={[
+            {
+              name: 'offset',
+              options: {
+                offset: [0, 8],
+              },
+            },
+          ]}
+        >
           {tooltip}
         </DTableToolTip>
       )}

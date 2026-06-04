@@ -4,7 +4,7 @@ import { UncontrolledTooltip } from 'reactstrap';
 
 import './index.css';
 
-const DTableToolTip = ({ target, placement = 'bottom', className, children, shortcut }) => {
+const DTableToolTip = ({ target, placement = 'bottom', className, children, shortcut, modifiers }) => {
 
   const hasShortcut = Boolean(shortcut);
 
@@ -47,7 +47,8 @@ const DTableToolTip = ({ target, placement = 'bottom', className, children, shor
         options: {
           boundariesElement: 'window',
         },
-      }
+      },
+      ...(modifiers || []),
     ],
   };
 
@@ -64,6 +65,7 @@ DTableToolTip.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node,
   shortcut: PropTypes.arrayOf(PropTypes.string),
+  modifiers: PropTypes.array,
 };
 
 export default DTableToolTip;
