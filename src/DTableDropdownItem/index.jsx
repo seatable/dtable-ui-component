@@ -51,7 +51,7 @@ const DTableDropdownItem = ({ className, divider, id, toggle, disabled, tooltip,
       )}
       {renderedIcon()}
       {typeof content === 'string' && (
-        <span className="item-text" aria-label={content}>
+        <span className="item-text text-truncate" title={content} aria-label={content}>
           {content}
         </span>
       )}
