@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'reactstrap';
+import DTableToolTip from '../DTableToolTip';
 import classnames from 'classnames';
 import DeleteTip from '../DeleteTip';
 import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../utils/url';
@@ -16,7 +16,6 @@ class ImageThumbnail extends React.Component {
     this.state = {
       imageThumbnailUrl: '',
       showTip: false,
-      isTooltipOpen: false,
     };
     this.ref = null;
     const { mediaUrl = '' } = props.config || {};
@@ -73,10 +72,6 @@ class ImageThumbnail extends React.Component {
     this.setState({ showTip: false });
   };
 
-  toggle = () => {
-    this.setState({ isTooltipOpen: !this.state.isTooltipOpen });
-  };
-
   render() {
     const { index, downloadImage, src, className, name } = this.props;
     const { imageThumbnailUrl } = this.state;
@@ -104,16 +99,9 @@ class ImageThumbnail extends React.Component {
           />
         }
         {!isMobile && this.ref && (
-          <Tooltip
-            placement="bottom"
-            isOpen={this.state.isTooltipOpen}
-            toggle={this.toggle}
-            target={this.ref}
-            delay={{ show: 0, hide: 0 }}
-            fade={false}
-          >
+          <DTableToolTip placement="bottom" target={this.ref} >
             {name || getFileName(src)}
-          </Tooltip>
+          </DTableToolTip>
         )}
       </>
     );

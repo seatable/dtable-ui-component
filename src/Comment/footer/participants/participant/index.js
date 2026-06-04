@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import { UncontrolledTooltip } from 'reactstrap';
+import DTableToolTip from '../../../../DTableToolTip';
 
 import './index.css';
 
@@ -10,9 +10,9 @@ const Participant = ({ participant }) => {
     <span className="dtable-ui-participant-avatar">
       <img src={participant.avatar_url} className="avatar" ref={ref} alt="avatar" />
       {ref.current && (
-        <UncontrolledTooltip delay={{ show: 0, hide: 0 }} target={ref} placement='bottom'>
+        <DTableToolTip target={ref} placement='bottom'>
           {participant.name}
-        </UncontrolledTooltip>
+        </DTableToolTip>
       )}
     </span>
   );

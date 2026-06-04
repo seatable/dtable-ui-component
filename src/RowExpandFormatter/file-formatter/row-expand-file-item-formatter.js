@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Tooltip } from 'reactstrap';
+import DTableToolTip from '../../DTableToolTip';
 import { getLocale } from '../../lang';
 import { getFileThumbnailInfo } from '../../utils/url';
 import DeleteTip from '../../DeleteTip';
@@ -19,14 +19,9 @@ export default class RowExpandFileItemFormatter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isTooltipOpen: false,
       isDeleteTipOpen: false,
     };
   }
-
-  toggleTooltip = () => {
-    this.setState({ isTooltipOpen: !this.state.isTooltipOpen });
-  };
 
   closeDeleteTip = () => {
     this.setState({ isDeleteTipOpen: false });
@@ -76,16 +71,9 @@ export default class RowExpandFileItemFormatter extends Component {
             deleteTip={getLocale('Are_you_sure_you_want_to_delete_this_file')}
           />
         }
-        <Tooltip
-          placement='bottom'
-          isOpen={this.state.isTooltipOpen}
-          toggle={this.toggleTooltip}
-          target={id}
-          delay={{ show: 0, hide: 0 }}
-          fade={false}
-        >
+        <DTableToolTip placement='bottom' target={id} >
           {file.name}
-        </Tooltip>
+        </DTableToolTip>
       </>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { UncontrolledTooltip } from 'reactstrap';
+import DTableToolTip from '../../../DTableToolTip';
 import Participant from './participant';
 import ParticipantSelect from './participant-select';
 import { getLocale } from '../../../lang';
@@ -37,9 +37,9 @@ class Participants extends React.Component {
           </span>
         )}
         {this.addIcon && (
-          <UncontrolledTooltip delay={{ show: 0, hide: 0 }} target={this.addIcon} placement="bottom">
+          <DTableToolTip target={this.addIcon} placement="bottom">
             {getLocale('Add_participants')}
-          </UncontrolledTooltip>
+          </DTableToolTip>
         )}
         {this.ref && this.state.showParticipantSelect && (
           <ParticipantSelect

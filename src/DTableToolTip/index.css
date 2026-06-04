@@ -1,0 +1,45 @@
+.dtable-tooltip {
+  position: relative;
+  z-index: 99999;
+}
+
+.dtable-tooltip .tooltip {
+  opacity: 1;
+}
+
+.dtable-tooltip .tooltip .tooltip-inner {
+  width: fit-content;
+  max-width: 242px;
+  font-size: 14px;
+  text-align: start;
+  background-color: var(--bs-body-color);
+  color: var(--bs-body-bg);
+  border-radius: 4px;
+  padding: 4px 8px;
+  line-height: 20px;
+  font-weight: normal;
+}
+
+.dtable-tooltip-shortcut-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  line-height: 20px;
+}
+
+.dtable-tooltip-shortcut-keys {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.dtable-tooltip-shortcut-key {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  white-space: nowrap;
+  line-height: 14px;
+}

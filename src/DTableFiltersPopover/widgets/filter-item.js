@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { UncontrolledTooltip } from 'reactstrap';
+import DTableToolTip from '../../DTableToolTip';
 import {
   CellType,
   COLLABORATOR_COLUMN_TYPES,
@@ -674,13 +674,12 @@ class FilterItem extends React.Component {
     return (
       <div className="ml-2">
         <span ref={this.invalidFilterTip} className="dtable-font dtable-icon-exclamation-triangle invalid-filter"></span>
-        <UncontrolledTooltip
+        <DTableToolTip
           target={this.invalidFilterTip}
           placement='bottom'
-          fade={false}
         >
           {getLocale('Invalid_filter')}
-        </UncontrolledTooltip>
+        </DTableToolTip>
       </div>
     );
   };
@@ -758,9 +757,9 @@ class FilterItem extends React.Component {
             {showToolTip &&
               <div className="ml-2">
                 <span ref={this.filterToolTip} id="filter_tool_tip" aria-hidden="true" className="dtable-font dtable-icon-exclamation-triangle" style={{ color: '#FFC92C' }}></span>
-                <UncontrolledTooltip placement="bottom" target={this.filterToolTip} >
+                <DTableToolTip placement="bottom" target={this.filterToolTip} >
                   {getLocale('filter_tip_message')}
-                </UncontrolledTooltip>
+                </DTableToolTip>
               </div>
             }
             {this.renderErrorMessage()}
