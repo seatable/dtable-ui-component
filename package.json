@@ -1,9 +1,9 @@
 {
   "name": "dtable-ui-component",
-  "version": "6.0.122",
+  "version": "6.0.123",
   "main": "./lib/index.js",
   "dependencies": {
-    "@seafile/react-image-lightbox": "^5.0.9",
+    "@seafile/react-image-lightbox": "5.0.9",
     "@seafile/seafile-calendar": "^1.0.10",
     "@seafile/seafile-editor": "^3.0.34",
     "classnames": "~2.5.*",
