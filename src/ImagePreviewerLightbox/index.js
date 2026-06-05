@@ -106,7 +106,7 @@ function ImagePreviewerLightbox(props) {
       downloadImageTip={getLocale('Download_image')}
       preLineMetadaTip={getLocale('Pre_Line')}
       nextLineMetadaTip={getLocale('Next_Line')}
-      closeMetadataTip={getLocale('Close')}
+      closeTip={getLocale('Close')}
     />
   );
 }
