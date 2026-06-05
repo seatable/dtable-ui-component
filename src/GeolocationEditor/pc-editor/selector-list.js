@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { HIDDEN_DISTRICTS } from 'dtable-utils';
 
 const SelectorListPropTypes = {
   type: PropTypes.string,
@@ -9,13 +10,19 @@ const SelectorListPropTypes = {
   doubleClickHandler: PropTypes.oneOfType([PropTypes.func])
 };
 
-
 class SelectorList extends React.Component {
+
+  getVisibleChildren = (parent) => {
+    if (!Array.isArray(parent.children)) return [];
+    return parent.children.filter((item) => !HIDDEN_DISTRICTS.includes(item.name));
+  };
+
   render() {
     const { clickHandler, type, selectedItem, parent, doubleClickHandler } = this.props;
+    const visibleChildren = this.getVisibleChildren(parent);
     return (
       <ul className='dtable-ui-geolocation-selector-list'>
-        {parent.children.map((item, index) => {
+        {visibleChildren.map((item, index) => {
           const isSelected = selectedItem && (item.name === selectedItem.name);
           return (
             <li
@@ -24,9 +31,7 @@ class SelectorList extends React.Component {
                 doubleClickHandler && doubleClickHandler(item);
               }}
               key={type + '-item-' + index}
-              className={`dtable-ui-geolocation-selector-list-item ${type === 'province' ? 'province-item' : ''} ${
-                isSelected ? 'selected-list-item' : ''
-              }`}
+              className={`dtable-ui-geolocation-selector-list-item ${type === 'province' ? 'province-item' : ''} ${isSelected ? 'selected-list-item' : ''}`}
             >
               {item.name}
             </li>
