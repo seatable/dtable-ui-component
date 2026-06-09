@@ -5,11 +5,11 @@
 .notification-container {
   position: absolute;
   background: #fff;
-  width: 320px;
+  width: 400px;
   right: -10px;
   top: -1px;
-  border-radius: 3px;
-  box-shadow: 0 0 5px #ccc;
+  border-radius: 8px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .1);
 }
 
 .notification-container .notification-header {
@@ -17,7 +17,7 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid #eee;
   font-size: 16px;
   font-weight: 600;
   position: relative;
@@ -161,14 +161,10 @@
 
 .notification-body .notification-footer {
   height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f9f9f9;
-  cursor: pointer;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-top: 1px solid #ededed;
+  border-top: 1px solid #eee !important;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  background: #eee;
 }
 
 .notification-body .notification-footer:hover {

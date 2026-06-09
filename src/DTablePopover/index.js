@@ -64,10 +64,10 @@ class DTablePopover extends React.Component {
         fade={false}
         hideArrow={hideArrow}
         innerClassName={innerClassName}
-        className={popoverClassName}
+        className={`seatable-popover ${popoverClassName}`}
         modifiers={modifiers}
       >
-        <div ref={ref => this.dtablePopoverRef = ref} onClick={this.onPopoverInsideClick}>
+        <div ref={ref => this.dtablePopoverRef = ref} onClick={this.onPopoverInsideClick} className='dtable-popover-container'>
           {this.props.children}
         </div>
       </Popover>
