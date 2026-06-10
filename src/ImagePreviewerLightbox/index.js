@@ -104,8 +104,8 @@ function ImagePreviewerLightbox(props) {
       rotateTip={getLocale('Rotate_image')}
       deleteTip={getLocale('Delete_image')}
       downloadImageTip={getLocale('Download_image')}
-      preLineMetadaTip={getLocale('Pre_Line')}
-      nextLineMetadaTip={getLocale('Next_Line')}
+      preLineMetadaTip={getLocale('Previous_record')}
+      nextLineMetadaTip={getLocale('Next_record')}
       closeTip={getLocale('Close')}
     />
   );
