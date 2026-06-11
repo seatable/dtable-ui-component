@@ -4,9 +4,9 @@
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 1px solid rgba(0, 40, 100, 0.12);
-  border-bottom-right-radius: 2px;
-  border-bottom-left-radius: 2px;
+  border-top: 0 6px 16px rgba(0, 0, 0, 0.1) !important;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
 .dtable-custom-footer>* {
