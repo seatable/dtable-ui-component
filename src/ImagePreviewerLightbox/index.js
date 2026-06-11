@@ -50,8 +50,13 @@ function ImagePreviewerLightbox(props) {
   const imageName = imageItem ? imageItem.name : '';
 
   React.useEffect(() => {
-    setCurrentImageIndex(imageIndex);
-  }, [imageIndex]);
+    if (!imagesLength) {
+      setCurrentImageIndex(0);
+      return;
+    }
+    const nextIndex = Number.isInteger(imageIndex) ? imageIndex : 0;
+    setCurrentImageIndex(Math.min(Math.max(nextIndex, 0), imagesLength - 1));
+  }, [imageIndex, imagesLength]);
 
   const canRotateImage = onRotateImage && !readOnly && !['gif', 'heic', 'heif'].includes(getFileSuffix(URL)) && isInternalImg(URL, server);
 
