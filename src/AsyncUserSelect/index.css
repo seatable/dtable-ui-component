@@ -39,15 +39,15 @@
 
 .dtable-ui-user-select-container .form-control {
   border: none;
-  border-bottom: 1px solid rgb(0 40 100 / 12%) !important;
   border-radius: 4px 4px 0 0;
   padding: .375rem 1rem !important;
+  height: 100%;
 }
 
 .dtable-ui-user-select-container .form-control:focus {
   border-color: transparent !important;
-  border-bottom: 1px solid rgb(0 40 100 / 12%) !important;
   box-shadow: none !important;
+  height: 100%;
 }
 
 .dtable-ui-user-select-container .dtable-ui-user-list-container .dtable-ui-user-item-container {
