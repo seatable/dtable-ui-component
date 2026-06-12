@@ -66,15 +66,13 @@
 
 .option-group .option-group-search .form-control {
   border: none;
-  border-bottom: 1px solid rgb(0 40 100 / 12%) !important;
   border-radius: 4px 4px 0 0;
   padding: .375rem 0 .375rem 1rem;
-  height: 32px;
+  height: 100%;
 }
 
 .option-group .option-group-search .form-control:focus {
   border-color: transparent !important;
-  border-bottom: 1px solid rgb(0 40 100 / 12%) !important;
   box-shadow: none !important;
 }
 

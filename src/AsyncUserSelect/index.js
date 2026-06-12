@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Popover } from 'reactstrap';
 import ClickOutside from '../ClickOutside';
-import DtableSearchInput from '../DTableSearchInput';
+import DTableCustomizeSearchInput from '../DTableCustomizeSearchInput';
 import UserItem from './user-item';
 import { getLocale } from '../lang';
 import keyCodes from '../constants/key-codes';
@@ -217,25 +217,17 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
             fade={false}
             className="dtable-ui-user-select-popover"
           >
-            <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()} >
-              <div className="dtable-ui-user-search-container">
-                <DtableSearchInput
-                  autoFocus
+            <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()}>
+              <div className="seatable-option-group-search">
+                <DTableCustomizeSearchInput
+                  className="option-search-control"
                   placeholder={searchPlaceholder || getLocale('Search_users')}
-                  value={searchValue}
-                  wait={200}
                   onChange={onSearchValueChanged}
-                  onKeyDown={onKeyDown}
+                  clearValue={() => onSearchValueChanged('')}
+                  autoFocus={true}
+                  isClearable={true}
+                  value={searchValue}
                 />
-                {searchValue && (
-                  <div
-                    className="search-clear-btn position-absolute"
-                    onClick={() => onSearchValueChanged('')}
-                    title={getLocale('Clear_search_text')}
-                  >
-                    <i aria-hidden="true" className="dtable-font dtable-icon-x"></i>
-                  </div>
-                )}
               </div>
               <div className="dtable-ui-user-list-container" ref={userListContainerRef}>
                 {searchedUsers.length > 0 && (
