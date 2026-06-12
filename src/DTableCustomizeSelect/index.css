@@ -101,6 +101,12 @@
   margin-right: 8px;
   width: calc(100% - 20px);
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.seatable-customize-select .selected-option .multicolor-icon {
+  font-size: 12px;
 }
 
 .seatable-customize-select .multiple-check-icon,
