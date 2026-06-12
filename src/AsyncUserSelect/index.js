@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Popover } from 'reactstrap';
 import ClickOutside from '../ClickOutside';
-import DtableSearchInput from '../DTableSearchInput';
+import DTableCustomizeSearchInput from '../DTableCustomizeSearchInput';
 import UserItem from './user-item';
 import { getLocale } from '../lang';
 import keyCodes from '../constants/key-codes';
@@ -191,20 +191,22 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
     <ClickOutside onClickOutside={onClickOutside}>
       <>
         <div className={classnames('dtable-ui-selected-users-container form-control d-flex align-items-center', className, { 'focus': isPopoverOpen })} onClick={onTogglePopover} ref={selectorRef}>
-          {selectedUsers.map((user, index) => {
-            return (
-              <UserItem
-                key={`dtable-ui-user-selector-selected-user-${index}`}
-                user={user}
-                deleteUser={deselectUser}
-              />
-            );
-          })}
-          {selectedUsers.length === 0 && (
-            <div className="dtable-ui-user-select-placeholder">
-              {emptyPlaceholder || getLocale('Search_users')}
-            </div>
-          )}
+          <div className='dtable-ui-users-input'>
+            {selectedUsers.map((user, index) => {
+              return (
+                <UserItem
+                  key={`dtable-ui-user-selector-selected-user-${index}`}
+                  user={user}
+                  deleteUser={deselectUser}
+                />
+              );
+            })}
+            {selectedUsers.length === 0 && (
+              <div className="dtable-ui-user-select-placeholder">
+                {emptyPlaceholder || getLocale('Search_users')}
+              </div>
+            )}
+          </div>
         </div>
         {selectorRef.current && (
           <Popover
@@ -216,14 +218,15 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
             className="dtable-ui-user-select-popover"
           >
             <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()}>
-              <div className="dtable-ui-user-search-container">
-                <DtableSearchInput
-                  autoFocus
+              <div className="seatable-option-group-search">
+                <DTableCustomizeSearchInput
+                  className="option-search-control"
                   placeholder={searchPlaceholder || getLocale('Search_users')}
-                  value={searchValue}
-                  wait={200}
                   onChange={onSearchValueChanged}
-                  onKeyDown={onKeyDown}
+                  clearValue={() => onSearchValueChanged('')}
+                  autoFocus={true}
+                  isClearable={true}
+                  value={searchValue}
                 />
               </div>
               <div className="dtable-ui-user-list-container" ref={userListContainerRef}>
@@ -239,7 +242,7 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
                         <UserItem key={`dtable-ui-user-selector-searched-user-${index}`} user={user} enableShowIDInOrgWhenSearchUser={enableShowIDInOrgWhenSearchUser} />
                         {selectedUsers.find(u => u.email === user.email) && (
                           <div className='dtable-ui-collaborator-check-icon'>
-                            <i className="dtable-font dtable-icon-check-mark" aria-hidden="true"></i>
+                            <i className="dtable-font dtable-icon-check" aria-hidden="true"></i>
                           </div>
                         )}
                       </div>

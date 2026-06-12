@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import DTableSearchInput from '../DTableSearchInput';
+import DTableCustomizeSearchInput from '../DTableCustomizeSearchInput';
 import Option from './option';
 import KeyCodes from '../SelectOptionGroup/KeyCodes';
 
@@ -153,7 +153,7 @@ class SelectOptionGroup extends Component {
           disableHover={this.state.disableHover}
         >
           <div className='option-label text-truncate' title={option.label}>{option.label}</div>
-          {isSelected && <i className="dtable-font dtable-icon-check-mark"></i>}
+          {isSelected && <i className="dtable-font dtable-icon-check"></i>}
         </Option>
       );
     });
@@ -170,26 +170,30 @@ class SelectOptionGroup extends Component {
       style = {
         position: 'fixed',
         left: position.x,
-        top: position.y + position.height,
+        top: position.y + position.height + 4,
         minWidth: position.width,
         opacity: 0,
       };
     }
     return (
       <div
-        className={classnames('option-group group-selector', className ? 'option-group-' + className : '')}
+        className={classnames('option-group group-selector seatable-group-select', className ? 'option-group-' + className : '')}
         ref={(ref) => this.optionGroupRef = ref}
         style={style}
         onMouseDown={this.onMouseDown}
       >
-        <div className="option-group-search position-relative">
-          <DTableSearchInput
-            className="option-search-control"
+        {this.props.options && this.props.options.length > 10 &&
+        <div className="seatable-search-input">
+          <DTableCustomizeSearchInput
             placeholder={searchPlaceholder}
             onChange={this.onChangeSearch}
-            ref={this.searchInputRef}
+            autoFocus={true}
+            value={searchVal}
+            clearValue={this.clearValue}
+            isClearable={true}
+            isLeftIcon={true}
           />
-        </div>
+        </div>}
         <div className="option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
           {this.renderOptGroup(searchVal)}
         </div>

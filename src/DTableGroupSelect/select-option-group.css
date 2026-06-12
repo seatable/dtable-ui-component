@@ -2,7 +2,6 @@
   display: block;
   width: 100%;
   line-height: 24px;
-  padding: 6px 10px;
   clear: both;
   font-weight: 400;
   text-align: inherit;
@@ -14,26 +13,23 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 0.25rem 8px;
+  border-radius: 4px;
 }
 
-.group-selector .option .dtable-icon-check-mark {
-  font-size: 12px;
-  color: #798d99;
+.group-selector .option .dtable-icon-check{
+  font-size: 14px;
+  color: #666666;
+  height: 14px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .group-selector .option.option-active {
-  background-color: #20a0ff;
-  color: #fff;
+  background-color: #f5f5f5;
+  color: #212529;
   cursor: pointer;
-}
-
-.group-selector .option.option-active .dtable-icon-check-mark,
-.group-selector .option.option-active .select-option-name {
-  color: #fff !important;
-}
-
-.group-selector .option .select-option-name .single-select-option {
-  margin: 0 0 0 12px;
 }
 
 .group-selector .option .select-option-name .multiple-select-option {

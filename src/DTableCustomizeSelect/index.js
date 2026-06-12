@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import SelectOptionGroup from '../SelectOptionGroup';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import SelectOptionGroup from './select-option-group';
 import ModalPortal from '../ModalPortal';
+import { onKeyDown } from './util';
+import DTableIcon from '../DTableIcon';
 
 import './index.css';
 
@@ -23,8 +25,8 @@ class DTableCustomizeSelect extends Component {
     */
     if (this.state.isShowSelectOptions) event.stopPropagation();
     let eventClassName = event.target.className;
-    if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'option-group-search') return;
-    // Prevent closing by pressing the spacebar in the search input
+    if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'seatable-option-group-search') return;
+    // Prevent closing by pressing the space bar in the search input
     if (event.target.value === '') return;
     this.setState({
       isShowSelectOptions: !this.state.isShowSelectOptions
@@ -74,29 +76,32 @@ class DTableCustomizeSelect extends Component {
   };
 
   render() {
-    let { className, value, options, placeholder, searchable, searchPlaceholder, noOptionsPlaceholder,
-      isLocked, isInModal, addOptionAble, component } = this.props;
+    const { className, value, options, placeholder, searchable, searchPlaceholder, noOptionsPlaceholder,
+      isLocked, isInModal, component } = this.props;
+
     return (
       <div
+        tabIndex="0"
+        role="button"
         ref={(node) => this.selector = node}
-        className={classnames('dtable-select custom-select',
+        className={classnames('seatable-customize-select custom-select',
           { 'focus': this.state.isShowSelectOptions },
           { 'disabled': isLocked },
           className
         )}
-        onClick={this.onSelectToggle}>
+        onClick={this.onSelectToggle}
+        onKeyDown={onKeyDown}
+      >
         <div className="selected-option">
           {value && value.label ?
             <span className="selected-option-show">{value.label}</span>
-            :
-            <span className="select-placeholder">{placeholder}</span>
+            : <span className="select-placeholder">{placeholder}</span>
           }
-          {!isLocked && <i className="dtable-font dtable-icon-down3"></i>}
+          {!isLocked && <span className="d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
         </div>
         {this.state.isShowSelectOptions && !isInModal && (
           <SelectOptionGroup
             value={value}
-            addOptionAble={addOptionAble}
             component={component}
             isShowSelected={this.props.isShowSelected}
             top={this.getSelectedOptionTop()}
@@ -116,7 +121,6 @@ class DTableCustomizeSelect extends Component {
             <SelectOptionGroup
               className={className}
               value={value}
-              addOptionAble={addOptionAble}
               component={component}
               isShowSelected={this.props.isShowSelected}
               position={this.selector.getBoundingClientRect()}
@@ -147,13 +151,14 @@ DTableCustomizeSelect.propTypes = {
   onSelectOption: PropTypes.func,
   isLocked: PropTypes.bool,
   searchable: PropTypes.bool,
-  addOptionAble: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   noOptionsPlaceholder: PropTypes.string,
   component: PropTypes.object,
   supportMultipleSelect: PropTypes.bool,
   isShowSelected: PropTypes.bool,
   isInModal: PropTypes.bool, // if select component in a modal (option group need ModalPortal to show)
+  enableDeleteSelected: PropTypes.bool,
+  deleteSelected: PropTypes.func,
 };
 
 export default DTableCustomizeSelect;
