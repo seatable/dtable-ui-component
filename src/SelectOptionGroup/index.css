@@ -112,7 +112,7 @@
 
 .option-group-dtable-ui-multiple-select-selector .multiple-check-icon .dtable-icon-check-mark {
   font-size: 12px;
-  color: #666666;
+  color: var(--bs-icon-color);
 }
 
 .option-group-dtable-ui-single-select-selector .option:hover,
@@ -133,4 +133,9 @@
 
 .option-group-selector-single-select .form-control {
   padding: .375rem .5rem !important;
+}
+
+.pre-fill-dialog .single-select-option,
+.pre-fill-dialog .multiple-select-option {
+  padding: 0 !important;
 }

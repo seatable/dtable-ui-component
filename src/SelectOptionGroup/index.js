@@ -193,7 +193,7 @@ class SelectOptionGroup extends Component {
       style = {
         position: 'fixed',
         left: position.x,
-        top: `${position.y + position.height + 4}px`,
+        top: position.y + position.height,
         minWidth: position.width,
         opacity: 0,
       };

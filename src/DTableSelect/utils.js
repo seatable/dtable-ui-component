@@ -203,7 +203,7 @@ const Option = props => {
   const { isSelected, label } = props;
   return (
     <components.Option {...props}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', whiteSpace: 'pre-line' }}>
         <span>{label}</span>
         {isSelected && <span className="dtable-font dtable-icon-check" style={{ fontSize: '14px', color: 'var(--bs-icon-color)', paddingLeft: '16px' }}></span>}
       </div>
