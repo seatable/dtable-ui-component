@@ -419,13 +419,13 @@
 .filter-header-icon .dtable-font,
 .filter-header-icon .multicolor-icon {
   font-size: 14px;
-  color: #999;
+  color: var(--bs-icon-secondary-color);
   cursor: default;
 }
 
 .option.option-active .filter-header-icon .dtable-font,
 .option.option-active .filter-header-icon .multicolor-icon {
-  color: #999;
+  color: var(--bs-icon-secondary-color);
 }
 
 .dtable-ui-filters-list .single-select-option,

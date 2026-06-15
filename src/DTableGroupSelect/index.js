@@ -77,7 +77,7 @@ class DTableGroupSelect extends Component {
               {selectedOptions.map(item =>
                 <span key={item.id} className="selected-option-item">
                   <span className='selected-option-item-name'>{item.name}</span>
-                  <i className="dtable-font dtable-icon-x ml-1" onClick={() => { this.props.onDeleteOption(item); }}></i>
+                  <i className="dtable-font dtable-icon-x" onClick={() => { this.props.onDeleteOption(item); }}></i>
                 </span>
               )}
             </span>

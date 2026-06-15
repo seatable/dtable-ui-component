@@ -19,7 +19,7 @@
 
 .group-selector .option .dtable-icon-check{
   font-size: 14px;
-  color: #666666;
+  color: var(--bs-icon-color);
   height: 14px !important;
   display: flex;
   align-items: center;
