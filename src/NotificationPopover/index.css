@@ -161,9 +161,9 @@
 
 .notification-body .notification-footer {
   height: 40px;
+  background: #f9f9f9;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
-  background: #fff;
 }
 
 .notification-body .notification-footer:hover {
