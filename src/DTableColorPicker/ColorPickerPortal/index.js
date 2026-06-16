@@ -62,7 +62,7 @@ export default function ColorPickerPortal({ target, scrollContainerId, throttleD
 
   return ReactDOM.createPortal(
     <div
-      className='dtable-color-picker-portal dtable-popover-container'
+      className='dtable-color-picker-portal'
       style={{
         position: 'fixed',
         zIndex: '1049',
@@ -73,6 +73,7 @@ export default function ColorPickerPortal({ target, scrollContainerId, throttleD
         visibility: position.visibility,
         opacity: isPositioned ? 1 : 0,
         transition: 'opacity 0.15s ease-in-out',
+        marginTop: '8px'
       }}
       ref={containerRef}
     >

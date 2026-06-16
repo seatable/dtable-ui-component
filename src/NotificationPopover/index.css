@@ -161,7 +161,6 @@
 
 .notification-body .notification-footer {
   height: 40px;
-  border-top: 1px solid #eee !important;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
   background: #fff;
