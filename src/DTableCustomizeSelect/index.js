@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import SelectOptionGroup from './select-option-group';
+import SelectOptionGroup from '../SelectOptionGroup';
 import ModalPortal from '../ModalPortal';
 import { onKeyDown } from './util';
 import DTableIcon from '../DTableIcon';
