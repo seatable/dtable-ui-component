@@ -12,6 +12,11 @@
 .dtable-ui-user-select-popover .popover {
   width: 385px;
   max-width: 385px;
+  background: #fff;
+	border: 1px solid #eee;
+	border-radius: 4px;
+	box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+  margin-top: -4px;
 }
 
 .dtable-ui-user-select-container {
