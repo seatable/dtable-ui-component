@@ -5,11 +5,9 @@
 .notification-container {
   position: absolute;
   background: #fff;
-  width: 400px;
+  width: 320px;
   right: -10px;
   top: -1px;
-  border-radius: 8px;
-  box-shadow: 0 6px 14px rgba(0, 0, 0, .1);
 }
 
 .notification-container .notification-header {
