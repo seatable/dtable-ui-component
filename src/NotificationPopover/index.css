@@ -17,7 +17,6 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  border-bottom: 1px solid #eee;
   font-size: 16px;
   font-weight: 600;
   position: relative;
@@ -162,8 +161,6 @@
 .notification-body .notification-footer {
   height: 40px;
   background: #f9f9f9;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
 }
 
 .notification-body .notification-footer:hover {

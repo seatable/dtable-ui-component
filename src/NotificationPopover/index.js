@@ -89,7 +89,7 @@ export default class NotificationPopover extends React.Component {
                 {this.props.children}
               </div>
             </div>
-            <div className="notification-footer" onClick={this.onNotificationDialogToggle}>{footerText}</div>
+            <div className="notification-footer dtable-popover-footer" onClick={this.onNotificationDialogToggle}>{footerText}</div>
           </div>
         </div>
       </Popover>
