@@ -11,7 +11,7 @@
   max-width: 900px;
   user-select: none;
   text-align: left;
-  border-color: 1px solid rgba(0, 40, 100, 0.12);
+  border-color: 1px solid #002864;
   height: auto;
   min-height: 38px;
   cursor: pointer;
@@ -19,14 +19,15 @@
 
 .group-select.custom-select:focus,
 .group-select.custom-select.focus {
-  border-color: #1991eb !important;
+  border-color: #3E84F7 !important;
   box-shadow: 0 0 0 2px rgba(70, 127, 207, 0.25);
+  border-radius: 4px;
 }
 
 .group-select.custom-select.disabled:focus,
 .group-select.custom-select.focus.disabled,
 .group-select.custom-select.disabled:hover {
-  border-color: rgba(0, 40, 100, 0.12) !important;
+  border-color: #002864 !important;
   box-shadow: unset;
   cursor: default;
 }
@@ -79,7 +80,7 @@
 }
 
 .group-select .selected-option-show .selected-option-item {
-  background-color: #F7F7F5;
+  background-color: 0px 6px 14px rgba(0, 0, 0, 0.1);;
   border-radius: 4px !important;
   display: flex;
   align-items: center;
