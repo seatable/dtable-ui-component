@@ -171,7 +171,8 @@ class SelectOptionGroup extends Component {
 
   render() {
     const { searchable, searchPlaceholder, top, left, minWidth, value, isShowSelected, isInModal, position,
-      className } = this.props;
+      className, addOptionAble, component } = this.props;
+    const { AddOption } = component || {};
     let { searchVal } = this.state;
     let style = { top: top || 0, left: left || 0 };
     if (minWidth) {
@@ -198,7 +199,7 @@ class SelectOptionGroup extends Component {
           {isShowSelected &&
             <div className="editor-list-delete mb-2" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>
           }
-          {searchable && this.props.options && this.props.options.length > 10 && (
+          {searchable && (
             <div className="seatable-option-group-search">
               <DTableCustomizeSearchInput
                 className="option-search-control"
@@ -213,6 +214,7 @@ class SelectOptionGroup extends Component {
           <div className="seatable-option-group-content" ref={(ref) => this.optionGroupContentRef = ref}>
             {this.renderOptGroup(searchVal)}
           </div>
+          {addOptionAble && AddOption}
         </div>
       </ClickOutside>
     );
@@ -226,6 +228,7 @@ SelectOptionGroup.propTypes = {
   options: PropTypes.array,
   onSelectOption: PropTypes.func,
   searchable: PropTypes.bool,
+  addOptionAble: PropTypes.bool,
   component: PropTypes.object,
   searchPlaceholder: PropTypes.string,
   noOptionsPlaceholder: PropTypes.string,

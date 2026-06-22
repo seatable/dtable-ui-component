@@ -129,7 +129,7 @@
 .seatable-option-group-selector-single-select .seatable-select-option.seatable-select-option-active,
 .seatable-option-group-selector-multiple-select .seatable-select-option:hover,
 .seatable-option-group-selector-multiple-select .seatable-select-option.seatable-select-option-active {
-  background-color: #f5f5f5;
+  background-color: #f5f5f5 !important;
 }
 
 .select-label .header-icon {

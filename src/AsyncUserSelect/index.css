@@ -64,7 +64,7 @@
 
 .dtable-ui-user-select-container .dtable-ui-user-list-container .dtable-ui-user-item-container:hover,
 .dtable-ui-user-select-container .dtable-ui-user-list-container .dtable-ui-user-item-container-highlight {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: #f5f5f5;
   cursor: pointer;
 }
 

@@ -47,7 +47,7 @@
   align-items: center;
   justify-content: space-between;
   background: inherit;
-  height: 24px;
+  height: 20px;
 }
 
 .seatable-check-color {
@@ -97,8 +97,8 @@
 }
 
 .seatable-customize-select .selected-option-show {
-  height: 24px;
-  line-height: 24px;
+  height: 20px;
+  line-height: 20px;
   margin-right: 8px;
   width: calc(100% - 20px);
   display: flex;
@@ -127,7 +127,6 @@
 
 .selector-group-select .selected-option-show .selected-option-item {
   align-items: center;
-  background-color: #f7f7f5;
   border-radius: 4px;
   display: flex;
   height: 24px;
@@ -165,7 +164,6 @@
 
 .selector-group-select .selected-option {
   align-items: center;
-  background:#fff;
   display: flex;
   flex: 1 1;
   flex-wrap: nowrap;
