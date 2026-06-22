@@ -77,7 +77,7 @@ class DTableCustomizeSelect extends Component {
 
   render() {
     const { className, value, options, placeholder, searchable, searchPlaceholder, noOptionsPlaceholder,
-      isLocked, isInModal, component } = this.props;
+      isLocked, isInModal, addOptionAble, component } = this.props;
 
     return (
       <div
@@ -102,6 +102,7 @@ class DTableCustomizeSelect extends Component {
         {this.state.isShowSelectOptions && !isInModal && (
           <SelectOptionGroup
             value={value}
+            addOptionAble={addOptionAble}
             component={component}
             isShowSelected={this.props.isShowSelected}
             top={this.getSelectedOptionTop()}
@@ -121,6 +122,7 @@ class DTableCustomizeSelect extends Component {
             <SelectOptionGroup
               className={className}
               value={value}
+              addOptionAble={addOptionAble}
               component={component}
               isShowSelected={this.props.isShowSelected}
               position={this.selector.getBoundingClientRect()}
@@ -151,6 +153,7 @@ DTableCustomizeSelect.propTypes = {
   onSelectOption: PropTypes.func,
   isLocked: PropTypes.bool,
   searchable: PropTypes.bool,
+  addOptionAble: PropTypes.bool,
   searchPlaceholder: PropTypes.string,
   noOptionsPlaceholder: PropTypes.string,
   component: PropTypes.object,
