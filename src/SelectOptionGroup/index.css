@@ -1,7 +1,6 @@
 .seatable-option-group {
   position: absolute;
   left: 0;
-  min-height: 60px;
   max-height: 300px;
   min-width: 100%;
   max-width: 15rem;
@@ -104,23 +103,29 @@
 
 .seatable-option-group-selector-multiple-select .select-label,
 .seatable-option-group-selector-single-select .select-option-name,
-.seatable-option-group-selector-multiple-select .multiple-option-name {
+.seatable-option-group-selector-multiple-select .multiple-option-name,
+.selector-group-select .group-option-name {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
 }
 
-.seatable-option-group-selector-multiple-select .multiple-check-icon {
+.seatable-option-group-selector-multiple-select .multiple-check-icon,
+.selector-group-select .group-check-icon {
   display: inline-flex;
   text-align: center;
   color: var(--bs-icon-color);
 }
 
-.seatable-option-group-selector-multiple-select .multiple-check-icon .dtable-icon-check {
+.selector-group-select .multiple-check-icon .dtable-icon-check,
+.seatable-option-group-selector-multiple-select .multiple-check-icon .dtable-icon-check,
+.selector-group-select .group-check-icon .dtable-icon-check {
   font-size: 14px;
 }
 
+.selector-group-select .seatable-select-option:hover,
+.selector-group-select .seatable-select-option.seatable-select-option-active
 .seatable-option-group-selector-single-select .seatable-select-option:hover,
 .seatable-option-group-selector-single-select .seatable-select-option.seatable-select-option-active,
 .seatable-option-group-selector-multiple-select .seatable-select-option:hover,
