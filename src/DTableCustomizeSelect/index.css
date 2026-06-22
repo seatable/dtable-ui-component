@@ -101,9 +101,10 @@
   line-height: 24px;
   margin-right: 8px;
   width: calc(100% - 20px);
-  white-space: nowrap;
+  display: flex;
   text-overflow: ellipsis;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .seatable-customize-select .selected-option .multicolor-icon {
