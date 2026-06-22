@@ -5,7 +5,7 @@ import { components } from 'react-select';
 // DtableSelect is based on seatable-ui.css, so use the following content to override the default react-select style
 const DEFAULT_CONTROL_STYLE = {
   fontSize: '14px',
-  padding: '0 4px',
+  padding: '0 4px 0 8px',
   border: '1px solid var(--bs-border-color) !important',
   boxShadow: 'none',
   backgroundColor: 'var(--bs-popover-bg)',
@@ -15,7 +15,7 @@ const DEFAULT_CONTROL_STYLE = {
 
 const DISABLED_CONTROL_STYLE = {
   fontSize: '14px',
-  padding: '0 4px',
+  padding: '0 4px 0 8px',
   border: '1px solid rgba(0, 40, 100, 0.12)',
   boxShadow: 'none',
   backgroundColor: 'var(--bs-bg-color)',
@@ -27,7 +27,7 @@ const DISABLED_CONTROL_STYLE = {
 
 const FOCUS_CONTROL_STYLE = {
   fontSize: '14px',
-  padding: '0 4px',
+  padding: '0 4px 0 8px',
   border: '1px solid #3E84F7',
   boxShadow: 'none',
   backgroundColor: 'var(--bs-popover-bg)',
@@ -35,8 +35,18 @@ const FOCUS_CONTROL_STYLE = {
   outline: '0',
 };
 
+const HEADER_ICON_STYLE = {
+  padding: '0 0.5rem !important'
+};
+
 const controlCallback = (provided, state) => {
   const { isDisabled, isFocused } = state;
+  const headerIconStyle = {
+    '.header-icon': HEADER_ICON_STYLE,
+    '.header-icon .dtable-font': {
+      color: 'var(--bs-icon-secondary-color) !important'
+    }
+  };
   if (isDisabled) {
     return {
       ...provided,
@@ -44,16 +54,14 @@ const controlCallback = (provided, state) => {
       ':active': {
         border: '1px solid #3E84F7',
       },
-      '.header-icon': {
-        color: 'var(--bs-icon-secondary-color)',
-        padding: '0 0.5rem !important'
-      }
+      ...headerIconStyle,
     };
   }
   if (isFocused) {
     return {
       ...provided,
       ...FOCUS_CONTROL_STYLE,
+      ...headerIconStyle,
     };
   }
   return {
@@ -62,6 +70,7 @@ const controlCallback = (provided, state) => {
     lineHeight: '1.5',
     cursor: 'pointer',
     ...DEFAULT_CONTROL_STYLE,
+    ...headerIconStyle,
   };
 };
 
@@ -98,10 +107,7 @@ const MenuSelectStyle = {
       ':hover': {
         backgroundColor: 'rgba(0, 0, 0, 0.04)',
       },
-      '.header-icon': {
-        color: 'var(--bs-icon-secondary-color)',
-        padding: '0 0.5rem !important'
-      } });
+      '.header-icon': HEADER_ICON_STYLE });
   },
   control: controlCallback,
   menuPortal: base => ({
