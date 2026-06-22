@@ -31,7 +31,7 @@
 .dtable-ui-user-select-container .dtable-ui-user-list-container {
   min-height: 160px;
   max-height: 200px;
-  padding: 8px !important;
+  padding: 8px;
   overflow: auto;
   position: relative;
 }
@@ -124,6 +124,7 @@
   justify-content: center;
   transform: translateY(0);
   flex-shrink: 0;
+  margin-right: 4px;
 }
 
 .dtable-ui-user-item .user-name {
