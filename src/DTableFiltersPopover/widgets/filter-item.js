@@ -466,7 +466,7 @@ class FilterItem extends React.Component {
         if (selectedOption) {
           const className = 'select-option-name single-select-option';
           const style = { background: selectedOption.color, color: selectedOption.textColor || null };
-          selectedOptionName = { label: <span className={className} style={style} title={selectedOption.name} aria-label={selectedOption.name}>{selectedOption.name}</span> };
+          selectedOptionName = { value: { columnOption: selectedOption }, label: <span className={className} style={style} title={selectedOption.name} aria-label={selectedOption.name}>{selectedOption.name}</span> };
         }
 
         let dataOptions = options.map(option => {
