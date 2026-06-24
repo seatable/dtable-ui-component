@@ -73,7 +73,6 @@ export default function ColorPickerPortal({ target, scrollContainerId, throttleD
         visibility: position.visibility,
         opacity: isPositioned ? 1 : 0,
         transition: 'opacity 0.15s ease-in-out',
-        marginTop: '8px'
       }}
       ref={containerRef}
     >
