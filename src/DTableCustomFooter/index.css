@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
-  border-top: 1px solid #eee !important;
+  border-top: 1px solid var(--bs-border-secondary-color) !important;
 }
 
 .dtable-custom-footer>* {
