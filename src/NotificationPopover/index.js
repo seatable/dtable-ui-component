@@ -71,7 +71,7 @@ export default class NotificationPopover extends React.Component {
         hideArrow={true}
         placement="bottom"
       >
-        <div className="notification-container" ref={ref => this.notificationContainerRef = ref}>
+        <div className="notification-container dtable-popover-container" ref={ref => this.notificationContainerRef = ref}>
           <div className="notification-header">
             {headerText}
             <IconButton icon="x" onClick={this.props.onNotificationListToggle} />
@@ -89,7 +89,7 @@ export default class NotificationPopover extends React.Component {
                 {this.props.children}
               </div>
             </div>
-            <div className="notification-footer" onClick={this.onNotificationDialogToggle}>{footerText}</div>
+            <div className="notification-footer dtable-popover-footer" onClick={this.onNotificationDialogToggle}>{footerText}</div>
           </div>
         </div>
       </Popover>

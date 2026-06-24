@@ -350,7 +350,7 @@ const DTableColorPicker = forwardRef(({ onToggle, popoverStyle, color = '#ffffff
 
   const colorPicker = (
     <ClickOutside onClickOutside={onClosePopover}>
-      <div style={popoverStyle} ref={colorPickerRef} className="dtable-color-picker">
+      <div style={popoverStyle} ref={colorPickerRef} className="dtable-color-picker dtable-popover-container">
         {renderDefaultContainer()}
         {renderCustomContainer()}
         {renderUsedContainer()}

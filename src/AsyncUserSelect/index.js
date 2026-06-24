@@ -215,7 +215,7 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
             fade={false}
             className="dtable-ui-user-select-popover"
           >
-            <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()}>
+            <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()} >
               <div className="dtable-ui-user-search-container">
                 <DtableSearchInput
                   autoFocus

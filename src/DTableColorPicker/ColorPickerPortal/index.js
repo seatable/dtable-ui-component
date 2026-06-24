@@ -62,7 +62,7 @@ export default function ColorPickerPortal({ target, scrollContainerId, throttleD
 
   return ReactDOM.createPortal(
     <div
-      className='dtable-color-picker-portal'
+      className='dtable-color-picker-portal dtable-popover-container'
       style={{
         position: 'fixed',
         zIndex: '1049',
