@@ -8,8 +8,6 @@
   width: 320px;
   right: -10px;
   top: -1px;
-  border-radius: 3px;
-  box-shadow: 0 0 5px #ccc;
 }
 
 .notification-container .notification-header {
@@ -17,7 +15,7 @@
   align-items: center;
   justify-content: center;
   height: 50px;
-  border-bottom: 1px solid #ededed;
+  border-bottom: 1px solid var(--bs-border-secondary-color);
   font-size: 16px;
   font-weight: 600;
   position: relative;
@@ -166,9 +164,6 @@
   justify-content: center;
   background: #f9f9f9;
   cursor: pointer;
-  border-bottom-right-radius: 3px;
-  border-bottom-left-radius: 3px;
-  border-top: 1px solid #ededed;
 }
 
 .notification-body .notification-footer:hover {

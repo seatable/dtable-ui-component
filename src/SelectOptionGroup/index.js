@@ -187,7 +187,7 @@ class SelectOptionGroup extends Component {
         opacity: 0,
       };
     }
-
+    style.top = style.top + 4;
     return (
       <ClickOutside onClickOutside={this.props.onClickOutside}>
         <div
