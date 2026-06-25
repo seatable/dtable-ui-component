@@ -82,7 +82,7 @@ const MenuSelectStyle = {
       backgroundColor: 'var(--bs-popover-bg)',
       border: '1px solid var(--bs-border-secondary-color)',
       borderRadius: '4px',
-      boxShadow: '0px 6px 14px rgba(0, 0, 0, 0.1)',
+      boxShadow: 'var(--bs-border-secondary-shadow)',
       marginTop: '4px',
       marginBottom: 0
     });
@@ -147,7 +147,7 @@ const MenuSelectStyle = {
     const { isDisabled } = state;
     return {
       ...provided,
-      color: '#868E96',
+      color: 'var(--bs-bg-placeholder-color)',
       opacity: isDisabled ? 0.65 : 1,
     };
   },
