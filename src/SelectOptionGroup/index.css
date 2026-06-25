@@ -10,7 +10,6 @@
   border: 1px solid var(--bs-border-secondary-color);
   border-radius: 4px;
   z-index: 10001;
-  margin-top: 4px;
 }
 
 .seatable-option-group-search {
@@ -47,7 +46,7 @@
 }
 
 .seatable-option-group .seatable-option-group-search .input-icon-addon svg {
-  color: #999;
+  color: var(--bs-body-secondary-color);
   cursor: pointer;
 }
 

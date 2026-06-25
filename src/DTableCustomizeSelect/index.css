@@ -88,7 +88,7 @@
   line-height: 1;
   font-size: 14px;
   white-space: nowrap;
-  color: #868E96;
+  color: var(--bs-bg-placeholder-color);
   margin-right: 8px;
 }
 
