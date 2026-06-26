@@ -333,7 +333,7 @@
   display: inline-flex;
   align-items: center;
   height: 20px;
-  margin-right: 10px;
+  margin-right: 4px;
   padding: 0 8px 0 2px;
   font-size: 13px;
   border-radius: 10px;
@@ -412,14 +412,14 @@
 
 .filter-header-icon {
   display: inline-block;
-  padding: 0 0.3125rem;
+  padding-right: 0.5rem;
   margin-left: -0.3125rem;
 }
 
 .filter-header-icon .dtable-font,
 .filter-header-icon .multicolor-icon {
   font-size: 14px;
-  color: #aaa;
+  color: var(--bs-icon-secondary-color);
   cursor: default;
 }
 

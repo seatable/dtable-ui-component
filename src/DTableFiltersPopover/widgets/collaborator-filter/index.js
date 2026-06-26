@@ -51,7 +51,7 @@ class CollaboratorFilter extends Component {
                 </div>
               </div>
               <div className='collaborator-check-icon'>
-                {isSelected && <i className="option-edit dtable-font dtable-icon-check-mark"></i>}
+                {isSelected && <i className="option-edit dtable-font dtable-icon-check"></i>}
               </div>
             </div>
           </Fragment>

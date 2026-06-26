@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames';
 
 class Option extends Component {
 
-  onSelectOption = (value, event) => {
+  onSelectOption = (event) => {
     if (this.props.supportMultipleSelect) {
       event.stopPropagation();
     }
-    this.props.onSelectOption(value, event);
+    this.props.onSelectOption(this.props.value, event);
   };
 
   onMouseEnter = () => {
@@ -22,14 +23,24 @@ class Option extends Component {
     }
   };
 
+  onKeyDown = (e) => {
+    if (e.key === 'Enter' || e.key === 'Space') {
+      e.target.click();
+    }
+  };
+
   render() {
     return (
       <div
-        className={this.props.isActive ? 'option option-active' : 'option'}
-        onClick={this.onSelectOption.bind(this, this.props.value)}
+        className={classnames('seatable-select-option', { 'seatable-select-option-active': this.props.isActive })}
+        tabIndex="0"
+        role="menuitem"
+        onClick={this.onSelectOption}
+        onKeyDown={this.onKeyDown}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
-      >{this.props.children}
+      >
+        {this.props.children}
       </div>
     );
   }
