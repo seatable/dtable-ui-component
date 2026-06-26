@@ -205,7 +205,7 @@
 .option-group-dtable-ui-collaborator-selector .option:hover,
 .option-group-dtable-ui-collaborator-selector .option.option-active {
   color: #212529;
-  background-color: var(--bs-bg-color);
+  background-color: #f7f7f7;
 }
 
 .dtable-ui-filters-list .dtable-ui-multiple-select-selector .option.option-active .select-option-name,
@@ -425,7 +425,7 @@
 
 .option.option-active .filter-header-icon .dtable-font,
 .option.option-active .filter-header-icon .multicolor-icon {
-  color: var(--bs-icon-secondary-color);
+  color: #fff;
 }
 
 .dtable-ui-filters-list .single-select-option,
