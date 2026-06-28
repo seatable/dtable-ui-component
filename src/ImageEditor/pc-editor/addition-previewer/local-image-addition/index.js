@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Input } from 'reactstrap';
+import { getImageThumbnailUrl } from 'dtable-utils';
 import Progress from '../../../../UploadProgress';
-import { getImageThumbnailUrl } from '../../../../utils/url';
 import FileUploader from '../../../../FileUploader';
 import { getLocale } from '../../../../lang';
 

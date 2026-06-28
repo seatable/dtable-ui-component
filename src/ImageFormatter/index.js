@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import { getImageThumbnailUrl } from 'dtable-utils';
 import ImagesLazyLoad from './images-lazy-load';
 import ImagePreviewerLightbox from '../ImagePreviewerLightbox';
-import { getImageThumbnailUrl } from '../utils/url';
 
 import './index.css';
 
@@ -78,7 +78,7 @@ class ImageFormatter extends React.Component {
 
     if (isSample) {
       let item = value[0];
-      let url = getImageThumbnailUrl(item, server);
+      let url = getImageThumbnailUrl(item, { server, dtableUuid });
       return (
         <div className={className}>
           <img className="image-item" src={url} alt=""/>

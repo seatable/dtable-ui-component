@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import Lightbox from '@seafile/react-image-lightbox';
-import { getFileSuffix, generateCurrentBaseImageUrl, getImageThumbnailUrl, isCustomAssetUrl, isDigitalSignsUrl, isInternalImg, needUseThumbnailImage } from '../utils/url';
+import { getImageThumbnailUrl } from 'dtable-utils';
+import { getFileSuffix, generateCurrentBaseImageUrl, isCustomAssetUrl, isDigitalSignsUrl, isInternalImg, needUseThumbnailImage } from '../utils/url';
 import { getLocale } from '../lang';
 
 import '@seafile/react-image-lightbox/style.css';
