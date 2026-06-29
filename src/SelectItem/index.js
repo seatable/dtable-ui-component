@@ -24,7 +24,7 @@ const SelectItem = ({ option, fontSize, className, isShowRemove, onRemove }) => 
     <div className={classnames('dtable-ui dtable-ui-select-item', className)} style={selectItemStyle}>
       <div className="dtable-ui-select-item-name text-truncate" title={option.name}>{option.name}</div>
       {isShowRemove && (
-        <div className="dtable-ui-select-item-remove-btn" style={removeBtnStyle} onClick={onRemove}>
+        <div className="dtable-ui-select-item-remove-btn seatable-icon-btn" style={removeBtnStyle} onClick={onRemove}>
           <i className="dtable-font dtable-icon-fork-number"></i>
         </div>
       )}
