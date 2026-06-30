@@ -187,23 +187,24 @@ class FilterItem extends React.Component {
 
   onSelectMultiple = (value) => {
     const { index, filter } = this.props;
-    const { columnOption: option } = value;
-    let newFilter = getUpdatedFilterBySelectMultiple(filter, option);
+    let newFilter = getUpdatedFilterBySelectMultiple(filter, value);
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
   };
 
   onSelectCollaborator = (value) => {
     const { index, filter } = this.props;
-    const { columnOption: collaborator } = value;
-    let newFilter = getUpdatedFilterByCollaborator(filter, collaborator);
+    let newFilter = getUpdatedFilterByCollaborator(filter, value);
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
   };
 
   onSelectCreator = (value) => {
     const { index, filter } = this.props;
-    const { columnOption: collaborator } = value;
+    const collaborator = value && (value.columnOption || value.value || value);
+    if (!collaborator || !collaborator.email) {
+      return;
+    }
     let newFilter = getUpdatedFilterByCreator(filter, collaborator);
     // the predicate is 'is' or 'is not'
     if (!newFilter) {
@@ -352,10 +353,11 @@ class FilterItem extends React.Component {
     }
     const className = 'select-option-name multiple-select-option';
     let labelArray = [];
+    let valueArray = [];
     if (Array.isArray(options) && Array.isArray(filterTerm)) {
       filterTerm.forEach((item) => {
         let inOption = options.find(option => option.id === item);
-        let optionStyle = { margin: '0 10px 0 0' };
+        let optionStyle = { margin: '0 4px 0 0' };
         let optionName = null;
         if (inOption) {
           optionName = inOption.name;
@@ -365,6 +367,7 @@ class FilterItem extends React.Component {
           optionStyle.background = DELETED_OPTION_BACKGROUND_COLOR;
           optionName = getLocale(DELETED_OPTION_TIPS);
         }
+        valueArray.push( inOption );
         labelArray.push(
           <span className={className} style={optionStyle} key={'option_' + item} title={optionName} aria-label={optionName}>
             {optionName}
@@ -372,7 +375,7 @@ class FilterItem extends React.Component {
         );
       });
     }
-    const selectedOptionNames = labelArray.length > 0 ? { label: (<Fragment>{labelArray}</Fragment>) } : {};
+    const selectedOptionNames = labelArray.length > 0 ? { value: valueArray, label: (<Fragment>{labelArray}</Fragment>) } : {};
 
     const dataOptions = options.map(option => {
       return FilterItemUtils.generatorMultipleSelectOption(option, filterTerm);
@@ -546,6 +549,7 @@ class FilterItem extends React.Component {
             onSelectCollaborator={this.onSelectCreator}
             isInModal={this.props.isInModal}
             readOnly={readOnly}
+            filter_predicate={filter_predicate}
           />
         );
       }
