@@ -28,7 +28,7 @@ const DISABLED_CONTROL_STYLE = {
 const FOCUS_CONTROL_STYLE = {
   fontSize: '14px',
   padding: '0 4px 0 8px',
-  border: '1px solid #3E84F7',
+  border: '1px solid var(--bs-bg-border-color)',
   boxShadow: 'none',
   backgroundColor: 'var(--bs-popover-bg)',
   borderRadius: '4px',
@@ -52,7 +52,7 @@ const controlCallback = (provided, state) => {
       ...provided,
       ...DISABLED_CONTROL_STYLE,
       ':active': {
-        border: '1px solid #3E84F7',
+        border: '1px solid var(--bs-bg-border-color)',
       },
       ...headerIconStyle,
     };
