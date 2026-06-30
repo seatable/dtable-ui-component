@@ -7,6 +7,7 @@ import DTableCustomizeSearchInput from '../DTableCustomizeSearchInput';
 import UserItem from './user-item';
 import { getLocale } from '../lang';
 import keyCodes from '../constants/key-codes';
+import DTableIcon from '../DTableIcon';
 
 import './index.css';
 
@@ -206,6 +207,7 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
                 {emptyPlaceholder || getLocale('Search_users')}
               </div>
             )}
+            {<span className="select-dropdown-indicator d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
           </div>
         </div>
         {selectorRef.current && (

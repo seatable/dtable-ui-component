@@ -3,11 +3,30 @@
   height: auto !important;
   min-height: 38px;
   max-width: calc(100% - 10px);
-  padding: 0.4375rem 1rem 0.4375rem 0.5rem;
+  padding: .375rem 40px .375rem 1rem;
+  position: relative;
+}
+
+.dtable-ui-selected-users-container.focus {
+  border: 1px solid #3e84f7
 }
 
 .dtable-ui-selected-users-container .dtable-ui-user-select-placeholder {
-  color: #808080;
+  color: var(--bs-icon-color);
+}
+
+.select-dropdown-indicator {
+  margin-left: -2px;
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%)
+}
+
+.select-dropdown-indicator .multicolor-icon {
+  font-size: 12px;
+  width: 12px;
+  height: 12px;
 }
 
 .dtable-ui-user-select-popover .popover {
