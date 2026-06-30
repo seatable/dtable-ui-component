@@ -8,7 +8,7 @@
 }
 
 .dtable-ui-selected-users-container.focus {
-  border: 1px solid #3e84f7
+  border: 1px solid #3e84f7;
 }
 
 .dtable-ui-selected-users-container .dtable-ui-user-select-placeholder {
@@ -64,7 +64,7 @@
 
 .dtable-ui-user-select-container .dtable-ui-user-list-container .dtable-ui-user-item-container:hover,
 .dtable-ui-user-select-container .dtable-ui-user-list-container .dtable-ui-user-item-container-highlight {
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: var(--bs-btn-background-hover);
   cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 .seatable-option-group {
   position: absolute;
   left: 0;
-  max-height: 300px;
+  min-height: 60px;
   min-width: 100%;
   max-width: 15rem;
   padding-top: 0;
@@ -85,7 +85,7 @@
 
 .seatable-select-option.seatable-select-option-active {
   cursor: pointer;
-  background-color: rgba(0, 0, 0, 0.04);
+  background-color: var(--bs-btn-background-hover);
 }
 
 .seatable-select-option .select-option-name .multiple-select-option {
@@ -125,7 +125,7 @@
 
 .selector-group-select .seatable-select-option:hover,
 .selector-group-select .seatable-select-option.seatable-select-option-active {
-  background-color: rgba(0, 0, 0, 0.04) !important;
+  background-color: var(--bs-btn-background-hover);
 }
 
 .select-label .header-icon {
