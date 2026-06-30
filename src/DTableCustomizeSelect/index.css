@@ -133,10 +133,10 @@
   line-height: 24px;
   margin-right: 4px;
   padding: 0 6px 0 6px;
+  background-color: #f7f7f5;
 }
 
 .selector-group-select .selected-option-show .selected-option-item .selected-option-item-name {
-  margin-left: 6px;
   color: #212519;
   font-size: 14px;
   margin-right: 8px
