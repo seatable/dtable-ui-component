@@ -125,7 +125,7 @@
 
 .selector-group-select .seatable-select-option:hover,
 .selector-group-select .seatable-select-option.seatable-select-option-active {
-  background-color: var(--bs-bg-color) !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
 }
 
 .select-label .header-icon {
