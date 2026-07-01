@@ -11,7 +11,7 @@ import './index.css';
 function ImagePreviewerLightbox(props) {
   const {
     imageItems, imageIndex, readOnly, className, server, workspaceID, dtableUuid,
-    deleteImage, downloadImage, onRotateImage,
+    deleteImage, downloadImage, onRotateImage, isShowPreLine = true, isShowNextLine = true
   } = props;
   const imageSrcList = imageItems.map((src) => {
     let name = '';
@@ -93,8 +93,8 @@ function ImagePreviewerLightbox(props) {
       onCloseRequest={props.closeImagePopup}
       onMovePrevRequest={props.moveToPrevImage}
       onMoveNextRequest={props.moveToNextImage}
-      onClickMoveUp={moveToPrevRowImage}
-      onClickMoveDown={moveToNextRowImage}
+      onClickMoveUp={isShowPreLine && moveToPrevRowImage}
+      onClickMoveDown={isShowNextLine && moveToNextRowImage}
       onViewOriginal={props.onViewOriginal}
       onRotateImage={canRotateImage ? (deg) => {onRotateImage(currentImageIndex, deg);} : null}
       onClickDelete={(!readOnly && deleteImage) ? () => {deleteImage(currentImageIndex, 'previewer');} : null}
@@ -127,6 +127,8 @@ ImagePreviewerLightbox.propTypes = {
   downloadImage: PropTypes.func,
   deleteImage: PropTypes.func,
   onRotateImage: PropTypes.func,
+  isShowPreLine: PropTypes.bool,
+  isShowNextLine: PropTypes.bool
 };
 
 export default ImagePreviewerLightbox;
