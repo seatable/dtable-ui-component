@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { getImageThumbnailUrl } from 'dtable-utils';
 import Loading from '../Loading';
-import { getImageThumbnailUrl } from '../utils/url';
 
 const ImagesLazyLoad = ({ images, server, onImageClick, renderItem, dtableUuid }) => {
   const [currentImages, setCurrentImages] = useState(images);

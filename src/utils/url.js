@@ -1,3 +1,4 @@
+import { getImageThumbnailUrl } from 'dtable-utils';
 import { FILEEXT_ICON_MAP, FILEEXT_ICON_URL_MAP } from '../constants/file';
 
 export const isTargetUrl = (target, url) => {
@@ -76,27 +77,6 @@ export const generateCurrentBaseImageUrl = ({ server, workspaceID, dtableUuid, p
   if (partUrl.startsWith('http')) return partUrl;
   const validServer = server || (window?.dtable && window.dtable.server) || '';
   return `${validServer}/workspace/${workspaceID}/asset/${dtableUuid}${partUrl}`;
-};
-
-export const getImageThumbnailUrl = (url, { server, dtableUuid, workspaceID, size = 256 } = {}) => {
-  if (!url || typeof url !== 'string') return '';
-
-  if (server && dtableUuid && isCustomAssetUrl(url)) {
-    const assetUuid = url.slice(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
-    return server + '/dtable/' + dtableUuid + '/custom-asset-thumbnail/' + assetUuid + '?size=' + size;
-  }
-
-  if (isAIUrl(url) || checkSVGImage(url) || !isInternalImg(url) || isBase64(url)) return url;
-
-  if (server && workspaceID && dtableUuid && isDigitalSignsUrl(url)) {
-    return generateCurrentBaseImageThumbnailUrl({
-      server, workspaceID, dtableUuid, size, partUrl: url,
-    });
-  }
-
-  if (url.includes('/thumbnail/workspace')) return url;
-
-  return url.replace('/workspace', '/thumbnail/workspace') + '?size=' + size;
 };
 
 export const getFileName = (url) => {

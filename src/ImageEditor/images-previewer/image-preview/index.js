@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { getImageThumbnailUrl } from 'dtable-utils';
 import DTableToolTip from '../../../DTableToolTip';
 import DeleteTip from '../../../DeleteTip';
-import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../../../utils/url';
+import { checkImgExists, checkSVGImage, getFileName } from '../../../utils/url';
 import { FILE_EDITOR_STATUS, isMobile } from '../../../constants';
 import { getLocale } from '../../../lang';
 

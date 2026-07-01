@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import DTableToolTip from '../DTableToolTip';
 import classnames from 'classnames';
+import { getImageThumbnailUrl } from 'dtable-utils';
 import DeleteTip from '../DeleteTip';
-import { getImageThumbnailUrl, checkImgExists, checkSVGImage, getFileName } from '../utils/url';
+import { checkImgExists, checkSVGImage, getFileName } from '../utils/url';
 import { getLocale } from '../lang';
 import { isMobile } from '../constants';
 
