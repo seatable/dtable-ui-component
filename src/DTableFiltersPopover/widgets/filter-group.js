@@ -130,7 +130,7 @@ class FilterGroup extends Component {
         )}
       >
         {!readOnly && (
-          <div className="delete-filter" onClick={this.deleteFilterGroup} role="button" tabIndex={0} aria-label={getLocale('Delete')}>
+          <div className="delete-filter seatable-icon-btn" onClick={this.deleteFilterGroup} role="button" tabIndex={0} aria-label={getLocale('Delete')}>
             <i aria-hidden="true" className="dtable-font dtable-icon-fork-number"></i>
           </div>
         )}
