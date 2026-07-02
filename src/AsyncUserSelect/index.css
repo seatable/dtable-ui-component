@@ -32,10 +32,6 @@
 .dtable-ui-user-select-popover .popover {
   width: 385px;
   max-width: 385px;
-  background: var(--bs-popover-bg);
-	border: 1px solid var(--bs-border-secondary-color);
-	border-radius: 4px;
-	box-shadow: var(--bs-border-secondary-shadow);
   margin-top: -4px;
 }
 
@@ -68,12 +64,8 @@
   cursor: pointer;
 }
 
-.no-user-search-result {
-  color: #666666;
-  font-size: 14px;
-  padding-left: 10px;
-  padding: 10px;
-  overflow: auto;
+.dtable-ui-user-select-container .dtable-ui-user-list-container {
+  margin: 0 !important;
 }
 
 .dtable-ui-user-select-popover .popover .dtable-ui-user-item {
@@ -81,7 +73,7 @@
 }
 
 .dtable-ui-user-list-container .dtable-ui-collaborator-check-icon .dtable-icon-check {
-  color: #666666;
+  color: var(--bs-icon-color);
   font-size: 14px;
 }
 

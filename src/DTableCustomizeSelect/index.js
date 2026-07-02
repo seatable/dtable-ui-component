@@ -24,7 +24,7 @@ class DTableCustomizeSelect extends Component {
     */
     if (this.state.isShowSelectOptions) event.stopPropagation();
     let eventClassName = event.target.className;
-    if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'seatable-option-group-search') return;
+    if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'seatable-select-search') return;
     // Prevent closing by pressing the spacebar in the search input
     if (event.target.value === '') return;
     this.setState({

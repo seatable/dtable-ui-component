@@ -200,7 +200,7 @@ class SelectOptionGroup extends Component {
             <div className="editor-list-delete mb-2" onClick={(e) => e.stopPropagation()}>{value.label || ''}</div>
           }
           {searchable && (
-            <div className="seatable-option-group-search">
+            <div className="seatable-select-search">
               <DTableCustomizeSearchInput
                 className="option-search-control"
                 placeholder={searchPlaceholder}

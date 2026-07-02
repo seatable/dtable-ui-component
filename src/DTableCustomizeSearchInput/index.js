@@ -96,7 +96,7 @@ class DTableCustomizeSearchInput extends Component {
     if (!isClearable || !searchValue) return null;
 
     return (
-      <span className={classnames('search-text-clear input-icon-addon', clearClassName)} style={{ fontSize: '12px' }} onClick={this.clearSearch}>
+      <span className={classnames('clear-icon-x', clearClassName)} onClick={this.clearSearch}>
         <DTableIcon symbol="close" color='var(--bs-icon-secondary-color)'/>
       </span>
     );
@@ -114,7 +114,7 @@ class DTableCustomizeSearchInput extends Component {
           type="text"
           name="search-input"
           value={searchValue}
-          className={classnames('form-control', className)}
+          className={classnames('select-search-control', className)}
           onChange={this.onChange}
           autoFocus={autoFocus}
           placeholder={placeholder}

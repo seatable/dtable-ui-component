@@ -220,7 +220,7 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
             className="dtable-ui-user-select-popover"
           >
             <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()}>
-              <div className="seatable-option-group-search">
+              <div className="seatable-select-search">
                 <DTableCustomizeSearchInput
                   className="option-search-control"
                   placeholder={searchPlaceholder || getLocale('Search_users')}
