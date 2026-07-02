@@ -21,6 +21,7 @@ class SelectOptionGroup extends Component {
     };
     this.filterOptions = null;
     this.timer = null;
+    this.searchInputRef = React.createRef();
   }
 
   componentDidMount() {
@@ -44,8 +45,8 @@ class SelectOptionGroup extends Component {
         this.optionGroupRef.style.top = (position.y - height) + 'px';
       }
       this.optionGroupRef.style.opacity = 1;
-    }
-    else {
+      this.searchInputRef.current && this.searchInputRef.current.inputRef.focus();
+    } else {
       if (height + top > window.innerHeight) {
         const borderWidth = 2;
         this.optionGroupRef.style.top = -1 * (height + borderWidth) + 'px';
@@ -94,6 +95,10 @@ class SelectOptionGroup extends Component {
     if (isInModal) {
       e.stopPropagation();
       e.nativeEvent.stopImmediatePropagation();
+
+      // ClickOutside set isClickedInside to true via mouse down capture first
+      // Set isClickedInside to false after mouse down
+      this.clickOutsideRef && this.clickOutsideRef.setClickedInsideStatus(false);
     }
   };
 
@@ -189,7 +194,7 @@ class SelectOptionGroup extends Component {
     }
     style.top = style.top + 4;
     return (
-      <ClickOutside onClickOutside={this.props.onClickOutside}>
+      <ClickOutside ref={ref => this.clickOutsideRef = ref} onClickOutside={this.props.onClickOutside}>
         <div
           className={classnames('seatable-option-group', className ? 'seatable-option-group-' + className : '', { 'pt-0': isShowSelected, })}
           ref={(ref) => this.optionGroupRef = ref}
@@ -208,6 +213,7 @@ class SelectOptionGroup extends Component {
                 clearValue={this.clearSearch}
                 autoFocus={true}
                 isClearable={true}
+                ref={this.searchInputRef}
               />
             </div>
           )}
