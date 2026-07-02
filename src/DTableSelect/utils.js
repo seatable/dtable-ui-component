@@ -36,7 +36,8 @@ const FOCUS_CONTROL_STYLE = {
 };
 
 const HEADER_ICON_STYLE = {
-  padding: '0 0.5rem !important'
+  margin: '0 0.5rem 0 0 !important',
+  padding: 0
 };
 
 const controlCallback = (provided, state) => {
