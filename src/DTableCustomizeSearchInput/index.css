@@ -66,6 +66,7 @@
   color: var(--bs-icon-color);
 }
 
+.dtable-ui-user-select-popover .select-search-control,
 .dtable-popover .select-search-control {
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
