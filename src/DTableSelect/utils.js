@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { components } from 'react-select';
+
 import './dtable-select-label.css';
+
 // DtableSelect is based on seatable-ui.css, so use the following content to override the default react-select style
 const DEFAULT_CONTROL_STYLE = {
   fontSize: '14px',
@@ -121,12 +123,14 @@ const MenuSelectStyle = {
     return {
       ...provided,
       color: 'var(--bs-body-color)',
+      margin: 0
     };
   },
   multiValue: (provided) => {
     return {
       ...provided,
       color: 'var(--bs-body-color)',
+      margin: 0
     };
   },
   multiValueRemove: (styles) => ({
@@ -149,6 +153,7 @@ const MenuSelectStyle = {
       ...provided,
       color: 'var(--bs-bg-placeholder-color)',
       opacity: isDisabled ? 0.65 : 1,
+      margin: 0
     };
   },
   indicatorSeparator: (styles, state) => {
