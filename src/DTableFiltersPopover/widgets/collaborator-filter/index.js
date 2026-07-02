@@ -30,7 +30,6 @@ class CollaboratorFilter extends Component {
 
   createCollaboratorOptions = (filterIndex, collaborators, filterTerm) => {
     return collaborators.map((collaborator) => {
-      let isSelected = filterTerm.findIndex(item => item === collaborator.email) > -1;
       return {
         value: { filterIndex, columnOption: collaborator },
         label: (
@@ -49,9 +48,6 @@ class CollaboratorFilter extends Component {
                   >{collaborator.name}
                   </span>
                 </div>
-              </div>
-              <div className='collaborator-check-icon'>
-                {isSelected && <i className="option-edit dtable-font dtable-icon-check-mark"></i>}
               </div>
             </div>
           </Fragment>
@@ -90,7 +86,8 @@ class CollaboratorFilter extends Component {
         </div>
       );
     });
-    let value = selectedCollaborators ? { label: (<>{selectedCollaborators}</>) } : {};
+    let selectCollaborators = Array.isArray(filterTerm) && filterTerm.length > 0 ? collaborators.filter(col => filterTerm.includes(col.email)) : [];
+    let value = selectedCollaborators ? { value: selectCollaborators, label: (<>{selectedCollaborators}</>) } : {};
     let options = Array.isArray(filterTerm) ? this.createCollaboratorOptions(filterIndex, collaborators, filterTerm) : [];
     return (
       <DTableCustomizeSelect

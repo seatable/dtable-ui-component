@@ -4,31 +4,64 @@ import { components } from 'react-select';
 
 // DtableSelect is based on seatable-ui.css, so use the following content to override the default react-select style
 const DEFAULT_CONTROL_STYLE = {
-  border: '1px solid rgba(0, 40, 100, 0.12) !important',
+  fontSize: '14px',
+  padding: '0 4px 0 8px',
+  border: '1px solid var(--bs-border-color) !important',
+  boxShadow: 'none',
+  backgroundColor: 'var(--bs-popover-bg)',
+  borderRadius: '4px',
+  outline: '0',
+};
+
+const DISABLED_CONTROL_STYLE = {
+  fontSize: '14px',
+  padding: '0 4px 0 8px',
+  border: '1px solid rgba(0, 40, 100, 0.12)',
+  boxShadow: 'none',
+  backgroundColor: 'var(--bs-bg-color)',
+  borderRadius: '4px',
+  outline: '0',
+  cursor: 'default',
+  opacity: 0.65,
 };
 
 const FOCUS_CONTROL_STYLE = {
   fontSize: '14px',
-  backgroundColor: '#ffffff',
-  borderColor: '#1991eb',
+  padding: '0 4px 0 8px',
+  border: '1px solid var(--bs-bg-border-color)',
+  boxShadow: 'none',
+  backgroundColor: 'var(--bs-popover-bg)',
+  borderRadius: '4px',
   outline: '0',
-  boxShadow: '0 0 0 2px rgba(70, 127, 207, 0.25)',
 };
 
-const noneCallback = () => ({
-  display: 'none',
-});
+const HEADER_ICON_STYLE = {
+  padding: '0 0.5rem !important'
+};
 
 const controlCallback = (provided, state) => {
   const { isDisabled, isFocused } = state;
-  if (isFocused && !isDisabled) {
+  const headerIconStyle = {
+    '.header-icon': HEADER_ICON_STYLE,
+    '.header-icon .dtable-font': {
+      color: 'var(--bs-icon-secondary-color) !important'
+    }
+  };
+  if (isDisabled) {
+    return {
+      ...provided,
+      ...DISABLED_CONTROL_STYLE,
+      ':active': {
+        border: '1px solid var(--bs-bg-border-color)',
+      },
+      ...headerIconStyle,
+    };
+  }
+  if (isFocused) {
     return {
       ...provided,
       ...FOCUS_CONTROL_STYLE,
-      '&:hover': {
-        ...provided,
-        ...FOCUS_CONTROL_STYLE,
-      }
+      ...headerIconStyle,
     };
   }
   return {
@@ -37,96 +70,109 @@ const controlCallback = (provided, state) => {
     lineHeight: '1.5',
     cursor: 'pointer',
     ...DEFAULT_CONTROL_STYLE,
-    '&:hover': {
-      ...DEFAULT_CONTROL_STYLE,
-    }
+    ...headerIconStyle,
   };
 };
 
-const UserSelectStyle = {
-  option: (provided, state) => {
-    const { isDisabled, isFocused } = state;
+const MenuSelectStyle = {
+  menu: (base) => {
     return ({
-      ...provided,
-      cursor: isDisabled ? 'default' : 'pointer',
-      backgroundColor: isFocused ? '#f5f5f5' : '#fff',
+      ...base,
+      padding: '8px',
+      backgroundColor: 'var(--bs-popover-bg)',
+      border: '1px solid var(--bs-border-secondary-color)',
+      borderRadius: '4px',
+      boxShadow: 'var(--bs-border-secondary-shadow)',
+      marginTop: '4px',
+      marginBottom: 0
     });
   },
-  control: controlCallback,
-  indicatorSeparator: noneCallback,
-  dropdownIndicator: noneCallback,
-  clearIndicator: noneCallback,
-  multiValue: (provided) => {
-    return {
+  menuList: (provided) => ({
+    ...provided,
+    padding: 0,
+  }),
+  option: (provided, state) => {
+    const { isDisabled } = state;
+    return ({
       ...provided,
-      display: 'inline-flex',
-      alignItems: 'center',
-      background: '#eaeaea',
-      borderRadius: '10px',
-      margin: '0 10px 0 0',
-      padding: '0 0 0 2px',
-    };
-  },
-  multiValueLabel: (provided) => {
-    return {
-      ...provided,
-      padding: '0px',
-    };
-  },
-  multiValueRemove: (provided) => {
-    return {
-      ...provided,
-      color: '#666',
+      color: 'var(--bs-body-color)',
+      borderRadius: '4px',
+      minHeight: '32px',
+      padding: '8px',
+      cursor: isDisabled ? 'default' : 'pointer',
+      backgroundColor: 'var(--bs-popover-bg)',
+      overflow: 'hidden',
+      whiteSpace: 'nowrap',
+      textOverflow: 'ellipsis',
       ':hover': {
-        backgroundColor: 'transparent',
-        color: '#555555',
-      }
-    };
+        backgroundColor: 'rgba(0, 0, 0, 0.04)',
+      },
+      '.header-icon': HEADER_ICON_STYLE });
   },
+  control: controlCallback,
+  menuPortal: base => ({
+    ...base,
+    zIndex: 9999,
+    backgroundColor: 'var(--bs-popover-bg)',
+    color: 'var(--bs-body-color)',
+    borderColor: 'var(--bs-border-secondary-color)',
+  }),
   singleValue: (provided) => {
     return {
       ...provided,
-      display: 'inline-flex',
-      alignItems: 'center',
-      background: '#eaeaea',
-      borderRadius: '10px',
-      margin: '0',
-      padding: '0 2px',
-      width: 'fit-content',
+      color: 'var(--bs-body-color)',
+    };
+  },
+  multiValue: (provided) => {
+    return {
+      ...provided,
+      color: 'var(--bs-body-color)',
+    };
+  },
+  multiValueRemove: (styles) => ({
+    ...styles,
+    '.dtable-font': {
+      color: 'var(--bs-icon-color)',
+    },
+    '.dtable-font:hover': {
+      backgroundColor: 'transparent',
+      color: 'var(--bs-icon-color)',
+    },
+  }),
+  input: (styles) => ({
+    ...styles,
+    color: 'var(--bs-body-color)',
+  }),
+  placeholder: (provided, state) => {
+    const { isDisabled } = state;
+    return {
+      ...provided,
+      color: 'var(--bs-bg-placeholder-color)',
+      opacity: isDisabled ? 0.65 : 1,
+    };
+  },
+  indicatorSeparator: (styles, state) => {
+    return {
+      'display': 'none'
+    };
+  },
+  dropdownIndicator: (provided, state) => {
+    const { isDisabled } = state;
+    return {
+      ...provided,
+      paddingRight: '12px',
+      '.dtable-font': {
+        color: 'var(--bs-icon-color) !important',
+        opacity: isDisabled ? 0.65 : 1,
+      }
     };
   },
 };
-
-const MenuSelectStyle = {
-  option: (provided, state) => {
-    const { isDisabled, isFocused } = state;
-    return ({
-      ...provided,
-      fontSize: '13px',
-      color: '#212529',
-      cursor: isDisabled ? 'default' : 'pointer',
-      backgroundColor: isFocused ? '#f5f5f5' : '#fff',
-      ':active': {
-        backgroundColor: '#f5f5f5',
-      },
-      '.header-icon .dtable-font': {
-        color: '#aaa',
-      },
-      '.header-icon .multicolor-icon': {
-        color: '#aaa',
-      },
-    });
-  },
-  control: controlCallback,
-  menuPortal: base => ({ ...base, zIndex: 9999 }),
-  indicatorSeparator: noneCallback,
-};
-
 const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <span className="dtable-font dtable-icon-down3" style={{ fontSize: '12px', marginLeft: '-2px' }}></span>
+        <span className="dtable-font dtable-icon-down3" style={{ fontSize: '12px', marginLeft: '-2px', color: 'var(--bs-icon-color)', paddingRight: 0 }}></span>
       </components.DropdownIndicator>
     )
   );
@@ -140,7 +186,7 @@ const ClearIndicator = ({ innerProps, ...props }) => {
   props.innerProps = { ...innerProps, onMouseDown };
   return (
     <components.ClearIndicator {...props} >
-      <span className="dtable-font dtable-icon-fork-number" style={{ fontSize: '12px', marginRight: '-2px' }}></span>
+      <span className="dtable-font dtable-icon-fork-number" style={{ fontSize: '12px', marginRight: '-2px', color: 'var(--bs-icon-color)' }}></span>
     </components.ClearIndicator>
   );
 };
@@ -160,10 +206,14 @@ MenuList.propTypes = {
 };
 
 const Option = props => {
+  const { isSelected, label } = props;
   return (
-    <div style={props.data.style}>
-      <components.Option {...props} />
-    </div>
+    <components.Option {...props}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', whiteSpace: 'pre-line' }}>
+        <span>{label}</span>
+        {isSelected && <span className="dtable-font dtable-icon-check" style={{ fontSize: '14px', color: 'var(--bs-icon-color)', paddingLeft: '16px' }}></span>}
+      </div>
+    </components.Option>
   );
 };
 
@@ -173,4 +223,28 @@ Option.propTypes = {
   }),
 };
 
-export { UserSelectStyle, MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option };
+const processOptionsWithClear = (options, isClearable) => {
+  if (isClearable && options && options.length > 0) {
+    return [
+      { label: '--', value: '__clear__' },
+      ...options
+    ];
+  }
+  return options;
+};
+
+const handleSelectChange = (selectedOption, actionMeta, onChangeCallback) => {
+  if (selectedOption && selectedOption.value === '__clear__') {
+    onChangeCallback(null, { ...actionMeta, action: 'clear' });
+  } else {
+    onChangeCallback(selectedOption, actionMeta);
+  }
+};
+
+const createHandleChange = (onChange) => {
+  return (selectedOption, actionMeta) => {
+    handleSelectChange(selectedOption, actionMeta, onChange);
+  };
+};
+
+export { MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option, processOptionsWithClear, handleSelectChange, createHandleChange };
