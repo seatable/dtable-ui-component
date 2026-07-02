@@ -8,3 +8,8 @@
   font-size: 14px;
   color: var(--bs-icon-color);
 }
+
+.seatable-option .select-option-name .seatable-tip-default {
+  font-size: 12px;
+  margin-top: 4px
+}
