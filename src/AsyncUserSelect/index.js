@@ -11,7 +11,7 @@ import DTableIcon from '../DTableIcon';
 
 import './index.css';
 
-const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder = '', isMulti = true, enableShowIDInOrgWhenSearchUser = false, selectedUsers = [], loadOptions, modifySelectedUsers }) => {
+const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder = '', isMulti = true, enableShowIDInOrgWhenSearchUser = false, selectedUsers = [], loadOptions, modifySelectedUsers, showDeptBtn = false }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [searchedUsers, setSearchedUsers] = useState([]);
@@ -207,7 +207,7 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
                 {emptyPlaceholder || getLocale('Search_users')}
               </div>
             )}
-            {<span className="select-dropdown-indicator d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
+            {!showDeptBtn && <span className="select-dropdown-indicator d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
           </div>
         </div>
         {selectorRef.current && (
@@ -274,6 +274,7 @@ AsyncUserSelect.propTypes = {
   selectedUsers: PropTypes.array,
   loadOptions: PropTypes.func,
   modifySelectedUsers: PropTypes.func,
+  showDeptBtn: PropTypes.bool,
 };
 
 export default AsyncUserSelect;
