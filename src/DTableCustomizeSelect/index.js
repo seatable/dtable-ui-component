@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import SelectOptionGroup from '../SelectOptionGroup';
+import DTableIcon from '../DTableIcon';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import ModalPortal from '../ModalPortal';
+import { getEventClassName } from '../utils/utils';
 
 import './index.css';
 
@@ -22,8 +24,8 @@ class DTableCustomizeSelect extends Component {
       so it can be closed when other select is clicked.
     */
     if (this.state.isShowSelectOptions) event.stopPropagation();
-    let eventClassName = event.target.className;
-    if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'option-group-search') return;
+    const eventClassName = getEventClassName(event);
+    if (this.props.isLocked || eventClassName.indexOf('option-search-control') > -1 || eventClassName === 'seatable-select-search') return;
     // Prevent closing by pressing the spacebar in the search input
     if (event.target.value === '') return;
     this.setState({
@@ -32,7 +34,7 @@ class DTableCustomizeSelect extends Component {
   };
 
   onClick = (event) => {
-    if (this.props.isShowSelected && event.target.className.includes('icon-fork-number')) {
+    if (this.props.isShowSelected && getEventClassName(event).includes('icon-fork-number')) {
       return;
     }
     if (!this.selector.contains(event.target)) {
@@ -79,19 +81,19 @@ class DTableCustomizeSelect extends Component {
     return (
       <div
         ref={(node) => this.selector = node}
-        className={classnames('dtable-select custom-select',
+        className={classnames('seatable-customize-select custom-select',
           { 'focus': this.state.isShowSelectOptions },
           { 'disabled': isLocked },
           className
         )}
-        onClick={this.onSelectToggle}>
+        onClick={this.onSelectToggle}
+      >
         <div className="selected-option">
           {value && value.label ?
             <span className="selected-option-show">{value.label}</span>
-            :
-            <span className="select-placeholder">{placeholder}</span>
+            : <span className="select-placeholder">{placeholder}</span>
           }
-          {!isLocked && <i className="dtable-font dtable-icon-down3"></i>}
+          {!isLocked && <span className="d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
         </div>
         {this.state.isShowSelectOptions && !isInModal && (
           <SelectOptionGroup

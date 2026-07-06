@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { Popover } from 'reactstrap';
 import ClickOutside from '../ClickOutside';
-import DtableSearchInput from '../DTableSearchInput';
+import DTableCustomizeSearchInput from '../DTableCustomizeSearchInput';
 import UserItem from './user-item';
 import { getLocale } from '../lang';
 import keyCodes from '../constants/key-codes';
+import DTableIcon from '../DTableIcon';
 
 import './index.css';
 
-const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder = '', isMulti = true, enableShowIDInOrgWhenSearchUser = false, selectedUsers = [], loadOptions, modifySelectedUsers }) => {
+const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder = '', isMulti = true, enableShowIDInOrgWhenSearchUser = false, selectedUsers = [], loadOptions, modifySelectedUsers, showDeptBtn = false }) => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [searchValue, setSearchValue] = useState('');
   const [searchedUsers, setSearchedUsers] = useState([]);
@@ -191,20 +192,23 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
     <ClickOutside onClickOutside={onClickOutside}>
       <>
         <div className={classnames('dtable-ui-selected-users-container form-control d-flex align-items-center', className, { 'focus': isPopoverOpen })} onClick={onTogglePopover} ref={selectorRef}>
-          {selectedUsers.map((user, index) => {
-            return (
-              <UserItem
-                key={`dtable-ui-user-selector-selected-user-${index}`}
-                user={user}
-                deleteUser={deselectUser}
-              />
-            );
-          })}
-          {selectedUsers.length === 0 && (
-            <div className="dtable-ui-user-select-placeholder">
-              {emptyPlaceholder || getLocale('Search_users')}
-            </div>
-          )}
+          <div className='dtable-ui-users-input'>
+            {selectedUsers.map((user, index) => {
+              return (
+                <UserItem
+                  key={`dtable-ui-user-selector-selected-user-${index}`}
+                  user={user}
+                  deleteUser={deselectUser}
+                />
+              );
+            })}
+            {selectedUsers.length === 0 && (
+              <div className="dtable-ui-user-select-placeholder">
+                {emptyPlaceholder || getLocale('Search_users')}
+              </div>
+            )}
+            {!showDeptBtn && <span className="select-dropdown-indicator d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
+          </div>
         </div>
         {selectorRef.current && (
           <Popover
@@ -215,15 +219,16 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
             fade={false}
             className="dtable-ui-user-select-popover"
           >
-            <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()} >
-              <div className="dtable-ui-user-search-container">
-                <DtableSearchInput
-                  autoFocus
+            <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()}>
+              <div className="seatable-select-search">
+                <DTableCustomizeSearchInput
+                  className="option-search-control"
                   placeholder={searchPlaceholder || getLocale('Search_users')}
-                  value={searchValue}
-                  wait={200}
                   onChange={onSearchValueChanged}
-                  onKeyDown={onKeyDown}
+                  clearValue={() => onSearchValueChanged('')}
+                  autoFocus={true}
+                  isClearable={true}
+                  value={searchValue}
                 />
               </div>
               <div className="dtable-ui-user-list-container" ref={userListContainerRef}>
@@ -239,7 +244,7 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
                         <UserItem key={`dtable-ui-user-selector-searched-user-${index}`} user={user} enableShowIDInOrgWhenSearchUser={enableShowIDInOrgWhenSearchUser} />
                         {selectedUsers.find(u => u.email === user.email) && (
                           <div className='dtable-ui-collaborator-check-icon'>
-                            <i className="dtable-font dtable-icon-check-mark" aria-hidden="true"></i>
+                            <i className="dtable-font dtable-icon-check" aria-hidden="true"></i>
                           </div>
                         )}
                       </div>
@@ -269,6 +274,7 @@ AsyncUserSelect.propTypes = {
   selectedUsers: PropTypes.array,
   loadOptions: PropTypes.func,
   modifySelectedUsers: PropTypes.func,
+  showDeptBtn: PropTypes.bool,
 };
 
 export default AsyncUserSelect;

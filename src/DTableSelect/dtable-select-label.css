@@ -1,10 +1,15 @@
 .dtable-select-check-icon {
-  width: 20px;
-  height: 20px;
+  width: 14px;
+  height: 14px;
   text-align: center;
 }
 
 .dtable-select-check-icon .dtable-font {
+  font-size: 14px;
+  color: var(--bs-icon-color);
+}
+
+.seatable-option .select-option-name .seatable-tip-default {
   font-size: 12px;
-  color: #798d99;
+  margin-top: 4px
 }

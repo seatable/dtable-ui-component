@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Select from 'react-select';
-import { MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option } from './utils';
+import { MenuSelectStyle, DropdownIndicator, ClearIndicator, MenuList, Option, processOptionsWithClear, createHandleChange } from './utils';
 
 export default class DTableSelect extends React.Component {
 
@@ -49,11 +49,12 @@ export default class DTableSelect extends React.Component {
     const { options, onChange, value, isSearchable, placeholder, isMulti, menuPosition, isClearable, noOptionsMessage,
       classNamePrefix, style, innerRef, isDisabled, form, customFilterOption, autoFocus, className, closeMenuOnSelect, onMenuClose, components: userComponents } = this.props;
     const mergedComponents = { Option, DropdownIndicator, MenuList, ClearIndicator, ...userComponents };
+    const processedOptions = processOptionsWithClear(options, isClearable);
     return (
       <Select
         value={value}
-        onChange={onChange}
-        options={options}
+        onChange={createHandleChange(onChange)}
+        options={processedOptions}
         isMulti={isMulti}
         className={className}
         classNamePrefix={classNamePrefix}
@@ -61,7 +62,6 @@ export default class DTableSelect extends React.Component {
         components={mergedComponents}
         placeholder={placeholder}
         isSearchable={isSearchable}
-        isClearable={isClearable}
         menuPosition={menuPosition || 'fixed'} // when use default menuPosition(absolute), menuPortalTarget is unnecessary.
         menuShouldScrollIntoView
         menuPortalTarget={document.querySelector(this.props.menuPortalTarget)}
