@@ -714,7 +714,7 @@ class FilterItem extends React.Component {
     return (
       <div className="filter-item">
         {!readOnly && (
-          <div className="delete-filter" onClick={this.onDeleteFilter}>
+          <div className="delete-filter seatable-icon-btn" onClick={this.onDeleteFilter}>
             <i className="dtable-font dtable-icon-fork-number"></i>
           </div>
         )}

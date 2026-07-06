@@ -124,26 +124,27 @@ class DTableFiltersPopover extends Component {
           }
           {isSupportAdvanced && !readOnly &&
             <div className="add-buttons">
-              <div
-                className="btn-add-filter mr-4"
+              <Button
+                className="mr-4"
                 onClick={canAddFilter ? () => this.addFilter() : () => {}}
-                role="button"
                 tabIndex={0}
                 aria-label={getLocale('Add_filter')}
+                color='filled'
+                size='middle'
               >
-                <i aria-hidden="true" className="dtable-font dtable-icon-add-table popover-add-icon"></i>
+                <i aria-hidden="true" className="dtable-font dtable-icon-add-table"></i>
                 <span className="add-new-option">{getLocale('Add_filter')}</span>
-              </div>
-              <div
-                className="btn-add-filter-group"
+              </Button>
+              <Button
                 onClick={canAddFilter ? () => this.addFilterGroup() : () => {}}
-                role="button"
+                color='filled'
+                size='middle'
                 tabIndex={0}
                 aria-label={getLocale('Add_filter_group')}
               >
-                <i aria-hidden="true" className="dtable-font dtable-icon-add-table popover-add-icon"></i>
+                <i aria-hidden="true" className="dtable-font dtable-icon-add-table"></i>
                 <span className="add-new-option">{getLocale('Add_filter_group')}</span>
-              </div>
+              </Button>
             </div>
           }
           {this.isNeedSubmit &&

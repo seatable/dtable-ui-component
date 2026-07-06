@@ -289,8 +289,8 @@
 }
 
 .dtable-ui-filters-list .delete-filter {
-  width: 12px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   margin-right: 14px;
   text-align: center;
 }
@@ -302,7 +302,7 @@
 .dtable-ui-filters-list .delete-filter .dtable-icon-fork-number {
   display: inline-block;
   font-size: 12px;
-  color: #999;
+  color: var(--bs-icon-color);
 }
 
 .dtable-ui-filters-list .multiple-option-name {
@@ -388,7 +388,7 @@
 }
 
 .dtable-ui-filters-list .filter-item .dtable-icon-fork-number:hover {
-  color: #555555;
+  color: var(--bs-icon-color);
 }
 
 .dtable-ui-filters-list .filter-container-readonly .dtable-select .selected-option-show,

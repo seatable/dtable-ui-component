@@ -42,7 +42,7 @@ function FieldDisplaySetting({ fields, textProperties, fieldAllShown, onClickFie
     <div className="field-setting">
       <div className="field-setting-header seatable-collapse-header d-flex align-items-center justify-content-between" onClick={expandAllFields} >
         <Label className="mb-0">{textProperties.titleValue}</Label>
-        <span className={`dtable-font dtable-icon-right expand-button ${isCollapsed ? '' : 'revolving'}`} />
+        <span className={`seatable-icon-btn dtable-font dtable-icon-right expand-button ${isCollapsed ? '' : 'revolving'}`} />
       </div>
       <Transition nodeRef={nodeRef} in={!isCollapsed} timeout={DURATION}>
         {state => (
