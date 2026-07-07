@@ -15,7 +15,9 @@ const CollapsibleSettingLayout = (props) => {
         onClick={() => setIsShowSettings(!isShowSettings)}
       >
         <span className="collapsible-setting-layout-title">{title}</span>
-        <i className={`dtable-font dtable-icon-right${isShowSettings ? ' dtable-icon-spin' : ''}`}></i>
+        <span className="seatable-icon-btn">
+          <i className={`dtable-font dtable-icon-right${isShowSettings ? ' dtable-icon-spin' : ''}`}/>
+        </span>
       </div>
       {isShowSettings && <div className="collapsible-setting-layout-body mt-3 pl-2">{children || ''}</div>}
     </div>
