@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
-import { Popover } from 'reactstrap';
-import ClickOutside from '../ClickOutside';
+import ModalPortal from '../ModalPortal';
 import DTableCustomizeSearchInput from '../DTableCustomizeSearchInput';
 import UserItem from './user-item';
 import { getLocale } from '../lang';
@@ -18,6 +17,7 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
   const [highlightIndex, setHighlightIndex] = useState(-1);
   const [maxItemNum, setMaxItemNum] = useState(0);
   const [itemHeight, setItemHeight] = useState(0);
+  const [popoverPosition, setPopoverPosition] = useState(null);
 
   const selectorRef = useRef(null);
   const userSelectContainerRef = useRef(null);
@@ -29,13 +29,6 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
     setSearchValue('');
     setHighlightIndex(-1);
   }, []);
-
-  const onClickOutside = useCallback((e) => {
-    if (isPopoverOpen && (!selectorRef.current || !selectorRef.current.contains(e.target))) {
-      setIsPopoverOpen(false);
-      clearStatus();
-    }
-  }, [isPopoverOpen, clearStatus]);
 
   const searchUsers = useCallback((searchValue = '') => {
     const trimmedSearchValue = searchValue?.trim() || '';
@@ -165,21 +158,14 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
   }, [onEnter, onUpArrow, onDownArrow, onEsc]);
 
   useEffect(() => {
-    if (userSelectContainerRef.current) {
-      const { bottom } = userSelectContainerRef.current.getBoundingClientRect();
-      if (bottom > window.innerHeight) {
-        userSelectContainerRef.current.style.top = `${window.innerHeight - bottom}px`;
-      }
-    }
+    if (!isPopoverOpen) return;
     if (userListContainerRef.current && userItemContainerRef.current) {
-      const userContainerStyle = getComputedStyle(userListContainerRef.current, null);
-      const userItemStyle = getComputedStyle(userItemContainerRef.current, null);
-      const userItemHeight = parseInt(userItemStyle.height);
-      const maxContainerItemNum = Math.floor(parseInt(userContainerStyle.maxHeight) / userItemHeight);
-      setMaxItemNum(maxContainerItemNum);
+      const userItemHeight = userItemContainerRef.current.getBoundingClientRect().height;
+      const listMaxHeight = userListContainerRef.current.clientHeight;
       setItemHeight(userItemHeight);
+      setMaxItemNum(Math.max(1, Math.floor(listMaxHeight / userItemHeight)));
     }
-  }, []);
+  }, [isPopoverOpen, searchedUsers]);
 
   useEffect(() => {
     document.addEventListener('keydown', onHotKey, true);
@@ -188,80 +174,117 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
     };
   }, [onHotKey]);
 
+  useEffect(() => {
+    if (!isPopoverOpen) return;
+    const isInside = (target) => {
+      if (!target) return false;
+      if (selectorRef.current && selectorRef.current.contains(target)) return true;
+      if (userSelectContainerRef.current && userSelectContainerRef.current.contains(target)) return true;
+      return false;
+    };
+    const handleDocumentMouseDown = (e) => {
+      if (isInside(e.target)) return;
+      setIsPopoverOpen(false);
+      clearStatus();
+    };
+    document.addEventListener('mousedown', handleDocumentMouseDown, true);
+    return () => {
+      document.removeEventListener('mousedown', handleDocumentMouseDown, true);
+    };
+  }, [isPopoverOpen, clearStatus]);
+
+  const getSelectorRect = () => {
+    if (!selectorRef.current) return null;
+    return selectorRef.current.getBoundingClientRect();
+  };
+
+  useLayoutEffect(() => {
+    if (!isPopoverOpen) {
+      setPopoverPosition(null);
+      return;
+    }
+    const rect = getSelectorRect();
+    if (!rect) return;
+    setPopoverPosition({
+      position: 'fixed',
+      top: rect.bottom + 8,
+      left: rect.left,
+      width: rect.width,
+    });
+  }, [isPopoverOpen, selectedUsers]);
+
+  const popoverStyle = popoverPosition;
+
   return (
-    <ClickOutside onClickOutside={onClickOutside}>
-      <>
-        <div className={classnames('dtable-ui-selected-users-container form-control d-flex align-items-center', className, { 'focus': isPopoverOpen })} onClick={onTogglePopover} ref={selectorRef}>
-          <div className='dtable-ui-users-input'>
-            {selectedUsers.map((user, index) => {
-              return (
-                <UserItem
-                  key={`dtable-ui-user-selector-selected-user-${index}`}
-                  user={user}
-                  deleteUser={deselectUser}
-                />
-              );
-            })}
-            {selectedUsers.length === 0 && (
-              <div className="dtable-ui-user-select-placeholder">
-                {emptyPlaceholder || getLocale('Search_users')}
-              </div>
-            )}
-            {!showDeptBtn && <span className="select-dropdown-indicator d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
-          </div>
-        </div>
-        {selectorRef.current && (
-          <Popover
-            placement="bottom-start"
-            isOpen={isPopoverOpen}
-            target={selectorRef.current}
-            hideArrow={true}
-            fade={false}
-            className="dtable-ui-user-select-popover"
-          >
-            <div className="dtable-ui-user-select-container" ref={userSelectContainerRef} onMouseDown={e => e.stopPropagation()}>
-              <div className="seatable-select-search">
-                <DTableCustomizeSearchInput
-                  className="option-search-control"
-                  placeholder={searchPlaceholder || getLocale('Search_users')}
-                  onChange={onSearchValueChanged}
-                  clearValue={() => onSearchValueChanged('')}
-                  autoFocus={true}
-                  isClearable={true}
-                  value={searchValue}
-                />
-              </div>
-              <div className="dtable-ui-user-list-container" ref={userListContainerRef}>
-                {searchedUsers.length > 0 && (
-                  searchedUsers.map((user, index) => {
-                    return (
-                      <div
-                        key={user.email}
-                        className={classnames('dtable-ui-user-item-container', { 'dtable-ui-user-item-container-highlight': index === highlightIndex })}
-                        ref={userItemContainerRef}
-                        onClick={() => onUserClick(user)}
-                      >
-                        <UserItem key={`dtable-ui-user-selector-searched-user-${index}`} user={user} enableShowIDInOrgWhenSearchUser={enableShowIDInOrgWhenSearchUser} />
-                        {selectedUsers.find(u => u.email === user.email) && (
-                          <div className='dtable-ui-collaborator-check-icon'>
-                            <i className="dtable-font dtable-icon-check" aria-hidden="true"></i>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })
-                )}
-                {searchedUsers.length === 0 &&
-                  <div className="no-user-search-result">
-                    {searchValue ? getLocale('User_not_found') : getLocale('Enter_characters_to_start_searching')}
-                  </div>
-                }
-              </div>
+    <>
+      <div className={classnames('dtable-ui-selected-users-container form-control d-flex align-items-center', className, { 'focus': isPopoverOpen })} onClick={onTogglePopover} ref={selectorRef}>
+        <div className='dtable-ui-users-input'>
+          {selectedUsers.map((user, index) => {
+            return (
+              <UserItem
+                key={`dtable-ui-user-selector-selected-user-${index}`}
+                user={user}
+                deleteUser={deselectUser}
+              />
+            );
+          })}
+          {selectedUsers.length === 0 && (
+            <div className="dtable-ui-user-select-placeholder">
+              {emptyPlaceholder || getLocale('Search_users')}
             </div>
-          </Popover>
-        )}
-      </>
-    </ClickOutside>
+          )}
+          {!showDeptBtn && <span className="select-dropdown-indicator d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
+        </div>
+      </div>
+      {isPopoverOpen && popoverStyle && (
+        <ModalPortal>
+          <div
+            className="dtable-ui-user-select-popover dtable-ui-user-select-container"
+            ref={userSelectContainerRef}
+            style={popoverStyle}
+            onMouseDown={e => e.stopPropagation()}
+          >
+            <div className="seatable-select-search">
+              <DTableCustomizeSearchInput
+                className="option-search-control"
+                placeholder={searchPlaceholder || getLocale('Search_users')}
+                onChange={onSearchValueChanged}
+                clearValue={() => onSearchValueChanged('')}
+                autoFocus={true}
+                isClearable={true}
+                value={searchValue}
+              />
+            </div>
+            <div className="dtable-ui-user-list-container" ref={userListContainerRef}>
+              {searchedUsers.length > 0 && (
+                searchedUsers.map((user, index) => {
+                  return (
+                    <div
+                      key={user.email}
+                      className={classnames('dtable-ui-user-item-container', { 'dtable-ui-user-item-container-highlight': index === highlightIndex })}
+                      ref={index === 0 ? userItemContainerRef : null}
+                      onClick={() => onUserClick(user)}
+                    >
+                      <UserItem key={`dtable-ui-user-selector-searched-user-${index}`} user={user} enableShowIDInOrgWhenSearchUser={enableShowIDInOrgWhenSearchUser} />
+                      {selectedUsers.find(u => u.email === user.email) && (
+                        <div className='dtable-ui-collaborator-check-icon'>
+                          <i className="dtable-font dtable-icon-check" aria-hidden="true"></i>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })
+              )}
+              {searchedUsers.length === 0 && (
+                <div className="no-user-search-result">
+                  {searchValue ? getLocale('User_not_found') : getLocale('Enter_characters_to_start_searching')}
+                </div>
+              )}
+            </div>
+          </div>
+        </ModalPortal>
+      )}
+    </>
   );
 };
 

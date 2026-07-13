@@ -9,7 +9,14 @@
   color: var(--bs-icon-color);
 }
 
-.seatable-option .select-option-name .seatable-tip-default {
+.seatable-option .seatable-tip-default {
   font-size: 12px;
   margin-top: 4px
+}
+
+.seatable-option.option-name {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
