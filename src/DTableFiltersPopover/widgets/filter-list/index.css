@@ -166,10 +166,6 @@
   color: #666666;
 }
 
-.dtable-ui-filters-list .filter-column {
-  max-width: 150px;
-}
-
 .filter-term .dtable-ui-multiple-select-selector .option,
 .filter-term .dtable-ui-single-select-selector .option {
   height: 30px;
