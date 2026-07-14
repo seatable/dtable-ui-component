@@ -14,6 +14,7 @@
   margin-top: 4px
 }
 
+.select-option-name .group-select-option,
 .seatable-option.option-name {
   width: 100%;
   overflow: hidden;
