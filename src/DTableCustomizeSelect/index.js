@@ -46,6 +46,22 @@ class DTableCustomizeSelect extends Component {
     this.setState({ isShowSelectOptions: false });
   };
 
+  handleDocumentMouseDown = (event) => {
+    if (!this.state.isShowSelectOptions) return;
+    const target = event.target;
+    if (this.selector && this.selector.contains(target)) return;
+    if (target && target.closest && target.closest('.seatable-option-group')) return;
+    this.closeSelect();
+  };
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleDocumentMouseDown, true);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleDocumentMouseDown, true);
+  }
+
   getSelectedOptionTop = () => {
     if (!this.selector) return 38;
     const { height } = this.selector.getBoundingClientRect();

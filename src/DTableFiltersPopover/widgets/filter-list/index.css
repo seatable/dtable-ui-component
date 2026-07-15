@@ -132,7 +132,7 @@
 }
 
 .dtable-ui-filters-list .filter-conjunction {
-  width: 72px;
+  width: 88px;
 }
 
 .dtable-ui-filters-list .filter-conjunction-readonly {
@@ -166,19 +166,10 @@
   color: #666666;
 }
 
-.dtable-ui-filters-list .filter-column {
-  max-width: 150px;
-}
-
 .filter-term .dtable-ui-multiple-select-selector .option,
 .filter-term .dtable-ui-single-select-selector .option {
   height: 30px;
   padding: 0 10px;
-}
-
-.filter-term .dtable-ui-multiple-select-selector .select-option-name,
-.filter-term .dtable-ui-single-select-selector .select-option-name {
-  margin-top: 5px !important;
 }
 
 .filter-term .dtable-ui-single-select-selector .option:hover {

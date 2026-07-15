@@ -28,6 +28,18 @@
   border-top-right-radius: 4px;
 }
 
+.select-search-control:-webkit-autofill,
+.select-search-control:-webkit-autofill:hover,
+.select-search-control:-webkit-autofill:focus,
+.select-search-control:-webkit-autofill:active,
+.select-search-control:-internal-autofill-previewed,
+.select-search-control:-internal-autofill-selected {
+  -webkit-box-shadow: inset 0 0 0 1000px var(--bs-popover-bg) !important;
+  box-shadow: inset 0 0 0 1000px var(--bs-popover-bg) !important;
+  -webkit-text-fill-color: var(--bs-body-color) !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
 .select-search-control:focus {
   outline: none;
   box-shadow: none;
@@ -70,6 +82,6 @@
 
 .dtable-ui-user-select-popover .select-search-control,
 .dtable-popover .select-search-control {
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }

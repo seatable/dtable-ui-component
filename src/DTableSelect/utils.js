@@ -215,7 +215,7 @@ const Option = props => {
   return (
     <components.Option {...props}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%', whiteSpace: 'pre-line' }}>
-        <div className='seatable-option'>{label}</div>
+        <div className='seatable-option option-name'>{label}</div>
         {isSelected && <span className="dtable-font dtable-icon-check" style={{ fontSize: '14px', color: 'var(--bs-icon-color)', paddingLeft: '16px' }}></span>}
       </div>
     </components.Option>
