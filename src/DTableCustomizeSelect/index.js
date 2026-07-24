@@ -109,7 +109,7 @@ class DTableCustomizeSelect extends Component {
             <span className="selected-option-show">{value.label}</span>
             : <span className="select-placeholder">{placeholder}</span>
           }
-          {!isLocked && <span className="d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>}
+          <span className="d-inline-flex align-items-center"><DTableIcon symbol="down" color='var(--bs-icon-color)'/></span>
         </div>
         {this.state.isShowSelectOptions && !isInModal && (
           <SelectOptionGroup
