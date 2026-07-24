@@ -101,7 +101,7 @@
   line-height: 20px;
   margin-right: 8px;
   width: calc(100% - 20px);
-  display: flex;
+  display: block;
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;

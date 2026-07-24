@@ -2,9 +2,9 @@
   flex-wrap: wrap;
   height: auto !important;
   min-height: 38px;
-  max-width: calc(100% - 10px);
   padding: .375rem 40px .375rem 1rem;
   position: relative;
+  border-radius: 4px;
 }
 
 .dtable-ui-selected-users-container.focus {
@@ -12,7 +12,7 @@
 }
 
 .dtable-ui-selected-users-container .dtable-ui-user-select-placeholder {
-  color: var(--bs-icon-color);
+  color: var(--bs-bg-placeholder-color)
 }
 
 .select-dropdown-indicator {
@@ -31,8 +31,6 @@
 
 .dtable-ui-user-select-popover {
   z-index: 1060;
-  width: 385px !important;
-  max-width: 385px;
   margin-top: -4px;
   background-color: var(--bs-popover-bg);
   box-shadow: var(--bs-border-secondary-shadow);
@@ -67,8 +65,7 @@
   background: none !important;
 }
 
-.dtable-ui-user-select-container .dtable-ui-user-list-container .dtable-ui-user-item-container:hover,
-.dtable-ui-user-select-container .dtable-ui-user-list-container .dtable-ui-user-item-container-highlight {
+.dtable-ui-user-select-container .dtable-ui-user-list-container .dtable-ui-user-item-container:hover {
   background-color: var(--bs-btn-background-hover);
   cursor: pointer;
 }

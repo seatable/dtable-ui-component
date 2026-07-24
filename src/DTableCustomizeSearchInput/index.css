@@ -13,6 +13,10 @@
   height: 32px;
 }
 
+.select-search-control::placeholder {
+  color: var(--bs-bg-placeholder-color);
+}
+
 .select-search-control {
   height: 100%;
   border: none;
