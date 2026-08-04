@@ -30,6 +30,10 @@ class PCLinkEditorPopover extends React.Component {
     this.setState({ searchValue: value });
   };
 
+  clearSearchValue = () => {
+    this.setState({ searchValue: '' });
+  };
+
   onInputClick = (event) => {
     event.nativeEvent.stopImmediatePropagation();
     event.stopPropagation();
@@ -58,7 +62,18 @@ class PCLinkEditorPopover extends React.Component {
     return (
       <div className="dtable-ui-editor-container dtable-ui-link-editor-popover" style={popoverStyle}>
         <div className="link-options-search">
-          <input className="form-control" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Search_option')}></input>
+          <div className="seatable-input-wrapper">
+            <input className="form-control form-control-clear-icon" value={searchValue} onChange={this.onValueChanged} onClick={this.onInputClick} placeholder={getLocale('Search_option')}></input>
+            {searchValue && (
+              <div className='search-icon-right'>
+                <span
+                  className=" dtable-font dtable-icon-x"
+                  aria-hidden="true"
+                  onClick={this.clearSearchValue}
+                />
+              </div>
+            )}
+          </div>
         </div>
         <div className="link-options-container">
           {options.length > 0 && options.map((option, index) => {
