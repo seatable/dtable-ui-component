@@ -34,6 +34,7 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
     const trimmedSearchValue = searchValue?.trim() || '';
     if (!trimmedSearchValue) {
       setSearchedUsers([]);
+      setHighlightIndex(-1);
       return;
     }
     loadOptions && loadOptions(searchValue, (options = []) => {
