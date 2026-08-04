@@ -97,7 +97,7 @@ class DTableCustomizeSearchInput extends Component {
 
     return (
       <span className={classnames('clear-icon-x', clearClassName)} onClick={this.clearSearch}>
-        <DTableIcon symbol="close" color='var(--bs-icon-secondary-color)'/>
+        <DTableIcon symbol="close" color='var(--bs-icon-color)'/>
       </span>
     );
   };
