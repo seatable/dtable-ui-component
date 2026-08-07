@@ -15,6 +15,10 @@
   border: 1px solid rgba(0, 40, 100, 0.12);
 }
 
+.seatable-select-search .select-search-control::placeholder {
+  color: var(--bs-bg-placeholder-color);
+}
+
 .seatable-customize-select:focus,
 .seatable-customize-select.focus {
   border: 1px solid var(--bs-bg-border-color) !important;

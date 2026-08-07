@@ -21,10 +21,6 @@
   text-overflow: ellipsis;
 }
 
-.permission-editor__option {
-  height: 32px;
-}
-
 .btn-add-custom-permission {
   height: 16px;
 }
