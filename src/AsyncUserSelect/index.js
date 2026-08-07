@@ -40,7 +40,6 @@ const AsyncUserSelect = ({ className, emptyPlaceholder = '', searchPlaceholder =
     loadOptions && loadOptions(searchValue, (options = []) => {
       // [{ email, name, avatar_url }, ...]
       setSearchedUsers(options);
-      setHighlightIndex(options.length > 0 ? 0 : -1);
     });
   }, [loadOptions]);
 

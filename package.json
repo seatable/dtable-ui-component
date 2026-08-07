@@ -4,7 +4,7 @@
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "5.0.9",
-    "@seafile/seafile-calendar": "^1.0.10",
+    "@seafile/seafile-calendar": "^1.0.13",
     "@seafile/seafile-editor": "^3.0.34",
     "classnames": "~2.5.*",
     "dayjs": "1.10.7",
