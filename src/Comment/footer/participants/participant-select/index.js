@@ -65,10 +65,6 @@ class ParticipantSelect extends Component {
     this.setState({ participants: updatedValue });
   };
 
-  clearSearchValue = () => {
-    this.setState({ searchVal: '' });
-  };
-
   onChangeSearch = (event) => {
     let { searchVal } = this.state;
     if (searchVal === event.target.value) {
@@ -150,18 +146,7 @@ class ParticipantSelect extends Component {
           <div className="dropdown-menu dtable-ui-participants-editor show m-0 p-0" ref={ref => this.participantsRef = ref}>
             {this.renderParticipantList()}
             <div className="dtable-ui-participants-editor-search">
-              <div className="seatable-input-wrapper">
-                <input className="form-control form-control-clear-icon" type="text" placeholder={getLocale('Search_collaborator')} value={this.state.searchVal} onChange={this.onChangeSearch}/>
-                {this.state.searchVal && (
-                  <div className='search-icon-right'>
-                    <span
-                      className=" dtable-font dtable-icon-x"
-                      aria-hidden="true"
-                      onClick={this.clearSearchValue}
-                    />
-                  </div>
-                )}
-              </div>
+              <input className="form-control" type="text" placeholder={getLocale('Search_collaborator')} value={this.state.searchVal} onChange={this.onChangeSearch}/>
             </div>
             <div className="dtable-ui-participants-editor-participants-container">
               {this.renderMenuContent()}
