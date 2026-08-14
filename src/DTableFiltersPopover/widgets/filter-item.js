@@ -192,9 +192,9 @@ class FilterItem extends React.Component {
     this.props.updateFilter(index, newFilter);
   };
 
-  onSelectCollaborator = (value) => {
+  onSelectCollaborator = ({ columnOption: collaborator }) => {
     const { index, filter } = this.props;
-    let newFilter = getUpdatedFilterByCollaborator(filter, value);
+    let newFilter = getUpdatedFilterByCollaborator(filter, collaborator);
     this.resetState(newFilter);
     this.props.updateFilter(index, newFilter);
   };
