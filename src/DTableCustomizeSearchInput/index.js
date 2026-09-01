@@ -27,7 +27,7 @@ class DTableCustomizeSearchInput extends Component {
     this.state = {
       searchValue: props.value || '',
     };
-    this.isInputtingChinese = false;
+    this.isComposing = false;
     this.timer = null;
     this.inputRef = null;
   }
@@ -42,40 +42,51 @@ class DTableCustomizeSearchInput extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
+      this.clearChangeTimer();
       this.setState({ searchValue: nextProps.value });
     }
   }
 
   componentWillUnmount() {
-    this.timer && clearTimeout(this.timer);
-    this.timer = null;
+    this.clearChangeTimer();
     this.inputRef = null;
   }
 
-  onCompositionStart = () => {
-    this.isInputtingChinese = true;
+  handleCompositionStart = () => {
+    this.isComposing = true;
   };
 
-  onChange = (e) => {
-    this.timer && clearTimeout(this.timer);
+  clearChangeTimer = () => {
+    if (this.timer === null) return;
+    clearTimeout(this.timer);
+    this.timer = null;
+  };
+
+  scheduleSearchChange = (searchValue) => {
     const { onChange, wait = 100 } = this.props;
-    let text = e.target.value;
-    this.setState({ searchValue: text || '' }, () => {
-      if (this.isInputtingChinese) return;
-      this.timer = setTimeout(() => {
-        onChange && onChange(this.state.searchValue.trim());
-      }, wait);
-    });
+    this.timer = setTimeout(() => {
+      this.timer = null;
+      onChange(searchValue.trim());
+    }, wait);
   };
 
-  onCompositionEnd = (e) => {
-    this.isInputtingChinese = false;
-    this.onChange(e);
+  handleInputChange = (event) => {
+    const searchValue = event.target.value || '';
+    this.clearChangeTimer();
+    this.setState({ searchValue });
+    if (this.isComposing) return;
+    this.scheduleSearchChange(searchValue);
   };
 
-  clearSearch = (e) => {
-    e && e.stopPropagation && e.stopPropagation();
+  handleCompositionEnd = (event) => {
+    this.isComposing = false;
+    this.handleInputChange(event);
+  };
+
+  clearSearch = (event) => {
+    event && event.stopPropagation && event.stopPropagation();
     const { clearValue } = this.props;
+    this.clearChangeTimer();
     this.setState({ searchValue: '' }, () => {
       clearValue && clearValue();
     });
@@ -115,11 +126,11 @@ class DTableCustomizeSearchInput extends Component {
           name="search-input"
           value={searchValue}
           className={classnames('select-search-control', className)}
-          onChange={this.onChange}
+          onChange={this.handleInputChange}
           autoFocus={autoFocus}
           placeholder={placeholder}
-          onCompositionStart={this.onCompositionStart}
-          onCompositionEnd={this.onCompositionEnd}
+          onCompositionStart={this.handleCompositionStart}
+          onCompositionEnd={this.handleCompositionEnd}
           onKeyDown={onKeyDown}
           disabled={disabled}
           style={style}
