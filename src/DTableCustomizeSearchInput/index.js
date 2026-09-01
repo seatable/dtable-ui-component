@@ -42,6 +42,7 @@ class DTableCustomizeSearchInput extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.value !== this.props.value) {
+      this.clearChangeTimer();
       this.setState({ searchValue: nextProps.value });
     }
   }
@@ -61,7 +62,7 @@ class DTableCustomizeSearchInput extends Component {
     this.timer = null;
   };
 
-  scheduleOnChange = (searchValue) => {
+  scheduleSearchChange = (searchValue) => {
     const { onChange, wait = 100 } = this.props;
     this.timer = setTimeout(() => {
       this.timer = null;
@@ -74,7 +75,7 @@ class DTableCustomizeSearchInput extends Component {
     this.clearChangeTimer();
     this.setState({ searchValue });
     if (this.isComposing) return;
-    this.scheduleOnChange(searchValue);
+    this.scheduleSearchChange(searchValue);
   };
 
   handleCompositionEnd = (event) => {
