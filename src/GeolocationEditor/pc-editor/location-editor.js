@@ -8,6 +8,7 @@ import { KeyCodes } from '../../constants';
 import Loading from '../../Loading';
 import parseGeolocation from './parse-geolocation';
 import { getLocale } from '../../lang';
+import { DISTRICT_COMPAT_MAP } from 'dtable-utils';
 
 const propTypes = {
   isShowDetails: PropTypes.bool,
@@ -26,7 +27,7 @@ class LocationEditor extends Component {
     this.locations = {};
     this.state = {
       isShowSelector: false,
-      location: `${this.value.province || ''}${this.value.city || ''}${this.value.district || ''}`,
+      location: `${this.value.province || ''}${this.value.city || ''}${DISTRICT_COMPAT_MAP[this.value.district] || this.value.district || ''}`,
       selectedProvince: null,
       selectedCity: null,
       selectedCounty: null,
@@ -73,8 +74,13 @@ class LocationEditor extends Component {
       return { selectedProvince, selectedCity: null, selectedCounty: null, selectedItem: 'city' };
     }
 
+    let districtName = value.district || '';
+    if (DISTRICT_COMPAT_MAP[districtName]) {
+      districtName = DISTRICT_COMPAT_MAP[districtName];
+    }
+
     let selectedCounty = selectedCity.children.find((county) => {
-      return value.district && value.district.length > 0 && county.name.includes(value.district);
+      return districtName && districtName.length > 0 && county.name.includes(districtName);
     });
 
     if (!selectedCounty) {
@@ -267,23 +273,23 @@ class LocationEditor extends Component {
               )}
             </div>
             {this.props.isShowDetails &&
-            <div className="dtable-ui-geolocation-editor-item dtable-ui-geolocation-editor-detail">
-              <div className="dtable-ui-geolocation-editor-item-left">
-                {getLocale('Detailed_address') + ':'}
+              <div className="dtable-ui-geolocation-editor-item dtable-ui-geolocation-editor-detail">
+                <div className="dtable-ui-geolocation-editor-item-left">
+                  {getLocale('Detailed_address') + ':'}
+                </div>
+                <div className="dtable-ui-geolocation-editor-item-right">
+                  <textarea
+                    ref={ref => (this.detailInfo = ref)}
+                    placeholder={getLocale('Detailed_address_placeholder')}
+                    className="dtable-ui-geolocation-editor-detail-info"
+                    type="text"
+                    onChange={this.onChange}
+                    defaultValue={this.value.detail}
+                    onKeyDown={this.onKeyDown}
+                    autoFocus
+                  />
+                </div>
               </div>
-              <div className="dtable-ui-geolocation-editor-item-right">
-                <textarea
-                  ref={ref => (this.detailInfo = ref)}
-                  placeholder={getLocale('Detailed_address_placeholder')}
-                  className="dtable-ui-geolocation-editor-detail-info"
-                  type="text"
-                  onChange={this.onChange}
-                  defaultValue={this.value.detail}
-                  onKeyDown={this.onKeyDown}
-                  autoFocus
-                />
-              </div>
-            </div>
             }
             <div className="dtable-ui-geolocation-editor-item dtable-ui-geolocation-editor-parse">
               <div className="dtable-ui-geolocation-editor-item-left">
