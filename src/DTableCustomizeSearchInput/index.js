@@ -108,16 +108,14 @@ class DTableCustomizeSearchInput extends Component {
 
     return (
       <span className={classnames('clear-icon-x', clearClassName)} onClick={this.clearSearch}>
-        <DTableIcon symbol="close" color='var(--bs-icon-secondary-color)'/>
+        <DTableIcon symbol="close" color='var(--bs-icon-color)'/>
       </span>
     );
   };
 
   render() {
-    const { placeholder, autoFocus, className, onKeyDown, disabled = false, style = {}, isClearable, isMultiple = false } = this.props;
+    const { placeholder, autoFocus, className, onKeyDown, disabled = false, style = {} } = this.props;
     const { searchValue } = this.state;
-    const inputWidth = (isClearable && searchValue && !isMultiple) ? 'calc(100% - 40px)' : '100%';
-    style.width = inputWidth;
 
     return (
       <Fragment>
