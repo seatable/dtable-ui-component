@@ -44,7 +44,7 @@ class LocationEditor extends Component {
 
   UNSAFE_componentWillMount() {
     this.props.getData().then(data => {
-      this.locations = data;
+      this.locations = data || {};
       const { selectedProvince, selectedCity, selectedCounty, selectedItem } = this.initLocationSelecting(this.value);
       this.setState({
         isLoadingData: false,
@@ -53,28 +53,31 @@ class LocationEditor extends Component {
         selectedCounty,
         selectedItem
       });
+    }).catch(() => {
+      this.locations = {};
+      this.setState({ isLoadingData: false });
     });
   }
 
   initLocationSelecting = (value) => {
-    let selectedProvince = this.locations.children.find((province) => {
-      return value.province && value.province.length > 0 && province.name.includes(value.province);
+    let selectedProvince = (this.locations.children || []).find((province) => {
+      return value.province && value.province.length > 0 && province.name && province.name.includes(value.province);
     });
 
     if (!selectedProvince) {
       return { selectedProvince: null, selectedCity: null, selectedCounty: null, selectedItem: 'province' };
     }
 
-    let selectedCity = selectedProvince.children.find((city) => {
-      return value.city && value.city.length > 0 && city.name.includes(value.city);
+    let selectedCity = (selectedProvince.children || []).find((city) => {
+      return value.city && value.city.length > 0 && city.name && city.name.includes(value.city);
     });
 
     if (!selectedCity) {
       return { selectedProvince, selectedCity: null, selectedCounty: null, selectedItem: 'city' };
     }
 
-    let selectedCounty = selectedCity.children.find((county) => {
-      return value.district && value.district.length > 0 && county.name.includes(value.district);
+    let selectedCounty = (selectedCity.children || []).find((county) => {
+      return value.district && value.district.length > 0 && county.name && county.name.includes(value.district);
     });
 
     if (!selectedCounty) {

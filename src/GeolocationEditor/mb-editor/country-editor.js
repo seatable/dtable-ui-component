@@ -21,10 +21,13 @@ const CountryEditor = ({
 
   useEffect(() => {
     getData().then(data => {
-      locations.current = data;
-      const continent = data.find(a => a.children.find(b => b.value === oldValue?.country_region || ''));
+      const safeData = data || [];
+      locations.current = safeData;
+      const continent = safeData.find(a => a.children && a.children.find(b => b.value === oldValue?.country_region || ''));
       const value = [continent?.value || '', oldValue?.country_region || ''];
       setValue(value);
+      setLoading(false);
+    }).catch(() => {
       setLoading(false);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps

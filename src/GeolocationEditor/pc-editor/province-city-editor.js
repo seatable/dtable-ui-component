@@ -41,7 +41,7 @@ class ProvinceCityEditor extends Component {
 
   componentDidMount() {
     this.props.getData().then(data => {
-      this.locations = data;
+      this.locations = data || {};
       const { selectedProvince, selectedCity, selectedItem } = this.initLocationSelecting(this.value);
       this.setState({
         isLoadingData: false,
@@ -49,20 +49,23 @@ class ProvinceCityEditor extends Component {
         selectedCity,
         selectedItem
       });
+    }).catch(() => {
+      this.locations = {};
+      this.setState({ isLoadingData: false });
     });
   }
 
   initLocationSelecting = (value) => {
-    let selectedProvince = this.locations.children.find((province) => {
-      return value.province && value.province.length > 0 && province.name.includes(value.province);
+    let selectedProvince = (this.locations.children || []).find((province) => {
+      return value.province && value.province.length > 0 && province.name && province.name.includes(value.province);
     });
 
     if (!selectedProvince) {
       return { selectedProvince: null, selectedCity: null, selectedItem: 'province' };
     }
 
-    let selectedCity = selectedProvince.children.find((city) => {
-      return value.city && value.city.length > 0 && city.name.includes(value.city);
+    let selectedCity = (selectedProvince.children || []).find((city) => {
+      return value.city && value.city.length > 0 && city.name && city.name.includes(value.city);
     });
 
     if (!selectedCity) {

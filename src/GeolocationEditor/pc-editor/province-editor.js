@@ -34,11 +34,15 @@ class ProvinceEditor extends Component {
 
   componentDidMount() {
     this.props.getData().then(data => {
-      this.locations = data;
-      this.filteredProvince = this.locations.children;
+      this.locations = data || {};
+      this.filteredProvince = this.locations.children || [];
       this.setState({
         isLoadingData: false,
       });
+    }).catch(() => {
+      this.locations = {};
+      this.filteredProvince = [];
+      this.setState({ isLoadingData: false });
     });
     document.addEventListener('keydown', this.onHotKey, true);
   }
@@ -120,7 +124,7 @@ class ProvinceEditor extends Component {
     if (value.length > 0) {
       this.provinceReg = new RegExp(value, 'i');
     }
-    this.filteredProvince = this.locations.children.filter((item) => {
+    this.filteredProvince = (this.locations.children || []).filter((item) => {
       if (!this.provinceReg) {
         return true;
       }

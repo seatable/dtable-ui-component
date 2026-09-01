@@ -9,38 +9,38 @@ const GeolocationEditor = forwardRef(({ isMobile, config: propsConfig, ...props 
   const config = useMemo(() => ({ ...window?.dtable, ...propsConfig, }), [propsConfig]);
 
   const getLocationData = useCallback(() => {
-    if (window?.app?.location) return new Promise((resolve, reject) => {
+    if (window?.app?.location) return new Promise((resolve) => {
       resolve(window.app.location);
     });
     const { server = '', mediaUrl = '' } = config || {};
     return fetch(`${server}${mediaUrl}geo-data/cn-location.json`.replaceAll('//', '/')).then((res) => { // get locations from server
       return res.json();
     }).catch(() => {
-      // get locations from local
+      // get locations from local, fall back to empty object if unavailable
       return fetch('./geo-data/cn-location.json').then(res => {
         return res.json();
-      });
+      }).catch(() => null);
     });
   }, [config]);
 
   const getCountryData = useCallback((lang) => {
-    if (lang === 'cn' && window.app.countryListCn) return new Promise((resolve, reject) => {
+    if (lang === 'cn' && window.app.countryListCn) return new Promise((resolve) => {
       resolve(window.app.countryListCn);
     });
-    if (lang !== 'cn' && window.app.countryListEn) return new Promise((resolve, reject) => {
+    if (lang !== 'cn' && window.app.countryListEn) return new Promise((resolve) => {
       resolve(window.app.countryListEn);
     });
 
-    const { mediaUrl = '', server = '' } = config;
+    const { mediaUrl = '', server = '' } = config || {};
     const geoFileName = lang === 'cn' ? 'cn-region-location' : 'en-region-location';
     return fetch(`${server}${mediaUrl}geo-data/${geoFileName}.json`.replaceAll('//', '/'))
       .then(res => {
         return res.json();
       }).catch(() => {
-        // get locations from local
+        // get locations from local, fall back to null if unavailable
         return fetch(`./geo-data/${geoFileName}.json`).then(res => {
           return res.json();
-        });
+        }).catch(() => null);
       }).then(res => {
         const data = res || {};
         if (lang === 'cn') {
