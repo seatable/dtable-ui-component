@@ -2,6 +2,8 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import DTableIcon from '../DTableIcon';
+import { getLocale } from '../lang';
+import DTableToolTip from '../DTableToolTip';
 
 import './index.css';
 
@@ -105,11 +107,18 @@ class DTableCustomizeSearchInput extends Component {
     const { isClearable, clearClassName } = this.props;
     const { searchValue } = this.state;
     if (!isClearable || !searchValue) return null;
-
     return (
-      <span className={classnames('clear-icon-x', clearClassName)} onClick={this.clearSearch}>
-        <DTableIcon symbol="close" color='var(--bs-icon-color)'/>
-      </span>
+      <>
+        <span className={classnames('clear-icon-x', clearClassName)} onClick={this.clearSearch} id='customize-search-clear'>
+          <DTableIcon symbol="close" color='var(--bs-icon-color)'/>
+        </span>
+        <DTableToolTip
+          placement='bottom'
+          target='customize-search-clear'
+        >
+          {getLocale('Clear')}
+        </DTableToolTip>
+      </>
     );
   };
 
