@@ -11,6 +11,7 @@ import MapSelectionEditor from './map-selection-editor';
 import './index.css';
 
 const transLocationData = (data) => {
+  if (!data) return [];
   if (Object.prototype.toString.call(data) === '[object Object]') {
     const name = data.name;
     data.label = name;
@@ -22,10 +23,11 @@ const transLocationData = (data) => {
       });
     }
   }
-  return data.children;
+  return data.children || [];
 };
 
 const transCountryData = (data) => {
+  if (!data) return [];
   let _data = [];
   // eslint-disable-next-line
   for (let key in data) {
