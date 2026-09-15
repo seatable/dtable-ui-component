@@ -85,6 +85,17 @@ class DtableSearchInput extends Component {
     );
   };
 
+  renderExactMatch = () => {
+    const { components = {} } = this.props;
+    const { ExactMatchIndicator } = components;
+    if (React.isValidElement(ExactMatchIndicator)) {
+      return ExactMatchIndicator;
+    } else if (isFunction(ExactMatchIndicator)) {
+      return <ExactMatchIndicator/>;
+    }
+    return null;
+  };
+
   render() {
     const { placeholder, autoFocus, className, onKeyDown, disabled, style } = this.props;
     const { searchValue } = this.state;
@@ -106,6 +117,7 @@ class DtableSearchInput extends Component {
           style={style}
         />
         {this.renderClear()}
+        {this.renderExactMatch()}
       </Fragment>
     );
   }
