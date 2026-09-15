@@ -6,6 +6,7 @@ import List from '../../List';
 import MobileFullScreenPage from '../../MobileFullScreenPage';
 import { getLocale } from '../../lang';
 import ObjectUtils from '../../utils/object-utils';
+import { DISTRICT_COMPAT_MAP } from 'dtable-utils';
 
 const { Header, Body } = MobileFullScreenPage;
 
@@ -17,7 +18,11 @@ const LocationEditor = ({
   onToggle,
   onCommit,
 }) => {
-  let initValue = [oldValue?.province || '', oldValue?.city || '', oldValue?.district || ''];
+  let district = oldValue?.district || '';
+  if (DISTRICT_COMPAT_MAP[district]) {
+    district = DISTRICT_COMPAT_MAP[district];
+  }
+  let initValue = [oldValue?.province || '', oldValue?.city || '', district];
   if (isShowDetails) {
     initValue.push(oldValue?.detail || '');
   }
@@ -31,7 +36,7 @@ const LocationEditor = ({
       locations.current = data;
       setLoading(false);
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onValueChange = useCallback((newValue) => {

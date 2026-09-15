@@ -1,3 +1,5 @@
+import { DISTRICT_COMPAT_MAP } from 'dtable-utils';
+
 const MUNICIPALITY = ['北京市', '天津市', '上海市', '重庆市', '香港', '澳门'];
 
 let initProvince = null;
@@ -125,6 +127,22 @@ const getDistrict = (province, city, string, geoTree) => {
   if (!string) {
     return { province, city, district: '', detail: '' };
   }
+
+  // Compatibility fallback: when the remaining string starts with a legacy district name,
+  // and the current city has the mapped new district, return the new district node directly.
+  if (city && string && DISTRICT_COMPAT_MAP) {
+    // eslint-disable-next-line no-unused-vars
+    for (const [oldName, newName] of Object.entries(DISTRICT_COMPAT_MAP)) {
+      if (string.indexOf(oldName) === 0) {
+        const newDistrict = city.children.find(item => item.name === newName);
+        if (newDistrict) {
+          const remainingString = string.substring(oldName.length);
+          return { province, city, district: newDistrict, string: remainingString };
+        }
+      }
+    }
+  }
+
   let startPoint = 0;
   let endPoint = 2;
   let subDistrict = string.substring(startPoint, endPoint);
@@ -206,6 +224,11 @@ const parseGeolocationString = (geoTree, geoString) => {
   province = districtResult.province;
   city = districtResult.city;
   string = districtResult.string;
+
+  if (district && DISTRICT_COMPAT_MAP[district.name]) {
+    district = { ...district, name: DISTRICT_COMPAT_MAP[district.name] };
+  }
+
   return { province, city, district, detail: string };
 };
 
