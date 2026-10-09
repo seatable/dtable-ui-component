@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 import classnames from 'classnames';
 import DatePicker from '@seafile/seafile-calendar/lib/Picker';
 import Calendar from '@seafile/seafile-calendar';
+import ClearIcon from '../common/clear-icon';
 import { initDateEditorLanguage } from '../utils/editor-utils';
 import { KeyCodes } from '../constants';
 import { getLocale } from '../lang';
@@ -197,6 +198,7 @@ class PCDateEditor extends React.Component {
         showDateInput={true}
         focusablePanel={false}
         onClear={this.onClear}
+        clearIcon={<ClearIcon />}
         firstDayOfWeek={firstDayOfWeek}
       />
     );

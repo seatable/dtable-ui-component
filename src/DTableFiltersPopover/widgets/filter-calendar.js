@@ -5,6 +5,7 @@ import 'dayjs/locale/en-gb';
 import PropTypes from 'prop-types';
 import Calendar from '@seafile/seafile-calendar';
 import DatePicker from '@seafile/seafile-calendar/lib/Picker';
+import ClearIcon from '../../common/clear-icon';
 import { translateCalendar } from '../../lang';
 import { getDateColumnFormat } from '../../utils/column-utils';
 
@@ -126,14 +127,6 @@ class FilterCalendar extends Component {
       />
     );
     const calendarFormat = this.getCalendarFormat();
-    const clearStyle = {
-      position: 'absolute',
-      top: '8px',
-      left: '225px',
-      color: 'gray',
-      fontSize: '12px'
-    };
-    const clearIcon = React.createElement('i', { className: 'item-icon dtable-font dtable-icon-x', style: clearStyle });
     const calendar = (
       <Calendar
         className="dtable-rc-calendar"
@@ -144,7 +137,7 @@ class FilterCalendar extends Component {
         showDateInput={true}
         focusablePanel={false}
         onClear={this.onClear}
-        clearIcon={clearIcon}
+        clearIcon={<ClearIcon />}
         firstDayOfWeek={firstDayOfWeek}
       />
     );
