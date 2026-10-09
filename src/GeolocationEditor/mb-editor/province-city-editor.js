@@ -21,7 +21,9 @@ const ProvinceCityEditor = ({
 
   useEffect(() => {
     getData().then(data => {
-      locations.current = data;
+      locations.current = data || [];
+      setLoading(false);
+    }).catch(() => {
       setLoading(false);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
