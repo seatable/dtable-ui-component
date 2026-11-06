@@ -2,7 +2,6 @@ import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { CellType, getColumnDisplayType, TEXT_DISPLAY_TYPE_MAP } from 'dtable-utils';
-
 import DTableIcon from '../DTableIcon';
 
 const COLUMNS_ICON_CONFIG = {
