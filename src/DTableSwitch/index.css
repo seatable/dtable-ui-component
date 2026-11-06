@@ -27,7 +27,8 @@
 }
 
 .dtable-switch.sm .custom-switch .dtable-font,
-.dtable-switch.sm .custom-switch .multicolor-icon {
+.dtable-switch.sm .custom-switch .multicolor-icon,
+.dtable-switch.sm .custom-switch .dtable-column-icon {
   -webkit-transform: scale(.8);
   transform: scale(.8);
   display: inline-block;

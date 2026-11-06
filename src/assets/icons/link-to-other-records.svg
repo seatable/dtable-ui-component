@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>link-to-other-records</title>
+    <g id="link-to-other-records" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="路径" fill="currentColor" fill-rule="nonzero" points="29 29 3 29 3 23.5 29 23.5"></polygon>
+        <path d="M3,11.9346 C3,11.5352 3.44507,11.297 3.77734,11.5186 L9.87598,15.584 C10.1728,15.7819 10.1728,16.2181 9.87598,16.416 L3.77734,20.4814 C3.44507,20.703 3,20.4648 3,20.0654 L3,11.9346 Z" id="路径" fill="currentColor" fill-rule="nonzero"></path>
+        <polygon id="路径" fill="currentColor" fill-rule="nonzero" points="29 19 12 19 12 13.5 29 13.5"></polygon>
+        <polygon id="路径" fill="currentColor" fill-rule="nonzero" points="29 8.5 3 8.5 3 3 29 3"></polygon>
+    </g>
+</svg>
