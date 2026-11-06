@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>duration</title>
+    <g id="duration" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M16,1 C24.2842414,1 31,7.71572759 31,16 C31,24.2842414 24.2842414,31 16,31 C7.71572759,31 1,24.2842414 1,16 C1,7.71572759 7.71572759,1 16,1 Z M17.5,8 L14.5,8 L14.5,16.8662 L21.25,20.7627 L22.75,18.165 L17.5,15.1338 L17.5,8 Z" id="形状结合" fill="currentColor"></path>
+    </g>
+</svg>

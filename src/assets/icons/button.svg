@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>button</title>
+    <g id="button" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M5,2 L7.7129265,25.8349971 L13.4294502,21.4749367 L20.4055469,29.0323748 C21.4713395,30.1950576 23.2153637,30.2919478 24.4749367,29.4199357 C25.7345097,28.4510334 26.1220706,26.7070092 25.3469488,25.350546 L20.5024372,16.6304251 L26.6065218,12.4641451 L5,2 Z" id="路径" fill="currentColor" fill-rule="nonzero"></path>
+    </g>
+</svg>

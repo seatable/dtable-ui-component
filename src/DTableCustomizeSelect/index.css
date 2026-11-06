@@ -117,7 +117,9 @@
 
 .seatable-customize-select .multiple-check-icon,
 .seatable-customize-select .header-icon .dtable-font,
-.seatable-option-group .select-label .header-icon .dtable-font {
+.seatable-customize-select .header-icon .dtable-column-icon,
+.seatable-option-group .select-label .header-icon .dtable-font,
+.seatable-option-group .select-label .header-icon .dtable-column-icon {
   color: var(--bs-icon-secondary-color) !important;
   cursor: default;
   font-size: 14px;
@@ -130,7 +132,7 @@
 }
 
 .seatable-customize-select .selected-option .dtable-icon-down3,
-.seatable-customize-select .selected-option .multicolor-icon {
+.seatable-customize-select .selected-option .multicolor-icon-down {
   color: var(--bs-icon-color) !important;
   font-size: 12px;
 }
