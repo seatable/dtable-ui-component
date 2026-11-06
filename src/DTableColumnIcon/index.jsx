@@ -1,75 +1,75 @@
+import { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { CellType, getColumnDisplayType, TEXT_DISPLAY_TYPE_MAP } from 'dtable-utils';
+
 import DTableIcon from '../DTableIcon';
 
 const COLUMNS_ICON_CONFIG = {
-  [CellType.DEFAULT]: 'dtable-font dtable-icon-single-line-text',
-  [CellType.TEXT]: 'dtable-font dtable-icon-single-line-text',
-  [CellType.STRING]: 'dtable-font dtable-icon-single-line-text',
-  [CellType.NUMBER]: 'dtable-font dtable-icon-number',
-  [CellType.CHECKBOX]: 'dtable-font dtable-icon-check-square-solid',
-  [CellType.DATE]: 'dtable-font dtable-icon-calendar-alt-solid',
-  [CellType.SINGLE_SELECT]: 'dtable-font dtable-icon-single-election',
-  [CellType.LONG_TEXT]: 'dtable-font dtable-icon-long-text',
-  [CellType.IMAGE]: 'dtable-font dtable-icon-picture',
-  [CellType.FILE]: 'dtable-font dtable-icon-file-alt-solid',
-  [CellType.MULTIPLE_SELECT]: 'dtable-font dtable-icon-multiple-selection',
-  [CellType.COLLABORATOR]: 'dtable-font dtable-icon-collaborator',
-  [CellType.LINK]: 'dtable-font dtable-icon-link-other-record',
-  [CellType.FORMULA]: 'dtable-font dtable-icon-formula',
-  [CellType.LINK_FORMULA]: 'dtable-font dtable-icon-link-formulas',
-  [CellType.CREATOR]: 'dtable-font dtable-icon-creator',
-  [CellType.CTIME]: 'dtable-font dtable-icon-creation-time',
-  [CellType.LAST_MODIFIER]: 'dtable-font dtable-icon-creator',
-  [CellType.MTIME]: 'dtable-font dtable-icon-creation-time',
-  [CellType.GEOLOCATION]: 'dtable-font dtable-icon-location',
-  [CellType.AUTO_NUMBER]: 'dtable-font dtable-icon-autonumber',
-  [CellType.URL]: 'dtable-font dtable-icon-url',
-  [CellType.EMAIL]: 'dtable-font dtable-icon-email',
-  [CellType.DURATION]: 'dtable-font dtable-icon-duration',
-  [CellType.BUTTON]: 'dtable-font dtable-icon-button',
-  [CellType.RATE]: 'dtable-font dtable-icon-rate',
-  [CellType.DIGITAL_SIGN]: 'dtable-font dtable-icon-handwritten-signature',
-  [CellType.DEPARTMENT_SINGLE_SELECT]: 'dtable-font dtable-icon-department-single-selection',
+  [CellType.DEFAULT]: 'text',
+  [CellType.TEXT]: 'text',
+  [CellType.STRING]: 'text',
+  [CellType.NUMBER]: 'number',
+  [CellType.CHECKBOX]: 'checkbox',
+  [CellType.DATE]: 'date',
+  [CellType.SINGLE_SELECT]: 'single-select',
+  [CellType.LONG_TEXT]: 'long-text',
+  [CellType.IMAGE]: 'image',
+  [CellType.FILE]: 'files',
+  [CellType.MULTIPLE_SELECT]: 'multiple-select',
+  [CellType.COLLABORATOR]: 'group',
+  [CellType.LINK]: 'link-to-other-records',
+  [CellType.FORMULA]: 'formula',
+  [CellType.LINK_FORMULA]: 'link-formula',
+  [CellType.CREATOR]: 'user',
+  [CellType.CTIME]: 'date-time',
+  [CellType.LAST_MODIFIER]: 'user',
+  [CellType.MTIME]: 'date-time',
+  [CellType.GEOLOCATION]: 'geolocation',
+  [CellType.AUTO_NUMBER]: 'auto-number',
+  [CellType.URL]: 'url',
+  [CellType.EMAIL]: 'email',
+  [CellType.DURATION]: 'duration',
+  [CellType.BUTTON]: 'button',
+  [CellType.RATE]: 'starred',
+  [CellType.DIGITAL_SIGN]: 'digital-signature',
+  [CellType.DEPARTMENT_SINGLE_SELECT]: 'department-single-select',
 };
 
-const COLUMN_DISPLAY_TYPE_ICON_CONFIG = {
-  [CellType.TEXT]: {
-    [TEXT_DISPLAY_TYPE_MAP.PHONE]: 'telephone',
-  }
-};
-
-const DTableColumnIcon = ({ column, color, className, ariaHidden = false, getSvg }) => {
+const DTableColumnIcon = forwardRef(({ column, color, style, className, ariaHidden = false, isSyncColumn = false, getSvg, ...props }, ref) => {
   const columnType = column?.type;
-  if (!columnType) return null;
-  const columnDisplayType = getColumnDisplayType(column);
-  let symbol = null;
-  let displayTypeIconConfig = COLUMN_DISPLAY_TYPE_ICON_CONFIG[columnType];
-  if (displayTypeIconConfig && columnDisplayType) {
-    symbol = displayTypeIconConfig[columnDisplayType];
+  if (!columnType || !Object.prototype.hasOwnProperty.call(COLUMNS_ICON_CONFIG, columnType)) return null;
+  let symbol = COLUMNS_ICON_CONFIG[columnType];
+  if (columnType === CellType.TEXT && getColumnDisplayType(column) === TEXT_DISPLAY_TYPE_MAP.PHONE) {
+    symbol = 'phone-number';
   }
-  if (!symbol) {
-    symbol = COLUMNS_ICON_CONFIG[columnType];
+  if (isSyncColumn) {
+    symbol = `${symbol}-sync`;
   }
-
   return (
     <DTableIcon
-      className={classnames('dtable-column-icon', className)}
+      ref={ref}
       symbol={symbol}
+      className={classnames('dtable-column-icon', className)}
       color={color}
+      style={style}
       ariaHidden={ariaHidden}
       getSvg={getSvg}
+      {...props}
     />
   );
-};
+});
+
+DTableColumnIcon.displayName = 'DTableColumnIcon';
 
 DTableColumnIcon.propTypes = {
   column: PropTypes.object,
   color: PropTypes.string,
+  style: PropTypes.object,
   className: PropTypes.string,
   ariaHidden: PropTypes.bool,
   getSvg: PropTypes.func,
+  isSyncColumn: PropTypes.bool,
 };
 
 export default DTableColumnIcon;

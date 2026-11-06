@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>single-select</title>
+    <g id="single-select" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M16,1 C24.2843,1 31,7.71573 31,16 C31,24.2843 24.2843,31 16,31 C7.71573,31 1,24.2843 1,16 C1,7.71573 7.71573,1 16,1 Z M11.2031,14 C10.3445,14.0005 9.88581,15.0118 10.4512,15.6582 L15.248,21.1406 C15.6464,21.595 16.3536,21.595 16.752,21.1406 L21.5488,15.6582 C22.1141,15.0118 21.6555,14.0006 20.7969,14 L11.2031,14 Z" id="形状" fill="currentColor"></path>
+    </g>
+</svg>
