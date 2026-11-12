@@ -66,9 +66,9 @@ function FieldItem({ field, isCollapsed, onClickField, onMoveField }) {
   const placeholder = () => {
     const { type, data } = field;
     return (
-      <div className="field-switch">
+      <div className="field-switch text-truncate">
         <DTableColumnIcon column={{ type, data }} />
-        <span>{field.name}</span>
+        <span title={field.name}>{field.name}</span>
       </div>
     );
   };

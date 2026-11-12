@@ -37,6 +37,18 @@
   cursor: grab;
 }
 
+.field-setting .field-item-container .dtable-switch {
+  min-width: 0;
+}
+
 .field-setting .field-item-container .dtable-switch .custom-switch .custom-switch-description {
   white-space: nowrap;
+}
+
+.field-setting .field-item-container .custom-switch-indicator {
+  flex-shrink: 0;
+}
+
+.field-setting .field-item-container .field-switch .dtable-column-icon {
+  margin-right: 8px;
 }
