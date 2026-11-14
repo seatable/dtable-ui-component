@@ -127,7 +127,8 @@
   min-width: 70px;
 }
 
-.dtable-ui-filters-list .filter-item .filter-term .option-group-content .option.option-active .dtable-font {
+.dtable-ui-filters-list .filter-item .filter-term .option-group-content .option.option-active .dtable-font,
+.dtable-ui-filters-list .filter-item .filter-term .option-group-content .option.option-active .dtable-column-icon {
   color: #798d99;
 }
 
@@ -408,14 +409,16 @@
 }
 
 .filter-header-icon .dtable-font,
-.filter-header-icon .multicolor-icon {
+.filter-header-icon .multicolor-icon,
+.filter-header-icon .dtable-column-icon {
   font-size: 14px;
   color: var(--bs-icon-secondary-color);
   cursor: default;
 }
 
 .option.option-active .filter-header-icon .dtable-font,
-.option.option-active .filter-header-icon .multicolor-icon {
+.option.option-active .filter-header-icon .multicolor-icon,
+.option.option-active .filter-header-icon .dtable-column-icon {
   color: #fff;
 }
 
