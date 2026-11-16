@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import PropTypes from 'prop-types';
-import { GEOLOCATION_FORMAT, DEFAULT_GEOLOCATION_FORMAT } from 'dtable-utils';
+import { GEOLOCATION_FORMAT, DEFAULT_GEOLOCATION_FORMAT, HIDDEN_DISTRICTS } from 'dtable-utils';
 import CountryEditor from './country-editor';
 import ProvinceEditor from './province-editor';
 import ProvinceCityEditor from './province-city-editor';
@@ -17,6 +17,8 @@ const transLocationData = (data) => {
     data.value = name;
     data.name = null;
     if (data.children) {
+      // Filter out hidden districts at the district level (children of city nodes)
+      data.children = data.children.filter((child) => !HIDDEN_DISTRICTS.includes(child.name));
       data.children.map(child => {
         return transLocationData(child);
       });
@@ -71,25 +73,25 @@ const MBGeolocationEditor = ({
 
   switch (format) {
     case GEOLOCATION_FORMAT.LNG_LAT: {
-      return (<MapEditor { ...props } config={config} column={column} />);
+      return (<MapEditor {...props} config={config} column={column} />);
     }
     case GEOLOCATION_FORMAT.MAP_SELECTION: {
       return (<MapSelectionEditor {...props} config={config} column={column} />);
     }
     case GEOLOCATION_FORMAT.COUNTRY_REGION: {
-      return (<CountryEditor { ...props } getData={_getCountryData} column={column} />);
+      return (<CountryEditor {...props} getData={_getCountryData} column={column} />);
     }
     case GEOLOCATION_FORMAT.PROVINCE: {
-      return (<ProvinceEditor { ...props } getData={getData} column={column} />);
+      return (<ProvinceEditor {...props} getData={getData} column={column} />);
     }
     case GEOLOCATION_FORMAT.PROVINCE_CITY: {
-      return (<ProvinceCityEditor { ...props } getData={getData} column={column} />);
+      return (<ProvinceCityEditor {...props} getData={getData} column={column} />);
     }
     case GEOLOCATION_FORMAT.PROVINCE_CITY_DISTRICT: {
-      return (<LocationEditor { ...props } getData={getData} column={column} />);
+      return (<LocationEditor {...props} getData={getData} column={column} />);
     }
     default: {
-      return (<LocationEditor { ...props } isShowDetails={true} getData={getData} column={column} />);
+      return (<LocationEditor {...props} isShowDetails={true} getData={getData} column={column} />);
     }
   }
 };
