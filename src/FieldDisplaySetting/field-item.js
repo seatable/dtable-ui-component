@@ -8,9 +8,10 @@ const propTypes = {
   isCollapsed: PropTypes.bool,
   onClickField: PropTypes.func.isRequired,
   onMoveField: PropTypes.func.isRequired,
+  useNewIcon: PropTypes.bool,
 };
 
-function FieldItem({ field, isCollapsed, onClickField, onMoveField }) {
+function FieldItem({ field, isCollapsed, onClickField, onMoveField, useNewIcon }) {
   let enteredCounter = 0;
   const fieldItemRef = useRef(null);
   const [isItemDropTipShow, setDropTipShow] = useState(false);
@@ -67,7 +68,7 @@ function FieldItem({ field, isCollapsed, onClickField, onMoveField }) {
     const { type, data } = field;
     return (
       <div className="field-switch text-truncate">
-        <DTableColumnIcon column={{ type, data }} />
+        <DTableColumnIcon column={{ type, data }} useNewIcon={useNewIcon} />
         <span title={field.name}>{field.name}</span>
       </div>
     );

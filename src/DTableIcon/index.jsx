@@ -4,7 +4,7 @@ import SvgIcon from './svg-icon';
 
 import './index.css';
 
-const DTableIcon = ({ className, symbol, color, ariaHidden = false, getSvg }) => {
+const DTableIcon = ({ className, symbol, color, ariaHidden = false, focusable, getSvg }) => {
   if (!symbol) return null;
   if (symbol.includes('dtable-icon')) {
     let customProps = {};
@@ -20,6 +20,7 @@ const DTableIcon = ({ className, symbol, color, ariaHidden = false, getSvg }) =>
       color={color}
       className={className}
       ariaHidden={ariaHidden}
+      focusable={focusable}
       getSvg={getSvg}
     />
   );
@@ -30,6 +31,7 @@ DTableIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
   ariaHidden: PropTypes.bool,
+  focusable: PropTypes.bool,
   getSvg: PropTypes.func,
 };
 

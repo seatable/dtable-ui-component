@@ -13,13 +13,16 @@ const propTypes = {
   onClickField: PropTypes.func.isRequired,
   onMoveField: PropTypes.func.isRequired,
   onToggleFieldsVisibility: PropTypes.func.isRequired,
+  useNewIcon: PropTypes.bool,
 };
 
 const FIELD_ITEM_HEIGHT = 30;
 const BANNER_HEIGHT = 24;
 const DURATION = 300;
 
-function FieldDisplaySetting({ fields, textProperties, fieldAllShown, onClickField, onMoveField, onToggleFieldsVisibility }) {
+function FieldDisplaySetting({
+  fields, textProperties, fieldAllShown, onClickField, onMoveField, onToggleFieldsVisibility, useNewIcon,
+}) {
   const nodeRef = useRef(null);
   const [isCollapsed, setCollapsed] = useState(true);
 
@@ -62,6 +65,7 @@ function FieldDisplaySetting({ fields, textProperties, fieldAllShown, onClickFie
                     isCollapsed={isCollapsed}
                     onClickField={onClickField}
                     onMoveField={onMoveField}
+                    useNewIcon={useNewIcon}
                   />
                 );
               })}

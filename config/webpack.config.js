@@ -373,43 +373,27 @@ module.exports = function (webpackEnv) {
             },
             {
               test: /\.svg$/,
-              use: [
-                {
-                  loader: require.resolve('@svgr/webpack'),
-                  options: {
-                    prettier: false,
-                    svgo: false,
-                    svgoConfig: {
-                      plugins: [{ removeViewBox: false }],
-                    },
-                    titleProp: true,
-                    ref: true,
-                  },
-                },
-                {
-                  loader: 'svgo-loader',
-                  options: {
+              use: {
+                loader: require.resolve('@svgr/webpack'),
+                options: {
+                  prettier: false,
+                  titleProp: true,
+                  ref: true,
+                  svgoConfig: {
                     plugins: [
                       'removeTitle',
                       'removeStyleElement',
-                      'cleanupIDs',
+                      'cleanupIds',
                       'inlineStyles',
                       'removeXMLProcInst',
                       {
                         name: 'removeAttrs',
-                        params: {
-                          attrs: [
-                            'fill',
-                            'fill-rule',
-                            'clip-rule',
-                            'stroke',
-                          ],
-                        }
-                      }
-                    ]
-                  }
-                }
-              ],
+                        params: { attrs: ['fill', 'fill-rule', 'clip-rule', 'stroke'] },
+                      },
+                    ],
+                  },
+                },
+              },
             },
             {
               test: /\.worker\.js$/,
