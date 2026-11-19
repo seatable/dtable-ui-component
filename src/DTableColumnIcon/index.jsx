@@ -40,25 +40,64 @@ const COLUMN_DISPLAY_TYPE_ICON_CONFIG = {
   }
 };
 
-const DTableColumnIcon = ({ column, color, className, ariaHidden = false, getSvg }) => {
+const NEW_COLUMN_ICON_SYMBOLS = {
+  [CellType.DEFAULT]: 'text',
+  [CellType.TEXT]: 'text',
+  [CellType.STRING]: 'text',
+  [CellType.LONG_TEXT]: 'long-text',
+  [CellType.NUMBER]: 'number',
+  [CellType.COLLABORATOR]: 'group',
+  [CellType.DATE]: 'date',
+  [CellType.DURATION]: 'duration',
+  [CellType.SINGLE_SELECT]: 'single-select',
+  [CellType.MULTIPLE_SELECT]: 'multiple-select',
+  [CellType.IMAGE]: 'image',
+  [CellType.FILE]: 'file',
+  [CellType.EMAIL]: 'email',
+  [CellType.URL]: 'url',
+  [CellType.CHECKBOX]: 'checkbox',
+  [CellType.RATE]: 'starred',
+  [CellType.FORMULA]: 'formula',
+  [CellType.LINK_FORMULA]: 'link-formula',
+  [CellType.GEOLOCATION]: 'geolocation',
+  [CellType.LINK]: 'link-to-other-records',
+  [CellType.CREATOR]: 'user',
+  [CellType.LAST_MODIFIER]: 'user',
+  [CellType.CTIME]: 'date-time',
+  [CellType.MTIME]: 'date-time',
+  [CellType.AUTO_NUMBER]: 'auto-number',
+  [CellType.BUTTON]: 'button',
+  [CellType.DIGITAL_SIGN]: 'digital-signature',
+  [CellType.DEPARTMENT_SINGLE_SELECT]: 'department-single-select',
+};
+
+const DTableColumnIcon = ({
+  column, color, className, ariaHidden = false, useNewIcon = false, isSyncColumn = false, getSvg,
+}) => {
   const columnType = column?.type;
   if (!columnType) return null;
   const columnDisplayType = getColumnDisplayType(column);
-  let symbol = null;
-  let displayTypeIconConfig = COLUMN_DISPLAY_TYPE_ICON_CONFIG[columnType];
-  if (displayTypeIconConfig && columnDisplayType) {
-    symbol = displayTypeIconConfig[columnDisplayType];
+  const isPhone = columnType === CellType.TEXT && columnDisplayType === TEXT_DISPLAY_TYPE_MAP.PHONE;
+  const newSymbol = isPhone ? 'phone-number' : NEW_COLUMN_ICON_SYMBOLS[columnType];
+  const useNewSymbol = useNewIcon && typeof newSymbol === 'string';
+  const useSyncIcon = useNewSymbol && isSyncColumn;
+
+  let symbol;
+  if (useNewSymbol) {
+    symbol = `column-${newSymbol}${useSyncIcon ? '-sync' : ''}`;
+  } else {
+    const legacyDisplaySymbol = COLUMN_DISPLAY_TYPE_ICON_CONFIG[columnType]?.[columnDisplayType];
+    symbol = legacyDisplaySymbol || COLUMNS_ICON_CONFIG[columnType];
   }
-  if (!symbol) {
-    symbol = COLUMNS_ICON_CONFIG[columnType];
-  }
+  if (typeof symbol !== 'string') return null;
 
   return (
     <DTableIcon
-      className={classnames('dtable-column-icon', className)}
+      className={classnames({ 'dtable-column-icon': !useSyncIcon }, className)}
       symbol={symbol}
       color={color}
       ariaHidden={ariaHidden}
+      focusable={useNewSymbol ? false : undefined}
       getSvg={getSvg}
     />
   );
@@ -69,6 +108,8 @@ DTableColumnIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
   ariaHidden: PropTypes.bool,
+  useNewIcon: PropTypes.bool,
+  isSyncColumn: PropTypes.bool,
   getSvg: PropTypes.func,
 };
 
