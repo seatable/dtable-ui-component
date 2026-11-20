@@ -88,6 +88,7 @@ class DTableFiltersPopover extends Component {
 
   render() {
     const { target, columns, placement, isSupportAdvanced, departments, lang, readOnly, userDepartmentIdsMap, firstDayOfWeek } = this.props;
+    const { useNewIcon } = this.props;
     const { filters, filterConjunction } = this.state;
     const canAddFilter = columns.length > 0;
     return (
@@ -105,6 +106,7 @@ class DTableFiltersPopover extends Component {
             filterConjunction={filterConjunction}
             filters={filters}
             columns={columns}
+            useNewIcon={useNewIcon}
             emptyPlaceholder={getLocale('No_filters')}
             collaborators={this.props.collaborators}
             readOnly={readOnly}
@@ -176,6 +178,7 @@ DTableFiltersPopover.propTypes = {
   placement: PropTypes.string,
   isSupportAdvanced: PropTypes.bool,
   readOnly: PropTypes.bool,
+  useNewIcon: PropTypes.bool,
 };
 
 export default DTableFiltersPopover;

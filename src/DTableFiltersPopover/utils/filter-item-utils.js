@@ -4,7 +4,7 @@ import { getLocale } from '../../lang';
 
 class FilterItemUtils {
 
-  static generatorColumnOption(column) {
+  static generatorColumnOption(column, useNewIcon) {
     if (!column) return null;
     const { name } = column;
     return {
@@ -12,7 +12,7 @@ class FilterItemUtils {
       label: (
         <Fragment>
           <span className="filter-header-icon">
-            <DTableColumnIcon column={column} />
+            <DTableColumnIcon column={column} useNewIcon={useNewIcon} />
           </span>
           <span className='select-option-name' title={name} aria-label={name} >
             {name}
