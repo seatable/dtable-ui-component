@@ -49,6 +49,7 @@ const propTypes = {
   collaborators: PropTypes.array,
   errMsg: PropTypes.string,
   firstDayOfWeek: PropTypes.string,
+  useNewIcon: PropTypes.bool,
 };
 
 
@@ -690,9 +691,9 @@ class FilterItem extends React.Component {
 
   render() {
     const { filterPredicateOptions, filterTermModifierOptions } = this;
-    const { filter, filterColumn, filterColumnOptions, readOnly } = this.props;
+    const { filter, filterColumn, filterColumnOptions, readOnly, useNewIcon } = this.props;
     const { filter_predicate, filter_term_modifier } = filter;
-    const activeColumn = FilterItemUtils.generatorColumnOption(filterColumn);
+    const activeColumn = FilterItemUtils.generatorColumnOption(filterColumn, useNewIcon);
     const activePredicate = FilterItemUtils.generatorPredicateOption(filter_predicate, true);
     let activeTermModifier = null;
     let _isCheckboxColumn = false;

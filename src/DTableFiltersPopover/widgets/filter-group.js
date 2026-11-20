@@ -105,6 +105,7 @@ class FilterGroup extends Component {
           filterConjunction={subFilterConjunction}
           conjunctionOptions={conjunctionOptions}
           filterColumnOptions={columnOptions}
+          useNewIcon={this.props.useNewIcon}
           collaborators={collaborators}
           userDepartmentIdsMap={userDepartmentIdsMap}
           departments={departments}
@@ -175,6 +176,7 @@ FilterGroup.propTypes = {
   departments: PropTypes.array,
   collaborators: PropTypes.array,
   firstDayOfWeek: PropTypes.string,
+  useNewIcon: PropTypes.bool,
 };
 
 export default FilterGroup;
