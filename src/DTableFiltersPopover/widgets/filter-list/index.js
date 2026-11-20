@@ -27,6 +27,7 @@ const propTypes = {
   collaborators: PropTypes.array,
   isInModal: PropTypes.bool,
   firstDayOfWeek: PropTypes.string,
+  useNewIcon: PropTypes.bool,
 };
 
 class FiltersList extends Component {
@@ -38,7 +39,7 @@ class FiltersList extends Component {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.columns !== this.props.columns) {
+    if (nextProps.columns !== this.props.columns || nextProps.useNewIcon !== this.props.useNewIcon) {
       this.columnOptions = null;
     }
   }
@@ -170,11 +171,11 @@ class FiltersList extends Component {
   };
 
   getColumnOptions = () => {
-    const { columns } = this.props;
+    const { columns, useNewIcon } = this.props;
     if (!this.columnOptions) {
       const filterColumns = getFilterColumns(columns);
       this.columnOptions = filterColumns.map(column => {
-        return FilterItemUtils.generatorColumnOption(column);
+        return FilterItemUtils.generatorColumnOption(column, useNewIcon);
       });
     }
     return this.columnOptions;
@@ -182,6 +183,7 @@ class FiltersList extends Component {
 
   renderFilter = (filter, index, filterColumn) => {
     const { filterConjunction, isInModal, columns, collaborators, userDepartmentIdsMap, departments, lang, firstDayOfWeek, readOnly } = this.props;
+    const { useNewIcon } = this.props;
     const conjunctionOptions = this.getConjunctionOptions();
     const columnOptions = this.getColumnOptions();
 
@@ -197,6 +199,7 @@ class FiltersList extends Component {
           filter={filter}
           conjunctionOptions={conjunctionOptions}
           columnOptions={columnOptions}
+          useNewIcon={useNewIcon}
           collaborators={collaborators}
           userDepartmentIdsMap={userDepartmentIdsMap}
           departments={departments}
@@ -225,6 +228,7 @@ class FiltersList extends Component {
         filterConjunction={filterConjunction}
         conjunctionOptions={conjunctionOptions}
         filterColumnOptions={columnOptions}
+        useNewIcon={useNewIcon}
         collaborators={collaborators}
         userDepartmentIdsMap={userDepartmentIdsMap}
         departments={departments}
