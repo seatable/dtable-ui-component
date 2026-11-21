@@ -17,6 +17,7 @@ export default class NotificationPopover extends React.Component {
     enableWeixin: PropTypes.bool,
     onOpenWeixinQRCodeDialog: PropTypes.func,
     onMarkAllNotifications: PropTypes.func,
+    useNewIcon: PropTypes.bool,
     children: PropTypes.any,
   };
 
@@ -74,7 +75,7 @@ export default class NotificationPopover extends React.Component {
         <div className="notification-container dtable-popover-container" ref={ref => this.notificationContainerRef = ref}>
           <div className="notification-header">
             {headerText}
-            <IconButton icon="x" onClick={this.props.onNotificationListToggle} />
+            <IconButton icon="x" useNewIcon={this.props.useNewIcon} onClick={this.props.onNotificationListToggle} />
           </div>
           <div className="notification-body">
             {this.props.enableWeixin &&
