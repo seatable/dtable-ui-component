@@ -378,36 +378,24 @@ module.exports = function (webpackEnv) {
                   loader: require.resolve('@svgr/webpack'),
                   options: {
                     prettier: false,
-                    svgo: false,
                     svgoConfig: {
-                      plugins: [{ removeViewBox: false }],
+                      plugins: [
+                        'removeTitle',
+                        'removeStyleElement',
+                        'cleanupIds',
+                        'inlineStyles',
+                        'removeXMLProcInst',
+                        {
+                          name: 'removeAttrs',
+                          params: {
+                            attrs: ['fill', 'fill-rule', 'clip-rule', 'stroke'],
+                          },
+                        },
+                      ],
                     },
                     titleProp: true,
                     ref: true,
                   },
-                },
-                {
-                  loader: 'svgo-loader',
-                  options: {
-                    plugins: [
-                      'removeTitle',
-                      'removeStyleElement',
-                      'cleanupIDs',
-                      'inlineStyles',
-                      'removeXMLProcInst',
-                      {
-                        name: 'removeAttrs',
-                        params: {
-                          attrs: [
-                            'fill',
-                            'fill-rule',
-                            'clip-rule',
-                            'stroke',
-                          ],
-                        }
-                      }
-                    ]
-                  }
                 }
               ],
             },
