@@ -1,6 +1,10 @@
 {
   "name": "dtable-ui-component",
   "version": "7.1.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seatable/dtable-ui-component.git"
+  },
   "main": "./lib/index.js",
   "dependencies": {
     "@seafile/react-image-lightbox": "5.0.9",
