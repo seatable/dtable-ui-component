@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32px" height="32px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>text</title>
+    <g id="text" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M31,29.5 L24.7305,29.5 L21.6953,22.3945 L10.1289,22.3945 L7,29.5 L1,29.5 L12.8125,2.5 L18.8125,2.5 L31,29.5 Z M12.6328,16.7109 L19.2676,16.7109 L16,9.0625 L12.6328,16.7109 Z" id="形状" fill="currentColor"></path>
+    </g>
+</svg>
