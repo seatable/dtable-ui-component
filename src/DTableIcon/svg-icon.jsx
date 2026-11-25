@@ -21,7 +21,7 @@ const getSvgIconComponents = () => {
   return svgIconComponents;
 };
 
-const SvgIcon = ({ className, symbol, color, ariaHidden, getSvg }) => {
+const SvgIcon = ({ className, symbol, color, ariaHidden, focusable, getSvg }) => {
   if (!symbol) return null;
 
   let props = { style: { color } };
@@ -36,7 +36,7 @@ const SvgIcon = ({ className, symbol, color, ariaHidden, getSvg }) => {
     IconComponent = getSvg(symbol);
   }
   if (!IconComponent) return null;
-  return (<IconComponent className={classnames('multicolor-icon', className, `multicolor-icon-${symbol}`)} {...props} />);
+  return (<IconComponent className={classnames('multicolor-icon', className, `multicolor-icon-${symbol}`)} focusable={focusable} {...props} />);
 };
 
 SvgIcon.propTypes = {
@@ -44,6 +44,7 @@ SvgIcon.propTypes = {
   color: PropTypes.string,
   className: PropTypes.string,
   ariaHidden: PropTypes.bool,
+  focusable: PropTypes.bool,
   getSvg: PropTypes.func,
 };
 

@@ -6,7 +6,7 @@ import './index.css';
 
 const DTableModalHeader = ({ children, ...props }) => {
   const customCloseBtn = (
-    <IconButton icon="x" aria-label="Close" onClick={props.toggle} className='modal-close-btn'/>
+    <IconButton icon="x" useNewIcon aria-label="Close" onClick={props.toggle} className="modal-close-btn" />
   );
   return (
     <ModalHeader {...props} close={customCloseBtn}>

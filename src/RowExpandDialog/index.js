@@ -27,6 +27,7 @@ const RowExpandDialog = forwardRef(({
   onToggle,
   uploadFile,
   copyURL,
+  useNewIcon = false,
   children = [],
   ...otherProps
 }, ref) => {
@@ -185,7 +186,7 @@ const RowExpandDialog = forwardRef(({
             <div className="w-100 -h-100 d-flex align-items-center justify-content-center"><Loading /></div>
           ) : (
             <div className="dtable-ui-row-expand-details">
-              <Header title={title} row={row} columns={columns} copyURL={copyURL} onToggle={toggle}>
+              <Header title={title} row={row} columns={columns} copyURL={copyURL} useNewIcon={useNewIcon} onToggle={toggle}>
                 {children[0]}
               </Header>
               <Body
@@ -225,6 +226,7 @@ RowExpandDialog.propTypes = {
   onToggle: PropTypes.func.isRequired,
   uploadFile: PropTypes.func,
   copyURL: PropTypes.func,
+  useNewIcon: PropTypes.bool,
 };
 
 RowExpandDialog.Header = Header;

@@ -46,7 +46,7 @@ const controlCallback = (provided, state) => {
   const { isDisabled, isFocused } = state;
   const headerIconStyle = {
     '.header-icon': HEADER_ICON_STYLE,
-    '.header-icon .dtable-font': {
+    '.header-icon .dtable-font, .header-icon .dtable-column-icon': {
       color: 'var(--bs-icon-secondary-color) !important'
     }
   };
