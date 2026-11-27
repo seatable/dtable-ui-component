@@ -167,7 +167,7 @@ class LargeMapSelectionEditorDialog extends React.Component {
       return (
         `
           <div class='dtable-ui-selection-label-content' id='dtable-ui-selection-label-content'>
-            <svg class='multicolor-icon multicolor-icon-arrow-down-b' width='12' height='12' viewBox='0 0 32 32' fill='none' aria-hidden='true' focusable='false'><path d='M3.27197 11.2723L6.1004 8.44385L15.9999 18.3433L25.8994 8.44385L28.7278 11.2723L15.9999 24.0002L3.27197 11.2723Z' fill='currentColor'></path></svg>
+            <i class='dtable-font dtable-icon-down3'></i>
             <span class='label-title text-truncate' title=${title}>${title}</span>
             ${tagContent && `<span class='label-tag'>${tagContent}</span>`}
             <span class='dtable-font dtable-icon-x' id='selection-label-close'></span>
@@ -181,7 +181,7 @@ class LargeMapSelectionEditorDialog extends React.Component {
       return (
         `
           <div class='dtable-ui-selection-label-content simple' id='dtable-ui-selection-label-content'>
-            <svg class='multicolor-icon multicolor-icon-arrow-down-b' width='12' height='12' viewBox='0 0 32 32' fill='none' aria-hidden='true' focusable='false'><path d='M3.27197 11.2723L6.1004 8.44385L15.9999 18.3433L25.8994 8.44385L28.7278 11.2723L15.9999 24.0002L3.27197 11.2723Z' fill='currentColor'></path></svg>
+            <i class='dtable-font dtable-icon-down3'></i>
             <span class='dtable-font dtable-icon-x' id='selection-label-close'></span>
             <span class='label-address text-truncate simple' title=${address}>${address}</span>
             <div class='label-submit btn btn-primary' id='selection-label-submit'>${getLocale('Fill_in')}</div>

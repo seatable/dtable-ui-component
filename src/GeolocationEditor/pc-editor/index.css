@@ -332,9 +332,7 @@
 }
 
 .dtable-ui-geolocation-map-editor-large .dtable-ui-selection-label-content .dtable-icon-down3,
-.dtable-ui-geolocation-map-editor .dtable-ui-selection-label-content .dtable-icon-down3,
-.dtable-ui-geolocation-map-editor-large .dtable-ui-selection-label-content .multicolor-icon-arrow-down-b,
-.dtable-ui-geolocation-map-editor .dtable-ui-selection-label-content .multicolor-icon-arrow-down-b {
+.dtable-ui-geolocation-map-editor .dtable-ui-selection-label-content .dtable-icon-down3 {
   position: absolute;
   transform: rotate(180deg);
   top: -16px;
