@@ -7,6 +7,7 @@
   overflow: hidden;
 }
 
-.multicolor-icon.multicolor-icon-arrow-down-b {
+.multicolor-icon.multicolor-icon-arrow-down-b,
+.multicolor-icon.multicolor-icon-arrow-right-b {
   font-size: 12px;
 }
