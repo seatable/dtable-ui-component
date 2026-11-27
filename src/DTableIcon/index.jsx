@@ -4,20 +4,22 @@ import SvgIcon from './svg-icon';
 
 import './index.css';
 
-const DTableIcon = ({ className, symbol, color, ariaHidden = false, focusable, getSvg }) => {
+const DTableIcon = ({ className, symbol, color, style, ariaHidden = false, focusable, getSvg }) => {
   if (!symbol) return null;
+  const iconStyle = { ...style, ...(color ? { color } : {}) };
   if (symbol.includes('dtable-icon')) {
     let customProps = {};
     if (ariaHidden) {
       customProps['aria-hidden'] = ariaHidden;
     }
-    return <i className={classnames(symbol, className, { 'dtable-font': !symbol.includes('dtable-font') })} style={{ color }} {...customProps}></i>;
+    return <i className={classnames(symbol, className, { 'dtable-font': !symbol.includes('dtable-font') })} style={iconStyle} {...customProps}></i>;
   }
 
   return (
     <SvgIcon
       symbol={symbol}
       color={color}
+      style={style}
       className={className}
       ariaHidden={ariaHidden}
       focusable={focusable}
@@ -29,6 +31,7 @@ const DTableIcon = ({ className, symbol, color, ariaHidden = false, focusable, g
 DTableIcon.propTypes = {
   symbol: PropTypes.string.isRequired,
   color: PropTypes.string,
+  style: PropTypes.object,
   className: PropTypes.string,
   ariaHidden: PropTypes.bool,
   focusable: PropTypes.bool,

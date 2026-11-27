@@ -4,6 +4,7 @@ import { Dropdown, DropdownToggle } from 'reactstrap';
 import classnames from 'classnames';
 import DTableDropdownMenu from '../DTableDropdownMenu';
 import DTableDropdownItem from '../DTableDropdownItem';
+import DTableIcon from '../DTableIcon';
 
 import './index.css';
 
@@ -46,7 +47,7 @@ const RoleStatusEditor = ({ isShowDropdownIcon, currentOption, menuOptions, onCh
       <DropdownToggle innerRef={toggleRef} className="dropdown-toggle-button d-flex align-items-center" tag="div">
         {currentOption.label}
         <div className="dropdown-icon-container ml-1">
-          <span className={classnames('dtable-font dtable-icon-down3', { 'hide': !isShowDropdownIcon })} />
+          <DTableIcon symbol="arrow-down-b" className={classnames({ 'hide': !isShowDropdownIcon })} ariaHidden />
         </div>
       </DropdownToggle>
       <DTableDropdownMenu className="position-fixed" style={{ maxHeight: menuMaxHeight, overflowY: 'auto' }}>

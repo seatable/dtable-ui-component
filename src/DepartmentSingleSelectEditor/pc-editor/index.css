@@ -41,6 +41,9 @@
 }
 
 .dtable-ui.department-editor-list .department-item-left-content .department-item-fold-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   margin-right: 2px;
 }
 
@@ -86,6 +89,19 @@
 
 .dtable-ui.department-editor-list .editor-department-container .dtable-icon-down3.expand {
   transform: scale(0.8);
+}
+
+.dtable-ui.department-editor-list .editor-department-container .expand.multicolor-icon {
+  color: #b5b5b5;
+  font-size: 12px;
+  transform: scale(0.8);
+  cursor: pointer;
+  display: inline-block;
+  margin-left: 0px !important;
+}
+
+.dtable-ui.department-editor-list .editor-department-container .expand.multicolor-icon:hover {
+  color: #555;
 }
 
 .selected-departments.dtable-ui {

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { DEPARTMENT_SELECT_RANGE_MAP } from 'dtable-utils';
 import Loading from '../../Loading';
+import DTableIcon from '../../DTableIcon';
 import { getNormalizedDepartments, searchDepartments } from '../../utils/departments';
 import { getLocale } from '../../lang';
 
@@ -149,8 +150,7 @@ class DepartmentSingleSelect extends Component {
           <div className="department-item-left-content d-flex align-items-center">
             {hasChild &&
               <div onClick={(event) => this.onExpand(event, id, isExpanded)} role="button" className="department-item-fold-btn">
-                <span className={`dtable-font expand dtable-icon-down3 ${isExpanded ? '' : 'rotate-270'}`} >
-                </span>
+                <DTableIcon symbol={isExpanded ? 'arrow-down-b' : 'arrow-right-b'} className="expand" ariaHidden />
               </div>
             }
             <span

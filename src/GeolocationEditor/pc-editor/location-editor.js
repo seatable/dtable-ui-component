@@ -6,6 +6,7 @@ import GeolocationSelectorList from './selector-list';
 import SelectorHeaderItem from './selector-header-item';
 import { KeyCodes } from '../../constants';
 import Loading from '../../Loading';
+import DTableIcon from '../../DTableIcon';
 import parseGeolocation from './parse-geolocation';
 import { getLocale } from '../../lang';
 
@@ -212,7 +213,7 @@ class LocationEditor extends Component {
                   <span className="selected-option-show">
                     {location ? location : getLocale('Select_province_city_district')}
                   </span>
-                  <span aria-hidden="true" className="dtable-font dtable-icon-down3 dtable-ui-geolocation-editor-parameter-icon"></span>
+                  <DTableIcon symbol="arrow-down-b" className="dtable-ui-geolocation-editor-parameter-icon" ariaHidden />
                 </div>
               </div>
               {isShowSelector && (

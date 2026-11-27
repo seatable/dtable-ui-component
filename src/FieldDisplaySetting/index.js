@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Label } from 'reactstrap';
 import { Transition } from 'react-transition-group';
+import DTableIcon from '../DTableIcon';
 import FieldItem from './field-item';
 
 import './index.css';
@@ -45,7 +46,9 @@ function FieldDisplaySetting({
     <div className="field-setting">
       <div className="field-setting-header seatable-collapse-header d-flex align-items-center justify-content-between" onClick={expandAllFields} >
         <Label className="mb-0">{textProperties.titleValue}</Label>
-        <span className={`seatable-icon-btn dtable-font dtable-icon-right expand-button ${isCollapsed ? '' : 'revolving'}`} />
+        <span className={`seatable-icon-btn expand-button ${isCollapsed ? '' : 'revolving'}`}>
+          <DTableIcon symbol="arrow-right-b" ariaHidden />
+        </span>
       </div>
       <Transition nodeRef={nodeRef} in={!isCollapsed} timeout={DURATION}>
         {state => (

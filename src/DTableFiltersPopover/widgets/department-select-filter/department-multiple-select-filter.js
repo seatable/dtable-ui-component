@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import ModalPortal from '../../../ModalPortal';
 import SelectedDepartments from '../../../SelectedDepartments';
 import DepartmentMultipleSelectEditor from '../../../DepartmentMultipleSelectEditor';
+import DTableIcon from '../../../DTableIcon';
 import { useClickOutside } from '../../../hooks/common-hooks';
 import { getLocale } from '../../../lang';
 import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../constants/departments';
@@ -86,7 +87,7 @@ function DepartmentMultipleSelectFilter(props) {
           :
           <span className="select-placeholder">{getLocale('Select_department')}</span>
         }
-        {!readOnly && <span className="dtable-font dtable-icon-down3"></span>}
+        {!readOnly && <DTableIcon symbol="arrow-down-b" ariaHidden />}
       </div>
       {isShowSelector && !isInModal &&
         <DepartmentMultipleSelectEditor

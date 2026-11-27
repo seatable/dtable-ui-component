@@ -5,6 +5,7 @@ import { ChromePicker } from 'react-color';
 import { isEmpty } from 'dtable-utils';
 import { getLocale } from '../lang';
 import ClickOutside from '../ClickOutside';
+import DTableIcon from '../DTableIcon';
 import { hexToRgba, rgbaToHex, getInitialHexVal, toPercentage, isLightColor } from './utils';
 import ColorPickerPortal from './ColorPickerPortal';
 
@@ -250,9 +251,9 @@ const DTableColorPicker = forwardRef(({ onToggle, popoverStyle, color = '#ffffff
           onChange={onChangeChromePicker}
         />
         <div className={`color-setting d-flex align-items-center ${colorMode}`}>
-          <span className="mode-btn d-flex" onClick={onChangeMode}>
+          <span className="mode-btn d-flex align-items-center" onClick={onChangeMode}>
             {colorMode === COLOR_PICKER_MODE.HEX ? 'HEX' : 'RGB'}
-            <i className="dtable-font dtable-icon-right"></i>
+            <DTableIcon symbol="arrow-down-b" ariaHidden />
           </span>
           {colorMode === COLOR_PICKER_MODE.HEX ? renderHexContainer() : renderRgbContainer()}
           <Input

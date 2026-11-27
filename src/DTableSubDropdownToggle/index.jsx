@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { DropdownToggle } from 'reactstrap';
 import classnames from 'classnames';
 import { getLocale } from '../lang';
+import SvgIcon from '../DTableIcon/svg-icon';
 
 const DTableSubDropdownToggle = ({ className, id, text, icon, disabled, hideArrow = false, title, ariaLabel, ariaExpanded = false, toggleProps }) => {
   const renderedIcon = () => {
@@ -28,7 +29,7 @@ const DTableSubDropdownToggle = ({ className, id, text, icon, disabled, hideArro
     >
       {renderedIcon()}
       <span className="item-text">{text}</span>
-      {!hideArrow && (<i className="item-icon dtable-font dtable-icon-down3 rotate-270 mr-0" aria-hidden="true"></i>)}
+      {!hideArrow && (<SvgIcon symbol="arrow-right-b" className="item-icon mr-0" ariaHidden />)}
     </DropdownToggle>
   );
 };

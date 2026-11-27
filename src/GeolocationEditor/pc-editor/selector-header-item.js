@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import DTableIcon from '../../DTableIcon';
 import { getLocale } from '../../lang';
 
 const SelectorHeaderItemPropTypes = {
@@ -28,7 +29,7 @@ class SelectorHeaderItem extends React.Component {
         <span>
           {selectedItem ? selectedItem.name ? selectedItem.name : selectedItem : getLocale('Select_location')}
         </span>
-        <i className='dtable-font dtable-icon-down3'></i>
+        <DTableIcon symbol="arrow-down-b" ariaHidden />
       </div>
     );
   }

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { KeyCodes } from '../../../constants';
 import CollaboratorEditor from '../../../CollaboratorEditor';
+import DTableIcon from '../../../DTableIcon';
 import { getLocale } from '../../../lang';
 import CollaboratorItem from '../../../CollaboratorItem';
 
@@ -184,7 +185,7 @@ class RowExpandPCCollaboratorEditor extends React.Component {
               </div>
             }
           </div>
-          <i aria-hidden="true" className="dtable-font dtable-icon-down3"></i>
+          <DTableIcon symbol="arrow-down-b" ariaHidden />
         </div>
       </div>
     );

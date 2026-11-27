@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { searchDepartments, getNormalizedDepartments } from '../utils/departments';
 import SelectedDepartments from '../SelectedDepartments';
+import DTableIcon from '../DTableIcon';
 import { getLocale } from '../lang';
 
 import './index.css';
@@ -104,8 +105,7 @@ function DepartmentMultipleSelect(props) {
           />
           {hasChild && !searchVal &&
             <div onClick={(event) => onExpand(event, id, isExpanded)} role="button" className='department-item-fold-btn'>
-              <span className={`dtable-font expand dtable-icon-down3 ${isExpanded ? '' : 'rotate-270'}`} >
-              </span>
+              <DTableIcon symbol={isExpanded ? 'arrow-down-b' : 'arrow-right-b'} className="expand" ariaHidden />
             </div>
           }
           <span style={searchVal ? {} : { paddingLeft: hasChild ? '' : '16px' }} title={name} className="text-truncate">{name}</span>

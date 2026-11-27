@@ -5,6 +5,7 @@ import DTableCustomFooter from '../../DTableCustomFooter';
 import GeolocationSelectorList from './selector-list';
 import SelectorHeaderItem from './selector-header-item';
 import Loading from '../../Loading';
+import DTableIcon from '../../DTableIcon';
 import parseGeolocation from './parse-geolocation';
 import { KeyCodes } from '../../constants';
 import { getLocale } from '../../lang';
@@ -177,7 +178,7 @@ class ProvinceCityEditor extends Component {
                   <span className="selected-option-show">
                     {location ? location : getLocale('Select_province_city')}
                   </span>
-                  <span aria-hidden="true" className="dtable-font dtable-icon-down3 dtable-ui-geolocation-editor-parameter-icon"></span>
+                  <DTableIcon symbol="arrow-down-b" className="dtable-ui-geolocation-editor-parameter-icon" ariaHidden />
                 </div>
               </div>
               {isShowSelector && (

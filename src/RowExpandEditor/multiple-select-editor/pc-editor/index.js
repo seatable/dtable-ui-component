@@ -4,6 +4,7 @@ import { getColumnOptions } from 'dtable-utils';
 import classnames from 'classnames';
 import { KeyCodes, DELETED_OPTION_BACKGROUND_COLOR, DELETED_OPTION_TIPS } from '../../../constants';
 import MultipleSelectEditor from '../../../MultipleSelectEditor';
+import DTableIcon from '../../../DTableIcon';
 import { getLocale } from '../../../lang';
 import ObjectUtils from '../../../utils/object-utils';
 
@@ -172,7 +173,7 @@ class RowExpandPCMultipleSelectEditor extends React.Component {
             }
             {options.length === 0 && placeholder && (<>{placeholder}</>)}
           </div>
-          <i aria-hidden="true" className="dtable-font dtable-icon-down3"></i>
+          <DTableIcon symbol="arrow-down-b" ariaHidden />
         </div>
       </div>
     );
