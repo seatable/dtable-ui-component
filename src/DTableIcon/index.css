@@ -1,6 +1,13 @@
 .multicolor-icon {
+  display: inline-block;
   width: 1em;
   height: 1em;
+  flex-shrink: 0;
   fill: currentColor;
   overflow: hidden;
+}
+
+.multicolor-icon.multicolor-icon-arrow-down-b,
+.multicolor-icon.multicolor-icon-arrow-right-b {
+  font-size: 12px;
 }

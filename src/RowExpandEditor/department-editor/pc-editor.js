@@ -4,6 +4,7 @@ import classnames from 'classnames';
 import DepartmentSingleSelectFormatter from '../../DepartmentSingleSelectFormatter';
 import { KeyCodes } from '../../constants';
 import DepartmentEditor from '../../DepartmentSingleSelectEditor';
+import DTableIcon from '../../DTableIcon';
 
 
 const RowExpandPCDepartmentEditor = ({
@@ -72,7 +73,7 @@ const RowExpandPCDepartmentEditor = ({
       >
         <div className="dtable-ui-row-expand-select-editor-inner">
           <div><DepartmentSingleSelectFormatter value={value} departments={departments} /></div>
-          <i aria-hidden="true" className="dtable-font dtable-icon-down3"></i>
+          <DTableIcon symbol="arrow-down-b" ariaHidden />
         </div>
       </div>
       {showEditor && (

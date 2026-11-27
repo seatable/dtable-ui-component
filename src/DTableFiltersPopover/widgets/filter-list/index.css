@@ -157,7 +157,8 @@
   overflow-x: auto;
 }
 
-.dtable-ui-filters-list .dtable-select .dtable-icon-down3 {
+.dtable-ui-filters-list .dtable-select .dtable-icon-down3,
+.dtable-ui-filters-list .dtable-select .multicolor-icon-arrow-down-b {
   margin-left: 0.5rem;
 }
 
@@ -183,7 +184,8 @@
   color: unset;
 }
 
-.filter-term .dtable-ui-collaborator-selector .dtable-icon-down3 {
+.filter-term .dtable-ui-collaborator-selector .dtable-icon-down3,
+.filter-term .dtable-ui-collaborator-selector .multicolor-icon-arrow-down-b {
   padding-left: 5px;
 }
 

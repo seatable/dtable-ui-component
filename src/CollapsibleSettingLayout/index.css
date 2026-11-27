@@ -8,10 +8,17 @@
   cursor: pointer;
 }
 
-.collapsible-setting-layout-header .dtable-font {
+.collapsible-setting-layout-header .dtable-font,
+.collapsible-setting-layout-header .multicolor-icon {
   font-size: 10px;
 }
 
-.collapsible-setting-layout-header .dtable-font.dtable-icon-spin {
+.collapsible-setting-layout-header .multicolor-icon {
+  width: 10px;
+  height: 10px;
+}
+
+.collapsible-setting-layout-header .dtable-font.dtable-icon-spin,
+.collapsible-setting-layout-header .multicolor-icon.dtable-icon-spin {
   transform: rotate(90deg);
 }

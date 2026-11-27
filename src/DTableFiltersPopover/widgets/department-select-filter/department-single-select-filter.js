@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import SelectedDepartments from '../../../SelectedDepartments';
 import DepartmentSingleSelectEditor from '../../../DepartmentSingleSelectEditor';
+import DTableIcon from '../../../DTableIcon';
 import { DEPARTMENT_SELECT_RANGE_OPTIONS } from '../../../constants/departments';
 import ModalPortal from '../../../ModalPortal';
 import { useClickOutside } from '../../../hooks/common-hooks';
@@ -86,7 +87,7 @@ function DepartmentSingleSelectFilter(props) {
           :
           <span className="select-placeholder">{getLocale('Select_department')}</span>
         }
-        {!readOnly && <span className="dtable-font dtable-icon-down3"></span>}
+        {!readOnly && <DTableIcon symbol="arrow-down-b" ariaHidden />}
       </div>
       {isShowSelector && !isInModal &&
         <DepartmentSingleSelectEditor

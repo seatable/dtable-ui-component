@@ -1,13 +1,17 @@
-.role-status-editor .dropdown-toggle-button .dtable-icon-down3 {
+.role-status-editor .dropdown-toggle-button .dtable-icon-down3,
+.role-status-editor .dropdown-toggle-button .multicolor-icon-arrow-down-b {
+  font-size: 12px;
   color: #b5b5b5;
   cursor: pointer;
 }
 
-.role-status-editor .dropdown-toggle-button .dtable-icon-down3.hide {
+.role-status-editor .dropdown-toggle-button .dtable-icon-down3.hide,
+.role-status-editor .dropdown-toggle-button .multicolor-icon-arrow-down-b.hide {
   display: none;
 }
 
-.role-status-editor .dropdown-toggle-button .dtable-icon-down3:hover {
+.role-status-editor .dropdown-toggle-button .dtable-icon-down3:hover,
+.role-status-editor .dropdown-toggle-button .multicolor-icon-arrow-down-b:hover {
   color: #555;
 }
 

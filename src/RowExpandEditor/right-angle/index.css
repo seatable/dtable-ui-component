@@ -3,4 +3,11 @@
   position: absolute;
   right: 0;
   top: calc(50% - 12px);
+  display: inline-flex;
+  align-items: center;
+  height: 24px;
+}
+
+.dtable-ui-mobile-row-expand-angle-right .multicolor-icon {
+  font-size: 14px;
 }

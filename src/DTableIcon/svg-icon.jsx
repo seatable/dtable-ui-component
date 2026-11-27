@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
+import './index.css';
+
 let svgIconComponents = null;
 
 const loadSvgIconComponents = () => {
@@ -21,10 +23,10 @@ const getSvgIconComponents = () => {
   return svgIconComponents;
 };
 
-const SvgIcon = ({ className, symbol, color, ariaHidden, focusable, getSvg }) => {
+const SvgIcon = ({ className, symbol, color, style, ariaHidden, focusable, getSvg }) => {
   if (!symbol) return null;
 
-  let props = { style: { color } };
+  let props = { style: { ...style, ...(color ? { color } : {}) } };
   if (ariaHidden) {
     props['aria-hidden'] = ariaHidden;
   }
@@ -42,6 +44,7 @@ const SvgIcon = ({ className, symbol, color, ariaHidden, focusable, getSvg }) =>
 SvgIcon.propTypes = {
   symbol: PropTypes.string.isRequired,
   color: PropTypes.string,
+  style: PropTypes.object,
   className: PropTypes.string,
   ariaHidden: PropTypes.bool,
   focusable: PropTypes.bool,

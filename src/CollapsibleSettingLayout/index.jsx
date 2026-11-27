@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
+import DTableIcon from '../DTableIcon';
 
 import './index.css';
 
@@ -16,7 +17,7 @@ const CollapsibleSettingLayout = (props) => {
       >
         <span className="collapsible-setting-layout-title">{title}</span>
         <span className="seatable-icon-btn">
-          <i className={`dtable-font dtable-icon-right${isShowSettings ? ' dtable-icon-spin' : ''}`}/>
+          <DTableIcon symbol="arrow-right-b" className={isShowSettings ? 'dtable-icon-spin' : ''} ariaHidden />
         </span>
       </div>
       {isShowSettings && <div className="collapsible-setting-layout-body mt-3 pl-2">{children || ''}</div>}

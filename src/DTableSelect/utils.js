@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { components } from 'react-select';
+import DTableIcon from '../DTableIcon';
 
 import './dtable-select-label.css';
 
@@ -166,7 +167,7 @@ const MenuSelectStyle = {
     return {
       ...provided,
       paddingRight: '12px',
-      '.dtable-font': {
+      '.dtable-font, .multicolor-icon': {
         color: 'var(--bs-icon-color) !important',
         opacity: isDisabled ? 0.65 : 1,
       }
@@ -177,7 +178,7 @@ const DropdownIndicator = props => {
   return (
     components.DropdownIndicator && (
       <components.DropdownIndicator {...props}>
-        <span className="dtable-font dtable-icon-down3" style={{ fontSize: '12px', marginLeft: '-2px', color: 'var(--bs-icon-color)', paddingRight: 0 }}></span>
+        <DTableIcon symbol="arrow-down-b" style={{ fontSize: '12px', marginLeft: '-2px', color: 'var(--bs-icon-color)', paddingRight: 0 }} ariaHidden />
       </components.DropdownIndicator>
     )
   );

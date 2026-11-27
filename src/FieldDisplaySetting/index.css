@@ -6,10 +6,16 @@
 .field-setting .field-setting-header .expand-button {
   font-size: 10px;
   cursor: pointer;
+}
+
+.field-setting .field-setting-header .expand-button .multicolor-icon {
+  font-size: 10px;
+  width: 10px;
+  height: 10px;
   transition: transform .3s cubic-bezier(.645,.045,.355,1);
 }
 
-.field-setting .field-setting-header .expand-button.revolving {
+.field-setting .field-setting-header .expand-button.revolving .multicolor-icon {
   transform: rotate(90deg);
 }
 

@@ -59,7 +59,8 @@
 }
 
 .dtable-color-picker .color-setting .mode-btn:hover,
-.dtable-color-picker .color-setting .mode-btn:hover .dtable-font {
+.dtable-color-picker .color-setting .mode-btn:hover .dtable-font,
+.dtable-color-picker .color-setting .mode-btn:hover .multicolor-icon {
   color: #555;
 }
 
@@ -113,6 +114,14 @@
   color: #ccc;
   display: inline-block;
   transform: rotate(90deg);
+  cursor: pointer;
+}
+
+.dtable-color-picker .color-setting .multicolor-icon {
+  font-size: 12px;
+  margin-left: 2px;
+  color: #ccc;
+  display: inline-block;
   cursor: pointer;
 }
 
